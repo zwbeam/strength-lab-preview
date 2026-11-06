@@ -363,6 +363,8 @@ function retestPushup(s,baseline){const current=s.programming?.pushup||{};return
 function validateProgramming(s){
  const object=x=>x&&typeof x==='object'&&!Array.isArray(x);
  for(const [id,weight] of Object.entries({...s.weights,...s.nextWeights}))if(MOVES[id]?.bodyweight&&weight!==0)throw Error('Bodyweight profiles use zero external load');
+ if(s.learnedMovements!==undefined&&(!object(s.learnedMovements)||Object.entries(s.learnedMovements).some(([id,value])=>!Object.hasOwn(MOVES,id)||typeof value!=='boolean')))throw Error('Invalid learning confirmation');
+ if(s.timerMode!==undefined&&!['manual','automatic','hybrid'].includes(s.timerMode))throw Error('Invalid workout timer preference');
  if(s.programComposition!==undefined)validateComposition(s.programComposition);
  if(s.programBlock!==undefined&&!Object.hasOwn(BLOCKS,s.programBlock))throw Error('Invalid program block');
  if(s.programming!==undefined){if(!object(s.programming))throw Error('Invalid programming settings');for(const id of Object.keys(s.programming)){if(!object(s.programming[id]))throw Error('Invalid movement settings');policyFor(id,s);}}
@@ -398,6 +400,15 @@ function validateDraft(d,s){
   }
  }
  if(d.clock!==undefined&&d.clock!==null&&(!object(d.clock)||typeof d.clock.label!=='string'||typeof d.clock.running!=='boolean'||!number(d.clock.remaining)||d.clock.running&&!number(d.clock.endAt)))throw Error('Invalid draft clock');
+ if(d.timerMode!==undefined&&!['manual','automatic','hybrid'].includes(d.timerMode))throw Error('Invalid draft timer mode');
+ const maxCursor=d.plan.items.reduce((n,rx)=>n+rx.sets*2,0);
+ if(d.timerIndex!==undefined&&(!Number.isInteger(d.timerIndex)||d.timerIndex<0||d.timerIndex>maxCursor))throw Error('Invalid timer position');
+ if(d.clock){const c=d.clock;
+  if(c.kind!==undefined&&!['warmup','work','rest','cooldown','complete'].includes(c.kind))throw Error('Invalid timer kind');
+  for(const key of ['sequence','awaitConfirmation','completed','estimated'])if(c[key]!==undefined&&typeof c[key]!=='boolean')throw Error('Invalid timer state');
+  if(c.cursor!==undefined&&(!Number.isInteger(c.cursor)||c.cursor<0||c.cursor>maxCursor))throw Error('Invalid interval cursor');
+  if(c.startedAt!==undefined&&!number(c.startedAt))throw Error('Invalid interval start');
+ }
  return d;
 }
 function validateBackup(input){
