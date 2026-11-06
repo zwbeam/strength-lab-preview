@@ -1,0 +1,31 @@
+/* Active workout: quiet hierarchy, one prominent action. */
+:root{--accent:#9de3cb;--bg:#12191c;--card:#1c282c;--line:#344347;--muted:#b1c2c4}
+.workout-focus{border:1px solid #3d6864;border-radius:22px;padding:22px;margin:18px 0;background:linear-gradient(150deg,#203b3c 0%,#18282b 75%);box-shadow:0 14px 35px #0002}
+.focus-kicker{font-size:11px;font-weight:800;letter-spacing:.13em;color:#a7e8d3;display:flex;justify-content:space-between;gap:12px}
+.focus-track{height:6px;border-radius:8px;background:#365153;overflow:hidden;margin:13px 0 24px}
+.focus-track>div{height:100%;background:#a5ebd2;border-radius:8px;transition:width .2s ease}
+.focus-label{font-size:11px;font-weight:800;letter-spacing:.12em;color:#a7c9c9}
+.workout-focus h2{font-size:clamp(24px,5vw,35px);letter-spacing:-.035em;margin:5px 0 7px;line-height:1.13}
+.workout-focus p{margin:8px 0 18px}.workout-focus .focus-action{min-height:56px;font-weight:800;font-size:17px}
+.workout-focus .small{margin:11px 0 0}
+.exercise .setrow input{min-height:44px}
+.exercise .done{min-width:48px;min-height:48px}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #d2f6e9;outline-offset:3px}
+@media(max-width:520px){.workout-focus{padding:19px 16px;border-radius:18px}.workout-focus h2{font-size:27px}}
+
+/* Distinct timer modes, without hiding the full exercise overview. */
+.timer[data-timer-mode="rest"]{border-left:4px solid #d99a4c}
+.timer[data-timer-mode="work"]{border-left:4px solid #31b99f}
+.timer[data-timer-mode="warmup"],.timer[data-timer-mode="cooldown"]{border-left:4px solid #789db4}
+.timer #clock{font-variant-numeric:tabular-nums;font-size:clamp(1.5rem,5vw,2.3rem)}
+@media(max-width:480px){.timer .buttonrow{display:flex;flex-wrap:wrap;gap:6px}.timer .buttonrow button{min-height:44px}}
+/* Workout overview navigation and timer: sticky only on screens with enough vertical space. */
+.workout-jumps{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 16px}
+.workout-jumps a,.overview-heading a{color:#b8f0df;text-decoration:underline;text-underline-offset:3px;min-height:44px;display:inline-flex;align-items:center}
+.overview-heading{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:22px}
+#workout-overview,#workout-focus,.exercise{scroll-margin-top:170px}
+.timer{position:sticky;top:8px;z-index:5;background:var(--card,#1c282c);box-shadow:0 5px 18px #0006}
+.timer .buttonrow{display:flex;flex-wrap:wrap;gap:8px}
+@media(max-width:480px){.timer{top:4px;padding:10px 12px}.timer #clock{font-size:1.65rem}.timer .buttonrow button{flex:1 1 auto}.overview-heading h2{font-size:1.2rem}}
+@media(max-height:600px){.timer{position:relative;top:auto}#workout-overview,#workout-focus,.exercise{scroll-margin-top:16px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}

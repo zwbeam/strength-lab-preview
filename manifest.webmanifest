@@ -1,0 +1,23 @@
+{
+  "name": "Strength Lab Development Preview",
+  "short_name": "Strength Lab DEV",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#151719",
+  "theme_color": "#151719",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "id": "./",
+  "description": "Development preview with separate test data. Not a finished release."
+}

@@ -1,0 +1,13 @@
+const PREFIX="sl-dev-preview-cache-";
+const CACHE=PREFIX+"613c40853c9c0dc4266e1784fccbeae5e4d92e54";
+const FILES=["./", "./index.html", "./styles.css", "./interface-polish.css", "./app.js", "./engine.js", "./manifest.webmanifest", "./source-index.json", "./legacy/index.html", "./legacy/app.js?v=32", "./legacy/styles.css?v=32", "./legacy/source-index.json", "./sources-00.json", "./sources-01.json", "./sources-02.json", "./sources-03.json", "./sources-04.json", "./sources-05.json", "./sources-06.json", "./sources-07.json", "./sources-08.json", "./sources-09.json", "./sources-10.json", "./sources-11.json", "./sources-12.json", "./sources-13.json", "./sources-14.json", "./sources-15.json", "./sources-16.json", "./sources-17.json", "./sources-18.json", "./sources-19.json", "./sources-20.json", "./sources-21.json", "./sources-22.json", "./sources-23.json", "./art-background.webp", "./art-history.webp", "./art-hub.webp", "./art-plan.webp", "./art-settings.webp", "./art-train.webp", "./background-graffiti-v29.webp", "./background-graffiti.png", "./background-v23.webp", "./background-workout-v28.webp", "./brand-mark.svg", "./carry.svg", "./cast.svg", "./clean.svg", "./club.svg", "./concept-skull.png", "./header-history-v16.webp", "./header-hub-v16.webp", "./header-settings-v16.webp", "./header-settings-v23.webp", "./header-strength-lab.png", "./header-strengthlab-v23.webp", "./header-train-v16.webp", "./header-traininghub-v23.webp", "./header-traininglog-v23.webp", "./header-workout-v28.webp", "./hinge.svg", "./icon-192.png", "./icon-512.png", "./logo-skull-clubs.png", "./mobility.svg", "./press.svg", "./row.svg", "./skull-clubs-spray.png", "./spray-background.webp", "./spray.svg", "./squat.svg", "./strength-wordmark.webp", "./swing.svg", "./preview-build.json"];
+self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(FILES)).then(()=>self.skipWaiting())));
+self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith(PREFIX)&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));
+self.addEventListener('fetch',event=>{
+ const request=event.request,url=new URL(request.url),scope=new URL(self.registration.scope);
+ if(request.method!=='GET'||url.origin!==scope.origin||!url.pathname.startsWith(scope.pathname))return;
+ event.respondWith(fetch(request,{cache:'no-store'}).then(response=>{
+  if(response.ok){const copy=response.clone();event.waitUntil(caches.open(CACHE).then(cache=>cache.put(request,copy)));}
+  return response;
+ }).catch(async()=>{const cache=await caches.open(CACHE);return await cache.match(request)||(request.mode==='navigate'?await cache.match('./index.html'):Response.error());}));
+});
