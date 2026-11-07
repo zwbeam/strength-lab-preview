@@ -36,7 +36,7 @@ function advance(d,at=Date.now(),user=false){const c=d.clock;if(!c)return;
  prepare(d,index,at,mode(d)!=='manual'&&!(mode(d)==='hybrid'&&boundary),mode(d)==='hybrid'&&boundary,seconds);
 }
 function tick(d,now=Date.now()){let changed=false;for(let n=0;n<queue(d).length+2&&d.clock?.running&&remaining(d.clock,now)===0;n++){const at=d.clock.endAt;advance(d,at);changed=true;}return changed;}
-function firstUnlogged(d){const q=queue(d);return q.findIndex(x=>x.kind==='work'&&(x.set===null?d.items[x.item].sets.some(s=>!s.done):!d.items[x.item].sets[x.set].done));}
+function firstUnlogged(d){const q=queue(d);return q.findIndex(x=>x.kind==='work'&&(x.set===null?d.items[x.item].sets.some(s=>!s.done):d.items[x.item].sets[x.set]&&!d.items[x.item].sets[x.set].done));}
 function primary(d,now=Date.now()){const c=d.clock;
  if(c?.running){pause(d,now);return;}
  if(c?.remaining){resume(d,now);return;}
