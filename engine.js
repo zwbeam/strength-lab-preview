@@ -257,13 +257,30 @@ const BLOCKS={
 const DEMANDS={ground:['lower','shoulder'],getup:['lower','shoulder','grip'],hinge:['lower','grip'],squat:['lower'],press:['shoulder','grip'],pull:['shoulder','grip'],carry:['grip'],rotation:['shoulder','grip']};
 function movementDemands(id){return [...(DEMANDS[MOVES[id]?.family]||[])];}
 function calendarDay(value){const text=typeof value==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(value)?value:new Date(value??Date.now()).toLocaleDateString('sv-SE');return Date.parse(text+'T12:00:00Z')/86400000;}
+function trainingPaused(s,now){const day=typeof now==='string'?now:new Date(now??Date.now()).toLocaleDateString('sv-SE');return !!s.paused&&(!s.pauseStarted||day>=s.pauseStarted)&&(!s.pauseUntil||day<s.pauseUntil);}
+function activityRecovery(a){
+ // Conservative app planning heuristic, not physiological or strength equivalence.
+ if(a.effort==='hard')return 2;
+ if(a.effort==='moderate')return ['trail','labor'].includes(a.type)&&a.duration>=60||a.type==='mountain'&&a.duration>=90?2:1;
+ return a.duration>=120?1:0;
+}
+function validateActivity(a){
+ const types=['mountain','gravel','road','indoor','hiking','trail','labor','other'];
+ if(!a||typeof a!=='object'||typeof a.id!=='string'||!a.id||!types.includes(a.type)||!['planned','completed'].includes(a.status)||!['easy','moderate','hard'].includes(a.effort)||!Number.isFinite(a.duration)||a.duration<=0||a.duration>1440||typeof a.date!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(a.date)||!Number.isFinite(Date.parse(a.date+'T12:00:00Z'))||new Date(a.date+'T12:00:00Z').toISOString().slice(0,10)!==a.date)throw Error('Invalid activity');
+ for(const key of ['distance','elevation'])if(a[key]!==undefined&&(!Number.isFinite(a[key])||a[key]<0))throw Error('Invalid activity measurement');
+ if(a.notes!==undefined&&typeof a.notes!=='string'||a.replacesStrength!==undefined&&typeof a.replacesStrength!=='boolean')throw Error('Invalid activity details');
+ if(a.versions!==undefined){if(!Array.isArray(a.versions)||a.versions.length>1000)throw Error('Invalid activity versions');for(const v of a.versions){if(!v||typeof v.at!=='string'||!Number.isFinite(Date.parse(v.at))||v.before?.versions!==undefined)throw Error('Invalid activity version');validateActivity(v.before);}}
+ return a;
+}
 function blockPlan(s,opts={}){
  const block=s.programBlock||'abc';if(!BLOCKS[block])throw Error('Unknown program block');
- const days=BLOCKS[block].days,slot=(s.sessions||[]).filter(x=>x.slot!==undefined&&(x.block||'abc')===block&&(x.notebookVersion!==1||(x.items||[]).some(y=>y.actualSets>0))).length%days.length,day=days[slot];
+ const days=BLOCKS[block].days,slot=(s.sessions||[]).filter(x=>x.slot!==undefined&&(x.block||'abc')===block&&(x.notebookVersion!==1||(x.items||[]).some(y=>y.actualSets>0))&&(x.calendarVersion!==1||(x.items||[]).every(y=>y.performed===true))).length%days.length,day=days[slot];
  const budget=timeBudget(opts.minutes??s.defaultMinutes??45),defaults=s.trainingDefaults||{};
  const blockIds=days.flatMap(x=>x.ids),support=supportingMoves(s,blockIds,opts);
  const allowed=new Set([...blockIds,...support]),pending=s.deferredByBlock?.[block]||(block==='abc'?s.deferredIds:[])||[];
- const ids=[...new Set([...support,...pending.filter(id=>allowed.has(id)),...day.ids])];
+ const latest=(s.sessions||[]).filter(x=>(x.block||'abc')===block).at(-1);
+ const continuing=latest?.calendarVersion===1&&latest.items.some(x=>x.actualSets>0)&&latest.items.some(x=>!x.performed)&&pending.length>0;
+ const ids=[...new Set([...support,...pending.filter(id=>allowed.has(id)),...(continuing?[]:day.ids)])];
  const items=[],deferred=[],held=[],unavailable=[],prerequisite=[],requirements=[],scheduled=[];let used=0,hard=0;
  const today=calendarDay(opts.now),history=(s.sessions||[]).filter(x=>calendarDay(x.date)<=today);
  const trainingDays=new Set(history.filter(x=>today-calendarDay(x.date)<7&&(x.items||[]).some(y=>y.actualSets>0)).map(x=>x.date));
@@ -271,20 +288,24 @@ function blockPlan(s,opts={}){
  const restDay=!alreadyToday&&trainingDays.size>=(defaults.maxTrainingDays??6);
  for(const id of ids){
   if(!MOVES[id])continue;
-  if(s.paused){deferred.push(id);continue;}
+  if(trainingPaused(s,opts.now)){deferred.push(id);continue;}
   if(Array.isArray(s.equipment?.[MOVES[id].gear])&&!s.equipment[MOVES[id].gear].length){unavailable.push(id);deferred.push(id);continue;}
   if(stateFor(s,id).hold){held.push(id);deferred.push(id);continue;}
-  const rx=prescription(s,id,opts);
+  const lastTraining=history.filter(x=>(x.items||[]).some(y=>y.actualSets>0)).sort((a,b)=>a.date.localeCompare(b.date)).at(-1);
+  const pauseReturn=!!s.pauseStarted&&lastTraining&&lastTraining.date<=s.pauseStarted&&today-calendarDay(lastTraining.date)>(defaults.reentryDays??14);
+  const rx=prescription(s,id,{...opts,reentry:opts.reentry||pauseReturn});
   if(rx.mode==='prerequisite'){prerequisite.push(id);requirements.push({id,reason:rx.reason});deferred.push(id);continue;}
   const demands=movementDemands(id);
   const recent=history.some(x=>today-calendarDay(x.date)<(defaults.minGapDays??0)&&(x.items||[]).some(y=>y.actualSets>0&&MOVES[y.id]&&movementDemands(y.id).some(d=>demands.includes(d))));
   const isHard=rx.track==='heavy'||rx.profile==='grind'||rx.mode==='density';
-  if(restDay||recent||(isHard&&opts.avoidHard)||(isHard&&hard>=(defaults.maxHardMovements??3))){scheduled.push(id);deferred.push(id);continue;}
+  const outside=(s.activities||[]).some(a=>a.status==='completed'&&calendarDay(a.date)<=today&&(today-calendarDay(a.date)<activityRecovery(a)||a.replacesStrength!==false&&today===calendarDay(a.date)));
+  const repeat=s.trainingPreferences?.beginnerSpacing&&history.some(x=>today-calendarDay(x.date)<2&&(x.items||[]).some(y=>y.id===id&&y.actualSets>0));
+  if(outside||repeat||restDay||recent||(isHard&&opts.avoidHard)||(isHard&&hard>=(defaults.maxHardMovements??3))){scheduled.push(id);deferred.push(id);continue;}
   const cost=minutesFor(rx)+(items.length?(items.at(-1).betweenExercises||0)/60:0);
   if(used+cost>budget.main+1e-8){deferred.push(id);continue;}
   items.push(rx);used+=cost;if(isHard)hard++;
  }
- return{block,slot,day,support,items,deferred,held,unavailable,prerequisite,requirements,scheduled,restDay,paused:!!s.paused,estimated:Math.ceil(used),total:Math.ceil(used)+budget.warmup+budget.cooldown,reentry:items.some(x=>x.mode==='reentry'),cap:budget.main,budget};
+ return{block,slot,day:continuing?{...day,name:day.name+' · remaining work'}:day,support,items,deferred,held,unavailable,prerequisite,requirements,scheduled,restDay,paused:trainingPaused(s,opts.now),estimated:Math.ceil(used),total:Math.ceil(used)+budget.warmup+budget.cooldown,reentry:items.some(x=>x.mode==='reentry'),cap:budget.main,budget};
 }
 // Coordinate independent blocks across workouts; never blend their numeric protocols.
 function plan(s,opts={}){
@@ -299,7 +320,8 @@ function plan(s,opts={}){
   const p=blockPlan({...s,programBlock:block,trainingDefaults:defaults},{...opts,avoidHard:hardRecent});
   return {block,order,last,p};
  }).sort((a,b)=>a.last-b.last||a.order-b.order);
- const chosen=candidates.find(x=>x.p.items.length)||candidates[0],p=chosen.p;
+ const latest=history.at(-1),unfinished=latest?.calendarVersion===1&&latest.items.some(x=>x.actualSets>0)&&latest.items.some(x=>!x.performed)?candidates.find(x=>x.block===(latest.block||'abc')&&x.p.items.length):null;
+ const chosen=unfinished||candidates.find(x=>x.p.items.length)||candidates[0],p=chosen.p;
  const recovery=p.items.some(x=>['recovery','reentry','rebuild','deload'].includes(x.mode));
  const skill=p.support.length>0||['getupPractice','clubIntermediate','groundPractice','hingePractice','hingePathway'].includes(p.block);
  const intensity=p.items.some(x=>x.track==='heavy'||x.profile==='grind'||x.mode==='density');
@@ -311,7 +333,7 @@ function plan(s,opts={}){
  const absenceDays=s.trainingDefaults?.reentryDays??14;
  const cadence={sampleDays:trainingDays.length,estimatedReturnDays,absenceDays,warning:estimatedReturnDays!==null&&estimatedReturnDays>absenceDays?'At your recent training frequency, revisiting every selected block may take longer than the absence window. Consider fewer active blocks; do not add catch-up work.':null};
  const reason=!p.items.length?'All selected blocks are currently blocked or do not fit. Review the reasons below.':
-  (chosen.last<0?'This selected block has not yet been practiced.':'This is the least recently practiced selected block that is ready and fits today.')+
+  (unfinished?'Continue the last unfinished workout before later blocks.':chosen.last<0?'This selected block has not yet been practiced.':'This is the least recently practiced selected block that is ready and fits today.')+
   (pending.length?' Unfinished movements are considered first within this block.':'')+
   (p.support.length?' Supporting foundation practice is included to regain eligibility.':'');
  const status=x=>x.p.items.length?'Ready':x.p.paused?'Paused':x.p.held.length?'Pain review':x.p.scheduled.length?'Recovery schedule':x.p.prerequisite.length?'Prerequisites':x.p.unavailable.length?'Equipment':'Needs more time';
@@ -361,6 +383,11 @@ function describeProgression(id,s={}){
 function validWorkingWeight(id,value){const weight=Number(value);return Number.isFinite(weight)&&(MOVES[id]?.bodyweight?weight===0:weight>0);}
 function retestPushup(s,baseline){const current=s.programming?.pushup||{};return configureMovement(s,'pushup',{...current,profile:'pushup',cleanBaseline:baseline,cycleRevision:(current.cycleRevision||0)+1});}
 function validateProgramming(s){
+ if(s.trainingPreferences!==undefined){const p=s.trainingPreferences;if(!p||typeof p!=='object'||!Number.isInteger(p.daysPerWeek)||p.daysPerWeek<1||p.daysPerWeek>7||p.beginnerSpacing!==undefined&&typeof p.beginnerSpacing!=='boolean'||p.activityTypes!==undefined&&(!Array.isArray(p.activityTypes)||p.activityTypes.some(x=>!['mountain','gravel','road','indoor','hiking','trail','labor','other'].includes(x))))throw Error('Invalid training setup');}
+ for(const key of ['pauseUntil','resumeDate','pauseStarted'])if(s[key]!==undefined&&s[key]!==null&&(typeof s[key]!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(s[key])||!Number.isFinite(Date.parse(s[key]+'T12:00:00Z'))||new Date(s[key]+'T12:00:00Z').toISOString().slice(0,10)!==s[key]))throw Error('Invalid pause date');
+ if(s.calendarMoves!==undefined){if(!s.calendarMoves||typeof s.calendarMoves!=='object'||Array.isArray(s.calendarMoves))throw Error('Invalid calendar moves');for(const [key,value] of Object.entries(s.calendarMoves))if(key.length>300||typeof value!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(value)||!Number.isFinite(Date.parse(value+'T12:00:00Z'))||new Date(value+'T12:00:00Z').toISOString().slice(0,10)!==value)throw Error('Invalid moved date');}
+ if(s.activities!==undefined){if(!Array.isArray(s.activities))throw Error('Invalid activities');const ids=new Set();for(const a of s.activities){validateActivity(a);if(ids.has(a.id))throw Error('Duplicate activity');ids.add(a.id);}}
+
  const object=x=>x&&typeof x==='object'&&!Array.isArray(x);
  for(const [id,weight] of Object.entries({...s.weights,...s.nextWeights}))if(MOVES[id]?.bodyweight&&weight!==0)throw Error('Bodyweight profiles use zero external load');
  if(s.learnedMovements!==undefined&&(!object(s.learnedMovements)||Object.entries(s.learnedMovements).some(([id,value])=>!Object.hasOwn(MOVES,id)||typeof value!=='boolean')))throw Error('Invalid learning confirmation');
@@ -400,18 +427,20 @@ function validateDraft(d,s){
   for(const set of item.sets){
    if(!object(set)||!number(set.weight)||!Number.isInteger(set.reps)||set.reps<0||typeof set.done!=='boolean'||m.bodyweight&&set.weight!==0)throw Error('Invalid draft set');
    for(const key of ['bothSides','continuous','timingValid','skipped'])if(set[key]!==undefined&&typeof set[key]!=='boolean')throw Error('Invalid draft confirmation');
-   for(const key of ['restSeconds','roundSeconds'])if(set[key]!==undefined&&!number(set[key]))throw Error('Invalid actual timing');
+   for(const key of ['restSeconds','roundSeconds','transitionSeconds'])if(set[key]!==undefined&&!number(set[key]))throw Error('Invalid actual timing');
    if(set.note!==undefined&&typeof set.note!=='string')throw Error('Invalid actual note');
    for(const key of ['leftReps','rightReps'])if(set[key]!==undefined&&(!Number.isInteger(set[key])||set[key]<0))throw Error('Invalid draft side counts');
   }
  }
  if(d.clock!==undefined&&d.clock!==null&&(!object(d.clock)||typeof d.clock.label!=='string'||typeof d.clock.running!=='boolean'||!number(d.clock.remaining)||d.clock.running&&!number(d.clock.endAt)))throw Error('Invalid draft clock');
+ if(d.calendarVersion!==undefined&&d.calendarVersion!==1)throw Error('Invalid calendar version');
+ if(d.timerVersion!==undefined&&d.timerVersion!==3)throw Error('Invalid timer version');
  if(d.timerMode!==undefined&&!['manual','automatic','hybrid'].includes(d.timerMode))throw Error('Invalid draft timer mode');
  const maxCursor=d.plan.items.reduce((n,rx)=>n+rx.sets*2,0);
  if(d.timerIndex!==undefined&&(!Number.isInteger(d.timerIndex)||d.timerIndex<0||d.timerIndex>maxCursor))throw Error('Invalid timer position');
  if(d.clock){const c=d.clock;
   if(c.kind!==undefined&&!['warmup','work','rest','cooldown','complete'].includes(c.kind))throw Error('Invalid timer kind');
-  for(const key of ['sequence','awaitConfirmation','completed','estimated'])if(c[key]!==undefined&&typeof c[key]!=='boolean')throw Error('Invalid timer state');
+  for(const key of ['sequence','awaitConfirmation','completed','estimated','untimed'])if(c[key]!==undefined&&typeof c[key]!=='boolean')throw Error('Invalid timer state');
   if(c.cursor!==undefined&&(!Number.isInteger(c.cursor)||c.cursor<0||c.cursor>maxCursor))throw Error('Invalid interval cursor');
   if(c.startedAt!==undefined&&!number(c.startedAt))throw Error('Invalid interval start');
  }
@@ -432,7 +461,7 @@ function validateNotebookRecord(item){
  for(const set of item.sets){if(!set||typeof set!=='object'||typeof set.done!=='boolean'||!Number.isInteger(set.reps)||set.reps<0||!num(set.weight)||m.bodyweight&&set.weight!==0)throw Error('Invalid recorded actual set');
   for(const k of ['done','bothSides','continuous','timingValid','skipped'])if(set[k]!==undefined&&typeof set[k]!=='boolean')throw Error('Invalid recorded confirmation');
   for(const k of ['leftReps','rightReps'])if(set[k]!==undefined&&(!Number.isInteger(set[k])||set[k]<0))throw Error('Invalid recorded side count');
-  for(const k of ['restSeconds','roundSeconds'])if(set[k]!==undefined&&!num(set[k]))throw Error('Invalid recorded timing');
+  for(const k of ['restSeconds','roundSeconds','transitionSeconds'])if(set[k]!==undefined&&!num(set[k]))throw Error('Invalid recorded timing');
  }
  const derived=completeRecord(rx,item.sets,item.quality,item.pain);
  for(const k of ['actualSets','actualReps','weight','targetSets','targetReps','rest','performed','completed'])if(item[k]!==derived[k])throw Error('Recorded actuals disagree with progression evidence');
@@ -453,6 +482,7 @@ function validateBackup(input){
   if(session.originalPlan!==undefined)validatePlanMetadata(session.originalPlan);
   if(session.adjustments!==undefined&&session.adjustments!==null)validateAdjustments(session.adjustments);
   if(session.notes!==undefined&&typeof session.notes!=='string')throw Error('Invalid workout notes');
+  if(session.calendarVersion!==undefined&&session.calendarVersion!==1)throw Error('Invalid calendar history version');
   if(session.notebookVersion!==undefined&&session.notebookVersion!==1)throw Error('Unsupported notebook history');
   if(session.finishOutcome!==undefined&&!['complete','partial'].includes(session.finishOutcome))throw Error('Invalid workout outcome');
   if(session.corrections!==undefined){if(!Array.isArray(session.corrections)||session.corrections.length>1000)throw Error('Invalid correction history');for(const revision of session.corrections){
@@ -481,5 +511,5 @@ function validateBackup(input){
  const workoutDraft=validateDraft(input.workoutDraft,input);
  return {...input,workoutDraft,nextWeights:input.nextWeights||{},defaultMinutes:input.defaultMinutes??45,deferredIds:input.deferredIds||[]};
 }
-return{MOVES,SKILLS,DAYS,BLOCKS,LOADS,PROFILE_NAMES,describeProgression,policyFor,availableProfiles,configureMovement,practiceEvidence,supportingMoves,requirementLabel,prerequisites,chooseCycle,loadOptions,selectLoad,retestPushup,validWorkingWeight,validateProgramming,validateDraft,validateBackup,records,successful,stateFor,prescription,minutesFor,timeBudget,plan,completeRecord,nextRest,deferredAfter,resolvePain,movementGap,movementDemands};
+return{trainingPaused,activityRecovery,validateActivity,MOVES,SKILLS,DAYS,BLOCKS,LOADS,PROFILE_NAMES,describeProgression,policyFor,availableProfiles,configureMovement,practiceEvidence,supportingMoves,requirementLabel,prerequisites,chooseCycle,loadOptions,selectLoad,retestPushup,validWorkingWeight,validateProgramming,validateDraft,validateBackup,records,successful,stateFor,prescription,minutesFor,timeBudget,plan,completeRecord,nextRest,deferredAfter,resolvePain,movementGap,movementDemands};
 });

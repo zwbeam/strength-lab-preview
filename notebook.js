@@ -37,6 +37,7 @@ function records(plan,items){return plan.items.map((rx,i)=>({...E.completeRecord
 function status(items,outcome='complete'){
  if(!items.some(x=>x.actualSets>0))return 'No work recorded';
  if(outcome==='partial')return 'Partially completed';
+ if(items.some(x=>!Array.isArray(x.sets)))return 'Recorded work (older summary)';
  const exact=items.every(x=>x.performed!==false&&x.quality==='clean'&&!x.pain&&x.sets.filter(s=>s.done&&!s.skipped).length===x.targetSets&&x.sets.filter(s=>s.done&&!s.skipped).every(s=>s.reps===x.targetReps&&Number(s.weight)===Number(x.prescription?.weight??x.weight)&&(s.restSeconds===undefined||s.restSeconds===x.rest)&&(s.roundSeconds===undefined||s.roundSeconds===x.roundSeconds)));
  return exact?'Completed as prescribed':'Completed with modifications';
 }
