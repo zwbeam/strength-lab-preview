@@ -78,3 +78,23 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 #selected-workout details.preparation,
 #selected-workout details.preparation[open]{background:#243b53;border:2px solid #274c83;border-radius:10px;padding:12px 14px;margin:12px 0}
 #selected-workout details.preparation[open]{background:#304b66;border-color:#37669e}
+
+/* UX review: lime calendar, yellow adjustments card, red warmup, blue cooldown. */
+#training-calendar{background:#344c30;border:2px solid #829d45}
+#selected-workout details.today-adjustments,
+#selected-workout details.today-adjustments[open]{background:#45402b;border:2px solid #bd9e32;border-radius:10px;padding:12px 14px;margin:12px 0}
+#selected-workout details.today-adjustments[open]{background:#514a2d;border-color:#e2bf48}
+#selected-workout details.today-adjustments>summary{color:#ffda57 !important}
+#selected-workout details.today-adjustments select{background:#393b35;border:2px solid #8d813b}
+#selected-workout details.today-adjustments select:focus,#selected-workout details.today-adjustments select:focus-visible{background:#625733;border-color:#f3d768;box-shadow:0 0 0 3px #a38a3455}
+#selected-workout details.preparation[data-panel="warmup"],
+#selected-workout details.preparation[data-panel="warmup"][open]{background:#4e303a;border:2px solid #922f4c}
+#selected-workout details.preparation[data-panel="warmup"][open]{background:#603844;border-color:#b94a64}
+#selected-workout details.preparation[data-panel="cooldown"],
+#selected-workout details.preparation[data-panel="cooldown"][open]{background:#243b53;border:2px solid #274c83}
+#selected-workout details.preparation[data-panel="cooldown"][open]{background:#304b66;border-color:#37669e}
+#selected-workout .prep-exercises{margin-top:8px}
+#selected-workout .prep-exercise{padding:9px 0;border-top:1px solid #ffffff24}
+#selected-workout .prep-exercise:first-child{border-top:0}
+#selected-workout .prep-name .movement-link{font-weight:800}
+#selected-workout .prep-exercise .rx{margin:3px 0 0;line-height:1.4}
