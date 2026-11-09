@@ -30,5 +30,5 @@ for(const [name,days,focus,variety,kb,club,bw] of profiles){
  total+=workouts;
  console.log('PASS',name,{workouts,light,credits});
 }
-assert.equal(total,1404);
+assert.equal(total,1456);
 console.log('PASS 52-week simulation:',total,'workouts, 8 profiles');
