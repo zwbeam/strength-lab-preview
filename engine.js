@@ -320,6 +320,13 @@ function blockPlan(s,opts={}){
  const alreadyToday=history.some(x=>calendarDay(x.date)===today&&(x.items||[]).some(y=>y.actualSets>0));
  const weeklyLimit=Math.min(defaults.maxTrainingDays??7,pref.daysPerWeek??7);
  const restDay=!alreadyToday&&trainingDays.size>=weeklyLimit;
+ const previousTraining=history.filter(x=>calendarDay(x.date)<today&&(x.items||[]).some(y=>y.actualSets>0)).sort((a,b)=>calendarDay(b.date)-calendarDay(a.date))[0];
+ const gap=previousTraining?today-calendarDay(previousTraining.date):Infinity;
+ const consecutive=gap===1;
+ // Recommend spacing for 3-4 day schedules; never silently block a flexible training day.
+ const spacingRecommended=!alreadyToday&&consecutive&&weeklyLimit<=4;
+ const recentDemands=new Set((previousTraining?.items||[]).filter(x=>x.actualSets>0).flatMap(x=>movementDemands(x.id)));
+
  for(const id of ids){
   if(!MOVES[id])continue;
   if(trainingPaused(s,opts.now)){deferred.push(id);continue;}
@@ -342,6 +349,12 @@ function blockPlan(s,opts={}){
   const demands=movementDemands(id);
   const recent=history.some(x=>today-calendarDay(x.date)<(defaults.minGapDays??0)&&(x.items||[]).some(y=>y.actualSets>0&&MOVES[y.id]&&movementDemands(y.id).some(d=>demands.includes(d))));
   const isHard=rx.track==='heavy'||rx.profile==='grind'||rx.mode==='density';
+  // Consecutive sessions sharing major demands are light practice rather than hard progression.
+  const overlap=consecutive&&demands.some(d=>recentDemands.has(d));
+  if(overlap&&rx.mode==='volume'&&rx.sets>1&&rx.profile!=='wave'){
+   const planned=rx.sets;
+   rx={...rx,sets:Math.max(1,Math.floor(rx.sets*.7)),mode:'light',reason:'Consecutive-day overlap: reduced-volume practice instead of a second hard exposure; no progression credit. Original sets: '+planned+'.'};
+  }
   const outside=(s.activities||[]).some(a=>a.status==='completed'&&calendarDay(a.date)<=today&&(today-calendarDay(a.date)<activityRecovery(a)||a.replacesStrength!==false&&today===calendarDay(a.date)));
   const repeat=s.trainingPreferences?.beginnerSpacing&&history.some(x=>today-calendarDay(x.date)<2&&(x.items||[]).some(y=>y.id===id&&y.actualSets>0));
   if(outside||repeat||restDay||recent||(isHard&&opts.avoidHard)||(isHard&&hard>=(defaults.maxHardMovements??3))){scheduled.push(id);deferred.push(id);continue;}
@@ -349,7 +362,7 @@ function blockPlan(s,opts={}){
   if(used+cost>budget.main+1e-8){deferred.push(id);continue;}
   items.push(rx);used+=cost;if(isHard)hard++;
  }
- return{block,slot,day:continuing?{...day,name:day.name+' · remaining work'}:day,support,items,deferred,held,unavailable,prerequisite,requirements,scheduled,restDay,paused:trainingPaused(s,opts.now),estimated:Math.ceil(used),total:Math.ceil(used)+budget.warmup+budget.cooldown,reentry:items.some(x=>x.mode==='reentry'),cap:budget.main,budget};
+ return{block,slot,day:continuing?{...day,name:day.name+' · remaining work'}:day,support,items,deferred,held,unavailable,prerequisite,requirements,scheduled,restDay,spacingRecommended,spacingReason:spacingRecommended?'A rest or easier activity day is recommended after yesterday’s workout; you may train if recovered.':'',paused:trainingPaused(s,opts.now),estimated:Math.ceil(used),total:Math.ceil(used)+budget.warmup+budget.cooldown,reentry:items.some(x=>x.mode==='reentry'),cap:budget.main,budget};
 }
 // Coordinate independent blocks across workouts; never blend their numeric protocols.
 function plan(s,opts={}){
