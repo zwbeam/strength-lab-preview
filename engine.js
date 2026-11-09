@@ -227,9 +227,11 @@ function loadOptions(s,id){
  const st=stateFor(s,id),m=MOVES[id];
  if(m.bodyweight)return [];
  if(st.hold||st.fail||st.phase!=='ready')return [];
- const equipment=m.pair?s.equipment?.pairs:s.equipment?.[m.gear];
+ const inventory=m.pair?s.equipment?.pairs:s.equipment?.[m.gear];
+ // Inventory is optional in simplified setup; offer candidate increments, never claim they are owned.
+ const candidates=Array.isArray(inventory)&&inventory.length?inventory:(LOADS[m.gear]||[]);
  const cap=s.trainingDefaults?.maxLoadJump??.25;
- return (equipment||[]).filter(w=>Number.isFinite(w)&&w>st.weight&&w<=st.weight*(1+cap)).sort((a,b)=>a-b);
+ return candidates.filter(w=>Number.isFinite(w)&&w>st.weight&&w<=st.weight*(1+cap)).sort((a,b)=>a-b);
 }
 function selectLoad(s,id,weight){if(!loadOptions(s,id).includes(weight))throw Error('Load must be an available, permitted increment after a clean cycle. Adjust the configurable jump limit deliberately if needed.');if(stateFor(s,id).policy.profile==='wave')throw Error('Configure a new heavy/light pair in Settings instead.');return{...s,nextWeights:{...s.nextWeights,[id]:weight}};}
 function minutesFor(p){const m=MOVES[p.id];return(p.sets*(p.roundSeconds||((p.secondsPerSet??m.sec)+Math.max(0,p.rest)))/60)+.55;}
