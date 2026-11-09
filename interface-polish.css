@@ -561,3 +561,10 @@ body{background-image:linear-gradient(#0b1215d9,#0b1215d9),url("chalk-notes-over
 .training-explanation .explanation-line{padding:10px 0;border-bottom:1px solid rgba(128,128,128,.2)}
 .training-explanation .explanation-line h3{font-size:14px;margin:0 0 5px}
 .training-explanation .explanation-line p{margin:4px 0;line-height:1.45}
+
+/* v65: compact progression report */
+.training-explanation .explanation-line ul{margin:5px 0 0;padding-left:19px}
+.training-explanation .explanation-line li{margin:4px 0;line-height:1.4}
+.explanation-method{padding:7px 0}
+.progression-roadmap{display:flex;gap:5px;flex-wrap:wrap;margin:12px 0}
+.progression-roadmap span{font-size:11px;padding:6px 8px;border:1px solid rgba(128,128,128,.35);border-radius:7px}
