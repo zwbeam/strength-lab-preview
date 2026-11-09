@@ -98,3 +98,43 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 #selected-workout .prep-exercise:first-child{border-top:0}
 #selected-workout .prep-name .movement-link{font-weight:800}
 #selected-workout .prep-exercise .rx{margin:3px 0 0;line-height:1.4}
+
+/* Strength Lab chalkboard backdrop: decorative notes live outside the readable app. */
+body{
+ background-color:#111c1a;
+ background-image:
+  radial-gradient(ellipse at 17% 22%,#ffffff0a,transparent 34%),
+  radial-gradient(ellipse at 85% 75%,#ffffff09,transparent 39%),
+  repeating-linear-gradient(9deg,#e0efdf08 0px,transparent 2px,transparent 9px),
+  repeating-linear-gradient(93deg,#cbd6c906 0px,transparent 1px,transparent 13px);
+ background-attachment:fixed;
+}
+.shell{position:relative;z-index:1;background:#101b1cde;box-shadow:0 0 35px #050a0a88}
+body::before,body::after{
+ position:fixed;top:120px;width:max(0px,calc((100vw - 860px)/2 - 30px));
+ max-width:250px;z-index:0;pointer-events:none;white-space:pre-line;
+ font-family:"Comic Sans MS","Segoe Print","Bradley Hand",cursive;
+ font-style:italic;font-weight:700;font-size:clamp(13px,1.35vw,20px);
+ line-height:1.85;letter-spacing:.025em;
+ text-shadow:1px 0 1px currentColor,0 0 8px #ffffff20;
+ transform:rotate(-5deg);opacity:.73;
+}
+body::before{
+ left:clamp(10px,2.2vw,36px);
+ color:#d4d988;
+ content:"THE LONG GAME\\a────────────\\aMove well\\aBuild capacity\\aProgress slowly\\aAdd complexity\\a\\aSKILL FIRST\\a──────────\\aHinge • Squat\\aPush • Pull\\aCarry • Rotate";
+}
+body::after{
+ right:clamp(10px,2.2vw,36px);transform:rotate(4deg);
+ color:#e58c9c;
+ content:"TRAINING NOTES\\a────────────\\aQuality > quantity\\aOwn the movement\\aPractice with intent\\a\\aPROGRESSION\\a──────────\\aTime + reps\\aLoad + density\\aRecovery matters\\a\\aSTRONG FOR LIFE";
+}
+@media(min-width:1200px){
+ body::before{color:#d5ce70}
+ body::after{color:#da8396}
+}
+@media(max-width:1090px){
+ body::before,body::after{display:none}
+ .shell{background:#101b1ce8}
+}
+@media(prefers-reduced-motion:reduce){body{background-attachment:scroll}}
