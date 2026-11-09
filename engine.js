@@ -294,7 +294,7 @@ function blockPlan(s,opts={}){
   const fallback=pref.useKb!==false?['squat','press','row']:pref.useClub!==false?(pref.useTwoHandClub!==false?['front','circles','cast']:['clubInside','clubOutside']):['pushup','bearSquat','hingePractice'];
   if(!day.ids.some(enabled))day={name:pref.useKb!==false?'Strength fundamentals':pref.useClub!==false?'Club fundamentals':'Bodyweight fundamentals',focus:'Equipment-compatible foundation practice',ids:fallback.filter(enabled)};
  }
- const blockIds=days.flatMap(x=>x.ids),support=supportingMoves(s,blockIds,opts);
+ const blockIds=block==='abc'?[...new Set([...days.flatMap(x=>x.ids),...day.ids])]:days.flatMap(x=>x.ids),support=supportingMoves(s,day.ids,opts);
  const allowed=new Set([...blockIds,...support]),pending=s.deferredByBlock?.[block]||(block==='abc'?s.deferredIds:[])||[];
  const latest=(s.sessions||[]).filter(x=>(x.block||'abc')===block).at(-1);
  const continuing=latest?.calendarVersion===1&&latest.items.some(x=>x.actualSets>0)&&latest.items.some(x=>!x.performed)&&pending.length>0;
@@ -308,7 +308,8 @@ function blockPlan(s,opts={}){
  const today=calendarDay(opts.now),history=(s.sessions||[]).filter(x=>calendarDay(x.date)<=today);
  const trainingDays=new Set(history.filter(x=>today-calendarDay(x.date)<7&&(x.items||[]).some(y=>y.actualSets>0)).map(x=>x.date));
  const alreadyToday=history.some(x=>calendarDay(x.date)===today&&(x.items||[]).some(y=>y.actualSets>0));
- const restDay=!alreadyToday&&trainingDays.size>=(defaults.maxTrainingDays??6);
+ const weeklyLimit=Math.min(defaults.maxTrainingDays??7,pref.daysPerWeek??7);
+ const restDay=!alreadyToday&&trainingDays.size>=weeklyLimit;
  for(const id of ids){
   if(!MOVES[id])continue;
   if(trainingPaused(s,opts.now)){deferred.push(id);continue;}
@@ -406,7 +407,7 @@ function describeProgression(id,s={}){
 function validWorkingWeight(id,value){const weight=Number(value);return Number.isFinite(weight)&&(MOVES[id]?.bodyweight?weight===0:weight>0);}
 function retestPushup(s,baseline){const current=s.programming?.pushup||{};return configureMovement(s,'pushup',{...current,profile:'pushup',cleanBaseline:baseline,cycleRevision:(current.cycleRevision||0)+1});}
 function validateProgramming(s){
- if(s.trainingPreferences!==undefined){const p=s.trainingPreferences;if(!p||typeof p!=='object'||!Number.isInteger(p.daysPerWeek)||p.daysPerWeek<1||p.daysPerWeek>7||p.beginnerSpacing!==undefined&&typeof p.beginnerSpacing!=='boolean'||p.activityTypes!==undefined&&(!Array.isArray(p.activityTypes)||p.activityTypes.some(x=>!['mountain','gravel','road','indoor','hiking','trail','labor','other'].includes(x))))throw Error('Invalid training setup');}
+ if(s.trainingPreferences!==undefined){const p=s.trainingPreferences;if(p&&typeof p==='object'){for(const key of ['useKb','useClub','useBodyweight','useDoubleKb','useTwoHandClub','conditioning','skillSessions'])if(p[key]!==undefined&&typeof p[key]!=='boolean')throw Error('Invalid training preference: '+key);if(p.focus!==undefined&&!['balanced','strength','capacity','skill'].includes(p.focus))throw Error('Invalid training focus');if(p.variety!==undefined&&!['consistent','moderate','high'].includes(p.variety))throw Error('Invalid variety');if(p.useKb===false&&p.useClub===false&&p.useBodyweight===false)throw Error('Select at least one equipment type');}if(!p||typeof p!=='object'||!Number.isInteger(p.daysPerWeek)||p.daysPerWeek<1||p.daysPerWeek>7||p.beginnerSpacing!==undefined&&typeof p.beginnerSpacing!=='boolean'||p.activityTypes!==undefined&&(!Array.isArray(p.activityTypes)||p.activityTypes.some(x=>!['mountain','gravel','road','indoor','hiking','trail','labor','other'].includes(x))))throw Error('Invalid training setup');}
  for(const key of ['pauseUntil','resumeDate','pauseStarted'])if(s[key]!==undefined&&s[key]!==null&&(typeof s[key]!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(s[key])||!Number.isFinite(Date.parse(s[key]+'T12:00:00Z'))||new Date(s[key]+'T12:00:00Z').toISOString().slice(0,10)!==s[key]))throw Error('Invalid pause date');
  if(s.calendarMoves!==undefined){if(!s.calendarMoves||typeof s.calendarMoves!=='object'||Array.isArray(s.calendarMoves))throw Error('Invalid calendar moves');for(const [key,value] of Object.entries(s.calendarMoves))if(key.length>300||typeof value!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(value)||!Number.isFinite(Date.parse(value+'T12:00:00Z'))||new Date(value+'T12:00:00Z').toISOString().slice(0,10)!==value)throw Error('Invalid moved date');}
  if(s.activities!==undefined){if(!Array.isArray(s.activities))throw Error('Invalid activities');const ids=new Set();for(const a of s.activities){validateActivity(a);if(ids.has(a.id))throw Error('Duplicate activity');ids.add(a.id);}}
