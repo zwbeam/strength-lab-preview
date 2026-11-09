@@ -188,3 +188,39 @@ body::before,body::after{display:none!important}
  .bottom button{font-size:10px}
  .bottom button .nav-icon{width:22px;height:22px}
 }
+
+/* UX9: approved raster artwork replaces generated placeholder vectors. */
+body{background:#0e1515 url("chalkboard-background.webp") center top/cover fixed no-repeat!important}
+body::before{
+ content:""!important;display:block!important;position:fixed!important;inset:0!important;
+ width:auto!important;max-width:none!important;top:0!important;left:0!important;right:0!important;
+ background:url("chalk-notes-overlay.webp") center center/cover no-repeat!important;
+ opacity:.23!important;mix-blend-mode:screen;pointer-events:none;z-index:0!important;
+ transform:none!important;
+}
+body::after{display:none!important}
+.shell{position:relative;z-index:1;background:#101a1bc4!important}
+.mast{height:auto;min-height:85px;padding:8px 14px;background:#0c1619b3}
+.brand-chalk{display:block;width:min(420px,75vw);height:auto;max-height:83px;object-fit:contain;object-position:left center}
+.brand-subtitle{padding-left:12px;margin-top:-1px;color:#dfdfd5}
+.bottom{display:flex;align-items:stretch;justify-content:space-around;gap:5px;padding:5px}
+.bottom button{flex:1;min-width:0;max-width:180px;display:flex;flex-direction:column;gap:0;
+ border:0;background:transparent!important;color:#eee;font-size:0!important;padding:2px 1px!important}
+.bottom button.active{border-top:0!important;background:#ffffff0b!important}
+.bottom button .nav-art{display:block;width:100%;height:76px;background-image:var(--nav-art);
+ background-position:center;background-size:contain;background-repeat:no-repeat;
+ filter:brightness(.88);transition:filter .15s,transform .15s}
+.bottom button.active .nav-art{filter:brightness(1.16);transform:translateY(-2px)}
+#selected-workout{background:#0d1b1ec0!important;border:3px solid #b5c7be!important;box-shadow:
+ 0 0 0 2px #ffffff20,0 12px 30px #0009,inset 0 0 0 1px #ffffff1a!important}
+@media(max-width:700px){
+ body{background-size:auto 100vh!important;background-attachment:scroll!important}
+ body::before{background-size:auto 100vh!important;background-position:center top!important;opacity:.27!important}
+ .shell{background:#101a1bd1!important}
+ .mast{min-height:65px;padding:7px 10px}
+ .brand-chalk{width:min(285px,77vw);max-height:58px}
+ .brand-subtitle{font-size:8px;padding-left:8px}
+ .bottom{gap:2px;padding:3px 2px}
+ .bottom button .nav-art{height:58px}
+ #selected-workout{border-width:2px!important}
+}
