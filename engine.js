@@ -274,7 +274,15 @@ function validateActivity(a){
 }
 function blockPlan(s,opts={}){
  const block=s.programBlock||'abc';if(!BLOCKS[block])throw Error('Unknown program block');
- const days=BLOCKS[block].days,slot=(s.sessions||[]).filter(x=>x.slot!==undefined&&(x.block||'abc')===block&&(x.notebookVersion!==1||(x.items||[]).some(y=>y.actualSets>0))&&(x.calendarVersion!==1||(x.items||[]).every(y=>y.performed===true))).length%days.length,day=days[slot];
+ const preferences=s.trainingPreferences||{};
+ const originalDays=BLOCKS[block].days;
+ const abcDays=block==='abc'?originalDays.map((d,i)=>{
+  if(i!==2)return d;
+  if(preferences.conditioning!==false&&preferences.useKb!==false&&s.skills?.overhead===true&&s.skills?.swing===true&&s.skills?.clean===true&&((s.sessions||[]).filter(x=>(x.items||[]).some(y=>y.actualSets>0)).length%6===5))return {name:'C · Snatch EMOM',focus:'Optional conditioning and skill density',ids:['snatch']};
+  if(preferences.skillSessions===false)return {name:'C · Strength practice',focus:'Repeat established fundamentals',ids:['clean','front','squat']};
+  return d;
+ }):originalDays;
+ const days=abcDays,slot=(s.sessions||[]).filter(x=>x.slot!==undefined&&(x.block||'abc')===block&&(x.notebookVersion!==1||(x.items||[]).some(y=>y.actualSets>0))&&(x.calendarVersion!==1||(x.items||[]).every(y=>y.performed===true))).length%days.length,day=days[slot];
  const budget=timeBudget(opts.minutes??s.defaultMinutes??45),defaults=s.trainingDefaults||{};
  const pref=s.trainingPreferences||{};
  const enabled=id=>{const m=MOVES[id];if(!m)return false;if(m.bodyweight)return pref.useBodyweight!==false;if(m.gear==='kb')return pref.useKb!==false&&(!m.pair||pref.useDoubleKb===true);if(m.gear==='club')return pref.useClub!==false;return true;};
@@ -282,7 +290,12 @@ function blockPlan(s,opts={}){
  const allowed=new Set([...blockIds,...support]),pending=s.deferredByBlock?.[block]||(block==='abc'?s.deferredIds:[])||[];
  const latest=(s.sessions||[]).filter(x=>(x.block||'abc')===block).at(-1);
  const continuing=latest?.calendarVersion===1&&latest.items.some(x=>x.actualSets>0)&&latest.items.some(x=>!x.performed)&&pending.length>0;
- const ids=[...new Set([...support,...pending.filter(id=>allowed.has(id)),...(continuing?[]:day.ids)])].filter(enabled);
+ const candidateIds=[...new Set([...support,...pending.filter(id=>allowed.has(id)),...(continuing?[]:day.ids)])].filter(enabled);
+ const focus=pref.focus||'balanced',variety=pref.variety||'moderate';
+ const scored=id=>{const m=MOVES[id];if(!m)return 0;const family=m.family||'';return focus==='strength'?(['squat','press','pull','hinge'].includes(family)?2:0):focus==='capacity'?(['hinge','carry'].includes(family)?2:0):focus==='skill'?((m.practicePrereqs||[]).length?2:0):0;};
+ const ids=[...candidateIds].sort((a,b)=>scored(b)-scored(a));
+ if(variety==='high'&&block==='abc'&&pref.skillSessions!==false){const alternatives=slot===0?['pushup','deadlift']:slot===1?['circles','clean']:['row','press'];for(const id of alternatives){if(enabled(id)&&!ids.includes(id)&&!ids.some(x=>MOVES[x]?.family===MOVES[id]?.family)){ids.push(id);break;}}}
+
  const items=[],deferred=[],held=[],unavailable=[],prerequisite=[],requirements=[],scheduled=[];let used=0,hard=0;
  const today=calendarDay(opts.now),history=(s.sessions||[]).filter(x=>calendarDay(x.date)<=today);
  const trainingDays=new Set(history.filter(x=>today-calendarDay(x.date)<7&&(x.items||[]).some(y=>y.actualSets>0)).map(x=>x.date));
