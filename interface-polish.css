@@ -428,91 +428,10 @@ body{background-image:linear-gradient(#0b1215d9,#0b1215d9),url("chalk-notes-over
 .bottom button .nav-art{height:clamp(37px,6.67vw,73px)!important;width:auto!important;max-width:100%!important;aspect-ratio:415/489!important;background-size:contain!important}
 @media(max-width:700px){.bottom button .nav-art{height:clamp(35px,12vw,57px)!important;width:auto!important;max-width:100%!important}}
 
-/* UX36: translucent white calendar, green day borders, shaded training days. */
-#training-calendar{background:rgba(255,255,255,.075)!important;border:2px solid rgba(255,255,255,.88)!important;box-shadow:none!important}
-#training-calendar .calendar-day,
-#training-calendar .calendar-day:not(.strength):not(.cycling):not(.activity){
- background:#050607!important;border:1.5px solid #87cc42!important;color:#f6f7f5!important;
-}
-#training-calendar .calendar-day.strength,
-#training-calendar .calendar-day.cycling,
-#training-calendar .calendar-day.activity{
- background:rgba(29,105,77,.55)!important;border:1.5px solid #87cc42!important;
-}
-#training-calendar .calendar-day.selected-day{outline:2px solid #f3e6b7!important;outline-offset:1px!important}
-
-/* UX37: matte-white calendar, white training tiles, black rest tiles; only selected date gets green outline. */
-#training-calendar{background:#e7e7e3!important;border:1px solid #f4f4f0!important;color:#121416!important;box-shadow:none!important}
+/* UX40: single authoritative calendar palette; removes older conflicting green rules. */
+#training-calendar{background:#d1d0cc!important;border:1px solid #c1c0bc!important;color:#121416!important;box-shadow:none!important}
 #training-calendar .calendar-header,#training-calendar .calendar-header strong{color:#101214!important}
 #training-calendar .calendar-header button{background:#0b0d0e!important;color:#fff!important;border:1px solid #555!important}
-#training-calendar .calendar-day,
-#training-calendar .calendar-day.strength,
-#training-calendar .calendar-day.cycling,
-#training-calendar .calendar-day.activity,
-#training-calendar .calendar-day.recovery{
- border:1px solid #666b68!important;
- background:#050607!important;
- color:#fff!important;
- outline:none!important;
- box-shadow:none!important;
-}
-#training-calendar .calendar-day.strength{
- background:#ffffff!important;
- color:#121416!important;
-}
-#training-calendar .calendar-day.selected-day,
-#training-calendar .calendar-day.selected-day.strength{
- outline:3px solid #6fd52d!important;
- outline-offset:1px!important;
- border-color:#6fd52d!important;
- box-shadow:none!important;
-}
-
-/* UX38: soft chalk-gray calendar frame, pure black/white day tiles, selected-only green outline. */
-#training-calendar{
- background:#d1d0cc!important;
- border:1px solid #c1c0bc!important;
- color:#121416!important;
-}
-#training-calendar .calendar-day,
-#training-calendar .calendar-day.recovery,
-#training-calendar .calendar-day.cycling,
-#training-calendar .calendar-day.activity{
- background:#000!important;
- color:#fff!important;
- border:1.5px solid #000!important;
- outline:none!important;
- box-shadow:none!important;
-}
-#training-calendar .calendar-day.strength{
- background:#fff!important;
- color:#000!important;
- border:1.5px solid #000!important;
- outline:none!important;
- box-shadow:none!important;
-}
-#training-calendar .calendar-day.selected-day,
-#training-calendar .calendar-day.selected-day.strength,
-#training-calendar .calendar-day.selected-day.recovery,
-#training-calendar .calendar-day.selected-day.cycling,
-#training-calendar .calendar-day.selected-day.activity{
- outline:3px solid #6cdb26!important;
- outline-offset:1px!important;
- border-color:#000!important;
- box-shadow:none!important;
-}
-
-/* UX39: final specificity override: no green anywhere except selected tile. */
-#training-calendar .calendar-grid .calendar-day:not(.selected-day),
-#training-calendar .calendar-grid .calendar-day.strength:not(.selected-day),
-#training-calendar .calendar-grid .calendar-day.current-day:not(.selected-day){
- border:2px solid #000!important;
- outline:0 none!important;
- box-shadow:none!important;
-}
-#training-calendar .calendar-grid .calendar-day.selected-day{
- border:2px solid #000!important;
- outline:3px solid #6cdb26!important;
- outline-offset:1px!important;
- box-shadow:0 0 0 1px #6cdb26!important;
-}
+#training-calendar .calendar-grid .calendar-day{background:#000!important;color:#fff!important;border:2px solid #000!important;outline:none!important;box-shadow:none!important}
+#training-calendar .calendar-grid .calendar-day.strength{background:#fff!important;color:#000!important}
+#training-calendar .calendar-grid .calendar-day.selected-day{border:2px solid #000!important;outline:3px solid #6cdb26!important;outline-offset:1px!important}
