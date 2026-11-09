@@ -357,3 +357,25 @@ body{background-image:linear-gradient(#0b1215d9,#0b1215d9),url("chalk-notes-over
 #selected-workout .prep-exercise{border-bottom-color:#aab6b32e!important}
 #selected-workout .button.primary,#selected-workout button.start-workout{box-shadow:none!important}
 @media(max-width:520px){#training-calendar{padding:9px 7px!important}#selected-workout{padding:12px!important}#selected-workout .calendar-day{min-width:0!important}}
+
+/* UX30: collapsed warm-up and cooldown match compact adjustments height. */
+#selected-workout details.preparation:not([open]){
+  box-sizing:border-box!important;
+  padding:8px 10px!important;
+  margin:10px 0!important;
+  min-height:0!important;
+}
+#selected-workout details.preparation:not([open])>summary{
+  box-sizing:border-box!important;
+  min-height:24px!important;
+  line-height:1.35!important;
+  padding:0!important;
+  margin:0!important;
+  font-size:13px!important;
+}
+#selected-workout details.preparation[open]>summary{
+  min-height:24px!important;
+  line-height:1.35!important;
+  padding:0!important;
+  margin:0 0 7px!important;
+}
