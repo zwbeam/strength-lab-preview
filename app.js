@@ -262,7 +262,7 @@ function renderProgramming(){
 function saveProgramming(){
  if(draft){alert('Finish or discard the current workout before changing programming.');return;}
  try{
-  let next={...state,programBlock:$('#program-block').value,skills:{},trainingDefaults:{}};
+  let next={...state,programBlock:$('#program-block').value,skills:{...(state.skills||{})},trainingDefaults:{}};
   document.querySelectorAll('[data-skill]').forEach(el=>next.skills[el.dataset.skill]=el.checked);
   document.querySelectorAll('[data-training-default]').forEach(el=>next.trainingDefaults[el.dataset.trainingDefault]=Number(el.value));
   for(const el of document.querySelectorAll('[data-program-profile]')){
@@ -364,7 +364,7 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
  if(b.dataset.learnMove!==undefined){if(!E.MOVES[b.dataset.learnMove])return;learnSelected=b.dataset.learnMove;render();$('#movement-instruction')?.scrollIntoView({block:'start'});return;}
  if(b.id==='learn-back'){learnSelected=null;render();return;}
  if(b.dataset.saveLearnSkills){if(draft){alert('Finish or discard the active workout before changing skill confirmations.');return;}const id=b.dataset.saveLearnSkills;if(!E.MOVES[id])return;const nextSkills={...(state.skills||{})};document.querySelectorAll('[data-learn-skill]').forEach(el=>{if(el.checked)nextSkills[el.dataset.learnSkill]=true;else delete nextSkills[el.dataset.learnSkill];});const previous=state;state={...state,skills:nextSkills};if(!save()){state=previous;return;}render();return;}
- if(b.dataset.confirmLearned){const id=b.dataset.confirmLearned;if(!E.MOVES[id])return;state.learnedMovements={...state.learnedMovements,[id]:!state.learnedMovements?.[id]};if(!save())return;render();return;}
+ if(b.dataset.confirmLearned){const id=b.dataset.confirmLearned;if(!E.MOVES[id])return;const previous=state;state={...state,learnedMovements:{...state.learnedMovements,[id]:!state.learnedMovements?.[id]}};if(!save()){state=previous;return;}render();return;}
  if(b.hasAttribute('data-retest-pushup')){if(draft){alert('Finish or discard the active workout before reviewing the baseline.');return;}const value=prompt('Enter a recent conservative clean-rep baseline. Exclude any failed/final rep; no maximum test is requested now.',String(state.programming?.pushup?.cleanBaseline||0));if(value===null)return;try{const previous=state;state=E.retestPushup(state,Number(value));if(!save()){state=previous;return;}render();}catch(error){alert(error.message);}return;}
  if(b.id==='save-timer-mode'){state.timerMode=$('#timer-mode').value;if(!save())return;render();return;}
  if(b.id==='save-programming'){saveProgramming();return;}
