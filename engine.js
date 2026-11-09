@@ -302,7 +302,16 @@ function blockPlan(s,opts={}){
  const focus=pref.focus||'balanced',variety=pref.variety||'moderate';
  const scored=id=>{const m=MOVES[id];if(!m)return 0;const family=m.family||'';return focus==='strength'?(['squat','press','pull','hinge'].includes(family)?2:0):focus==='capacity'?(['hinge','carry'].includes(family)?2:0):focus==='skill'?((m.practicePrereqs||[]).length?2:0):0;};
  const ids=[...candidateIds].sort((a,b)=>scored(b)-scored(a));
- if(variety==='high'&&block==='abc'&&pref.skillSessions!==false){const alternatives=slot===0?['pushup','deadlift']:slot===1?['circles','clean']:['row','press'];for(const id of alternatives){if(enabled(id)&&!ids.includes(id)&&!ids.some(x=>MOVES[x]?.family===MOVES[id]?.family)){ids.push(id);break;}}}
+ // Stable primary lifts remain; rotate only a single optional accessory after successful exposures.
+ const completedCount=(s.sessions||[]).filter(x=>(x.items||[]).some(y=>y.actualSets>0)).length;
+ if(block==='abc'&&variety!=='consistent'&&pref.skillSessions!==false){
+  const pool=slot===0?['deadlift','pushup']:slot===1?['circles','clean']:['row','press'];
+  const rotation=Math.floor(completedCount/(variety==='high'?1:3));
+  for(let n=0;n<pool.length;n++){
+   const id=pool[(rotation+n)%pool.length];
+   if(enabled(id)&&!ids.includes(id)&&!ids.some(x=>MOVES[x]?.family===MOVES[id]?.family)){ids.push(id);break;}
+  }
+ }
 
  const items=[],deferred=[],held=[],unavailable=[],prerequisite=[],requirements=[],scheduled=[];let used=0,hard=0;
  const today=calendarDay(opts.now),history=(s.sessions||[]).filter(x=>calendarDay(x.date)<=today);
@@ -317,7 +326,17 @@ function blockPlan(s,opts={}){
   if(stateFor(s,id).hold){held.push(id);deferred.push(id);continue;}
   const lastTraining=history.filter(x=>(x.items||[]).some(y=>y.actualSets>0)).sort((a,b)=>a.date.localeCompare(b.date)).at(-1);
   const pauseReturn=!!s.pauseStarted&&lastTraining&&lastTraining.date<=s.pauseStarted&&today-calendarDay(lastTraining.date)>(defaults.reentryDays??14);
-  const rx=prescription(s,id,{...opts,reentry:opts.reentry||pauseReturn});
+  let rx=prescription(s,id,{...opts,reentry:opts.reentry||pauseReturn});
+  // Heavy/light here means alternating normal and reduced-volume exposures, NOT
+  // changing to an unverified heavier bell. Light exposures are non-advancing.
+  if(block==='abc'&&pref.focus!=='skill'&&rx.mode==='volume'&&rx.sets>=2&&rx.profile!=='wave'){
+   const prior=records(s,id).filter(x=>x.actualSets>0&&x.performed&&x.mode!=='baseline');
+   const light=prior.length%2===1;
+   if(light){
+    const reduced=Math.max(1,Math.floor(rx.sets*.7));
+    if(reduced<rx.sets)rx={...rx,sets:reduced,mode:'recovery',reason:'Light exposure: '+reduced+' of '+rx.sets+' planned sets at the established load. This is deliberate reduced-volume practice; it does not advance the progression cycle.'};
+   }
+  }
   if(rx.mode==='prerequisite'){prerequisite.push(id);requirements.push({id,reason:rx.reason});deferred.push(id);continue;}
   const demands=movementDemands(id);
   const recent=history.some(x=>today-calendarDay(x.date)<(defaults.minGapDays??0)&&(x.items||[]).some(y=>y.actualSets>0&&MOVES[y.id]&&movementDemands(y.id).some(d=>demands.includes(d))));
