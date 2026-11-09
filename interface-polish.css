@@ -251,3 +251,10 @@ body{background:#0d1112 url("kettlebell-consistency-chalkboard.webp") center top
 body::before,body::after{display:none!important;content:none!important}
 .shell{background:transparent!important;backdrop-filter:none!important}
 @media(max-width:700px){body{background-attachment:fixed!important;background-size:cover!important;background-position:center top!important}}
+
+/* UX14: chalk notes artwork is the sole full-app background. */
+html{background:#0d1112!important}
+body{background:#0d1112 url("chalk-notes-overlay.webp") center top/cover fixed no-repeat!important}
+body::before,body::after{display:none!important;content:none!important;background:none!important}
+.shell{background:transparent!important;backdrop-filter:none!important}
+@media(max-width:700px){body{background:#0d1112 url("chalk-notes-overlay.webp") center top/cover fixed no-repeat!important}}
