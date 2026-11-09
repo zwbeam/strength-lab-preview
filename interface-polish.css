@@ -333,3 +333,27 @@ body{background-image:linear-gradient(#0d1112bf,#0d1112bf),url("chalk-notes-over
 
 /* UX28: visible space after warm-up and cooldown movement colons. */
 #selected-workout .prep-exercise .prep-name::after{content:":\00a0"!important}
+
+/* UX29: coordinated Train-page visual hierarchy, preserving all training controls. */
+body{background-image:linear-gradient(#0b1215d9,#0b1215d9),url("chalk-notes-overlay.webp")!important}
+#training-calendar{background:#1b2925f2!important;border:1px solid #6e855c9c!important;border-radius:13px!important;padding:10px!important;margin-bottom:14px!important;box-shadow:0 3px 12px #0003!important}
+#training-calendar .calendar-header{margin-bottom:9px!important}
+#training-calendar .calendar-day{background:#1c2528!important;border:1px solid #51605d!important;box-shadow:none!important;border-radius:8px!important}
+#training-calendar .calendar-day.strength{background:#213631!important;border-color:#456c60!important}
+#training-calendar .calendar-day.selected-day{outline:2px solid #d3d5a2!important;outline-offset:0!important}
+#training-calendar .calendar-day.current-day strong{border-bottom-color:#7ee0d0!important}
+#selected-workout{background:#111d20f5!important;border:1px solid #728d8a!important;border-radius:15px!important;box-shadow:0 3px 14px #0005!important;padding:14px!important}
+#selected-workout h1{font-size:clamp(21px,5vw,25px)!important;margin-bottom:7px!important}
+#selected-workout>p.small{color:#c3cfcc!important}
+#selected-workout details.today-adjustments,#selected-workout details.today-adjustments[open]{background:#302d22ed!important;border:1px solid #a68c43!important;box-shadow:none!important;margin:12px 0!important;padding:8px 10px!important}
+#selected-workout details.today-adjustments>summary{color:#ead07a!important}
+#selected-workout details.today-adjustments select{background:#28271e!important;border:1px solid #796d42!important}
+#selected-workout details.preparation,#selected-workout details.preparation[open]{background:#22262aef!important;border:1px solid #66515d!important;box-shadow:none!important;margin:10px 0!important;padding:9px 11px!important}
+#selected-workout details.preparation[data-panel="warmup"],#selected-workout details.preparation[data-panel="warmup"][open]{background:#2b2028f2!important;border-color:#885267!important}
+#selected-workout details.preparation[data-panel="cooldown"],#selected-workout details.preparation[data-panel="cooldown"][open]{background:#1c2934f2!important;border-color:#4c738e!important}
+#selected-workout details.preparation>summary{min-height:29px!important;font-weight:750!important}
+#selected-workout .list-item{border-bottom-color:#8ba4a52e!important;padding:7px 0!important}
+#selected-workout .list-item:last-child{border-bottom:0!important}
+#selected-workout .prep-exercise{border-bottom-color:#aab6b32e!important}
+#selected-workout .button.primary,#selected-workout button.start-workout{box-shadow:none!important}
+@media(max-width:520px){#training-calendar{padding:9px 7px!important}#selected-workout{padding:12px!important}#selected-workout .calendar-day{min-width:0!important}}
