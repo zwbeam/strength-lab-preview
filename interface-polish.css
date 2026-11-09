@@ -301,3 +301,9 @@ body{background-image:linear-gradient(#0d1112bf,#0d1112bf),url("chalk-notes-over
 #selected-workout .prep-exercise p.rx{display:inline!important;flex:1 1 120px!important;margin:0!important;line-height:1.4!important}
 #selected-workout .list-item{padding:5px 0!important}
 #selected-workout .list-item .movement-link{min-height:0!important;padding:0!important}
+
+/* UX22b: inline workout text, preserving teal titles and white dose text. */
+#selected-workout .compact-movement>div{display:block!important;line-height:1.5!important}
+#selected-workout .compact-movement .movement-colon{color:#70e8d4!important;font-weight:800!important}
+#selected-workout .compact-movement .rx{display:inline!important;margin:0!important;line-height:1.5!important}
+#selected-workout .compact-movement .rx .small{display:inline!important}
