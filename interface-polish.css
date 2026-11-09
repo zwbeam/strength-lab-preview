@@ -224,3 +224,10 @@ body::after{display:none!important}
  .bottom button .nav-art{height:58px}
  #selected-workout{border-width:2px!important}
 }
+
+/* UX10: display complete approved navigation artwork without cropping. */
+.bottom{align-items:stretch;gap:clamp(2px,0.8vw,10px);padding:6px clamp(4px,1vw,12px)}
+.bottom button{min-width:0;max-width:none;overflow:visible;padding:3px 1px!important;aspect-ratio:auto}
+.bottom button .nav-art{width:100%;height:auto;aspect-ratio:415 / 489;background-size:contain!important;background-position:center center!important;background-repeat:no-repeat!important;flex:0 0 auto;transform:none}
+.bottom button.active .nav-art{transform:none;filter:brightness(1.12)}
+@media(max-width:700px){.bottom button .nav-art{height:auto;aspect-ratio:415 / 489}.bottom{gap:2px;padding:4px 3px}}
