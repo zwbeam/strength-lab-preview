@@ -292,3 +292,12 @@ body{background-image:linear-gradient(#0d1112bf,#0d1112bf),url("chalk-notes-over
 .bottom button.active{background:#ffffff12!important;border:1px solid #e0eee07a!important;box-shadow:inset 0 0 0 1px #ffffff0b!important}
 .bottom button .nav-art{display:block!important;width:auto!important;max-width:100%!important;height:clamp(56px,10vw,110px)!important;max-height:100%!important;aspect-ratio:415/489!important;flex:0 1 auto!important;background-size:contain!important;background-position:center!important;background-repeat:no-repeat!important;transform:none!important}
 @media(max-width:700px){.bottom{gap:4px!important;padding:5px 4px!important}.bottom button{padding:3px 2px!important;border-radius:7px!important}.bottom button .nav-art{width:auto!important;max-width:100%!important;height:clamp(53px,18vw,86px)!important}}
+
+/* UX22: put movement title and prescription on the same wrapping line. */
+#selected-workout .prep-exercise{display:flex!important;flex-wrap:wrap!important;align-items:baseline!important;column-gap:4px!important;row-gap:0!important;padding:5px 0!important;margin:0!important}
+#selected-workout .prep-exercise .prep-name{display:inline!important;flex:0 0 auto!important;margin:0!important}
+#selected-workout .prep-exercise .prep-name::after{content:":";color:#70e8d4;font-weight:800}
+#selected-workout .prep-exercise .movement-link{min-height:0!important;padding:0!important;line-height:1.4!important}
+#selected-workout .prep-exercise p.rx{display:inline!important;flex:1 1 120px!important;margin:0!important;line-height:1.4!important}
+#selected-workout .list-item{padding:5px 0!important}
+#selected-workout .list-item .movement-link{min-height:0!important;padding:0!important}
