@@ -326,3 +326,7 @@ body{background-image:linear-gradient(#0d1112bf,#0d1112bf),url("chalk-notes-over
 #selected-workout .prep-exercise{overflow-wrap:break-word!important;word-break:normal!important}
 #selected-workout .compact-movement>div{display:block!important;text-align:left!important}
 #selected-workout .compact-movement .rx{display:inline!important;text-align:left!important}
+
+/* Flatten nested text wrappers so wrapped words start at the row's left edge. */
+#selected-workout .prep-exercise .prep-name,#selected-workout .prep-exercise p.rx,#selected-workout .compact-movement .rx{display:contents!important}
+#selected-workout .prep-exercise .prep-name::after{content:":"!important;display:inline!important;color:#70e8d4!important;font-weight:800!important}
