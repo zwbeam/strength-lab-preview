@@ -537,3 +537,11 @@ body{background-image:linear-gradient(#0b1215d9,#0b1215d9),url("chalk-notes-over
 .learn-hub .learn-stage>summary span{text-align:right;opacity:.85}
 .learn-hub .learn-stage>p{margin:8px 0}
 .learn-hub .learn-stage>.button{margin-bottom:12px}
+
+/* v62: compact movement history overlay */
+.movement-history-dialog{width:min(96vw,760px);max-height:85dvh;overflow:auto;border-radius:14px;padding:16px;background:#101819;color:#f2f4f1}
+.movement-history-dialog::backdrop{background:rgba(0,0,0,.75)}
+.movement-history-dialog>form{display:flex;justify-content:flex-end}
+.movement-history-dialog .history-table-wrap{overflow-x:auto;max-width:100%}
+.movement-history-dialog .history-table{min-width:500px}
+.movement-history-dialog .history-table td,.movement-history-dialog .history-table th{white-space:nowrap;padding:8px 10px}
