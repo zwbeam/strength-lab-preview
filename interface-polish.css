@@ -49,3 +49,19 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 /* Calendar and workout detail review: force teal only on titles. */
 #selected-workout h1,#selected-workout .list-item .movement-link,#selected-workout details.preparation > summary,#workout-overview .movement-link,.workout-title h1{color:#7ee0d0 !important}
 #selected-workout .rx,#selected-workout .rx *,#selected-workout .small.muted{color:#f5f7f6 !important}
+
+/* UX review: clearly differentiated expandable workout sections. */
+#selected-workout details.today-adjustments,
+#selected-workout details.preparation{
+  border:2px solid #274c83;
+  border-radius:10px;
+  background:#243b53;
+  padding:12px 14px;
+  margin:12px 0;
+}
+#selected-workout details.today-adjustments[open],
+#selected-workout details.preparation[open]{background:#304b66;border-color:#37669e}
+#selected-workout details.today-adjustments>summary,
+#selected-workout details.preparation>summary{min-height:38px;display:list-item;cursor:pointer}
+#selected-workout details.today-adjustments>summary{color:#f5f7f6}
+#selected-workout details.today-adjustments select{background:#1b3046;border:1px solid #4e7398;color:#fff}
