@@ -511,3 +511,12 @@ body{background-image:linear-gradient(#0b1215d9,#0b1215d9),url("chalk-notes-over
 .timer-extras{display:inline-block;vertical-align:middle}
 .timer-extras>summary{cursor:pointer;padding:9px 12px}
 .timer-extras .button{margin:4px}
+
+/* v59: optional, compact workout timer */
+.optional-timer{margin:8px 0 14px;border-radius:12px}
+.optional-timer>summary{cursor:pointer;padding:12px 14px;font-weight:700;list-style-position:inside}
+.optional-timer .timer-panel{padding:8px 12px 12px}
+.optional-timer .custom-rest{display:flex;gap:8px;align-items:end;flex-wrap:wrap;margin-top:10px}
+.optional-timer .custom-rest label{flex:1;min-width:125px}
+.optional-timer .custom-rest input{width:100%;max-width:160px}
+.notebook-table th:last-child,.notebook-table td:last-child{min-width:145px}
