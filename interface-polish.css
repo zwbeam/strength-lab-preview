@@ -275,3 +275,13 @@ body{background-image:linear-gradient(#0d1112bf,#0d1112bf),url("chalk-notes-over
 .mast .brand{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-width:0!important}
 .mast .brand-chalk{display:block!important;width:min(100%,680px)!important;max-width:100%!important;height:auto!important;max-height:none!important;object-fit:contain!important;object-position:center center!important;margin:0 auto!important}
 @media(max-width:700px){.mast{padding:6px 8px!important}.mast .brand-chalk{width:100%!important;max-width:680px!important;height:auto!important;max-height:none!important}}
+
+/* UX19: compact adjustments controls with muted golden dropdowns. */
+#selected-workout details.today-adjustments,#selected-workout details.today-adjustments[open]{padding:7px 10px!important;margin:8px 0!important;border-radius:9px!important}
+#selected-workout details.today-adjustments>summary{min-height:24px!important;padding:0!important;line-height:1.35!important;font-size:13px!important}
+#selected-workout details.today-adjustments .two{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;margin-top:6px!important}
+#selected-workout details.today-adjustments label{display:flex!important;flex-direction:row!important;align-items:center!important;gap:7px!important;font-size:12px!important;min-width:0!important}
+#selected-workout details.today-adjustments select{flex:1!important;min-width:0!important;width:100%!important;min-height:32px!important;height:34px!important;padding:3px 8px!important;background:#39301a!important;border:1px solid #a58b36!important;border-radius:7px!important;color:#fff3ce!important;font-size:12px!important}
+#selected-workout details.today-adjustments select:focus-visible{background:#45391d!important;border-color:#e3c65a!important}
+#selected-workout details.today-adjustments p.small.muted{font-size:11px!important;line-height:1.25!important;margin:5px 0 0!important}
+@media(max-width:520px){#selected-workout details.today-adjustments label{flex-direction:column!important;align-items:stretch!important;gap:3px!important;font-size:11px!important}#selected-workout details.today-adjustments select{height:32px!important;min-height:32px!important}}
