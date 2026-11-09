@@ -269,3 +269,9 @@ body{background-image:linear-gradient(#0d1112bf,#0d1112bf),url("chalk-notes-over
 
 /* UX17: pink dotted underlines beneath teal exercise titles. */
 #selected-workout .movement-link,.selected-workout .movement-link,.notebook-exercise .movement-link{border-bottom-color:#ff4f83!important}
+
+/* UX18: maximize centered full-detail masthead artwork. */
+.mast{display:flex!important;align-items:center!important;justify-content:center!important;min-height:0!important;height:auto!important;padding:8px 12px!important}
+.mast .brand{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-width:0!important}
+.mast .brand-chalk{display:block!important;width:min(100%,680px)!important;max-width:100%!important;height:auto!important;max-height:none!important;object-fit:contain!important;object-position:center center!important;margin:0 auto!important}
+@media(max-width:700px){.mast{padding:6px 8px!important}.mast .brand-chalk{width:100%!important;max-width:680px!important;height:auto!important;max-height:none!important}}
