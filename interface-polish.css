@@ -266,3 +266,6 @@ body{background-image:linear-gradient(#0d1112bf,#0d1112bf),url("chalk-notes-over
 /* UX16: calendar week range matches the date-cell typography, on one line. */
 #training-calendar .calendar-header>div{flex:1;min-width:0;text-align:center;font-size:17px;line-height:1.15;white-space:nowrap}
 #training-calendar .calendar-header>div strong{font-size:17px;font-weight:750;white-space:nowrap}
+
+/* UX17: pink dotted underlines beneath teal exercise titles. */
+#selected-workout .movement-link,.selected-workout .movement-link,.notebook-exercise .movement-link{border-bottom-color:#ff4f83!important}
