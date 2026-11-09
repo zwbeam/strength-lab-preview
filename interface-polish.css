@@ -307,3 +307,13 @@ body{background-image:linear-gradient(#0d1112bf,#0d1112bf),url("chalk-notes-over
 #selected-workout .compact-movement .movement-colon{color:#70e8d4!important;font-weight:800!important}
 #selected-workout .compact-movement .rx{display:inline!important;margin:0!important;line-height:1.5!important}
 #selected-workout .compact-movement .rx .small{display:inline!important}
+
+/* UX26: natural paragraph wrapping for all movement prescriptions, no hanging indents. */
+#selected-workout .prep-exercise{display:block!important;padding:5px 0!important;text-indent:0!important}
+#selected-workout .prep-exercise .prep-name{display:inline!important;float:none!important;width:auto!important;margin:0!important;padding:0!important}
+#selected-workout .prep-exercise .prep-name::after{display:inline!important}
+#selected-workout .prep-exercise p.rx{display:inline!important;flex:none!important;width:auto!important;margin:0!important;padding:0!important;text-indent:0!important}
+#selected-workout .compact-movement,#selected-workout .compact-movement>div{display:block!important;text-indent:0!important}
+#selected-workout .compact-movement .movement-link,#selected-workout .compact-movement .movement-colon,#selected-workout .compact-movement .rx{display:inline!important;float:none!important;vertical-align:baseline!important}
+#selected-workout .compact-movement .rx{white-space:normal!important;overflow-wrap:normal!important;text-indent:0!important}
+#selected-workout .prep-exercise .movement-link{display:inline!important;white-space:normal!important}
