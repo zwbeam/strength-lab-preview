@@ -467,3 +467,37 @@ body{background-image:linear-gradient(#0b1215d9,#0b1215d9),url("chalk-notes-over
  border-color:#6fd52d!important;
  box-shadow:none!important;
 }
+
+/* UX38: soft chalk-gray calendar frame, pure black/white day tiles, selected-only green outline. */
+#training-calendar{
+ background:#d1d0cc!important;
+ border:1px solid #c1c0bc!important;
+ color:#121416!important;
+}
+#training-calendar .calendar-day,
+#training-calendar .calendar-day.recovery,
+#training-calendar .calendar-day.cycling,
+#training-calendar .calendar-day.activity{
+ background:#000!important;
+ color:#fff!important;
+ border:1.5px solid #000!important;
+ outline:none!important;
+ box-shadow:none!important;
+}
+#training-calendar .calendar-day.strength{
+ background:#fff!important;
+ color:#000!important;
+ border:1.5px solid #000!important;
+ outline:none!important;
+ box-shadow:none!important;
+}
+#training-calendar .calendar-day.selected-day,
+#training-calendar .calendar-day.selected-day.strength,
+#training-calendar .calendar-day.selected-day.recovery,
+#training-calendar .calendar-day.selected-day.cycling,
+#training-calendar .calendar-day.selected-day.activity{
+ outline:3px solid #6cdb26!important;
+ outline-offset:1px!important;
+ border-color:#000!important;
+ box-shadow:none!important;
+}
