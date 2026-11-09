@@ -324,7 +324,7 @@ function blockPlan(s,opts={}){
  const gap=previousTraining?today-calendarDay(previousTraining.date):Infinity;
  const consecutive=gap===1;
  // Recommend spacing for 3-4 day schedules; never silently block a flexible training day.
- const spacingRecommended=!alreadyToday&&consecutive&&weeklyLimit<=4;
+ const spacingRecommended=!alreadyToday&&!restDay&&consecutive&&weeklyLimit<=4;
  const recentDemands=new Set((previousTraining?.items||[]).filter(x=>x.actualSets>0).flatMap(x=>movementDemands(x.id)));
 
  for(const id of ids){
