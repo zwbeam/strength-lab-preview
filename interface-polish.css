@@ -317,3 +317,12 @@ body{background-image:linear-gradient(#0d1112bf,#0d1112bf),url("chalk-notes-over
 #selected-workout .compact-movement .movement-link,#selected-workout .compact-movement .movement-colon,#selected-workout .compact-movement .rx{display:inline!important;float:none!important;vertical-align:baseline!important}
 #selected-workout .compact-movement .rx{white-space:normal!important;overflow-wrap:normal!important;text-indent:0!important}
 #selected-workout .prep-exercise .movement-link{display:inline!important;white-space:normal!important}
+
+/* UX27: wrap continuation lines beneath the exercise title at the left edge. */
+#selected-workout .prep-exercise{display:block!important;text-align:left!important}
+#selected-workout .prep-exercise .prep-name{display:inline!important;float:none!important}
+#selected-workout .prep-exercise p.rx{display:inline!important;float:none!important;flex:none!important;width:auto!important;text-align:left!important;margin:0!important}
+#selected-workout .prep-exercise .prep-name .movement-link,#selected-workout .prep-exercise .rx{vertical-align:baseline!important}
+#selected-workout .prep-exercise{overflow-wrap:break-word!important;word-break:normal!important}
+#selected-workout .compact-movement>div{display:block!important;text-align:left!important}
+#selected-workout .compact-movement .rx{display:inline!important;text-align:left!important}
