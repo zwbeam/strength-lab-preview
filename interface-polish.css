@@ -555,3 +555,9 @@ body{background-image:linear-gradient(#0b1215d9,#0b1215d9),url("chalk-notes-over
 .pathway-step .pathway-index{border-radius:50%;border:1px solid rgba(128,128,128,.5);min-width:24px;height:24px;display:grid;place-items:center;font-size:12px}
 .pathway-step p{margin:3px 0 0}
 .movement-finder .learn-filters,.movement-finder #learn-results{padding:0 12px}
+
+/* v64: readable evidence-backed explanations */
+.training-explanation{display:grid;gap:12px}
+.training-explanation .explanation-line{padding:10px 0;border-bottom:1px solid rgba(128,128,128,.2)}
+.training-explanation .explanation-line h3{font-size:14px;margin:0 0 5px}
+.training-explanation .explanation-line p{margin:4px 0;line-height:1.45}
