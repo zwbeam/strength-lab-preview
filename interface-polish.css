@@ -498,3 +498,16 @@ body{background-image:linear-gradient(#0b1215d9,#0b1215d9),url("chalk-notes-over
 /* UX45 equipment checklist */
 .settings-hub .gear-check{display:flex!important;align-items:center;gap:10px;margin:9px 0!important;padding:7px 9px;border:1px solid #52615c;border-radius:8px;background:#0b1213;color:#f3f5f2}
 .settings-hub .gear-check input{width:18px;height:18px;accent-color:#9ee267;flex-shrink:0}
+
+/* v58: simple, horizontally scrollable gym notebook */
+.notebook-table-wrap{overflow-x:auto;max-width:100%;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+.notebook-table{min-width:610px;border-collapse:collapse}
+.notebook-table th,.notebook-table td{white-space:nowrap;text-align:left;padding:9px 11px}
+.notebook-table thead th{position:sticky;top:0;z-index:1}
+.notebook-table td:first-child,.notebook-table th:first-child{position:sticky;left:0;z-index:2}
+.notebook-table thead th:first-child{z-index:3}
+.calendar-disclosure{margin:12px 0 22px}
+.calendar-disclosure>summary{cursor:pointer;padding:13px 12px;font-weight:650}
+.timer-extras{display:inline-block;vertical-align:middle}
+.timer-extras>summary{cursor:pointer;padding:9px 12px}
+.timer-extras .button{margin:4px}
