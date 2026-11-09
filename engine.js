@@ -278,6 +278,7 @@ function blockPlan(s,opts={}){
  const originalDays=BLOCKS[block].days;
  const abcDays=block==='abc'?originalDays.map((d,i)=>{
   if(i!==2)return d;
+  if(preferences.useKb!==false&&preferences.useDoubleKb===true&&s.skills?.rack===true&&s.skills?.doublePress===true&&s.skills?.doubleSquat===true&&((s.sessions||[]).filter(x=>(x.items||[]).some(y=>y.actualSets>0)).length%6===2))return {name:'C · Double kettlebell strength',focus:'Matched-pair strength practice',ids:['doublePress','doubleSquat']};
   if(preferences.conditioning!==false&&preferences.useKb!==false&&s.skills?.overhead===true&&s.skills?.swing===true&&s.skills?.clean===true&&((s.sessions||[]).filter(x=>(x.items||[]).some(y=>y.actualSets>0)).length%6===5))return {name:'C · Snatch EMOM',focus:'Optional conditioning and skill density',ids:['snatch']};
   if(preferences.skillSessions===false)return {name:'C · Strength practice',focus:'Repeat established fundamentals',ids:['clean','front','squat']};
   return d;
