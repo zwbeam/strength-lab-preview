@@ -534,7 +534,7 @@ function validateBackup(input){
  }
  const sessionIds=new Set(),draftIds=new Set();
  for(const session of input.sessions){
-  if(!object(session)||typeof session.id!=='string'||typeof session.title!=='string'||typeof session.date!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(session.date)||!Array.isArray(session.items))throw Error('Invalid training entry');
+  if(!object(session)||typeof session.id!=='string'||typeof session.title!=='string'||typeof session.date!=='string'||!/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(session.date)||!Number.isFinite(Date.parse(session.date+'T12:00:00Z'))||new Date(session.date+'T12:00:00Z').toISOString().slice(0,10)!==session.date||!Array.isArray(session.items))throw Error('Invalid training entry');
   if(session.plan!==undefined)validatePlanMetadata(session.plan);
   if(session.originalPlan!==undefined)validatePlanMetadata(session.originalPlan);
   if(session.adjustments!==undefined&&session.adjustments!==null)validateAdjustments(session.adjustments);
