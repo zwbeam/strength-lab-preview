@@ -45,3 +45,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 #selected-workout>.eyebrow{display:none}
 #selected-workout h1,#selected-workout .movement-link,#selected-workout .preparation>summary{color:#7ee0d0}
 #selected-workout .rx,#selected-workout .rx strong,#selected-workout .rx span,#selected-workout>p{color:var(--text)}
+
+/* Calendar and workout detail review: force teal only on titles. */
+#selected-workout h1,#selected-workout .list-item .movement-link,#selected-workout details.preparation > summary,#workout-overview .movement-link,.workout-title h1{color:#7ee0d0 !important}
+#selected-workout .rx,#selected-workout .rx *,#selected-workout .small.muted{color:#f5f7f6 !important}
