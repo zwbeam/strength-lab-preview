@@ -1,0 +1,31 @@
+/* Equipment and settings matrix. Run: node tests/configuration-matrix.js */
+'use strict';
+const assert=require('node:assert/strict'),E=require('../engine.js');
+const gears=[[true,false,false],[false,true,false],[false,false,true],[true,true,false],[true,false,true],[false,true,true],[true,true,true]];
+const skills={swing:true,clean:true,rack:true,overhead:true,clubGrip:true,clubTwoHandFoundation:true,hingePattern:true,bearSquat:true,pushupTechnique:true};
+let cases=0;
+for(const [kb,club,bw] of gears)for(const focus of ['strength','balanced','capacity','skill'])for(const variety of ['consistent','moderate','high'])for(const days of [2,3,4,5,7]){
+ const state={version:33,defaultMinutes:30,programBlock:'abc',sessions:[],weights:{squat:16,press:12,row:16,swing:16,cast:10,carry:16,clean:12,front:10,circles:10},equipment:{kb:[],club:[],pairs:[]},nextWeights:{},skills,trainingPreferences:{daysPerWeek:days,useKb:kb,useClub:club,useBodyweight:bw,useDoubleKb:false,useTwoHandClub:true,focus,variety,conditioning:true,skillSessions:true}};
+ const p=E.plan(state,{now:'2026-11-09'});
+ assert.ok(p.items.length,'empty workout '+JSON.stringify({kb,club,bw,focus,variety,days}));
+ assert.ok(p.estimated<=p.cap+1,'budget exceeded');
+ for(const rx of p.items){
+  const gear=E.MOVES[rx.id].gear;
+  assert.ok(gear!=='kb'||kb,'KB prescribed while disabled');
+  assert.ok(gear!=='club'||club,'club prescribed while disabled');
+  assert.ok(gear!=='bodyweight'||bw,'bodyweight prescribed while disabled');
+  assert.ok(!['prerequisite','review'].includes(rx.mode),'unready movement prescribed');
+ }
+ cases++;
+}
+console.log('PASS',cases,'configuration combinations');
+let beginnerCases=0,empty=0;
+for(const [kb,club,bw] of [[true,false,false],[false,true,false],[false,false,true],[true,true,true]])for(const skillMode of [0,1,2])for(const focus of ['strength','balanced','capacity','skill'])for(const day of [0,1,2]){
+ const selectedSkills=skillMode===0?{}:skillMode===1?{hingePattern:true,clubGrip:true,bearSquat:true}:skills;
+ const s={version:33,defaultMinutes:30,programBlock:'abc',sessions:[],weights:{squat:16,press:12,row:16,swing:16,cast:10,carry:16,clean:12,front:10,circles:10},equipment:{kb:[],club:[],pairs:[]},nextWeights:{},skills:selectedSkills,trainingPreferences:{daysPerWeek:3,useKb:kb,useClub:club,useBodyweight:bw,useTwoHandClub:true,focus,variety:'moderate'}};
+ const date=new Date(Date.UTC(2026,10,9+day)).toISOString().slice(0,10);
+ const p=E.plan(s,{now:date});if(!p.items.length){empty++;assert.ok((p.requirements||[]).length,'empty workout without prerequisite guidance');}
+ beginnerCases++;
+}
+assert.equal(empty,12);
+console.log('PASS',beginnerCases,'beginner combinations;',empty,'correctly blocked pending prerequisites');
