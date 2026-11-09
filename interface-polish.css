@@ -231,3 +231,12 @@ body::after{display:none!important}
 .bottom button .nav-art{width:100%;height:auto;aspect-ratio:415 / 489;background-size:contain!important;background-position:center center!important;background-repeat:no-repeat!important;flex:0 0 auto;transform:none}
 .bottom button.active .nav-art{transform:none;filter:brightness(1.12)}
 @media(max-width:700px){.bottom button .nav-art{height:auto;aspect-ratio:415 / 489}.bottom{gap:2px;padding:4px 3px}}
+
+/* UX11: compact navigation artwork and unobstructed chalkboard background. */
+body{background:#0e1515 url("chalkboard-background.webp") center top/cover fixed no-repeat!important}
+body::before,body::after{display:none!important;content:none!important}
+.shell{background:transparent!important;backdrop-filter:none!important;box-shadow:none!important}
+.bottom{justify-content:center;gap:clamp(4px,1vw,12px);background:#101a1bdc!important}
+.bottom button{flex:1 1 0;min-width:0;max-width:180px;align-items:center;justify-content:center}
+.bottom button .nav-art{width:25%!important;max-width:46px!important;height:auto!important;aspect-ratio:415 / 489!important;background-size:contain!important;background-position:center!important;background-repeat:no-repeat!important}
+@media(max-width:700px){.bottom button .nav-art{width:25%!important;max-width:34px!important}.shell{background:transparent!important}}
