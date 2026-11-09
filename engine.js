@@ -121,6 +121,7 @@ function replay(s,id,policy,track='base'){
  for(const x of h){
   if(!MOVES[id].bodyweight&&Number(x.weight)>0&&Number(x.weight)!==weight){weight=Number(x.weight);stage=0;stagePhase='volume';ready=false;streak=0;fail=0;}
   if(x.pain||x.quality==='pain'){streak=0;fail++;continue;}
+  if(x.performed&&x.mode==='light')continue;
   if(x.performed&&['rebuild','reentry','recovery','deload'].includes(x.mode)){streak=0;if(x.quality==='clean')fail=0;continue;}
   if(x.quality!=='clean'||x.completed===false){streak=0;if(x.actualSets>0||['hard','breakdown'].includes(x.quality))fail++;continue;}
   if(ready)continue;
@@ -334,7 +335,7 @@ function blockPlan(s,opts={}){
    const light=prior.length%2===1;
    if(light){
     const reduced=Math.max(1,Math.floor(rx.sets*.7));
-    if(reduced<rx.sets)rx={...rx,sets:reduced,mode:'recovery',reason:'Light exposure: '+reduced+' of '+rx.sets+' planned sets at the established load. This is deliberate reduced-volume practice; it does not advance the progression cycle.'};
+    if(reduced<rx.sets)rx={...rx,sets:reduced,mode:'light',reason:'Light exposure: '+reduced+' of '+rx.sets+' planned sets at the established load. This is deliberate reduced-volume practice; it does not advance the progression cycle.'};
    }
   }
   if(rx.mode==='prerequisite'){prerequisite.push(id);requirements.push({id,reason:rx.reason});deferred.push(id);continue;}
@@ -404,7 +405,7 @@ function completeRecord(rx,actual,quality,pain){
  const cadence=(!rx.roundSeconds||sets.every(x=>x.timingValid===true))&&sets.every(x=>(x.restSeconds===undefined||x.restSeconds===rx.rest)&&(x.roundSeconds===undefined||x.roundSeconds===(rx.roundSeconds||0))); 
  const continuous=!rx.continuous||sets.every(x=>x.continuous===true);
  const performed=!rx.legacyTargetUnverified&&cadence&&continuous&&!['review','prerequisite'].includes(rx.mode)&&sets.length>0&&sets.length>=rx.sets&&sets.every(valid)&&reps>=rx.reps&&sameLoad&&bilateral&&!['hard','breakdown','pain'].includes(quality)&&!pain;
- return{id:rx.id,name:rx.name,weight,bodyweight:!!MOVES[rx.id]?.bodyweight,unit:rx.unit,actualSets:sets.length,actualReps:reps,targetSets:rx.sets,targetReps:rx.reps,rest:rx.rest,quality,pain:!!pain,mode:rx.mode,policyKey:rx.policyKey||'legacy-v1',profile:rx.profile||'legacy',track:rx.track||'base',roundSeconds:rx.roundSeconds||null,continuous:!!rx.continuous,durationScope:rx.durationScope||null,weakSide:rx.weakSide||null,sourceIds:rx.sourceIds||[],sourceParameters:rx.sourceParameters??null,exposureTarget:rx.exposureTarget??2,performed,completed:performed&&quality==='clean'&&exactIntensity&&weight===Number(rx.weight)&&!['baseline','recovery','reentry','time-fit','review','rebuild','deload','prerequisite'].includes(rx.mode),sets:actual};
+ return{id:rx.id,name:rx.name,weight,bodyweight:!!MOVES[rx.id]?.bodyweight,unit:rx.unit,actualSets:sets.length,actualReps:reps,targetSets:rx.sets,targetReps:rx.reps,rest:rx.rest,quality,pain:!!pain,mode:rx.mode,policyKey:rx.policyKey||'legacy-v1',profile:rx.profile||'legacy',track:rx.track||'base',roundSeconds:rx.roundSeconds||null,continuous:!!rx.continuous,durationScope:rx.durationScope||null,weakSide:rx.weakSide||null,sourceIds:rx.sourceIds||[],sourceParameters:rx.sourceParameters??null,exposureTarget:rx.exposureTarget??2,performed,completed:performed&&quality==='clean'&&exactIntensity&&weight===Number(rx.weight)&&!['baseline','light','recovery','reentry','time-fit','review','rebuild','deload','prerequisite'].includes(rx.mode),sets:actual};
 }
 function nextRest(plan,items,index){
  const rx=plan.items[index];if(!items.some(item=>item.sets.some(set=>!set.done)))return null;
