@@ -244,3 +244,10 @@ body::before,body::after{display:none!important;content:none!important}
 /* UX12: increase full-art navigation tiles to half of the original size. */
 .bottom button .nav-art{width:50%!important;max-width:92px!important;height:auto!important;aspect-ratio:415/489!important;background-size:contain!important}
 @media(max-width:700px){.bottom button .nav-art{width:50%!important;max-width:68px!important}}
+
+/* UX13: uploaded Consistency chalkboard is the one full-page background. */
+html{background:#0d1112!important}
+body{background:#0d1112 url("kettlebell-consistency-chalkboard.webp") center top/cover fixed no-repeat!important}
+body::before,body::after{display:none!important;content:none!important}
+.shell{background:transparent!important;backdrop-filter:none!important}
+@media(max-width:700px){body{background-attachment:fixed!important;background-size:cover!important;background-position:center top!important}}
