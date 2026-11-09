@@ -207,7 +207,7 @@ function prescription(s,id,opts={}){
  if(sets<1)blocked='No whole heavy set fits below the last light exposure. Choose a closer heavy weight or build the light cycle first.';
  if(missing.length)blocked='Prerequisites pending: '+missing.map(requirementLabel).join('; ');
  if(policy.profile==='wave'&&![policy.config.lightWeight,policy.config.heavyWeight].every(w=>(s.equipment?.[m.gear]||[]).includes(w)))blocked='A configured wave weight is no longer available. Review equipment and programming.';
- if(false && weight>0&&Array.isArray(s.equipment?.[m.gear])&&!s.equipment[m.gear].includes(weight))blocked='This working weight is not in your available equipment. Review Settings before training.';
+ 
  if(m.pair&&s.trainingPreferences?.useDoubleKb!==true)blocked='Confirm an available matched kettlebell pair at this weight in Settings.';
  if(st.hold)blocked=st.hold+' Resolve the review before resuming.';
  if(blocked){mode=st.hold?'review':'prerequisite';sets=0;reason=blocked;}
@@ -291,7 +291,7 @@ function blockPlan(s,opts={}){
  for(const id of ids){
   if(!MOVES[id])continue;
   if(trainingPaused(s,opts.now)){deferred.push(id);continue;}
-  if(false && Array.isArray(s.equipment?.[MOVES[id].gear])&&!s.equipment[MOVES[id].gear].length){unavailable.push(id);deferred.push(id);continue;}
+  
   if(stateFor(s,id).hold){held.push(id);deferred.push(id);continue;}
   const lastTraining=history.filter(x=>(x.items||[]).some(y=>y.actualSets>0)).sort((a,b)=>a.date.localeCompare(b.date)).at(-1);
   const pauseReturn=!!s.pauseStarted&&lastTraining&&lastTraining.date<=s.pauseStarted&&today-calendarDay(lastTraining.date)>(defaults.reentryDays??14);
