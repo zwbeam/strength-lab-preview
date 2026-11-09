@@ -416,3 +416,14 @@ body{background-image:linear-gradient(#0b1215d9,#0b1215d9),url("chalk-notes-over
 #selected-workout .today-adjustments .adjustment-extras .two{gap:8px;margin:6px 0}
 #selected-workout .today-adjustments .adjustment-extras p.small{font-size:11px;line-height:1.4;margin:6px 0}
 #selected-workout .today-adjustments .adjustment-extras .button{min-height:38px;margin:6px 0}
+
+/* UX35: smaller artwork and color-coded black navigation tiles. */
+.bottom{background:#0b0c0ef2!important}
+.bottom button{background:#050607!important;border:1.5px solid #667074!important;box-shadow:none!important}
+.bottom button[data-tab="today"]{border-color:#f24d83!important}
+.bottom button[data-tab="progress"]{border-color:#49c8f2!important}
+.bottom button[data-tab="learn"]{border-color:#ffce38!important}
+.bottom button[data-tab="settings"]{border-color:#a0e52d!important}
+.bottom button.active{background:#0b0d10!important;box-shadow:inset 0 0 0 1px #ffffff20!important}
+.bottom button .nav-art{height:clamp(37px,6.67vw,73px)!important;width:auto!important;max-width:100%!important;aspect-ratio:415/489!important;background-size:contain!important}
+@media(max-width:700px){.bottom button .nav-art{height:clamp(35px,12vw,57px)!important;width:auto!important;max-width:100%!important}}
