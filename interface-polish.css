@@ -405,3 +405,14 @@ body{background-image:linear-gradient(#0b1215d9,#0b1215d9),url("chalk-notes-over
   line-height:20px!important;
   font-size:13px!important;
 }
+
+/* UX32: compact nested planning controls inside Today's Adjustments. */
+#selected-workout .today-adjustments .adjustment-extras{display:grid;gap:5px;margin-top:8px;border-top:1px solid #b7a56a45;padding-top:8px}
+#selected-workout .today-adjustments .adjustment-extras>details{background:#24241ff0;border:1px solid #70684999;border-radius:7px;padding:6px 9px;margin:0}
+#selected-workout .today-adjustments .adjustment-extras>details>summary{font-size:13px;font-weight:700;color:#ead69a;min-height:26px;line-height:26px;cursor:pointer}
+#selected-workout .today-adjustments .adjustment-extras label{margin:7px 0 4px;min-width:0}
+#selected-workout .today-adjustments .adjustment-extras input,
+#selected-workout .today-adjustments .adjustment-extras select{max-width:100%;min-height:36px;height:auto;background:#29281f;color:#f5f5ed;border:1px solid #756a45;border-radius:6px;padding:6px}
+#selected-workout .today-adjustments .adjustment-extras .two{gap:8px;margin:6px 0}
+#selected-workout .today-adjustments .adjustment-extras p.small{font-size:11px;line-height:1.4;margin:6px 0}
+#selected-workout .today-adjustments .adjustment-extras .button{min-height:38px;margin:6px 0}
