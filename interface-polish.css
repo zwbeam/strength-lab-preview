@@ -427,3 +427,16 @@ body{background-image:linear-gradient(#0b1215d9,#0b1215d9),url("chalk-notes-over
 .bottom button.active{background:#0b0d10!important;box-shadow:inset 0 0 0 1px #ffffff20!important}
 .bottom button .nav-art{height:clamp(37px,6.67vw,73px)!important;width:auto!important;max-width:100%!important;aspect-ratio:415/489!important;background-size:contain!important}
 @media(max-width:700px){.bottom button .nav-art{height:clamp(35px,12vw,57px)!important;width:auto!important;max-width:100%!important}}
+
+/* UX36: translucent white calendar, green day borders, shaded training days. */
+#training-calendar{background:rgba(255,255,255,.075)!important;border:2px solid rgba(255,255,255,.88)!important;box-shadow:none!important}
+#training-calendar .calendar-day,
+#training-calendar .calendar-day:not(.strength):not(.cycling):not(.activity){
+ background:#050607!important;border:1.5px solid #87cc42!important;color:#f6f7f5!important;
+}
+#training-calendar .calendar-day.strength,
+#training-calendar .calendar-day.cycling,
+#training-calendar .calendar-day.activity{
+ background:rgba(29,105,77,.55)!important;border:1.5px solid #87cc42!important;
+}
+#training-calendar .calendar-day.selected-day{outline:2px solid #f3e6b7!important;outline-offset:1px!important}
