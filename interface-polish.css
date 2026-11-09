@@ -435,3 +435,37 @@ body{background-image:linear-gradient(#0b1215d9,#0b1215d9),url("chalk-notes-over
 #training-calendar .calendar-grid .calendar-day{background:#000!important;color:#fff!important;border:2px solid #000!important;outline:none!important;box-shadow:none!important}
 #training-calendar .calendar-grid .calendar-day.strength{background:#fff!important;color:#000!important}
 #training-calendar .calendar-grid .calendar-day.selected-day{border:2px solid #000!important;outline:3px solid #6cdb26!important;outline-offset:1px!important}
+
+/* UX41: cohesive chalkboard organization for Training Log, Learn and Settings. */
+#app:has(.history-table-wrap),#app:has(#learn-browser),#app:has(#training-setup){--tab-panel:#111b1df2;--tab-line:#bfc7c5a8}
+#app:has(.history-table-wrap) .hero h1{color:#4bcaf0!important}
+#app:has(#learn-browser) .hero h1{color:#f1cd53!important}
+#app:has(#training-setup) .hero h1{color:#99dc53!important}
+#app:has(.history-table-wrap) .hero,#app:has(#learn-browser) .hero,#app:has(#training-setup) .hero{padding:10px 0 14px!important}
+#app:has(.history-table-wrap) .card,#app:has(.history-table-wrap) .history-table-wrap,
+#app:has(#learn-browser) .card,#app:has(#learn-browser) .movement-instruction,
+#app:has(#training-setup) .setup-card,#app:has(#training-setup) .card{
+ background:var(--tab-panel)!important;border:1px solid var(--tab-line)!important;border-radius:12px!important;box-shadow:0 3px 12px #0004!important}
+#app:has(.history-table-wrap) .history-table-wrap{overflow-x:auto!important}
+#app:has(.history-table-wrap) .history-table{background:#0a1113!important;color:#f4f4f1!important}
+#app:has(.history-table-wrap) .history-table thead{background:#c9cac6!important;color:#111!important}
+#app:has(.history-table-wrap) .history-table th{color:#111!important}
+#app:has(.history-table-wrap) .history-table td{border-color:#7c898844!important}
+#app:has(.history-table-wrap) .history-table .text-button{color:#63dce8!important}
+#app:has(.history-table-wrap) details#movement-progress,
+#app:has(.history-table-wrap) details#working-loads,
+#app:has(#training-setup) details#advanced-settings{
+ background:#141d1ef5!important;border:1px solid #aeb7b6a8!important;border-radius:10px!important;padding:10px 12px!important;margin:10px 0!important}
+#app:has(.history-table-wrap) details#movement-progress>summary,
+#app:has(.history-table-wrap) details#working-loads>summary{color:#5bd5ef!important;font-weight:750!important}
+#app:has(#training-setup) details#advanced-settings>summary{color:#a1dc65!important;font-weight:750!important}
+#learn-browser .choice{background:#12191bf5!important;border:1px solid #9ba7a5a8!important;border-radius:10px!important;padding:5px!important}
+#learn-browser .choice button{background:#050607!important;border:1px solid #656e6b!important;color:#f5f5f2!important;border-radius:7px!important}
+#learn-browser .choice button.active,#learn-browser .choice button[aria-pressed="true"]{background:#f3d66c!important;color:#111!important;border-color:#d6af36!important}
+#learn-browser .learn-filters{background:#d0d0cc!important;color:#111!important;border:1px solid #a9aaa6!important;border-radius:10px!important;padding:10px!important}
+#learn-browser .learn-filters label{color:#17191a!important}
+#learn-browser .learn-list-row{background:#0b1113f2!important;border:1px solid #717d7ba8!important;border-radius:8px!important;margin:5px 0!important;padding:7px 9px!important}
+#app:has(#training-setup) .setup-card h2{color:#9bdc6b!important}
+#app:has(#training-setup) .setup-card input,#app:has(#training-setup) .setup-card select{background:#070b0c!important;color:#fff!important;border:1px solid #747f7c!important;border-radius:7px!important}
+#app:has(#training-setup) .setup-card .button{background:#b6d995!important;color:#101713!important;border:1px solid #8db36d!important}
+@media(max-width:520px){#app:has(.history-table-wrap) .history-table th,#app:has(.history-table-wrap) .history-table td{padding:7px 5px!important}#learn-browser .learn-filters{padding:8px!important}}
