@@ -102,11 +102,11 @@ function updateTimer(){if(!draft)return;const c=activeTimer(),remaining=timerRem
 function start(){timerPanelOpen=false;if(!checkWriter())return;if(draft)return;const opportunity=C.project(state,today(),undefined,{minutes:todayMinutes,readiness})[0];if(selectedDate!==today()||!opportunity||opportunity.date!==today()){alert('The next unfinished workout is not scheduled here. Move its opportunity if recovery allows.');return;}openEditors.clear();panelState.clear();focusExpanded=false;finishPanel=false;const bundle=N.adjusted(state,{readiness,minutes:todayMinutes}),plan=bundle.plan;if(!plan.items.length){alert("No complete movement fits today. Choose more time or adjust your training plan.");return;}draft={calendarVersion:1,timerVersion:3,notebookVersion:1,originalPlan:bundle.original,adjustments:bundle.adjustments,cycleSnapshot:N.cycle(state),id:'d'+newIdentity(),timerMode:T.MODES.includes(state.timerMode)?state.timerMode:'manual',plan,started:new Date().toISOString(),date:today(),stage:'warmup',items:N.newItems(plan),notes:''};T.custom(draft,plan.budget.warmup*60,'Warmup',Date.now(),false);if(!saveDraft()){draft=null;return;}render();}
 function changed(i,j,field,value){if(!checkWriter())return;
  if(!draft)return;
+ const previous=JSON.stringify(draft);
  const d=draft.items[i].sets[j];
  if(field==='done'&&value&&(!E.validWorkingWeight(draft.plan.items[i].id,d.weight)||!Number.isInteger(Number(d.reps))||Number(d.reps)<=0)){alert('Enter a positive weight and whole reps or seconds before completing this set.');return;}
  if(field==='done'&&value&&draft.notebookVersion===1){const rx=draft.plan.items[i];if(rx.side===2&&d.bothSides===undefined)d.bothSides=true;if(rx.continuous&&d.continuous===undefined)d.continuous=true;if(rx.roundSeconds&&d.timingValid===undefined)d.timingValid=true;}
  if(field==='skipped'&&value)d.done=false;
- const previous=JSON.stringify(draft);
  d[field]=['done','bothSides','timingValid','continuous','skipped'].includes(field)?!!value:Number(value);
  if(field==='done')T.logged(draft,i,j,value);
  if(!saveDraft()){draft=JSON.parse(previous);return;}
