@@ -494,3 +494,7 @@ body{background-image:linear-gradient(#0b1215d9,#0b1215d9),url("chalk-notes-over
 .settings-hub .hub-tile>summary strong{font-size:14px}
 .settings-hub .hub-content .setup-card{background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important}
 @media(max-width:520px){.hub-page{padding:9px}.hub-content{padding:10px}.hub-tile>summary{min-height:58px}}
+
+/* UX45 equipment checklist */
+.settings-hub .gear-check{display:flex!important;align-items:center;gap:10px;margin:9px 0!important;padding:7px 9px;border:1px solid #52615c;border-radius:8px;background:#0b1213;color:#f3f5f2}
+.settings-hub .gear-check input{width:18px;height:18px;accent-color:#9ee267;flex-shrink:0}
