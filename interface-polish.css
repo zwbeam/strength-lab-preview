@@ -258,3 +258,7 @@ body{background:#0d1112 url("chalk-notes-overlay.webp") center top/cover fixed n
 body::before,body::after{display:none!important;content:none!important;background:none!important}
 .shell{background:transparent!important;backdrop-filter:none!important}
 @media(max-width:700px){body{background:#0d1112 url("chalk-notes-overlay.webp") center top/cover fixed no-repeat!important}}
+
+/* UX15: mute chalk notes by applying a 75% dark scrim to the background only. */
+body{background-image:linear-gradient(#0d1112bf,#0d1112bf),url("chalk-notes-overlay.webp")!important;background-position:center top!important;background-size:cover!important;background-repeat:no-repeat!important;background-attachment:fixed!important}
+@media(max-width:700px){body{background-image:linear-gradient(#0d1112bf,#0d1112bf),url("chalk-notes-overlay.webp")!important;background-attachment:fixed!important}}
