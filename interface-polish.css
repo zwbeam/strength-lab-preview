@@ -545,3 +545,13 @@ body{background-image:linear-gradient(#0b1215d9,#0b1215d9),url("chalk-notes-over
 .movement-history-dialog .history-table-wrap{overflow-x:auto;max-width:100%}
 .movement-history-dialog .history-table{min-width:500px}
 .movement-history-dialog .history-table td,.movement-history-dialog .history-table th{white-space:nowrap;padding:8px 10px}
+
+/* v63: pathways plus compact movement finder */
+.movement-pathway,.movement-finder{border:1px solid rgba(128,128,128,.25);border-radius:10px;margin:8px 0;overflow:hidden}
+.movement-pathway>summary,.movement-finder>summary{cursor:pointer;padding:12px;display:flex;flex-direction:column;gap:4px}
+.movement-pathway>summary span,.movement-finder>summary span{font-size:12px;opacity:.8;line-height:1.35}
+.pathway-steps{padding:0 12px 12px}
+.pathway-step{display:flex;gap:12px;padding:10px 0;border-top:1px solid rgba(128,128,128,.2);align-items:flex-start}
+.pathway-step .pathway-index{border-radius:50%;border:1px solid rgba(128,128,128,.5);min-width:24px;height:24px;display:grid;place-items:center;font-size:12px}
+.pathway-step p{margin:3px 0 0}
+.movement-finder .learn-filters,.movement-finder #learn-results{padding:0 12px}
