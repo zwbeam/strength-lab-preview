@@ -435,7 +435,7 @@ function describeProgression(id,s={}){
  if(p.profile==='clubIntermediate')return 'Intermediate single-arm practice: '+p.volume.start+'–'+p.volume.end+' sets of '+p.volume.reps+' per side, continuous within a movement. Exact targets and evidence gates are app defaults; reviewed teaching and the general method are source-linked.';
  if(p.profile==='getup')return 'Alternate familiar single get-ups from 3 to 10 total minutes under load, in '+(p.config.stepSeconds??60)+'-second steps (#423/#658). Exposure gates are app defaults. Advanced multi-rep sets are not automatically assigned.';
  if(p.profile==='singleClub')return 'Build 4–20 sets of 5 per side without resting within a movement (#578); take a two-minute example break between movements (#581). Pendulums, pullovers and mills are later pathways, not automatically unlocked here.';
- return p.label+': '+p.volume.start+'–'+p.volume.end+' sets of '+p.volume.reps+(p.timed?' seconds.':'.')+' Promotion and recovery gates are app settings.';
+ return p.label+': '+p.volume.start+'–'+p.volume.end+' sets of '+p.volume.reps+(p.timed?' seconds.':'.')+(p.exactParametersSource===null?' These numeric targets are app defaults, not an independently verified source prescription.':' Source example #'+p.exactParametersSource+' informs the numeric targets; check its context before treating them as universal.')+' Promotion and recovery gates are app settings.';
 }
 function validWorkingWeight(id,value){const weight=Number(value);return Number.isFinite(weight)&&(MOVES[id]?.bodyweight?weight===0:weight>0);}
 function retestPushup(s,baseline){const current=s.programming?.pushup||{};return configureMovement(s,'pushup',{...current,profile:'pushup',cleanBaseline:baseline,cycleRevision:(current.cycleRevision||0)+1});}
