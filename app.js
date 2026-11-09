@@ -123,8 +123,8 @@ function cooldown(plan){return `<ol><li>1 min: slow walking and calm breathing.<
 function emptyPlanMessage(p){
  if(p.paused)return 'Training is paused. Resume training when you choose.';
  if(p.held?.length)return 'No workout is ready. Review the pain holds in Progress; more time or lower readiness does not clear a hold.';
+ if(p.prerequisite?.length||p.requirements?.length)return 'No workout is ready because movement prerequisites are incomplete. Open Settings → Foundational Movements to confirm the skills you can perform safely, and enter a push-up baseline if applicable. Review Learn for movement instructions. Do not mark skills complete until you can perform them.';
  if(p.scheduled?.length)return 'No workout is ready under the current recovery schedule. Rest and return when the spacing or weekly limit permits; no catch-up volume is needed.';
- if(p.prerequisite?.length)return 'No workout is ready. Review the listed skill, supporting-practice or baseline requirements in Settings and the movement library.';
  if(p.unavailable?.length)return 'No workout is ready with the available equipment. Review your equipment and training block in Settings.';
  return 'No complete movement fits the available main-work time. Select a longer session or choose low energy / sore to reduce the prescription. Nothing has been silently shortened.';
 }
