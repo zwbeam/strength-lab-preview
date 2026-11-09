@@ -318,7 +318,7 @@ function blockPlan(s,opts={}){
  const today=calendarDay(opts.now),history=(s.sessions||[]).filter(x=>calendarDay(x.date)<=today);
  const trainingDays=new Set(history.filter(x=>today-calendarDay(x.date)<7&&(x.items||[]).some(y=>y.actualSets>0)).map(x=>x.date));
  const alreadyToday=history.some(x=>calendarDay(x.date)===today&&(x.items||[]).some(y=>y.actualSets>0));
- const weeklyLimit=Math.min(defaults.maxTrainingDays??7,pref.daysPerWeek??7);
+ const weeklyLimit=Math.min(defaults.maxTrainingDays??7,pref.daysPerWeek??7,pref.focus==='strength'?4:7);
  const restDay=!alreadyToday&&trainingDays.size>=weeklyLimit;
  const previousTraining=history.filter(x=>calendarDay(x.date)<today&&(x.items||[]).some(y=>y.actualSets>0)).sort((a,b)=>calendarDay(b.date)-calendarDay(a.date))[0];
  const gap=previousTraining?today-calendarDay(previousTraining.date):Infinity;
