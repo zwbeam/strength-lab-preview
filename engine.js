@@ -207,8 +207,8 @@ function prescription(s,id,opts={}){
  if(sets<1)blocked='No whole heavy set fits below the last light exposure. Choose a closer heavy weight or build the light cycle first.';
  if(missing.length)blocked='Prerequisites pending: '+missing.map(requirementLabel).join('; ');
  if(policy.profile==='wave'&&![policy.config.lightWeight,policy.config.heavyWeight].every(w=>(s.equipment?.[m.gear]||[]).includes(w)))blocked='A configured wave weight is no longer available. Review equipment and programming.';
- if(weight>0&&Array.isArray(s.equipment?.[m.gear])&&!s.equipment[m.gear].includes(weight))blocked='This working weight is not in your available equipment. Review Settings before training.';
- if(m.pair&&(!weight||!(s.equipment?.pairs||[]).includes(weight)))blocked='Confirm an available matched kettlebell pair at this weight in Settings.';
+ if(false && weight>0&&Array.isArray(s.equipment?.[m.gear])&&!s.equipment[m.gear].includes(weight))blocked='This working weight is not in your available equipment. Review Settings before training.';
+ if(m.pair&&s.trainingPreferences?.useDoubleKb!==true)blocked='Confirm an available matched kettlebell pair at this weight in Settings.';
  if(st.hold)blocked=st.hold+' Resolve the review before resuming.';
  if(blocked){mode=st.hold?'review':'prerequisite';sets=0;reason=blocked;}
  const adapted=['baseline','recovery','reentry','rebuild','deload','review','prerequisite'].includes(mode);
@@ -276,11 +276,13 @@ function blockPlan(s,opts={}){
  const block=s.programBlock||'abc';if(!BLOCKS[block])throw Error('Unknown program block');
  const days=BLOCKS[block].days,slot=(s.sessions||[]).filter(x=>x.slot!==undefined&&(x.block||'abc')===block&&(x.notebookVersion!==1||(x.items||[]).some(y=>y.actualSets>0))&&(x.calendarVersion!==1||(x.items||[]).every(y=>y.performed===true))).length%days.length,day=days[slot];
  const budget=timeBudget(opts.minutes??s.defaultMinutes??45),defaults=s.trainingDefaults||{};
+ const pref=s.trainingPreferences||{};
+ const enabled=id=>{const m=MOVES[id];if(!m)return false;if(m.bodyweight)return pref.useBodyweight!==false;if(m.gear==='kb')return pref.useKb!==false&&(!m.pair||pref.useDoubleKb===true);if(m.gear==='club')return pref.useClub!==false;return true;};
  const blockIds=days.flatMap(x=>x.ids),support=supportingMoves(s,blockIds,opts);
  const allowed=new Set([...blockIds,...support]),pending=s.deferredByBlock?.[block]||(block==='abc'?s.deferredIds:[])||[];
  const latest=(s.sessions||[]).filter(x=>(x.block||'abc')===block).at(-1);
  const continuing=latest?.calendarVersion===1&&latest.items.some(x=>x.actualSets>0)&&latest.items.some(x=>!x.performed)&&pending.length>0;
- const ids=[...new Set([...support,...pending.filter(id=>allowed.has(id)),...(continuing?[]:day.ids)])];
+ const ids=[...new Set([...support,...pending.filter(id=>allowed.has(id)),...(continuing?[]:day.ids)])].filter(enabled);
  const items=[],deferred=[],held=[],unavailable=[],prerequisite=[],requirements=[],scheduled=[];let used=0,hard=0;
  const today=calendarDay(opts.now),history=(s.sessions||[]).filter(x=>calendarDay(x.date)<=today);
  const trainingDays=new Set(history.filter(x=>today-calendarDay(x.date)<7&&(x.items||[]).some(y=>y.actualSets>0)).map(x=>x.date));
@@ -289,7 +291,7 @@ function blockPlan(s,opts={}){
  for(const id of ids){
   if(!MOVES[id])continue;
   if(trainingPaused(s,opts.now)){deferred.push(id);continue;}
-  if(Array.isArray(s.equipment?.[MOVES[id].gear])&&!s.equipment[MOVES[id].gear].length){unavailable.push(id);deferred.push(id);continue;}
+  if(false && Array.isArray(s.equipment?.[MOVES[id].gear])&&!s.equipment[MOVES[id].gear].length){unavailable.push(id);deferred.push(id);continue;}
   if(stateFor(s,id).hold){held.push(id);deferred.push(id);continue;}
   const lastTraining=history.filter(x=>(x.items||[]).some(y=>y.actualSets>0)).sort((a,b)=>a.date.localeCompare(b.date)).at(-1);
   const pauseReturn=!!s.pauseStarted&&lastTraining&&lastTraining.date<=s.pauseStarted&&today-calendarDay(lastTraining.date)>(defaults.reentryDays??14);
