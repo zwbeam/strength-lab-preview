@@ -59,3 +59,19 @@ assert.ok(!allowed.includes(20),'unowned loads must not be offered after a cycle
 assert.ok(!allowed.some(w=>w>18),'owned inventory ceiling must be respected');
 const afterGap=E.prescription(at([['2026-01-01',entry('2026-01-01')]]),id,{now:'2026-03-01'});
 assert.equal(afterGap.mode,'reentry','long absence must trigger reentry prescription');
+
+const interrupted=E.stateFor(at([
+ ['2026-01-01',entry('2026-01-01')],
+ ['2026-01-03',entry('2026-01-03','clean',{mode:'reentry',completed:true})],
+ ['2026-01-05',entry('2026-01-05')]
+]),id);
+assert.equal(interrupted.stage,0,'reentry cannot bridge clean exposures across an interruption');
+const lowReadiness=E.prescription(at([['2026-01-01',entry('2026-01-01')]]),id,{now:'2026-01-04',readiness:'low'});
+assert.equal(lowReadiness.mode,'recovery','low readiness must prescribe recovery mode');
+assert.ok(lowReadiness.sets<=first.sets,'recovery must not increase prescribed sets');
+const loadChanged=E.stateFor({...at([
+ ['2026-01-01',entry('2026-01-01')],
+ ['2026-01-03',entry('2026-01-03')]
+]),nextWeights:{swing:18}},id);
+assert.equal(loadChanged.streak,0,'load change must clear prior exposure streak');
+assert.throws(()=>E.selectLoad({...base,equipment:{kb:[16,18],club:[],pairs:[]}},id,20),/Load must be an available/,'load increase cannot bypass cycle gate');
