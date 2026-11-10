@@ -52,6 +52,16 @@ const {chromium}=require('playwright');
    await dialog.getByRole('button',{name:'Close'}).click();
    if(await dialog.evaluate(el=>el.open))throw Error('Movement history failed to close');
    console.log('180-session Training Log pagination passed at '+viewport.width+'px');
+   await page.locator('[data-movement-history="swing"]').first().click();
+   await dialog.locator('[data-history-view]').first().click();
+   if(await dialog.evaluate(el=>el.open))throw Error('History dialog remained open after selecting a session');
+   if(!await page.locator('[data-history]').count())throw Error('Selected workout details did not render');
+   await page.locator('[data-edit-history]').first().click();
+   if(!await page.locator('#history-editor').count())throw Error('History correction editor did not open');
+   await page.locator('#cancel-correction').click();
+   if(await page.locator('#history-editor').count())throw Error('History correction editor did not close');
+   console.log('History correction open/cancel passed at '+viewport.width+'px');
+
    if(errors.length)throw Error(viewport.width+'px browser exceptions: '+errors.join(' | '));
    console.log('Browser navigation passed at '+viewport.width+'px');
    await page.close();
