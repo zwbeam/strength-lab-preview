@@ -61,6 +61,26 @@ const {chromium}=require('playwright');
    await page.locator('#cancel-correction').click();
    if(await page.locator('#history-editor').count())throw Error('History correction editor did not close');
    console.log('History correction open/cancel passed at '+viewport.width+'px');
+   await page.locator('[data-edit-history]').first().click();
+   await page.locator('#history-notes').fill('Browser-tested correction');
+   await page.locator('#correction-reason').fill('Automated correction verification');
+   await page.locator('#save-correction').click();
+   if(!await page.getByText('Correction saved.',{exact:false}).count())throw Error('Correction confirmation missing');
+   const corrected=await page.evaluate(()=>{
+    const raw=localStorage.getItem('sl-dev-preview-data-v33');
+    const state=JSON.parse(raw);
+    return state.sessions.find(s=>s.notes==='Browser-tested correction');
+   });
+   if(!corrected)throw Error('Correction did not persist to local storage');
+   await page.reload({waitUntil:'domcontentloaded'});
+   await page.waitForTimeout(650);
+   const restored=await page.evaluate(()=>{
+    const state=JSON.parse(localStorage.getItem('sl-dev-preview-data-v33'));
+    return state.sessions.find(s=>s.notes==='Browser-tested correction');
+   });
+   if(!restored)throw Error('Correction missing after reload');
+   console.log('History correction save/reload passed at '+viewport.width+'px');
+
 
    if(errors.length)throw Error(viewport.width+'px browser exceptions: '+errors.join(' | '));
    console.log('Browser navigation passed at '+viewport.width+'px');
