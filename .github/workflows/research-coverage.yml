@@ -1,0 +1,124 @@
+name: Research coverage audit
+on:
+  push:
+    branches:
+      - integration/research-coverage-audit
+    paths:
+      - engine.js
+      - movement-instruction.js
+      - tests/research-coverage.js
+      - tests/prerequisite-contract.js
+      - tests/progression-history.js
+      - tests/programming-profile-contract.js
+      - tests/full-training-cycle.js
+      - tests/year-history.js
+      - tests/five-year-history.js
+      - tests/history-corrections.js
+      - tests/backup-history.js
+      - tests/log-pagination.js
+      - tests/browser-smoke.js
+      - notebook.js
+      - app.js
+      - .github/workflows/research-coverage.yml
+  pull_request:
+    paths:
+      - engine.js
+      - movement-instruction.js
+      - tests/research-coverage.js
+      - tests/prerequisite-contract.js
+      - tests/progression-history.js
+      - tests/programming-profile-contract.js
+      - tests/year-history.js
+      - tests/five-year-history.js
+      - tests/history-corrections.js
+      - tests/backup-history.js
+      - tests/log-pagination.js
+      - tests/browser-smoke.js
+      - notebook.js
+      - app.js
+      - .github/workflows/research-coverage.yml
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check JavaScript syntax
+        run: |
+          node --check app.js
+          node --check engine.js
+          node --check notebook.js
+          node --check movement-instruction.js
+          node --check rolling-calendar.js
+          node --check session-timer.js
+          node --check programming-education.js
+      - name: Validate movement mappings and source integrity
+        run: |
+          node tests/research-coverage.js
+          node tests/prerequisite-contract.js
+          node tests/progression-history.js
+          node tests/programming-profile-contract.js
+          node tests/full-training-cycle.js
+          node tests/year-history.js
+          node tests/five-year-history.js
+          node tests/history-corrections.js
+          node tests/backup-history.js
+          node tests/log-pagination.js
+      - name: Install Chromium browser test runner
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Smoke test app in Chromium
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/strength-lab-http.log 2>&1 &
+          node tests/browser-smoke.js
+      - name: Package isolated review build
+        run: |
+          mkdir -p review-build
+          python3 - <<'PY'
+          import pathlib, shutil
+          root=pathlib.Path('.')
+          for file in root.rglob('*'):
+              if not file.is_file() or any(part in {'.git','.github','node_modules','tests','review-build'} for part in file.parts):
+                  continue
+              destination=pathlib.Path('review-build')/file
+              destination.parent.mkdir(parents=True,exist_ok=True)
+              shutil.copy2(file,destination)
+          PY
+      - name: Verify review package completeness
+        run: |
+          python3 - <<'PY'
+          import pathlib,re,sys
+          root=pathlib.Path('review-build')
+          html=(root/'index.html').read_text()
+          assets=re.findall(r'(?:src|href)="([^"]+)"',html)
+          required=['index.html','app.js','engine.js','notebook.js','styles.css','sw.js','manifest.webmanifest']
+          required += [x.split('?')[0] for x in assets if not x.startswith(('http:','https:','#','data:'))]
+          missing=sorted({x for x in required if not (root/x).is_file()})
+          if missing:sys.exit('Review package missing required assets: '+', '.join(missing))
+          print('Review package asset references checked:',len(required),'missing:',len(missing))
+          PY
+      - name: Stamp review build identity
+        env:
+          REVIEW_SHA: ${{ github.sha }}
+        run: |
+          python3 - <<'PY'
+          import json,os,pathlib
+          path=pathlib.Path('review-build/preview-build.json')
+          data=json.loads(path.read_text())
+          data['channel']='research-integration-review'
+          data['source_commit']=os.environ['REVIEW_SHA']
+          data['production_modified']=False
+          path.write_text(json.dumps(data,indent=2)+chr(10))
+          print('Review package commit:',data['source_commit'])
+          PY
+      - name: Upload review build for download
+        uses: actions/upload-artifact@v4
+        with:
+          name: strength-lab-integration-review
+          path: review-build/
+          retention-days: 14
+          if-no-files-found: error
+      # --strict is intentionally not enabled until known research gaps are resolved.

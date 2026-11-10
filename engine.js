@@ -209,7 +209,8 @@ function prescription(s,id,opts={}){
  if(missing.length)blocked='Prerequisites pending: '+missing.map(requirementLabel).join('; ');
  if(policy.profile==='wave'&&![policy.config.lightWeight,policy.config.heavyWeight].every(w=>(s.equipment?.[m.gear]||[]).includes(w)))blocked='A configured wave weight is no longer available. Review equipment and programming.';
  
- if(m.pair&&s.trainingPreferences?.useDoubleKb!==true)blocked='Confirm an available matched kettlebell pair at this weight in Settings.';
+ if(m.pair&&(s.trainingPreferences?.useDoubleKb!==true||!(s.equipment?.pairs||[]).includes(weight)))blocked='Confirm an available matched kettlebell pair at this weight in Settings.';
+ if(!m.bodyweight&&weight>0){const available=s.equipment?.[m.gear];const ceiling=m.gear==='kb'?s.equipment?.maxKbKg:s.equipment?.maxClubLb;if((Array.isArray(available)&&!available.includes(weight))||(ceiling!==undefined&&weight>ceiling))blocked='The recorded working weight is not currently available in your equipment. Available loads: '+(availableWorkingLoads(s,id).join(', ')||'none configured')+'. Update the working weight or Settings; training history is preserved.';}
  if(st.hold)blocked=st.hold+' Resolve the review before resuming.';
  if(blocked){mode=st.hold?'review':'prerequisite';sets=0;reason=blocked;}
  const adapted=['baseline','recovery','reentry','rebuild','deload','review','prerequisite'].includes(mode);
@@ -228,19 +229,26 @@ function loadOptions(s,id){
  const st=stateFor(s,id),m=MOVES[id];
  if(m.bodyweight)return [];
  if(st.hold||st.fail||st.phase!=='ready')return [];
- const inventory=m.pair?s.equipment?.pairs:s.equipment?.[m.gear];
- // Inventory is optional in simplified setup; offer candidate increments, never claim they are owned.
- const candidates=[...new Set([...(LOADS[m.gear]||[]),...(Array.isArray(inventory)?inventory:[])])].sort((a,b)=>a-b);
+ const inventory=m.pair?(Array.isArray(s.equipment?.pairs)?s.equipment.pairs:[]):s.equipment?.[m.gear];
+ // If the user supplied an inventory, only offer loads they actually own.
+ // With no inventory configured, retain suggested increments as setup candidates.
+ const candidates=[...new Set(Array.isArray(inventory)?inventory:(LOADS[m.gear]||[]))].sort((a,b)=>a-b);
  const cap=s.trainingDefaults?.maxLoadJump??.25;
- return candidates.filter(w=>Number.isFinite(w)&&w>st.weight&&w<=st.weight*(1+cap)).sort((a,b)=>a-b);
+ const ceiling=s.equipment?.maxKbKg!==undefined&&m.gear==='kb'?Number(s.equipment.maxKbKg):s.equipment?.maxClubLb!==undefined&&m.gear==='club'?Number(s.equipment.maxClubLb):Infinity;
+ return candidates.filter(w=>Number.isFinite(w)&&w>st.weight&&w<=st.weight*(1+cap)&&w<=ceiling).sort((a,b)=>a-b);
 }
+function availableWorkingLoads(s,id){const m=MOVES[id];if(!m||m.bodyweight)return [];const list=m.pair?s.equipment?.pairs:s.equipment?.[m.gear];const ceiling=m.gear==='kb'?s.equipment?.maxKbKg:s.equipment?.maxClubLb;return(Array.isArray(list)?list:[]).filter(w=>Number.isFinite(w)&&w>0&&(ceiling===undefined||w<=ceiling)).sort((a,b)=>a-b);}
+function replaceUnavailableLoad(s,id,weight){const m=MOVES[id];if(!m||m.bodyweight)throw Error('A loaded movement is required');if(policyFor(id,s).profile==='wave')throw Error('Change configured wave weights instead');if(!availableWorkingLoads(s,id).includes(weight))throw Error('Replacement weight must be currently available');const current=stateFor(s,id);if(availableWorkingLoads(s,id).includes(current.weight))throw Error('Current working weight is still available; use normal progression controls');return{...s,nextWeights:{...s.nextWeights,[id]:weight}};}
 function selectLoad(s,id,weight){if(!loadOptions(s,id).includes(weight))throw Error('Load must be an available, permitted increment after a clean cycle. Adjust the configurable jump limit deliberately if needed.');if(stateFor(s,id).policy.profile==='wave')throw Error('Configure a new heavy/light pair in Settings instead.');return{...s,nextWeights:{...s.nextWeights,[id]:weight}};}
 function minutesFor(p){const m=MOVES[p.id];return(p.sets*(p.roundSeconds||((p.secondsPerSet??m.sec)+Math.max(0,p.rest)))/60)+.55;}
 function timeBudget(minutes){
  const total=Number.isFinite(Number(minutes))?Number(minutes):45;
- if(!Number.isInteger(total)||total<15||total>120)throw Error('Workout duration must be 15–120 minutes');
- const warmup=total<=20?4:total<=35?5:total<=60?7:10;
- const cooldown=total<=20?3:total<=35?4:total<=60?7:10;
+ if(!Number.isInteger(total)||total<30||total>120)throw Error('Strength workout duration must be 30–120 minutes');
+ // Protect preparation and recovery when session time is compressed.
+ // Eight minutes follows the two-round four-station warm-up format (source 550).
+ // Ten minutes of cooldown is an app allocation, not a quoted Wildman rule.
+ const warmup=8;
+ const cooldown=10;
  return {total,warmup,cooldown,main:total-warmup-cooldown};
 }
 const BLOCKS={
@@ -268,7 +276,7 @@ function activityRecovery(a){
  return a.duration>=120?1:0;
 }
 function validateActivity(a){
- const types=['mountain','gravel','road','indoor','hiking','trail','labor','other'];
+ const types=['mountain','gravel','road','indoor','hiking','trail','labor','other','mobility'];
  if(!a||typeof a!=='object'||typeof a.id!=='string'||!a.id||!types.includes(a.type)||!['planned','completed'].includes(a.status)||!['easy','moderate','hard'].includes(a.effort)||!Number.isFinite(a.duration)||a.duration<=0||a.duration>1440||typeof a.date!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(a.date)||!Number.isFinite(Date.parse(a.date+'T12:00:00Z'))||new Date(a.date+'T12:00:00Z').toISOString().slice(0,10)!==a.date)throw Error('Invalid activity');
  for(const key of ['distance','elevation'])if(a[key]!==undefined&&(!Number.isFinite(a[key])||a[key]<0))throw Error('Invalid activity measurement');
  if(a.notes!==undefined&&typeof a.notes!=='string'||a.replacesStrength!==undefined&&typeof a.replacesStrength!=='boolean')throw Error('Invalid activity details');
@@ -440,6 +448,8 @@ function describeProgression(id,s={}){
 function validWorkingWeight(id,value){const weight=Number(value);return Number.isFinite(weight)&&(MOVES[id]?.bodyweight?weight===0:weight>0);}
 function retestPushup(s,baseline){const current=s.programming?.pushup||{};return configureMovement(s,'pushup',{...current,profile:'pushup',cleanBaseline:baseline,cycleRevision:(current.cycleRevision||0)+1});}
 function validateProgramming(s){
+ if(s.equipment!==undefined){if(!s.equipment||typeof s.equipment!=='object'||Array.isArray(s.equipment))throw Error('Invalid equipment');for(const key of ['maxKbKg','maxClubLb'])if(s.equipment[key]!==undefined&&(!Number.isFinite(s.equipment[key])||s.equipment[key]<1||s.equipment[key]>100))throw Error('Invalid equipment ceiling: '+key);if(s.equipment.pairs!==undefined&&(!Array.isArray(s.equipment.pairs)||s.equipment.pairs.some(w=>!Number.isFinite(w)||w<=0||(s.equipment.maxKbKg!==undefined&&w>s.equipment.maxKbKg))))throw Error('Invalid matched kettlebell pairs');}
+
  if(s.trainingPreferences!==undefined){const p=s.trainingPreferences;if(p&&typeof p==='object'){for(const key of ['useKb','useClub','useBodyweight','useDoubleKb','useTwoHandClub','conditioning','skillSessions'])if(p[key]!==undefined&&typeof p[key]!=='boolean')throw Error('Invalid training preference: '+key);if(p.focus!==undefined&&!['balanced','strength','capacity','skill'].includes(p.focus))throw Error('Invalid training focus');if(p.variety!==undefined&&!['consistent','moderate','high'].includes(p.variety))throw Error('Invalid variety');if(p.useKb===false&&p.useClub===false&&p.useBodyweight===false)throw Error('Select at least one equipment type');}if(!p||typeof p!=='object'||!Number.isInteger(p.daysPerWeek)||p.daysPerWeek<1||p.daysPerWeek>7||p.beginnerSpacing!==undefined&&typeof p.beginnerSpacing!=='boolean'||p.activityTypes!==undefined&&(!Array.isArray(p.activityTypes)||p.activityTypes.some(x=>!['mountain','gravel','road','indoor','hiking','trail','labor','other'].includes(x))))throw Error('Invalid training setup');}
  for(const key of ['pauseUntil','resumeDate','pauseStarted'])if(s[key]!==undefined&&s[key]!==null&&(typeof s[key]!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(s[key])||!Number.isFinite(Date.parse(s[key]+'T12:00:00Z'))||new Date(s[key]+'T12:00:00Z').toISOString().slice(0,10)!==s[key]))throw Error('Invalid pause date');
  if(s.calendarMoves!==undefined){if(!s.calendarMoves||typeof s.calendarMoves!=='object'||Array.isArray(s.calendarMoves))throw Error('Invalid calendar moves');for(const [key,value] of Object.entries(s.calendarMoves))if(key.length>300||typeof value!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(value)||!Number.isFinite(Date.parse(value+'T12:00:00Z'))||new Date(value+'T12:00:00Z').toISOString().slice(0,10)!==value)throw Error('Invalid moved date');}
@@ -568,5 +578,5 @@ function validateBackup(input){
  const workoutDraft=validateDraft(input.workoutDraft,input);
  return {...input,workoutDraft,nextWeights:input.nextWeights||{},defaultMinutes:input.defaultMinutes??45,deferredIds:input.deferredIds||[]};
 }
-return{trainingPaused,activityRecovery,validateActivity,MOVES,SKILLS,DAYS,BLOCKS,LOADS,PROFILE_NAMES,describeProgression,policyFor,availableProfiles,configureMovement,practiceEvidence,supportingMoves,requirementLabel,prerequisites,chooseCycle,loadOptions,selectLoad,retestPushup,validWorkingWeight,validateProgramming,validateDraft,validateBackup,records,successful,stateFor,prescription,minutesFor,timeBudget,plan,completeRecord,nextRest,deferredAfter,resolvePain,movementGap,movementDemands};
+return{replaceUnavailableLoad,availableWorkingLoads,trainingPaused,activityRecovery,validateActivity,MOVES,SKILLS,DAYS,BLOCKS,LOADS,PROFILE_NAMES,describeProgression,policyFor,availableProfiles,configureMovement,practiceEvidence,supportingMoves,requirementLabel,prerequisites,chooseCycle,loadOptions,selectLoad,retestPushup,validWorkingWeight,validateProgramming,validateDraft,validateBackup,records,successful,stateFor,prescription,minutesFor,timeBudget,plan,completeRecord,nextRest,deferredAfter,resolvePain,movementGap,movementDemands};
 });
