@@ -66,4 +66,24 @@ jobs:
         run: |
           python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/strength-lab-http.log 2>&1 &
           node tests/browser-smoke.js
+      - name: Package isolated review build
+        run: |
+          mkdir -p review-build
+          python3 - <<'PY'
+          import pathlib, shutil
+          root=pathlib.Path('.')
+          for file in root.rglob('*'):
+              if not file.is_file() or any(part in {'.git','.github','node_modules','tests','review-build'} for part in file.parts):
+                  continue
+              destination=pathlib.Path('review-build')/file
+              destination.parent.mkdir(parents=True,exist_ok=True)
+              shutil.copy2(file,destination)
+          PY
+      - name: Upload review build for download
+        uses: actions/upload-artifact@v4
+        with:
+          name: strength-lab-integration-review
+          path: review-build/
+          retention-days: 14
+          if-no-files-found: error
       # --strict is intentionally not enabled until known research gaps are resolved.
