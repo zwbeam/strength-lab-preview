@@ -15,6 +15,14 @@ const {chromium}=require('playwright');
     await page.waitForTimeout(150);
     if(!await page.locator('#app').innerText())throw Error('Empty '+tab+' tab');
    }
+   await page.locator('[data-tab="progress"]').click();
+   const log=page.locator('#app');
+   if(!await log.getByRole('heading',{name:'Training Log'}).count())throw Error('Training Log heading missing');
+   if(!await page.locator('.notebook-table').count())throw Error('Training Log notebook table missing');
+   if(await page.locator('[data-more-notebook]').count())throw Error('Empty Training Log should not paginate');
+   if(await page.locator('[data-more-movement-history]').count())throw Error('Empty Training Log should not show movement pagination');
+   if(await page.locator('#movement-history-dialog').evaluate(el=>el.open))throw Error('History dialog unexpectedly open');
+   console.log('Empty Training Log state passed at '+viewport.width+'px');
    if(errors.length)throw Error(viewport.width+'px browser exceptions: '+errors.join(' | '));
    console.log('Browser navigation passed at '+viewport.width+'px');
    await page.close();
