@@ -28,6 +28,16 @@ assert.ok(E.loadOptions({...state,equipment:{...state.equipment,maxKbKg:18}},id)
 assert.deepEqual(E.loadOptions({...state,equipment:{...state.equipment,kb:[],maxKbKg:32}},id),[],'empty owned inventory does not invent bells');
 assert.throws(()=>E.validateProgramming({...state,equipment:{...state.equipment,maxKbKg:-2}}),/Invalid equipment ceiling/);
 assert.throws(()=>E.validateProgramming({...state,equipment:{...state.equipment,maxClubLb:NaN}}),/Invalid equipment ceiling/);
+// Matched-pair loads are per bell and require an explicitly recorded pair.
+const doubleBase={sessions:[],weights:{doubleSquat:16},equipment:{kb:[16,18,20],club:[5,10],maxKbKg:20},programming:{doubleSquat:{profile:'grind',exposures:2}},skills:{}};
+const doublePolicy=E.policyFor('doubleSquat',doubleBase);
+let doubleState={...doubleBase,sessions:doublePolicy.stages.flatMap((target,i)=>[0,1].map((exposure)=>({id:'double-'+i+'-'+exposure,date:new Date(Date.UTC(2026,0,1+i*2+exposure)).toISOString().slice(0,10),items:[{id:'doubleSquat',weight:16,quality:'clean',pain:false,completed:true,performed:true,mode:'volume',actualSets:target.sets,actualReps:target.reps,targetSets:target.sets,targetReps:target.reps,rest:target.rest,policyKey:doublePolicy.key,track:'base'}]})))};
+assert.equal(E.stateFor(doubleState,'doubleSquat').phase,'ready','matched pair movement completes volume');
+assert.deepEqual(E.loadOptions(doubleState,'doubleSquat'),[],'single kettlebell inventory does not imply a matched pair');
+doubleState={...doubleState,equipment:{...doubleState.equipment,pairs:[16,18]}};
+assert.ok(E.loadOptions(doubleState,'doubleSquat').includes(18),'owned matched pair unlocks per-bell increase');
+assert.ok(!E.loadOptions(doubleState,'doubleSquat').includes(20),'unowned 20 kg pair remains unavailable');
+assert.deepEqual(E.loadOptions({...doubleState,equipment:{...doubleState.equipment,maxKbKg:16}},'doubleSquat'),[],'per-bell ceiling blocks double load');
 const backupWithCeilings={version:33,sessions:[],weights:{},equipment:{kb:[12,16,18],club:[5,10,17],maxKbKg:18,maxClubLb:17}};
 const restored=E.validateBackup(backupWithCeilings);
 assert.equal(restored.equipment.maxKbKg,18,'backup preserves kettlebell ceiling');
