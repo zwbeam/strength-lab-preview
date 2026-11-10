@@ -1,7 +1,7 @@
 {
-  "channel": "development-preview",
-  "source_commit": "b14d16e43ef27a059d916e255f966bce2259e9fb",
+  "channel": "release-candidate-preview",
+  "source_commit": "db4cb2466a8824265b0b595512f2d986872cdebc",
   "storage_namespace": "sl-dev-preview",
-  "identity": "Strength Lab Development Preview",
+  "identity": "Strength Lab Release Candidate",
   "production_modified": false
 }
