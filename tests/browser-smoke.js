@@ -26,6 +26,18 @@ const {chromium}=require('playwright');
     if(layout.app<50)throw Error('App content collapsed on '+tab+' at '+viewport.width+'px');
    }
    console.log('Tab layout widths passed at '+viewport.width+'px');
+   await page.locator('[data-tab="today"]').click();
+   const mobility=page.locator('#mobility-session');
+   if(!await mobility.count())throw Error('Mobility session missing');
+   if(await mobility.locator('li').count()!==9)throw Error('Mobility plan should contain nine stages');
+   await mobility.locator('#start-mobility').click();
+   if(!await mobility.locator('#mobility-clock').count())throw Error('Mobility timer did not start');
+   await page.waitForTimeout(1200);
+   if(!await mobility.locator('#mobility-clock').innerText())throw Error('Mobility clock empty');
+   await mobility.locator('#cancel-mobility').click();
+   if(!await mobility.locator('#start-mobility').count())throw Error('Mobility cancel failed');
+   console.log('Guided mobility start, clock and cancel passed at '+viewport.width+'px');
+
    await page.locator('[data-tab="progress"]').click();
    const log=page.locator('#app');
    if(!await log.getByRole('heading',{name:'Training Log'}).count())throw Error('Training Log heading missing');
