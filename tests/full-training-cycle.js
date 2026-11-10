@@ -55,4 +55,12 @@ state={...state,sessions:[...state.sessions,{id:'s'+day,date:pauseDate,items:[{i
 assert.equal(E.stateFor(state,id).stage,1,'reentry does not advance a volume stage');
 assert.equal(E.stateFor(state,id).streak,0,'reentry interrupts the advancement streak');
 assert.deepEqual(E.loadOptions(state,id),[],'reentry cannot unlock a load increase');
+// After reentry, the normal two-exposure gate must still apply.
+complete();
+assert.equal(E.stateFor(state,id).stage,1,'first post-reentry clean exposure must not advance');
+assert.equal(E.stateFor(state,id).streak,1,'post-reentry streak restarts at one');
+complete();
+assert.equal(E.stateFor(state,id).stage,2,'second post-reentry clean exposure advances');
+assert.equal(E.stateFor(state,id).streak,0,'advancement resets the streak');
+assert.deepEqual(E.loadOptions(state,id),[],'partial rebuilt volume still cannot unlock weight');
 console.log('Full snatch volume-density-load cycle passed:',day,'sessions including reentry');
