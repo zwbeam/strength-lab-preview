@@ -90,7 +90,7 @@ jobs:
           data['channel']='research-integration-review'
           data['source_commit']=os.environ['REVIEW_SHA']
           data['production_modified']=False
-          path.write_text(json.dumps(data,indent=2)+'\\n')
+          path.write_text(json.dumps(data,indent=2)+chr(10))
           print('Review package commit:',data['source_commit'])
           PY
       - name: Upload review build for download
