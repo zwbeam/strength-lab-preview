@@ -32,6 +32,7 @@ const {chromium}=require('playwright');
    await setup.evaluate(el=>{const parent=el.closest('details');if(parent)parent.open=true;});
    await setup.locator('#max-kb-kg').fill('32');
    await setup.locator('#max-club-lb').fill('17');
+   await setup.locator('#owned-kb-weights').fill('12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32');
    await setup.locator('#matched-kb-pairs').fill('16, 18, 20, 22, 24, 26, 28, 30, 32');
    const saveDialogs=[];
    page.on('dialog',async dialog=>{saveDialogs.push(dialog.message());await dialog.accept();});
@@ -51,6 +52,7 @@ const {chromium}=require('playwright');
    await restoredSetup.evaluate(el=>{const parent=el.closest('details');if(parent)parent.open=true;});
    if(await restoredSetup.locator('#max-kb-kg').inputValue()!=='32'||await restoredSetup.locator('#max-club-lb').inputValue()!=='17')throw Error('Equipment ceiling inputs did not restore');
    if(!await restoredSetup.locator('#matched-kb-pairs').inputValue().then(x=>x.includes('32')))throw Error('Matched pairs did not restore');
+   if(!await restoredSetup.locator('#owned-kb-weights').inputValue().then(x=>x.includes('26')&&x.includes('32')))throw Error('Adjustable increments did not restore');
    console.log('Equipment ceilings and matched-pair settings persisted at '+viewport.width+'px');
 
    await page.locator('[data-tab="today"]').click();
