@@ -442,6 +442,42 @@ const {chromium}=require('playwright');
      throw Error('Decade-scale new workout lost or duplicated after reload: '+JSON.stringify(appendedReload));
    console.log('2601st workout saved through browser and survived reload at '+viewport.width+'px');
 
+   const quotaFailure=await page.evaluate(()=>{
+    const key='sl-dev-preview-data-v33',draftKey='sl-dev-preview-draft-v33',journalKey='sl-dev-preview-transaction-v33';
+    const before=localStorage.getItem(key),beforeDraft=localStorage.getItem(draftKey);
+    const originalSet=Storage.prototype.setItem,originalAlert=window.alert;
+    const alerts=[];let injected=0,accepted;
+    try{
+      window.alert=message=>alerts.push(String(message));
+      Storage.prototype.setItem=function(k,v){
+        if(this===localStorage&&k===key&&injected++===0)
+          throw new DOMException('Simulated storage quota exhausted','QuotaExceededError');
+        return originalSet.call(this,k,v);
+      };
+      const changed=JSON.parse(before);
+      changed.sessions.at(-1).notes='MUST NOT PERSIST AFTER QUOTA FAILURE';
+      accepted=persistTraining(changed,null);
+    }finally{
+      Storage.prototype.setItem=originalSet;window.alert=originalAlert;
+    }
+    return {accepted,injected,alerts,unchanged:localStorage.getItem(key)===before,
+      draftUnchanged:localStorage.getItem(draftKey)===beforeDraft,
+      journalCleared:localStorage.getItem(journalKey)===null};
+   });
+   if(quotaFailure.accepted!==false||quotaFailure.injected!==1||!quotaFailure.unchanged||
+      !quotaFailure.draftUnchanged||!quotaFailure.journalCleared||
+      !quotaFailure.alerts.some(x=>x.includes('Previous saved data was preserved')))
+      throw Error('Quota-exhaustion transaction rollback failed: '+JSON.stringify(quotaFailure));
+   await page.reload({waitUntil:'domcontentloaded'});
+   const quotaReload=await page.evaluate(()=>{
+     const state=JSON.parse(localStorage.getItem('sl-dev-preview-data-v33'));
+     return {count:state.sessions.length,lastNote:state.sessions.at(-1)?.notes};
+   });
+   if(quotaReload.count!==2601||quotaReload.lastNote!=='Workout 2601 browser save')
+      throw Error('Quota failure damaged history after reload: '+JSON.stringify(quotaReload));
+   console.log('Quota-exhaustion rollback preserved 2601 workouts and survived reload at '+viewport.width+'px');
+
+
 
 
 
