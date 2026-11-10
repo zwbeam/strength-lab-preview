@@ -39,6 +39,7 @@ assert.equal(E.stateFor(state,id).stage,0,'new load starts volume again');
 assert.equal(E.stateFor(state,id).stagePhase,'volume','new load must reset density to volume');
 assert.equal(E.stateFor(state,id).phase,'volume','new load cannot inherit a completed-cycle milestone');
 assert.equal(E.stateFor(state,id).streak,0);
+assert.deepEqual(E.loadOptions(state,id),[],'cannot raise load again before rebuilding volume');
 // Confirm that the heavier weight cannot inherit a previous clean-cycle completion.
 assert.throws(()=>E.chooseCycle(state,id,'density'),/Complete a clean cycle/);
 complete();
@@ -46,4 +47,5 @@ assert.equal(E.stateFor(state,id).stage,0,'one clean exposure at new weight is i
 assert.equal(E.stateFor(state,id).streak,1,'first clean exposure at new weight is counted');
 complete();
 assert.equal(E.stateFor(state,id).stage,1,'second clean exposure advances the new load');
+assert.deepEqual(E.loadOptions(state,id),[],'cannot raise load after only one completed stage');
 console.log('Full snatch volume-density-load cycle passed:',day,'clean sessions');
