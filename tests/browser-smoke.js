@@ -255,12 +255,15 @@ const {chromium}=require('playwright');
 
    await page.locator('[data-tab="settings"]').click();
    await page.locator('[data-tab="settings"]').click();
-   const exportPromise=page.waitForEvent('download');
+   await page.evaluate(()=>{
+     window.__backupBlob=null;
+     const create=URL.createObjectURL.bind(URL);
+     URL.createObjectURL=function(blob){window.__backupBlob=blob;return create(blob);};
+   });
    await page.locator('#export').click();
-   const exportDownload=await exportPromise;
-   const exportedChunks=[];
-   for await(const chunk of await exportDownload.createReadStream())exportedChunks.push(chunk);
-   const exported=JSON.parse(Buffer.concat(exportedChunks).toString('utf8'));
+   const exportedText=await page.evaluate(async()=>window.__backupBlob?.text()||null);
+   if(!exportedText)throw Error('Export button did not create a JSON backup blob');
+   const exported=JSON.parse(exportedText);
    if(exported.sessions?.length!==540||
       new Set(exported.sessions.map(x=>x.id)).size!==540||
       !exported.sessions.some(x=>x.notes==='Browser-tested correction')||
