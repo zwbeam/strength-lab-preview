@@ -171,7 +171,7 @@ const {chromium}=require('playwright');
    await page.addInitScript(()=>{
     if(sessionStorage.getItem('browser-fixture-installed')==='yes')return;
     sessionStorage.setItem('browser-fixture-installed','yes');
-    const sessions=Array.from({length:180},(_,i)=>({
+    const sessions=Array.from({length:540},(_,i)=>({
      id:'browser-session-'+i,title:'Browser history '+i,
      date:new Date(Date.UTC(2025,0,1)+i*86400000).toISOString().slice(0,10),
      items:[{id:'swing',weight:16,actualSets:3,actualReps:10,targetSets:3,targetReps:10,
@@ -189,16 +189,20 @@ const {chromium}=require('playwright');
    if(await page.locator('.notebook-table tbody tr').count()!==60)throw Error('Initial history should show 60 rows');
    await page.locator('[data-more-notebook]').click();
    if(await page.locator('.notebook-table tbody tr').count()!==120)throw Error('Notebook pagination did not show 120 rows');
+   await page.locator('[data-more-notebook]').click();
+   if(await page.locator('.notebook-table tbody tr').count()!==180)throw Error('Third notebook page should show 180 rows from 540-session history');
    await page.locator('[data-movement-history="swing"]').first().click();
    const dialog=page.locator('#movement-history-dialog');
    if(!await dialog.evaluate(el=>el.open))throw Error('Movement history did not open');
    if(await dialog.locator('tbody tr').count()!==60)throw Error('Movement history initial page should show 60 rows');
    await dialog.locator('[data-more-movement-history]').click();
    if(await dialog.locator('tbody tr').count()!==120)throw Error('Movement history pagination did not show 120 rows');
+   await dialog.locator('[data-more-movement-history]').click();
+   if(await dialog.locator('tbody tr').count()!==180)throw Error('Third movement history page should show 180 rows');
    if(!await dialog.evaluate(el=>el.open))throw Error('Movement dialog closed during pagination');
    await dialog.getByRole('button',{name:'Close'}).click();
    if(await dialog.evaluate(el=>el.open))throw Error('Movement history failed to close');
-   console.log('180-session Training Log pagination passed at '+viewport.width+'px');
+   console.log('540-session Training Log pagination passed at '+viewport.width+'px');
    await page.locator('[data-movement-history="swing"]').first().click();
    await dialog.locator('[data-history-view]').first().click();
    if(await dialog.evaluate(el=>el.open))throw Error('History dialog remained open after selecting a session');
