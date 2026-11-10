@@ -13,6 +13,7 @@ on:
       - tests/history-corrections.js
       - tests/backup-history.js
       - tests/log-pagination.js
+      - tests/browser-smoke.js
       - notebook.js
       - app.js
       - .github/workflows/research-coverage.yml
@@ -56,4 +57,12 @@ jobs:
           node tests/history-corrections.js
           node tests/backup-history.js
           node tests/log-pagination.js
+      - name: Install Chromium browser test runner
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Smoke test app in Chromium
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/strength-lab-http.log 2>&1 &
+          node tests/browser-smoke.js
       # --strict is intentionally not enabled until known research gaps are resolved.
