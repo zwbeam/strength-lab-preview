@@ -28,6 +28,13 @@ assert.ok(E.loadOptions({...state,equipment:{...state.equipment,maxKbKg:18}},id)
 assert.deepEqual(E.loadOptions({...state,equipment:{...state.equipment,kb:[],maxKbKg:32}},id),[],'empty owned inventory does not invent bells');
 assert.throws(()=>E.validateProgramming({...state,equipment:{...state.equipment,maxKbKg:-2}}),/Invalid equipment ceiling/);
 assert.throws(()=>E.validateProgramming({...state,equipment:{...state.equipment,maxClubLb:NaN}}),/Invalid equipment ceiling/);
+const backupWithCeilings={version:33,sessions:[],weights:{},equipment:{kb:[12,16,18],club:[5,10,17],maxKbKg:18,maxClubLb:17}};
+const restored=E.validateBackup(backupWithCeilings);
+assert.equal(restored.equipment.maxKbKg,18,'backup preserves kettlebell ceiling');
+assert.equal(restored.equipment.maxClubLb,17,'backup preserves club ceiling');
+assert.throws(()=>E.validateBackup({...backupWithCeilings,equipment:{...backupWithCeilings.equipment,maxKbKg:0}}),/Invalid equipment ceiling/,'backup rejects invalid ceiling');
+assert.throws(()=>E.validateBackup({...backupWithCeilings,equipment:{...backupWithCeilings.equipment,maxClubLb:Infinity}}),/Invalid equipment ceiling/,'backup rejects infinite ceiling');
+assert.doesNotThrow(()=>E.validateBackup({...backupWithCeilings,equipment:{kb:[12,16],club:[5,10]}}),'legacy backup without ceilings remains compatible');
 state=E.chooseCycle(state,id,'density');
 assert.equal(E.stateFor(state,id).stagePhase,'density','density transition should activate explicitly');
 assert.equal(E.stateFor(state,id).stage,0,'density begins at first density stage');
