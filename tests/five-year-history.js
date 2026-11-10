@@ -14,6 +14,15 @@ for(const [name,patch] of [
 const recoveryEntry=entry('clean',{mode:'recovery'});
 assert.equal(E.successful(recoveryEntry),true,'clean reduced session can be successful as a record');
 assert.equal(E.stateFor({...base,sessions:[{id:'recovery-only',date:dateAt(0),items:[recoveryEntry]}]},id).stage,0,'recovery must not advance stage');
+
+const painEntry=entry('pain',{pain:true,completed:false});
+const painState=E.stateFor({...base,sessions:[{id:'pain-only',date:dateAt(0),items:[painEntry]}]},id);
+assert.ok(painState.hold,'unresolved pain must hold movement');
+assert.equal(painState.stage,0,'pain must not advance progression');
+const partial=entry('clean',{actualSets:first.sets-1});
+const partialState=E.stateFor({...base,sessions:[{id:'partial-only',date:dateAt(0),items:[partial]}]},id);
+assert.equal(partialState.stage,0,'partial work must not advance progression');
+
 let clean=0,hard=0,missed=0;
 for(let day=0;day<1825;day++){
  const week=Math.floor(day/7),dow=day%7;
