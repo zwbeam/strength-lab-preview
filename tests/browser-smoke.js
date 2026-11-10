@@ -64,6 +64,12 @@ const {chromium}=require('playwright');
    if((mobilityRecord.sessions||[]).length!==0)throw Error('Mobility incorrectly added lifting session');
    if(await mobility.locator('#mobility-clock').count())throw Error('Mobility timer still running after save');
    console.log('Mobility completion persistence and no lifting credit passed at '+viewport.width+'px');
+   await page.reload({waitUntil:'domcontentloaded'});
+   await page.waitForTimeout(400);
+   const afterReload=await page.evaluate(()=>JSON.parse(localStorage.getItem('sl-dev-preview-data-v33')));
+   if((afterReload.activities||[]).filter(a=>a.type==='mobility'&&a.status==='completed').length!==1)throw Error('Mobility activity lost after reload');
+   if((afterReload.sessions||[]).length!==0)throw Error('Mobility altered strength sessions after reload');
+   console.log('Mobility survives reload without lifting progression at '+viewport.width+'px');
 
    await page.locator('[data-tab="progress"]').click();
    const log=page.locator('#app');
