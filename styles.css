@@ -16,3 +16,10 @@
 #mobility-session ol{min-width:0;max-width:100%;box-sizing:border-box;padding-inline-start:1.35rem;margin-inline:0}
 #mobility-session li{min-width:0;max-width:100%;overflow-wrap:anywhere}
 #mobility-session button{max-width:100%;min-width:0;white-space:normal}
+
+/* Phone layout: mobility is a vertical session, not a horizontal list-item row. */
+#mobility-session.list-item{display:block;width:100%;min-width:0;align-items:initial}
+#mobility-session>h2,#mobility-session>p,#mobility-session>ol,#mobility-session>div{display:block;width:100%;min-width:0;max-width:100%}
+#mobility-session ol{list-style-position:outside;padding-inline-start:1.6rem}
+#mobility-session li{display:list-item;width:auto;max-width:100%;white-space:normal;word-break:normal;overflow-wrap:break-word;line-height:1.5;margin-block:0.65rem}
+#mobility-session .source-open{display:inline;white-space:normal}
