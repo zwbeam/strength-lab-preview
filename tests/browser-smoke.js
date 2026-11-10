@@ -264,6 +264,29 @@ const {chromium}=require('playwright');
    if(backupAfter!==backupBefore)throw Error('Malformed backup changed saved training data');
    console.log('Malformed backup rejected without data loss at '+viewport.width+'px');
 
+   const validBackup=JSON.parse(backupBefore);
+   validBackup.sessions[0].notes='Restored via browser import';
+   validBackup.equipment={...validBackup.equipment,kb:[12,16,20,24],pairs:[12,16],club:[5,10,15],maxKbKg:24,maxClubLb:15};
+   const validConfirm=page.waitForEvent('dialog');
+   await page.locator('#import').setInputFiles({name:'valid-backup.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(validBackup))});
+   const confirmDialog=await validConfirm;
+   if(!confirmDialog.message().includes('Replace training data'))throw Error('Valid backup did not request overwrite confirmation');
+   await confirmDialog.accept();
+   const imported=await page.evaluate(()=>JSON.parse(localStorage.getItem('sl-dev-preview-data-v33')));
+   if(imported.sessions.length!==540||imported.sessions[0].notes!=='Restored via browser import'||
+      imported.equipment.maxKbKg!==24||imported.equipment.maxClubLb!==15||
+      JSON.stringify(imported.equipment.pairs)!==JSON.stringify([12,16]))
+      throw Error('Valid backup import did not persist sessions and equipment');
+   await page.reload({waitUntil:'domcontentloaded'});
+   await page.waitForTimeout(500);
+   const importedAfterReload=await page.evaluate(()=>JSON.parse(localStorage.getItem('sl-dev-preview-data-v33')));
+   if(importedAfterReload.sessions.length!==540||importedAfterReload.sessions[0].notes!=='Restored via browser import'||
+      importedAfterReload.equipment.maxKbKg!==24||
+      JSON.stringify(importedAfterReload.equipment.pairs)!==JSON.stringify([12,16]))
+      throw Error('Valid backup import did not survive reload');
+   console.log('Valid 540-session backup import/reload passed at '+viewport.width+'px');
+
+
 
    console.log('History correction save/reload passed at '+viewport.width+'px');
 
