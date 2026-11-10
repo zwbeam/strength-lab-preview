@@ -118,6 +118,14 @@ assert.equal(decadeRestored.sessions.length,2600,'decade-scale backup retains ev
 assert.equal(decadeRestored.sessions[0].id,'decade-0','decade-scale backup retains oldest session');
 assert.equal(decadeRestored.sessions.at(-1).id,'decade-2599','decade-scale backup retains newest session');
 assert.equal(new Set(decadeRestored.sessions.map(x=>x.id)).size,2600,'decade-scale backup retains unique session identities');
+
+assert.equal(decadeRestored.sessions[0].date,'2020-01-01','decade-scale history retains first date');
+assert.equal(decadeRestored.sessions.at(-1).date,new Date(Date.UTC(2020,0,2600)).toISOString().slice(0,10),'decade-scale history retains final date');
+assert.equal(decadeRestored.sessions[1300].items[0].weight,16,'decade-scale history retains middle workout load');
+assert.equal(decadeRestored.equipment.maxKbKg,18,'decade-scale restore preserves equipment ceiling');
+assert.deepEqual(decadeRestored.equipment.pairs,[12,14,16],'decade-scale restore preserves pair inventory');
+assert.equal(E.stateFor(decadeRestored,'snatch').weight,12,'decade-scale restore retains active replacement load');
+
 assert.ok(decadeElapsed<10000,'decade-scale backup validation exceeds ten-second regression budget: '+decadeElapsed+'ms');
 console.log('2600-session backup validation completed in '+decadeElapsed+'ms');
 
