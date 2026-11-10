@@ -28,6 +28,7 @@ on:
       - tests/history-corrections.js
       - tests/backup-history.js
       - tests/log-pagination.js
+      - tests/browser-smoke.js
       - notebook.js
       - app.js
       - .github/workflows/research-coverage.yml
