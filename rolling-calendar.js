@@ -1,7 +1,7 @@
 /* Flexible opportunities, never a dated ledger of earned strength work. */
 (function(root,factory){const api=factory(typeof module==='object'&&module.exports?require('./engine.js'):root.StrengthEngine);if(typeof module==='object'&&module.exports)module.exports=api;else root.RollingCalendar=api;})(typeof globalThis!=='undefined'?globalThis:this,function(E){
 'use strict';
-const TYPES={mountain:'Mountain bike',gravel:'Gravel ride',road:'Road ride',indoor:'Indoor ride',hiking:'Hiking',trail:'Trail building',labor:'Physical labor',other:'Other substantial activity'};
+const TYPES={mountain:'Mountain bike',gravel:'Gravel ride',road:'Road ride',indoor:'Indoor ride',hiking:'Hiking',trail:'Trail building',labor:'Physical labor',other:'Other substantial activity',mobility:'Mobility & movement'};
 const iso=x=>new Date(x).toISOString().slice(0,10),add=(d,n)=>iso(Date.parse(d+'T12:00:00Z')+n*86400000),diff=(a,b)=>Math.round((Date.parse(a+'T12:00:00Z')-Date.parse(b+'T12:00:00Z'))/86400000);
 function monday(d){return add(d,-((new Date(d+'T12:00:00Z').getUTCDay()+6)%7));}
 function count(s){return s.sessions.filter(x=>(x.items||[]).some(y=>y.actualSets>0)&&(x.calendarVersion!==1||x.items.every(y=>y.performed===true))).length;}
