@@ -63,4 +63,5 @@ complete();
 assert.equal(E.stateFor(state,id).stage,2,'second post-reentry clean exposure advances');
 assert.equal(E.stateFor(state,id).streak,0,'advancement resets the streak');
 assert.deepEqual(E.loadOptions(state,id),[],'partial rebuilt volume still cannot unlock weight');
+assert.throws(()=>E.selectLoad(state,id,20),/available, permitted increment/,'cannot skip to a heavier weight during rebuild');
 console.log('Full snatch volume-density-load cycle passed:',day,'sessions including reentry');
