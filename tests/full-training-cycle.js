@@ -38,6 +38,14 @@ doubleState={...doubleState,equipment:{...doubleState.equipment,pairs:[16,18]}};
 assert.ok(E.loadOptions(doubleState,'doubleSquat').includes(18),'owned matched pair unlocks per-bell increase');
 assert.ok(!E.loadOptions(doubleState,'doubleSquat').includes(20),'unowned 20 kg pair remains unavailable');
 assert.deepEqual(E.loadOptions({...doubleState,equipment:{...doubleState.equipment,maxKbKg:16}},'doubleSquat'),[],'per-bell ceiling blocks double load');
+// Removing equipment blocks future prescriptions, not historical training evidence.
+const prior={sessions:[],weights:{snatch:16,doubleSquat:16,cast:10},equipment:{kb:[16,18],pairs:[16],club:[10,12],maxKbKg:18,maxClubLb:12},trainingPreferences:{useDoubleKb:true},skills:{}};
+assert.ok(E.prescription(prior,'snatch').sets>0,'owned kettlebell can be prescribed');
+assert.equal(E.prescription({...prior,equipment:{...prior.equipment,kb:[18]}},'snatch').sets,0,'removed kettlebell blocks future prescription');
+assert.equal(E.prescription({...prior,equipment:{...prior.equipment,maxKbKg:14}},'snatch').sets,0,'lowered kettlebell ceiling blocks future prescription');
+assert.equal(E.prescription({...prior,equipment:{...prior.equipment,pairs:[]}},'doubleSquat').sets,0,'removed matched pair blocks future prescription');
+assert.equal(E.prescription({...prior,equipment:{...prior.equipment,club:[12]}},'cast').sets,0,'removed club load blocks future prescription');
+assert.equal(E.prescription({...prior,equipment:{...prior.equipment,maxClubLb:8}},'cast').sets,0,'lowered club ceiling blocks future prescription');
 const backupWithCeilings={version:33,sessions:[],weights:{},equipment:{kb:[12,16,18],club:[5,10,17],maxKbKg:18,maxClubLb:17}};
 const restored=E.validateBackup(backupWithCeilings);
 assert.equal(restored.equipment.maxKbKg,18,'backup preserves kettlebell ceiling');
