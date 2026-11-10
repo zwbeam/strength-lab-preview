@@ -1,0 +1,50 @@
+/* Longitudinal progression regression checks: node tests/progression-history.js */
+'use strict';
+const assert = require('node:assert/strict');
+const E = require('../engine.js');
+const id = 'swing';
+const base = { sessions: [], weights: { swing: 16 }, nextWeights: {}, skills: {}, programming: { swing: { exposures: 2 } } };
+const policy = E.policyFor(id, base);
+const first = policy.stages[0], second = policy.stages[1];
+assert.ok(second, 'Expected a multi-stage volume progression');
+const entry = (date, quality='clean', overrides={}) => ({
+  id, weight: 16, bodyweight: false, quality, pain: false,
+  completed: quality==='clean', performed: true, mode: 'volume',
+  actualSets: first.sets, actualReps: first.reps,
+  targetSets: first.sets, targetReps: first.reps, rest: first.rest,
+  policyKey: policy.key, track: 'base', ...overrides
+});
+const session = (date, item) => ({ id: date, date, items: [item] });
+const at = items => ({ ...base, sessions: items.map(([date, item]) => session(date, item)) });
+const initial = E.stateFor(base, id);
+assert.equal(initial.stage, 0);
+const one = E.stateFor(at([['2026-01-01', entry('2026-01-01')]]), id);
+assert.equal(one.stage, 0, 'One clean exposure must not advance');
+const two = E.stateFor(at([
+  ['2026-01-01', entry('2026-01-01')],
+  ['2026-01-03', entry('2026-01-03')]
+]), id);
+assert.equal(two.stage, 1, 'Two clean exposures should advance one stage');
+const failed = E.stateFor(at([
+  ['2026-01-01', entry('2026-01-01')],
+  ['2026-01-03', entry('2026-01-03', 'hard', { completed:false, actualSets: Math.max(0,first.sets-1) })],
+  ['2026-01-05', entry('2026-01-05')]
+]), id);
+assert.equal(failed.stage, 0, 'Failure must reset the clean streak');
+const missed = E.stateFor(at([
+  ['2026-01-01', entry('2026-01-01')],
+  ['2026-01-03', entry('2026-01-03', 'clean', { completed:false, performed:false, actualSets:0 })]
+]), id);
+assert.equal(missed.stage, 0, 'A missed workout cannot advance');
+const recovery = E.stateFor(at([
+  ['2026-01-01', entry('2026-01-01')],
+  ['2026-01-03', entry('2026-01-03', 'clean', { mode:'recovery', completed:false })]
+]), id);
+assert.equal(recovery.stage, 0, 'Recovery session cannot advance');
+const heavier = E.stateFor({ ...at([
+  ['2026-01-01', entry('2026-01-01')],
+  ['2026-01-03', entry('2026-01-03')]
+]), nextWeights:{swing:18} }, id);
+assert.equal(heavier.weight, 18);
+assert.equal(heavier.stage, 0, 'Load change restarts the volume stage');
+console.log('Progression history checks passed');
