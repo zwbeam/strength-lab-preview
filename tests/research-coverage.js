@@ -40,4 +40,10 @@ for (const id of Object.keys(entries))
   assert.ok(Object.hasOwn(moves, id), 'Instruction for unknown movement: ' + id);
 const gapSummary = gaps.reduce((counts,gap)=>{counts[gap.issue]=(counts[gap.issue]||0)+1;return counts;},{});
 console.log(JSON.stringify({ totalMovements: Object.keys(moves).length, mappedMovements: covered, gapCount:gaps.length, gapSummary, gaps }, null, 2));
+// The following are known release-review limitations, not evidence of missing software functionality.
+const releaseReview = {
+  techniqueIncomplete: gaps.filter(g=>/incomplete research coverage|No step-by-step technique instructions/i.test(g.issue)).map(g=>g.id),
+  sourceUnverified: gaps.filter(g=>g.issue==='No source evidence attached').map(g=>g.id)
+};
+console.log('RELEASE REVIEW '+JSON.stringify(releaseReview));
 if (process.argv.includes('--strict') && gaps.length) process.exitCode = 1;
