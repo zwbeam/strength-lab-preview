@@ -94,13 +94,14 @@ function unlockTimerAudio(){try{audioContext=audioContext||new (window.AudioCont
 function timerBeep(complete=false){try{if(!audioContext||audioContext.state!=='running')return;const o=audioContext.createOscillator(),gain=audioContext.createGain();o.type='sine';o.frequency.value=complete?880:660;gain.gain.value=.12;o.connect(gain);gain.connect(audioContext.destination);o.start();o.stop(audioContext.currentTime+(complete?.35:.12));}catch{}}
 function updateTimer(){if(!draft)return;const c=activeTimer(),remaining=timerRemaining(c);
  if(storageWritable&&!storageConflict&&c?.running&&(c.kind==='rest'||c.roundSeconds)&&remaining<=3){const event=String(c.endAt)+':'+remaining;if(lastSignal!==event){lastSignal=event;timerCue=remaining?String(remaining):(c.kind==='rest'?'Rest complete':'Round complete');timerBeep(!remaining);}}
- const clockBeforeTick=draft.clock?JSON.parse(JSON.stringify(draft.clock)):draft.clock;
+ const draftBeforeTick=JSON.stringify(draft);
  const changed=storageWritable&&!storageConflict&&!storageRecoveryIssue&&T.tick(draft);
- if(changed&&!saveDraft())draft.clock=clockBeforeTick;
+ let tickSaved=false;
+ if(changed){tickSaved=saveDraft();if(!tickSaved)draft=JSON.parse(draftBeforeTick);}
  const face=$('#clock [role="timer"]');if(face)face.textContent=activeTimer()?.untimed?'REPS':formatTime(timerRemaining(activeTimer()));
  const summary=$('#timer-collapsed-time');if(summary)summary.textContent=activeTimer()?.running?formatTime(timerRemaining(activeTimer()))+' remaining':'optional';
  const cue=$('#timer-cue');if(cue)cue.textContent=timerCue;
- if(changed&&draft.clock!==clockBeforeTick)render();
+ if(changed&&tickSaved)render();
 }
 function start(){timerPanelOpen=false;if(!checkWriter())return;if(draft)return;const opportunity=C.project(state,today(),undefined,{minutes:todayMinutes,readiness})[0];if(selectedDate!==today()||!opportunity||opportunity.date!==today()){alert('The next unfinished workout is not scheduled here. Move its opportunity if recovery allows.');return;}openEditors.clear();panelState.clear();focusExpanded=false;finishPanel=false;const bundle=N.adjusted(state,{readiness,minutes:todayMinutes}),plan=bundle.plan;if(!plan.items.length){alert("No complete movement fits today. Choose more time or adjust your training plan.");return;}draft={calendarVersion:1,timerVersion:3,notebookVersion:1,originalPlan:bundle.original,adjustments:bundle.adjustments,cycleSnapshot:N.cycle(state),id:'d'+newIdentity(),timerMode:T.MODES.includes(state.timerMode)?state.timerMode:'manual',plan,started:new Date().toISOString(),date:today(),stage:'warmup',items:N.newItems(plan),notes:''};T.custom(draft,plan.budget.warmup*60,'Warmup',Date.now(),false);if(!saveDraft()){draft=null;return;}render();}
 function changed(i,j,field,value){if(!checkWriter())return;
