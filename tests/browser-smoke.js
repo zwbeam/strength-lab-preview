@@ -33,8 +33,17 @@ const {chromium}=require('playwright');
    await setup.locator('#max-kb-kg').fill('32');
    await setup.locator('#max-club-lb').fill('17');
    await setup.locator('#matched-kb-pairs').fill('16, 18, 20, 22, 24, 26, 28, 30, 32');
+   const saveDialogs=[];
+   page.on('dialog',async dialog=>{saveDialogs.push(dialog.message());await dialog.accept();});
    await setup.locator('#save-setup').click();
-   const savedEquipment=await page.evaluate(()=>JSON.parse(localStorage.getItem('sl-dev-preview-data-v33')).equipment);
+   const saveDiagnostic=await page.evaluate(()=>({
+     ready:typeof storageReady!=='undefined'?storageReady:null,
+     writable:typeof storageWritable!=='undefined'?storageWritable:null,
+     conflict:typeof storageConflict!=='undefined'?storageConflict:null,
+     raw:localStorage.getItem('sl-dev-preview-data-v33')
+   }));
+   if(!saveDiagnostic.raw)throw Error('Equipment setup did not save: '+JSON.stringify({...saveDiagnostic,dialogs:saveDialogs}));
+   const savedEquipment=JSON.parse(saveDiagnostic.raw).equipment;
    if(savedEquipment.maxKbKg!==32||savedEquipment.maxClubLb!==17||savedEquipment.pairs.length!==9)throw Error('Equipment settings did not persist: '+JSON.stringify(savedEquipment));
    await page.reload({waitUntil:'domcontentloaded'});
    await page.locator('[data-tab="settings"]').click();
