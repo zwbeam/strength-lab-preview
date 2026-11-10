@@ -1,0 +1,20 @@
+/* Ensure failed timer-clear storage writes do not discard the active timer. */
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const app=fs.readFileSync(path.join(__dirname,'../app.js'),'utf8');
+const match=app.match(/function clearTimer\(\)\{[^\n]+\}/);
+assert.ok(match,'clearTimer must exist');
+const alerts=[];
+let draft={clock:{deadline:123456,kind:'rest'}};
+let saved=false,cleared=0,updated=0;
+const clear=new Function('checkWriter','saveDraft','clearInterval','updateTimer','timerInterval','getDraft','setDraft',`let draft=getDraft();${match[0]};clearTimer();setDraft(draft);`);
+const run=()=>clear(()=>true,()=>saved,()=>{cleared++},()=>{updated++},42,()=>draft,x=>{draft=x});
+run();
+assert.deepEqual(draft.clock,{deadline:123456,kind:'rest'},'failed save must restore timer');
+assert.equal(cleared,0,'failed save must not clear interval');
+assert.equal(updated,1,'failed save must refresh timer display');
+saved=true;run();
+assert.equal(draft.clock,null,'successful clear must clear timer');
+assert.equal(cleared,1,'successful clear must stop interval');
+assert.equal(updated,2,'successful clear must refresh timer display');
+console.log('PASS 6 timer-clear persistence checks');
