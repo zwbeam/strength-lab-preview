@@ -325,6 +325,23 @@ const {chromium}=require('playwright');
      throw Error('Decade-scale browser history integrity failed: '+JSON.stringify(decadeUiData));
    console.log('2600-session Training Log render '+decadeUiMs+'ms at '+viewport.width+'px');
 
+   const pageRows=[60,120,180,240,300];
+   for(const expected of pageRows.slice(1)){
+    const more=page.locator('[data-more-notebook]');
+    if(!await more.count())throw Error('Pagination control disappeared before '+expected+' rows');
+    await more.click();
+    const rows=await page.locator('.notebook-table tbody tr').count();
+    if(rows!==expected)throw Error('2600-session pagination expected '+expected+' rows, got '+rows);
+   }
+   const afterPaging=await page.evaluate(()=>{
+    const sessions=JSON.parse(localStorage.getItem('sl-dev-preview-data-v33')).sessions;
+    return {count:sessions.length,first:sessions[0].id,last:sessions.at(-1).id,middle:sessions[1300].notes};
+   });
+   if(afterPaging.count!==2600||afterPaging.first!=='decade-browser-0'||afterPaging.last!=='decade-browser-2599'||afterPaging.middle!=='Middle of decade')
+    throw Error('Decade-scale pagination mutated saved history: '+JSON.stringify(afterPaging));
+   console.log('2600-session Training Log pagination to 300 rows passed at '+viewport.width+'px');
+
+
 
 
 
