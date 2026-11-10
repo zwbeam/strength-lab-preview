@@ -76,10 +76,11 @@ function saveDraft(){if(!checkWriter())return false;try{if(draft)localStorage.se
 function currentPlan(){return draft?.plan||E.plan(state,{readiness,minutes:todayMinutes});}
 // Interval pacing uses wall-clock deadlines; logging remains independent.
 function activeTimer(){return draft?.clock||null;}
-function timer(seconds,label='Rest'){if(!checkWriter()||!draft)return;T.custom(draft,seconds,label,Date.now(),true);saveDraft();updateTimer();}
+function changeTimer(mutate){if(!checkWriter()||!draft)return false;const previousClock=draft.clock?JSON.parse(JSON.stringify(draft.clock)):draft.clock;mutate();if(!saveDraft()){draft.clock=previousClock;updateTimer();return false;}updateTimer();return true;}
+function timer(seconds,label='Rest'){changeTimer(()=>T.custom(draft,seconds,label,Date.now(),true));}
 function timerRemaining(c){return T.remaining(c);}
-function pauseTimer(){if(!checkWriter()||!draft)return;T.pause(draft);saveDraft();updateTimer();}
-function resumeTimer(){if(!checkWriter()||!draft)return;T.resume(draft);saveDraft();updateTimer();}
+function pauseTimer(){changeTimer(()=>T.pause(draft));}
+function resumeTimer(){changeTimer(()=>T.resume(draft));}
 function clearTimer(){if(!checkWriter()||!draft)return;const previousClock=draft.clock;draft.clock=null;if(!saveDraft()){draft.clock=previousClock;updateTimer();return;}clearInterval(timerInterval);updateTimer();}
 function formatTime(sec){sec=Math.ceil(Math.max(0,sec));return `${String(Math.floor(sec/60)).padStart(2,'0')}:${String(sec%60).padStart(2,'0')}`;}
 let timerPanelOpen=false;
