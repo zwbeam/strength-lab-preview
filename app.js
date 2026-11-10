@@ -80,7 +80,7 @@ function timer(seconds,label='Rest'){if(!checkWriter()||!draft)return;T.custom(d
 function timerRemaining(c){return T.remaining(c);}
 function pauseTimer(){if(!checkWriter()||!draft)return;T.pause(draft);saveDraft();updateTimer();}
 function resumeTimer(){if(!checkWriter()||!draft)return;T.resume(draft);saveDraft();updateTimer();}
-function clearTimer(){if(!checkWriter()||!draft)return;draft.clock=null;saveDraft();clearInterval(timerInterval);updateTimer();}
+function clearTimer(){if(!checkWriter()||!draft)return;const previousClock=draft.clock;draft.clock=null;if(!saveDraft()){draft.clock=previousClock;updateTimer();return;}clearInterval(timerInterval);updateTimer();}
 function formatTime(sec){sec=Math.ceil(Math.max(0,sec));return `${String(Math.floor(sec/60)).padStart(2,'0')}:${String(sec%60).padStart(2,'0')}`;}
 let timerPanelOpen=false;
 function timerControls(){const c=activeTimer(),kind=c?.kind==='complete'?'work':c?.kind||(draft?.stage==='work'?(c?.label?.startsWith('Rest')?'rest':'work'):draft?.stage||'work');
