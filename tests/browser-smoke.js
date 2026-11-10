@@ -26,6 +26,25 @@ const {chromium}=require('playwright');
     if(layout.app<50)throw Error('App content collapsed on '+tab+' at '+viewport.width+'px');
    }
    console.log('Tab layout widths passed at '+viewport.width+'px');
+   // Settings must persist equipment ceilings and explicit matched-pair availability.
+   await page.locator('[data-tab="settings"]').click();
+   await page.locator('#training-setup').locator('summary').count().catch(()=>{});
+   const setup=page.locator('#training-setup');
+   if(!await setup.locator('#max-kb-kg').isVisible())await setup.locator('summary').click().catch(()=>{});
+   await setup.locator('#max-kb-kg').fill('32');
+   await setup.locator('#max-club-lb').fill('17');
+   await setup.locator('#matched-kb-pairs').fill('16, 18, 20, 22, 24, 26, 28, 30, 32');
+   await setup.locator('#save-setup').click();
+   const savedEquipment=await page.evaluate(()=>JSON.parse(localStorage.getItem('sl-dev-preview-data-v33')).equipment);
+   if(savedEquipment.maxKbKg!==32||savedEquipment.maxClubLb!==17||savedEquipment.pairs.length!==9)throw Error('Equipment settings did not persist: '+JSON.stringify(savedEquipment));
+   await page.reload({waitUntil:'domcontentloaded'});
+   await page.locator('[data-tab="settings"]').click();
+   const restoredSetup=page.locator('#training-setup');
+   if(!await restoredSetup.locator('#max-kb-kg').isVisible())await restoredSetup.locator('summary').click().catch(()=>{});
+   if(await restoredSetup.locator('#max-kb-kg').inputValue()!=='32'||await restoredSetup.locator('#max-club-lb').inputValue()!=='17')throw Error('Equipment ceiling inputs did not restore');
+   if(!await restoredSetup.locator('#matched-kb-pairs').inputValue().then(x=>x.includes('32')))throw Error('Matched pairs did not restore');
+   console.log('Equipment ceilings and matched-pair settings persisted at '+viewport.width+'px');
+
    await page.locator('[data-tab="today"]').click();
    const mobility=page.locator('#mobility-session');
    if(!await mobility.count())throw Error('Mobility session missing');
