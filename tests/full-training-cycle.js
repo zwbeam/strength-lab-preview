@@ -12,7 +12,7 @@ function complete(){
  const target=st.stagePhase==='density'?policy.density[st.stage]:policy.stages[st.stage];
  const date=new Date(Date.UTC(2026,0,1+day++ )).toISOString().slice(0,10);
  const item={id,weight:st.weight,bodyweight:false,quality:'clean',pain:false,completed:true,performed:true,mode:st.stagePhase,
- actualSets:target.sets,actualReps:target.reps,targetSets:target.sets,targetReps:target.reps,rest:target.rest,policyKey:policy.key,track:'base'};
+ actualSets:target.sets,actualReps:target.reps,targetSets:target.sets,targetReps:target.reps,rest:target.rest??0,policyKey:policy.key,track:'base'};
  state={...state,sessions:[...state.sessions,{id:'s'+day,date,items:[item]}]};
 }
 assert.equal(E.stateFor(state,id).stage,0);
@@ -29,9 +29,8 @@ assert.equal(E.stateFor(state,id).stage,0,'density begins at first density stage
 assert.equal(E.loadOptions(state,id).length,0,'cannot increase load in the middle of density');
 for(let i=0;i<policy.density.length;i++){
  for(let exposure=0;exposure<2;exposure++)complete();
- console.log('DENSITY STEP',i,JSON.stringify({stage:E.stateFor(state,id).stage,phase:E.stateFor(state,id).phase,streak:E.stateFor(state,id).streak}));
+ assert.equal(E.stateFor(state,id).stage,Math.min(i+1,policy.density.length-1),'density stage '+i+' advances');
 }
-console.log('DENSITY DIAGNOSTIC',JSON.stringify({state:E.stateFor(state,id),sessions:day},(k,v)=>k==='policy'||k==='last'?undefined:v));
 assert.equal(E.stateFor(state,id).phase,'ready','density endpoint reached');
 assert.ok(E.loadOptions(state,id).includes(18),'post-density load selection available');
 state=E.selectLoad(state,id,18);
