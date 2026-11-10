@@ -10,6 +10,7 @@ on:
       - tests/prerequisite-contract.js
       - tests/progression-history.js
       - tests/year-history.js
+      - tests/five-year-history.js
       - tests/history-corrections.js
       - tests/backup-history.js
       - tests/log-pagination.js
@@ -25,6 +26,7 @@ on:
       - tests/prerequisite-contract.js
       - tests/progression-history.js
       - tests/year-history.js
+      - tests/five-year-history.js
       - tests/history-corrections.js
       - tests/backup-history.js
       - tests/log-pagination.js
@@ -55,6 +57,7 @@ jobs:
           node tests/prerequisite-contract.js
           node tests/progression-history.js
           node tests/year-history.js
+          node tests/five-year-history.js
           node tests/history-corrections.js
           node tests/backup-history.js
           node tests/log-pagination.js
