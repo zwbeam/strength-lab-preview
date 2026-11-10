@@ -299,6 +299,33 @@ const {chromium}=require('playwright');
    if(rejectAfter!==rejectBefore)throw Error('Cancelled import changed training data');
    console.log('Cancelled backup import preserved training history at '+viewport.width+'px');
 
+   await page.evaluate(()=>{
+    const state=JSON.parse(localStorage.getItem('sl-dev-preview-data-v33'));
+    const template=state.sessions[0];
+    state.sessions=Array.from({length:2600},(_,i)=>({
+      ...template,id:'decade-browser-'+i,title:'Long-term browser session '+i,
+      date:new Date(Date.UTC(2020,0,1+i)).toISOString().slice(0,10),
+      notes:i===1300?'Middle of decade':''
+    }));
+    localStorage.setItem('sl-dev-preview-data-v33',JSON.stringify(state));
+   });
+   await page.reload({waitUntil:'domcontentloaded'});
+   await page.waitForTimeout(600);
+   const decadeUiStart=Date.now();
+   await page.locator('[data-tab="progress"]').click();
+   const decadeUiMs=Date.now()-decadeUiStart;
+   if(decadeUiMs>10000)throw Error('2600-session Training Log exceeded ten-second render budget: '+decadeUiMs+'ms');
+   if(await page.locator('.notebook-table tbody tr').count()!==60)throw Error('Decade-scale notebook did not initially bound rows to 60');
+   if(!await page.locator('[data-more-notebook]').count())throw Error('Decade-scale notebook pagination missing');
+   const decadeUiData=await page.evaluate(()=>{
+    const sessions=JSON.parse(localStorage.getItem('sl-dev-preview-data-v33')).sessions;
+    return {count:sessions.length,unique:new Set(sessions.map(s=>s.id)).size,middle:sessions[1300]?.notes};
+   });
+   if(decadeUiData.count!==2600||decadeUiData.unique!==2600||decadeUiData.middle!=='Middle of decade')
+     throw Error('Decade-scale browser history integrity failed: '+JSON.stringify(decadeUiData));
+   console.log('2600-session Training Log render '+decadeUiMs+'ms at '+viewport.width+'px');
+
+
 
 
 
