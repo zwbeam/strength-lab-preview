@@ -15,6 +15,17 @@ const {chromium}=require('playwright');
     await page.waitForTimeout(150);
     if(!await page.locator('#app').innerText())throw Error('Empty '+tab+' tab');
    }
+   for(const tab of ['today','progress','learn','settings']){
+    await page.locator('[data-tab="'+tab+'"]').click();
+    const layout=await page.evaluate(()=>({
+     viewport:document.documentElement.clientWidth,
+     document:document.documentElement.scrollWidth,
+     app:document.querySelector('#app')?.getBoundingClientRect().width||0
+    }));
+    if(layout.document>layout.viewport+3)throw Error('Horizontal document overflow on '+tab+' at '+viewport.width+'px: '+JSON.stringify(layout));
+    if(layout.app<50)throw Error('App content collapsed on '+tab+' at '+viewport.width+'px');
+   }
+   console.log('Tab layout widths passed at '+viewport.width+'px');
    await page.locator('[data-tab="progress"]').click();
    const log=page.locator('#app');
    if(!await log.getByRole('heading',{name:'Training Log'}).count())throw Error('Training Log heading missing');
