@@ -209,7 +209,8 @@ function prescription(s,id,opts={}){
  if(missing.length)blocked='Prerequisites pending: '+missing.map(requirementLabel).join('; ');
  if(policy.profile==='wave'&&![policy.config.lightWeight,policy.config.heavyWeight].every(w=>(s.equipment?.[m.gear]||[]).includes(w)))blocked='A configured wave weight is no longer available. Review equipment and programming.';
  
- if(m.pair&&s.trainingPreferences?.useDoubleKb!==true)blocked='Confirm an available matched kettlebell pair at this weight in Settings.';
+ if(m.pair&&(s.trainingPreferences?.useDoubleKb!==true||!(s.equipment?.pairs||[]).includes(weight)))blocked='Confirm an available matched kettlebell pair at this weight in Settings.';
+ if(!m.bodyweight&&weight>0){const available=s.equipment?.[m.gear];const ceiling=m.gear==='kb'?s.equipment?.maxKbKg:s.equipment?.maxClubLb;if((Array.isArray(available)&&!available.includes(weight))||(ceiling!==undefined&&weight>ceiling))blocked='The recorded working weight is not currently available in your equipment. Update Settings or select a supported working load; training history is preserved.';}
  if(st.hold)blocked=st.hold+' Resolve the review before resuming.';
  if(blocked){mode=st.hold?'review':'prerequisite';sets=0;reason=blocked;}
  const adapted=['baseline','recovery','reentry','rebuild','deload','review','prerequisite'].includes(mode);
