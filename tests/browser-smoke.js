@@ -341,6 +341,36 @@ const {chromium}=require('playwright');
     throw Error('Decade-scale pagination mutated saved history: '+JSON.stringify(afterPaging));
    console.log('2600-session Training Log pagination to 300 rows passed at '+viewport.width+'px');
 
+   const beforeOldEdit=await page.evaluate(()=>{
+    const state=JSON.parse(localStorage.getItem('sl-dev-preview-data-v33'));
+    return {weights:JSON.stringify(state.nextWeights),equipment:JSON.stringify(state.equipment),
+      oldest:JSON.stringify(state.sessions[0]),count:state.sessions.length};
+   });
+   await page.locator('[data-movement-history="swing"]').first().click();
+   await dialog.locator('[data-history-view]').first().click();
+   await page.locator('[data-edit-history]').first().click();
+   await page.locator('#history-notes').fill('Decade-scale corrected session');
+   await page.locator('#correction-reason').fill('Decade-scale historical correction test');
+   await page.locator('#save-correction').click();
+   const afterOldEdit=await page.evaluate(()=>{
+    const state=JSON.parse(localStorage.getItem('sl-dev-preview-data-v33'));
+    return {weights:JSON.stringify(state.nextWeights),equipment:JSON.stringify(state.equipment),
+      oldest:JSON.stringify(state.sessions[0]),count:state.sessions.length,
+      matches:state.sessions.filter(x=>x.notes==='Decade-scale corrected session').map(x=>({id:x.id,corrections:x.corrections?.length||0}))};
+   });
+   if(afterOldEdit.count!==beforeOldEdit.count||afterOldEdit.weights!==beforeOldEdit.weights||
+      afterOldEdit.equipment!==beforeOldEdit.equipment||afterOldEdit.oldest!==beforeOldEdit.oldest||
+      afterOldEdit.matches.length!==1||afterOldEdit.matches[0].corrections<1)
+    throw Error('Decade-scale historical correction integrity failed: '+JSON.stringify(afterOldEdit));
+   await page.reload({waitUntil:'domcontentloaded'});
+   const persistedOldEdit=await page.evaluate(()=>{
+    const state=JSON.parse(localStorage.getItem('sl-dev-preview-data-v33'));
+    return state.sessions.filter(x=>x.notes==='Decade-scale corrected session').length;
+   });
+   if(persistedOldEdit!==1)throw Error('Decade-scale historical correction lost after reload');
+   console.log('2600-session historical correction survived reload without changing equipment or progression at '+viewport.width+'px');
+
+
 
 
 
