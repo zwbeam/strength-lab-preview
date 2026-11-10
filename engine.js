@@ -241,9 +241,9 @@ function timeBudget(minutes){
  if(!Number.isInteger(total)||total<15||total>120)throw Error('Workout duration must be 15–120 minutes');
  // Protect preparation and recovery when session time is compressed.
  // Eight minutes follows the two-round four-station warm-up format (source 550).
- // Six minutes of cooldown is an app allocation, not a quoted Wildman rule.
+ // Ten minutes of cooldown is an app allocation, not a quoted Wildman rule.
  const warmup=8;
- const cooldown=6;
+ const cooldown=10;
  return {total,warmup,cooldown,main:total-warmup-cooldown};
 }
 const BLOCKS={
