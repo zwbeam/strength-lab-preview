@@ -23,6 +23,11 @@ for(let i=0;i<policy.stages.length;i++){
 }
 assert.equal(E.stateFor(state,id).phase,'ready','volume endpoint reached');
 assert.ok(E.loadOptions(state,id).includes(18),'load choice available after clean volume endpoint');
+assert.deepEqual(E.loadOptions({...state,equipment:{...state.equipment,maxKbKg:16}},id),[],'configured 16 kg ceiling blocks 18 kg');
+assert.ok(E.loadOptions({...state,equipment:{...state.equipment,maxKbKg:18}},id).includes(18),'raising ceiling unlocks owned 18 kg bell');
+assert.deepEqual(E.loadOptions({...state,equipment:{...state.equipment,kb:[],maxKbKg:32}},id),[],'empty owned inventory does not invent bells');
+assert.throws(()=>E.validateProgramming({...state,equipment:{...state.equipment,maxKbKg:-2}}),/Invalid equipment ceiling/);
+assert.throws(()=>E.validateProgramming({...state,equipment:{...state.equipment,maxClubLb:NaN}}),/Invalid equipment ceiling/);
 state=E.chooseCycle(state,id,'density');
 assert.equal(E.stateFor(state,id).stagePhase,'density','density transition should activate explicitly');
 assert.equal(E.stateFor(state,id).stage,0,'density begins at first density stage');
