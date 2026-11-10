@@ -38,5 +38,6 @@ for (const [id, move] of Object.entries(moves)) {
 }
 for (const id of Object.keys(entries))
   assert.ok(Object.hasOwn(moves, id), 'Instruction for unknown movement: ' + id);
-console.log(JSON.stringify({ totalMovements: Object.keys(moves).length, mappedMovements: covered, gaps }, null, 2));
+const gapSummary = gaps.reduce((counts,gap)=>{counts[gap.issue]=(counts[gap.issue]||0)+1;return counts;},{});
+console.log(JSON.stringify({ totalMovements: Object.keys(moves).length, mappedMovements: covered, gapCount:gaps.length, gapSummary, gaps }, null, 2));
 if (process.argv.includes('--strict') && gaps.length) process.exitCode = 1;
