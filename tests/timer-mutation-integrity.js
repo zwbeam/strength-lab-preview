@@ -1,0 +1,15 @@
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const app=fs.readFileSync(path.join(__dirname,'../app.js'),'utf8');
+const start=app.indexOf('function changeTimer('),end=app.indexOf('function clearTimer(',start);
+assert.ok(start>=0&&end>start,'timer mutation helpers exist');
+const section=app.slice(start,end);
+const make=(save)=>{let draft={clock:{running:true,endAt:100,remaining:20}},refresh=0;const invoke=new Function('checkWriter','getDraft','setDraft','saveDraft','updateTimer','T','Date',`let draft=getDraft();${section};timer(30,'Rest');pauseTimer();resumeTimer();setDraft(draft);`);const T={custom(d){d.clock={running:true,endAt:300,remaining:30}},pause(d){d.clock.running=false;d.clock.remaining=15},resume(d){d.clock.running=true;d.clock.endAt=400}};invoke(()=>true,()=>draft,d=>{draft=d},()=>save,()=>{refresh++},T,Date);return {draft,refresh}};
+let failed=make(false);
+assert.deepEqual(failed.draft.clock,{running:true,endAt:100,remaining:20},'all failed writes roll back timer');
+assert.equal(failed.refresh,3,'failed actions refresh display');
+let success=make(true);
+assert.deepEqual(success.draft.clock,{running:true,endAt:400,remaining:15},'successful writes apply timer transitions');
+assert.equal(success.refresh,3,'successful actions refresh display');
+assert.ok(section.includes('JSON.parse(JSON.stringify(draft.clock))'),'timer snapshot must not alias mutable clock');
+console.log('PASS 6 timer mutation persistence checks');
