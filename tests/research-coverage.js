@@ -9,6 +9,7 @@ const instruction = require('../movement-instruction.js');
 const moves = engine.MOVES;
 const entries = instruction.entries || {};
 const sources = instruction.sources || instruction.sourceIndex || {};
+assert.ok(Object.keys(moves).length >= 20, 'Movement catalog unexpectedly empty');
 const gaps = [];
 let covered = 0;
 for (const [id, move] of Object.entries(moves)) {
@@ -23,10 +24,16 @@ for (const [id, move] of Object.entries(moves)) {
     gaps.push({ id, name: move.name, issue: 'No step-by-step technique instructions', coverage: lesson.coverage });
   if (!Array.isArray(lesson.setup) || !lesson.setup.length)
     gaps.push({ id, name: move.name, issue: 'No setup instructions', coverage: lesson.coverage });
-  if (/partial|pending/i.test(lesson.coverage))
+  if (/partial|pending|unverified/i.test(lesson.coverage))
     gaps.push({ id, name: move.name, issue: 'Explicitly incomplete research coverage', coverage: lesson.coverage });
   if (!lesson.sourceIds.length)
     gaps.push({ id, name: move.name, issue: 'No source evidence attached' });
+  for (const sourceId of lesson.sourceIds)
+    assert.ok(Object.hasOwn(sources, sourceId), id + ': unknown source ID ' + sourceId);
+  if (lesson.evidence?.length && !lesson.sourceIds.length)
+    throw Error(id + ': quotations without source attribution');
+  for (const evidence of lesson.evidence || [])
+    assert.ok(lesson.sourceIds.includes(evidence.sourceId), id + ': evidence not linked to declared source');
   covered++;
 }
 for (const id of Object.keys(entries))
