@@ -209,8 +209,8 @@ function renderCycle(){const days=C.week(state,today(),weekStart,{minutes:todayM
 function renderAdjustments(bundle){return `<details class="today-adjustments"><summary>Today's Adjustments</summary><div class="two"><label>Time available<select id="today-minutes">${[30,45,60,75,90,120].map(n=>`<option value="${n}" ${todayMinutes===n?'selected':''}>${n} min</option>`).join('')}</select></label><label>Readiness<select id="today-readiness">${[['normal','Normal'],['low','Pretty beat'],['great','Feeling great']].map(([v,l])=>`<option value="${v}" ${readiness===v?'selected':''}>${l}</option>`).join('')}</select></label></div>${bundle.adjustments.changes.length?`<p id="adjustment-explanation" class="small">${bundle.adjustments.changes.map(esc).join('; ')}</p>`:''}<div class="adjustment-extras">${pauseControls()}${activityForm()}</div></details>`;}
 let mobilityStartedAt=0,mobilityClock=null;
 function mobilityRoutine(){
- const recent=(state.sessions||[]).filter(x=>x.date<=today()).slice(-3);
- const labels=recent.flatMap(x=>(x.items||[]).map(i=>String(i.name||E.MOVES[i.id]?.name||''))).join(' ').toLowerCase();
+ const recent=(state.sessions||[]).filter(x=>x.date<=today()).sort((a,b)=>String(b.date||'').localeCompare(String(a.date||''))).slice(0,3);
+ const labels=recent.flatMap(x=>(x.items||[]).filter(i=>i.completed||i.performed||(i.sets||[]).some(set=>set.done)).map(i=>String(i.name||E.MOVES[i.id]?.name||''))).join(' ').toLowerCase();
  const overhead=/press|snatch|jerk|overhead|cast|mill/.test(labels);
  const grip=/club|cast|mill|swing|clean|snatch|carry/.test(labels);
  const hip=/squat|swing|deadlift|lunge|hinge/.test(labels);
