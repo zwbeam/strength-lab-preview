@@ -50,6 +50,13 @@ assert.equal(E.prescription({...prior,equipment:{...prior.equipment,maxKbKg:14}}
 assert.equal(E.prescription({...prior,equipment:{...prior.equipment,pairs:[]}},'doubleSquat').sets,0,'removed matched pair blocks future prescription');
 assert.equal(E.prescription({...prior,equipment:{...prior.equipment,club:[12]}},'cast').sets,0,'removed club load blocks future prescription');
 assert.equal(E.prescription({...prior,equipment:{...prior.equipment,maxClubLb:8}},'cast').sets,0,'lowered club ceiling blocks future prescription');
+const replacementBase={...prior,equipment:{...prior.equipment,kb:[12,18],maxKbKg:18}};
+const replaced=E.replaceUnavailableLoad(replacementBase,'snatch',12);
+assert.equal(E.stateFor(replaced,'snatch').weight,12,'replacement load becomes working weight');
+assert.equal(E.stateFor(replaced,'snatch').stage,0,'replacement restarts progression at first stage');
+assert.equal(replaced.sessions.length,replacementBase.sessions.length,'replacement does not create a training session');
+assert.throws(()=>E.replaceUnavailableLoad(replacementBase,'snatch',20),/currently available/,'cannot replace with unowned weight');
+assert.throws(()=>E.replaceUnavailableLoad(prior,'snatch',18),/still available/,'cannot bypass normal progression with available working weight');
 const backupWithCeilings={version:33,sessions:[],weights:{},equipment:{kb:[12,16,18],club:[5,10,17],maxKbKg:18,maxClubLb:17}};
 const restored=E.validateBackup(backupWithCeilings);
 assert.equal(restored.equipment.maxKbKg,18,'backup preserves kettlebell ceiling');
