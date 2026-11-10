@@ -260,6 +260,7 @@ const {chromium}=require('playwright');
      const create=URL.createObjectURL.bind(URL);
      URL.createObjectURL=function(blob){window.__backupBlob=blob;return create(blob);};
    });
+   await page.locator('#export').evaluate(el=>{const section=el.closest('details');if(section)section.open=true;});
    await page.locator('#export').click();
    const exportedText=await page.evaluate(async()=>window.__backupBlob?.text()||null);
    if(!exportedText)throw Error('Export button did not create a JSON backup blob');
