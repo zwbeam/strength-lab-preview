@@ -35,5 +35,7 @@ assert.ok(E.loadOptions(state,id).includes(18),'post-density load selection avai
 state=E.selectLoad(state,id,18);
 assert.equal(E.stateFor(state,id).weight,18);
 assert.equal(E.stateFor(state,id).stage,0,'new load starts volume again');
+assert.equal(E.stateFor(state,id).stagePhase,'volume','new load must reset density to volume');
+assert.equal(E.stateFor(state,id).phase,'volume','new load cannot inherit a completed-cycle milestone');
 assert.equal(E.stateFor(state,id).streak,0);
 console.log('Full snatch volume-density-load cycle passed:',day,'clean sessions');
