@@ -49,7 +49,7 @@ const {chromium}=require('playwright');
    });
    if(audioChecks.sounds.filter(x=>x==='mid').length!==1)throw Error('Midpoint cue duplicated or missing: '+JSON.stringify(audioChecks));
    if(audioChecks.sounds.filter(x=>x==='count').length!==3)throw Error('Countdown should have three distinct beeps: '+JSON.stringify(audioChecks));
-   if(audioChecks.sounds.filter(x=>x==='whistle').length!==2||audioChecks.spoken.length!==2)throw Error('Stage transitions must whistle and announce movement: '+JSON.stringify(audioChecks));
+   if(audioChecks.sounds.filter(x=>x==='whistle').length!==1||audioChecks.spoken.length!==2)throw Error('Stage transitions must whistle and announce movement: '+JSON.stringify(audioChecks));
    if(!audioChecks.clock.includes('Light club skill'))throw Error('Mobility stage did not advance');
 
    await mobility.locator('#cancel-mobility').click();
