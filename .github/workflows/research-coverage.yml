@@ -1,0 +1,27 @@
+name: Research coverage audit
+on:
+  push:
+    branches:
+      - integration/research-coverage-audit
+    paths:
+      - engine.js
+      - movement-instruction.js
+      - tests/research-coverage.js
+      - .github/workflows/research-coverage.yml
+  pull_request:
+    paths:
+      - engine.js
+      - movement-instruction.js
+      - tests/research-coverage.js
+      - .github/workflows/research-coverage.yml
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate movement mappings and source integrity
+        run: node tests/research-coverage.js
+      # --strict is intentionally not enabled until known research gaps are resolved.
