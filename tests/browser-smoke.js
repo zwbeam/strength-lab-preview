@@ -44,7 +44,7 @@ const {chromium}=require('playwright');
    }));
    if(!saveDiagnostic.raw)throw Error('Equipment setup did not save: '+JSON.stringify({...saveDiagnostic,dialogs:saveDialogs}));
    const savedEquipment=JSON.parse(saveDiagnostic.raw).equipment;
-   if(savedEquipment.maxKbKg!==32||savedEquipment.maxClubLb!==17||savedEquipment.pairs.length!==9)throw Error('Equipment settings did not persist: '+JSON.stringify(savedEquipment));
+   if(savedEquipment.maxKbKg!==32||savedEquipment.maxClubLb!==17||savedEquipment.pairs.length!==9||!savedEquipment.kb.includes(32)||!savedEquipment.kb.includes(26))throw Error('Equipment settings did not persist: '+JSON.stringify(savedEquipment));
    await page.reload({waitUntil:'domcontentloaded'});
    await page.locator('[data-tab="settings"]').click();
    const restoredSetup=page.locator('#training-setup');
