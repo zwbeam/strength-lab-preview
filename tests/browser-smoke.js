@@ -78,6 +78,42 @@ const {chromium}=require('playwright');
    if(replacementTransition.weight!==14||replacementTransition.stage!==0||replacementTransition.before!==replacementTransition.after||replacementTransition.before!==replacementTransition.original)throw Error('Replacement altered historical workouts or failed to reset progression: '+JSON.stringify(replacementTransition));
    console.log('Replacement UI and history-preserving transition passed at '+viewport.width+'px');
 
+   // Click the actual delegated UI action, persist, reload, then restore test fixture.
+   const fixtureReady=await page.evaluate(()=>{
+    const original=state;
+    const sample={...state,weights:{...state.weights,deadlift:16},equipment:{...state.equipment,kb:[12,14,18],pairs:[],maxKbKg:18}};
+    if(!persistTraining(sample,null))return false;
+    state=sample;
+    const host=document.createElement('div');
+    host.id='replacement-test-host';
+    host.innerHTML=unavailableLoadActions({items:[{id:'deadlift',name:'Kettlebell deadlift',bodyweight:false,weight:16,unit:'kg'}]});
+    document.body.append(host);
+    return true;
+   });
+   if(!fixtureReady)throw Error('Could not prepare replacement click-through fixture');
+   page.once('dialog',dialog=>dialog.accept('14'));
+   await page.locator('#replacement-test-host [data-replace-weight="deadlift"]').click();
+   const clicked=await page.evaluate(()=>{
+    const saved=JSON.parse(localStorage.getItem('sl-dev-preview-data-v33'));
+    return {weight:E.stateFor(saved,'deadlift').weight,stage:E.stateFor(saved,'deadlift').stage,sessions:saved.sessions.length};
+   });
+   if(clicked.weight!==14||clicked.stage!==0||clicked.sessions!==0)throw Error('Replacement click did not persist safely: '+JSON.stringify(clicked));
+   await page.reload({waitUntil:'domcontentloaded'});
+   await page.waitForTimeout(250);
+   const restored=await page.evaluate(()=>{
+    const saved=JSON.parse(localStorage.getItem('sl-dev-preview-data-v33'));
+    return {weight:E.stateFor(saved,'deadlift').weight,sessions:saved.sessions.length};
+   });
+   if(restored.weight!==14||restored.sessions!==0)throw Error('Replacement did not survive reload: '+JSON.stringify(restored));
+   const reset=await page.evaluate(()=>{
+    const next={...state,weights:{...state.weights,deadlift:undefined},nextWeights:{...state.nextWeights,deadlift:undefined},equipment:{...state.equipment,kb:[12,14,16,18,20,22,24,26,28,30,32],pairs:[16,18,20,22,24,26,28,30,32],maxKbKg:32}};
+    if(!persistTraining(next,null))return false;
+    state=next;render();return true;
+   });
+   if(!reset)throw Error('Failed to reset replacement fixture');
+   console.log('Replacement click, save, and reload passed at '+viewport.width+'px');
+
+
 
    await page.locator('[data-tab="today"]').click();
    const mobility=page.locator('#mobility-session');
