@@ -286,6 +286,20 @@ const {chromium}=require('playwright');
       throw Error('Valid backup import did not survive reload');
    console.log('Valid 540-session backup import/reload passed at '+viewport.width+'px');
 
+   await page.locator('[data-tab="settings"]').click();
+   const rejectBefore=await page.evaluate(()=>localStorage.getItem('sl-dev-preview-data-v33'));
+   const rejectBackup=JSON.parse(rejectBefore);
+   rejectBackup.sessions[0].notes='Should not be imported';
+   const rejectDialogPromise=page.waitForEvent('dialog');
+   await page.locator('#import').setInputFiles({name:'cancelled-backup.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(rejectBackup))});
+   const rejectDialog=await rejectDialogPromise;
+   if(!rejectDialog.message().includes('Replace training data'))throw Error('Import cancellation prompt missing');
+   await rejectDialog.dismiss();
+   const rejectAfter=await page.evaluate(()=>localStorage.getItem('sl-dev-preview-data-v33'));
+   if(rejectAfter!==rejectBefore)throw Error('Cancelled import changed training data');
+   console.log('Cancelled backup import preserved training history at '+viewport.width+'px');
+
+
 
 
    console.log('History correction save/reload passed at '+viewport.width+'px');
