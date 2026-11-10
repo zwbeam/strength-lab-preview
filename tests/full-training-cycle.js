@@ -42,6 +42,9 @@ const backupWithCeilings={version:33,sessions:[],weights:{},equipment:{kb:[12,16
 const restored=E.validateBackup(backupWithCeilings);
 assert.equal(restored.equipment.maxKbKg,18,'backup preserves kettlebell ceiling');
 assert.equal(restored.equipment.maxClubLb,17,'backup preserves club ceiling');
+assert.doesNotThrow(()=>E.validateProgramming({...state,equipment:{kb:[16,18],club:[5,10],pairs:[16,18],maxKbKg:18,maxClubLb:17}}),'valid matched pairs accepted');
+assert.throws(()=>E.validateProgramming({...state,equipment:{kb:[16,18],club:[5,10],pairs:[20],maxKbKg:18,maxClubLb:17}}),/Invalid matched kettlebell pairs/,'pair cannot exceed configured ceiling');
+assert.throws(()=>E.validateProgramming({...state,equipment:{kb:[16],club:[5],pairs:['16'],maxKbKg:18,maxClubLb:17}}),/Invalid matched kettlebell pairs/,'pair weights must be numeric');
 assert.throws(()=>E.validateBackup({...backupWithCeilings,equipment:{...backupWithCeilings.equipment,maxKbKg:0}}),/Invalid equipment ceiling/,'backup rejects invalid ceiling');
 assert.throws(()=>E.validateBackup({...backupWithCeilings,equipment:{...backupWithCeilings.equipment,maxClubLb:Infinity}}),/Invalid equipment ceiling/,'backup rejects infinite ceiling');
 assert.doesNotThrow(()=>E.validateBackup({...backupWithCeilings,equipment:{kb:[12,16],club:[5,10]}}),'legacy backup without ceilings remains compatible');
