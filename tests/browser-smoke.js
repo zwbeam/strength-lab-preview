@@ -59,6 +59,26 @@ const {chromium}=require('playwright');
    if(!await restoredSetup.locator('#owned-club-weights').inputValue().then(x=>x.includes('17')))throw Error('Club increments did not restore');
    console.log('Equipment ceilings and matched-pair settings persisted at '+viewport.width+'px');
 
+   // Exercise the replacement UI with a deliberately unavailable recorded load.
+   const replacementProbe=await page.evaluate(()=>{
+    const original=state;
+    const sample={...state,weights:{...state.weights,deadlift:16},equipment:{...state.equipment,kb:[12,14,18],pairs:[],maxKbKg:18}};
+    state=sample;
+    const html=unavailableLoadActions({items:[{id:'deadlift',name:'Kettlebell deadlift',bodyweight:false,weight:16,unit:'kg'}]});
+    state=original;
+    return html;
+   });
+   if(!replacementProbe.includes('data-replace-weight="deadlift"')||!replacementProbe.includes('12, 14, 18'))throw Error('Replacement UI failed to offer available loads: '+replacementProbe);
+   const replacementTransition=await page.evaluate(()=>{
+    const original=state;
+    const sample={...state,weights:{...state.weights,deadlift:16},equipment:{...state.equipment,kb:[12,14,18],pairs:[],maxKbKg:18}};
+    const next=E.replaceUnavailableLoad(sample,'deadlift',14);
+    return {weight:E.stateFor(next,'deadlift').weight,stage:E.stateFor(next,'deadlift').stage,before:JSON.stringify(sample.sessions),after:JSON.stringify(next.sessions),original:JSON.stringify(state.sessions)};
+   });
+   if(replacementTransition.weight!==14||replacementTransition.stage!==0||replacementTransition.before!==replacementTransition.after||replacementTransition.before!==replacementTransition.original)throw Error('Replacement altered historical workouts or failed to reset progression: '+JSON.stringify(replacementTransition));
+   console.log('Replacement UI and history-preserving transition passed at '+viewport.width+'px');
+
+
    await page.locator('[data-tab="today"]').click();
    const mobility=page.locator('#mobility-session');
    if(!await mobility.count())throw Error('Mobility session missing');
