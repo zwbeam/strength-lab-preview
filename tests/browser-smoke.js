@@ -24,6 +24,8 @@ const {chromium}=require('playwright');
    if(await page.locator('#movement-history-dialog').evaluate(el=>el.open))throw Error('History dialog unexpectedly open');
    console.log('Empty Training Log state passed at '+viewport.width+'px');
    await page.addInitScript(()=>{
+    if(sessionStorage.getItem('browser-fixture-installed')==='yes')return;
+    sessionStorage.setItem('browser-fixture-installed','yes');
     const sessions=Array.from({length:180},(_,i)=>({
      id:'browser-session-'+i,title:'Browser history '+i,
      date:new Date(Date.UTC(2025,0,1)+i*86400000).toISOString().slice(0,10),
