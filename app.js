@@ -93,7 +93,7 @@ let timerCue='',audioContext=null,lastSignal='';
 function unlockTimerAudio(){try{audioContext=audioContext||new (window.AudioContext||window.webkitAudioContext)();audioContext.resume().catch(()=>{});}catch{}}
 function timerBeep(complete=false){try{if(!audioContext||audioContext.state!=='running')return;const o=audioContext.createOscillator(),gain=audioContext.createGain();o.type='sine';o.frequency.value=complete?880:660;gain.gain.value=.12;o.connect(gain);gain.connect(audioContext.destination);o.start();o.stop(audioContext.currentTime+(complete?.35:.12));}catch{}}
 function updateTimer(){if(!draft)return;const c=activeTimer(),remaining=timerRemaining(c);
- if(storageWritable&&!storageConflict&&c?.running&&(c.kind==='rest'||c.roundSeconds)&&remaining<=3){const event=String(c.endAt)+':'+remaining;if(lastSignal!==event){lastSignal=event;timerCue=remaining?String(remaining):(c.kind==='rest'?'Rest complete':'Round complete');timerBeep(!remaining);}}
+ if(storageWritable&&!storageConflict&&c?.running&&(c.kind==='rest'||c.roundSeconds)&&remaining>=1&&remaining<=3){const event=String(c.endAt)+':'+remaining;if(lastSignal!==event){lastSignal=event;timerCue=String(remaining);mobilitySound('count');}}
  const draftBeforeTick=JSON.stringify(draft);
  const changed=storageWritable&&!storageConflict&&!storageRecoveryIssue&&T.tick(draft);
  let tickSaved=false;
