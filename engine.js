@@ -271,7 +271,7 @@ function activityRecovery(a){
  return a.duration>=120?1:0;
 }
 function validateActivity(a){
- const types=['mountain','gravel','road','indoor','hiking','trail','labor','other'];
+ const types=['mountain','gravel','road','indoor','hiking','trail','labor','other','mobility'];
  if(!a||typeof a!=='object'||typeof a.id!=='string'||!a.id||!types.includes(a.type)||!['planned','completed'].includes(a.status)||!['easy','moderate','hard'].includes(a.effort)||!Number.isFinite(a.duration)||a.duration<=0||a.duration>1440||typeof a.date!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(a.date)||!Number.isFinite(Date.parse(a.date+'T12:00:00Z'))||new Date(a.date+'T12:00:00Z').toISOString().slice(0,10)!==a.date)throw Error('Invalid activity');
  for(const key of ['distance','elevation'])if(a[key]!==undefined&&(!Number.isFinite(a[key])||a[key]<0))throw Error('Invalid activity measurement');
  if(a.notes!==undefined&&typeof a.notes!=='string'||a.replacesStrength!==undefined&&typeof a.replacesStrength!=='boolean')throw Error('Invalid activity details');
