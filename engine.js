@@ -238,7 +238,7 @@ function selectLoad(s,id,weight){if(!loadOptions(s,id).includes(weight))throw Er
 function minutesFor(p){const m=MOVES[p.id];return(p.sets*(p.roundSeconds||((p.secondsPerSet??m.sec)+Math.max(0,p.rest)))/60)+.55;}
 function timeBudget(minutes){
  const total=Number.isFinite(Number(minutes))?Number(minutes):45;
- if(!Number.isInteger(total)||total<15||total>120)throw Error('Workout duration must be 15–120 minutes');
+ if(!Number.isInteger(total)||total<30||total>120)throw Error('Strength workout duration must be 30–120 minutes');
  // Protect preparation and recovery when session time is compressed.
  // Eight minutes follows the two-round four-station warm-up format (source 550).
  // Ten minutes of cooldown is an app allocation, not a quoted Wildman rule.
