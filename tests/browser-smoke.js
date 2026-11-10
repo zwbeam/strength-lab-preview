@@ -400,6 +400,48 @@ const {chromium}=require('playwright');
     throw Error('Repeated reopen damaged decade-scale history: '+JSON.stringify(afterReopens));
    console.log('2600-session repeated rendering and reopening integrity passed at '+viewport.width+'px');
 
+   const appendResult=await page.evaluate(()=>{
+    const previous=JSON.parse(localStorage.getItem('sl-dev-preview-data-v33'));
+    const before=JSON.stringify(previous.sessions);
+    const beforeEquipment=JSON.stringify(previous.equipment);
+    const bundle=E.buildSession(previous,{readiness:'normal',minutes:30});
+    if(!bundle?.plan?.items?.length)return {error:'No available session plan'};
+    const plan=bundle.plan;
+    const testDraft={calendarVersion:1,timerVersion:3,notebookVersion:1,
+      originalPlan:bundle.original,adjustments:bundle.adjustments,cycleSnapshot:N.cycle(previous),
+      id:'d-decade-browser-append',timerMode:'manual',plan,
+      started:new Date().toISOString(),date:new Date().toISOString().slice(0,10),
+      stage:'warmup',items:N.newItems(plan),notes:'Workout 2601 browser save'};
+    const target=testDraft.items[0];
+    if(!target)return {error:'No notebook items'};
+    for(const set of target.sets||[])set.completed=true;
+    draft=testDraft;
+    if(!saveDraft())return {error:'Draft persistence failed'};
+    render();
+    return {ready:true,beforeCount:previous.sessions.length,before, beforeEquipment};
+   });
+   if(!appendResult.ready)throw Error('Could not prepare decade-scale browser workout: '+JSON.stringify(appendResult));
+   await page.locator('#save-workout').click();
+   const appendSaved=await page.evaluate(()=>{
+    const state=JSON.parse(localStorage.getItem('sl-dev-preview-data-v33'));
+    return {count:state.sessions.length,ids:new Set(state.sessions.map(x=>x.id)).size,
+      latest:state.sessions.at(-1),first:state.sessions[0]?.id,
+      draft:localStorage.getItem('sl-dev-preview-draft-v33')};
+   });
+   if(appendSaved.count!==2601||appendSaved.ids!==2601||appendSaved.first!=='decade-browser-0'||
+     appendSaved.latest?.notes!=='Workout 2601 browser save'||appendSaved.draft!==null)
+     throw Error('Decade-scale browser workout save failed: '+JSON.stringify(appendSaved));
+   await page.reload({waitUntil:'domcontentloaded'});
+   const appendedReload=await page.evaluate(()=>{
+     const state=JSON.parse(localStorage.getItem('sl-dev-preview-data-v33'));
+     return {count:state.sessions.length,ids:new Set(state.sessions.map(x=>x.id)).size,
+       latest:state.sessions.at(-1)?.notes};
+   });
+   if(appendedReload.count!==2601||appendedReload.ids!==2601||appendedReload.latest!=='Workout 2601 browser save')
+     throw Error('Decade-scale new workout lost or duplicated after reload: '+JSON.stringify(appendedReload));
+   console.log('2601st workout saved through browser and survived reload at '+viewport.width+'px');
+
+
 
 
 
