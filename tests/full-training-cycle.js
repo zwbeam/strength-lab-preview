@@ -69,4 +69,9 @@ const ceiling={...state,nextWeights:{...state.nextWeights,snatch:20},equipment:{
 assert.equal(E.stateFor(ceiling,id).weight,20,'test fixture is at the heaviest owned bell');
 assert.deepEqual(E.loadOptions(ceiling,id),[],'no load beyond configured inventory');
 assert.throws(()=>E.selectLoad(ceiling,id,22),/available, permitted increment/,'unowned bell cannot be selected');
+// An empty explicitly configured inventory must never be treated as permission
+// to offer generic catalog weights.
+const noEquipment={...ceiling,equipment:{...ceiling.equipment,kb:[]}};
+assert.deepEqual(E.loadOptions(noEquipment,id),[],'explicitly empty kettlebell inventory means no available load');
+assert.throws(()=>E.selectLoad(noEquipment,id,22),/available, permitted increment/);
 console.log('Full snatch volume-density-load cycle passed:',day,'sessions including reentry and equipment ceiling');
