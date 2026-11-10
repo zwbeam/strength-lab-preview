@@ -29,6 +29,7 @@ assert.equal(E.stateFor(state,id).stage,0,'density begins at first density stage
 assert.equal(E.loadOptions(state,id).length,0,'cannot increase load in the middle of density');
 for(let i=0;i<policy.density.length;i++){
  for(let exposure=0;exposure<2;exposure++)complete();
+ console.log('DENSITY STEP',i,JSON.stringify({stage:E.stateFor(state,id).stage,phase:E.stateFor(state,id).phase,streak:E.stateFor(state,id).streak}));
 }
 console.log('DENSITY DIAGNOSTIC',JSON.stringify({state:E.stateFor(state,id),sessions:day},(k,v)=>k==='policy'||k==='last'?undefined:v));
 assert.equal(E.stateFor(state,id).phase,'ready','density endpoint reached');
