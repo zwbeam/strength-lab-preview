@@ -137,6 +137,23 @@ const invalidDateDecade={...decadeBackup,sessions:decadeSessions.map((entry,i)=>
 assert.throws(()=>E.validateBackup(invalidDateDecade),/Invalid training entry/,'decade-scale backup rejects impossible calendar date');
 console.log('2600-session duplicate, corrupted-load and invalid-date rejection passed');
 
+const newSessionDate=new Date(Date.UTC(2020,0,2601)).toISOString().slice(0,10);
+const newSession={id:'decade-2600',title:'First workout after ten years',date:newSessionDate,
+ items:[{...decadeSessions[0].items[0],weight:12}]};
+const decadeExtended=E.validateBackup({...decadeRestored,sessions:[...decadeRestored.sessions,newSession]});
+assert.equal(decadeExtended.sessions.length,2601,'new workout appends after ten-year history');
+assert.equal(decadeExtended.sessions[0].id,'decade-0','oldest workout retained after new session');
+assert.equal(decadeExtended.sessions[1300].id,'decade-1300','middle workout retained after new session');
+assert.equal(decadeExtended.sessions.at(-1).id,'decade-2600','new workout retains unique identity');
+assert.equal(decadeExtended.sessions.at(-1).items[0].weight,12,'new workout records current replacement weight');
+assert.equal(decadeExtended.nextWeights.snatch,12,'appending workout does not erase active replacement');
+assert.deepEqual(decadeExtended.equipment,decadeRestored.equipment,'appending workout preserves owned equipment');
+assert.equal(new Set(decadeExtended.sessions.map(x=>x.id)).size,2601,'all decade-plus-one session identities remain unique');
+assert.throws(()=>E.validateBackup({...decadeExtended,sessions:[...decadeExtended.sessions,newSession]}),
+ /Duplicate workout identity/,'repeated save with identical session identity must be rejected');
+console.log('2601-session append, progression preservation and duplicate-save rejection passed');
+
+
 
 
 assert.doesNotThrow(()=>E.validateProgramming({...state,equipment:{kb:[16,18],club:[5,10],pairs:[16,18],maxKbKg:18,maxClubLb:17}}),'valid matched pairs accepted');
