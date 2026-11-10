@@ -12,6 +12,9 @@ on:
       - tests/year-history.js
       - tests/history-corrections.js
       - tests/backup-history.js
+      - tests/log-pagination.js
+      - notebook.js
+      - app.js
       - .github/workflows/research-coverage.yml
   pull_request:
     paths:
@@ -23,6 +26,9 @@ on:
       - tests/year-history.js
       - tests/history-corrections.js
       - tests/backup-history.js
+      - tests/log-pagination.js
+      - notebook.js
+      - app.js
       - .github/workflows/research-coverage.yml
 jobs:
   audit:
@@ -40,4 +46,5 @@ jobs:
           node tests/year-history.js
           node tests/history-corrections.js
           node tests/backup-history.js
+          node tests/log-pagination.js
       # --strict is intentionally not enabled until known research gaps are resolved.
