@@ -340,6 +340,14 @@ const {chromium}=require('playwright');
    });
    if(decadeUiData.count!==2600||decadeUiData.unique!==2600||decadeUiData.middle!=='Middle of decade')
      throw Error('Decade-scale browser history integrity failed: '+JSON.stringify(decadeUiData));
+   const decadeLayout=await page.evaluate(()=>{
+     const root=document.documentElement;
+     const notebook=document.querySelector('.notebook-table');
+     return {viewport:innerWidth,documentWidth:root.scrollWidth,
+       notebookRows:notebook?.querySelectorAll('tbody tr').length||0};
+   });
+   if(decadeLayout.documentWidth>decadeLayout.viewport+2)
+     throw Error('Decade-scale Training Log causes horizontal page overflow: '+JSON.stringify(decadeLayout));
    console.log('2600-session Training Log render '+decadeUiMs+'ms at '+viewport.width+'px');
 
    const pageRows=[60,120,180,240,300];
