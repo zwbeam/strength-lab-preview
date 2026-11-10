@@ -10,7 +10,10 @@ const entry=(quality='clean',overrides={})=>({id,weight:16,bodyweight:false,qual
 assert.equal(E.successful(entry('clean')),true);
 for(const [name,patch] of [
  ['incomplete',{actualSets:first.sets-1}],['poor technique',{quality:'breakdown'}],['pain',{pain:true}],['recovery',{mode:'recovery',completed:false}],['missing load',{weight:0}],['not completed',{completed:false}]
-])assert.equal(E.successful(entry('clean',patch)),name==='recovery'?false:false,name+' must not count as successful');
+])assert.equal(E.successful(entry('clean',patch)),false,name+' must not count as successful');
+const recoveryEntry=entry('clean',{mode:'recovery'});
+assert.equal(E.successful(recoveryEntry),true,'clean reduced session can be successful as a record');
+assert.equal(E.stateFor({...base,sessions:[{id:'recovery-only',date:dateAt(0),items:[recoveryEntry]}]},id).stage,0,'recovery must not advance stage');
 let clean=0,hard=0,missed=0;
 for(let day=0;day<1825;day++){
  const week=Math.floor(day/7),dow=day%7;
