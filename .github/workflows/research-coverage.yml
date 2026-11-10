@@ -7,12 +7,14 @@ on:
       - engine.js
       - movement-instruction.js
       - tests/research-coverage.js
+      - tests/prerequisite-contract.js
       - .github/workflows/research-coverage.yml
   pull_request:
     paths:
       - engine.js
       - movement-instruction.js
       - tests/research-coverage.js
+      - tests/prerequisite-contract.js
       - .github/workflows/research-coverage.yml
 jobs:
   audit:
@@ -23,5 +25,7 @@ jobs:
         with:
           node-version: '22'
       - name: Validate movement mappings and source integrity
-        run: node tests/research-coverage.js
+        run: |
+          node tests/research-coverage.js
+          node tests/prerequisite-contract.js
       # --strict is intentionally not enabled until known research gaps are resolved.
