@@ -250,8 +250,9 @@ function updateMobilityClock(){
  const el=$('#mobility-clock');
  if(el)el.textContent=formatTime(Math.min(elapsed,1200))+' / 20:00 · '+(index<routine.length?routine[index].title+' · '+formatTime(remaining):'Complete');
  if(index!==mobilityStageIndex){
+  const previousStage=mobilityStageIndex;
   mobilityStageIndex=index;mobilitySignalKey='';mobilityLastRemaining=null;
-  mobilitySound('whistle');
+  if(previousStage>=0)mobilitySound('whistle');
   if(index<routine.length)mobilitySpeak(routine[index].title+'. '+routine[index].min+' minutes.');
   else mobilitySpeak('Mobility complete.');
  }
