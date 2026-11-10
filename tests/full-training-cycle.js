@@ -105,6 +105,23 @@ assert.deepEqual(roundTrip.equipment.pairs,[12,14,16],'backup retains matched pa
 assert.equal(roundTrip.nextWeights.snatch,12,'backup retains pending replacement weight');
 assert.equal(E.stateFor(roundTrip,'snatch').weight,12,'restored replacement is effective without erasing history');
 
+const decadeSessions=Array.from({length:2600},(_,i)=>({
+ id:'decade-'+i,title:'Long-term session '+i,
+ date:new Date(Date.UTC(2020,0,1+i)).toISOString().slice(0,10),
+ items:[{id:'snatch',weight:16,actualSets:3,actualReps:5,targetSets:3,targetReps:5,rest:90,quality:'clean',completed:true,performed:true,pain:false}]
+}));
+const decadeBackup={...longBackup,sessions:decadeSessions};
+const decadeStart=Date.now();
+const decadeRestored=E.validateBackup(JSON.parse(JSON.stringify(decadeBackup)));
+const decadeElapsed=Date.now()-decadeStart;
+assert.equal(decadeRestored.sessions.length,2600,'decade-scale backup retains every session');
+assert.equal(decadeRestored.sessions[0].id,'decade-0','decade-scale backup retains oldest session');
+assert.equal(decadeRestored.sessions.at(-1).id,'decade-2599','decade-scale backup retains newest session');
+assert.equal(new Set(decadeRestored.sessions.map(x=>x.id)).size,2600,'decade-scale backup retains unique session identities');
+assert.ok(decadeElapsed<10000,'decade-scale backup validation exceeds ten-second regression budget: '+decadeElapsed+'ms');
+console.log('2600-session backup validation completed in '+decadeElapsed+'ms');
+
+
 assert.doesNotThrow(()=>E.validateProgramming({...state,equipment:{kb:[16,18],club:[5,10],pairs:[16,18],maxKbKg:18,maxClubLb:17}}),'valid matched pairs accepted');
 assert.throws(()=>E.validateProgramming({...state,equipment:{kb:[16,18],club:[5,10],pairs:[20],maxKbKg:18,maxClubLb:17}}),/Invalid matched kettlebell pairs/,'pair cannot exceed configured ceiling');
 assert.throws(()=>E.validateProgramming({...state,equipment:{kb:[16],club:[5],pairs:['16'],maxKbKg:18,maxClubLb:17}}),/Invalid matched kettlebell pairs/,'pair weights must be numeric');
