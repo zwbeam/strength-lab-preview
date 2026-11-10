@@ -407,6 +407,7 @@ const {chromium}=require('playwright');
     const bundle=N.adjusted(previous,{readiness:'normal',minutes:30});
     if(!bundle?.plan?.items?.length)return {error:'No available session plan'};
     const plan=bundle.plan;
+    for(const rx of plan.items){if(!rx.bodyweight && (!Number.isFinite(rx.weight)||rx.weight<=0))rx.weight=12;}
     const testDraft={calendarVersion:1,timerVersion:3,notebookVersion:1,
       originalPlan:bundle.original,adjustments:bundle.adjustments,cycleSnapshot:N.cycle(previous),
       id:'d-decade-browser-append',timerMode:'manual',plan,
@@ -414,7 +415,7 @@ const {chromium}=require('playwright');
       stage:'warmup',items:N.newItems(plan),notes:'Workout 2601 browser save'};
     const target=testDraft.items[0];
     if(!target)return {error:'No notebook items'};
-    for(const set of target.sets||[])set.completed=true;
+    for(const set of target.sets||[])set.done=true;
     draft=testDraft;
     if(!saveDraft())return {error:'Draft persistence failed'};
     render();
