@@ -9,6 +9,7 @@ const app=fs.readFileSync(require('node:path').join(__dirname,'../app.js'),'utf8
 const checks={
   'initial page limits':/notebookVisibleRows=60,movementVisibleRows=60/.test(app),
   'notebook rows bounded':/lines\.slice\(0,notebookVisibleRows\)\.map/.test(app),
+  'single-pass history aggregation':/const lines=\[\];const practicedIds=new Set\(\);for\(const session of sessions\)/.test(app),
   'movement rows bounded':/records\.slice\(0,movementVisibleRows\)\.map/.test(app),
   'notebook load-more button':/data-more-notebook="1"/.test(app),
   'movement load-more button':/data-more-movement-history="1"/.test(app),
