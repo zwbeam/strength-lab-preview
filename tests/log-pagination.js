@@ -15,6 +15,7 @@ const checks={
   'notebook load-more handler':/notebookVisibleRows\+=60;render\(\)/.test(app),
   'movement load-more handler':/movementVisibleRows\+=60;openMovementHistory/.test(app),
   'dialog movement identity':/dialog\.dataset\.movementId=id/.test(app),
+  'new movement resets page':/if\(dialog\.dataset\.movementId!==id\)movementVisibleRows=60/.test(app),
   'already-open dialog safe refresh':/if\(!dialog\.open\)dialog\.showModal\(\)/.test(app),
   'dialog new movement resets page':/movementVisibleRows=60;openMovementHistory/.test(app),
   'history editing remains available':/data-history-view/.test(app)
