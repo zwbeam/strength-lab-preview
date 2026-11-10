@@ -89,6 +89,22 @@ const backupWithCeilings={version:33,sessions:[],weights:{},equipment:{kb:[12,16
 const restored=E.validateBackup(backupWithCeilings);
 assert.equal(restored.equipment.maxKbKg,18,'backup preserves kettlebell ceiling');
 assert.equal(restored.equipment.maxClubLb,17,'backup preserves club ceiling');
+
+const longBackupSessions=Array.from({length:540},(_,i)=>({
+ id:'backup-session-'+i,date:new Date(Date.UTC(2025,0,1+i)).toISOString().slice(0,10),
+ items:[{id:'snatch',weight:16,actualSets:3,actualReps:5,targetSets:3,targetReps:5,quality:'clean',completed:true,performed:true,pain:false}]
+}));
+const longBackup={...backupWithCeilings,sessions:longBackupSessions,
+ equipment:{kb:[12,14,16,18],pairs:[12,14,16],club:[5,10,17],maxKbKg:18,maxClubLb:17},
+ nextWeights:{snatch:12},weights:{snatch:16}};
+const roundTrip=E.validateBackup(JSON.parse(JSON.stringify(longBackup)));
+assert.equal(roundTrip.sessions.length,540,'long backup retains all sessions');
+assert.equal(roundTrip.sessions[0].id,'backup-session-0','long backup retains first session');
+assert.equal(roundTrip.sessions[539].id,'backup-session-539','long backup retains final session');
+assert.deepEqual(roundTrip.equipment.pairs,[12,14,16],'backup retains matched pair inventory');
+assert.equal(roundTrip.nextWeights.snatch,12,'backup retains pending replacement weight');
+assert.equal(E.stateFor(roundTrip,'snatch').weight,12,'restored replacement is effective without erasing history');
+
 assert.doesNotThrow(()=>E.validateProgramming({...state,equipment:{kb:[16,18],club:[5,10],pairs:[16,18],maxKbKg:18,maxClubLb:17}}),'valid matched pairs accepted');
 assert.throws(()=>E.validateProgramming({...state,equipment:{kb:[16,18],club:[5,10],pairs:[20],maxKbKg:18,maxClubLb:17}}),/Invalid matched kettlebell pairs/,'pair cannot exceed configured ceiling');
 assert.throws(()=>E.validateProgramming({...state,equipment:{kb:[16],club:[5],pairs:['16'],maxKbKg:18,maxClubLb:17}}),/Invalid matched kettlebell pairs/,'pair weights must be numeric');
