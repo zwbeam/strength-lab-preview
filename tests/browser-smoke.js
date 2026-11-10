@@ -404,7 +404,7 @@ const {chromium}=require('playwright');
     const previous=JSON.parse(localStorage.getItem('sl-dev-preview-data-v33'));
     const before=JSON.stringify(previous.sessions);
     const beforeEquipment=JSON.stringify(previous.equipment);
-    const bundle=E.buildSession(previous,{readiness:'normal',minutes:30});
+    const bundle=N.adjusted(previous,{readiness:'normal',minutes:30});
     if(!bundle?.plan?.items?.length)return {error:'No available session plan'};
     const plan=bundle.plan;
     const testDraft={calendarVersion:1,timerVersion:3,notebookVersion:1,
