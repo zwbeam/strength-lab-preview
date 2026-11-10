@@ -48,3 +48,14 @@ const heavier = E.stateFor({ ...at([
 assert.equal(heavier.weight, 18);
 assert.equal(heavier.stage, 0, 'Load change restarts the volume stage');
 console.log('Progression history checks passed');
+
+
+const milestoneState=at([
+ ['2026-01-01',entry('2026-01-01')],
+ ['2026-01-03',entry('2026-01-03')]
+]);
+const allowed=E.loadOptions({...milestoneState,equipment:{kb:[16,18],club:[],pairs:[]}},id);
+assert.ok(!allowed.includes(20),'unowned loads must not be offered after a cycle');
+assert.ok(!allowed.some(w=>w>18),'owned inventory ceiling must be respected');
+const afterGap=E.prescription(at([['2026-01-01',entry('2026-01-01')]]),id,{now:'2026-03-01'});
+assert.equal(afterGap.mode,'reentry','long absence must trigger reentry prescription');
