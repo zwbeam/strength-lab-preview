@@ -229,8 +229,9 @@ function loadOptions(s,id){
  if(m.bodyweight)return [];
  if(st.hold||st.fail||st.phase!=='ready')return [];
  const inventory=m.pair?s.equipment?.pairs:s.equipment?.[m.gear];
- // Inventory is optional in simplified setup; offer candidate increments, never claim they are owned.
- const candidates=[...new Set([...(LOADS[m.gear]||[]),...(Array.isArray(inventory)?inventory:[])])].sort((a,b)=>a-b);
+ // If the user supplied an inventory, only offer loads they actually own.
+ // With no inventory configured, retain suggested increments as setup candidates.
+ const candidates=[...new Set(Array.isArray(inventory)&&inventory.length?inventory:(LOADS[m.gear]||[]))].sort((a,b)=>a-b);
  const cap=s.trainingDefaults?.maxLoadJump??.25;
  return candidates.filter(w=>Number.isFinite(w)&&w>st.weight&&w<=st.weight*(1+cap)).sort((a,b)=>a-b);
 }
