@@ -38,6 +38,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Check JavaScript syntax
+        run: |
+          node --check app.js
+          node --check engine.js
+          node --check notebook.js
+          node --check movement-instruction.js
+          node --check rolling-calendar.js
+          node --check session-timer.js
+          node --check programming-education.js
       - name: Validate movement mappings and source integrity
         run: |
           node tests/research-coverage.js
