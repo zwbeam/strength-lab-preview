@@ -91,7 +91,7 @@ assert.equal(restored.equipment.maxKbKg,18,'backup preserves kettlebell ceiling'
 assert.equal(restored.equipment.maxClubLb,17,'backup preserves club ceiling');
 
 const longBackupSessions=Array.from({length:540},(_,i)=>({
- id:'backup-session-'+i,date:new Date(Date.UTC(2025,0,1+i)).toISOString().slice(0,10),
+ id:'backup-session-'+i,title:'Backup history '+i,date:new Date(Date.UTC(2025,0,1+i)).toISOString().slice(0,10),
  items:[{id:'snatch',weight:16,actualSets:3,actualReps:5,targetSets:3,targetReps:5,quality:'clean',completed:true,performed:true,pain:false}]
 }));
 const longBackup={...backupWithCeilings,sessions:longBackupSessions,
