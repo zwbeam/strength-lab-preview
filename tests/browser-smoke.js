@@ -100,11 +100,11 @@ const {chromium}=require('playwright');
    if(clicked.weight!==14||clicked.stage!==0||clicked.sessions!==0)throw Error('Replacement click did not persist safely: '+JSON.stringify(clicked));
    await page.reload({waitUntil:'domcontentloaded'});
    await page.waitForTimeout(250);
-   const restored=await page.evaluate(()=>{
+   const replacementRestored=await page.evaluate(()=>{
     const saved=JSON.parse(localStorage.getItem('sl-dev-preview-data-v33'));
     return {weight:E.stateFor(saved,'deadlift').weight,sessions:saved.sessions.length};
    });
-   if(restored.weight!==14||restored.sessions!==0)throw Error('Replacement did not survive reload: '+JSON.stringify(restored));
+   if(replacementRestored.weight!==14||replacementRestored.sessions!==0)throw Error('Replacement did not survive reload: '+JSON.stringify(replacementRestored));
    const reset=await page.evaluate(()=>{
     const next={...state,weights:{...state.weights,deadlift:undefined},nextWeights:{...state.nextWeights,deadlift:undefined},equipment:{...state.equipment,kb:[12,14,16,18,20,22,24,26,28,30,32],pairs:[16,18,20,22,24,26,28,30,32],maxKbKg:32}};
     if(!persistTraining(next,null))return false;
