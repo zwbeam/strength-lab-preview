@@ -57,6 +57,19 @@ assert.equal(E.stateFor(replaced,'snatch').stage,0,'replacement restarts progres
 assert.equal(replaced.sessions.length,replacementBase.sessions.length,'replacement does not create a training session');
 assert.throws(()=>E.replaceUnavailableLoad(replacementBase,'snatch',20),/currently available/,'cannot replace with unowned weight');
 assert.throws(()=>E.replaceUnavailableLoad(prior,'snatch',18),/still available/,'cannot bypass normal progression with available working weight');
+// Equipment changes after completed sessions must preserve immutable evidence.
+const historicPolicy=E.policyFor('snatch',prior);
+const historicTarget=historicPolicy.stages[0];
+const historicSession={id:'historic-1',date:'2026-10-01',items:[{id:'snatch',weight:16,quality:'clean',pain:false,completed:true,performed:true,mode:'volume',actualSets:historicTarget.sets,actualReps:historicTarget.reps,targetSets:historicTarget.sets,targetReps:historicTarget.reps,rest:historicTarget.rest,policyKey:historicPolicy.key,track:'base'}]};
+const historicBase={...prior,sessions:[historicSession],equipment:{...prior.equipment,kb:[12,18]}};
+const historicSnapshot=JSON.stringify(historicBase.sessions);
+const historicReplacement=E.replaceUnavailableLoad(historicBase,'snatch',12);
+assert.equal(JSON.stringify(historicReplacement.sessions),historicSnapshot,'reassignment preserves recorded session evidence exactly');
+assert.equal(E.stateFor(historicReplacement,'snatch').weight,12,'new weight takes effect despite earlier heavier session');
+assert.equal(E.stateFor(historicReplacement,'snatch').stage,0,'earlier clean exposure does not carry over to new weight');
+assert.equal(E.stateFor(historicReplacement,'snatch').streak,0,'earlier exposure streak does not carry over');
+assert.equal(E.stateFor(historicBase,'snatch').weight,16,'original state remains unchanged');
+assert.throws(()=>E.replaceUnavailableLoad({...historicBase,equipment:{...historicBase.equipment,kb:[12,16,18]}},'snatch',12),/still available/,'history does not enable unauthorized load change');
 const backupWithCeilings={version:33,sessions:[],weights:{},equipment:{kb:[12,16,18],club:[5,10,17],maxKbKg:18,maxClubLb:17}};
 const restored=E.validateBackup(backupWithCeilings);
 assert.equal(restored.equipment.maxKbKg,18,'backup preserves kettlebell ceiling');
