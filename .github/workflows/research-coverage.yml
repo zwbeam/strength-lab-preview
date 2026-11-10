@@ -79,6 +79,20 @@ jobs:
               destination.parent.mkdir(parents=True,exist_ok=True)
               shutil.copy2(file,destination)
           PY
+      - name: Stamp review build identity
+        env:
+          REVIEW_SHA: ${{ github.sha }}
+        run: |
+          python3 - <<'PY'
+          import json,os,pathlib
+          path=pathlib.Path('review-build/preview-build.json')
+          data=json.loads(path.read_text())
+          data['channel']='research-integration-review'
+          data['source_commit']=os.environ['REVIEW_SHA']
+          data['production_modified']=False
+          path.write_text(json.dumps(data,indent=2)+'\\n')
+          print('Review package commit:',data['source_commit'])
+          PY
       - name: Upload review build for download
         uses: actions/upload-artifact@v4
         with:
