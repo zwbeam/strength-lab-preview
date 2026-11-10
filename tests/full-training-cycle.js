@@ -70,6 +70,21 @@ assert.equal(E.stateFor(historicReplacement,'snatch').stage,0,'earlier clean exp
 assert.equal(E.stateFor(historicReplacement,'snatch').streak,0,'earlier exposure streak does not carry over');
 assert.equal(E.stateFor(historicBase,'snatch').weight,16,'original state remains unchanged');
 assert.throws(()=>E.replaceUnavailableLoad({...historicBase,equipment:{...historicBase.equipment,kb:[12,16,18]}},'snatch',12),/still available/,'history does not enable unauthorized load change');
+// Replacing lost matched pairs and club loads follows the same history-safe rule.
+const pairHistory={...prior,weights:{...prior.weights,doubleSquat:16},sessions:[{id:'pair-history',date:'2026-10-02',items:[{id:'doubleSquat',weight:16,quality:'clean',pain:false,completed:true,performed:true,actualSets:1,actualReps:5,targetSets:1,targetReps:5,track:'base'}]}],equipment:{...prior.equipment,kb:[12,16,18],pairs:[12]}};
+const pairSnapshot=JSON.stringify(pairHistory.sessions);
+const pairReplaced=E.replaceUnavailableLoad(pairHistory,'doubleSquat',12);
+assert.equal(E.stateFor(pairReplaced,'doubleSquat').weight,12,'matched-pair replacement changes per-bell working weight');
+assert.equal(E.stateFor(pairReplaced,'doubleSquat').stage,0,'matched-pair replacement restarts progression');
+assert.equal(JSON.stringify(pairReplaced.sessions),pairSnapshot,'matched-pair replacement preserves recorded workouts');
+assert.throws(()=>E.replaceUnavailableLoad(pairHistory,'doubleSquat',18),/currently available/,'single owned bell does not qualify as matched pair');
+const clubHistory={...prior,sessions:[{id:'club-history',date:'2026-10-03',items:[{id:'cast',weight:10,quality:'clean',pain:false,completed:true,performed:true,actualSets:1,actualReps:5,targetSets:1,targetReps:5,track:'base'}]}],equipment:{...prior.equipment,club:[5,12],maxClubLb:12}};
+const clubSnapshot=JSON.stringify(clubHistory.sessions);
+const clubReplaced=E.replaceUnavailableLoad(clubHistory,'cast',5);
+assert.equal(E.stateFor(clubReplaced,'cast').weight,5,'club replacement changes working weight');
+assert.equal(E.stateFor(clubReplaced,'cast').stage,0,'club replacement restarts progression');
+assert.equal(JSON.stringify(clubReplaced.sessions),clubSnapshot,'club replacement preserves recorded workouts');
+assert.throws(()=>E.replaceUnavailableLoad({...clubHistory,equipment:{...clubHistory.equipment,maxClubLb:4}},'cast',5),/currently available/,'club ceiling cannot be bypassed by replacement');
 const backupWithCeilings={version:33,sessions:[],weights:{},equipment:{kb:[12,16,18],club:[5,10,17],maxKbKg:18,maxClubLb:17}};
 const restored=E.validateBackup(backupWithCeilings);
 assert.equal(restored.equipment.maxKbKg,18,'backup preserves kettlebell ceiling');
