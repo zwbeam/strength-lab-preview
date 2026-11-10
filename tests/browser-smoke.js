@@ -253,6 +253,18 @@ const {chromium}=require('playwright');
       throw Error('Long-history record integrity failed: '+JSON.stringify(historyIntegrity));
    console.log('540-session history integrity after correction passed at '+viewport.width+'px');
 
+   await page.locator('[data-tab="settings"]').click();
+   const backupBefore=await page.evaluate(()=>localStorage.getItem('sl-dev-preview-data-v33'));
+   const badDialog=page.waitForEvent('dialog');
+   await page.locator('#import').setInputFiles({name:'broken-backup.json',mimeType:'application/json',buffer:Buffer.from('{"sessions":')});
+   const badAlert=await badDialog;
+   if(!badAlert.message().includes('Cannot restore backup'))throw Error('Malformed backup did not display restore error');
+   await badAlert.accept();
+   const backupAfter=await page.evaluate(()=>localStorage.getItem('sl-dev-preview-data-v33'));
+   if(backupAfter!==backupBefore)throw Error('Malformed backup changed saved training data');
+   console.log('Malformed backup rejected without data loss at '+viewport.width+'px');
+
+
    console.log('History correction save/reload passed at '+viewport.width+'px');
 
 
