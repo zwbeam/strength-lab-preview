@@ -129,6 +129,15 @@ assert.equal(E.stateFor(decadeRestored,'snatch').weight,12,'decade-scale restore
 assert.ok(decadeElapsed<10000,'decade-scale backup validation exceeds ten-second regression budget: '+decadeElapsed+'ms');
 console.log('2600-session backup validation completed in '+decadeElapsed+'ms');
 
+const duplicateDecade={...decadeBackup,sessions:decadeSessions.map((entry,i)=>i===2599?{...entry,id:'decade-0'}:entry)};
+assert.throws(()=>E.validateBackup(duplicateDecade),/Duplicate workout identity/,'decade-scale backup rejects duplicate session identity');
+const corruptedDecade={...decadeBackup,sessions:decadeSessions.map((entry,i)=>i===1300?{...entry,items:[{...entry.items[0],weight:-1}]}:entry)};
+assert.throws(()=>E.validateBackup(corruptedDecade),/Invalid movement record/,'decade-scale backup rejects corrupted mid-history movement');
+const invalidDateDecade={...decadeBackup,sessions:decadeSessions.map((entry,i)=>i===2599?{...entry,date:'2026-02-30'}:entry)};
+assert.throws(()=>E.validateBackup(invalidDateDecade),/Invalid training entry/,'decade-scale backup rejects impossible calendar date');
+console.log('2600-session duplicate, corrupted-load and invalid-date rejection passed');
+
+
 
 assert.doesNotThrow(()=>E.validateProgramming({...state,equipment:{kb:[16,18],club:[5,10],pairs:[16,18],maxKbKg:18,maxClubLb:17}}),'valid matched pairs accepted');
 assert.throws(()=>E.validateProgramming({...state,equipment:{kb:[16,18],club:[5,10],pairs:[20],maxKbKg:18,maxClubLb:17}}),/Invalid matched kettlebell pairs/,'pair cannot exceed configured ceiling');
