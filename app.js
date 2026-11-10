@@ -125,14 +125,9 @@ function dose(rx){return `${rx.sets} × ${rx.reps}${rx.timed?' sec':''}${rx.dura
 function card(title,body){return `<section class="card"><h2>${title}</h2>${body}</section>`;}
 function readinessButtons(){return `<div class="choice" aria-label="Readiness"><button data-ready="normal" class="${readiness==='normal'?'active':''}">Ready</button><button data-ready="low" class="${readiness==='low'?'active':''}">Low energy / sore</button></div>`;}
 function warmup(plan){
- const families=[...new Set(plan.items.map(rx=>E.MOVES[rx.id].family))];
  const complex=plan.items.some(rx=>/getup|snatch|clean|cast|mill/i.test(rx.id));
- const minutes=plan.budget.warmup;
- const open=minutes<=4?1:2;
- const closed=minutes<=5?1:2;
- const specific=Math.max(1,minutes-open-closed);
  const names=plan.items.map(rx=>esc(rx.name)).join(', ');
- return `<ol><li>${open} min: open-chain, comfortable joint circles and controlled ranges relevant to ${families.map(esc).join(', ')}.</li><li>${closed} min: supported/closed-chain pattern practice; keep a stable contact point and explore comfortable motion for the joints used today.</li><li>${specific} min: rehearse ${names} unloaded, or with a familiar light tool. When a lighter implement is available, keep warm-up loading at or below roughly half the planned working load; otherwise practice unloaded rather than improvising a heavy warm-up.${complex?' Break complex skills into safe, familiar components before attempting the full pattern.':''}</li></ol><p class="muted small">Warm-up goal: prepare the exact patterns trained, not accumulate fatigue. Open-chain, closed-chain and light weighted practice come from <button class="source-open" data-open-source="670">Wildman's warm-up design discussion</button>. The time split and individual drill choices are app design, not quoted prescriptions.</p>`;
+ return `<ol><li><strong>Minutes 0–2 · Light tool movement.</strong> Alternate one minute per side or hand position of a familiar light shield/gamma cast, or use unloaded halos and shoulder circles if casting is not yet comfortable. Use a light implement, below roughly 60% of working weight.</li><li><strong>Minutes 2–4 · Shoulders and neck.</strong> Gentle controlled shoulder circles, scapular movement and comfortable neck ranges; do not force end range.</li><li><strong>Minutes 4–6 · Spine.</strong> Controlled spinal rocks or an accessible shin-box transition. Roll smoothly without impact; use supported floor movements when needed.</li><li><strong>Minutes 6–8 · Hips.</strong> Shin-box switches or supported hip rotations and squat-range exploration. Keep motion controlled, not fatiguing.</li></ol><p class="muted small">This eight-minute four-station format follows <button class="source-open" data-open-source="550">Wildman's basic warm-up</button>; movements are adapted for familiarity and safe access. The session's strength movements (${names}) should be technically familiar before loading.${complex?' Rehearse any unfamiliar complex elements unloaded before starting the strength timer.':''} Do not skip the warm-up to gain lifting time.</p>`;
 }
 function cooldown(plan){
  const items=plan.items||[];
