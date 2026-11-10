@@ -64,4 +64,9 @@ assert.equal(E.stateFor(state,id).stage,2,'second post-reentry clean exposure ad
 assert.equal(E.stateFor(state,id).streak,0,'advancement resets the streak');
 assert.deepEqual(E.loadOptions(state,id),[],'partial rebuilt volume still cannot unlock weight');
 assert.throws(()=>E.selectLoad(state,id,20),/available, permitted increment/,'cannot skip to a heavier weight during rebuild');
-console.log('Full snatch volume-density-load cycle passed:',day,'sessions including reentry');
+// Equipment ceiling: completion must not invent weights the user does not own.
+const ceiling={...state,nextWeights:{...state.nextWeights,snatch:20},equipment:{...state.equipment,kb:[16,18,20]}};
+assert.equal(E.stateFor(ceiling,id).weight,20,'test fixture is at the heaviest owned bell');
+assert.deepEqual(E.loadOptions(ceiling,id),[],'no load beyond configured inventory');
+assert.throws(()=>E.selectLoad(ceiling,id,22),/available, permitted increment/,'unowned bell cannot be selected');
+console.log('Full snatch volume-density-load cycle passed:',day,'sessions including reentry and equipment ceiling');
