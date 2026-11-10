@@ -235,6 +235,24 @@ const {chromium}=require('playwright');
     return state.sessions.find(s=>s.notes==='Browser-tested correction');
    });
    if(!restored)throw Error('Correction missing after reload');
+
+   const historyIntegrity=await page.evaluate(()=>{
+    const data=JSON.parse(localStorage.getItem('sl-dev-preview-data-v33'));
+    const sessions=data.sessions||[];
+    const ids=sessions.map(x=>x.id);
+    const corrected=sessions.filter(x=>x.notes==='Browser-tested correction');
+    const original=sessions.find(x=>x.id==='browser-session-0');
+    const last=sessions.find(x=>x.id==='browser-session-539');
+    return {count:sessions.length,uniqueIds:new Set(ids).size,corrections:corrected.length,
+      originalDate:original?.date,lastDate:last?.date,originalWeight:original?.items?.[0]?.weight,
+      lastWeight:last?.items?.[0]?.weight,correctedId:corrected[0]?.id};
+   });
+   if(historyIntegrity.count!==540||historyIntegrity.uniqueIds!==540||historyIntegrity.corrections!==1||
+      historyIntegrity.originalDate!=='2025-01-01'||historyIntegrity.originalWeight!==16||
+      historyIntegrity.lastWeight!==16||!historyIntegrity.correctedId)
+      throw Error('Long-history record integrity failed: '+JSON.stringify(historyIntegrity));
+   console.log('540-session history integrity after correction passed at '+viewport.width+'px');
+
    console.log('History correction save/reload passed at '+viewport.width+'px');
 
 
