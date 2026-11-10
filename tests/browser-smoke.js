@@ -34,6 +34,24 @@ const {chromium}=require('playwright');
    if(!await mobility.locator('#mobility-clock').count())throw Error('Mobility timer did not start');
    await page.waitForTimeout(1200);
    if(!await mobility.locator('#mobility-clock').innerText())throw Error('Mobility clock empty');
+   const audioChecks=await page.evaluate(()=>{
+    clearInterval(mobilityClock);
+    const sounds=[],spoken=[];
+    mobilitySound=kind=>sounds.push(kind);
+    mobilitySpeak=message=>spoken.push(message);
+    const base=Date.now();
+    function step(elapsed){mobilityStartedAt=Date.now()-elapsed*1000;updateMobilityClock();}
+    mobilityStageIndex=-1;mobilityLastRemaining=null;
+    step(0);
+    step(59);step(60);step(61);
+    step(117);step(118);step(119);step(120);
+    return {sounds,spoken,clock:document.querySelector('#mobility-clock')?.textContent};
+   });
+   if(audioChecks.sounds.filter(x=>x==='mid').length!==1)throw Error('Midpoint cue duplicated or missing: '+JSON.stringify(audioChecks));
+   if(audioChecks.sounds.filter(x=>x==='count').length!==3)throw Error('Countdown should have three distinct beeps: '+JSON.stringify(audioChecks));
+   if(audioChecks.sounds.filter(x=>x==='whistle').length!==2||audioChecks.spoken.length!==2)throw Error('Stage transitions must whistle and announce movement: '+JSON.stringify(audioChecks));
+   if(!audioChecks.clock.includes('Light club skill'))throw Error('Mobility stage did not advance');
+
    await mobility.locator('#cancel-mobility').click();
    if(!await mobility.locator('#start-mobility').count())throw Error('Mobility cancel failed');
    console.log('Guided mobility start, clock and cancel passed at '+viewport.width+'px');
