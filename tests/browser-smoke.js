@@ -28,7 +28,7 @@ const {chromium}=require('playwright');
      id:'browser-session-'+i,title:'Browser history '+i,
      date:new Date(Date.UTC(2025,0,1)+i*86400000).toISOString().slice(0,10),
      items:[{id:'swing',weight:16,actualSets:3,actualReps:10,targetSets:3,targetReps:10,
-       rest:90,quality:'clean',completed:true,performed:true,pain:false}]
+       rest:90,quality:'clean',completed:true,performed:true,pain:false,sets:[{done:true,skipped:false,reps:10,weight:16}]}]
     }));
     localStorage.setItem('sl-dev-preview-data-v33',JSON.stringify({
      version:33,defaultMinutes:45,sessions,weights:{swing:16},
