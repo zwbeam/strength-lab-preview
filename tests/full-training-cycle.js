@@ -40,7 +40,7 @@ assert.ok(!E.loadOptions(doubleState,'doubleSquat').includes(20),'unowned 20 kg 
 assert.deepEqual(E.loadOptions({...doubleState,equipment:{...doubleState.equipment,maxKbKg:16}},'doubleSquat'),[],'per-bell ceiling blocks double load');
 // Removing equipment blocks future prescriptions, not historical training evidence.
 const prior={sessions:[],weights:{snatch:16,doubleSquat:16,cast:10},equipment:{kb:[16,18],pairs:[16],club:[10,12],maxKbKg:18,maxClubLb:12},trainingPreferences:{useDoubleKb:true},skills:{}};
-assert.notMatch(E.prescription(prior,'snatch').reason,/not currently available/,'owned kettlebell is not blocked by equipment availability');
+assert.doesNotMatch(E.prescription(prior,'snatch').reason,/not currently available/,'owned kettlebell is not blocked by equipment availability');
 assert.equal(E.prescription({...prior,equipment:{...prior.equipment,kb:[18]}},'snatch').sets,0,'removed kettlebell blocks future prescription');
 assert.deepEqual(E.availableWorkingLoads({...prior,equipment:{...prior.equipment,kb:[18]}},'snatch'),[18],'replacement loads exclude removed weight');
 assert.deepEqual(E.availableWorkingLoads({...prior,equipment:{...prior.equipment,maxKbKg:14}},'snatch'),[],'replacement loads respect lowered ceiling');
