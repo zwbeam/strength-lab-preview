@@ -254,6 +254,19 @@ const {chromium}=require('playwright');
    console.log('540-session history integrity after correction passed at '+viewport.width+'px');
 
    await page.locator('[data-tab="settings"]').click();
+   await page.locator('[data-tab="settings"]').click();
+   const exportPromise=page.waitForEvent('download');
+   await page.locator('#export').click();
+   const exportDownload=await exportPromise;
+   const exportedChunks=[];
+   for await(const chunk of await exportDownload.createReadStream())exportedChunks.push(chunk);
+   const exported=JSON.parse(Buffer.concat(exportedChunks).toString('utf8'));
+   if(exported.sessions?.length!==540||
+      new Set(exported.sessions.map(x=>x.id)).size!==540||
+      !exported.sessions.some(x=>x.notes==='Browser-tested correction')||
+      !exported.equipment?.kb?.length)
+     throw Error('Downloaded JSON backup omitted historical sessions, correction, or equipment');
+   console.log('Downloaded 540-session JSON backup contains history and equipment at '+viewport.width+'px');
    const backupBefore=await page.evaluate(()=>localStorage.getItem('sl-dev-preview-data-v33'));
    const badDialog=page.waitForEvent('dialog');
    await page.locator('#import').setInputFiles({name:'broken-backup.json',mimeType:'application/json',buffer:Buffer.from('{"sessions":')});
