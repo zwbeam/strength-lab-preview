@@ -370,6 +370,37 @@ const {chromium}=require('playwright');
    if(persistedOldEdit!==1)throw Error('Decade-scale historical correction lost after reload');
    console.log('2600-session historical correction survived reload without changing equipment or progression at '+viewport.width+'px');
 
+   const reopenChecks=await page.evaluate(()=>{
+    const original=JSON.parse(localStorage.getItem('sl-dev-preview-data-v33'));
+    const snapshot=JSON.stringify(original);
+    const beforeIds=original.sessions.map(s=>s.id);
+    const beforeWeights=JSON.stringify(original.nextWeights);
+    const beforeEquipment=JSON.stringify(original.equipment);
+    for(let i=0;i<8;i++){render();}
+    const after=JSON.parse(localStorage.getItem('sl-dev-preview-data-v33'));
+    return {unchanged:JSON.stringify(after)===snapshot,count:after.sessions.length,
+      unique:new Set(after.sessions.map(s=>s.id)).size,
+      idsUnchanged:JSON.stringify(after.sessions.map(s=>s.id))===JSON.stringify(beforeIds),
+      weightsUnchanged:JSON.stringify(after.nextWeights)===beforeWeights,
+      equipmentUnchanged:JSON.stringify(after.equipment)===beforeEquipment};
+   });
+   if(!reopenChecks.unchanged||reopenChecks.count!==2600||reopenChecks.unique!==2600||
+      !reopenChecks.idsUnchanged||!reopenChecks.weightsUnchanged||!reopenChecks.equipmentUnchanged)
+     throw Error('Repeated render mutated decade-scale training history: '+JSON.stringify(reopenChecks));
+   for(let i=0;i<3;i++){
+     await page.reload({waitUntil:'domcontentloaded'});
+     await page.locator('#app').waitFor();
+   }
+   const afterReopens=await page.evaluate(()=>{
+    const state=JSON.parse(localStorage.getItem('sl-dev-preview-data-v33'));
+    return {count:state.sessions.length,unique:new Set(state.sessions.map(s=>s.id)).size,
+      corrected:state.sessions.filter(s=>s.notes==='Decade-scale corrected session').length};
+   });
+   if(afterReopens.count!==2600||afterReopens.unique!==2600||afterReopens.corrected!==1)
+    throw Error('Repeated reopen damaged decade-scale history: '+JSON.stringify(afterReopens));
+   console.log('2600-session repeated rendering and reopening integrity passed at '+viewport.width+'px');
+
+
 
 
 
