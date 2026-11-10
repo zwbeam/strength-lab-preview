@@ -30,6 +30,7 @@ assert.equal(E.loadOptions(state,id).length,0,'cannot increase load in the middl
 for(let i=0;i<policy.density.length;i++){
  for(let exposure=0;exposure<2;exposure++)complete();
 }
+console.log('DENSITY DIAGNOSTIC',JSON.stringify({state:E.stateFor(state,id),sessions:day},(k,v)=>k==='policy'||k==='last'?undefined:v));
 assert.equal(E.stateFor(state,id).phase,'ready','density endpoint reached');
 assert.ok(E.loadOptions(state,id).includes(18),'post-density load selection available');
 state=E.selectLoad(state,id,18);
