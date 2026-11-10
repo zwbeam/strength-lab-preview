@@ -48,4 +48,11 @@ assert.equal(E.stateFor(state,id).streak,1,'first clean exposure at new weight i
 complete();
 assert.equal(E.stateFor(state,id).stage,1,'second clean exposure advances the new load');
 assert.deepEqual(E.loadOptions(state,id),[],'cannot raise load after only one completed stage');
-console.log('Full snatch volume-density-load cycle passed:',day,'clean sessions');
+// An interrupted return must not count as another clean advancement.
+const interrupted=E.stateFor(state,id);
+const pauseDate=new Date(Date.UTC(2026,0,1+day++)).toISOString().slice(0,10);
+state={...state,sessions:[...state.sessions,{id:'s'+day,date:pauseDate,items:[{id,weight:interrupted.weight,quality:'clean',pain:false,completed:true,performed:true,mode:'reentry',actualSets:interrupted.sets,actualReps:interrupted.reps,targetSets:interrupted.sets,targetReps:interrupted.reps,rest:interrupted.rest,policyKey:policy.key,track:'base'}]}]};
+assert.equal(E.stateFor(state,id).stage,1,'reentry does not advance a volume stage');
+assert.equal(E.stateFor(state,id).streak,0,'reentry interrupts the advancement streak');
+assert.deepEqual(E.loadOptions(state,id),[],'reentry cannot unlock a load increase');
+console.log('Full snatch volume-density-load cycle passed:',day,'sessions including reentry');
