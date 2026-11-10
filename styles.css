@@ -23,3 +23,7 @@
 #mobility-session ol{list-style-position:outside;padding-inline-start:1.6rem}
 #mobility-session li{display:list-item;width:auto;max-width:100%;white-space:normal;word-break:normal;overflow-wrap:break-word;line-height:1.5;margin-block:0.65rem}
 #mobility-session .source-open{display:inline;white-space:normal}
+
+#mobility-session>summary{display:list-item;font-weight:800;color:#b9e9de;cursor:pointer;min-height:40px;padding:8px 0}
+#mobility-session:not([open]){padding:8px 14px;margin:12px 0;background:#192b2e;border:1px solid #466a69;border-radius:10px}
+#mobility-session[open]{padding:12px 14px;margin:12px 0;background:#192b2e;border:1px solid #466a69;border-radius:10px}
