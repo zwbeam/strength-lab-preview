@@ -193,13 +193,21 @@ function programDecision(p){return `<details class="card" id="program-decision">
 
 function movementLink(id){return `<button class="movement-link" data-instruction="${id}">${esc(E.MOVES[id].name)}</button>`;}
 function preparation(plan,kind){
- const total=(kind==='warmup'?plan.budget.warmup:plan.budget.cooldown)*60;
- if(kind==='cooldown'){
-  const mobility=Math.max(0,total-120);
-  return `<div class="prep-exercises"><div class="prep-exercise"><div class="prep-name"><button class="movement-link" data-prep="walk">Easy walking in place</button></div><p class="rx"><strong>1 × 60 sec</strong> · Easy pace</p></div><div class="prep-exercise"><div class="prep-name"><button class="movement-link" data-prep="mobility">Gentle joint movement</button></div><p class="rx"><strong>${Math.round(mobility/60)} min</strong> · Repeat 5 shoulder circles each direction and 5 ankle rocks / side gently</p></div><div class="prep-exercise"><div class="prep-name"><button class="movement-link" data-prep="breathing">Relaxed breathing</button></div><p class="rx"><strong>1 × 60 sec</strong> · Comfortable breathing</p></div></div>`;
- }
- const seconds=Math.floor((total-120)/Math.max(1,plan.items.length));
- return `<div class="prep-exercises"><div class="prep-exercise"><div class="prep-name"><button class="movement-link" data-prep="walk">Easy walking in place</button></div><p class="rx"><strong>1 × 60 sec</strong> · Easy pace</p></div><div class="prep-exercise"><div class="prep-name"><button class="movement-link" data-prep="mobility">Gentle joint movement</button></div><p class="rx"><strong>1 × 60 sec</strong> · Repeat 5 shoulder circles each direction and 5 ankle rocks / side gently</p></div>${plan.items.map(rx=>{const gear=E.MOVES[rx.id].gear,light=(state.equipment?.[gear]||[]).filter(w=>w<=rx.weight/2).at(-1),reps=rx.durationScope==='total'?'1 slow rep / side':`3 practice reps${rx.side===2?' / side':''}`,load=light?`Practice weight: ${light} ${esc(rx.unit)} or unloaded`:'Practice unloaded';return `<div class="prep-exercise"><div class="prep-name">${movementLink(rx.id)}</div><p class="rx"><strong>${load} - ${reps}</strong> · Repeat gently for ${seconds}s</p></div>`;}).join('')}</div>`;
+ const total=plan.budget[kind];
+ const isWarm=kind==='warmup';
+ const sections=isWarm?[
+  ['Light tool movement','Familiar light shield/gamma cast or unloaded halos; change hand position halfway'],
+  ['Shoulders and neck','Controlled shoulder circles, scapular movement and comfortable neck ranges'],
+  ['Spine','Gentle spinal rocks or supported spinal articulation without impact'],
+  ['Hips','Shin-box switches, supported hip rotations and comfortable squat range']
+ ]:[
+  ['Spinal extension','Gentle Sphinx position or comfortable supported extension'],
+  ['Spinal flexion','Supported forward fold without forcing the range'],
+  ['Spinal rotation','Comfortable seated or supported twist'],
+  ['Hip mobility','Supported shin-box position or gentle hip-flexor stretch']
+ ];
+ const allocations=isWarm?[2,2,2,2]:Array.from({length:4},(_,i)=>Math.floor(total/4)+(i<total%4?1:0));
+ return '<div class="prep-exercises">'+sections.map((entry,i)=>allocations[i]?'<div class="prep-exercise"><div class="prep-name">'+esc(entry[0])+'</div><p class="rx"><strong>'+allocations[i]+' min</strong> · '+esc(entry[1])+'</p></div>':'').join('')+'</div>';
 }
 function prepSection(plan,kind,open=false){return `<details class="preparation" data-panel="${kind}" ${(panelState.has(kind)?panelState.get(kind):open)?'open':''}><summary>${kind==='warmup'?'Warm-up':'Cooldown'} · ${plan.budget[kind]} min · view movements</summary>${preparation(plan,kind)}</details>`;}
 function compactPrescription(rx){const structure=N.structure(rx);const rest=structure.match(/(\d+)s rest between sets/i);const extra=structure.replace(/\d+s rest between sets/i,'').replace(/straight rep sets/ig,'').replace(/^[\s·;,-]+|[\s·;,-]+$/g,'').trim();const detail=extra&&!/^[·;,-]+$/.test(extra)?` <span class="small muted">· ${esc(extra)}</span>`:'';return `<strong>${loadText(rx)} - ${dose(rx)}${rest?' - '+rest[1]+'s Rest between sets':structure&&extra?' - '+esc(extra):''}</strong>${rest?detail:''}${!rx.continuous&&rx.betweenExercises?` <span class="small muted">· ${rx.betweenExercises}s transition</span>`:''}`;}
