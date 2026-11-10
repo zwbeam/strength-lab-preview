@@ -75,3 +75,21 @@ const loadChanged=E.stateFor({...at([
 ]),nextWeights:{swing:18}},id);
 assert.equal(loadChanged.streak,0,'load change must clear prior exposure streak');
 assert.throws(()=>E.selectLoad({...base,equipment:{kb:[16,18],club:[],pairs:[]}},id,20),/Load must be an available/,'load increase cannot bypass cycle gate');
+
+const nonAdvancingModes=['rebuild','reentry','recovery','deload'];
+for(const mode of nonAdvancingModes){
+ const st=E.stateFor(at([
+  ['2026-01-01',entry('2026-01-01')],
+  ['2026-01-03',entry('2026-01-03','clean',{mode,completed:true})],
+  ['2026-01-05',entry('2026-01-05')]
+ ]),id);
+ assert.equal(st.stage,0,mode+' must interrupt rather than complete a progression streak');
+}
+const painHistory=at([
+ ['2026-01-01',entry('2026-01-01')],
+ ['2026-01-03',entry('2026-01-03','pain',{pain:true,completed:false})]
+]);
+assert.ok(E.stateFor(painHistory,id).hold,'pain hold must remain until explicit review');
+const postReview=E.resolvePain(painHistory,id);
+assert.ok(!E.stateFor(postReview,id).hold,'explicit pain review clears hold');
+assert.equal(E.stateFor(postReview,id).reviewRecovery,true,'review requires a clean return session');
