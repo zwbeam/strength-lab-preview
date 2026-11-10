@@ -87,7 +87,7 @@ const {chromium}=require('playwright');
     const host=document.createElement('div');
     host.id='replacement-test-host';
     host.innerHTML=unavailableLoadActions({items:[{id:'deadlift',name:'Kettlebell deadlift',bodyweight:false,weight:16,unit:'kg'}]});
-    document.body.append(host);
+    document.querySelector('#app').prepend(host);
     return true;
    });
    if(!fixtureReady)throw Error('Could not prepare replacement click-through fixture');
