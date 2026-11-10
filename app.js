@@ -124,8 +124,21 @@ function loadText(rx){return rx.bodyweight?'Bodyweight / no external load':rx.we
 function dose(rx){return `${rx.sets} × ${rx.reps}${rx.timed?' sec':''}${rx.durationScope==='total'?' total, alternating sides':rx.side===2?' / side':''}`;}
 function card(title,body){return `<section class="card"><h2>${title}</h2>${body}</section>`;}
 function readinessButtons(){return `<div class="choice" aria-label="Readiness"><button data-ready="normal" class="${readiness==='normal'?'active':''}">Ready</button><button data-ready="low" class="${readiness==='low'?'active':''}">Low energy / sore</button></div>`;}
-function warmup(plan){const families=[...new Set(plan.items.map(rx=>E.MOVES[rx.id].family))];return `<ol><li>1 min: easy walking and comfortable breathing.</li><li>1 min: comfortable joint movement for ${families.map(esc).join(', ')} patterns.</li><li>${plan.budget.warmup-2} min: rehearse ${plan.items.map(rx=>esc(rx.name)).join(', ')} without load, then with a familiar light tool.</li></ol><p class="muted small">Prime today's actual movements. Stop if a pattern causes pain. Timing and drill choices are app defaults; pattern-specific preparation follows <button class="source-open" data-open-source="670">the warmup design lesson</button>.</p>`;}
-function cooldown(plan){return `<ol><li>1 min: slow walking and calm breathing.</li><li>${plan.budget.cooldown-2} min: comfortable, unforced mobility for the areas trained today.</li><li>1 min: relaxed breathing and check for unusual discomfort.</li></ol><p class="muted small">No forced stretching. Included in the selected workout duration.</p>`;}
+function warmup(plan){
+ const families=[...new Set(plan.items.map(rx=>E.MOVES[rx.id].family))];
+ const complex=plan.items.some(rx=>/getup|snatch|clean|cast|mill/i.test(rx.id));
+ const minutes=plan.budget.warmup;
+ const open=minutes<=4?1:2;
+ const closed=minutes<=5?1:2;
+ const specific=Math.max(1,minutes-open-closed);
+ const names=plan.items.map(rx=>esc(rx.name)).join(', ');
+ return `<ol><li>${open} min: open-chain, comfortable joint circles and controlled ranges relevant to ${families.map(esc).join(', ')}.</li><li>${closed} min: supported/closed-chain pattern practice; keep a stable contact point and explore comfortable motion for the joints used today.</li><li>${specific} min: rehearse ${names} unloaded, or with a familiar light tool. When a lighter implement is available, keep warm-up loading at or below roughly half the planned working load; otherwise practice unloaded rather than improvising a heavy warm-up.${complex?' Break complex skills into safe, familiar components before attempting the full pattern.':''}</li></ol><p class="muted small">Warm-up goal: prepare the exact patterns trained, not accumulate fatigue. Open-chain, closed-chain and light weighted practice come from <button class="source-open" data-open-source="670">Wildman's warm-up design discussion</button>. The time split and individual drill choices are app design, not quoted prescriptions.</p>`;
+}
+function cooldown(plan){
+ const families=[...new Set(plan.items.map(rx=>E.MOVES[rx.id].family))];
+ const mobility=Math.max(1,plan.budget.cooldown-2);
+ return `<ol><li>1 min: easy walking or relaxed movement while breathing settles.</li><li>${mobility} min: gentle, comfortable mobility focused on the ${families.map(esc).join(', ')} patterns practiced today; avoid forcing range of motion.</li><li>1 min: calm breathing and a brief check for unusual discomfort before finishing.</li></ol><p class="muted small">Cooldown is included in the session budget. These are conservative app-designed recovery directions, not a claimed transcript-specific Wildman sequence.</p>`;
+}
 function emptyPlanMessage(p){
  if(p.paused)return 'Training is paused. Resume training when you choose.';
  if(p.held?.length)return 'No workout is ready. Review the pain holds in Progress; more time or lower readiness does not clear a hold.';
