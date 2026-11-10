@@ -568,3 +568,26 @@ body{background-image:linear-gradient(#0b1215d9,#0b1215d9),url("chalk-notes-over
 .explanation-method{padding:7px 0}
 .progression-roadmap{display:flex;gap:5px;flex-wrap:wrap;margin:12px 0}
 .progression-roadmap span{font-size:11px;padding:6px 8px;border:1px solid rgba(128,128,128,.35);border-radius:7px}
+
+/* Research integration: subtle colored chalk accents for non-Train tabs.
+   Preserve the existing card layout and high-contrast reading surfaces. */
+#app[data-active-tab="progress"]{--section-ink:#9bd4db;--section-glow:rgba(60,166,178,.14)}
+#app[data-active-tab="learn"]{--section-ink:#e2b4d7;--section-glow:rgba(180,88,150,.13)}
+#app[data-active-tab="settings"]{--section-ink:#e6c48e;--section-glow:rgba(201,140,57,.13)}
+#app:is([data-active-tab="progress"],[data-active-tab="learn"],[data-active-tab="settings"]) .hub-tile{
+ border-color:color-mix(in srgb,var(--section-ink) 42%,#c5cdcb)!important;
+ background:linear-gradient(110deg,var(--section-glow),transparent 65%),#05090bf5!important;
+}
+#app:is([data-active-tab="progress"],[data-active-tab="learn"],[data-active-tab="settings"]) .hub-tile>summary strong{
+ color:var(--section-ink);
+}
+#app[data-active-tab="learn"] .learn-node{
+ border-left:3px solid var(--section-ink);
+ background:linear-gradient(100deg,var(--section-glow),transparent 75%),var(--card);
+}
+#app:is([data-active-tab="progress"],[data-active-tab="learn"],[data-active-tab="settings"]) .progression-roadmap span{
+ border-color:var(--section-ink);
+}
+@media (prefers-reduced-motion:reduce){
+ #app:is([data-active-tab="progress"],[data-active-tab="learn"],[data-active-tab="settings"]) .hub-tile{transition:none}
+}
