@@ -135,9 +135,26 @@ function warmup(plan){
  return `<ol><li>${open} min: open-chain, comfortable joint circles and controlled ranges relevant to ${families.map(esc).join(', ')}.</li><li>${closed} min: supported/closed-chain pattern practice; keep a stable contact point and explore comfortable motion for the joints used today.</li><li>${specific} min: rehearse ${names} unloaded, or with a familiar light tool. When a lighter implement is available, keep warm-up loading at or below roughly half the planned working load; otherwise practice unloaded rather than improvising a heavy warm-up.${complex?' Break complex skills into safe, familiar components before attempting the full pattern.':''}</li></ol><p class="muted small">Warm-up goal: prepare the exact patterns trained, not accumulate fatigue. Open-chain, closed-chain and light weighted practice come from <button class="source-open" data-open-source="670">Wildman's warm-up design discussion</button>. The time split and individual drill choices are app design, not quoted prescriptions.</p>`;
 }
 function cooldown(plan){
- const families=[...new Set(plan.items.map(rx=>E.MOVES[rx.id].family))];
- const mobility=Math.max(1,plan.budget.cooldown-2);
- return `<ol><li>1 min: easy walking or relaxed movement while breathing settles.</li><li>${mobility} min: gentle, comfortable mobility focused on the ${families.map(esc).join(', ')} patterns practiced today; avoid forcing range of motion.</li><li>1 min: calm breathing and a brief check for unusual discomfort before finishing.</li></ol><p class="muted small">Cooldown is included in the session budget. These are conservative app-designed recovery directions, not a claimed transcript-specific Wildman sequence.</p>`;
+ const items=plan.items||[];
+ const names=items.map(rx=>E.MOVES[rx.id]?.name||rx.name||'').join(' ').toLowerCase();
+ const grip=/club|cast|mill|swing|clean|snatch|carry|deadlift/.test(names)||items.some(rx=>['club','kb'].includes(E.MOVES[rx.id]?.gear));
+ const overhead=/press|snatch|jerk|overhead/.test(names);
+ const available=plan.budget.cooldown;
+ const focus=overhead?'upper back and shoulders':grip?'forearms and hips':'hips and areas trained';
+ const directions=[
+  ['Spinal extension','Gentle Sphinx position or another comfortable extension option',130],
+  ['Spinal flexion','Relaxed forward fold, using support if needed',129],
+  ['Spinal rotation','Comfortable seated twist, with an accessible position',137],
+  ['Hip mobility','Gentle hip-flexor stretch or supported shin-box position',135]
+ ];
+ // Wildman's general order is extension, flexion, rotation, hips.
+ // For a short session, omit later categories rather than promising impossible hold durations.
+ const slots=Math.min(4,Math.max(1,available));
+ const mins=Array(slots).fill(Math.floor(available/slots));
+ for(let i=0;i<available%slots;i++)mins[i]++;
+ const rows=directions.slice(0,slots).map((d,i)=>`<li>${mins[i]} min: ${d[0]} — ${d[1]} (<button class="source-open" data-open-source="${d[2]}">source</button>).</li>`);
+ const extra=overhead?' For overhead work, Wildman also discusses the box puppy-dog stretch (<button class="source-open" data-open-source="139">source</button>).':grip?' For grip-heavy work, he also discusses a wrist-and-elbow cooldown (<button class="source-open" data-open-source="132">source</button>).':'';
+ return `<ol>${rows.join('')}</ol><p class="muted small">Focus: ${focus}. Wildman's general cooldown directions and order are documented in <button class="source-open" data-open-source="130">Cooldown 1</button> and <button class="source-open" data-open-source="136">Cooldown 4</button>.${extra} This ${available}-minute allocation is an app adaptation; it is not a claim that every source prescribes these exact durations. Stay in comfortable ranges and skip anything painful.</p>`;
 }
 function emptyPlanMessage(p){
  if(p.paused)return 'Training is paused. Resume training when you choose.';
