@@ -123,22 +123,25 @@ const {chromium}=require('playwright');
    // The mobility content must respond to the CURRENT prescription, not
    // only to the last three workouts. Keep the 20-minute stage allocation.
    const focusChecks=await page.evaluate(()=>{
-     const originalState=state,originalMinutes=todayMinutes,originalReadiness=readiness;
-     const results=[];
-     for(const block of ['hingePathway','pushup','snatch','groundPractice']){
-       try{
-         state={...originalState,programBlock:block,sessions:[],activities:[],deferredIds:[],deferredByBlock:{},trainingPreferences:{...originalState.trainingPreferences,useKb:true,useBodyweight:true,conditioning:true},skills:{...originalState.skills,swing:true,clean:true,overhead:true,rack:true}};
+     const originalPlan=E.plan,results=[];
+     const cases=[['hinge','deadlift'],['squat','squat'],['overhead','press'],['grip','clubInside'],['ground','getup']];
+     try{
+       for(const [category,id] of cases){
+         E.plan=()=>({items:[{id}]});
          const routine=mobilityRoutine();
-         results.push({block,minutes:routine.reduce((n,x)=>n+x.min,0),titles:routine.map(x=>x.title),practice:routine[4].detail,focus:routine[8].detail});
-       }finally{state=originalState;todayMinutes=originalMinutes;readiness=originalReadiness;}
-     }
+         results.push({category,minutes:routine.reduce((n,x)=>n+x.min,0),titles:routine.map(x=>x.title),practice:routine[4].detail,focus:routine[8].detail});
+       }
+     }finally{E.plan=originalPlan;}
      return results;
    });
    for(const item of focusChecks){
      if(item.minutes!==20||item.titles.length!==9||item.titles[8]!=='Current prescription focus')throw Error('Mobility stage structure changed: '+JSON.stringify(item));
    }
-   const hingeFocus=focusChecks.find(x=>x.block==='hingePathway');
-   if(!/hinge/i.test(hingeFocus.practice)||!/hamstring|hip/i.test(hingeFocus.focus))throw Error('Hinge mobility not matched to prescription: '+JSON.stringify(hingeFocus));
+   const expected={hinge:/hinge/i,squat:/squat/i,overhead:/press.path/i,grip:/forearm|wrist/i,ground:/ground.to.standing/i};
+   for(const item of focusChecks){
+     const detail=item.category==='grip'?item.focus:item.practice;
+     if(!expected[item.category].test(detail))throw Error('Wrong movement-specific mobility focus: '+JSON.stringify(item));
+   }
    console.log('Current-prescription mobility focus and 20-minute structure passed at '+viewport.width+'px');
    await mobility.locator('#start-mobility').click();
    if(!await mobility.locator('#mobility-clock').count())throw Error('Mobility timer did not start');
