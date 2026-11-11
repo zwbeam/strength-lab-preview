@@ -322,7 +322,7 @@ function blockPlan(s,opts={}){
   }
  }
 
- const items=[],deferred=[],held=[],unavailable=[],prerequisite=[],requirements=[],scheduled=[];let used=0,hard=0;
+ const items=[],deferred=[],held=[],unavailable=[],prerequisite=[],requirements=[],scheduled=[],timeBlocked=[];let used=0,hard=0;
  const today=calendarDay(opts.now),history=(s.sessions||[]).filter(x=>calendarDay(x.date)<=today);
  const trainingDays=new Set(history.filter(x=>today-calendarDay(x.date)<7&&(x.items||[]).some(y=>y.actualSets>0)).map(x=>x.date));
  const alreadyToday=history.some(x=>calendarDay(x.date)===today&&(x.items||[]).some(y=>y.actualSets>0));
@@ -367,10 +367,10 @@ function blockPlan(s,opts={}){
   const repeat=s.trainingPreferences?.beginnerSpacing&&history.some(x=>today-calendarDay(x.date)<2&&(x.items||[]).some(y=>y.id===id&&y.actualSets>0));
   if(outside||repeat||restDay||recent||(isHard&&opts.avoidHard)||(isHard&&hard>=(defaults.maxHardMovements??3))){scheduled.push(id);deferred.push(id);continue;}
   const cost=minutesFor(rx)+(items.length?(items.at(-1).betweenExercises||0)/60:0);
-  if(used+cost>budget.main+1e-8){deferred.push(id);continue;}
+  if(used+cost>budget.main+1e-8){deferred.push(id);timeBlocked.push({id,requiredMainMinutes:Math.ceil(cost),minimumTotalMinutes:Math.ceil(cost+budget.warmup+budget.cooldown),cannotFitAlone:cost>budget.main+1e-8,reason:cost>budget.main+1e-8?'Full progression cannot fit this session duration; no advancement credit is possible until the time allocation changes.':'Full prescription did not fit alongside the earlier movements; it remains deferred.'});continue;}
   items.push(rx);used+=cost;if(isHard)hard++;
  }
- return{block,slot,day:continuing?{...day,name:day.name+' · remaining work'}:day,support,items,deferred,held,unavailable,prerequisite,requirements,scheduled,restDay,spacingRecommended,spacingReason:spacingRecommended?'A rest or easier activity day is recommended after yesterday’s workout; you may train if recovered.':'',paused:trainingPaused(s,opts.now),estimated:Math.ceil(used),total:Math.ceil(used)+budget.warmup+budget.cooldown,reentry:items.some(x=>x.mode==='reentry'),cap:budget.main,budget};
+ return{block,slot,day:continuing?{...day,name:day.name+' · remaining work'}:day,support,items,deferred,timeBlocked,held,unavailable,prerequisite,requirements,scheduled,restDay,spacingRecommended,spacingReason:spacingRecommended?'A rest or easier activity day is recommended after yesterday’s workout; you may train if recovered.':'',paused:trainingPaused(s,opts.now),estimated:Math.ceil(used),total:Math.ceil(used)+budget.warmup+budget.cooldown,reentry:items.some(x=>x.mode==='reentry'),cap:budget.main,budget};
 }
 // Coordinate independent blocks across workouts; never blend their numeric protocols.
 function plan(s,opts={}){
