@@ -1,7 +1,7 @@
 /* Recovery and failure regression. Run: node tests/recovery-regression.js */
 'use strict';
 const assert=require('node:assert/strict'),E=require('../engine.js');
-const base=()=>({version:33,defaultMinutes:30,programBlock:'abc',sessions:[],weights:{squat:16,press:12,row:16,swing:16,cast:10,carry:16,clean:12,front:10,circles:10},equipment:{kb:[],club:[],pairs:[]},nextWeights:{},skills:{swing:true,clean:true,rack:true,overhead:true,clubGrip:true,clubTwoHandFoundation:true,hingePattern:true,bearSquat:true,pushupTechnique:true},trainingPreferences:{daysPerWeek:3,useKb:true,useClub:true,useBodyweight:true,focus:'strength',variety:'moderate'}});
+const base=()=>({version:33,defaultMinutes:30,programBlock:'abc',sessions:[],weights:{squat:16,press:12,row:16,swing:16,cast:10,carry:16,clean:12,front:10,circles:10},equipment:{kb:[12,16],club:[10],pairs:[]},nextWeights:{},skills:{swing:true,clean:true,rack:true,overhead:true,clubGrip:true,clubTwoHandFoundation:true,hingePattern:true,bearSquat:true,pushupTechnique:true},trainingPreferences:{daysPerWeek:3,useKb:true,useClub:true,useBodyweight:true,focus:'strength',variety:'moderate'}});
 const record=(rx,n,quality='clean',pain=false)=>E.completeRecord(rx,Array.from({length:n},()=>({done:true,weight:rx.weight,reps:rx.reps,leftReps:rx.reps,rightReps:rx.reps,bothSides:true,timingValid:true,continuous:true})),quality,pain);
 const add=(s,r,date)=>({...s,sessions:[...s.sessions,{id:'s'+s.sessions.length,title:'test',date,slot:0,block:'abc',items:[r]}]});
 let passed=0;
