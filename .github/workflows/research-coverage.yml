@@ -66,6 +66,23 @@ jobs:
           node tests/history-corrections.js
           node tests/backup-history.js
           node tests/log-pagination.js
+      - name: Validate workout recording, timer, and recovery regressions
+        run: |
+          node tests/draft-save-regression.js
+          node tests/partial-workout-regression.js
+          node tests/backup-integrity.js
+          node tests/configuration-matrix.js
+          node tests/engine-regression.js
+          node tests/instruction-coverage-regression.js
+          node tests/long-break-regression.js
+          node tests/provenance-regression.js
+          node tests/recovery-regression.js
+          node tests/skill-gates-regression.js
+          node tests/timer-clear-integrity.js
+          node tests/timer-mutation-integrity.js
+          node tests/timer-regression.js
+          node tests/timer-tick-integrity.js
+          node tests/year-simulation.js
       - name: Install Chromium browser test runner
         run: |
           npm install --no-save playwright
