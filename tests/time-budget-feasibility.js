@@ -25,4 +25,10 @@ assert.ok(Array.isArray(first.timeBlocked),'planner must expose time constraints
 assert.ok(first.timeBlocked.every(x=>x.minimumTotalMinutes>=x.requiredMainMinutes+18));
 assert.ok(first.timeBlocked.every(x=>x.cannotFitAlone===true||x.minimumTotalMinutes<=30),'distinguish hard time barriers from optional pairing');
 console.log('PASS planner time-blocked metadata');
+// Verify deferred work is actually considered before normal day movements.
+const deferredState={...state,programBlock:'abc',defaultMinutes:45,weights:{squat:12,press:12,row:12,deadlift:12},equipment:{kb:[12,16],club:[10],pairs:[]},deferredIds:['row'],trainingPreferences:{useKb:true,useClub:false,useBodyweight:false,skillSessions:false}};
+const deferredPlan=E.plan(deferredState,{now:'2026-11-11',minutes:45});
+assert.ok(deferredPlan.items.length>0,'deferred test must schedule a workout');
+assert.equal(deferredPlan.items[0].id,'row','eligible deferred movement must receive first scheduling opportunity');
+console.log('PASS deferred priority scheduling');
 console.log('PASS time-budget diagnostic (documents existing limitation, not a scheduling fix)');
