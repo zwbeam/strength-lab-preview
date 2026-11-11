@@ -48,3 +48,15 @@ const fairPlan=E.plan(fairState,{now:'2026-11-11',minutes:45});
 assert.ok(fairPlan.items.length>0,'fairness fixture must have a schedulable movement');
 assert.notEqual(fairPlan.items[0].id,'squat','four consecutive squat exposures must not indefinitely outrank other eligible lifts');
 console.log('PASS movement fairness after four completed strength exposures');
+
+ // Mobility days are not strength exposures. Adding them must not alter
+ // movement ordering, progression stages, or the selected prescription.
+const mobilityOnly={...fairState,activities:Array.from({length:7},(_,i)=>({
+ id:'move-'+i,type:'mobility',date:'2026-10-'+String(20+i).padStart(2,'0'),
+ duration:20,effort:'easy',status:'completed',replacesStrength:true
+}))};
+const fairAfterMobility=E.plan(mobilityOnly,{now:'2026-11-11',minutes:45});
+assert.deepEqual(fairAfterMobility.items.map(x=>({id:x.id,sets:x.sets,reps:x.reps,mode:x.mode})),
+ fairPlan.items.map(x=>({id:x.id,sets:x.sets,reps:x.reps,mode:x.mode})),
+ 'mobility days must not alter lifting priority or earn progression');
+console.log('PASS mobility activity does not advance fairness exposure count');
