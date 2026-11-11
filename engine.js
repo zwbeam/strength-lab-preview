@@ -317,11 +317,22 @@ function blockPlan(s,opts={}){
  // A deferred movement must not starve merely because an earlier accessory repeatedly fits first.
  const pendingOrder=new Map(pending.filter(id=>allowed.has(id)).map((id,i)=>[id,i]));
  const progressRank=id=>{const st=stateFor(s,id),p=st.policy;return st.phase==='ready'?-1:st.stage/(Math.max(1,(st.stagePhase==='density'?p.density:p.stages).length-1));};
+ // Track completed exposures rather than calendar days: mobility and rest never
+ // make a strength movement artificially overdue or advance its progression.
+ const exposureSessions=(s.sessions||[]).filter(x=>(x.items||[]).some(y=>y.actualSets>0&&y.performed));
+ const skippedExposures=id=>{
+  const last=exposureSessions.findLastIndex(x=>(x.items||[]).some(y=>y.id===id&&y.actualSets>0&&y.performed));
+  return last<0?exposureSessions.length:exposureSessions.length-1-last;
+ };
  const ids=[...candidateIds].sort((a,b)=>{
   const ap=pendingOrder.has(a),bp=pendingOrder.has(b);
   if(ap!==bp)return ap?-1:1;
   if(ap&&bp)return pendingOrder.get(a)-pendingOrder.get(b);
-  // Stagger peaks: finish the nearest eligible volume cycle before accelerating others.
+  // A movement skipped for four completed lifting sessions gets a fair chance.
+  // Otherwise stagger volume peaks by favoring the nearer cycle endpoint.
+  const overdueA=skippedExposures(a)>=4,overdueB=skippedExposures(b)>=4;
+  if(overdueA!==overdueB)return overdueA?-1:1;
+  if(overdueA&&overdueB)return skippedExposures(b)-skippedExposures(a);
   return progressRank(b)-progressRank(a)||scored(b)-scored(a);
  });
  // Stable primary lifts remain; rotate only a single optional accessory after successful exposures.
