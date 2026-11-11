@@ -610,3 +610,6 @@ details.preparation .prep-exercise .rx,details.preparation .prep-exercise .rx *{
 .book-chapter{display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid #ffffff20;padding:9px 0}
 .book-chapter span{min-width:0;flex:1;font-size:13px}
 .book-chapter small{white-space:nowrap}
+
+/* One-touch workout checklist */
+.notebook-exercise>.row{display:flex;align-items:center;gap:10px}.notebook-exercise>.row>.quick-left{flex:0 0 28px}.notebook-exercise>.row>.quick-left input{width:28px;height:28px;min-height:28px;accent-color:#7de1c4}.quick-complete{display:flex;align-items:center;gap:8px}.quick-status{font-size:12px;color:#a5dccc;font-weight:750;min-width:44px;text-align:right}.session-note-label{display:block;margin:18px 0 12px}.session-note-label textarea{display:block;width:100%;min-height:72px;margin-top:8px}
