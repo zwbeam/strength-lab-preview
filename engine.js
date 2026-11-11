@@ -380,7 +380,9 @@ function blockPlan(s,opts={}){
   const repeat=s.trainingPreferences?.beginnerSpacing&&history.some(x=>today-calendarDay(x.date)<2&&(x.items||[]).some(y=>y.id===id&&y.actualSets>0));
   if(outside||repeat||restDay||recent||(isHard&&opts.avoidHard)||(isHard&&hard>=(defaults.maxHardMovements??3))){scheduled.push(id);deferred.push(id);continue;}
   const cost=minutesFor(rx)+(items.length?(items.at(-1).betweenExercises||0)/60:0);
-  const priority=ids[0]===id;
+  // The first movement that can actually be scheduled owns the flexible window.
+  // Held, recovering, or prerequisite-blocked candidates must not consume priority.
+  const priority=items.length===0;
   const limit=priority?maxMain:Math.max(budget.main,used);
   if(used+cost>limit+1e-8){deferred.push(id);timeBlocked.push({id,requiredMainMinutes:Math.ceil(cost),minimumTotalMinutes:Math.ceil(cost+budget.warmup+budget.cooldown),cannotFitAlone:cost>maxMain+1e-8,reason:cost>maxMain+1e-8?'Full progression exceeds the flexible session ceiling; no advancement credit is possible until the time allocation changes.':'Full prescription did not fit the priority-protected session; it remains deferred.'});continue;}
   items.push(rx);used+=cost;if(isHard)hard++;
