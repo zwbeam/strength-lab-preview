@@ -122,6 +122,20 @@ const {chromium}=require('playwright');
    if(await mobility.locator('li').count()!==9)throw Error('Mobility plan should contain nine stages');
    // The mobility content must respond to the CURRENT prescription, not
    // only to the last three workouts. Keep the 20-minute stage allocation.
+   const preparationChecks=await page.evaluate(()=>{
+     const cases=[['hinge','deadlift'],['squat','squat'],['overhead','press'],['ground','getup'],['club','clubInside']];
+     return cases.map(([category,id])=>{
+       const plan={items:[{id,name:E.MOVES[id]?.name||id}],budget:{warmup:8,cooldown:10}};
+       const html=warmup(plan);
+       return {category,html};
+     });
+   });
+   const preparationPatterns={hinge:/hip.hinge patterning/i,squat:/ankle motion/i,overhead:/press.path rehearsal/i,ground:/floor transitions/i,club:/light club circle/i};
+   for(const check of preparationChecks){
+     if((check.html.match(/<li>/g)||[]).length!==4||!preparationPatterns[check.category].test(check.html))
+       throw Error('Warm-up stations not adapted for '+check.category);
+   }
+   console.log('Five movement-specific warm-up prescriptions passed at '+viewport.width+'px');
    const focusChecks=await page.evaluate(()=>{
      const originalPlan=E.plan,results=[];
      const cases=[['hinge','deadlift'],['squat','squat'],['overhead','press'],['grip','clubInside'],['ground','getup']];
