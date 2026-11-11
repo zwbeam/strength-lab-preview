@@ -22,3 +22,30 @@ Scope: current integration/research-coverage-audit engine.js. This is a code-to-
 
 ## Release gate
 Keep frozen preview and production unchanged. Promote only after research traceability, longitudinal invariants, CI regression, and hands-on Android acceptance tests pass.
+
+
+## Pass 2 — source-index cross-check and progression qualification (2026-11-10)
+
+The `preview` branch passed the complete Research coverage audit at commit `88f8c9f`, including 1,456 simulated workouts across eight profiles, recovery/skill/timer tests, and browser history testing. This proves regression behavior, **not** exact Wildman source fidelity.
+
+Cross-checked that `source-index.json` contains relevant, title-matched entries for the engine's cited source numbers:
+- #411 snatch volume; #410 snatch density.
+- #366 and #120 double clean/press and front-squat programming.
+- #3 two-hand heavy-club order of operations.
+- #228 and #403 heavy/light programming.
+- #423 and #658 Turkish get-up nerd math.
+- #578 and #581 single-arm heavy-club order of operations.
+- #550 basic warmup; #666 volume cycles.
+
+**Evidence limit:** This checks source identity and topic only. Source-index titles and introductory previews do not establish that the engine's exact numerical settings reproduce the transcript. Full-text review and the 719-source completion ledger remain necessary.
+
+**Concrete implementation findings requiring explicit labeling/verification:**
+1. `policyFor` defaults to `exposures = 2` across profiles (configurable 1–6). Treat this as an app progression gate until each profile's source evidence confirms it.
+2. Snatch defaults: 4→20 sets, 5 reps, 60-second rounds, +1 set; density targets 16×6, 14×7, 12×8, 11×9, 10×10. Cross-check each number against #411/#410 before marking transcript-exact.
+3. Double-kettlebell grind defaults: 3→10 sets, 3 reps, 150-second rest, 180-second rounds. Cross-check #366/#120.
+4. Club defaults: 2→6 timed sets, 30-second bouts, 60-second rest. #3 is an order-of-operations source; do not assume it establishes all timing parameters.
+5. Get-up: 180→600 seconds, 60-second increments by default. Cross-check #423/#658.
+6. Warmup: 8-minute allocation attributed to #550; cooldown: 10-minute **app allocation**, not a sourced prescription.
+7. Recovery and gap-reentry are implemented safety/programming adaptations; verify their precise thresholds separately rather than describing them as direct Wildman quotes.
+
+**Next evidence gate:** Obtain the completed 719-source ledger and editorial integration map, inspect full text/evidence anchors for the listed source numbers, then annotate each profile with `explicit / interpreted / app adaptation / unresolved`. Do not silently promote source-title matches to numerical verification. Keep production unchanged pending Android acceptance and source audit.
