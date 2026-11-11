@@ -1,7 +1,7 @@
 /* Long-break and recovery progression scenarios. Run: node tests/long-break-regression.js */
 'use strict';
 const assert=require('node:assert/strict'),E=require('../engine.js');
-const base=()=>({version:33,defaultMinutes:30,programBlock:'abc',sessions:[],weights:{squat:16},equipment:{kb:[],club:[],pairs:[]},nextWeights:{},skills:{},trainingPreferences:{}});
+const base=()=>({version:33,defaultMinutes:30,programBlock:'abc',sessions:[],weights:{squat:16},equipment:{kb:[16],club:[],pairs:[]},nextWeights:{},skills:{},trainingPreferences:{}});
 const record=rx=>E.completeRecord(rx,Array.from({length:rx.sets},()=>({done:true,weight:rx.weight,reps:rx.reps,leftReps:rx.reps,rightReps:rx.reps,bothSides:true,timingValid:true,continuous:true})),'clean',false);
 const add=(s,r,date)=>({...s,sessions:[...s.sessions,{id:'s'+s.sessions.length,date,slot:0,block:'abc',items:[r]}]});
 let checks=0,s=base();
