@@ -308,7 +308,7 @@ function blockPlan(s,opts={}){
  }
  const blockIds=block==='abc'?[...new Set([...days.flatMap(x=>x.ids),...day.ids])]:days.flatMap(x=>x.ids),support=supportingMoves(s,day.ids,opts);
  const allowed=new Set([...blockIds,...support]),pending=s.deferredByBlock?.[block]||(block==='abc'?s.deferredIds:[])||[];
- const latest=(s.sessions||[]).filter(x=>(x.block||'abc')===block).at(-1);
+ const latest=(s.sessions||[]).filter(x=>(x.block||'abc')===block&&calendarDay(x.date)<=calendarDay(opts.now)).sort((a,b)=>calendarDay(a.date)-calendarDay(b.date)).at(-1);
  const continuing=latest?.calendarVersion===1&&latest.items.some(x=>x.actualSets>0)&&latest.items.some(x=>!x.performed)&&pending.length>0;
  const candidateIds=[...new Set([...support,...pending.filter(id=>allowed.has(id)),...(continuing?[]:day.ids)])].filter(enabled);
  const focus=pref.focus||'balanced',variety=pref.variety||'moderate';
