@@ -118,6 +118,7 @@ const {chromium}=require('playwright');
    await page.locator('[data-tab="today"]').click();
    const mobility=page.locator('#mobility-session');
    if(!await mobility.count())throw Error('Mobility session missing');
+   await mobility.evaluate(el=>{el.open=true;});
    if(await mobility.locator('li').count()!==9)throw Error('Mobility plan should contain nine stages');
    await mobility.locator('#start-mobility').click();
    if(!await mobility.locator('#mobility-clock').count())throw Error('Mobility timer did not start');
