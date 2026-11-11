@@ -599,3 +599,5 @@ details.preparation .prep-exercise .rx,details.preparation .prep-exercise .rx *{
 .workout-title~details.preparation[data-panel="cooldown"],.workout-title~details.preparation[data-panel="cooldown"][open]{background:#223c56dc!important;border:2px solid #37669e!important;border-radius:10px;padding:12px 14px;margin:12px 0}
 .calendar-disclosure{background:#203b35;border:1px solid #669a83;border-radius:10px;padding:12px 14px;margin:8px 0 14px}
 .calendar-disclosure>summary{color:#b9f1df;font-weight:850;min-height:30px}
+
+.quick-complete{display:flex;align-items:center;gap:8px;flex-shrink:0}.quick-complete-label{display:flex;align-items:center;gap:5px;color:#b7efdc;font-size:12px;font-weight:800;cursor:pointer}.quick-complete-label input{width:25px;height:25px;min-height:25px;accent-color:#83e5c8;margin:0}.notebook-exercise>.row>div:first-child{min-width:0;flex:1}.notebook-exercise>.row{gap:8px}
