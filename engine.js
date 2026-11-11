@@ -338,7 +338,7 @@ function blockPlan(s,opts={}){
   return progressRank(b)-progressRank(a)||scored(b)-scored(a);
  });
  // Stable primary lifts remain; rotate only a single optional accessory after successful exposures.
- const completedCount=(s.sessions||[]).filter(x=>(x.items||[]).some(y=>y.actualSets>0)).length;
+ const completedCount=exposureSessions.length;
  if(block==='abc'&&variety!=='consistent'&&pref.skillSessions!==false){
   const pool=slot===0?['deadlift','pushup']:slot===1?['circles','clean']:['row','press'];
   const rotation=Math.floor(completedCount/(variety==='high'?1:3));
