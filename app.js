@@ -3,7 +3,7 @@
 const C=window.RollingCalendar,E=window.StrengthEngine,T=window.SessionTimer,N=window.TrainingNotebook,Learning=window.StrengthLearn.create(window.StrengthEngine,window.MovementInstruction),KEY='sl-dev-preview-data-v33',DRAFT='sl-dev-preview-draft-v33',JOURNAL='sl-dev-preview-transaction-v33';
 const $=s=>document.querySelector(s),esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const today=()=>new Date().toLocaleDateString('sv-SE');
-const fresh=()=>({version:33,defaultMinutes:45,sessions:[],weights:{},equipment:{kb:[8,12,16,20,24],club:[5,10,15]},nextWeights:{},created:today()});
+const fresh=()=>({version:33,defaultMinutes:30,sessions:[],weights:{},equipment:{kb:[8,12,16,20,24],club:[5,10,15]},nextWeights:{},created:today()});
 let storageRecoveryIssue=false,recoverySnapshot=null,storageReady=false,storageWritable=false,storageConflict=false,storageLockUnavailable=false,storageExpected=null;
 function read(k,f){try{const raw=recoverySnapshot?(k===KEY?recoverySnapshot.state:k===DRAFT?recoverySnapshot.draft:localStorage.getItem(k)):localStorage.getItem(k);const v=JSON.parse(raw);return v&&typeof v==='object'?v:f;}catch{return f;}}
 let state=read(KEY,fresh());if(state.version!==33||!Array.isArray(state.sessions))state=fresh();state.nextWeights=state.nextWeights||{};state.defaultMinutes=Math.max(30,Number(state.defaultMinutes)||45);state.deferredIds=Array.isArray(state.deferredIds)?state.deferredIds:[];let todayMinutes=state.defaultMinutes;
