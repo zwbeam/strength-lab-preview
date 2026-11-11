@@ -120,6 +120,26 @@ const {chromium}=require('playwright');
    if(!await mobility.count())throw Error('Mobility session missing');
    await mobility.evaluate(el=>{el.open=true;});
    if(await mobility.locator('li').count()!==9)throw Error('Mobility plan should contain nine stages');
+   // The mobility content must respond to the CURRENT prescription, not
+   // only to the last three workouts. Keep the 20-minute stage allocation.
+   const focusChecks=await page.evaluate(()=>{
+     const originalState=state,originalMinutes=todayMinutes,originalReadiness=readiness;
+     const results=[];
+     for(const block of ['hingePathway','pushup','snatch','groundPractice']){
+       try{
+         state={...originalState,programBlock:block,sessions:[],activities:[],deferredIds:[],deferredByBlock:{},trainingPreferences:{...originalState.trainingPreferences,useKb:true,useBodyweight:true,conditioning:true},skills:{...originalState.skills,swing:true,clean:true,overhead:true,rack:true}};
+         const routine=mobilityRoutine();
+         results.push({block,minutes:routine.reduce((n,x)=>n+x.min,0),titles:routine.map(x=>x.title),practice:routine[4].detail,focus:routine[8].detail});
+       }finally{state=originalState;todayMinutes=originalMinutes;readiness=originalReadiness;}
+     }
+     return results;
+   });
+   for(const item of focusChecks){
+     if(item.minutes!==20||item.titles.length!==9||item.titles[8]!=='Current prescription focus')throw Error('Mobility stage structure changed: '+JSON.stringify(item));
+   }
+   const hingeFocus=focusChecks.find(x=>x.block==='hingePathway');
+   if(!/hinge/i.test(hingeFocus.practice)||!/hamstring|hip/i.test(hingeFocus.focus))throw Error('Hinge mobility not matched to prescription: '+JSON.stringify(hingeFocus));
+   console.log('Current-prescription mobility focus and 20-minute structure passed at '+viewport.width+'px');
    await mobility.locator('#start-mobility').click();
    if(!await mobility.locator('#mobility-clock').count())throw Error('Mobility timer did not start');
    await page.waitForTimeout(1200);
