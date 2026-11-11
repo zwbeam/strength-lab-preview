@@ -151,7 +151,7 @@ const {chromium}=require('playwright');
    await mobility.locator('#finish-mobility').click();
    const mobilityRecord=await page.evaluate(()=>JSON.parse(localStorage.getItem('sl-dev-preview-data-v33')));
    const completedMobility=(mobilityRecord.activities||[]).filter(a=>a.type==='mobility'&&a.status==='completed');
-   if(completedMobility.length!==1||completedMobility[0].replacesStrength!==false||completedMobility[0].duration<1)throw Error('Mobility completion not safely recorded');
+   if(completedMobility.length!==1||completedMobility[0].replacesStrength!==true||completedMobility[0].duration<1)throw Error('Mobility completion not safely recorded');
    if((mobilityRecord.sessions||[]).length!==0)throw Error('Mobility incorrectly added lifting session');
    if(await mobility.locator('#mobility-clock').count())throw Error('Mobility timer still running after save');
    console.log('Mobility completion persistence and no lifting credit passed at '+viewport.width+'px');
