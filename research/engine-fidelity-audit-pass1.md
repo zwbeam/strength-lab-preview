@@ -69,3 +69,25 @@ Direct transcript samples examined:
 **Still not certified:** This pass did not establish that the global default of two clean exposures, snatch density table, 150-second grind rest, club timed-bout defaults, or 10-minute cooldown are direct numerical prescriptions. These remain app rules or pending verification. The source texts must be checked at each precise numeric claim, not just by broad thematic similarity.
 
 **Engineering follow-up:** Create source-anchored numeric assertions for each opt-in movement profile and explicitly label universal progression/recovery thresholds as app adaptations unless direct evidence is located. Preserve the currently green regression behavior until a specific discrepancy is demonstrated.
+
+
+## Pass 4 — numerical checks against full transcripts (2026-11-11)
+
+Read the complete stored transcript text around the numeric claims, not just source titles.
+
+| Engine parameter | Source evidence | Verdict |
+|---|---|---|
+| Snatch volume 4→20 sets of 5 each side, one-minute rounds | #411 describes starting at four sets of five per side, building to 20 sets of five, one round each minute. It illustrates 4→6→8→10 and also says single-set intermediate increments are possible. | **Explicit example; engine's +1 default is a supported option, not the only sequence.** |
+| Snatch density 16×6, 14×7, 12×8, 11×9, 10×10 | #410 describes these exact set/rep combinations following the 20×5 volume goal, with small total-rep differences tolerated. | **Direct numerical match.** |
+| Turkish get-up 3→10 minutes in one-minute increments | #423 describes three through ten minutes, optionally including half-minute steps. | **Direct numerical match.** |
+| Warmup 8 minutes | #550 describes four exercises repeated twice, exactly eight minutes. | **Direct example match; not mandatory for every session.** |
+| Double clean/press and squat 180-second rounds | #366 discusses three-minute rounds as one option and two-minute rounds as another. | **Supported option; do not label mandatory.** |
+| Double grind 150-second rest | #366 discusses three-minute rounds, not a universal 150-second rest rule. | **App estimate; do not equate with a transcript-defined rest prescription.** |
+| Single-arm club 20×5 per side | #578 and #581 describe this endpoint and starting with fewer sets, including four, five, or six sets. | **Direct example match.** |
+| Single-arm club 120-second between-exercise rest | #581 discusses one-, two-, or three-minute breaks and advises not more than five minutes. | **Supported option, not exclusive rule.** |
+| Two clean exposures per stage | No direct numeric corroboration established in the checked passages. | **App adaptation / pending full-source check.** |
+| Ten-minute cooldown | Already explicitly noted in engine as app allocation. | **App adaptation.** |
+
+**Important distinction:** Source #411 gives a snatch volume endpoint of 20 sets × 5 per side; #410 describes the density steps as 16×6, 14×7, 12×8, 11×9, and 10×10. The engine implements those values. No code change is justified to these numbers.
+
+**Remaining potential mismatch:** The engine's `grind` policy combines a 180-second round with a 150-second rest estimate. Confirm that workout timing and the timer actually respect the round boundary and do not double-count rest. Treat the rest estimate as an implementation choice, not a verbatim source claim. Next check the other movement profiles and the provenance labels shown to users.
