@@ -148,32 +148,29 @@ function warmup(plan){
 }
 function cooldown(plan){
  const items=plan.items||[];
- const names=items.map(rx=>E.MOVES[rx.id]?.name||rx.name||'').join(' ').toLowerCase();
- const grip=/club|cast|mill|swing|clean|snatch|carry|deadlift/.test(names)||items.some(rx=>['club','kb'].includes(E.MOVES[rx.id]?.gear));
- const overhead=/press|snatch|jerk|overhead/.test(names);
- const available=plan.budget.cooldown;
- const focus=overhead?'upper back and shoulders':grip?'forearms and hips':'hips and areas trained';
- const directions=[
-  ['Spinal extension','Gentle Sphinx position or another comfortable extension option',130],
-  ['Spinal flexion','Relaxed forward fold, using support if needed',129],
-  ['Spinal rotation','Comfortable seated twist, with an accessible position',137],
-  ['Hip mobility','Gentle hip-flexor stretch or supported shin-box position',135]
- ];
- // Wildman's general order is extension, flexion, rotation, hips.
- // For a short session, omit later categories rather than promising impossible hold durations.
- const slots=Math.min(4,Math.max(1,available));
- const mins=Array(slots).fill(Math.floor(available/slots));
- for(let i=0;i<available%slots;i++)mins[i]++;
- const rows=directions.slice(0,slots).map((d,i)=>`<li>${mins[i]} min: ${d[0]} — ${d[1]} (<button class="source-open" data-open-source="${d[2]}">source</button>).</li>`);
+ const names=items.map(rx=>E.MOVES[rx.id]?.name||rx.name||rx.id||'').join(' ').toLowerCase();
+ const overhead=/press|snatch|jerk|overhead|cast|mill/.test(names);
  const hinge=/swing|deadlift|hinge|clean|snatch/.test(names);
  const squat=/squat|lunge/.test(names);
- const specific=overhead?
-  'For overhead work: finish with a comfortable supported box puppy-dog stretch if shoulders tolerate it (<button class="source-open" data-open-source="139">source</button>).':
-  grip?'For grip-heavy work: add gentle wrist opening and forearm rotation without loaded stretching (<button class="source-open" data-open-source="132">source</button>).':
-  squat?'For squat work: use supported ankle motion and comfortable hip rotation; do not force a deep squat.':
-  hinge?'For hinges: use easy hamstring movement and supported hip rotations, avoiding aggressive end-range stretches.':'';
- const extra=specific?' <strong>Movement-specific option:</strong> '+specific:'';
- return `<ol>${rows.join('')}</ol><p class="muted small">Focus: ${focus}. Wildman's general cooldown directions and order are documented in <button class="source-open" data-open-source="130">Cooldown 1</button> and <button class="source-open" data-open-source="136">Cooldown 4</button>.${extra} This ${available}-minute allocation is an app adaptation; it is not a claim that every source prescribes these exact durations. Stay in comfortable ranges and skip anything painful.</p>`;
+ const ground=/get.up|ground|turkish/.test(names);
+ const grip=/club|cast|mill|swing|clean|snatch|carry|deadlift|circle/.test(names);
+ const available=Math.max(0,Math.floor(Number(plan.budget?.cooldown)||0));
+ const directions=[
+  ['Spinal extension','Gentle Sphinx or another comfortable supported extension',130],
+  ['Spinal flexion','Relaxed supported forward fold; do not force end range',129],
+  ['Spinal rotation',ground?'Comfortable floor rotation or supported seated twist':'Gentle seated twist, both sides',137],
+  ['Hip mobility',squat?'Supported hip rotation and easy ankle motion':hinge?'Gentle hamstring movement and supported hip rotation':'Comfortable hip-flexor stretch or supported shin-box position',135]
+ ];
+ // Keep Wildman-inspired extension -> flexion -> rotation -> hips ordering.
+ // The last stage carries the primary prescription-specific hip emphasis.
+ const slots=Math.min(directions.length,available),mins=Array(slots).fill(slots?Math.floor(available/slots):0);
+ for(let i=0;i<available%Math.max(1,slots);i++)mins[i]++;
+ const rows=directions.slice(0,slots).map((d,i)=>`<li>${mins[i]} min: ${d[0]} — ${d[1]} (<button class="source-open" data-open-source="${d[2]}">source</button>).</li>`);
+ // These are substitutions within the existing time allocation, not extra minutes.
+ if(slots>=3&&overhead)rows[2]=`<li>${mins[2]} min: Spinal rotation and shoulders — Gentle upper-back rotation followed by a comfortable supported box puppy-dog position if tolerated (<button class="source-open" data-open-source="139">source</button>).</li>`;
+ else if(slots>=3&&grip)rows[2]=`<li>${mins[2]} min: Spinal rotation and forearms — Gentle seated twist followed by easy wrist opening and forearm rotation, without loaded stretching (<button class="source-open" data-open-source="132">source</button>).</li>`;
+ const focus=overhead?'upper back and shoulders':squat?'hips and ankles':hinge?'posterior chain and hips':grip?'forearms and shoulders':ground?'hips and floor transitions':'comfortable spinal and hip movement';
+ return `<ol>${rows.join('')}</ol><p class="muted small">Focus: ${focus}. Wildman's general cooldown directions and order are documented in <button class="source-open" data-open-source="130">Cooldown 1</button> and <button class="source-open" data-open-source="136">Cooldown 4</button>. This ${available}-minute allocation is a Strength Lab scheduling adaptation, not a universal Wildman prescription. Use comfortable ranges and skip painful movements.</p>`;
 }
 function emptyPlanMessage(p){
  if(p.paused)return 'Training is paused. Resume training when you choose.';
