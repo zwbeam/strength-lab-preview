@@ -319,7 +319,9 @@ function blockPlan(s,opts={}){
  const progressRank=id=>{const st=stateFor(s,id),p=st.policy;return st.phase==='ready'?-1:st.stage/(Math.max(1,(st.stagePhase==='density'?p.density:p.stages).length-1));};
  // Track completed exposures rather than calendar days: mobility and rest never
  // make a strength movement artificially overdue or advance its progression.
- const exposureSessions=(s.sessions||[]).filter(x=>(x.items||[]).some(y=>y.actualSets>0&&y.performed));
+ const exposureSessions=(s.sessions||[])
+  .filter(x=>calendarDay(x.date)<=calendarDay(opts.now)&&(x.items||[]).some(y=>y.actualSets>0&&y.performed))
+  .sort((a,b)=>calendarDay(a.date)-calendarDay(b.date));
  const skippedExposures=id=>{
   const last=exposureSessions.findLastIndex(x=>(x.items||[]).some(y=>y.id===id&&y.actualSets>0&&y.performed));
   return last<0?exposureSessions.length:exposureSessions.length-1-last;
