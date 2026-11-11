@@ -32,3 +32,42 @@ for(const [name,days,focus,variety,kb,club,bw] of profiles){
 }
 assert.equal(total,1456);
 console.log('PASS 52-week simulation:',total,'workouts, 8 profiles');
+
+ // Interrupted 12-week history: missed days and easy mobility do not earn
+ // strength progression. Actual strength sessions still follow the engine.
+{
+ const state={version:33,defaultMinutes:30,programBlock:'abc',sessions:[],activities:[],
+  weights:{squat:16,press:12,row:16,swing:16,cast:10,carry:16,clean:12,front:10,circles:10,deadlift:16},
+  equipment:{kb:[12,16],club:[10],pairs:[]},nextWeights:{},
+  skills:{swing:true,clean:true,rack:true,overhead:true,clubGrip:true,clubTwoHandFoundation:true,hingePattern:true,bearSquat:true,pushupTechnique:true},
+  trainingPreferences:{daysPerWeek:3,useKb:true,useClub:true,useBodyweight:true,useDoubleKb:false,useTwoHandClub:true,focus:'balanced',variety:'high',conditioning:true,skillSessions:true}};
+ let completed=0,mobility=0,missed=0;
+ for(let i=0;i<84;i++){
+  if(![0,2,4].includes(i%7))continue;
+  const date=new Date(Date.UTC(2026,0,5+i)).toISOString().slice(0,10);
+  const slot=i%12;
+  if(slot===2||slot===8){
+   state.activities.push({id:'mob'+i,date,type:'mobility',duration:20,effort:'easy',status:'completed',replacesStrength:true});
+   mobility++;
+   continue;
+  }
+  if(slot===4){missed++;continue;}
+  const p=E.plan(state,{now:date,minutes:30});
+  assert.ok(p.items.length,'interrupted history empty workout '+date);
+  assert.ok(p.estimated<=p.cap+1,'interrupted history exceeds budget '+date);
+  const items=p.items.map(rx=>{
+   const weight=E.MOVES[rx.id].bodyweight?0:rx.weight||12;
+   const actual=Array.from({length:rx.sets},()=>({done:true,weight,reps:rx.reps,leftReps:rx.reps,rightReps:rx.reps,bothSides:true,timingValid:true,continuous:true}));
+   return E.completeRecord(rx,actual,'clean',false);
+  });
+  state.sessions.push({id:'interrupted'+i,title:p.day.name,date,slot:p.slot,block:p.block,items,notebookVersion:1,calendarVersion:1});
+  completed++;
+ }
+ assert.ok(completed>0&&mobility>0&&missed>0,'interruption scenarios must all occur');
+ assert.equal(state.sessions.length,completed,'mobility and missed days cannot create strength sessions');
+ assert.equal(state.activities.length,mobility,'mobility remains separate from strength progression');
+ const next=E.plan(state,{now:'2026-04-01',minutes:30});
+ assert.ok(next.items.length,'training should resume after interruptions');
+ assert.ok(next.estimated<=next.cap+1,'return workout exceeds budget');
+ console.log('PASS interrupted 12-week simulation',{completed,mobility,missed});
+}
