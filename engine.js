@@ -243,7 +243,7 @@ function selectLoad(s,id,weight){if(!loadOptions(s,id).includes(weight))throw Er
 function minutesFor(p){const m=MOVES[p.id];return(p.sets*(p.roundSeconds||((p.secondsPerSet??m.sec)+Math.max(0,p.rest)))/60)+.55;}
 function timeBudget(minutes){
  const total=Number.isFinite(Number(minutes))?Number(minutes):45;
- if(!Number.isInteger(total)||total<30||total>120)throw Error('Strength workout duration must be 30–120 minutes');
+ if(!Number.isInteger(total)||total<25||total>120)throw Error('Strength workout duration must be 25–120 minutes');
  // Protect preparation and recovery when session time is compressed.
  // Eight minutes follows the two-round four-station warm-up format (source 550).
  // Ten minutes of cooldown is an app allocation, not a quoted Wildman rule.
@@ -297,6 +297,9 @@ function blockPlan(s,opts={}){
  const days=abcDays,slot=(s.sessions||[]).filter(x=>x.slot!==undefined&&(x.block||'abc')===block&&(x.notebookVersion!==1||(x.items||[]).some(y=>y.actualSets>0))&&(x.calendarVersion!==1||(x.items||[]).every(y=>y.performed===true))).length%days.length;
  let day=days[slot];
  const budget=timeBudget(opts.minutes??s.defaultMinutes??45),defaults=s.trainingDefaults||{};
+ // 30-minute target has a 25–40-minute flexible window. Extension is reserved for a full priority prescription.
+ const flexMax=budget.total===30?40:budget.total;
+ const maxMain=flexMax-budget.warmup-budget.cooldown;
  const pref=s.trainingPreferences||{};
  const enabled=id=>{const m=MOVES[id];if(!m)return false;if(m.bodyweight)return pref.useBodyweight!==false;if(m.gear==='kb')return pref.useKb!==false&&(!m.pair||pref.useDoubleKb===true);if(m.gear==='club')return pref.useClub!==false&&(!['cast','circles','front'].includes(id)||pref.useTwoHandClub!==false);return true;};
  if(block==='abc'){
@@ -313,11 +316,13 @@ function blockPlan(s,opts={}){
  // Prioritize eligible deferred work before accessories; never override recovery or prerequisites.
  // A deferred movement must not starve merely because an earlier accessory repeatedly fits first.
  const pendingOrder=new Map(pending.filter(id=>allowed.has(id)).map((id,i)=>[id,i]));
+ const progressRank=id=>{const st=stateFor(s,id),p=st.policy;return st.phase==='ready'?-1:st.stage/(Math.max(1,(st.stagePhase==='density'?p.density:p.stages).length-1));};
  const ids=[...candidateIds].sort((a,b)=>{
   const ap=pendingOrder.has(a),bp=pendingOrder.has(b);
   if(ap!==bp)return ap?-1:1;
   if(ap&&bp)return pendingOrder.get(a)-pendingOrder.get(b);
-  return scored(b)-scored(a);
+  // Stagger peaks: finish the nearest eligible volume cycle before accelerating others.
+  return progressRank(b)-progressRank(a)||scored(b)-scored(a);
  });
  // Stable primary lifts remain; rotate only a single optional accessory after successful exposures.
  const completedCount=(s.sessions||[]).filter(x=>(x.items||[]).some(y=>y.actualSets>0)).length;
@@ -375,10 +380,12 @@ function blockPlan(s,opts={}){
   const repeat=s.trainingPreferences?.beginnerSpacing&&history.some(x=>today-calendarDay(x.date)<2&&(x.items||[]).some(y=>y.id===id&&y.actualSets>0));
   if(outside||repeat||restDay||recent||(isHard&&opts.avoidHard)||(isHard&&hard>=(defaults.maxHardMovements??3))){scheduled.push(id);deferred.push(id);continue;}
   const cost=minutesFor(rx)+(items.length?(items.at(-1).betweenExercises||0)/60:0);
-  if(used+cost>budget.main+1e-8){deferred.push(id);timeBlocked.push({id,requiredMainMinutes:Math.ceil(cost),minimumTotalMinutes:Math.ceil(cost+budget.warmup+budget.cooldown),cannotFitAlone:cost>budget.main+1e-8,reason:cost>budget.main+1e-8?'Full progression cannot fit this session duration; no advancement credit is possible until the time allocation changes.':'Full prescription did not fit alongside the earlier movements; it remains deferred.'});continue;}
+  const priority=ids[0]===id;
+  const limit=priority?maxMain:Math.max(budget.main,used);
+  if(used+cost>limit+1e-8){deferred.push(id);timeBlocked.push({id,requiredMainMinutes:Math.ceil(cost),minimumTotalMinutes:Math.ceil(cost+budget.warmup+budget.cooldown),cannotFitAlone:cost>maxMain+1e-8,reason:cost>maxMain+1e-8?'Full progression exceeds the flexible session ceiling; no advancement credit is possible until the time allocation changes.':'Full prescription did not fit the priority-protected session; it remains deferred.'});continue;}
   items.push(rx);used+=cost;if(isHard)hard++;
  }
- return{block,slot,day:continuing?{...day,name:day.name+' · remaining work'}:day,support,items,deferred,timeBlocked,held,unavailable,prerequisite,requirements,scheduled,restDay,spacingRecommended,spacingReason:spacingRecommended?'A rest or easier activity day is recommended after yesterday’s workout; you may train if recovered.':'',paused:trainingPaused(s,opts.now),estimated:Math.ceil(used),total:Math.ceil(used)+budget.warmup+budget.cooldown,reentry:items.some(x=>x.mode==='reentry'),cap:budget.main,budget};
+ return{block,slot,day:continuing?{...day,name:day.name+' · remaining work'}:day,support,items,deferred,timeBlocked,held,unavailable,prerequisite,requirements,scheduled,restDay,spacingRecommended,spacingReason:spacingRecommended?'A rest or easier activity day is recommended after yesterday’s workout; you may train if recovered.':'',paused:trainingPaused(s,opts.now),estimated:Math.ceil(used),total:Math.ceil(used)+budget.warmup+budget.cooldown,reentry:items.some(x=>x.mode==='reentry'),cap:maxMain,budget:{...budget,targetMain:budget.main,flexMax,main:maxMain},extended:used>budget.main+1e-8};
 }
 // Coordinate independent blocks across workouts; never blend their numeric protocols.
 function plan(s,opts={}){
