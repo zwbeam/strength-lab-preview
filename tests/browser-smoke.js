@@ -140,7 +140,7 @@ const {chromium}=require('playwright');
      const cases=[['hinge','deadlift'],['squat','squat'],['overhead','press'],['grip','clubInside'],['ground','getup']];
      return cases.map(([category,id])=>{
        const html=cooldown({items:[{id,name:E.MOVES[id]?.name||id}],budget:{cooldown:10}});
-       const durations=[...html.matchAll(/<li>(\\d+) min:/g)].map(x=>Number(x[1]));
+       const durations=[...html.matchAll(/<li>(\d+) min:/g)].map(x=>Number(x[1]));
        return {category,html,durations};
      });
    });
