@@ -601,3 +601,12 @@ details.preparation .prep-exercise .rx,details.preparation .prep-exercise .rx *{
 .calendar-disclosure>summary{color:#b9f1df;font-weight:850;min-height:30px}
 
 .quick-complete{display:flex;align-items:center;gap:8px;flex-shrink:0}.quick-complete-label{display:flex;align-items:center;gap:5px;color:#b7efdc;font-size:12px;font-weight:800;cursor:pointer}.quick-complete-label input{width:25px;height:25px;min-height:25px;accent-color:#83e5c8;margin:0}.notebook-exercise>.row>div:first-child{min-width:0;flex:1}.notebook-exercise>.row{gap:8px}
+
+/* Library development index */
+.book-volume>summary{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;min-height:55px}
+.book-volume>summary strong{font-size:15px;color:#8be7d3}
+.book-volume>summary span,.book-chapter small{color:#f2cc7b;font-size:11px;font-weight:750}
+.book-chapters{display:grid;gap:7px;margin:12px 0}
+.book-chapter{display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid #ffffff20;padding:9px 0}
+.book-chapter span{min-width:0;flex:1;font-size:13px}
+.book-chapter small{white-space:nowrap}
