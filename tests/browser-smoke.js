@@ -145,6 +145,7 @@ const {chromium}=require('playwright');
    await mobility.locator('#cancel-mobility').click();
    if(!await mobility.locator('#start-mobility').count())throw Error('Mobility cancel failed');
    console.log('Guided mobility start, clock and cancel passed at '+viewport.width+'px');
+   await mobility.evaluate(el=>{el.open=true;});
    await mobility.locator('#start-mobility').click();
    page.once('dialog',dialog=>dialog.accept());
    await mobility.locator('#finish-mobility').click();
