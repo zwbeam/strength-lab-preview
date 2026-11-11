@@ -1,0 +1,21 @@
+/* Time-budget feasibility regression: verify full-cycle endpoint is not silently claimed reachable. */
+'use strict';
+const assert=require('node:assert/strict');
+const E=require('../engine.js');
+const budget30=E.timeBudget(30);
+assert.equal(budget30.main,12);
+const snatch=E.policyFor('snatch',{});
+assert.equal(snatch.stages.at(-1).sets,20);
+const endpoint={id:'snatch',sets:20,roundSeconds:60,rest:0};
+const endpointMinutes=E.minutesFor(endpoint);
+assert.ok(endpointMinutes>budget30.main);
+const budget45=E.timeBudget(45);
+assert.ok(endpointMinutes<=budget45.main);
+const getup=E.policyFor('getup',{});
+assert.equal(getup.stages.at(-1).reps,600);
+const singleClub=E.policyFor('clubInside',{programming:{clubInside:{profile:'singleClub'}}});
+assert.equal(singleClub.stages.at(-1).sets,20);
+console.log('TIME-BUDGET FINDING: 30-minute session provides',budget30.main,'main minutes; snatch endpoint requires',endpointMinutes.toFixed(2),'minutes; cannot fit.');
+console.log('TIME-BUDGET FINDING: 45-minute session provides',budget45.main,'main minutes; snatch endpoint fits alone.');
+console.log('TIME-BUDGET FINDING: club and get-up endpoints need movement-specific feasibility checks, not just workout-fit assertions.');
+console.log('PASS time-budget diagnostic (documents existing limitation, not a scheduling fix)');
