@@ -298,8 +298,9 @@ function blockPlan(s,opts={}){
  let day=days[slot];
  const budget=timeBudget(opts.minutes??s.defaultMinutes??45),defaults=s.trainingDefaults||{};
  // 30-minute target has a 25–40-minute flexible window. Extension is reserved for a full priority prescription.
- const configuredMax=Number(s.defaultMinutes)||budget.total;
- const flexMax=budget.total===30?Math.min(40,Math.max(30,configuredMax)):Math.min(budget.total,Math.max(30,configuredMax));
+ // The same target window applies in Settings and Today's Adjustments.
+ // 30-minute sessions have a 25–40 minute band; other targets allow ±5.
+ const flexMax=budget.total===30?40:Math.min(120,budget.total+5);
  const maxMain=flexMax-budget.warmup-budget.cooldown;
  const pref=s.trainingPreferences||{};
  const enabled=id=>{const m=MOVES[id];if(!m)return false;if(m.bodyweight)return pref.useBodyweight!==false;if(m.gear==='kb')return pref.useKb!==false&&(!m.pair||pref.useDoubleKb===true);if(m.gear==='club')return pref.useClub!==false&&(!['cast','circles','front'].includes(id)||pref.useTwoHandClub!==false);return true;};
