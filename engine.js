@@ -298,7 +298,8 @@ function blockPlan(s,opts={}){
  let day=days[slot];
  const budget=timeBudget(opts.minutes??s.defaultMinutes??45),defaults=s.trainingDefaults||{};
  // 30-minute target has a 25–40-minute flexible window. Extension is reserved for a full priority prescription.
- const flexMax=budget.total===30?40:budget.total;
+ const configuredMax=Number(s.defaultMinutes)||budget.total;
+ const flexMax=budget.total===30?Math.min(40,Math.max(30,configuredMax)):Math.min(budget.total,Math.max(30,configuredMax));
  const maxMain=flexMax-budget.warmup-budget.cooldown;
  const pref=s.trainingPreferences||{};
  const enabled=id=>{const m=MOVES[id];if(!m)return false;if(m.bodyweight)return pref.useBodyweight!==false;if(m.gear==='kb')return pref.useKb!==false&&(!m.pair||pref.useDoubleKb===true);if(m.gear==='club')return pref.useClub!==false&&(!['cast','circles','front'].includes(id)||pref.useTwoHandClub!==false);return true;};
