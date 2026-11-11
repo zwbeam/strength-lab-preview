@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - integration/research-coverage-audit
+      - preview
     paths:
       - engine.js
       - movement-instruction.js
