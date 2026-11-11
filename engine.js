@@ -310,7 +310,15 @@ function blockPlan(s,opts={}){
  const candidateIds=[...new Set([...support,...pending.filter(id=>allowed.has(id)),...(continuing?[]:day.ids)])].filter(enabled);
  const focus=pref.focus||'balanced',variety=pref.variety||'moderate';
  const scored=id=>{const m=MOVES[id];if(!m)return 0;const family=m.family||'';return focus==='strength'?(['squat','press','pull','hinge'].includes(family)?2:0):focus==='capacity'?(['hinge','carry'].includes(family)?2:0):focus==='skill'?((m.practicePrereqs||[]).length?2:0):0;};
- const ids=[...candidateIds].sort((a,b)=>scored(b)-scored(a));
+ // Prioritize eligible deferred work before accessories; never override recovery or prerequisites.
+ // A deferred movement must not starve merely because an earlier accessory repeatedly fits first.
+ const pendingOrder=new Map(pending.filter(id=>allowed.has(id)).map((id,i)=>[id,i]));
+ const ids=[...candidateIds].sort((a,b)=>{
+  const ap=pendingOrder.has(a),bp=pendingOrder.has(b);
+  if(ap!==bp)return ap?-1:1;
+  if(ap&&bp)return pendingOrder.get(a)-pendingOrder.get(b);
+  return scored(b)-scored(a);
+ });
  // Stable primary lifts remain; rotate only a single optional accessory after successful exposures.
  const completedCount=(s.sessions||[]).filter(x=>(x.items||[]).some(y=>y.actualSets>0)).length;
  if(block==='abc'&&variety!=='consistent'&&pref.skillSessions!==false){
