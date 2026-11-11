@@ -125,9 +125,26 @@ function dose(rx){return `${rx.sets} × ${rx.reps}${rx.timed?' sec':''}${rx.dura
 function card(title,body){return `<section class="card"><h2>${title}</h2>${body}</section>`;}
 function readinessButtons(){return `<div class="choice" aria-label="Readiness"><button data-ready="normal" class="${readiness==='normal'?'active':''}">Ready</button><button data-ready="low" class="${readiness==='low'?'active':''}">Low energy / sore</button></div>`;}
 function warmup(plan){
- const complex=plan.items.some(rx=>/getup|snatch|clean|cast|mill/i.test(rx.id));
- const names=plan.items.map(rx=>esc(rx.name)).join(', ');
- return `<ol><li><strong>Minutes 0–2 · Light tool movement.</strong> Alternate one minute per side or hand position of a familiar light shield/gamma cast, or use unloaded halos and shoulder circles if casting is not yet comfortable. Use a light implement, below roughly 60% of working weight.</li><li><strong>Minutes 2–4 · Shoulders and neck.</strong> Gentle controlled shoulder circles, scapular movement and comfortable neck ranges; do not force end range.</li><li><strong>Minutes 4–6 · Spine.</strong> Controlled spinal rocks or an accessible shin-box transition. Roll smoothly without impact; use supported floor movements when needed.</li><li><strong>Minutes 6–8 · Hips.</strong> Shin-box switches or supported hip rotations and squat-range exploration. Keep motion controlled, not fatiguing.</li></ol><p class="muted small">This eight-minute four-station format follows <button class="source-open" data-open-source="550">Wildman's basic warm-up</button>; movements are adapted for familiarity and safe access. The session's strength movements (${names}) should be technically familiar before loading.${complex?' Rehearse any unfamiliar complex elements unloaded before starting the strength timer.':''} Do not skip the warm-up to gain lifting time.</p>`;
+ const items=plan.items||[],names=items.map(rx=>E.MOVES[rx.id]?.name||rx.name||rx.id||'').join(' ').toLowerCase();
+ const complex=items.some(rx=>/getup|snatch|clean|cast|mill/i.test(rx.id));
+ const hinge=/swing|deadlift|hinge|clean|snatch/.test(names);
+ const squat=/squat|lunge/.test(names);
+ const overhead=/press|snatch|jerk|overhead|cast|mill/.test(names);
+ const ground=/get.up|ground|turkish/.test(names);
+ const club=/club|cast|mill|circle|shield|gamma/.test(names);
+ const station1=club?'Use a familiar light club circle or shield, changing sides halfway through. Stay well below working load.':
+  'Use unloaded halos and easy shoulder circles; use a familiar light club only if the movement is already comfortable.';
+ const station2=overhead?'Gentle scapular movement, shoulder circles and easy unloaded press-path rehearsal; never force overhead range.':
+  club?'Easy shoulder circles, relaxed wrist rotation and gentle scapular motion.':
+  'Gentle shoulder circles, scapular movement and comfortable neck ranges; no forced end positions.';
+ const station3=ground?'Slow supported floor transitions, spinal rocks and comfortable rotation; do not rush getting up.':
+  hinge?'Gentle spinal rocks and unloaded hip-hinge patterning with a comfortable neutral back.':
+  'Controlled spinal rocks or accessible supported shin-box transitions; avoid impact.';
+ const station4=squat?'Supported squat-range exploration, gentle ankle motion and easy shin-box switches.':
+  hinge?'Supported hip rotations and unloaded hip-to-wall hinges, avoiding fatigue and hard end-range stretching.':
+  'Shin-box switches or supported hip rotations and comfortable squat-range exploration.';
+ const movementNames=items.map(rx=>esc(rx.name||E.MOVES[rx.id]?.name||rx.id)).join(', ');
+ return `<ol><li><strong>Minutes 0–2 · Light movement.</strong> ${station1}</li><li><strong>Minutes 2–4 · Shoulders and neck.</strong> ${station2}</li><li><strong>Minutes 4–6 · Spine and pattern.</strong> ${station3}</li><li><strong>Minutes 6–8 · Hips and ankles.</strong> ${station4}</li></ol><p class="muted small">Four-station eight-minute preparation adapted from <button class="source-open" data-open-source="550">Wildman's basic warm-up example</button>; the movements above are selected for this prescription, not presented as a universal mandatory sequence. Strength work: ${movementNames}.${complex?' Rehearse unfamiliar complex elements unloaded before loading.':''} Keep all movement easy and pain-free; do not skip preparation to gain lifting time.</p>`;
 }
 function cooldown(plan){
  const items=plan.items||[];
