@@ -136,6 +136,20 @@ const {chromium}=require('playwright');
        throw Error('Warm-up stations not adapted for '+check.category);
    }
    console.log('Five movement-specific warm-up prescriptions passed at '+viewport.width+'px');
+   const cooldownChecks=await page.evaluate(()=>{
+     const cases=[['hinge','deadlift'],['squat','squat'],['overhead','press'],['grip','clubInside'],['ground','getup']];
+     return cases.map(([category,id])=>{
+       const html=cooldown({items:[{id,name:E.MOVES[id]?.name||id}],budget:{cooldown:10}});
+       const durations=[...html.matchAll(/<li>(\\d+) min:/g)].map(x=>Number(x[1]));
+       return {category,html,durations};
+     });
+   });
+   const cooldownPatterns={hinge:/hamstring movement/i,squat:/ankle motion/i,overhead:/box puppy.dog/i,grip:/wrist opening/i,ground:/floor rotation/i};
+   for(const check of cooldownChecks){
+     if(check.durations.reduce((a,b)=>a+b,0)!==10||check.durations.length!==4||!cooldownPatterns[check.category].test(check.html))
+       throw Error('Cooldown adaptation or time budget incorrect for '+check.category);
+   }
+   console.log('Five movement-specific cooldown prescriptions passed at '+viewport.width+'px');
    const focusChecks=await page.evaluate(()=>{
      const originalPlan=E.plan,results=[];
      const cases=[['hinge','deadlift'],['squat','squat'],['overhead','press'],['grip','clubInside'],['ground','getup']];
