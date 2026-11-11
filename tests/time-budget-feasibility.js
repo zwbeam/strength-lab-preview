@@ -22,12 +22,12 @@ console.log('TIME-BUDGET FINDING: club and get-up endpoints need movement-specif
 const state={version:33,programBlock:'snatch',defaultMinutes:30,sessions:[],weights:{snatch:12},equipment:{kb:[12,16],club:[],pairs:[]},skills:{swing:true,clean:true,overhead:true,rack:true},trainingPreferences:{useKb:true,conditioning:true}};
 const first=E.plan(state,{now:'2026-11-11',minutes:30});
 assert.equal(first.budget.total,30);
-assert.equal(first.budget.flexMax,30,'a 30-minute Settings maximum must be a hard ceiling');
-assert.equal(first.cap,12);
+assert.equal(first.budget.flexMax,40,'30-minute Settings and daily adjustments share the same window');
+assert.equal(first.cap,22);
 const flexible=E.plan({...state,defaultMinutes:45},{now:'2026-11-11',minutes:30});
 assert.equal(flexible.budget.flexMax,40,'30-minute adjustment under a 45-minute maximum retains milestone flexibility');
 assert.equal(flexible.cap,22);
-assert.ok(first.total<=30,'Settings maximum must never be exceeded');
+assert.ok(first.total<=40,'30-minute target must stay within its 40-minute upper limit');
 assert.ok(flexible.total<=40,'flexible session must never exceed 40 minutes');
 assert.ok(Array.isArray(first.timeBlocked),'planner must expose time constraints');
 assert.ok(first.timeBlocked.every(x=>x.minimumTotalMinutes>=x.requiredMainMinutes+18));
@@ -99,3 +99,10 @@ const afterFuture=E.plan(withFutureContinuation,{now:'2026-11-11',minutes:45});
 assert.deepEqual(afterFuture.items.map(x=>x.id),beforeFuture.items.map(x=>x.id),
  'future unfinished block must not replace current-day candidate list');
 console.log('PASS future unfinished session cannot hijack current workout');
+
+for(const [target,upper] of [[30,40],[45,50],[60,65],[75,80],[90,95],[120,120]]){
+ const p=E.plan({...deferredState,defaultMinutes:target},{now:'2026-11-11',minutes:target});
+ assert.equal(p.budget.flexMax,upper,'target '+target+' should use its own bounded window');
+ assert.ok(p.total<=upper,'target '+target+' exceeded its window');
+}
+console.log('PASS Settings and daily duration target windows');
