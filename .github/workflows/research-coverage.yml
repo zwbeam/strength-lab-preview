@@ -86,6 +86,7 @@ jobs:
           node tests/timer-regression.js
           node tests/timer-tick-integrity.js
           node tests/year-simulation.js
+          node tests/time-budget-feasibility.js
       - name: Install Chromium browser test runner
         run: |
           npm install --no-save playwright
