@@ -83,3 +83,15 @@ const accessoryAfterFuture=E.plan(futureAccessory,{now:'2026-11-11',minutes:45})
 assert.deepEqual(accessoryAfterFuture.items.map(x=>x.id),accessoryNow.items.map(x=>x.id),
  'future-dated workout must not advance optional accessory rotation');
 console.log('PASS future sessions do not rotate accessories');
+
+ // An imported future unfinished workout must not suppress today's ordinary
+ // ABC movements, even if deferred work exists.
+const unfinishedFuture={id:'unfinished-future',date:'2026-12-11',block:'abc',calendarVersion:1,
+ items:[{id:'row',performed:true,actualSets:1,actualReps:5},
+        {id:'press',performed:false,actualSets:0,actualReps:0}]};
+const withFutureContinuation={...deferredState,sessions:[unfinishedFuture]};
+const beforeFuture=E.plan(deferredState,{now:'2026-11-11',minutes:45});
+const afterFuture=E.plan(withFutureContinuation,{now:'2026-11-11',minutes:45});
+assert.deepEqual(afterFuture.items.map(x=>x.id),beforeFuture.items.map(x=>x.id),
+ 'future unfinished block must not replace current-day candidate list');
+console.log('PASS future unfinished session cannot hijack current workout');
