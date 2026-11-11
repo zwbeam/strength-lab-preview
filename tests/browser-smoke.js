@@ -168,6 +168,21 @@ const {chromium}=require('playwright');
      if(afterMobilityQueue.date<=completedMobility[0].date)throw Error('Mobility did not move the next strength opportunity forward');
    }
    console.log('Mobility preserves strength queue and shifts next opportunity at '+viewport.width+'px');
+   // Five consecutive easy movement days must not consume five strength slots.
+   // Recovery still governs the first eligible strength date.
+   const repeatedMovement=await page.evaluate(()=>{
+     const now=new Date().toLocaleDateString('sv-SE');
+     const add=window.RollingCalendar.add;
+     const base={...state,activities:(state.activities||[]).filter(a=>a.date!==now)};
+     const baseline=window.RollingCalendar.project(base,now,add(now,21));
+     const activities=Array.from({length:5},(_,i)=>({id:'mobility-fixture-'+i,type:'mobility',date:add(now,i),duration:20,effort:'easy',status:'completed',replacesStrength:true}));
+     const after=window.RollingCalendar.project({...base,activities:[...(base.activities||[]),...activities]},now,add(now,21));
+     return {before:baseline[0]&&{key:baseline[0].key,ids:baseline[0].plan.items.map(x=>x.id)},after:after[0]&&{key:after[0].key,ids:after[0].plan.items.map(x=>x.id),date:after[0].date},fifth:add(now,4)};
+   });
+   if(!repeatedMovement.before||!repeatedMovement.after)throw Error('Five-day mobility queue fixture produced no strength opportunity: '+JSON.stringify(repeatedMovement));
+   if(repeatedMovement.after.date<=repeatedMovement.fifth)throw Error('Five movement days did not defer the strength opportunity: '+JSON.stringify(repeatedMovement));
+   if(repeatedMovement.before.key!==repeatedMovement.after.key||JSON.stringify(repeatedMovement.before.ids)!==JSON.stringify(repeatedMovement.after.ids))throw Error('Repeated movement days consumed or altered the strength prescription: '+JSON.stringify(repeatedMovement));
+   console.log('Five consecutive movement days preserve strength queue at '+viewport.width+'px');
    if(await mobility.locator('#mobility-clock').count())throw Error('Mobility timer still running after save');
    console.log('Mobility completion persistence and no lifting credit passed at '+viewport.width+'px');
    await page.reload({waitUntil:'domcontentloaded'});
