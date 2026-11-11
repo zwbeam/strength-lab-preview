@@ -146,6 +146,11 @@ const {chromium}=require('playwright');
    if(!await mobility.locator('#start-mobility').count())throw Error('Mobility cancel failed');
    console.log('Guided mobility start, clock and cancel passed at '+viewport.width+'px');
    await mobility.evaluate(el=>{el.open=true;});
+   const beforeMobilityQueue=await page.evaluate(()=>{
+     const now=new Date().toLocaleDateString('sv-SE');
+     const rows=window.RollingCalendar.project(state,now,window.RollingCalendar.add(now,14));
+     return rows.length?{key:rows[0].key,block:rows[0].plan.block,slot:rows[0].plan.slot,ids:rows[0].plan.items.map(x=>x.id),date:rows[0].date}:null;
+   });
    await mobility.locator('#start-mobility').click();
    page.once('dialog',dialog=>dialog.accept());
    await mobility.locator('#finish-mobility').click();
@@ -153,6 +158,16 @@ const {chromium}=require('playwright');
    const completedMobility=(mobilityRecord.activities||[]).filter(a=>a.type==='mobility'&&a.status==='completed');
    if(completedMobility.length!==1||completedMobility[0].replacesStrength!==true||completedMobility[0].duration<1)throw Error('Mobility completion not safely recorded');
    if((mobilityRecord.sessions||[]).length!==0)throw Error('Mobility incorrectly added lifting session');
+   const afterMobilityQueue=await page.evaluate(()=>{
+     const now=new Date().toLocaleDateString('sv-SE');
+     const rows=window.RollingCalendar.project(state,now,window.RollingCalendar.add(now,14));
+     return rows.length?{key:rows[0].key,block:rows[0].plan.block,slot:rows[0].plan.slot,ids:rows[0].plan.items.map(x=>x.id),date:rows[0].date}:null;
+   });
+   if(beforeMobilityQueue&&afterMobilityQueue){
+     if(afterMobilityQueue.key!==beforeMobilityQueue.key||afterMobilityQueue.block!==beforeMobilityQueue.block||afterMobilityQueue.slot!==beforeMobilityQueue.slot||JSON.stringify(afterMobilityQueue.ids)!==JSON.stringify(beforeMobilityQueue.ids))throw Error('Mobility changed the unfinished strength prescription: '+JSON.stringify({beforeMobilityQueue,afterMobilityQueue}));
+     if(afterMobilityQueue.date<=completedMobility[0].date)throw Error('Mobility did not move the next strength opportunity forward');
+   }
+   console.log('Mobility preserves strength queue and shifts next opportunity at '+viewport.width+'px');
    if(await mobility.locator('#mobility-clock').count())throw Error('Mobility timer still running after save');
    console.log('Mobility completion persistence and no lifting credit passed at '+viewport.width+'px');
    await page.reload({waitUntil:'domcontentloaded'});
