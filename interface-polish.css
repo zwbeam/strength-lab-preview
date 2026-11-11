@@ -591,3 +591,11 @@ body{background-image:linear-gradient(#0b1215d9,#0b1215d9),url("chalk-notes-over
 @media (prefers-reduced-motion:reduce){
  #app:is([data-active-tab="progress"],[data-active-tab="learn"],[data-active-tab="settings"]) .hub-tile{transition:none}
 }
+
+/* Review pass: consistent preparation cards in preview and active workout. */
+#selected-workout .prep-name,#selected-workout .prep-name *,details.preparation .prep-name,details.preparation .prep-name *{color:#7ee0d0!important;font-weight:800}
+details.preparation .prep-exercise .rx,details.preparation .prep-exercise .rx *{color:#f5f7f6!important}
+.workout-title~details.preparation[data-panel="warmup"],.workout-title~details.preparation[data-panel="warmup"][open]{background:#542d3bdc!important;border:2px solid #922f4c!important;border-radius:10px;padding:12px 14px;margin:12px 0}
+.workout-title~details.preparation[data-panel="cooldown"],.workout-title~details.preparation[data-panel="cooldown"][open]{background:#223c56dc!important;border:2px solid #37669e!important;border-radius:10px;padding:12px 14px;margin:12px 0}
+.calendar-disclosure{background:#203b35;border:1px solid #669a83;border-radius:10px;padding:12px 14px;margin:8px 0 14px}
+.calendar-disclosure>summary{color:#b9f1df;font-weight:850;min-height:30px}
