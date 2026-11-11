@@ -69,3 +69,17 @@ const imported=E.plan({...fairState,sessions:[futureRecord,...fairState.sessions
 assert.equal(imported.items[0]?.id,historical.items[0]?.id,
  'future or unsorted strength records must not change first-movement fairness priority');
 console.log('PASS chronological fairness priority with future and unsorted records');
+
+ // Imported future-dated records must not rotate optional accessories early.
+ // Use a fresh ABC profile with high variety to exercise the one-exposure cadence.
+const accessoryBase={...deferredState,deferredIds:[],sessions:[],
+ trainingPreferences:{...deferredState.trainingPreferences,skillSessions:true,variety:'high',daysPerWeek:7}};
+const accessoryNow=E.plan(accessoryBase,{now:'2026-11-11',minutes:45});
+const futureAccessory={...accessoryBase,sessions:[{
+ id:'future-accessory',date:'2026-12-11',block:'abc',
+ items:[{id:'squat',performed:true,actualSets:1,actualReps:5,quality:'clean',mode:'volume'}]
+}]};
+const accessoryAfterFuture=E.plan(futureAccessory,{now:'2026-11-11',minutes:45});
+assert.deepEqual(accessoryAfterFuture.items.map(x=>x.id),accessoryNow.items.map(x=>x.id),
+ 'future-dated workout must not advance optional accessory rotation');
+console.log('PASS future sessions do not rotate accessories');
