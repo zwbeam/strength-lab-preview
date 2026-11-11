@@ -153,7 +153,7 @@ function cooldown(plan){
  const hinge=/swing|deadlift|hinge|clean|snatch/.test(names);
  const squat=/squat|lunge/.test(names);
  const ground=/get.up|ground|turkish/.test(names);
- const grip=/club|cast|mill|swing|clean|snatch|carry|deadlift|circle/.test(names);
+ const grip=/club|cast|mill|carry|circle/.test(names);
  const available=Math.max(0,Math.floor(Number(plan.budget?.cooldown)||0));
  const directions=[
   ['Spinal extension','Gentle Sphinx or another comfortable supported extension',130],
