@@ -148,7 +148,14 @@ function cooldown(plan){
  const mins=Array(slots).fill(Math.floor(available/slots));
  for(let i=0;i<available%slots;i++)mins[i]++;
  const rows=directions.slice(0,slots).map((d,i)=>`<li>${mins[i]} min: ${d[0]} — ${d[1]} (<button class="source-open" data-open-source="${d[2]}">source</button>).</li>`);
- const extra=overhead?' For overhead work, Wildman also discusses the box puppy-dog stretch (<button class="source-open" data-open-source="139">source</button>).':grip?' For grip-heavy work, he also discusses a wrist-and-elbow cooldown (<button class="source-open" data-open-source="132">source</button>).':'';
+ const hinge=/swing|deadlift|hinge|clean|snatch/.test(names);
+ const squat=/squat|lunge/.test(names);
+ const specific=overhead?
+  'For overhead work: finish with a comfortable supported box puppy-dog stretch if shoulders tolerate it (<button class="source-open" data-open-source="139">source</button>).':
+  grip?'For grip-heavy work: add gentle wrist opening and forearm rotation without loaded stretching (<button class="source-open" data-open-source="132">source</button>).':
+  squat?'For squat work: use supported ankle motion and comfortable hip rotation; do not force a deep squat.':
+  hinge?'For hinges: use easy hamstring movement and supported hip rotations, avoiding aggressive end-range stretches.':'';
+ const extra=specific?' <strong>Movement-specific option:</strong> '+specific:'';
  return `<ol>${rows.join('')}</ol><p class="muted small">Focus: ${focus}. Wildman's general cooldown directions and order are documented in <button class="source-open" data-open-source="130">Cooldown 1</button> and <button class="source-open" data-open-source="136">Cooldown 4</button>.${extra} This ${available}-minute allocation is an app adaptation; it is not a claim that every source prescribes these exact durations. Stay in comfortable ranges and skip anything painful.</p>`;
 }
 function emptyPlanMessage(p){
