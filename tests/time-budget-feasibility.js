@@ -36,3 +36,15 @@ assert.ok(deferredPlan.items.length>0,'deferred test must schedule a workout');
 assert.equal(deferredPlan.items[0].id,'row','eligible deferred movement must receive first scheduling opportunity');
 console.log('PASS deferred priority scheduling');
 console.log('PASS time-budget diagnostic (documents existing limitation, not a scheduling fix)');
+
+ // Fairness regression: four completed exposures to a competing movement
+ // make a skipped eligible movement overdue, without using mobility days.
+const fairnessSessions=Array.from({length:4},(_,i)=>({
+ id:'fair-'+i,date:'2026-10-'+String(10+i*2).padStart(2,'0'),block:'abc',
+ items:[{id:'squat',performed:true,actualSets:1,actualReps:5,targetSets:1,targetReps:5,quality:'clean',mode:'volume'}]
+}));
+const fairState={...deferredState,deferredIds:[],sessions:fairnessSessions,trainingPreferences:{...deferredState.trainingPreferences,daysPerWeek:7},trainingDefaults:{minGapDays:0,maxTrainingDays:7}};
+const fairPlan=E.plan(fairState,{now:'2026-11-11',minutes:45});
+assert.ok(fairPlan.items.length>0,'fairness fixture must have a schedulable movement');
+assert.notEqual(fairPlan.items[0].id,'squat','four consecutive squat exposures must not indefinitely outrank other eligible lifts');
+console.log('PASS movement fairness after four completed strength exposures');
