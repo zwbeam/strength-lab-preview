@@ -87,14 +87,8 @@ jobs:
           node tests/timer-tick-integrity.js
           node tests/year-simulation.js
           node tests/time-budget-feasibility.js
-      - name: Install Chromium browser test runner
-        run: |
-          npm install --no-save playwright
-          npx playwright install --with-deps chromium
-      - name: Smoke test app in Chromium
-        run: |
-          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/strength-lab-http.log 2>&1 &
-          node tests/browser-smoke.js
+      # Browser smoke is a separate job. A transient Ubuntu apt outage must not
+      # conceal whether the engine, research, and packaging checks passed.
       - name: Package isolated review build
         run: |
           mkdir -p review-build
@@ -143,3 +137,19 @@ jobs:
           retention-days: 14
           if-no-files-found: error
       # --strict is intentionally not enabled until known research gaps are resolved.
+
+  browser-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Chromium browser test runner
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Smoke test app in Chromium
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/strength-lab-http.log 2>&1 &
+          node tests/browser-smoke.js
