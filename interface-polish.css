@@ -694,3 +694,9 @@ details.preparation .prep-exercise .rx,details.preparation .prep-exercise .rx *{
 .simple-timer-disclosure .timer-navigation button{min-height:32px!important;padding:3px 6px!important}
 .simple-timer-disclosure .simple-timer-settings{margin-bottom:5px;gap:5px}
 .simple-timer-disclosure .simple-timer-settings input{padding:5px;font-size:15px}
+
+/* Dark sticky timer with orange outline instead of orange fill. */
+.simple-timer-disclosure{background:#101519!important;border:2px solid #ef842e!important;box-shadow:0 3px 12px #0008}
+.simple-timer-disclosure>summary{background:#101519!important;color:#f7f7f7!important}
+.simple-timer-disclosure>summary:before{color:#ef842e}
+.simple-timer-disclosure .simple-timer{background:#101519!important}
