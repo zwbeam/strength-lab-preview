@@ -22,4 +22,8 @@ test('owned club loads only',()=>{const b=base();const choices=E.loadOptions(b,'
 test('unowned kettlebell load rejected',()=>{const b=base();assert.throws(()=>E.selectLoad(b,'swing',99))});
 test('unowned club load rejected',()=>{const b=base();assert.throws(()=>E.selectLoad(b,'cast',99))});
 test('time allocations reconcile',()=>{for(const minutes of [30,45,60]){const b=E.timeBudget(minutes);assert.equal(b.warmup+b.main+b.cooldown,minutes)}});
+test('matched pair inventory limits double press',()=>{const b=base();b.equipment.pairs=[12,16];const choices=E.loadOptions(b,'doublePress');assert.ok(choices.every(w=>b.equipment.pairs.includes(w)),'unowned pair offered')});
+test('no pair inventory cannot offer double progression',()=>{const b=base();b.equipment.pairs=[];assert.deepEqual(E.loadOptions(b,'doublePress'),[])});
+test('unowned matched pair load rejected',()=>{const b=base();b.equipment.pairs=[12,16];assert.throws(()=>E.selectLoad(b,'doublePress',99))});
+test('unavailable load replacement preserves source state',()=>{const b=base();b.nextWeights={swing:20};const before=JSON.stringify(b);const updated=E.replaceUnavailableLoad(b,'swing',16);assert.equal(updated.nextWeights.swing,16);assert.equal(JSON.stringify(b),before)});
 console.log(passed+' engine tests passed');
