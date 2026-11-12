@@ -85,4 +85,27 @@ test('activity intensity and duration have distinct recovery windows',()=>{
   assert.equal(JSON.stringify(state),before,label+' must not mutate training history');
  }
 });
-console.log(passed+'/14 recovery checks passed');
+test('recovery ends on the precise day boundary without catch-up',()=>{
+ const cases=[
+  {effort:'hard',duration:30,type:'mountain',blocked:['2026-11-09','2026-11-10'],returnDate:'2026-11-11'},
+  {effort:'moderate',duration:90,type:'mountain',blocked:['2026-11-09','2026-11-10'],returnDate:'2026-11-11'},
+  {effort:'moderate',duration:30,type:'road',blocked:['2026-11-09'],returnDate:'2026-11-10'},
+  {effort:'easy',duration:120,type:'road',blocked:['2026-11-09'],returnDate:'2026-11-10'}
+ ];
+ for(const c of cases){
+  const activity={id:'boundary',date:'2026-11-09',type:c.type,status:'completed',
+   effort:c.effort,duration:c.duration,replacesStrength:true};
+  const state={...b,activities:[activity]},snapshot=JSON.stringify(state);
+  for(const date of c.blocked){
+   const p=E.plan(state,{now:date,minutes:45,readiness:'great'});
+   assert.equal(p.items.length,0,c.effort+' '+c.type+' must block '+date);
+  }
+  const resumed=E.plan(state,{now:c.returnDate,minutes:45,readiness:'normal'});
+  assert.ok(resumed.items.length>0||resumed.timeBlocked.length>0||
+   resumed.held.length>0||resumed.prerequisite.length>0||resumed.unavailable.length>0,
+   c.effort+' '+c.type+' must return to planning on '+c.returnDate);
+  assert.equal(JSON.stringify(state),snapshot,'boundary checks must not mutate history');
+  assert.equal(state.sessions.length,0,'recovery boundary cannot manufacture strength completion');
+ }
+});
+console.log(passed+'/15 recovery checks passed');
