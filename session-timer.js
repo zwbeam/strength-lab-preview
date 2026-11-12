@@ -54,11 +54,25 @@ function primary(d,now=Date.now()){const c=d.clock;
 }
 function add(d,seconds=30,now=Date.now()){if(d.timerVersion===3&&d.clock?.untimed){advance(d,now,true);if(d.clock?.kind!=='rest'){custom(d,seconds,'Additional rest',now,false);d.clock.kind='rest';return;}}if(!d.clock||d.clock.completed){custom(d,seconds,'Additional pacing',now,false);return;}const c=d.clock;c.remaining=remaining(c,now)+seconds;if(c.running)c.endAt=now+c.remaining*1000;}
 function skip(d,now=Date.now()){if(d.clock)advance(d,now,true);}
+function previous(d,now=Date.now()){
+ const c=d.clock;if(!c?.sequence)return;
+ const q=queue(d),index=Math.max(0,(Number.isInteger(c.cursor)?c.cursor:0)-1);
+ prepare(d,index,now,false);
+}
+function restart(d,now=Date.now()){
+ const c=d.clock;if(!c?.sequence)return;
+ prepare(d,Math.max(0,c.cursor||0),now,false);
+}
+function timeLeft(d,now=Date.now()){
+ const c=d.clock;if(!c?.sequence)return remaining(c,now);
+ const q=queue(d),index=Math.max(0,c.cursor||0);
+ return remaining(c,now)+q.slice(index+1).reduce((sum,entry)=>sum+Math.max(0,entry.seconds||0),0);
+}
 function logged(d,i,j,value,now=Date.now()){
  if(!value){const index=queue(d).findIndex(x=>x.kind==='work'&&x.item===i&&(x.set===j||x.set===null));if(index>=0)prepare(d,index,now,false);return;}
  if(d.items.every(item=>item.sets.every(set=>set.done))){prepare(d,queue(d).length,now);return;}
  if(!d.clock){const index=queue(d).findIndex(x=>x.kind==='work'&&x.item===i&&(x.set===j||x.set===null));if(index>=0)prepare(d,index,now,false);}
  const c=d.clock;if(c?.kind==='work'&&c.item===i&&(c.set===j||c.set===null&&d.items[i].sets.every(set=>set.done)))advance(d,now,true);
 }
-return{MODES,mode,remaining,queue,prepare,resume,pause,enterWork,custom,advance,tick,primary,add,skip,logged};
+return{MODES,mode,remaining,queue,prepare,resume,pause,enterWork,custom,advance,tick,primary,previous,restart,timeLeft,add,skip,logged};
 });
