@@ -11,4 +11,18 @@ assert.ok(app.includes('Instruction incomplete · ${esc(entry.coverage)}'),'Lear
 assert.ok(app.includes("Learning.instruction(step.id).coverage!=='reviewed outline'"),'Pathway steps must independently display incomplete lesson status');
 assert.ok(app.indexOf('Incomplete lesson:')<app.indexOf('Learning.videos(id).map',app.indexOf('function renderInstruction(')),'incomplete lesson notice must appear before instructional video links');
 for(const [id,entry] of partial)assert.ok(typeof entry.coverage==='string'&&entry.coverage.length>0,'missing coverage label '+id);
+// Preserve evidence provenance when instructional copy is expanded.
+for (const id of ['cast','getup','doublePress','pushup','snatch']) {
+  const entry=data.entries[id];
+  assert.ok(entry && /partial/i.test(entry.coverage),id+': visually unverified technique must remain flagged');
+  assert.ok(entry.sourceIds.length>0 && entry.videoSourceIds.length>0,id+': missing attributed lesson/video');
+  assert.ok(entry.evidence.length>0 && entry.evidence.every(e=>entry.sourceIds.includes(e.sourceId)),id+': evidence must match declared sources');
+  for(const sourceId of entry.videoSourceIds)assert.ok(Object.hasOwn(data.sources,sourceId),id+': video source missing from catalog '+sourceId);
+}
+for (const id of ['carry','front']) {
+  const entry=data.entries[id];
+  assert.ok(entry && /app-authored|unverified|pending/i.test(entry.coverage),id+': unsourced lesson must be disclosed');
+  assert.deepEqual(entry.sourceIds,[],id+': do not cite a different exercise as technique evidence');
+  assert.deepEqual(entry.videoSourceIds,[],id+': do not link an unrelated exercise as instructional video');
+}
 console.log('PASS '+(partial.length+6)+' incomplete-instruction safeguards');
