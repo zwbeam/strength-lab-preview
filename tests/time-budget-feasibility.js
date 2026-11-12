@@ -39,6 +39,23 @@ const deferredPlan=E.plan(deferredState,{now:'2026-11-11',minutes:45});
 assert.ok(deferredPlan.items.length>0,'deferred test must schedule a workout');
 assert.equal(deferredPlan.items[0].id,'row','eligible deferred movement must receive first scheduling opportunity');
 console.log('PASS deferred priority scheduling');
+
+ // Changing today's time allocation must not discard or silently complete a
+ // movement explicitly waiting in the deferred queue.
+const deferredShort=E.plan(deferredState,{now:'2026-11-11',minutes:30,readiness:'low'});
+const deferredLong=E.plan(deferredState,{now:'2026-11-11',minutes:60,readiness:'normal'});
+for(const [label,p] of [['short/low',deferredShort],['long/normal',deferredLong]]){
+ const accountedFor=[...p.items.map(x=>x.id),...p.timeBlocked.map(x=>x.id),
+  ...p.held.map(x=>x.id),...p.prerequisite.map(x=>x.id),
+  ...p.unavailable.map(x=>x.id),...p.requirements.map(x=>x.id)];
+ assert.ok(accountedFor.includes('row'),label+' must account for explicitly deferred row');
+}
+assert.deepEqual(deferredState.deferredIds,['row'],'planning must not mutate deferred queue');
+assert.equal(deferredState.sessions.length,0,'changing time/readiness must not manufacture completion');
+const restoredDeferred=E.plan(deferredState,{now:'2026-11-11',minutes:45,readiness:'normal'});
+assert.equal(restoredDeferred.items[0].id,'row','restoring normal session must restore deferred movement priority');
+console.log('PASS deferred strength priority survives shorter sessions and readiness changes');
+
 console.log('PASS time-budget diagnostic (documents existing limitation, not a scheduling fix)');
 
  // Fairness regression: four completed exposures to a competing movement
