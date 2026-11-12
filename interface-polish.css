@@ -613,3 +613,9 @@ details.preparation .prep-exercise .rx,details.preparation .prep-exercise .rx *{
 
 /* One-touch workout checklist */
 .notebook-exercise>.row{display:flex;align-items:center;gap:10px}.notebook-exercise>.row>.quick-left{flex:0 0 28px}.notebook-exercise>.row>.quick-left input{width:28px;height:28px;min-height:28px;accent-color:#7de1c4}.quick-complete{display:flex;align-items:center;gap:8px}.quick-status{font-size:12px;color:#a5dccc;font-weight:750;min-width:44px;text-align:right}.session-note-label{display:block;margin:18px 0 12px}.session-note-label textarea{display:block;width:100%;min-height:72px;margin-top:8px}
+
+/* Five-tab navigation: override legacy four-column !important rule. */
+.bottom{grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:3px!important;padding:5px 4px calc(5px + env(safe-area-inset-bottom))!important;box-sizing:border-box!important}
+.bottom button{min-width:0!important;max-width:none!important;width:100%!important;flex:initial!important;padding:4px 1px!important;font-size:clamp(9px,2.5vw,11px)!important;line-height:1.15!important;white-space:nowrap!important;overflow:hidden!important}
+.bottom button[data-tab="home"]{border-color:#f4aa59!important}
+.bottom button[data-tab="home"] .nav-art{display:flex!important;align-items:center;justify-content:center;font-size:clamp(24px,7vw,36px)!important;line-height:1!important;color:#f4aa59!important;aspect-ratio:415/489!important}
