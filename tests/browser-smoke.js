@@ -970,6 +970,26 @@ const {chromium}=require('playwright');
    console.log('History correction save/reload passed at '+viewport.width+'px');
 
 
+   // Cold-network regression: verify a controlled page can reload from the
+   // installed service-worker cache and navigate without network access.
+   if(viewport.width===390){
+    await page.evaluate(()=>navigator.serviceWorker.ready);
+    await page.reload({waitUntil:'domcontentloaded'});
+    await page.waitForFunction(()=>navigator.serviceWorker.controller!==null);
+    await page.context().setOffline(true);
+    try{
+     await page.reload({waitUntil:'domcontentloaded',timeout:15000});
+     await page.locator('#app').waitFor({timeout:10000});
+     for(const tabName of ['today','progress','learn','settings']){
+      await page.locator('[data-tab="'+tabName+'"]').click();
+      if(!(await page.locator('#app').innerText()).trim())
+       throw Error('Offline reload left '+tabName+' empty');
+     }
+     console.log('Service-worker offline reload and navigation passed at 390px');
+    }finally{
+     await page.context().setOffline(false);
+    }
+   }
    if(errors.length)throw Error(viewport.width+'px browser exceptions: '+errors.join(' | '));
    console.log('Browser navigation passed at '+viewport.width+'px');
    await page.close();
