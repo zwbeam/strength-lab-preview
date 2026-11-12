@@ -14,6 +14,22 @@ Status: **candidate identification only**, not transcript review or technique ve
 | Two-hand shield cast (`cast`) | #214, #543 short technique notes | Full breathing, behind-head clearance and error corrections | Existing mapped lessons; other shield-cast variants are not interchangeable | Verify clearance and breathing from complete original |
 | Push-up EMOM (`pushup`) | #609 clean-rep/programming lesson | Full setup, hand position, body alignment and regressions | #609 is programming-first | Separate source-derived volume prescription from app-authored setup |
 
+## Expanded source-index triage (2026-11-11)
+
+The repository's `source-index.json` was searched by title for each incomplete movement. These are **new retrieval leads, not verified technique citations**:
+
+| Movement | Additional candidates / result | Evidence caution |
+| --- | --- | --- |
+| Suitcase carry | No title-matched carry lesson. #114 suitcase deadlift and #589 double suitcase deadlift are different exercises. | Do not map deadlift technique to walking carries. |
+| Two-hand club front swing | No exact front-swing lesson found by title. | Front press and kettlebell front swing are not equivalent. |
+| Turkish get-up | #604 `TURKISH GET UP - A PRIMER`; #18 introductory drills; #20 mastery series; #23/#24 drill series; #620 hardest parts. | Confirm each transition in transcript and visually dependent positions in video. |
+| Double clean and press | #152 dedicated double clean/press lesson; #162 double clean/press; #47 dead-stop double clean; #120 programming. | Separate technique evidence from volume-programming evidence. |
+| Snatch | #413 technique; #478 half-snatch up; #262 half-snatch down; #381 high transition. | Verify grip, insertion, lowering and prerequisites, not only volume-cycle math. |
+| Two-hand shield cast | #214 dedicated two-hand cast; #222 two-hand shield cast; #77 shield cast; #498 shield-cast variant. | Do not substitute single-arm technique; confirm behind-head clearance and breathing visually. |
+| Push-up EMOM | #609 progression math; #608 progression method 2; #251 40% rule; #253 frequency; #92 half-screwing pushup. | Programming advice does not by itself certify full push-up setup/regressions. |
+
+**Next verification action:** retrieve complete text of these candidate IDs from `sources-00.json` through `sources-23.json`, record passage-level anchors and classify each claim as explicit, inferred or app-authored. Do not change `movement-instruction.js` coverage labels based on this title search alone.
+
 ## Evidence standard
 
 1. Read the actual transcript, not merely its title or the inventory's provisional topic tags.
