@@ -51,6 +51,19 @@ jobs:
           node --check session-timer.js
           node --check programming-education.js
           for file in tests/*.js; do node --check "$file"; done
+      - name: Ensure every Node regression suite is executed
+        run: |
+          python3 - <<'PY'
+          import pathlib,re,sys
+          workflow=pathlib.Path('.github/workflows/research-coverage.yml').read_text()
+          # Read only the audit job's command section, not the browser job.
+          audit=workflow.split('  browser-smoke:',1)[0]
+          referenced=set(re.findall(r'node (tests/[A-Za-z0-9_-]+\\.js)',audit))
+          suites={str(p) for p in pathlib.Path('tests').glob('*.js') if p.name!='browser-smoke.js'}
+          missing=sorted(suites-referenced)
+          if missing:sys.exit('Unexecuted regression suites: '+', '.join(missing))
+          print('Node regression suites covered:',len(suites))
+          PY
       - name: Validate movement mappings and source integrity
         run: |
           node tests/research-coverage.js
