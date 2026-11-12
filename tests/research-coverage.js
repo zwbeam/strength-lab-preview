@@ -30,6 +30,11 @@ for (const [id, move] of Object.entries(moves)) {
     gaps.push({ id, name: move.name, issue: 'No source evidence attached' });
   for (const sourceId of lesson.sourceIds)
     assert.ok(Object.hasOwn(sources, sourceId), id + ': unknown source ID ' + sourceId);
+  for (const videoId of lesson.videoSourceIds || []) {
+    assert.ok(lesson.sourceIds.includes(videoId),id+': video source '+videoId+' must also be declared in sourceIds');
+    assert.ok(Object.hasOwn(sources,videoId),id+': unknown video source ID '+videoId);
+    assert.match(sources[videoId].url || '',/^https:\/\/www\\.youtube\\.com\/watch\\?v=[A-Za-z0-9_-]+$/,id+': missing or invalid source video URL '+videoId);
+  }
   if (lesson.evidence?.length && !lesson.sourceIds.length)
     throw Error(id + ': quotations without source attribution');
   for (const evidence of lesson.evidence || [])
