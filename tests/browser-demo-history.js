@@ -33,9 +33,11 @@ const report=JSON.parse(fs.readFileSync('strength-lab-engine-demo-backup-progres
     if(tab==='progress'){
      const progressText=await page.locator('#movement-progress').innerText();
      for(const id of ['swing','squat','press','row','clean','cast']){
-      const name=backup.sessions.flatMap(session=>session.items).find(item=>item.id===id)?.id;
-      assert.ok(name,'Missing generated movement '+id);
+      const expected=report.movementCounts[id];
+      assert.ok(expected&&expected.total>=100,'Insufficient generated history for '+id);
      }
+     const summaryRows=await page.locator('#movement-progress .stage-row').count();
+     assert.equal(summaryRows,6,'Movement summary omitted trained movements at '+width);
      assert.ok(progressText.includes('Detailed cycles and milestones'),'Detailed progression section absent at '+width);
     }
    }
