@@ -4,6 +4,17 @@ const assert=require('node:assert/strict');
 const E=require('../engine.js');
 const budget30=E.timeBudget(30);
 assert.equal(budget30.main,12);
+// Preparation and cooldown allocations must remain fixed and never consume
+// more than the selected session, even at the minimum 25-minute budget.
+for(const duration of [25,30,40,45,50,55,60,65,75,90,120]){
+ const b=E.timeBudget(duration);
+ assert.equal(b.warmup,8,'warmup allocation '+duration);
+ assert.equal(b.cooldown,10,'cooldown allocation '+duration);
+ assert.equal(b.main,duration-18,'main allocation '+duration);
+ assert.equal(b.warmup+b.main+b.cooldown,duration,'budget reconciliation '+duration);
+ assert.ok(b.main>0,'main work must remain positive at '+duration);
+}
+console.log('PASS warmup and cooldown reconcile across all supported workout budgets');
 const snatch=E.policyFor('snatch',{});
 assert.equal(snatch.stages.at(-1).sets,20);
 const endpoint={id:'snatch',sets:20,roundSeconds:60,rest:0};
