@@ -130,8 +130,8 @@ test('switching back to a formerly owned kettlebell does not resurrect its old s
  b.equipment.kb=[12];
  const lighter=E.replaceUnavailableLoad(b,'swing',12);
  assert.equal(E.stateFor(lighter,'swing').stage,0);
- const restored={...lighter,equipment:{...lighter.equipment,kb:[12,16]}};
- const back={...restored,nextWeights:{...restored.nextWeights,swing:16}};
+ const restored={...lighter,equipment:{...lighter.equipment,kb:[16]}};
+ const back=E.replaceUnavailableLoad(restored,'swing',16);
  assert.equal(E.stateFor(back,'swing').stage,0,'switching back must not inherit an old stage');
 });
 console.log(passed+' engine tests passed');
