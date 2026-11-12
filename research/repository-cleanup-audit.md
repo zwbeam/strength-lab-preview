@@ -40,3 +40,13 @@ Scanned 15 application/runtime files: active and legacy HTML/CSS/JS, engine, lea
 **Precache-only within these 15 files:** `concept-skull.png` and `art-hub.webp`. This is not proof of unuse: test scripts, dynamic references, and other non-scanned files remain to be checked. Retain pending full audit.
 
 **Cleanup decision:** Do not delete legacy art based on version suffixes. Preserve the working legacy route and offline precache. The next cleanup pass should enumerate all art assets against all tracked text files, including tests and docs, before proposing deletions.
+
+## Pass 4 — Cleanup decision and guardrail
+
+- Added `tests/offline-precache-integrity.js` in commit `53702179`. It asserts that the service-worker manifest parses, local entries exist, entries are unique, and the linked legacy route remains cached. This is a **new regression guard**, not a complete browser offline-install test.
+- No image deletions are justified by the currently completed cross-file scan. Specifically, the v16 and v28 artwork referenced by `legacy/styles.css` is retained; `concept-skull.png` and `art-hub.webp` are only *candidates* for a subsequent exhaustive scan.
+- **Decision for this cleanup phase:** preserve all legacy routes, evidence bundles, and image assets rather than delete unproven duplicates. A safe reduction requires comprehensive tracked-file reference analysis and visual verification of both app versions.
+- Future removal checklist: confirm no references (including dynamically constructed names), update the service-worker `FILES` list, bump `CACHE`, run offline-precache integrity, test both legacy and active routes in browser, and verify cold install/offline reload.
+- Existing source and history integrity tests remain mandatory before release. Do not equate repository cleanup with research integration completeness.
+
+**Outcome:** Cleanup phase closes with reference documentation and a precache guard, not speculative file deletion. Next phase: multi-year data and workout simulation regression.
