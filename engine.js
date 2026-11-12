@@ -203,7 +203,7 @@ function complexityOptions(s,opts={}){
   const missing=pathway.requires.filter(id=>!Object.hasOwn(MOVES,id)||!practiceEvidence(s,id,{now:opts.now}).ready);
   const pairAvailable=!pathway.matchedPair||(s.trainingPreferences?.useDoubleKb===true&&(s.equipment?.pairs||[]).length>0);
   const movement=MOVES[pathway.id];
-  const weight=Number(s.weights?.[pathway.id]||s.nextWeights?.[pathway.id]||0);
+  const weight=Number(stateFor(s,pathway.id).weight||0);
   const inventory=movement.pair?s.equipment?.pairs:s.equipment?.kb;
   const validLoad=weight>0&&Array.isArray(inventory)&&inventory.includes(weight);
   const rackReady=!pathway.matchedPair||s.skills?.rack===true;
