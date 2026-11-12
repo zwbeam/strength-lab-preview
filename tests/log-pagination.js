@@ -25,12 +25,13 @@ for(const [name,ok] of Object.entries(checks))assert.ok(ok,'Missing log paginati
 // Guard against silent drift in the actual pagination and session persistence contracts.
 const browser=fs.readFileSync(require('node:path').join(__dirname,'browser-smoke.js'),'utf8');
 const browserChecks={
-  'decade-scale history fixture':/2600-session Training Log render/.test(browser),
-  'decade-scale pagination':/2600-session Training Log pagination to 300 rows/.test(browser),
-  'historical correction persistence':/2600-session historical correction survived reload/.test(browser),
-  'repeated reopen integrity':/2600-session repeated rendering and reopening integrity/.test(browser),
-  'new session append':/2601st workout saved through browser/.test(browser),
-  'quota failure rollback':/Quota-exhaustion rollback preserved 2601 workouts/.test(browser)
+  'decade-scale fixture size':/decadeUiData\.count!==2600\|\|decadeUiData\.unique!==2600/.test(browser),
+  'pagination verifies actual row count':/if\(rows!==expected\)throw Error/.test(browser),
+  'pagination preserves saved session count':/afterPaging\.count!==2600/.test(browser),
+  'historical correction survives reload':/if\(persistedOldEdit!==1\)throw Error/.test(browser),
+  'repeated reopen preserves unique sessions':/afterReopens\.unique!==2600/.test(browser),
+  'new session survives reload':/appendedReload\.count!==2601\|\|appendedReload\.ids!==2601/.test(browser),
+  'quota failure refuses write':/quotaFailure\.accepted!==false/.test(browser)
 };
 for(const [name,ok] of Object.entries(browserChecks))assert.ok(ok,'Missing browser history regression: '+name);
 console.log('Training Log pagination wiring checks passed: '+Object.keys(checks).length+'; browser scenario coverage: '+Object.keys(browserChecks).length);
