@@ -205,6 +205,18 @@ const {chromium}=require('playwright');
      throw Error('Time-blocked mobility should open its actionable alternative: '+JSON.stringify(fallbackDisclosure));
    console.log('Time-blocked mobility auto-expansion passed at '+viewport.width+'px');
 
+   const fallbackMessages=await page.evaluate(()=>({
+     blocked:emptyPlanMessage({items:[],timeBlocked:[{id:'deadlift'}]}),
+     unrelated:emptyPlanMessage({items:[],timeBlocked:[]}),
+     recovery:emptyPlanMessage({items:[],scheduled:[{id:'deadlift'}]})
+   }));
+   if(!/20-minute Mobility/.test(fallbackMessages.blocked)||!/strength progression stays queued/.test(fallbackMessages.blocked))
+     throw Error('Time-blocked message must explain the mobility substitution');
+   if(/fits this time window/.test(fallbackMessages.unrelated)||/fits this time window/.test(fallbackMessages.recovery))
+     throw Error('Non-time-blocked days must not be mislabeled as time-limited');
+   console.log('Accurate time-blocked versus recovery messages passed at '+viewport.width+'px');
+
+
 
    await mobility.locator('#start-mobility').click();
    if(!await mobility.locator('#mobility-clock').count())throw Error('Mobility timer did not start');
