@@ -30,6 +30,21 @@ for (const [lessonId,lesson] of Object.entries(entries)) for (const evidence of 
   checkedQuotes++;
 }
 assert.ok(checkedQuotes>=20,'unexpected loss of quoted source evidence');
+// Check every declared lesson source, including those with no direct quotation.
+let checkedSourceLinks=0;
+for(const [lessonId,lesson] of Object.entries(entries)) for(const sourceId of lesson.sourceIds || []) {
+  if(!transcriptCache.has(sourceId)) {
+    const shard=String(Math.floor(sourceId/30)).padStart(2,'0');
+    const original=require('../sources-'+shard+'.json').find(source=>source.id===sourceId);
+    assert.ok(original && typeof original.text==='string',lessonId+': missing original transcript '+sourceId);
+    transcriptCache.set(sourceId,original);
+  }
+  const original=transcriptCache.get(sourceId);
+  assert.equal(sources[sourceId]?.url,original.url,lessonId+': catalog URL mismatch '+sourceId);
+  checkedSourceLinks++;
+}
+assert.ok(checkedSourceLinks>=checkedQuotes,'source reference count unexpectedly below evidence count');
+
 const gaps = [];
 let covered = 0;
 for (const [id, move] of Object.entries(moves)) {
