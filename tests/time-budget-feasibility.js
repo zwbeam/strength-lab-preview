@@ -237,3 +237,19 @@ const projected=Calendar.project(afterMobility,'2026-11-11','2026-11-25',{minute
 assert.ok(projected.length,'strength must remain schedulable after mobility');
 assert.ok(projected.every(x=>x.date!=='2026-11-11'),'replacement mobility must block duplicate same-day strength');
 console.log('PASS mobility substitution preserves queued strength and avoids duplicate same-day training');
+
+// Repeated mobility substitutions must not silently clear the next strength slot.
+let repeatedMobility=mobilityBase;
+for(let i=0;i<5;i++){
+ repeatedMobility=Calendar.activity(repeatedMobility,{
+  id:'mobility-repeat-'+i,date:'2026-11-'+String(11+i).padStart(2,'0'),
+  type:'mobility',duration:20,effort:'easy',status:'completed',replacesStrength:true
+ });
+ assert.equal(repeatedMobility.sessions.length,0,'mobility cannot create strength sessions');
+ assert.equal(Calendar.count(repeatedMobility),0,'mobility cannot award exposures');
+ assert.equal(Calendar.key(repeatedMobility),originalKey,'mobility cannot consume strength slot');
+}
+assert.deepEqual(E.plan(repeatedMobility,{now:'2026-11-16',minutes:45}).items.map(x=>x.id),
+ originalPlan.items.map(x=>x.id),'five consecutive mobility days must preserve the prescription');
+console.log('PASS five consecutive mobility substitutions preserve strength queue and credit');
+
