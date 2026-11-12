@@ -59,6 +59,25 @@ const {chromium}=require('playwright');
    if(!await restoredSetup.locator('#owned-club-weights').inputValue().then(x=>x.includes('17')))throw Error('Club increments did not restore');
    console.log('Equipment ceilings and matched-pair settings persisted at '+viewport.width+'px');
 
+   // The Settings target and today's one-off target must expose identical
+   // windows; changing today's target must not mutate saved Settings.
+   const settingsDurations=await page.locator('#default-minutes option').allTextContents();
+   await page.locator('[data-tab="today"]').click();
+   const adjustments=page.locator('.today-adjustments');
+   await adjustments.evaluate(el=>{el.open=true;});
+   const dailyDurations=await adjustments.locator('#today-minutes option').allTextContents();
+   if(JSON.stringify(settingsDurations)!==JSON.stringify(dailyDurations))
+     throw Error('Settings and daily duration ranges differ: '+JSON.stringify({settingsDurations,dailyDurations}));
+   const savedTarget=await page.evaluate(()=>state.defaultMinutes);
+   await adjustments.locator('#today-minutes').selectOption('30');
+   const changedTargets=await page.evaluate(()=>({daily:todayMinutes,saved:state.defaultMinutes}));
+   if(changedTargets.daily!==30||changedTargets.saved!==savedTarget)
+     throw Error('One-day duration override changed Settings: '+JSON.stringify(changedTargets));
+   await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
+   await page.locator('#today-minutes').selectOption(String(savedTarget));
+   console.log('Settings and daily duration windows plus temporary override passed at '+viewport.width+'px');
+
+
    // Exercise the replacement UI with a deliberately unavailable recorded load.
    const replacementProbe=await page.evaluate(()=>{
     const original=state;
