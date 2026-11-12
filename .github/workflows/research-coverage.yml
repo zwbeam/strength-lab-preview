@@ -12,6 +12,12 @@ on:
       - session-timer.js
       - programming-education.js
       - styles.css
+      - interface-polish.css
+      - learning.js
+      - 'assets/**'
+      - '*.svg'
+      - '*.webp'
+      - '*.png'
       - sw.js
       - index.html
       - manifest.webmanifest
@@ -27,6 +33,12 @@ on:
       - session-timer.js
       - programming-education.js
       - styles.css
+      - interface-polish.css
+      - learning.js
+      - 'assets/**'
+      - '*.svg'
+      - '*.webp'
+      - '*.png'
       - sw.js
       - index.html
       - manifest.webmanifest
