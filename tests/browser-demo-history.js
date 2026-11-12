@@ -15,6 +15,19 @@ const report=JSON.parse(fs.readFileSync('strength-lab-engine-demo-backup-progres
    await page.locator('#app').waitFor();
    const stored=await page.evaluate(()=>JSON.parse(localStorage.getItem('sl-dev-preview-data-v33')||'null'));
    assert.equal(stored?.sessions?.length,backup.sessions.length,'Demo history not loaded at '+width);
+   const browserProgress=await page.evaluate(()=>{
+    const engine=window.StrengthEngine;
+    const saved=JSON.parse(localStorage.getItem('sl-dev-preview-data-v33'));
+    return Object.fromEntries(['swing','squat','press','row','clean','cast'].map(id=>{
+     const current=engine.stateFor(saved,id);
+     return [id,{stage:current.stage,weight:current.weight,track:current.track,exposures:current.allExposures}];
+    }));
+   });
+   const expectedProgress=report.checkpoints.at(-1).movements;
+   for(const id of Object.keys(browserProgress)){
+    for(const key of ['stage','weight','track','exposures'])
+     assert.deepEqual(browserProgress[id][key],expectedProgress[id][key],'Browser progression mismatch '+id+' '+key+' at '+width);
+   }
    for(const tab of ['progress','today']){
     await page.locator('[data-tab="'+tab+'"]').click();
     await page.waitForTimeout(500);
