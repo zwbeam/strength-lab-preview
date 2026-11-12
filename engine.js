@@ -191,7 +191,7 @@ function requirementLabel(key){if(key==='baseline:pushup')return 'Enter a recent
 function prerequisites(s,id,opts={}){
  const m=MOVES[id];return[...(m?.defaultProfile==='pushup'&&policyFor(id,s).volume.reps<1?['baseline:pushup']:[]),...(m?.requires||[]).filter(skill=>s.skills?.[skill]!==true),...(m?.practicePrereqs||[]).filter(parent=>!practiceEvidence(s,parent,{...opts,forMovement:id}).ready).map(parent=>'practice:'+parent)];
 }
-/* Complexity recommendations are advisory until a supported complex has its own prescription and log. */
+/* Complex readiness is advisory; eligible movements have independent prescriptions and logs. */
 const COMPLEX_PATHWAYS=Object.freeze([
  {id:'complexCleanPress',name:'Single-arm clean → press',gear:'kb',requires:['clean','press']},
  {id:'complexCleanSquatPress',name:'Single-arm clean → front squat → press',gear:'kb',requires:['clean','squat','press']},
@@ -303,7 +303,7 @@ const BLOCKS={
  singleClub:{name:'Single-arm club foundation block',days:[{name:'Inside / Outside / Shield',focus:'Continuous volume within each movement; breaks between movements',ids:['clubInside','clubOutside','clubShield']}]},
  club:{name:'Two-hand club practice block',days:[{name:'Two-hand club patterns',focus:'Familiar club patterns; choose timed profiles in Settings',ids:['front','cast','circles']}]}
 };
-const DEMANDS={ground:['lower','shoulder'],getup:['lower','shoulder','grip'],hinge:['lower','grip'],squat:['lower'],press:['shoulder','grip'],pull:['shoulder','grip'],carry:['grip'],rotation:['shoulder','grip']};
+const DEMANDS={ground:['lower','shoulder'],getup:['lower','shoulder','grip'],hinge:['lower','grip'],squat:['lower'],press:['shoulder','grip'],pull:['shoulder','grip'],carry:['grip'],rotation:['shoulder','grip'],complex:['lower','shoulder','grip']};
 function movementDemands(id){return [...(DEMANDS[MOVES[id]?.family]||[])];}
 function calendarDay(value){const text=typeof value==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(value)?value:new Date(value??Date.now()).toLocaleDateString('sv-SE');return Date.parse(text+'T12:00:00Z')/86400000;}
 function trainingPaused(s,now){const day=typeof now==='string'?now:new Date(now??Date.now()).toLocaleDateString('sv-SE');return !!s.paused&&(!s.pauseStarted||day>=s.pauseStarted)&&(!s.pauseUntil||day<s.pauseUntil);}
