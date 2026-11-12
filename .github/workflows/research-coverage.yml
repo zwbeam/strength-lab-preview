@@ -63,6 +63,8 @@ jobs:
           node --check rolling-calendar.js
           node --check session-timer.js
           node --check programming-education.js
+          node --check learning.js
+          node --check sw.js
           for file in tests/*.js; do node --check "$file"; done
       - name: Ensure every Node regression suite is executed
         run: |
