@@ -36,5 +36,15 @@ assert.equal(parsed.sessions[0].title,'Synthetic session 0',
  'validated restore must not mutate the parsed backup');
 assert.equal(input.sessions[0].title,'Synthetic session 0',
  'validated restore must not mutate the original export');
+// The clone must also isolate nested movement records and configuration.
+detached.sessions[0].items[0].weight=99;
+detached.equipment.kb.push(40);
+detached.weights.swing=32;
+assert.equal(parsed.sessions[0].items[0].weight,16,
+ 'editing restored movement must not mutate imported history');
+assert.deepEqual(parsed.equipment.kb,[12,16,20,24,28,32],
+ 'editing restored equipment must not mutate imported configuration');
+assert.equal(parsed.weights.swing,16,
+ 'editing restored weights must not mutate imported configuration');
 assert.equal(input.sessions.length,500,'Validation modified source backup');
 console.log(JSON.stringify({sessions:500,bytes:Buffer.byteLength(serialized),invalidCasesRejected:3}));
