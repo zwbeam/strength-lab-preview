@@ -74,7 +74,7 @@ jobs:
           # Read only the audit job's command section, not the browser job.
           audit=workflow.split(chr(10)+'  browser-smoke:',1)[0]
           referenced=set(re.findall(r'node (tests/[A-Za-z0-9_-]+\.js)',audit))
-          suites={str(p) for p in pathlib.Path('tests').glob('*.js') if p.name!='browser-smoke.js'}
+          suites={str(p) for p in pathlib.Path('tests').glob('*.js') if p.name not in {'browser-smoke.js','browser-demo-history.js'}}
           missing=sorted(suites-referenced)
           if missing:sys.exit('Unexecuted regression suites: '+', '.join(missing))
           print('Node regression suites covered:',len(suites))
