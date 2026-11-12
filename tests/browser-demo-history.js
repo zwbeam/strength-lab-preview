@@ -57,13 +57,28 @@ const report=JSON.parse(fs.readFileSync('strength-lab-engine-demo-backup-progres
      await page.locator('.training-overview-group').first().screenshot({path:'demo-'+width+'-progress-detail.png'});
     }
     if(tab==='progress'){
-     await page.locator('.training-overview-group').first().locator('summary').first().click();
-     const overviewText=await page.locator('.training-overview-group').first().innerText();
-     for(const id of ['swing','squat','press','row','clean','snatch','complexCleanPress']){
-      assert.ok(overviewText.includes(windowName[id]),'Missing movement '+id+' at '+width);
-     }
-     await page.locator('.training-overview-group').nth(2).locator('summary').first().click();
-     assert.ok((await page.locator('.training-overview-group').nth(2).innerText()).includes('Two-hand shield cast'),'Heavy club movement missing at '+width);
+     const groups=page.locator('.training-overview-group');
+     assert.equal(await groups.count(),4,'Expected four equipment categories at '+width);
+     await groups.nth(0).locator('summary').first().click();
+     const kettlebells=await groups.nth(0).innerText();
+     for(const id of ['swing','squat','press','row','clean','snatch'])
+      assert.ok(kettlebells.includes(windowName[id]),'Missing kettlebell '+id+' at '+width);
+     const swing=groups.nth(0).locator('.overview-movement').filter({hasText:windowName.swing}).first();
+     await swing.locator('summary').first().click();
+     assert.ok((await swing.innerText()).includes('Over the last six months'),'Missing six-month explanation at '+width);
+     await swing.locator('[data-movement-history="swing"]').click();
+     const history=page.locator('#movement-history-dialog');
+     assert.ok(await history.evaluate(el=>el.open),'Historical data dialog did not open at '+width);
+     const dates=await history.locator('tbody tr td:first-child').allTextContents();
+     assert.ok(dates.length>0,'Movement history is empty at '+width);
+     assert.deepEqual(dates,[...dates].sort().reverse(),'History must show newest first at '+width);
+     assert.equal(dates.length,backup.sessions.flatMap(x=>x.items.filter(y=>y.id==='swing'&&(y.actualSets>0||y.performed))).length,'Movement history was truncated at '+width);
+     await history.evaluate(el=>el.close());
+     await groups.nth(1).locator('summary').first().click();
+     assert.ok((await groups.nth(1).innerText()).includes(windowName.complexCleanPress),'Complex movement missing at '+width);
+     await groups.nth(2).locator('summary').first().click();
+     assert.ok((await groups.nth(2).innerText()).includes('Two-hand shield cast'),'Heavy club movement missing at '+width);
+     await page.waitForTimeout(100);
      assert.equal(await page.locator('.training-overview-group[open]').count(),1,'More than one overview category open at '+width);
     }
    }
