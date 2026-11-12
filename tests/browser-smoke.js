@@ -25,6 +25,19 @@ const {chromium}=require('playwright');
     if(layout.document>layout.viewport+3)throw Error('Horizontal document overflow on '+tab+' at '+viewport.width+'px: '+JSON.stringify(layout));
     if(layout.app<50)throw Error('App content collapsed on '+tab+' at '+viewport.width+'px');
    }
+   // Main navigation must be keyboard operable and have accessible names.
+   const nav=page.locator('nav[aria-label="Main navigation"]');
+   for(const [tab,label] of [['today','Train'],['progress','Training Log'],['learn','Learn'],['settings','Settings']]){
+    const button=nav.locator('[data-tab="'+tab+'"]');
+    if(await button.count()!==1)throw Error('Missing keyboard navigation target: '+tab);
+    const name=(await button.innerText()).trim();
+    if(name!==label)throw Error('Unexpected navigation accessible text for '+tab+': '+name);
+    await button.focus();
+    await page.keyboard.press('Enter');
+    if(!await button.evaluate(el=>el.classList.contains('active')))
+      throw Error('Keyboard activation did not select '+tab+' at '+viewport.width+'px');
+   }
+   console.log('Keyboard navigation passed at '+viewport.width+'px');
    console.log('Tab layout widths passed at '+viewport.width+'px');
    // Settings must persist equipment ceilings and explicit matched-pair availability.
    await page.locator('[data-tab="settings"]').click();
