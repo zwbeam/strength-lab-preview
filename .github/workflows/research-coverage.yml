@@ -7,6 +7,13 @@ on:
     paths:
       - engine.js
       - movement-instruction.js
+      - rolling-calendar.js
+      - session-timer.js
+      - programming-education.js
+      - styles.css
+      - sw.js
+      - index.html
+      - manifest.webmanifest
       - 'tests/**'
       - notebook.js
       - app.js
@@ -15,6 +22,13 @@ on:
     paths:
       - engine.js
       - movement-instruction.js
+      - rolling-calendar.js
+      - session-timer.js
+      - programming-education.js
+      - styles.css
+      - sw.js
+      - index.html
+      - manifest.webmanifest
       - 'tests/**'
       - notebook.js
       - app.js
