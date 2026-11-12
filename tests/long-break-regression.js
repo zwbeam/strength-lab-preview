@@ -19,4 +19,18 @@ let low=E.prescription(s,'squat',{now:'2026-11-15',readiness:'low'});assert.equa
 const held=add(s,E.completeRecord(low,[{done:true,weight:16,reps:low.reps}], 'pain',true),'2026-11-15');
 assert.ok(E.stateFor(held,'squat').hold);checks++;
 const reviewed=E.resolvePain(held,'squat');assert.equal(E.prescription(reviewed,'squat',{now:'2026-11-17'}).mode,'reentry');checks++;
+// A second extended break must not reset the earned stage or award free credit.
+const afterReturn=s;
+const beforeSecondBreak=E.stateFor(afterReturn,'squat').stage;
+let second=E.prescription(afterReturn,'squat',{now:'2027-02-01'});
+assert.equal(second.mode,'reentry');
+assert.ok(second.sets<E.stateFor(afterReturn,'squat').sets);
+checks+=2;
+const returnedAgain=add(afterReturn,record(second),'2027-02-01');
+assert.equal(E.stateFor(returnedAgain,'squat').stage,beforeSecondBreak);
+assert.equal(E.stateFor(returnedAgain,'squat').streak,0);
+checks+=2;
+const resumed=E.prescription(returnedAgain,'squat',{now:'2027-02-03'});
+assert.equal(resumed.mode,'volume');
+checks++;
 console.log('PASS '+checks+' long-break and recovery invariants');
