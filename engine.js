@@ -348,11 +348,17 @@ function blockPlan(s,opts={}){
  // On the third ABC day, substitute one eligible complex for overlapping basics.
  // Keep the existing day unchanged unless prerequisite evidence is current.
  const complexChoices=block==='abc'&&slot===2&&pref.useKb!==false&&pref.useComplexes!==false&&!continuing
-  ?complexityOptions(s,opts).filter(x=>x.ready):[];
+  ?complexityOptions(s,opts).filter(x=>{
+    if(!x.ready)return false;
+    const m=MOVES[x.id],weight=Number(s.weights?.[x.id]||s.nextWeights?.[x.id]||0);
+    const owned=m.pair?s.equipment?.pairs:s.equipment?.kb;
+    return weight>0&&Array.isArray(owned)&&owned.includes(weight);
+   }):[];
  const complexChoice=complexChoices.find(x=>x.id==='complexCleanSquatPress')
   ||complexChoices.find(x=>x.id==='complexCleanPress')
   ||complexChoices.find(x=>x.id==='complexDoubleCleanSquatPress');
  const complexIds=complexChoice?[complexChoice.id]:[];
+ // Keep fundamentals if the complex cannot actually be prescribed at a configured load.
  const replaced=new Set(complexChoice?.requires||[]);
  const candidateIds=[...new Set([...support,...pending.filter(id=>allowed.has(id)),...(continuing?[]:day.ids.filter(id=>!replaced.has(id))),...complexIds])].filter(enabled);
  const focus=pref.focus||'balanced',variety=pref.variety||'moderate';
