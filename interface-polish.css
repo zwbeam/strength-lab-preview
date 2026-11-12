@@ -661,3 +661,14 @@ details.preparation .prep-exercise .rx,details.preparation .prep-exercise .rx *{
 .timer-active-readout #timer-total-time{grid-column:1/-1;grid-row:2;text-align:center;font-size:11px;opacity:.72}
 .timer-navigation{display:flex!important;justify-content:center;gap:8px!important;margin:2px 0 6px!important}
 .timer-navigation [data-clock]{flex:1 1 0;min-width:0;min-height:40px;padding:6px!important;font-size:20px;line-height:1}
+
+/* Standalone interval timer setup and compact playback */
+.simple-timer{padding:12px!important}
+.simple-timer h3{margin:0 0 10px}
+.simple-timer-settings{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-bottom:10px}
+.simple-timer-settings label{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:700}
+.simple-timer-settings input{width:100%;min-width:0;font-size:18px;padding:8px;border-radius:8px}
+.simple-timer-active .timer-active-readout{padding:4px 0!important}
+.simple-timer-active .timer-navigation{margin:4px 0!important}
+.simple-timer-active .timer-navigation button{min-height:42px}
+.simple-timer-active>[data-simple-timer-action="edit"]{display:block;margin:3px auto 0;font-size:11px;padding:4px 10px}
