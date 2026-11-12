@@ -241,6 +241,20 @@ jobs:
           node tests/browser-smoke.js
           node tests/generate-demo-backup.cjs strength-lab-engine-demo-backup.json
           node tests/browser-demo-history.js
+      - name: Publish UI review handoff summary
+        if: always()
+        run: |
+          {
+            echo '## Strength Lab populated-history UI review'
+            echo ''
+            echo 'Synthetic data only. No personal training history was changed.'
+            echo ''
+            echo '- Test viewport sizes: 320, 390, 832 and 1280 px.'
+            echo '- Review screenshots in the **strength-lab-populated-history-screenshots** artifact below.'
+            echo '- Review the demo JSON and progression report in the **strength-lab-engine-demo-backup** artifact from the audit job.'
+            echo '- Full-page, viewport and expanded progression screenshots are captured.'
+            echo '- A green browser-smoke job is required before declaring the UI verified.'
+          } >> "$GITHUB_STEP_SUMMARY"
       - name: Upload populated history screenshots
         if: always()
         uses: actions/upload-artifact@v4
