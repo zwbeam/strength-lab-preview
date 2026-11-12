@@ -66,6 +66,7 @@ jobs:
           node --check learning.js
           node --check sw.js
           for file in tests/*.js; do node --check "$file"; done
+          for file in tests/*.cjs; do [ -f "$file" ] && node --check "$file"; done
       - name: Ensure every Node regression suite is executed
         run: |
           python3 - <<'PY'
