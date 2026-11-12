@@ -27,5 +27,14 @@ assert.throws(()=>E.validateBackup(invalidDate),/Invalid training entry/);
 const invalidWeight=JSON.parse(serialized);
 invalidWeight.sessions[400].items[0].weight=-2;
 assert.throws(()=>E.validateBackup(invalidWeight),/Invalid movement record/);
+// A restored history must be detached from the parsed backup: editing the
+// in-memory restored log must not mutate the original imported object.
+const parsed=JSON.parse(serialized);
+const detached=E.validateBackup(parsed);
+detached.sessions[0].title='Edited after restore';
+assert.equal(parsed.sessions[0].title,'Synthetic session 0',
+ 'validated restore must not mutate the parsed backup');
+assert.equal(input.sessions[0].title,'Synthetic session 0',
+ 'validated restore must not mutate the original export');
 assert.equal(input.sessions.length,500,'Validation modified source backup');
 console.log(JSON.stringify({sessions:500,bytes:Buffer.byteLength(serialized),invalidCasesRejected:3}));
