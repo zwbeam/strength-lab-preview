@@ -57,6 +57,9 @@ assert.ok(clean>200,'Demo needs enough clean progression exposures');
 assert.ok(hard>0&&missed>0&&recovery>0,'Demo must show all outcome types');
 assert.ok(swingTracks.heavy>0&&swingTracks.light>0,'Wave demo must alternate heavy and light exposures');
 assert.ok(swingEligibleTracks.heavy>0&&swingEligibleTracks.light>0,'Wave demo must contain qualifying work on both tracks');
+const swingSequence=checked.sessions.flatMap(session=>session.items.filter(item=>item.id==='swing').map(item=>({date:session.date,track:item.track,quality:item.quality})));
+const swingTransitions=swingSequence.slice(1).reduce((count,item,index)=>count+(item.track!==swingSequence[index].track?1:0),0);
+assert.ok(swingTransitions>=8,'Wave demo must demonstrate repeated heavy/light alternation, not just both tracks');
 assert.ok(ids.filter(id=>stageChanges[id]>0).length>=4,'Demo must show stage changes across multiple movements');
 assert.equal(checked.sessions.length,state.sessions.length);
 for(const id of ids){
@@ -76,6 +79,6 @@ for(const id of ids){
 for(const id of ids){const p=E.stateFor(checked,id);assert.ok(Number.isFinite(p.weight)&&p.stage>=0,'Invalid replay for '+id);}
 const file=path.resolve(process.argv[2]||'strength-lab-engine-demo-backup.json');
 const reportFile=file.replace(/\.json$/,'-progression-report.json');
-fs.writeFileSync(reportFile,JSON.stringify({sessions:checked.sessions.length,clean,hard,recovery,missed,stageChanges,swingTracks,swingEligibleTracks,movementCounts,checkpoints},null,2)+'\n');
+fs.writeFileSync(reportFile,JSON.stringify({sessions:checked.sessions.length,clean,hard,recovery,missed,stageChanges,swingTracks,swingEligibleTracks,swingTransitions,movementCounts,checkpoints},null,2)+'\n');
 fs.writeFileSync(file,JSON.stringify(checked,null,2)+'\n');
 console.log(JSON.stringify({file,reportFile,sessions:checked.sessions.length,clean,hard,recovery,missed,stageChanges,swingTracks,swingEligibleTracks,movementCounts,ids}));
