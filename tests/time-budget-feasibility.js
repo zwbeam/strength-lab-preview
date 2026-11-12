@@ -75,6 +75,21 @@ assert.ok(partialNext.items.some(x=>x.id==='row')||partialNext.timeBlocked.some(
 assert.ok(!partialNext.items.some(x=>x.id==='squat'),'already performed movement must not be prescribed again as remaining work');
 console.log('PASS partial strength history differs from entirely time-blocked movement');
 
+ // A shortened, low-readiness follow-up may defer the remaining movement
+ // again, but it must not turn the already completed sets into another task.
+const partialShort=E.plan(partialState,{now:'2026-11-11',minutes:30,readiness:'low'});
+const remainingShort=[...partialShort.items,...partialShort.timeBlocked,...partialShort.held,
+ ...partialShort.prerequisite,...partialShort.unavailable,...partialShort.requirements].map(x=>x.id);
+assert.ok(remainingShort.includes('row'),'short low-readiness follow-up must retain unfinished row');
+assert.ok(!partialShort.items.some(x=>x.id==='squat'),'short follow-up must not repeat completed squat');
+assert.equal(partialState.sessions[0].items[0].actualSets,2,'short-day replanning cannot alter recorded completed sets');
+assert.equal(partialState.sessions[0].items[1].actualSets,0,'short-day replanning cannot credit unstarted row');
+const partialRestored=E.plan(partialState,{now:'2026-11-11',minutes:45,readiness:'normal'});
+assert.deepEqual(partialRestored.items.map(x=>x.id),partialNext.items.map(x=>x.id),
+ 'restoring normal time/readiness must restore the same remaining-work prescription');
+console.log('PASS partial-session continuation survives short-day and low-readiness replanning');
+
+
 
 console.log('PASS time-budget diagnostic (documents existing limitation, not a scheduling fix)');
 
