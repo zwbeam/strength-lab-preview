@@ -339,7 +339,7 @@ function homeCalendarPreview(){
  const day=C.week(state,today(),weekStart,{minutes:todayMinutes,readiness}).find(d=>d.date===selectedDate);
  if(!day)return '';
  const workout=day.workout?.plan,recorded=day.sessions||[],activities=day.activities||[],date=new Date(day.date+'T12:00:00Z').toLocaleDateString(undefined,{weekday:'long',month:'short',day:'numeric'});
- const items=workout?.items||[],rows=items.slice(0,6).map(rx=>`<li><strong>${esc(E.MOVES[rx.id]?.name||rx.id)}</strong> · ${esc(compactPrescription(rx))}</li>`).join('');
+ const items=workout?.items||[],rows=items.slice(0,6).map(rx=>`<li><strong>${esc(E.MOVES[rx.id]?.name||rx.id)}</strong> · ${compactPrescription(rx)}</li>`).join('');
  const completed=recorded.flatMap(x=>x.items||[]).filter(x=>x.actualSets>0);
  const history=completed.length?`<p class="small muted">Completed: ${completed.length} movements · ${completed.reduce((n,x)=>n+x.actualSets,0)} sets</p>`:'';
  const other=activities.map(x=>`<p class="small muted">${esc(C.TYPES[x.type]||x.type)} · ${esc(x.duration)} min · ${esc(x.status)}</p>`).join('');
