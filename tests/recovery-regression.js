@@ -54,4 +54,17 @@ test('recovery activity blocks strength without catch-up across repeated checks'
  'normal scheduling must resume after recovery without invented history');
  assert.equal(s.sessions.length,0,'recovery must not create catch-up sessions');
 });
-console.log(passed+'/12 recovery checks passed');
+test('hard-activity recovery cannot be bypassed by high readiness',()=>{
+ const ride={id:'hard-ready',date:'2026-11-09',type:'mountain',status:'completed',effort:'hard',duration:90,replacesStrength:true};
+ const s={...b,activities:[ride]},snapshot=JSON.stringify(s);
+ for(const readiness of ['low','normal','great']){
+  for(const minutes of [30,45,60]){
+   for(const date of ['2026-11-09','2026-11-10']){
+    const p=E.plan(s,{now:date,minutes,readiness});
+    assert.equal(p.items.length,0,'readiness '+readiness+' must not override hard recovery on '+date);
+   }
+  }
+ }
+ assert.equal(JSON.stringify(s),snapshot,'readiness changes cannot rewrite recovery history');
+});
+console.log(passed+'/13 recovery checks passed');
