@@ -119,4 +119,19 @@ test('withdrawn kettlebell preserves history and safely replaces active load',()
  assert.equal(E.stateFor(updated,'swing').weight,12);
  assert.equal(E.stateFor(updated,'swing').stage,0,'replacement starts a fresh load progression');
 });
+test('switching back to a formerly owned kettlebell does not resurrect its old stage',()=>{
+ const b=base();b.weights.swing=16;
+ const p=E.policyFor('swing',b),first=p.stages[0];
+ for(let i=0;i<p.exposures;i++)b.sessions.push({id:'old-'+i,date:'2026-10-'+String(i+1).padStart(2,'0'),items:[{
+   id:'swing',policyKey:p.key,weight:16,targetSets:first.sets,targetReps:first.reps,
+   actualSets:first.sets,actualReps:first.reps,rest:first.rest,quality:'clean',completed:true
+ }]});
+ assert.equal(E.stateFor(b,'swing').stage,1);
+ b.equipment.kb=[12];
+ const lighter=E.replaceUnavailableLoad(b,'swing',12);
+ assert.equal(E.stateFor(lighter,'swing').stage,0);
+ const restored={...lighter,equipment:{...lighter.equipment,kb:[12,16]}};
+ const back={...restored,nextWeights:{...restored.nextWeights,swing:16}};
+ assert.equal(E.stateFor(back,'swing').stage,0,'switching back must not inherit an old stage');
+});
 console.log(passed+' engine tests passed');
