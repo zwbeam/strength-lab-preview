@@ -134,4 +134,15 @@ test('switching back to a formerly owned kettlebell does not resurrect its old s
  const back=E.replaceUnavailableLoad(restored,'swing',16);
  assert.equal(E.stateFor(back,'swing').stage,0,'switching back must not inherit an old stage');
 });
+test('backup round-trip preserves load reset and older backup remains valid',()=>{
+ const b=base();
+ const old=E.validateBackup(b);
+ assert.ok(!old.loadResetAfter,'older backup must remain valid without reset metadata');
+ const changed=E.replaceUnavailableLoad({...b,equipment:{...b.equipment,kb:[12]}},'swing',12);
+ const restored=E.validateBackup(JSON.parse(JSON.stringify(changed)));
+ assert.equal(restored.loadResetAfter.swing,'__start__');
+ assert.equal(E.stateFor(restored,'swing').weight,12);
+ for(const invalid of [null,[],{swing:4},{nonsense:'__start__'},{pushup:'__start__'}])
+  assert.throws(()=>E.validateBackup({...changed,loadResetAfter:invalid}),/load reset/i);
+});
 console.log(passed+' engine tests passed');
