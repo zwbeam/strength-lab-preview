@@ -115,7 +115,7 @@ function simpleTimerTick(){
 function timerControls(){
  const t=simpleTimer,c=simpleCurrent(),q=simpleSequence(),left=simpleRemaining(),total=left+q.slice(t.index+1).reduce((a,x)=>a+x.seconds,0);
  if(t.editing)return `<section class="card simple-timer"><h3>Interval timer</h3><div class="simple-timer-settings">${[['prepare','Prepare'],['work','Work'],['rest','Rest'],['sets','Sets']].map(([key,label])=>`<label>${label}<input type="number" inputmode="numeric" min="${key==='sets'?1:0}" max="${key==='sets'?100:3600}" value="${t[key]}" data-simple-timer-setting="${key}"></label>`).join('')}</div><button class="button" data-simple-timer-action="start">Start</button></section>`;
- return `<section class="card simple-timer simple-timer-active"><div class="timer-active-readout"><strong id="timer-phase">${c.phase}</strong><strong id="timer-current-time">${formatTime(left)}</strong><span id="timer-set">${c.phase==='PREPARE'?'Get ready':'Set '+c.set+' of '+t.sets}</span><span id="timer-total-time">Total remaining ${formatTime(total)}</span></div><div class="timer-navigation"><button class="button secondary" data-simple-timer-action="previous" aria-label="Restart interval or previous interval" title="Restart interval or previous interval">◀</button><button class="button secondary" data-simple-timer-action="pause" aria-label="${t.running?'Pause':'Resume'}" title="${t.running?'Pause':'Resume'}">${t.running?'Ⅱ':'▶Ⅱ'}</button><button class="button secondary" data-simple-timer-action="next" aria-label="Next interval" title="Next interval">▶</button></div><button class="button secondary smallbtn" data-simple-timer-action="edit">Edit intervals</button></section>`;
+ return `<section class="card simple-timer simple-timer-active"><div class="timer-active-readout"><strong id="timer-phase">${c.phase}</strong><strong id="timer-current-time">${formatTime(left)}</strong><span id="timer-set">${c.phase==='PREPARE'?'Get ready':'Set '+c.set+' of '+t.sets}</span><span id="timer-total-time">Total remaining ${formatTime(total)}</span></div><div class="timer-navigation"><button class="button secondary" data-simple-timer-action="previous" aria-label="Restart interval or previous interval" title="Restart interval or previous interval">◀</button><button class="button secondary" data-simple-timer-action="pause" aria-label="${t.running?'Pause':'Resume'}" title="${t.running?'Pause':'Resume'}">${t.running?'Ⅱ':'▶Ⅱ'}</button><button class="button secondary" data-simple-timer-action="next" aria-label="Next interval" title="Next interval">▶</button><button class="button secondary smallbtn timer-edit-button" data-simple-timer-action="edit" aria-label="Edit intervals">Edit</button></div></section>`;
 }
 
 let timerCue='',audioContext=null,lastSignal='';
@@ -128,8 +128,7 @@ function updateTimer(){simpleTimerTick();if(!draft)return;const c=activeTimer(),
  let tickSaved=false;
  if(changed){tickSaved=saveDraft();if(!tickSaved)draft=JSON.parse(draftBeforeTick);}
  const face=$('#clock [role="timer"]');if(face)face.textContent=activeTimer()?.untimed?'REPS':formatTime(timerRemaining(activeTimer()));
- const currentTime=$('#timer-current-time');if(currentTime)currentTime.textContent=activeTimer()?.untimed?'REPS':formatTime(timerRemaining(activeTimer()));
- const totalTime=$('#timer-total-time');if(totalTime)totalTime.textContent='Total remaining '+formatTime(T.timeLeft(draft));
+
  const summary=$('#timer-collapsed-time');if(summary)summary.textContent=activeTimer()?.running?formatTime(timerRemaining(activeTimer()))+' remaining':'optional';
  const cue=$('#timer-cue');if(cue)cue.textContent=timerCue;
  if(changed&&tickSaved)render();
