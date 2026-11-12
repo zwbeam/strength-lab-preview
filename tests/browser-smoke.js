@@ -200,6 +200,30 @@ const {chromium}=require('playwright');
    await page.locator('#today-minutes').selectOption(String(savedTarget));
    console.log('All daily duration windows with low readiness passed at '+viewport.width+'px');
 
+   // High readiness must honor exactly the same duration ceiling. Feeling
+   // great may alter programming, but cannot silently add fifteen minutes.
+   for(const [target,maximum] of [[30,40],[45,50],[60,65],[75,80],[90,95],[120,120]]){
+     await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
+     await page.locator('#today-minutes').selectOption(String(target));
+     await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
+     await page.locator('#today-readiness').selectOption('great');
+     const result=await page.evaluate(()=>({
+       target:todayMinutes,readiness,usual:state.defaultMinutes,
+       plan:E.plan(state,{now:today(),minutes:todayMinutes,readiness}),
+       strength:window.RollingCalendar.count(state)
+     }));
+     if(result.target!==target||result.readiness!=='great'||result.usual!==savedTarget||
+       result.strength!==combinedBaseline.strength||
+       result.plan.budget.flexMax!==maximum||result.plan.total>maximum)
+       throw Error('High-readiness duration ceiling failed: '+JSON.stringify({target,maximum,actual:result.plan.total,budget:result.plan.budget,usual:result.usual}));
+   }
+   await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
+   await page.locator('#today-readiness').selectOption('normal');
+   await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
+   await page.locator('#today-minutes').selectOption(String(savedTarget));
+   console.log('All daily duration windows with high readiness passed at '+viewport.width+'px');
+
+
 
 
 
