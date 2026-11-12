@@ -70,8 +70,10 @@ let checkedEngineProfiles=0;
 for(const id of Object.keys(moves)) {
   for(const profile of engine.availableProfiles(id)) {
     const state={programming:{[id]:{profile}}};
-    // Configurable profiles may require user-entered weights or baselines.
-    if(profile==='wave'||profile==='pushup')continue;
+    // Supply valid deterministic values for configurable profiles, so no
+    // prescribed engine profile is silently omitted from the source audit.
+    if(profile==='wave')Object.assign(state.programming[id],{lightWeight:12,heavyWeight:16});
+    if(profile==='pushup')Object.assign(state.programming[id],{cleanBaseline:10});
     const policy=engine.policyFor(id,state);
     for(const sourceId of policy.principleSources || [])
       assert.ok(inventoryIds.has(sourceId),id+'/'+profile+': unknown engine principle source '+sourceId);
@@ -81,7 +83,7 @@ for(const id of Object.keys(moves)) {
     checkedEngineProfiles++;
   }
 }
-console.log('ENGINE SOURCE REFERENCES '+checkedEngineProfiles+' default-config profiles checked');
+console.log('ENGINE SOURCE REFERENCES '+checkedEngineProfiles+' configured profiles checked');
 const gaps = [];
 let covered = 0;
 for (const [id, move] of Object.entries(moves)) {
