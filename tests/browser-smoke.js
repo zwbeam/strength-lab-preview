@@ -698,6 +698,33 @@ const {chromium}=require('playwright');
       !exported.sessions.some(x=>x.notes==='Browser-tested correction')||
       !exported.equipment?.kb?.length)
      throw Error('Downloaded JSON backup omitted historical sessions, correction, or equipment');
+
+   // Rehearse migration into an isolated installation with empty browser storage.
+   const migrationContext=await browser.newContext({viewport});
+   try{
+     const destination=await migrationContext.newPage();
+     await destination.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded'});
+     await destination.locator('#app').waitFor();
+     const empty=await destination.evaluate(()=>localStorage.getItem('sl-dev-preview-data-v33'));
+     if(empty&&JSON.parse(empty).sessions?.length)throw Error('Migration destination was not empty');
+     await destination.locator('[data-tab="settings"]').click();
+     await destination.locator('#import').evaluate(el=>{const section=el.closest('details');if(section)section.open=true;});
+     const migrationDialog=destination.waitForEvent('dialog');
+     await destination.locator('#import').setInputFiles({name:'migration-rehearsal.json',mimeType:'application/json',buffer:Buffer.from(exportedText)});
+     const migrationConfirm=await migrationDialog;
+     if(!migrationConfirm.message().includes('Replace training data'))throw Error('Fresh installation did not confirm migration');
+     await migrationConfirm.accept();
+     await destination.reload({waitUntil:'domcontentloaded'});
+     await destination.locator('#app').waitFor();
+     const migrated=await destination.evaluate(()=>JSON.parse(localStorage.getItem('sl-dev-preview-data-v33')));
+     if(migrated.sessions?.length!==540||new Set(migrated.sessions.map(x=>x.id)).size!==540||
+        !migrated.sessions.some(x=>x.notes==='Browser-tested correction')||
+        JSON.stringify(migrated.equipment)!==JSON.stringify(exported.equipment)||
+        JSON.stringify(migrated.weights)!==JSON.stringify(exported.weights)||
+        JSON.stringify(migrated.nextWeights)!==JSON.stringify(exported.nextWeights))
+       throw Error('Fresh installation migration lost history, equipment, or progression');
+     console.log('Fresh-browser installation migration passed at '+viewport.width+'px');
+   }finally{await migrationContext.close();}
    console.log('Downloaded 540-session JSON backup contains history and equipment at '+viewport.width+'px');
    await page.locator('#import').evaluate(el=>{const section=el.closest('details');if(section)section.open=true;});
    const backupBefore=await page.evaluate(()=>localStorage.getItem('sl-dev-preview-data-v33'));
