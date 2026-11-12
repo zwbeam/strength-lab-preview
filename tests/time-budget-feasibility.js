@@ -112,6 +112,18 @@ assert.ok(!recoveredAfterShortWeek.items.some(x=>x.id==='squat'),
  'completed movement must not reappear in remaining-work follow-up');
 console.log('PASS five short low-readiness days preserve partial strength history');
 
+ // Recovery should never turn a five-day streak of planning-only checks into
+ // completed sessions. The exact same history must still drive the next plan.
+const recoveredAgain=E.plan(partialState,{now:'2026-11-16',minutes:45,readiness:'normal'});
+assert.deepEqual(recoveredAgain.items.map(x=>x.id),recoveredAfterShortWeek.items.map(x=>x.id),
+ 'repeated planning on recovery day must be deterministic');
+assert.equal(partialState.sessions.length,1,'planning-only days must not add strength sessions');
+assert.equal(partialState.sessions[0].items[0].actualSets,2,'completed sets must remain unchanged');
+assert.equal(partialState.sessions[0].items[1].actualSets,0,'unstarted movement must remain uncredited');
+assert.deepEqual(partialState.deferredIds,['row'],'five planning-only days must preserve deferred queue');
+console.log('PASS deterministic return after five short days with no false progression');
+
+
 
 
 
