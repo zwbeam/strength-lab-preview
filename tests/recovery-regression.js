@@ -37,4 +37,21 @@ test('hard alternative activity never advances unfinished strength work',()=>{
  assert.equal(partial.sessions[0].items[0].actualSets,2);
  assert.equal(partial.sessions[0].items[1].actualSets,0);
 });
-console.log(passed+'/11 recovery checks passed');
+test('recovery activity blocks strength without catch-up across repeated checks',()=>{
+ const ride={id:'ride-repeat',date:'2026-11-09',type:'mountain',status:'completed',effort:'hard',duration:90,replacesStrength:true};
+ const s={...b,activities:[ride]};
+ const original=JSON.stringify(s);
+ for(const date of ['2026-11-09','2026-11-10']){
+  for(const minutes of [30,45,60]){
+   const p=E.plan(s,{now:date,minutes,readiness:'normal'});
+   assert.equal(p.items.length,0,'hard activity recovery must block lifting '+date+' '+minutes);
+   assert.equal(JSON.stringify(s),original,'planning must not change activity or history');
+  }
+ }
+ const after=E.plan(s,{now:'2026-11-11',minutes:45,readiness:'normal'});
+ assert.ok(after.items.length>0||after.timeBlocked.length>0||after.held.length>0||
+ after.prerequisite.length>0||after.unavailable.length>0,
+ 'normal scheduling must resume after recovery without invented history');
+ assert.equal(s.sessions.length,0,'recovery must not create catch-up sessions');
+});
+console.log(passed+'/12 recovery checks passed');
