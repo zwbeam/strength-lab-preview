@@ -9,6 +9,9 @@ const match=sw.match(/const FILES=(\[[^;]+\]);/);
 assert.ok(match,'service worker must expose a static precache manifest');
 const files=JSON.parse(match[1]);
 assert.ok(files.length>0,'precache list must not be empty');
+assert.ok(sw.includes('FILES.some(file=>new URL(file,scope).pathname===url.pathname)'),
+ 'runtime cache must not grow with arbitrary network requests');
+
 const normalized=files.map(file=>file.replace(/^\.\//,'').split('?')[0]).filter(Boolean);
 assert.equal(new Set(files).size,files.length,'precache must not duplicate URLs');
 assert.equal(new Set(normalized).size,normalized.length,
