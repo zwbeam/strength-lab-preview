@@ -1,6 +1,6 @@
 # Instruction completion — evidence retrieval queue
 
-Status: **candidate identification only**, not transcript review or technique verification. This queue uses the source inventory plus the live v74 movement-instruction registry. The inventory's old “Not yet reviewed in full” status is not the authoritative cumulative 504/720 research ledger. Reconcile against that ledger before assigning review status.
+Status: **candidate identification only**, not transcript review or technique verification. This queue uses the source inventory plus the live v74 movement-instruction registry. The inventory's old “Not yet reviewed in full” status and this document's historic 504/720 checkpoint are stale. A separate review effort reports 719 usable transcripts reviewed, but its final ledger and evidence anchors have not been reconciled against this repository. Do not equate transcript review completion with complete movement instruction coverage.
 
 ## Highest priority
 
@@ -21,8 +21,8 @@ Status: **candidate identification only**, not transcript review or technique ve
 3. Verify visually dependent cues in the original video before asserting them as exact technique.
 4. Update `movement-instruction.js` coverage, source IDs and video mappings only after verification; retain a candid “partial” label until the entire lesson is supported.
 5. Rerun `tests/instruction-coverage-regression.js` and the complete engine suite. The current test's seven-incomplete count is a checkpoint and must be deliberately updated when coverage changes.
-6. Preserve the verified 504/720 cumulative ledger independently. **No additional source is counted reviewed by creating this queue.**
+6. Import and verify the final 719-usable-source review ledger and evidence anchors before updating source-review status. Keep that ledger separate from the seven movement-lesson completeness checks. **No additional source is counted reviewed by creating this queue.**
 
 ## Archive dependency
 
-The full transcript archive and latest durable review ledger were not accessible as raw files in this execution. The accessible older `Strength_Lab_Source_Inventory.csv` provides **candidate titles and IDs**, not the transcript contents or current review state. Do not fill these lessons from memory, rename unrelated exercises as evidence, or claim an increased reviewed count.
+The final 719-source review ledger and its evidence anchors have not been reconciled in this repository. The older `Strength_Lab_Source_Inventory.csv` provides **candidate titles and IDs**, not proof of lesson-level verification. Do not fill these lessons from memory, rename unrelated exercises as evidence, or claim the seven lesson gaps are closed merely because the broader transcript review is complete. Do not fill these lessons from memory, rename unrelated exercises as evidence, or claim an increased reviewed count.
