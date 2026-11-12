@@ -451,7 +451,7 @@ function validateComposition(c){
 function deferredAfter(plan,records){const pending=new Set(plan.deferred||[]);for(const record of records){if(!(record.performed??record.completed))pending.add(record.id);else pending.delete(record.id);}return [...pending];}
 function completeRecord(rx,actual,quality,pain){
  const sets=(actual||[]).filter(x=>x.done&&!x.skipped),totalTime=rx.durationScope==='total';
- const valid=x=>validWorkingWeight(rx.id,x.weight)&&Number.isInteger(Number(x.reps))&&Number(x.reps)>0;
+ const valid=x=>validWorkingWeight(rx.id,x.weight)&&Number.isInteger(Number(x.reps))&&Number(x.reps)>0&&(rx.side!==2||(x.bothSides===true&&Number.isInteger(Number(x.leftReps))&&Number(x.leftReps)>0&&Number.isInteger(Number(x.rightReps))&&Number(x.rightReps)>0));
  const reps=sets.length?Math.min(...sets.map(x=>totalTime?Number(x.reps)||0:rx.side===2?Math.min(Number(x.leftReps??x.reps)||0,Number(x.rightReps??x.reps)||0):Number(x.reps)||0)):0;
  const weight=sets.length?Number(sets[0].weight):Number(rx.weight),sameLoad=sets.every(x=>Number(x.weight)===weight);
  const bilateral=rx.side!==2||sets.every(x=>{
