@@ -418,6 +418,7 @@ function movementProgress(){
   const m=E.MOVES[id],st=E.stateFor(state,id),rx=E.prescription(state,id),records=E.records(state,id);
   const performed=records.filter(x=>x.actualSets>0),qualifying=records.filter(x=>x.completed&&x.actualSets>0);
   const phase=st.phase==='ready'?'Cycle ready for review':st.phase==='density'?'Building density':st.phase==='volume'?'Building volume':'Practice and recovery';
+  const progressionChoice=st.hold?'Progression paused until the movement review is resolved.':st.phase==='density'?'Continue the density protocol; complexity is a separate skill progression, not an automatic reward for completing density.':st.phase==='ready'&&st.policy.density&&st.stagePhase==='volume'?'Volume endpoint reached. A supported density cycle is available; a more complex skill requires separate prerequisites.':st.phase==='ready'?'Cycle endpoint reached. Options include maintaining, increasing load where supported, or assessing a more complex skill.':st.phase==='volume'?'Build repeatable volume first. Once this cycle is complete, review load, density (if supported), and skill prerequisites.':'Continue technique practice before progressing.';
   const milestones=st.cycles>0?`${st.cycles} completed cycle${st.cycles===1?'':'s'}`:'No completed cycles yet';
   const last=performed.at(-1);
   return `<details><summary>${esc(m.name)} <span class="tag">${esc(phase)}</span></summary>
@@ -425,6 +426,7 @@ function movementProgress(){
    <p class="small">${performed.length} recorded training sessions · ${qualifying.length} qualifying completed sessions · ${milestones}.</p>
    <p class="small">Current progression: ${esc(st.stagePhase==='density'?'density':'volume')} · stage ${st.stage+1} · ${st.streak}/${st.policy.exposures} clean exposures toward the next step.</p>
    <p class="small">Current load: ${st.weight||'—'} ${m.unit}. ${last?`Most recent recorded session: ${esc(last.date||'see Notebook Log')}.`:''}</p>
+   <p class="small"><strong>Progression pathway:</strong> ${esc(progressionChoice)}</p>
    <p>${esc(rx.reason)}</p>
    <p class="small"><strong>Next:</strong> ${dose(rx)} · ${rx.roundSeconds?'round every '+rx.roundSeconds+'s':rx.rest+'s rest'} · ${st.track==='heavy'?'Heavy exposure':st.track==='light'?'Light exposure':'Current cycle'}</p>
    ${st.phase==='ready'&&st.policy.density&&st.stagePhase==='volume'&&!st.hold?`<button class="button secondary" data-cycle-for="${id}">Choose snatch density cycle</button>`:''}
