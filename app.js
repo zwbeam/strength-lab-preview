@@ -218,7 +218,13 @@ function preparation(plan,kind){
  const total=plan.budget[kind];
  const isWarm=kind==='warmup';
  const sections=isWarm?[
-  ['Light tool movement','Familiar light shield/gamma cast or unloaded halos; change hand position halfway'],
+  ['Light movement rehearsal',(plan.items||[]).some(rx=>/club|cast|circles|front/i.test(rx.id))?
+   'Practice the planned club pattern unloaded or with a familiar light club; use controlled range':
+   (plan.items||[]).some(rx=>/snatch|clean|swing|deadlift|hinge/i.test(rx.id))?
+   'Rehearse the hinge and planned kettlebell path unloaded, then with a familiar light bell':
+   (plan.items||[]).some(rx=>/squat|getup|press|pushup/i.test(rx.id))?
+   'Rehearse the planned squat, press or ground transition unloaded in a comfortable range':
+   'Move through the planned first exercise unloaded at an easy pace'],
   ['Shoulders and neck','Controlled shoulder circles, scapular movement and comfortable neck ranges'],
   ['Spine','Gentle spinal rocks or supported spinal articulation without impact'],
   ['Hips','Shin-box switches, supported hip rotations and comfortable squat range']
