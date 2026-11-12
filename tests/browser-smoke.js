@@ -37,6 +37,15 @@ const {chromium}=require('playwright');
     if(!await button.evaluate(el=>el.classList.contains('active')))
       throw Error('Keyboard activation did not select '+tab+' at '+viewport.width+'px');
    }
+   // Space is also a native keyboard activation key for button navigation.
+   const trainButton=nav.locator('[data-tab="today"]');
+   await trainButton.focus();
+   await page.keyboard.press('Space');
+   if(!await trainButton.evaluate(el=>el.classList.contains('active')))
+    throw Error('Space did not activate Train at '+viewport.width+'px');
+   // The visible app must remain nonempty after keyboard tab switching.
+   if(!(await page.locator('#app').innerText()).trim())
+    throw Error('Keyboard navigation produced empty app content at '+viewport.width+'px');
    console.log('Keyboard navigation passed at '+viewport.width+'px');
    console.log('Tab layout widths passed at '+viewport.width+'px');
    // Settings must persist equipment ceilings and explicit matched-pair availability.
