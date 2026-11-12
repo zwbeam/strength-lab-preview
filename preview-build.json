@@ -1,7 +1,8 @@
 {
   "channel": "release-candidate-preview",
-  "source_commit": "db4cb2466a8824265b0b595512f2d986872cdebc",
+  "source_commit": null,
   "storage_namespace": "sl-dev-preview",
   "identity": "Strength Lab Release Candidate",
-  "production_modified": false
+  "production_modified": false,
+  "source_commit_note": "Source commit is stamped into the downloadable review build by GitHub Actions. The repository copy is intentionally unstamped."
 }
