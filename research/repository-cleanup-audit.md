@@ -18,3 +18,15 @@ Scope: `preview` tree and direct inspection of the active entry point, styles, a
 4. Preserve research evidence and user data compatibility. Do not modify production or Cloudflare.
 
 **Status:** Audit begun; no asset removal authorized by this inventory alone.
+
+## Pass 2 — Active reference tracing
+
+Inspected `index.html`, `app.js`, `styles.css`, `interface-polish.css`, `sw.js`, and `manifest.webmanifest` for representative image generations and the legacy route.
+
+- **Legacy is actively linked:** Settings → About → App Info & Version includes a **Previous training log** link to `legacy/index.html`. The service worker also precaches legacy HTML, JS, CSS, and source index. **Not safe to delete.**
+- The service worker precaches all inspected older image candidates, including `header-history-v16.webp`, `header-train-v16.webp`, `background-graffiti.png`, `concept-skull.png`, and `art-hub.webp`. None of those exact names appeared in the inspected active HTML, JS, or CSS. **Potential cleanup candidates, not proven unused**: remaining files, legacy files, and runtime-generated paths have not been exhaustively checked.
+- `header-workout-v28.webp` also appears in the service-worker manifest but not the inspected active entry point or styles. Retain pending full cross-file reference and offline-install audit.
+- The current cache installation uses `cache.addAll(FILES)`; a missing listed asset can reject the entire cache installation. Remove references and bump the cache identifier in the same change as any deletion.
+- A standalone asset removal should also check CSS `url(...)`, JS string references, legacy HTML/CSS/JS, tests, and documentation. The present scan is **not** sufficient evidence to delete files.
+
+**Decision:** Preserve the legacy app and image generations for now; continue tracing before deletion.
