@@ -22,4 +22,15 @@ const checks={
   'history editing remains available':/data-history-view/.test(app)
 };
 for(const [name,ok] of Object.entries(checks))assert.ok(ok,'Missing log pagination contract: '+name);
-console.log('Training Log pagination wiring checks passed: '+Object.keys(checks).length);
+// Guard against silent drift in the actual pagination and session persistence contracts.
+const browser=fs.readFileSync(require('node:path').join(__dirname,'browser-smoke.js'),'utf8');
+const browserChecks={
+  'decade-scale history fixture':/2600-session Training Log render/.test(browser),
+  'decade-scale pagination':/2600-session Training Log pagination to 300 rows/.test(browser),
+  'historical correction persistence':/2600-session historical correction survived reload/.test(browser),
+  'repeated reopen integrity':/2600-session repeated rendering and reopening integrity/.test(browser),
+  'new session append':/2601st workout saved through browser/.test(browser),
+  'quota failure rollback':/Quota-exhaustion rollback preserved 2601 workouts/.test(browser)
+};
+for(const [name,ok] of Object.entries(browserChecks))assert.ok(ok,'Missing browser history regression: '+name);
+console.log('Training Log pagination wiring checks passed: '+Object.keys(checks).length+'; browser scenario coverage: '+Object.keys(browserChecks).length);
