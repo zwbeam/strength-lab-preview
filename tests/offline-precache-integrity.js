@@ -25,9 +25,8 @@ assert.ok(!normalized.some(file=>file.startsWith('legacy/')),
  'retired legacy interface must not be included in the primary app offline cache');
 assert.ok(!fs.readFileSync(path.join(root,'app.js'),'utf8').includes('href="legacy/index.html"'),
  'primary Settings must not link to the retired legacy interface');
-// CSS can reference artwork outside the HTML dependency graph. In particular,
-// the legacy route still relies on older background and header images.
-for(const cssFile of ['styles.css','interface-polish.css','legacy/styles.css']){
+// CSS can reference artwork outside the HTML dependency graph. Check primary UI assets.
+for(const cssFile of ['styles.css','interface-polish.css']){
  const cssPath=path.join(root,cssFile);
  const css=fs.readFileSync(cssPath,'utf8');
  const urls=[...css.matchAll(/url\\(\\s*['\"]?([^)'\"]+)['\"]?\\s*\\)/g)].map(match=>match[1].trim());
@@ -38,5 +37,5 @@ for(const cssFile of ['styles.css','interface-polish.css','legacy/styles.css']){
    'missing CSS asset in '+cssFile+': '+url);
  }
 }
-console.log('PASS current and legacy CSS asset references resolve');
+console.log('PASS primary CSS asset references resolve');
 console.log('PASS '+files.length+' offline precache entries resolve to existing local files');
