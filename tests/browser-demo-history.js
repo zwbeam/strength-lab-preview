@@ -10,7 +10,12 @@ const report=JSON.parse(fs.readFileSync('strength-lab-engine-demo-backup-progres
    const page=await browser.newPage({viewport:{width,height:844}});
    const errors=[];
    page.on('pageerror',error=>errors.push(error.message));
-   await page.addInitScript(data=>localStorage.setItem('sl-dev-preview-data-v33',JSON.stringify(data)),backup);
+   await page.addInitScript(data=>{
+    const key='sl-dev-preview-data-v33';
+    localStorage.setItem(key,JSON.stringify(data));
+    localStorage.removeItem('sl-dev-preview-transaction-v33');
+    localStorage.removeItem('sl-dev-preview-draft-v33');
+   },backup);
    await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded'});
    await page.locator('#app').waitFor();
    const stored=await page.evaluate(()=>JSON.parse(localStorage.getItem('sl-dev-preview-data-v33')||'null'));
