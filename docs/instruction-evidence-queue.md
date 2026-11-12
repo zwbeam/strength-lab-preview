@@ -30,6 +30,20 @@ The repository's `source-index.json` was searched by title for each incomplete m
 
 **Next verification action:** retrieve complete text of these candidate IDs from `sources-00.json` through `sources-23.json`, record passage-level anchors and classify each claim as explicit, inferred or app-authored. Do not change `movement-instruction.js` coverage labels based on this title search alone.
 
+## Direct transcript evidence sampling (2026-11-11)
+
+Full transcript text, rather than only title metadata, was read for the following source IDs from the repository's `sources-XX.json` files. **This is a source-text review, not a visual-technique certification or a coverage-label change.**
+
+| Movement | Source and directly supported content | Remaining limitation |
+| --- | --- | --- |
+| Turkish get-up | #604 (`sources-20.json`): begins lying on the ground; sets the kettlebell hand in the handle corner with the other hand assisting; describes locked-out overhead support, ground-to-stand and return, and lowering the weight with assistance. | Visual confirmation of every hand/foot transition and whether the current app outline matches the demonstrated variant. |
+| Double clean and press | #152 (`sources-05.json`): thumbs back at bottom, spiral into rack, thumb near collarbone, stable wrist, shoulder opens during press, overhead lockout, glute/trunk tension. It refers learners to separate double-clean and double-press videos. | Verify those prerequisite lessons and transitions before calling the combined outline complete. |
+| Snatch | #413 (`sources-13.json`): prerequisite progression from swing to clean to press; clean-and-press up/snatch down drill; bell travels around the outside of the hand rather than flipping over it; aligned wrist and overhead lockout. | Verify hand insertion, snatch-up phase and visual details in the original video; transcript has garbled sections. |
+| Two-hand shield cast | #214 and #222 (`sources-07.json`): top hand travels past opposite ear, thumb comes toward shirt neckline; #222 teaches pullover and behind-head backswing prerequisites, 90-degree order position, upright posture, both sides and common hand-height faults. | Behind-head clearance, precise arc and breathing need visual confirmation; avoid claims of medical prevention. |
+| Push-up EMOM | #609 (`sources-20.json`): test strict clean maximum without back sway; start around 40% of that number per set for novices; use an every-minute-on-the-minute volume cycle starting around ten minutes and add sets over time. | This supports a programming example, not a complete instructional guide to push-up hand placement and regressions. |
+
+No exact suitcase-carry or two-hand club front-swing source was established in this pass. None of the seven `movement-instruction.js` lessons was automatically promoted to `reviewed outline`.
+
 ## Evidence standard
 
 1. Read the actual transcript, not merely its title or the inventory's provisional topic tags.
