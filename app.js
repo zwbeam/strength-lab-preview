@@ -97,18 +97,32 @@ function simpleMove(index){const q=simpleSequence();simpleTimer.index=Math.max(0
 function simpleTimerAction(action){
  const t=simpleTimer,q=simpleSequence();
  if(action==='start'){t.index=0;t.remaining=q[0]?.seconds||0;t.editing=false;t.running=false;delete t.endAt;}
- else if(action==='pause'){if(t.running){t.remaining=simpleRemaining();t.running=false;delete t.endAt;}else if(t.remaining>0){t.running=true;t.endAt=Date.now()+t.remaining*1000;}}
+ else if(action==='pause'){if(t.running){t.remaining=simpleRemaining();t.running=false;delete t.endAt;}else if(t.remaining>0){t.running=true;t.endAt=Date.now()+t.remaining*1000;intervalSound(simpleCurrent().phase);}}
  else if(action==='previous'){if(simpleRemaining()<simpleCurrent().seconds)simpleMove(t.index);else simpleMove(t.index-1);}
  else if(action==='next')simpleMove(t.index+1);
  else if(action==='edit'){t.remaining=simpleRemaining();t.running=false;t.editing=true;delete t.endAt;}
  saveSimpleTimer();
 }
+let intervalAudio=null;
+function intervalSound(kind){
+ try{
+  const Audio=window.AudioContext||window.webkitAudioContext;
+  if(!Audio)return;
+  intervalAudio??=new Audio();
+  if(intervalAudio.state==='suspended')intervalAudio.resume().catch(()=>{});
+  const notes=kind==='WORK'?[880,1100]:kind==='REST'?[660,520]:kind==='DONE'?[880,880,1100]:[550];
+  notes.forEach((hz,i)=>{const osc=intervalAudio.createOscillator(),gain=intervalAudio.createGain(),at=intervalAudio.currentTime+i*.15;
+   osc.type='sine';osc.frequency.value=hz;gain.gain.setValueAtTime(.0001,at);gain.gain.exponentialRampToValueAtTime(.13,at+.015);gain.gain.exponentialRampToValueAtTime(.0001,at+.12);
+   osc.connect(gain);gain.connect(intervalAudio.destination);osc.start(at);osc.stop(at+.13);
+  });
+ }catch{}
+}
 function simpleTimerTick(){
  if(simpleTimer.editing||!simpleTimer.running)return;
  let changed=false,now=Date.now(),q=simpleSequence();
  while(simpleTimer.running&&now>=simpleTimer.endAt){
-  if(simpleTimer.index>=q.length-1){simpleTimer.running=false;simpleTimer.remaining=0;break;}
-  const previousEnd=simpleTimer.endAt;simpleTimer.index++;simpleTimer.remaining=q[simpleTimer.index].seconds;simpleTimer.endAt=previousEnd+simpleTimer.remaining*1000;changed=true;
+  if(simpleTimer.index>=q.length-1){simpleTimer.running=false;simpleTimer.remaining=0;intervalSound('DONE');break;}
+  const previousEnd=simpleTimer.endAt;simpleTimer.index++;simpleTimer.remaining=q[simpleTimer.index].seconds;simpleTimer.endAt=previousEnd+simpleTimer.remaining*1000;intervalSound(q[simpleTimer.index].phase);changed=true;
  }
  if(changed||!simpleTimer.running){saveSimpleTimer();render();return;}
  const remaining=$('#timer-current-time');if(remaining)remaining.textContent=formatTime(simpleRemaining());
