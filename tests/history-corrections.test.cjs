@@ -33,3 +33,24 @@ test('undo restores original workout and records the restoration',()=>{
  assert.equal(restored.sessions[0].corrections.length,2);
  assert.deepEqual(restored.sessions[1].items,s.sessions[1].items);
 });
+
+test('correction removes earned progression exposure and undo restores it',()=>{
+ const s=state();
+ const initial=E.records(s,'swing');
+ assert.equal(initial.length,2);
+ assert.equal(initial.filter(x=>x.completed).length,2);
+ const edit=N.historyDraft(s.sessions[0]);edit.items[0].quality='hard';
+ const corrected=N.correct(s,'first',edit,'quality correction','2026-02-01T00:00:00Z');
+ const after=E.records(corrected,'swing');
+ assert.equal(after.length,2,'correction must not duplicate an exposure');
+ assert.equal(after.filter(x=>x.completed).length,1,'hard-quality exposure must not earn credit');
+ assert.equal(after[0].quality,'hard');
+ const restored=N.undo(corrected,'first','2026-02-02T00:00:00Z');
+ assert.equal(E.records(restored,'swing').filter(x=>x.completed).length,2,'undo must restore original progression credit');
+ assert.equal(E.records(restored,'swing').length,2,'undo must not duplicate an exposure');
+});
+test('same-day sessions retain stable ordering after a date correction',()=>{
+ const s=state(),edit=N.historyDraft(s.sessions[0]);edit.date='2026-01-02';
+ const out=N.correct(s,'first',edit,'same-day correction','2026-02-01T00:00:00Z');
+ assert.deepEqual(E.records(out,'swing').map(x=>x._key),['first:0','second:0']);
+});
