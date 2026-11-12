@@ -77,6 +77,24 @@ const {chromium}=require('playwright');
    await page.locator('#today-minutes').selectOption(String(savedTarget));
    console.log('Settings and daily duration windows plus temporary override passed at '+viewport.width+'px');
 
+   // A one-day shortened session must survive render without mutating the
+   // normal Settings target; the mobility route must remain accessible.
+   await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
+   await page.locator('#today-minutes').selectOption('30');
+   const shortDay=await page.evaluate(()=>({
+     chosen:todayMinutes,usual:state.defaultMinutes,
+     plan:E.plan(state,{now:today(),minutes:todayMinutes,readiness}),
+     mobility:document.querySelector('#mobility-session')!==null
+   }));
+   if(shortDay.chosen!==30||shortDay.usual!==savedTarget||!shortDay.mobility)
+     throw Error('Short-day workflow lost usual target or mobility alternative');
+   if(shortDay.plan.budget.flexMax!==40||shortDay.plan.total>40)
+     throw Error('Short-day plan violated 25–40 minute window');
+   await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
+   await page.locator('#today-minutes').selectOption(String(savedTarget));
+   console.log('Short-day plan and mobility availability passed at '+viewport.width+'px');
+
+
 
    // Exercise the replacement UI with a deliberately unavailable recorded load.
    const replacementProbe=await page.evaluate(()=>{
