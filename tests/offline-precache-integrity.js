@@ -25,6 +25,12 @@ assert.ok(!normalized.some(file=>file.startsWith('legacy/')),
  'retired legacy interface must not be included in the primary app offline cache');
 assert.ok(!fs.readFileSync(path.join(root,'app.js'),'utf8').includes('href="legacy/index.html"'),
  'primary Settings must not link to the retired legacy interface');
+// Promoting the preview interface must not silently strand existing training data.
+// These persisted keys are intentionally unchanged until a tested migration exists.
+const primaryApp=fs.readFileSync(path.join(root,'app.js'),'utf8');
+for(const key of ['sl-dev-preview-data-v33','sl-dev-preview-draft-v33','sl-dev-preview-transaction-v33']){
+ assert.ok(primaryApp.includes(key),'existing training-data storage key changed without migration: '+key);
+}
 // CSS can reference artwork outside the HTML dependency graph. Check primary UI assets.
 for(const cssFile of ['styles.css','interface-polish.css']){
  const cssPath=path.join(root,cssFile);
