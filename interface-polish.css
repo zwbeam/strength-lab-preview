@@ -700,3 +700,7 @@ details.preparation .prep-exercise .rx,details.preparation .prep-exercise .rx *{
 .simple-timer-disclosure>summary{background:#101519!important;color:#f7f7f7!important}
 .simple-timer-disclosure>summary:before{color:#ef842e}
 .simple-timer-disclosure .simple-timer{background:#101519!important}
+
+/* Four equal-width navigation targets, edge-to-edge across the bottom. */
+.shell .bottom{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;width:100%!important;max-width:none!important;gap:0!important;padding-left:0!important;padding-right:0!important;box-sizing:border-box}
+.shell .bottom>button{width:100%!important;min-width:0!important;max-width:none!important;flex:1 1 25%!important;margin:0!important;border-radius:0!important;justify-self:stretch;text-align:center}
