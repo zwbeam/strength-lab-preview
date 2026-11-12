@@ -156,6 +156,10 @@ jobs:
           legacy=sorted(str(p) for p in (root/'legacy').rglob('*') if p.is_file()) if (root/'legacy').exists() else []
           if legacy:sys.exit('Retired legacy interface was included in review build: '+', '.join(legacy))
           if missing:sys.exit('Review package missing required assets: '+', '.join(missing))
+          # Fail if the review artifact accidentally starts shipping repository-only files.
+          forbidden=['README.md','SOURCE-COMMIT.txt','docs','research','tests','.github']
+          leaked=[name for name in forbidden if (root/name).exists()]
+          if leaked:sys.exit('Non-runtime files leaked into review package: '+', '.join(leaked))
           print('Review package asset references checked:',len(required),'missing:',len(missing))
           PY
       - name: Stamp review build identity
