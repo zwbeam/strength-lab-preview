@@ -427,15 +427,18 @@ function movementProgress(){
  const since=sixMonthsAgo.toISOString().slice(0,10);
  const item=id=>{
   const m=E.MOVES[id],st=E.stateFor(state,id),rx=E.prescription(state,id),history=E.records(state,id);
-  const recent=history.filter(x=>x.date>=since),done=recent.filter(E.successful),last=recent.at(-1);
-  const phase=st.phase==='ready'?'Cycle ready':st.stagePhase==='density'?'Building density':'Building volume';
+  const recent=history.filter(x=>x.date>=since&&x.date<=today()),done=recent.filter(E.successful),last=recent.at(-1);
+  const phase=st.phase==='ready'?'Cycle ready':st.stagePhase==='density'?'Building density':st.phase==='volume'?'Building volume':'Technique / recovery';
   const track=st.policy.profile==='wave'?(st.track==='heavy'?'Heavy exposure next':'Light exposure next'):'';
+  const loadText=m.bodyweight?'bodyweight':(st.weight?st.weight+' '+m.unit:'working load not selected');
+  const modes=[...new Set(recent.map(x=>x.mode).filter(Boolean))];
+  const setbacks=recent.filter(x=>x.pain||['rebuild','reentry','recovery','deload'].includes(x.mode)).length;
   const narrative=recent.length
-   ?'Over the last six months, you recorded '+recent.length+' exposures, including '+done.length+' completed cleanly. '+(last?'Your latest entry was '+last.date+'. ':'')+(st.cycles?'You have completed '+st.cycles+' progression cycle(s). ':'')+(st.stagePhase==='density'?'Your current target is more work per unit time.':'Your current target is repeatable sets and repetitions.')+(st.policy.profile==='wave'?' Heavy and light exposures alternate; each track has its own target.':'')
-   :'No recorded practice in the last six months. The current stage reflects earlier history or your configured starting point.';
+   ?'In the last six months you logged '+recent.length+' sessions for this movement, '+done.length+' completed cleanly. '+(last?'Your latest was '+last.date+'. ':'')+(modes.includes('density')?'You have practiced density work. ':'')+(modes.includes('volume')?'You have practiced volume work. ':'')+(setbacks?'There were '+setbacks+' recovery or rebuilding entries; your current prescription accounts for the recorded history. ':'')+(st.stagePhase==='density'?'You are now building density: increasing work within a time target.':st.phase==='volume'?'You are now building repeatable volume: adding quality sets or repetitions.':'Your current prescription calls for a review or conservative practice.')+(st.policy.profile==='wave'?' Heavy and light exposures have separate targets; they do not both have to build volume.':'')
+   :'No sessions were recorded for this movement in the last six months. The current stage comes from earlier history or your configured starting point.';
   return `<details class="overview-movement"><summary>${esc(m.name)} <span class="tag">${esc(phase)}${track?' · '+esc(track):''}</span></summary>
    <p class="small">${esc(narrative)}</p>
-   <p class="small"><strong>Now:</strong> ${esc(phase)} · stage ${st.stage+1} · ${st.streak}/${st.policy.exposures} clean exposures · ${st.weight||'—'} ${esc(m.unit)}.</p>
+   <p class="small"><strong>Now:</strong> ${esc(phase)} · stage ${st.stage+1} · ${st.streak}/${st.policy.exposures} clean exposures · ${esc(loadText)}.</p>
    <p class="small"><strong>Next:</strong> ${dose(rx)} · ${rx.roundSeconds?'round every '+rx.roundSeconds+'s':rx.rest+'s rest'}${track?' · '+esc(track):''}.</p>
    ${st.phase==='ready'&&st.policy.density&&st.stagePhase==='volume'&&!st.hold?`<button class="button secondary" data-cycle-for="${id}">Choose density cycle</button>`:''}
    ${st.hold?`<p class="warning">${esc(st.hold)}</p><button class="button secondary" data-resolve-pain="${id}">Review and resume movement</button>`:''}
