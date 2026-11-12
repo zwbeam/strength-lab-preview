@@ -31,7 +31,7 @@ assert.ok(!fs.readFileSync(path.join(root,'app.js'),'utf8').includes('href="lega
 // HTML image and inline style URLs must also be available without a network.
 const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
 const htmlAssets=[...html.matchAll(/(?:src|href)="([^"]+)"/g)].map(m=>m[1])
- .concat([...html.matchAll(/url\\(([^)]+)\\)/g)].map(m=>m[1].replace(/^['"]|['"]$/g,'')));
+ .concat([...html.matchAll(/url\(([^)]+)\)/g)].map(m=>m[1].replace(/^['"]|['"]$/g,'')));
 for(const url of htmlAssets){
  if(!url||/^(?:https?:|data:|#)/i.test(url))continue;
  const asset=url.split(/[?#]/)[0];
@@ -47,7 +47,7 @@ for(const key of ['sl-dev-preview-data-v33','sl-dev-preview-draft-v33','sl-dev-p
 for(const cssFile of ['styles.css','interface-polish.css']){
  const cssPath=path.join(root,cssFile);
  const css=fs.readFileSync(cssPath,'utf8');
- const urls=[...css.matchAll(/url\\(\\s*['\"]?([^)'\"]+)['\"]?\\s*\\)/g)].map(match=>match[1].trim());
+ const urls=[...css.matchAll(/url\(\s*['"]?([^)'"]+)['"]?\s*\)/g)].map(match=>match[1].trim());
  for(const url of urls){
   if(/^(?:data:|https?:|#)/i.test(url))continue;
   const asset=url.split(/[?#]/)[0];
