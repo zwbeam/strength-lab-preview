@@ -57,6 +57,12 @@ The previous comparison section was a snapshot before implementation. The curren
 
 Regression tests now require source references for the five transcript-backed partial lessons and enforce honest unsourced labels for `carry` and `front`. The tests do **not** prove video technique correctness. The 719 usable source transcripts reviewed in the separate research effort have not been reconciled with this repository's source ledger.
 
+## Automated quotation provenance checkpoint (2026-11-12)
+
+The research coverage audit now loads the original checked-in transcript shards for **every quoted Learn evidence anchor**, normalizes caption punctuation and whitespace, checks the quoted words against the transcript, and compares the source URL with the original record. This expands the earlier single-source #704 spot check. The complete quotation-matching audit job passed on commit `cdf39e146ab49c1fcae1471030dfd211a171e8a6` (GitHub Actions run `43221620932`, audit job only); browser smoke and deployment are separate checks.
+
+This certifies only the recorded quotation anchors. It does **not** establish that all instructional prose is transcript-derived, that visual technique cues have been reviewed, or that the independent 719-usable-source ledger has been imported. Seven Learn lessons remain incomplete, including two with no attached source evidence.
+
 ## Evidence standard
 
 1. Read the actual transcript, not merely its title or the inventory's provisional topic tags.
