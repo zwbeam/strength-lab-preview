@@ -10,6 +10,7 @@ const state={version:33,defaultMinutes:45,equipment:{kb:[12,14,16,18,20,22,24,26
 const DAY=86400000,start=Date.UTC(2024,10,12);
 const stageChanges=Object.fromEntries(ids.map(id=>[id,0]));
 const stageBefore=Object.fromEntries(ids.map(id=>[id,0]));
+const checkpoints=[];
 const dayString=n=>new Date(start+n*DAY).toISOString().slice(0,10);
 let recovery=0,hard=0,missed=0,clean=0;
 for(let day=0;day<730;day++){
@@ -23,6 +24,7 @@ for(let day=0;day<730;day++){
  const item={id,weight:st.weight,bodyweight:false,quality:isHard?'hard':'clean',pain:false,completed:good,performed:!isMissed,mode:isRecovery?'recovery':'volume',actualSets:isMissed?0:isHard?Math.max(0,target.sets-1):target.sets,actualReps:target.reps,targetSets:target.sets,targetReps:target.reps,rest:target.rest,policyKey:policy.key,track:'base',note:'SYNTHETIC ENGINE DEMO — NOT ACTUAL TRAINING'};
  state.sessions.push({id:'engine-demo-'+day,title:'DEMO · '+(good?'Progression':isRecovery?'Recovery':isHard?'Hard':'Missed')+' · '+id,date:dayString(day),block:'abc',items:[item],finishOutcome:isMissed?'partial':'complete',status:'Synthetic demonstration',notes:'Synthetic training data. Do not mix with real workouts.'});
  if(good)clean++;else if(isMissed)missed++;else if(isHard)hard++;else recovery++;
+ if(state.sessions.length%25===0)checkpoints.push({session:state.sessions.length,date:dayString(day),movements:Object.fromEntries(ids.map(move=>{const progress=E.stateFor(state,move);return [move,{stage:progress.stage,weight:progress.weight,exposures:progress.allExposures}];}))});
 }
 assert.ok(state.sessions.length>250,'Expected substantial two-year history');
 const checked=E.validateBackup(state);
@@ -32,5 +34,7 @@ assert.ok(ids.filter(id=>stageChanges[id]>0).length>=4,'Demo must show stage cha
 assert.equal(checked.sessions.length,state.sessions.length);
 for(const id of ids){const p=E.stateFor(checked,id);assert.ok(Number.isFinite(p.weight)&&p.stage>=0,'Invalid replay for '+id);}
 const file=path.resolve(process.argv[2]||'strength-lab-engine-demo-backup.json');
+const reportFile=file.replace(/\\.json$/,'-progression-report.json');
+fs.writeFileSync(reportFile,JSON.stringify({sessions:checked.sessions.length,clean,hard,recovery,missed,stageChanges,checkpoints},null,2)+'\\n');
 fs.writeFileSync(file,JSON.stringify(checked,null,2)+'\n');
-console.log(JSON.stringify({file,sessions:checked.sessions.length,clean,hard,recovery,missed,stageChanges,ids}));
+console.log(JSON.stringify({file,reportFile,sessions:checked.sessions.length,clean,hard,recovery,missed,stageChanges,ids}));
