@@ -76,4 +76,19 @@ test('snatch advancement rejects partial, painful and recovery sessions',()=>{
  add(record('e'),4);
  assert.equal(E.stateFor(b,'snatch').stage,1);
 });
+test('two difficult snatch sessions trigger rebuild without advancing',()=>{
+ const b=base();b.weights.snatch=12;
+ const p=E.policyFor('snatch',b),first=p.stages[0];
+ for(let i=0;i<2;i++)b.sessions.push({id:'hard-'+i,date:'2026-11-'+String(i+1).padStart(2,'0'),items:[{
+   id:'snatch',policyKey:p.key,weight:12,targetSets:first.sets,targetReps:first.reps,
+   actualSets:Math.max(1,first.sets-1),actualReps:first.reps,rest:first.rest,
+   quality:'hard',completed:false
+ }]});
+ const st=E.stateFor(b,'snatch');
+ assert.equal(st.stage,0);
+ assert.ok(st.fail>=2,'two difficult sessions must register repeated failure');
+ const next=E.prescription(b,'snatch');
+ assert.equal(next.mode,'rebuild');
+ assert.ok(next.sets<first.sets,'rebuild must reduce prescribed sets');
+});
 console.log(passed+' engine tests passed');
