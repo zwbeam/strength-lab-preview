@@ -1,5 +1,6 @@
 name: Research coverage audit
 on:
+  workflow_dispatch:
   push:
     branches:
       - integration/research-coverage-audit
