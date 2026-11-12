@@ -94,6 +94,18 @@ const {chromium}=require('playwright');
    await page.locator('#today-minutes').selectOption(String(savedTarget));
    console.log('Short-day plan and mobility availability passed at '+viewport.width+'px');
 
+   // A one-day adjustment must not be written to persistent state, including
+   // after a full page reload. The usual target should be restored.
+   await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
+   await page.locator('#today-minutes').selectOption('30');
+   await page.reload({waitUntil:'domcontentloaded'});
+   await page.locator('[data-tab="today"]').click();
+   const reloadedDuration=await page.evaluate(()=>({usual:state.defaultMinutes,daily:todayMinutes}));
+   if(reloadedDuration.usual!==savedTarget||reloadedDuration.daily!==savedTarget)
+     throw Error('One-day duration adjustment leaked into saved preferences: '+JSON.stringify(reloadedDuration));
+   console.log('Daily duration override resets on reload without changing Settings at '+viewport.width+'px');
+
+
 
 
    // Exercise the replacement UI with a deliberately unavailable recorded load.
