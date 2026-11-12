@@ -160,6 +160,24 @@ const {chromium}=require('playwright');
    await page.locator('#today-minutes').selectOption(String(savedTarget));
    console.log('Readiness and duration control order yields identical prescription at '+viewport.width+'px');
 
+   // Temporary readiness must also reset after reopening the app, just as
+   // temporary duration does. Neither setting may become a hidden preference.
+   await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
+   await page.locator('#today-readiness').selectOption('great');
+   await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
+   await page.locator('#today-minutes').selectOption('30');
+   await page.reload({waitUntil:'domcontentloaded'});
+   await page.locator('[data-tab="today"]').click();
+   const resetAdjustments=await page.evaluate(()=>({
+     minutes:todayMinutes,readiness,usual:state.defaultMinutes,
+     strength:window.RollingCalendar.count(state)
+   }));
+   if(resetAdjustments.minutes!==savedTarget||resetAdjustments.readiness!=='normal'||
+      resetAdjustments.usual!==savedTarget||resetAdjustments.strength!==combinedBaseline.strength)
+     throw Error('Temporary readiness or time persisted across reload: '+JSON.stringify(resetAdjustments));
+   console.log('Combined temporary adjustments reset after reload at '+viewport.width+'px');
+
+
 
 
    // A one-day adjustment must not be written to persistent state, including
