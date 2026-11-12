@@ -17,6 +17,15 @@ Object.assign(MOVES,{
  doublePress:{name:'Double clean and press',gear:'kb',pair:true,unit:'kg per bell',family:'press',reps:3,start:3,end:10,rest:150,sec:30,side:1,cues:['Use a matched pair you can rack and press with control.','Keep the trunk stable and lower into a quiet rack.'],avoid:'No maximum attempts or grinding repetitions.'},
  doubleSquat:{name:'Double front squat',gear:'kb',pair:true,unit:'kg per bell',family:'squat',reps:3,start:3,end:10,rest:150,sec:30,side:1,cues:['Use a familiar, secure double rack.','Keep depth and bracing repeatable.'],avoid:'Stop when rack position or controlled depth is lost.'}
 });
+/* Complexes use their own conservative, app-defined volume prescriptions.
+ * One rep means one complete sequence, not one repetition of each component logged separately.
+ * Scheduling and technique approval remain separate readiness decisions.
+ */
+Object.assign(MOVES,{
+ complexCleanPress:{name:'Single-arm clean → press complex',gear:'kb',unit:'kg',family:'complex',complex:true,sequence:['clean','press'],reps:2,start:2,end:5,rest:120,sec:70,side:2,cues:['Use a familiar light kettlebell.','One repetition is a clean followed by one strict press.','Complete both sides with clean transitions and controlled overhead lockout.'],avoid:'Do not use a heavy press load or rush the transition.'},
+ complexCleanSquatPress:{name:'Single-arm clean → squat → press complex',gear:'kb',unit:'kg',family:'complex',complex:true,sequence:['clean','squat','press'],reps:2,start:2,end:4,rest:150,sec:90,side:2,cues:['Use a conservative load you can control in every position.','One repetition is one clean, one squat, then one press.','Keep the rack stable and switch sides deliberately.'],avoid:'Stop if the rack, squat or overhead position breaks down.'},
+ complexDoubleCleanSquatPress:{name:'Double clean → squat → press complex',gear:'kb',pair:true,unit:'kg per bell',family:'complex',complex:true,sequence:['doublePress','doubleSquat'],reps:1,start:2,end:4,rest:180,sec:100,side:1,cues:['Use a familiar matched pair.','One repetition is a double clean, double front squat, then double press.','Maintain a controlled double rack throughout.'],avoid:'Do not attempt before each component and the double rack are familiar.'}
+});
 // Skill confirmations are user reports, not automatic technique certification.
 const SKILLS={
  swing:{name:'Familiar controlled swing',sources:[288]},clean:{name:'Familiar clean',sources:[288]},overhead:{name:'Controlled overhead lockout and snatch technique',sources:[288]},rack:{name:'Secure double rack',sources:[120]},doublePress:{name:'Familiar double clean and press',sources:[366]},doubleSquat:{name:'Familiar double front squat',sources:[366]},
@@ -184,9 +193,9 @@ function prerequisites(s,id,opts={}){
 }
 /* Complexity recommendations are advisory until a supported complex has its own prescription and log. */
 const COMPLEX_PATHWAYS=Object.freeze([
- {id:'clean-press',name:'Single-arm clean → press',gear:'kb',requires:['clean','press']},
- {id:'clean-squat-press',name:'Single-arm clean → front squat → press',gear:'kb',requires:['clean','squat','press']},
- {id:'double-clean-squat-press',name:'Double clean → front squat → press',gear:'kb',requires:['doubleClean','doubleSquat','doublePress'],matchedPair:true}
+ {id:'complexCleanPress',name:'Single-arm clean → press',gear:'kb',requires:['clean','press']},
+ {id:'complexCleanSquatPress',name:'Single-arm clean → front squat → press',gear:'kb',requires:['clean','squat','press']},
+ {id:'complexDoubleCleanSquatPress',name:'Double clean → front squat → press',gear:'kb',requires:['doubleClean','doubleSquat','doublePress'],matchedPair:true}
 ]);
 function complexityOptions(s,opts={}){
  const enabled=s.trainingPreferences?.useKb!==false&&s.trainingPreferences?.useComplexes!==false;
