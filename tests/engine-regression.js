@@ -17,4 +17,9 @@ test('bodyweight only',()=>{const b=base();b.trainingPreferences.useKb=false;b.t
 test('spacing advice',()=>{const b=base();b.sessions=[{id:'a',title:'a',date:'2026-11-09',slot:0,block:'abc',items:[{id:'squat',actualSets:2,performed:true}]}];assert.equal(E.plan(b,{now:'2026-11-10'}).spacingRecommended,true)});
 test('session respects time budget',()=>{const p=E.plan(base(),{now:'2026-11-09'});assert.ok(p.estimated<=p.cap+1)});
 test('invalid focus rejected',()=>{const b=base();b.trainingPreferences.focus='nonsense';assert.throws(()=>E.validateBackup(b))});
+test('owned kettlebell loads only',()=>{const b=base();const choices=E.loadOptions(b,'swing');assert.ok(choices.length);assert.ok(choices.every(w=>b.equipment.kb.includes(w)),'unowned kettlebell load offered')});
+test('owned club loads only',()=>{const b=base();const choices=E.loadOptions(b,'cast');assert.ok(choices.length);assert.ok(choices.every(w=>b.equipment.club.includes(w)),'unowned club load offered')});
+test('unowned kettlebell load rejected',()=>{const b=base();assert.throws(()=>E.selectLoad(b,'swing',99))});
+test('unowned club load rejected',()=>{const b=base();assert.throws(()=>E.selectLoad(b,'cast',99))});
+test('time allocations reconcile',()=>{for(const minutes of [30,45,60]){const b=E.timeBudget(minutes);assert.equal(b.warmup+b.main+b.cooldown,minutes)}});
 console.log(passed+' engine tests passed');
