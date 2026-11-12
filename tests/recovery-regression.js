@@ -17,4 +17,24 @@ test('two clean exposures advance stage',()=>{const s=add(add(b,good,'2026-11-09
 test('hard quality earns no credit',()=>{const r=record(rx,rx.sets,'hard');assert.equal(r.completed,false);assert.equal(r.performed,false)});
 test('hard bike ride blocks same and next day',()=>{const ride={id:'ride1',date:'2026-11-09',type:'mountain',status:'completed',effort:'hard',duration:90,replacesStrength:true};E.validateActivity(ride);const s={...b,activities:[ride]};assert.equal(E.plan(s,{now:'2026-11-09'}).items.length,0);assert.equal(E.plan(s,{now:'2026-11-10'}).items.length,0);assert.equal(s.sessions.length,0)});
 test('low readiness reduces work and blocks credit',()=>{const p=E.prescription(b,'squat',{readiness:'low',now:'2026-11-09'});assert.equal(p.mode,'recovery');assert.equal(record(p,p.sets).completed,false)});
-console.log(passed+'/10 recovery checks passed');
+test('hard alternative activity never advances unfinished strength work',()=>{
+ const partial={...b,sessions:[{id:'partial',date:'2026-11-08',block:'abc',calendarVersion:1,
+ items:[{id:'squat',performed:true,actualSets:2,actualReps:6,targetSets:3,targetReps:6,quality:'clean',mode:'volume'},
+ {id:'row',performed:false,actualSets:0,actualReps:0,targetSets:3,targetReps:6,quality:'clean',mode:'volume'}]}],
+ deferredIds:['row']};
+ const before=E.plan(partial,{now:'2026-11-11',minutes:45});
+ const ride={id:'ride-recovery',date:'2026-11-09',type:'mountain',status:'completed',effort:'hard',duration:90,replacesStrength:true};
+ const withRide={...partial,activities:[ride]};
+ const blocked=E.plan(withRide,{now:'2026-11-10',minutes:45});
+ assert.equal(blocked.items.length,0,'hard ride must block next-day lifting');
+ assert.equal(withRide.sessions.length,1,'alternative activity cannot create strength session');
+ assert.deepEqual(withRide.deferredIds,['row'],'hard ride must not consume unfinished movement');
+ const resumed=E.plan(withRide,{now:'2026-11-11',minutes:45});
+ assert.ok(resumed.items.some(x=>x.id==='row')||resumed.timeBlocked.some(x=>x.id==='row')||
+ resumed.held.some(x=>x.id==='row')||resumed.prerequisite.some(x=>x.id==='row'),
+ 'unfinished row must remain available after recovery');
+ assert.ok(!resumed.items.some(x=>x.id==='squat'),'completed squat must not repeat as remaining work');
+ assert.equal(partial.sessions[0].items[0].actualSets,2);
+ assert.equal(partial.sessions[0].items[1].actualSets,0);
+});
+console.log(passed+'/11 recovery checks passed');
