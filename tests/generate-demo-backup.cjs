@@ -6,7 +6,7 @@ const fs=require('node:fs'),path=require('node:path'),assert=require('node:asser
 const E=require('../engine.js');
 const ids=['swing','squat','press','row','clean','cast'];
 const weights={swing:16,squat:16,press:12,row:16,clean:12,cast:10};
-const state={version:33,defaultMinutes:45,equipment:{kb:[12,14,16,18,20,22,24,26,28,30,32],club:[5,7.5,10,12.5,15,17.5,20],pairs:[]},weights,nextWeights:{},skills:{},programming:Object.fromEntries(ids.map(id=>[id,id==='swing'?{profile:'wave',lightWeight:12,heavyWeight:16,exposures:2}:{exposures:2}])),sessions:[],workoutDraft:null};
+const state={version:33,defaultMinutes:45,equipment:{kb:[12,14,16,18,20,22,24,26,28,30,32],club:[5,7,10,12,15,17],maxKbKg:32,maxClubLb:17,pairs:[]},weights,nextWeights:{},skills:{},programming:Object.fromEntries(ids.map(id=>[id,id==='swing'?{profile:'wave',lightWeight:12,heavyWeight:16,exposures:2}:{exposures:2}])),sessions:[],workoutDraft:null};
 const DAY=86400000,start=Date.UTC(2024,10,12);
 const stageChanges=Object.fromEntries(ids.map(id=>[id,0]));
 const stageBefore=Object.fromEntries(ids.map(id=>[id,0]));
