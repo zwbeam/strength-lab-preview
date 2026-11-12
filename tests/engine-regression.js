@@ -35,4 +35,7 @@ test('missing kettlebell inventory never offers catalog progression weights',()=
 test('missing club inventory never offers catalog progression weights',()=>{const b=base();delete b.equipment.club;assert.deepEqual(E.loadOptions(b,'cast'),[])});
 test('load progression ignores malformed and nonpositive inventory entries',()=>{const b=base();b.equipment.kb=[null,'18',-2,0,NaN,Infinity,18];const choices=E.loadOptions(b,'swing');assert.ok(choices.every(w=>typeof w==='number'&&Number.isFinite(w)&&w>0));assert.ok(!choices.includes('18'))});
 test('load progression respects configured equipment ceiling',()=>{const b=base();b.equipment.kb=[12,16,18,20];b.equipment.maxKbKg=16;assert.ok(E.loadOptions(b,'swing').every(w=>w<=16))});
+test('missing duration retains the 45-minute default',()=>{assert.equal(E.timeBudget(undefined).total,45);assert.equal(E.timeBudget(null).total,45)});
+test('invalid duration cannot silently become 45 minutes',()=>{for(const value of ['abc',NaN,Infinity,'',24,121,45.5])assert.throws(()=>E.timeBudget(value),/25–120/)});
+test('backup rejects malformed duration rather than changing the workout',()=>{const b=base();b.defaultMinutes='abc';assert.throws(()=>E.validateBackup(b),/25–120/)});
 console.log(passed+' engine tests passed');
