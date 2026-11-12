@@ -232,7 +232,9 @@ function preparation(plan,kind){
   ['Spinal extension','Gentle Sphinx position or comfortable supported extension'],
   ['Spinal flexion','Supported forward fold without forcing the range'],
   ['Spinal rotation','Comfortable seated or supported twist'],
-  ['Hip mobility','Supported shin-box position or gentle hip-flexor stretch']
+  ['Hip mobility',(plan.items||[]).some(rx=>/squat|lunge|bearSquat|getup/i.test(rx.id))?
+   'Gentle shin-box switches and supported hip rotations after squat or ground work':
+   'Supported shin-box position or gentle hip-flexor stretch']
  ];
  const allocations=isWarm?[2,2,2,2]:Array.from({length:4},(_,i)=>Math.floor(total/4)+(i<total%4?1:0));
  return '<div class="prep-exercises">'+sections.map((entry,i)=>allocations[i]?'<div class="prep-exercise"><div class="prep-name">'+esc(entry[0])+'</div><p class="rx"><strong>'+allocations[i]+' min</strong> · '+esc(entry[1])+'</p></div>':'').join('')+'</div>';
