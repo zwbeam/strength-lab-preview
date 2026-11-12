@@ -7,6 +7,7 @@ const {chromium}=require('playwright');
    const page=await browser.newPage({viewport});
    const errors=[];
    page.on('pageerror',e=>errors.push(e.message));
+   page.on('console',message=>{if(message.type()==='error')errors.push('Console error: '+message.text());});
    await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded'});
    await page.locator('#app').waitFor();
    await page.waitForTimeout(750);
