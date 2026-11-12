@@ -109,7 +109,7 @@ function changed(i,j,field,value){if(!checkWriter())return;
  const previous=JSON.stringify(draft);
  const d=draft.items[i].sets[j];
  if(field==='done'&&value&&(!E.validWorkingWeight(draft.plan.items[i].id,d.weight)||!Number.isInteger(Number(d.reps))||Number(d.reps)<=0)){alert('Enter a positive weight and whole reps or seconds before completing this set.');return;}
- if(field==='done'&&value&&draft.notebookVersion===1){const rx=draft.plan.items[i];if(rx.side===2&&d.bothSides===undefined)d.bothSides=true;if(rx.continuous&&d.continuous===undefined)d.continuous=true;if(rx.roundSeconds&&d.timingValid===undefined)d.timingValid=true;}
+ if(field==='done'&&value&&draft.notebookVersion===1){const rx=draft.plan.items[i];if(rx.side===2){if(d.bothSides===undefined)d.bothSides=true;const left=Number(d.leftReps),right=Number(d.rightReps);if(d.bothSides!==true||!Number.isInteger(left)||left<=0||!Number.isInteger(right)||right<=0){alert('Enter the actual left and right repetitions and confirm both sides before completing this set.');return;}}if(rx.continuous&&d.continuous===undefined)d.continuous=true;if(rx.roundSeconds&&d.timingValid===undefined)d.timingValid=true;}
  if(field==='skipped'&&value)d.done=false;
  d[field]=['done','bothSides','timingValid','continuous','skipped'].includes(field)?!!value:Number(value);
  if(field==='done')T.logged(draft,i,j,value);
