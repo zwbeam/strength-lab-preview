@@ -202,7 +202,12 @@ function complexityOptions(s,opts={}){
  return COMPLEX_PATHWAYS.map(pathway=>{
   const missing=pathway.requires.filter(id=>!Object.hasOwn(MOVES,id)||!practiceEvidence(s,id,{now:opts.now}).ready);
   const pairAvailable=!pathway.matchedPair||(s.trainingPreferences?.useDoubleKb===true&&(s.equipment?.pairs||[]).length>0);
-  const blockers=[...missing.map(id=>Object.hasOwn(MOVES,id)?MOVES[id].name+' needs recent clean practice':id+' is not yet implemented'),...(!pairAvailable?['A matched kettlebell pair must be configured']:[])];
+  const movement=MOVES[pathway.id];
+  const weight=Number(s.weights?.[pathway.id]||s.nextWeights?.[pathway.id]||0);
+  const inventory=movement.pair?s.equipment?.pairs:s.equipment?.kb;
+  const validLoad=weight>0&&Array.isArray(inventory)&&inventory.includes(weight);
+  const rackReady=!pathway.matchedPair||s.skills?.rack===true;
+  const blockers=[...missing.map(id=>Object.hasOwn(MOVES,id)?MOVES[id].name+' needs recent clean practice':id+' is not yet implemented'),...(!pairAvailable?['A matched kettlebell pair must be configured']:[]),...(!rackReady?['Confirm a secure double rack in Settings']:[]),...(!validLoad?['Set an owned working weight for this complex in Working weights']:[])];
   if(!enabled)blockers.unshift('Kettlebell complexes are disabled');
   return {...pathway,ready:!blockers.length,blockers,advisory:true};
  });
@@ -348,12 +353,7 @@ function blockPlan(s,opts={}){
  // On the third ABC day, substitute one eligible complex for overlapping basics.
  // Keep the existing day unchanged unless prerequisite evidence is current.
  const complexChoices=block==='abc'&&slot===2&&pref.useKb!==false&&pref.useComplexes!==false&&!continuing
-  ?complexityOptions(s,opts).filter(x=>{
-    if(!x.ready)return false;
-    const m=MOVES[x.id],weight=Number(s.weights?.[x.id]||s.nextWeights?.[x.id]||0);
-    const owned=m.pair?s.equipment?.pairs:s.equipment?.kb;
-    return weight>0&&Array.isArray(owned)&&owned.includes(weight);
-   }):[];
+  ?complexityOptions(s,opts).filter(x=>x.ready):[];
  const complexChoice=complexChoices.find(x=>x.id==='complexCleanSquatPress')
   ||complexChoices.find(x=>x.id==='complexCleanPress')
   ||complexChoices.find(x=>x.id==='complexDoubleCleanSquatPress');
