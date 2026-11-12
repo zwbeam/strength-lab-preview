@@ -56,4 +56,24 @@ test('push-up example uses clean baseline fraction and EMOM stages',()=>{
  assert.equal(p.roundSeconds,60);
  assert.equal(p.stages.at(-1).sets,30);
 });
+// Long-term progression requires two distinct, fully clean exposures.
+test('snatch advancement rejects partial, painful and recovery sessions',()=>{
+ const b=base();b.weights.snatch=12;
+ const p=E.policyFor('snatch',b),first=p.stages[0];
+ const record=(id,overrides={})=>({id:'snatch',policyKey:p.key,weight:12,
+   targetSets:first.sets,targetReps:first.reps,actualSets:first.sets,
+   actualReps:first.reps,rest:first.rest,quality:'clean',completed:true,
+   ...overrides});
+ const add=(item,i)=>b.sessions.push({id:'snatch-'+i,date:'2026-11-'+String(i+1).padStart(2,'0'),items:[item]});
+ add(record('a',{actualSets:3}),0);
+ assert.equal(E.stateFor(b,'snatch').stage,0);
+ add(record('b',{pain:true}),1);
+ assert.equal(E.stateFor(b,'snatch').stage,0);
+ add(record('c',{mode:'recovery'}),2);
+ assert.equal(E.stateFor(b,'snatch').stage,0);
+ add(record('d'),3);
+ assert.equal(E.stateFor(b,'snatch').stage,0);
+ add(record('e'),4);
+ assert.equal(E.stateFor(b,'snatch').stage,1);
+});
 console.log(passed+' engine tests passed');
