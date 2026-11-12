@@ -227,7 +227,7 @@ function chooseCycle(s,id,choice){
 }
 function loadOptions(s,id){
  const st=stateFor(s,id),m=MOVES[id];
- if(m.bodyweight)return [];
+ if(m.bodyweight||st.policy.profile==='wave')return [];
  if(st.hold||st.fail||st.phase!=='ready')return [];
  const inventory=m.pair?(Array.isArray(s.equipment?.pairs)?s.equipment.pairs:[]):s.equipment?.[m.gear];
  // If the user supplied an inventory, only offer loads they actually own.
