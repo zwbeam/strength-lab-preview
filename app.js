@@ -178,7 +178,8 @@ function emptyPlanMessage(p){
  if(p.prerequisite?.length||p.requirements?.length)return 'No workout is ready because movement prerequisites are incomplete. Open Settings → Foundational Movements to confirm the skills you can perform safely, and enter a push-up baseline if applicable. Review Learn for movement instructions. Do not mark skills complete until you can perform them.';
  if(p.scheduled?.length)return 'No workout is ready under the current recovery schedule. Rest and return when the spacing or weekly limit permits; no catch-up volume is needed.';
  if(p.unavailable?.length)return 'No workout is ready with the available equipment. Review your equipment and training block in Settings.';
- return 'No complete strength movement fits this time window. Choose the 20-minute Mobility & Movement session below, based on the movement you would have trained, or select a longer workout target. Your strength progression stays queued.';
+ if(p.timeBlocked?.length)return 'No complete strength movement fits this time window. The 20-minute Mobility & Movement option below is ready and tailored to the movement you would have trained. Your strength progression stays queued.';
+ return 'No strength workout is ready today. Review the training schedule or choose the optional 20-minute Mobility & Movement session below. No strength progression is credited for mobility.';
 }
 function trainingExplanation(plan){
  const sessions=(state.sessions||[]).filter(x=>x.items?.some(y=>y.actualSets>0)).sort((a,b)=>b.date.localeCompare(a.date));
