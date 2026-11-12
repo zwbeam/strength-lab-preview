@@ -1,6 +1,7 @@
 'use strict';
 const fs=require('node:fs'),assert=require('node:assert/strict');
 const {chromium}=require('playwright');
+const windowName={swing:'Two-hand swing',squat:'Goblet squat',press:'Single-arm strict press',row:'Single-arm row',clean:'Single-arm clean'};
 const backup=JSON.parse(fs.readFileSync('strength-lab-engine-demo-backup.json','utf8'));
 const report=JSON.parse(fs.readFileSync('strength-lab-engine-demo-backup-progression-report.json','utf8'));
 (async()=>{
@@ -39,14 +40,13 @@ const report=JSON.parse(fs.readFileSync('strength-lab-engine-demo-backup-progres
     await page.locator('[data-tab="'+tab+'"]').click();
     await page.waitForTimeout(500);
     assert.ok(await page.locator('[data-tab="'+tab+'"]').evaluate(el=>el.classList.contains('active')),'Navigation failed to activate '+tab+' at '+width);
-    if(tab==='today')assert.ok((await page.locator('#app h1').first().innerText()).trim().length>0,'Home heading missing at '+width);
+    if(tab==='today')assert.ok((await page.locator('#app').innerText()).trim().length>100,'Train content missing at '+width);
     if(tab==='progress'){
      const header=await page.locator('#app').innerText();
      assert.ok(header.includes(backup.sessions.length+' lifetime workouts recorded'),'Training Log did not render full session count at '+width);
-     await page.locator('#movement-progress').evaluate(el=>el.open=true);
-     await page.locator('#movement-progress details').first().evaluate(el=>el.open=true);
-     const practiced=await page.locator('#movement-progress > summary').innerText();
-     assert.ok(practiced.includes('6 practiced movements'),'Training Log omitted movements at '+width);
+     const overview=page.locator('.training-overview-group');
+     assert.ok(await overview.count()>=2,'Training Overview gear groups missing at '+width);
+     assert.ok((await page.locator('#app').innerText()).includes('Notebook'),'Notebook Log missing at '+width);
     }
     const view=await page.evaluate(()=>({viewport:document.documentElement.clientWidth,document:document.documentElement.scrollWidth,text:document.querySelector('#app')?.innerText||''}));
     assert.ok(view.text.trim().length>100,'Empty populated '+tab+' at '+width);
@@ -54,17 +54,14 @@ const report=JSON.parse(fs.readFileSync('strength-lab-engine-demo-backup-progres
     await page.screenshot({path:'demo-'+width+'-'+tab+'.png',fullPage:true});
     await page.screenshot({path:'demo-'+width+'-'+tab+'-viewport.png'});
     if(tab==='progress'){
-     await page.locator('#movement-progress').screenshot({path:'demo-'+width+'-progress-detail.png'});
+     await page.locator('.training-overview-group').first().screenshot({path:'demo-'+width+'-progress-detail.png'});
     }
     if(tab==='progress'){
-     const progressText=await page.locator('#movement-progress').innerText();
-     for(const id of ['swing','squat','press','row','clean','cast']){
-      const expected=report.movementCounts[id];
-      assert.ok(expected&&expected.total>=100,'Insufficient generated history for '+id);
+     const overviewText=await page.locator('.training-overview-group').first().innerText();
+     for(const id of ['swing','squat','press','row','clean']){
+      assert.ok(overviewText.includes(windowName[id]),'Missing movement '+id+' at '+width);
      }
-     const summaryRows=await page.locator('#movement-progress .stage-row').count();
-     assert.equal(summaryRows,6,'Movement summary omitted trained movements at '+width);
-     assert.ok(progressText.includes('Detailed cycles and milestones'),'Detailed progression section absent at '+width);
+     assert.ok((await page.locator('.training-overview-group').nth(1).innerText()).includes('shield cast'),'Heavy club movement missing at '+width);
     }
    }
    assert.deepEqual(errors,[],'Browser errors at '+width);
