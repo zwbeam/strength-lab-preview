@@ -132,8 +132,17 @@ jobs:
           root=pathlib.Path('review-build')
           html=(root/'index.html').read_text()
           assets=re.findall(r'(?:src|href)="([^"]+)"',html)
+          assets += re.findall(r'url\\(([^)]+)\\)',html)
           required=['index.html','app.js','engine.js','notebook.js','styles.css','sw.js','manifest.webmanifest']
-          required += [x.split('?')[0] for x in assets if not x.startswith(('http:','https:','#','data:'))]
+          required += [x.strip("'\\\"").split('?')[0] for x in assets if not x.startswith(('http:','https:','#','data:'))]
+          sw=(root/'sw.js').read_text()
+          match=re.search(r'const FILES=(\\[[^;]+\\]);',sw)
+          if not match:sys.exit('Review package has no static offline precache manifest')
+          import json
+          required += [x.removeprefix('./').split('?')[0] for x in json.loads(match.group(1)) if x not in ('.','./')]
+          for css_name in ('styles.css','interface-polish.css'):
+              css=(root/css_name).read_text()
+              required += [x.strip("'\\\"").split('?')[0] for x in re.findall(r'url\\(\\s*([^)]*?)\\s*\\)',css) if not x.startswith(('data:','http:','https:','#'))]
           missing=sorted({x for x in required if not (root/x).is_file()})
           legacy=sorted(str(p) for p in (root/'legacy').rglob('*') if p.is_file()) if (root/'legacy').exists() else []
           if legacy:sys.exit('Retired legacy interface was included in review build: '+', '.join(legacy))
