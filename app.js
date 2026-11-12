@@ -571,7 +571,7 @@ document.addEventListener('change',e=>{const el=e.target;
  if(el.id==='import'){const f=el.files?.[0];if(!f)return;f.text().then(t=>{if(f.size>10000000)throw Error('Backup is too large');const x=E.validateBackup(JSON.parse(t));if(confirm('Replace training data and the active workout with this backup?')){const {workoutDraft,...nextState}=x;if(!persistTraining(nextState,workoutDraft))return;state=nextState;draft=workoutDraft;clearInterval(timerInterval);tab=draft?'today':'progress';render();}}).catch(err=>alert('Cannot restore backup: '+err.message));return;}
 });
 document.addEventListener('input',e=>{if(e.target.id==='learn-search'){learnQuery=e.target.value;$('#learn-results').innerHTML=renderLearningList();return;}if(e.target.id==='source-search'){search=e.target.value;fullMatches=null;const el=$('#sources');if(el&&sourceData)el.innerHTML=sourceResults();}if(e.target.id==='notes'&&draft&&checkWriter()){draft.notes=e.target.value;saveDraft();}});
-window.addEventListener('online',()=>{$('#network').textContent='LOCAL FIRST';});window.addEventListener('offline',()=>{$('#network').textContent='OFFLINE READY';});
+window.addEventListener('online',()=>{const network=$('#network');if(network)network.textContent='LOCAL FIRST';});window.addEventListener('offline',()=>{const network=$('#network');if(network)network.textContent='OFFLINE READY';});
 setInterval(()=>{if(draft)updateTimer()},250);
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&draft)updateTimer();});
 window.addEventListener('pageshow',()=>{if(draft)updateTimer();});
