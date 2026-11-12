@@ -61,7 +61,7 @@ const report=JSON.parse(fs.readFileSync('strength-lab-engine-demo-backup-progres
      for(const id of ['swing','squat','press','row','clean']){
       assert.ok(overviewText.includes(windowName[id]),'Missing movement '+id+' at '+width);
      }
-     assert.ok((await page.locator('.training-overview-group').nth(1).innerText()).includes('shield cast'),'Heavy club movement missing at '+width);
+     assert.ok((await page.locator('.training-overview-group').nth(2).innerText()).includes('Two-hand shield cast'),'Heavy club movement missing at '+width);
     }
    }
    assert.deepEqual(errors,[],'Browser errors at '+width);
