@@ -603,6 +603,14 @@ const {chromium}=require('playwright');
    if(await dialog.evaluate(el=>el.open))throw Error('Movement history failed to close');
    const visibleRows=await page.locator('.notebook-table tbody tr').count();
    if(visibleRows!==180)throw Error('Notebook lost bounded pagination after movement history browsing');
+   // Pagination must remain bounded and stable when navigating away and back.
+   await page.locator('[data-tab="learn"]').click();
+   await page.locator('[data-tab="progress"]').click();
+   const returnRows=await page.locator('.notebook-table tbody tr').count();
+   if(returnRows<60||returnRows>180)
+    throw Error('Training Log return navigation produced unexpected row count: '+returnRows);
+   if(!await page.locator('.notebook-table').isVisible())
+    throw Error('Training Log table hidden after returning from Learn');
    console.log('540-session Training Log pagination passed at '+viewport.width+'px; initial render '+logRenderMs+'ms');
    await page.locator('[data-movement-history="swing"]').first().click();
    await dialog.locator('[data-history-view]').first().click();
