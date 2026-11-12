@@ -30,6 +30,12 @@ for(let day=0;day<730;day++){
  if(id==='swing'&&E.successful(item))swingEligibleTracks[st.track]++;
  if(state.sessions.length%25===0)checkpoints.push({session:state.sessions.length,date:dayString(day),movements:Object.fromEntries(ids.map(move=>{const progress=E.stateFor(state,move);return [move,{stage:progress.stage,weight:progress.weight,exposures:progress.allExposures}];}))});
 }
+// Capture the final post-workout state, including the last exposure's progression.
+for(const id of ids){
+ const finalStage=E.stateFor(state,id).stage;
+ if(finalStage!==stageBefore[id]){stageChanges[id]++;stageBefore[id]=finalStage;}
+}
+checkpoints.push({session:state.sessions.length,date:state.sessions.at(-1).date,movements:Object.fromEntries(ids.map(move=>{const progress=E.stateFor(state,move);return [move,{stage:progress.stage,weight:progress.weight,exposures:progress.allExposures,track:progress.track}];}))});
 assert.ok(state.sessions.length>250,'Expected substantial two-year history');
 const checked=E.validateBackup(state);
 assert.ok(clean>200,'Demo needs enough clean progression exposures');
