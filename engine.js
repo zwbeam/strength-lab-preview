@@ -243,7 +243,7 @@ function repairMissingLoadAnchor(s,id,confirm){
  if(!Object.hasOwn(MOVES,id)||MOVES[id].bodyweight)throw Error('A loaded movement is required');
  const marker=s.loadResetAfter?.[id];
  if(!marker||marker==='__start__'||records(s,id).some(x=>x._key===marker))throw Error('No missing load reset anchor to repair');
- const next={...s,loadResetAfter:{...s.loadResetAfter,[id]:'__start__'}};
+ const next={...s,loadResetAfter:{...s.loadResetAfter,[id]:records(s,id).at(-1)?._key||'__start__'}};
  return next;
 }
 function replaceUnavailableLoad(s,id,weight){const m=MOVES[id];if(!m||m.bodyweight)throw Error('A loaded movement is required');if(policyFor(id,s).profile==='wave')throw Error('Change configured wave weights instead');if(!availableWorkingLoads(s,id).includes(weight))throw Error('Replacement weight must be currently available');const current=stateFor(s,id);if(availableWorkingLoads(s,id).includes(current.weight))throw Error('Current working weight is still available; use normal progression controls');return{...s,nextWeights:{...s.nextWeights,[id]:weight},loadResetAfter:{...s.loadResetAfter,[id]:records(s,id).at(-1)?._key||'__start__'}};}
