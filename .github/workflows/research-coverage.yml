@@ -81,6 +81,14 @@ jobs:
           PY
       - name: Run additional history correction regression tests
         run: node --test tests/history-corrections.test.cjs
+      - name: Generate and validate two-year engine demo backup
+        run: node tests/generate-demo-backup.cjs strength-lab-engine-demo-backup.json
+      - name: Upload two-year demo backup
+        uses: actions/upload-artifact@v4
+        with:
+          name: strength-lab-engine-demo-backup
+          path: strength-lab-engine-demo-backup.json
+          retention-days: 14
       - name: Validate movement mappings and source integrity
         run: |
           node tests/research-coverage.js
