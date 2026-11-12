@@ -44,6 +44,19 @@ Full transcript text, rather than only title metadata, was read for the followin
 
 No exact suitcase-carry or two-hand club front-swing source was established in this pass. None of the seven `movement-instruction.js` lessons was automatically promoted to `reviewed outline`.
 
+## App lesson comparison against reviewed transcript passages (2026-11-11)
+
+Compared the current `movement-instruction.js` entries directly with the sampled full transcript text. This is a **documentation-only reconciliation**; it does not change a coverage label or assert that video-only positions have been verified.
+
+- **`getup` / #604:** The current lesson cites only #423 and has no technique steps, explicitly directing users to an external demonstration. #604 provides a promising technical sequence, but that sequence has **not** yet been transcribed into a verified, visually checked app lesson. Keep partial.
+- **`doublePress` / #152:** Current clean → rack → press → return outline and glute/rib-cage cues agree broadly with #152. The source explicitly asks learners to watch separate double-clean and double-press lessons. Keep partial until prerequisite lesson verification.
+- **`snatch` / #413:** Current breakdown from clean/press and the warning about the bell rolling around rather than over the hand are directly supported. Garbled caption sections and visually dependent hand insertion still require video checking. Keep partial.
+- **`cast` / #214, #222:** Existing top-hand/opposite-ear and low-thumb cues agree with #214. #222 adds prerequisites (two-hand pullover, behind-head backswing), upright posture, order-position hand-height faults and equal practice on both sides. These are candidates for a fuller lesson after checking the video and clearance; current mapping omits #222. Keep partial.
+- **`pushup` / #609:** Existing strict-rep/core-alignment and volume-cycle advice agrees with #609. Its 40%-of-clean-max beginner example and 10-minute initial EMOM could be surfaced as **examples**, not universal requirements. Full hand-placement and regression instruction remains unverified. Keep partial.
+- **`carry`, `front`:** Both are explicitly app-authored with empty `sourceIds`. No exact lesson was found in title triage; retain honest provenance and do not add unrelated source IDs.
+
+**Release-relevant finding:** The current Learn implementation already labels these seven as incomplete. It would be misleading to turn off those notices merely because five have some matching transcript passages. Next content pass should inspect full video demonstrations for #604 and #222, and the separate double-clean/press prerequisite lessons, before upgrading technique coverage.
+
 ## Evidence standard
 
 1. Read the actual transcript, not merely its title or the inventory's provisional topic tags.
