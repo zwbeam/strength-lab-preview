@@ -195,7 +195,7 @@ function prerequisites(s,id,opts={}){
 const COMPLEX_PATHWAYS=Object.freeze([
  {id:'complexCleanPress',name:'Single-arm clean → press',gear:'kb',requires:['clean','press']},
  {id:'complexCleanSquatPress',name:'Single-arm clean → front squat → press',gear:'kb',requires:['clean','squat','press']},
- {id:'complexDoubleCleanSquatPress',name:'Double clean → front squat → press',gear:'kb',requires:['doubleClean','doubleSquat','doublePress'],matchedPair:true}
+ {id:'complexDoubleCleanSquatPress',name:'Double clean → front squat → press',gear:'kb',requires:['doubleSquat','doublePress'],matchedPair:true}
 ]);
 function complexityOptions(s,opts={}){
  const enabled=s.trainingPreferences?.useKb!==false&&s.trainingPreferences?.useComplexes!==false;
@@ -342,7 +342,7 @@ function blockPlan(s,opts={}){
   if(!day.ids.some(enabled))day={name:pref.useKb!==false?'Strength fundamentals':pref.useClub!==false?'Club fundamentals':'Bodyweight fundamentals',focus:'Equipment-compatible foundation practice',ids:fallback.filter(enabled)};
  }
  const blockIds=block==='abc'?[...new Set([...days.flatMap(x=>x.ids),...day.ids])]:days.flatMap(x=>x.ids),support=supportingMoves(s,day.ids,opts);
- const allowed=new Set([...blockIds,...support]),pending=s.deferredByBlock?.[block]||(block==='abc'?s.deferredIds:[])||[];
+ const allowed=new Set([...blockIds,...support,...COMPLEX_PATHWAYS.map(x=>x.id)]),pending=s.deferredByBlock?.[block]||(block==='abc'?s.deferredIds:[])||[];
  const latest=(s.sessions||[]).filter(x=>(x.block||'abc')===block&&calendarDay(x.date)<=calendarDay(opts.now)).sort((a,b)=>calendarDay(a.date)-calendarDay(b.date)).at(-1);
  const continuing=latest?.calendarVersion===1&&latest.items.some(x=>x.actualSets>0)&&latest.items.some(x=>!x.performed)&&pending.length>0;
  // On the third ABC day, substitute one eligible complex for overlapping basics.
