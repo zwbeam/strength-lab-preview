@@ -334,6 +334,25 @@ const {chromium}=require('playwright');
      throw Error('Reload changed queued strength after mobility: '+JSON.stringify({afterMobilityQueue,persistedMobility}));
    console.log('Mobility persistence and strength queue survived reload at '+viewport.width+'px');
 
+   // A second reload must not duplicate the saved activity or change the
+   // upcoming prescription. Repeated app launches are normal over years.
+   await page.reload({waitUntil:'domcontentloaded'});
+   const secondReload=await page.evaluate(()=>{
+     const now=new Date().toLocaleDateString('sv-SE');
+     const rows=window.RollingCalendar.project(state,now,window.RollingCalendar.add(now,14));
+     return {
+       mobilityIds:(state.activities||[]).filter(a=>a.type==='mobility'&&a.status==='completed').map(a=>a.id),
+       strengthCount:window.RollingCalendar.count(state),
+       next:rows.length?{key:rows[0].key,block:rows[0].plan.block,slot:rows[0].plan.slot,ids:rows[0].plan.items.map(x=>x.id),date:rows[0].date}:null
+     };
+   });
+   if(secondReload.mobilityIds.length!==1||secondReload.mobilityIds[0]!==persistedMobility.activities[0].id||secondReload.strengthCount!==0)
+     throw Error('Second reload duplicated mobility or awarded strength credit: '+JSON.stringify(secondReload));
+   if(JSON.stringify(secondReload.next)!==JSON.stringify(persistedMobility.next))
+     throw Error('Repeated reload changed the next strength prescription');
+   console.log('Repeated reload keeps mobility and strength queue stable at '+viewport.width+'px');
+
+
    // Five consecutive easy movement days must not consume five strength slots.
    // Recovery still governs the first eligible strength date.
    const repeatedMovement=await page.evaluate(()=>{
