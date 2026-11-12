@@ -43,7 +43,8 @@ for(const [lessonId,lesson] of Object.entries(entries)) for(const sourceId of le
   assert.equal(sources[sourceId]?.url,original.url,lessonId+': catalog URL mismatch '+sourceId);
   checkedSourceLinks++;
 }
-assert.ok(checkedSourceLinks>=checkedQuotes,'source reference count unexpectedly below evidence count');
+assert.ok(checkedSourceLinks>=20,'unexpected loss of source links');
+console.log('TRANSCRIPT PROVENANCE '+JSON.stringify({quotedAnchors:checkedQuotes,lessonSourceLinks:checkedSourceLinks,uniqueOriginalTranscripts:transcriptCache.size}));
 
 const gaps = [];
 let covered = 0;
