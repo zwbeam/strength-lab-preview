@@ -58,6 +58,8 @@ for(let shardNumber=0;shardNumber<24;shardNumber++) {
   shard.forEach((original,index) => {
     assert.ok(inventoryIds.has(original.id),'original transcript missing from index '+original.id);
     assert.equal(original.id,shardNumber*30+index,'transcript shard ordering mismatch '+original.id);
+    assert.equal(original.title,inventory[original.id].title,'source title mismatch '+original.id);
+    assert.equal(original.group,inventory[original.id].group,'source group mismatch '+original.id);
     assert.equal(typeof original.text,'string','missing transcript text '+original.id);
     assert.ok(original.text.trim().length>0,'empty transcript text '+original.id);
   });
