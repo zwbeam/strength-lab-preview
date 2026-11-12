@@ -35,6 +35,11 @@ for (const [id, move] of Object.entries(moves)) {
     assert.ok(Object.hasOwn(sources,videoId),id+': unknown video source ID '+videoId);
     assert.ok(/^https:\/\/www[.]youtube[.]com\/watch[?]v=[A-Za-z0-9_-]+$/.test(sources[videoId].url || ''),id+': missing or invalid source video URL '+videoId);
   }
+  for (const evidence of lesson.evidence || []) {
+    assert.equal(typeof evidence.quote,'string',id+': evidence quotation must be text');
+    assert.ok(evidence.quote.trim().length>=8,id+': evidence quotation too short to audit');
+    assert.ok(Object.hasOwn(sources,evidence.sourceId),id+': evidence references missing catalog source '+evidence.sourceId);
+  }
   if (lesson.evidence?.length && !lesson.sourceIds.length)
     throw Error(id + ': quotations without source attribution');
   for (const evidence of lesson.evidence || [])
