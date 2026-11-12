@@ -174,4 +174,14 @@ test('backup reset marker cannot point to a different movement',()=>{
  assert.ok(E.validateBackup({...b,loadResetAfter:{press:'anchor:0'}}));
  assert.throws(()=>E.validateBackup({...b,loadResetAfter:{swing:'anchor:0'}}),/load reset boundary/i);
 });
+test('live history edit removing reset anchor fails closed',()=>{
+ const b=base();b.sessions=[{id:'anchor',title:'Anchor',date:'2026-11-01',items:[{
+  id:'swing',weight:16,targetSets:4,targetReps:10,actualSets:4,actualReps:10,
+  rest:60,quality:'clean',completed:true
+ }]}];b.loadResetAfter={swing:'anchor:0'};
+ assert.doesNotThrow(()=>E.stateFor(b,'swing'));
+ const edited={...b,sessions:[]};
+ assert.throws(()=>E.stateFor(edited,'swing'),/Missing load reset anchor/);
+ assert.throws(()=>E.prescription(edited,'swing'),/Missing load reset anchor/);
+});
 console.log(passed+' engine tests passed');
