@@ -38,4 +38,29 @@ test('paused timer ignores background time and resumes exactly once',()=>{
  T.tick(d,3700000);
  assert.equal(d.clock.kind,'complete','second round must finish once');
 });
-console.log(passed+'/5 timer checks passed');
+test('timer modes preserve manual and hybrid control boundaries',()=>{
+ const make=timerMode=>({timerVersion:3,timerMode,stage:'work',
+  plan:{items:[{name:'Press',sets:1,reps:5,roundSeconds:10,timed:true},
+   {name:'Squat',sets:1,reps:5,roundSeconds:10,timed:true}]},
+  items:[{sets:[{done:false}]},{sets:[{done:false}]}]});
+ const automatic=make('automatic');
+ T.enterWork(automatic,1000);
+ assert.equal(automatic.clock.running,true,'automatic begins running');
+ T.tick(automatic,11000);
+ assert.equal(automatic.clock.item,1,'automatic advances to next exercise');
+ assert.equal(automatic.clock.running,true,'automatic starts next exercise');
+ const manual=make('manual');
+ T.enterWork(manual,1000);
+ assert.equal(manual.clock.running,false,'manual waits for user');
+ T.resume(manual,1000);
+ T.tick(manual,11000);
+ assert.equal(manual.clock.item,1,'manual advances at elapsed boundary');
+ assert.equal(manual.clock.running,false,'manual must not auto-start next exercise');
+ const hybrid=make('hybrid');
+ T.enterWork(hybrid,1000,true);
+ T.tick(hybrid,11000);
+ assert.equal(hybrid.clock.item,1,'hybrid advances to next exercise');
+ assert.equal(hybrid.clock.running,false,'hybrid waits at exercise boundary');
+ assert.equal(hybrid.clock.awaitConfirmation,true,'hybrid marks confirmation required');
+});
+console.log(passed+'/6 timer checks passed');
