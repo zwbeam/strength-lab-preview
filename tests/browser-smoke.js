@@ -570,6 +570,24 @@ const {chromium}=require('playwright');
    if(await page.locator('[data-more-movement-history]').count())throw Error('Empty Training Log should not show movement pagination');
    if(await page.locator('#movement-history-dialog').evaluate(el=>el.open))throw Error('History dialog unexpectedly open');
    console.log('Empty Training Log state passed at '+viewport.width+'px');
+   // Mixed history: partial lifting still counts as a strength day; mobility is separate.
+   await page.evaluate(()=>{
+    const date=new Date().toISOString().slice(0,10);
+    const state=JSON.parse(localStorage.getItem('sl-dev-preview-data-v33'));
+    state.sessions=[{id:'mixed-partial',date,items:[{
+      id:'swing',weight:16,actualSets:1,actualReps:10,targetSets:3,targetReps:10,
+      performed:true,completed:false,sets:[{done:true,reps:10,weight:16}]
+    }]}];
+    state.activities=[{id:'mixed-mobility',date,type:'mobility',status:'completed',minutes:20}];
+    localStorage.setItem('sl-dev-preview-data-v33',JSON.stringify(state));
+   });
+   await page.reload({waitUntil:'domcontentloaded'});
+   await page.locator('[data-tab="progress"]').click();
+   const mixedSummary=(await page.locator('.hero .small.muted').first().innerText()).trim();
+   if(!mixedSummary.includes('1 strength days')||!mixedSummary.includes('1 mobility days')||
+      !mixedSummary.includes('1 strength workouts recorded'))
+    throw Error('Mixed partial-strength and mobility counts incorrect: '+mixedSummary);
+   console.log('Mixed partial strength and mobility reporting passed at '+viewport.width+'px');
    await page.addInitScript(()=>{
     if(sessionStorage.getItem('browser-fixture-installed')==='yes')return;
     sessionStorage.setItem('browser-fixture-installed','yes');
