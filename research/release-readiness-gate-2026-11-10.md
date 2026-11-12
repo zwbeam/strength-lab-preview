@@ -28,3 +28,25 @@
 
 ## Decision
 **Automated gate: passed at 449c210. Manual gate: pending. Release status: hold.**
+
+## 30-round QA checkpoint — November 11, 2026
+
+**Scope:** final 30-round development/QA sequence on `preview`, not production. This updates the earlier automated-gate snapshot without overriding its manual-release blockers.
+
+- `d3cd9d65`: repaired validated-backup nested-object aliasing discovered by the 500-session restore regression. Both GitHub Actions workflows passed.
+- `889ae5d3`: added deeper restoration isolation assertions for movement records, equipment and working weights. Both workflows passed.
+- `166522ca`: wired offline-precache integrity test into mandatory research audit. Research audit **and** browser smoke jobs passed; Pages build passed.
+- `e2a50136`: strengthened offline-precache assertions for query-string duplicate entries and app entry point. **CI still in progress at the checkpoint inspection.** Do not mark this commit green without a completed successful run.
+- Browser smoke now exercises 320px, 390px, 832px landscape, and 1280px layouts; passing browser-smoke CI was confirmed for the previous commit.
+- Multi-year simulations, backup corruption rejection, and offline manifest integrity have automated checks. They do not prove actual multi-year training effectiveness or device-specific behavior.
+
+### Release decision
+
+**HOLD — no production merge or Cloudflare changes.** All four manual release blockers above remain open until actual-device validation and an explicit release decision. The latest commit also requires green CI. No source review count should be interpreted as proof that all 719 usable transcripts have been faithfully implemented.
+
+### Exit criteria
+
+1. Confirm both workflows green on the final candidate commit, including audit and browser-smoke jobs.
+2. Run the real-phone timer/audio/backgrounding and backup export/import walkthrough above.
+3. Review the one-month mixed-history Training Report and complete a research-fidelity spot audit against documented evidence.
+4. Resolve findings, retest, and obtain explicit authorization before any production deployment.
