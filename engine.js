@@ -345,7 +345,16 @@ function blockPlan(s,opts={}){
  const allowed=new Set([...blockIds,...support]),pending=s.deferredByBlock?.[block]||(block==='abc'?s.deferredIds:[])||[];
  const latest=(s.sessions||[]).filter(x=>(x.block||'abc')===block&&calendarDay(x.date)<=calendarDay(opts.now)).sort((a,b)=>calendarDay(a.date)-calendarDay(b.date)).at(-1);
  const continuing=latest?.calendarVersion===1&&latest.items.some(x=>x.actualSets>0)&&latest.items.some(x=>!x.performed)&&pending.length>0;
- const candidateIds=[...new Set([...support,...pending.filter(id=>allowed.has(id)),...(continuing?[]:day.ids)])].filter(enabled);
+ // On the third ABC day, substitute one eligible complex for overlapping basics.
+ // Keep the existing day unchanged unless prerequisite evidence is current.
+ const complexChoices=block==='abc'&&slot===2&&pref.useKb!==false&&pref.useComplexes!==false&&!continuing
+  ?complexityOptions(s,opts).filter(x=>x.ready):[];
+ const complexChoice=complexChoices.find(x=>x.id==='complexCleanSquatPress')
+  ||complexChoices.find(x=>x.id==='complexCleanPress')
+  ||complexChoices.find(x=>x.id==='complexDoubleCleanSquatPress');
+ const complexIds=complexChoice?[complexChoice.id]:[];
+ const replaced=new Set(complexChoice?.requires||[]);
+ const candidateIds=[...new Set([...support,...pending.filter(id=>allowed.has(id)),...(continuing?[]:day.ids.filter(id=>!replaced.has(id))),...complexIds])].filter(enabled);
  const focus=pref.focus||'balanced',variety=pref.variety||'moderate';
  const scored=id=>{const m=MOVES[id];if(!m)return 0;const family=m.family||'';return focus==='strength'?(['squat','press','pull','hinge'].includes(family)?2:0):focus==='capacity'?(['hinge','carry'].includes(family)?2:0):focus==='skill'?((m.practicePrereqs||[]).length?2:0):0;};
  // Prioritize eligible deferred work before accessories; never override recovery or prerequisites.
