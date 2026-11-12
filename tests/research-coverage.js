@@ -84,6 +84,20 @@ for(const id of Object.keys(moves)) {
   }
 }
 console.log('ENGINE SOURCE REFERENCES '+checkedEngineProfiles+' configured profiles checked');
+// Spot-check explicit numeric programming examples against original language.
+// These are example anchors, not a certification of all policy heuristics.
+const numericAnchors=[
+  {id:411,fragments:['four sets of five','every minute on the minute']},
+  {id:609,fragments:['forty percent','max good push-ups']}
+];
+for(const anchor of numericAnchors) {
+  const original=require('../sources-'+String(Math.floor(anchor.id/30)).padStart(2,'0')+'.json').find(x=>x.id===anchor.id);
+  assert.ok(original,'missing numeric programming source '+anchor.id);
+  for(const phrase of anchor.fragments)
+    assert.ok(normalizeQuote(original.text).includes(normalizeQuote(phrase)),
+      'numeric programming phrase not found in source '+anchor.id+': '+phrase);
+}
+console.log('NUMERIC SOURCE ANCHORS '+numericAnchors.length+' transcript examples verified');
 const gaps = [];
 let covered = 0;
 for (const [id, move] of Object.entries(moves)) {
