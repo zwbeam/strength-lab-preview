@@ -238,6 +238,14 @@ function loadOptions(s,id){
  return candidates.filter(w=>Number.isFinite(w)&&w>st.weight&&w<=st.weight*(1+cap)&&w<=ceiling).sort((a,b)=>a-b);
 }
 function availableWorkingLoads(s,id){const m=MOVES[id];if(!m||m.bodyweight)return [];const list=m.pair?s.equipment?.pairs:s.equipment?.[m.gear];const ceiling=m.gear==='kb'?s.equipment?.maxKbKg:s.equipment?.maxClubLb;return(Array.isArray(list)?list:[]).filter(w=>Number.isFinite(w)&&w>0&&(ceiling===undefined||w<=ceiling)).sort((a,b)=>a-b);}
+function repairMissingLoadAnchor(s,id,confirm){
+ if(confirm!=='RESET_PROGRESS_FROM_SCRATCH')throw Error('Explicit progression reset confirmation required');
+ if(!Object.hasOwn(MOVES,id)||MOVES[id].bodyweight)throw Error('A loaded movement is required');
+ const marker=s.loadResetAfter?.[id];
+ if(!marker||marker==='__start__'||records(s,id).some(x=>x._key===marker))throw Error('No missing load reset anchor to repair');
+ const next={...s,loadResetAfter:{...s.loadResetAfter,[id]:'__start__'}};
+ return next;
+}
 function replaceUnavailableLoad(s,id,weight){const m=MOVES[id];if(!m||m.bodyweight)throw Error('A loaded movement is required');if(policyFor(id,s).profile==='wave')throw Error('Change configured wave weights instead');if(!availableWorkingLoads(s,id).includes(weight))throw Error('Replacement weight must be currently available');const current=stateFor(s,id);if(availableWorkingLoads(s,id).includes(current.weight))throw Error('Current working weight is still available; use normal progression controls');return{...s,nextWeights:{...s.nextWeights,[id]:weight},loadResetAfter:{...s.loadResetAfter,[id]:records(s,id).at(-1)?._key||'__start__'}};}
 function selectLoad(s,id,weight){if(!loadOptions(s,id).includes(weight))throw Error('Load must be an available, permitted increment after a clean cycle. Adjust the configurable jump limit deliberately if needed.');if(stateFor(s,id).policy.profile==='wave')throw Error('Configure a new heavy/light pair in Settings instead.');return{...s,nextWeights:{...s.nextWeights,[id]:weight},loadResetAfter:{...s.loadResetAfter,[id]:records(s,id).at(-1)?._key||'__start__'}};}
 function minutesFor(p){const m=MOVES[p.id];return(p.sets*(p.roundSeconds||((p.secondsPerSet??m.sec)+Math.max(0,p.rest)))/60)+.55;}
@@ -616,5 +624,5 @@ function validateBackup(input){
  const workoutDraft=validateDraft(input.workoutDraft,input);
  return JSON.parse(JSON.stringify({...input,workoutDraft,nextWeights:input.nextWeights||{},defaultMinutes:input.defaultMinutes??45,deferredIds:input.deferredIds||[]}));
 }
-return{replaceUnavailableLoad,availableWorkingLoads,trainingPaused,activityRecovery,validateActivity,MOVES,SKILLS,DAYS,BLOCKS,LOADS,PROFILE_NAMES,describeProgression,policyFor,availableProfiles,configureMovement,practiceEvidence,supportingMoves,requirementLabel,prerequisites,chooseCycle,loadOptions,selectLoad,retestPushup,validWorkingWeight,validateProgramming,validateDraft,validateBackup,records,successful,stateFor,prescription,minutesFor,timeBudget,plan,completeRecord,nextRest,deferredAfter,resolvePain,movementGap,movementDemands};
+return{repairMissingLoadAnchor,replaceUnavailableLoad,availableWorkingLoads,trainingPaused,activityRecovery,validateActivity,MOVES,SKILLS,DAYS,BLOCKS,LOADS,PROFILE_NAMES,describeProgression,policyFor,availableProfiles,configureMovement,practiceEvidence,supportingMoves,requirementLabel,prerequisites,chooseCycle,loadOptions,selectLoad,retestPushup,validWorkingWeight,validateProgramming,validateDraft,validateBackup,records,successful,stateFor,prescription,minutesFor,timeBudget,plan,completeRecord,nextRest,deferredAfter,resolvePain,movementGap,movementDemands};
 });
