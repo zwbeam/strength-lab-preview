@@ -155,4 +155,15 @@ test('import refuses reset boundaries referencing missing history',()=>{
  assert.throws(()=>E.validateBackup({...valid,sessions:[]}),/load reset boundary/i);
  assert.throws(()=>E.validateBackup({...valid,loadResetAfter:{swing:'missing:0'}}),/load reset boundary/i);
 });
+test('deleted reset-anchor workout cannot silently restore old progression',()=>{
+ const b=base();
+ b.sessions=[{id:'anchor',title:'Anchor',date:'2026-11-01',items:[{
+   id:'swing',weight:16,targetSets:4,targetReps:10,actualSets:4,actualReps:10,
+   rest:60,quality:'clean',completed:true
+ }]}];
+ const withMarker={...b,loadResetAfter:{swing:'anchor:0'}};
+ assert.ok(E.validateBackup(withMarker));
+ const deleted={...withMarker,sessions:[]};
+ assert.throws(()=>E.validateBackup(deleted),/load reset boundary/i);
+});
 console.log(passed+' engine tests passed');
