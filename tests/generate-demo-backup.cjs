@@ -79,6 +79,15 @@ const phases=Object.fromEntries(ids.map(id=>[id,E.stateFor(checked,id).phase]));
 assert.ok(checked.sessions.some(x=>x.items.some(y=>y.id==='complexCleanPress')),'Missing logged complex training');
 assert.ok(checked.sessions.some(x=>x.items.some(y=>y.id==='snatch'&&y.mode==='density')),'Missing actual snatch density work');
 assert.ok(checked.cycleChoices?.snatch?.type==='density','Snatch density transition must be an explicit cycle choice');
+const snatchDensity=checked.sessions.flatMap(session=>session.items.filter(item=>item.id==='snatch'&&item.mode==='density'));
+assert.ok(snatchDensity.length>=2,'Density must have multiple exposures, not just a transition marker');
+assert.ok(snatchDensity.every(item=>item.policyKey===E.policyFor('snatch',checked).key),'Density must preserve snatch policy identity');
+const complexRecords=E.records(checked,'complexCleanPress');
+assert.ok(complexRecords.length>=45,'Complex needs enough independent exposures for progression review');
+assert.ok(complexRecords.every(item=>item.id==='complexCleanPress'),'Complex must not be conflated with clean or press records');
+assert.equal(complexRecords.length,movementCounts.complexCleanPress.total,'Complex history count mismatch');
+assert.ok(E.stateFor(checked,'complexCleanPress').allExposures>0,'Complex progression state missing');
+
 const lastCheckpoint=checkpoints.at(-1);
 for(const id of ids){
  const current=E.stateFor(checked,id),snapshot=lastCheckpoint.movements[id];
