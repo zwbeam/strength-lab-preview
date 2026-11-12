@@ -36,3 +36,18 @@ for(const [kb,club,bw] of [[true,false,false],[false,true,false],[false,false,tr
 }
 assert.equal(empty,12);
 console.log('PASS',beginnerCases,'beginner combinations;',empty,'correctly blocked pending prerequisites');
+
+let durationCases=0;
+for(const minutes of [25,30,35,45,60,75,90,120])for(const [kb,club,bw] of gears){
+ const state={version:33,defaultMinutes:minutes,programBlock:'abc',sessions:[],weights:{squat:16,press:12,row:16,swing:16,cast:10,carry:16,clean:12,front:10,circles:10},equipment:{kb:[12,16],club:[10],pairs:[]},nextWeights:{},skills,trainingPreferences:{daysPerWeek:3,useKb:kb,useClub:club,useBodyweight:bw,useDoubleKb:false,useTwoHandClub:true,focus:'balanced',variety:'moderate'}};
+ const before=JSON.stringify(state),p=E.plan(state,{now:'2026-11-09',minutes});
+ assert.equal(JSON.stringify(state),before,'duration planning mutated state');
+ assert.equal(p.budget.total,minutes,'requested duration ignored');
+ assert.ok(p.estimated<=p.cap+1,'duration cap exceeded: '+minutes);
+ for(const rx of p.items)if(['kb','club'].includes(E.MOVES[rx.id].gear)){
+  const owned=E.MOVES[rx.id].gear==='kb'?state.equipment.kb:state.equipment.club;
+  assert.ok(owned.includes(rx.weight),'unowned load for '+minutes+' minutes: '+rx.id);
+ }
+ durationCases++;
+}
+console.log('PASS',durationCases,'duration/equipment combinations');
