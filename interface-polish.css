@@ -672,3 +672,10 @@ details.preparation .prep-exercise .rx,details.preparation .prep-exercise .rx *{
 .simple-timer-active .timer-navigation{margin:4px 0!important}
 .simple-timer-active .timer-navigation button{min-height:42px}
 .simple-timer-active>[data-simple-timer-action="edit"]{display:block;margin:3px auto 0;font-size:11px;padding:4px 10px}
+
+/* Timer transport centered; Edit aligned to the right on the same line. */
+.simple-timer-active .timer-navigation{display:grid!important;grid-template-columns:repeat(3,minmax(42px,56px)) minmax(48px,1fr);align-items:center;justify-content:center;gap:6px!important}
+.simple-timer-active .timer-navigation [data-simple-timer-action="previous"],
+.simple-timer-active .timer-navigation [data-simple-timer-action="pause"],
+.simple-timer-active .timer-navigation [data-simple-timer-action="next"]{width:100%;min-height:40px}
+.simple-timer-active .timer-navigation .timer-edit-button{justify-self:end;width:auto;min-height:34px;font-size:11px;padding:5px 9px!important}
