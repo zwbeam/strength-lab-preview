@@ -315,6 +315,25 @@ const {chromium}=require('playwright');
      if(afterMobilityQueue.date<=completedMobility[0].date)throw Error('Mobility did not move the next strength opportunity forward');
    }
    console.log('Mobility preserves strength queue and shifts next opportunity at '+viewport.width+'px');
+
+   // A saved mobility substitution must survive a real browser reload, while
+   // the queued strength slot remains untouched and no lifting credit appears.
+   await page.reload({waitUntil:'domcontentloaded'});
+   const persistedMobility=await page.evaluate(()=>{
+     const now=new Date().toLocaleDateString('sv-SE');
+     const rows=window.RollingCalendar.project(state,now,window.RollingCalendar.add(now,14));
+     return {
+       activities:(state.activities||[]).filter(a=>(a.type==='mobility'&&a.status==='completed')).map(a=>({id:a.id,date:a.date,replacesStrength:a.replacesStrength})),
+       strengthCount:window.RollingCalendar.count(state),
+       next:rows.length?{key:rows[0].key,block:rows[0].plan.block,slot:rows[0].plan.slot,ids:rows[0].plan.items.map(x=>x.id),date:rows[0].date}:null
+     };
+   });
+   if(persistedMobility.activities.length!==1||persistedMobility.activities[0].replacesStrength!==true||persistedMobility.strengthCount!==0)
+     throw Error('Mobility substitution lost or counted as lifting after reload: '+JSON.stringify(persistedMobility));
+   if(afterMobilityQueue&&JSON.stringify(persistedMobility.next)!==JSON.stringify(afterMobilityQueue))
+     throw Error('Reload changed queued strength after mobility: '+JSON.stringify({afterMobilityQueue,persistedMobility}));
+   console.log('Mobility persistence and strength queue survived reload at '+viewport.width+'px');
+
    // Five consecutive easy movement days must not consume five strength slots.
    // Recovery still governs the first eligible strength date.
    const repeatedMovement=await page.evaluate(()=>{
