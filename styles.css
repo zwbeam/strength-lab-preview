@@ -28,6 +28,6 @@
 #mobility-session:not([open]){padding:8px 14px;margin:12px 0;background:#192b2e;border:1px solid #466a69;border-radius:10px}
 #mobility-session[open]{padding:12px 14px;margin:12px 0;background:#192b2e;border:1px solid #466a69;border-radius:10px}
 
-/* Five equally spaced primary tabs on narrow phones. */
-.bottom{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));width:100%;box-sizing:border-box;justify-content:stretch}
+/* Four equally spaced primary tabs on narrow phones. */
+.bottom{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));width:100%;box-sizing:border-box;justify-content:stretch}
 .bottom button{width:100%;max-width:none;min-width:0;padding:10px 1px 9px;font-size:clamp(9px,2.5vw,11px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
