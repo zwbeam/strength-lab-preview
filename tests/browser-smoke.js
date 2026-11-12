@@ -562,7 +562,7 @@ const {chromium}=require('playwright');
    // A completed mobility session counts as activity, never as a strength workout.
    const summary=(await page.locator('.hero .small.muted').first().innerText()).trim();
    if(!summary.includes('0 strength days')||!summary.includes('1 mobility days')||
-      !summary.includes('0 strength workouts recorded'))
+      !summary.includes('0 strength workouts in the last 28 days'))
     throw Error('Training Log mobility/strength separation failed: '+summary);
 
    if(!await page.locator('.notebook-table').count())throw Error('Training Log notebook table missing');
@@ -585,7 +585,7 @@ const {chromium}=require('playwright');
    await page.locator('[data-tab="progress"]').click();
    const mixedSummary=(await page.locator('.hero .small.muted').first().innerText()).trim();
    if(!mixedSummary.includes('1 strength days')||!mixedSummary.includes('1 mobility days')||
-      !mixedSummary.includes('1 strength workouts recorded'))
+      !mixedSummary.includes('1 strength workouts in the last 28 days'))
     throw Error('Mixed partial-strength and mobility counts incorrect: '+mixedSummary);
    console.log('Mixed partial strength and mobility reporting passed at '+viewport.width+'px');
    await page.addInitScript(()=>{
