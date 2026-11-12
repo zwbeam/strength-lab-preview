@@ -94,6 +94,41 @@ const {chromium}=require('playwright');
    await page.locator('#today-minutes').selectOption(String(savedTarget));
    console.log('Short-day plan and mobility availability passed at '+viewport.width+'px');
 
+   // Exercise both adjustments together. Readiness and time may change the
+   // prescription, but neither may mutate history or saved preferences.
+   const combinedBaseline=await page.evaluate(()=>({
+     usual:state.defaultMinutes,
+     strength:window.RollingCalendar.count(state),
+     sessions:(state.sessions||[]).length,
+     activities:(state.activities||[]).length
+   }));
+   for(const level of ['low','great','normal']){
+     await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
+     await page.locator('#today-minutes').selectOption('30');
+     await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
+     await page.locator('#today-readiness').selectOption(level);
+     const probe=await page.evaluate(()=>({
+       minutes:todayMinutes,level:readiness,usual:state.defaultMinutes,
+       strength:window.RollingCalendar.count(state),
+       sessions:(state.sessions||[]).length,
+       activities:(state.activities||[]).length,
+       plan:E.plan(state,{now:today(),minutes:todayMinutes,readiness}),
+       mobility:!!document.querySelector('#mobility-session')
+     }));
+     if(probe.minutes!==30||probe.level!==level||probe.usual!==combinedBaseline.usual||
+       probe.strength!==combinedBaseline.strength||probe.sessions!==combinedBaseline.sessions||
+       probe.activities!==combinedBaseline.activities||!probe.mobility)
+       throw Error('Combined readiness and time adjustments mutated training state: '+JSON.stringify(probe));
+     if(probe.plan.budget.flexMax!==40||probe.plan.total>40)
+       throw Error('Combined readiness/time plan exceeded 30-minute target window: '+JSON.stringify({level,total:probe.plan.total}));
+   }
+   await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
+   await page.locator('#today-minutes').selectOption(String(savedTarget));
+   await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
+   await page.locator('#today-readiness').selectOption('normal');
+   console.log('Combined readiness and short-day changes preserve training history at '+viewport.width+'px');
+
+
    // A one-day adjustment must not be written to persistent state, including
    // after a full page reload. The usual target should be restored.
    await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
