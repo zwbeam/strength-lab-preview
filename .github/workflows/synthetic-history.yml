@@ -1,0 +1,52 @@
+name: Synthetic history regression
+on:
+  workflow_dispatch:
+  push:
+    branches: [preview]
+    paths:
+      - engine.js
+      - app.js
+      - tests/generate-demo-backup.cjs
+      - tests/browser-demo-history.js
+      - .github/workflows/synthetic-history.yml
+jobs:
+  history:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check JavaScript syntax
+        run: |
+          node --check engine.js
+          node --check app.js
+          node --check tests/generate-demo-backup.cjs
+          node --check tests/browser-demo-history.js
+      - name: Generate and validate two-year history
+        run: node tests/generate-demo-backup.cjs
+      - name: Install browser test dependency
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Start local app server
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/strength-lab-http.log 2>&1 &
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:8765/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/strength-lab-http.log
+          exit 1
+      - name: Verify populated browser layouts and progression replay
+        run: node tests/browser-demo-history.js
+      - name: Upload reports and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: synthetic-history-results
+          path: |
+            strength-lab-engine-demo-backup-progression-report.json
+            demo-*.png
+          if-no-files-found: ignore
