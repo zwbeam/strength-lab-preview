@@ -645,3 +645,10 @@ details.preparation .prep-exercise .rx,details.preparation .prep-exercise .rx *{
 .movement-stage-name{display:inline!important;margin:0!important;font-size:clamp(13px,3.35vw,16px);font-weight:800;color:#fff;line-height:1.4}
 .movement-stage-colon{display:inline;font-weight:800;color:#fff}
 .movement-stage-snapshot{display:inline;font-size:clamp(11px,2.75vw,12px);font-weight:400;opacity:.82;line-height:1.45}
+
+/* Phone layout: two deliberate lines for every movement legend entry. */
+.movement-progress-chart .movement-stage-row{display:grid!important;grid-template-columns:12px minmax(0,1fr)!important;gap:10px!important;align-items:start!important;padding:12px 0!important;text-align:left!important}
+.movement-progress-chart .movement-stage-dot{width:10px;height:10px;margin-top:7px}
+.movement-progress-chart .movement-stage-content{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:4px!important;min-width:0!important;text-align:left!important}
+.movement-progress-chart .movement-stage-name{display:block!important;color:#fff!important;font-size:clamp(15px,4vw,18px)!important;font-weight:800!important;line-height:1.25!important}
+.movement-progress-chart .movement-stage-snapshot{display:block!important;font-size:clamp(11px,3vw,13px)!important;line-height:1.45!important;opacity:.82!important;overflow-wrap:normal!important;word-break:normal!important}
