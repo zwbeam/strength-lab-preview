@@ -145,4 +145,14 @@ test('backup round-trip preserves load reset and older backup remains valid',()=
  for(const invalid of [null,[],{swing:4},{nonsense:'__start__'},{pushup:'__start__'}])
   assert.throws(()=>E.validateBackup({...changed,loadResetAfter:invalid}),/load reset/i);
 });
+test('import refuses reset boundaries referencing missing history',()=>{
+ const b=base();b.sessions=[{id:'session-1',title:'Test',date:'2026-11-01',items:[{
+   id:'swing',weight:16,targetSets:4,targetReps:10,actualSets:4,actualReps:10,
+   rest:60,quality:'clean',completed:true
+ }]}];
+ const valid={...b,loadResetAfter:{swing:'session-1:0'}};
+ assert.ok(E.validateBackup(valid));
+ assert.throws(()=>E.validateBackup({...valid,sessions:[]}),/load reset boundary/i);
+ assert.throws(()=>E.validateBackup({...valid,loadResetAfter:{swing:'missing:0'}}),/load reset boundary/i);
+});
 console.log(passed+' engine tests passed');
