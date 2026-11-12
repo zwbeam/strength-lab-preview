@@ -46,6 +46,20 @@ for(const [lessonId,lesson] of Object.entries(entries)) for(const sourceId of le
 assert.ok(checkedSourceLinks>=20,'unexpected loss of source links');
 console.log('TRANSCRIPT PROVENANCE '+JSON.stringify({quotedAnchors:checkedQuotes,lessonSourceLinks:checkedSourceLinks,uniqueOriginalTranscripts:transcriptCache.size}));
 
+// The inventory is an index, not a reviewed-source ledger. Guard its
+// structural mapping to the 24 original 30-source transcript shards.
+const inventory=require('../source-index.json');
+assert.equal(inventory.length,720,'source inventory count changed; reconcile source ledger before release');
+const inventoryIds=new Set(inventory.map(x=>x.id));
+assert.equal(inventoryIds.size,inventory.length,'duplicate source IDs in inventory');
+for(let shardNumber=0;shardNumber<24;shardNumber++) {
+  const shard=require('../sources-'+String(shardNumber).padStart(2,'0')+'.json');
+  assert.equal(shard.length,30,'unexpected source shard length '+shardNumber);
+  for(const original of shard) {
+    assert.ok(inventoryIds.has(original.id),'original transcript missing from index '+original.id);
+    assert.equal(original.id,shardNumber*30+shard.indexOf(original),'transcript shard ordering mismatch '+original.id);
+  }
+}
 const gaps = [];
 let covered = 0;
 for (const [id, move] of Object.entries(moves)) {
