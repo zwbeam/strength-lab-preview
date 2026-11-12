@@ -577,7 +577,7 @@ function validateBackup(input){
  if(input.loadResetAfter!==undefined){
   if(!object(input.loadResetAfter))throw Error('Invalid load reset boundaries');
   for(const [id,key] of Object.entries(input.loadResetAfter))
-   if(!Object.hasOwn(MOVES,id)||MOVES[id].bodyweight||typeof key!=='string'||!key||key.length>256)
+   if(!Object.hasOwn(MOVES,id)||MOVES[id].bodyweight||typeof key!=='string'||!key||key.length>256||(key!=='__start__'&&!input.sessions.some((session,index)=>session.items.some((_,itemIndex)=>`${session.id||session.date+':'+index}:${itemIndex}`===key))))
     throw Error('Invalid load reset boundary');
  }
  const sessionIds=new Set(),draftIds=new Set();
