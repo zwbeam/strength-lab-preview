@@ -574,6 +574,12 @@ function validateBackup(input){
   if(!object(map))throw Error('Invalid working weights');
   for(const [id,weight] of Object.entries(map))if(!Object.hasOwn(MOVES,id)||!Number.isFinite(weight)||weight<0)throw Error('Invalid working weights');
  }
+ if(input.loadResetAfter!==undefined){
+  if(!object(input.loadResetAfter))throw Error('Invalid load reset boundaries');
+  for(const [id,key] of Object.entries(input.loadResetAfter))
+   if(!Object.hasOwn(MOVES,id)||MOVES[id].bodyweight||typeof key!=='string'||!key||key.length>256)
+    throw Error('Invalid load reset boundary');
+ }
  const sessionIds=new Set(),draftIds=new Set();
  for(const session of input.sessions){
   if(!object(session)||typeof session.id!=='string'||typeof session.title!=='string'||typeof session.date!=='string'||!/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(session.date)||!Number.isFinite(Date.parse(session.date+'T12:00:00Z'))||new Date(session.date+'T12:00:00Z').toISOString().slice(0,10)!==session.date||!Array.isArray(session.items))throw Error('Invalid training entry');
