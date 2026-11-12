@@ -160,6 +160,17 @@ jobs:
       - name: Smoke test app in Chromium
         run: |
           python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/strength-lab-http.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent --output /dev/null http://127.0.0.1:8765/index.html; then break; fi
+            if [ "$attempt" -eq 30 ]; then
+              cat /tmp/strength-lab-http.log
+              echo 'Browser test server did not become ready' >&2
+              exit 1
+            fi
+            sleep 1
+          done
           node tests/browser-smoke.js
       - name: Upload browser server diagnostics on failure
         if: failure()
