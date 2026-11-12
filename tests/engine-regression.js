@@ -38,4 +38,6 @@ test('load progression respects configured equipment ceiling',()=>{const b=base(
 test('missing duration retains the 45-minute default',()=>{assert.equal(E.timeBudget(undefined).total,45);assert.equal(E.timeBudget(null).total,45)});
 test('invalid duration cannot silently become 45 minutes',()=>{for(const value of ['abc',NaN,Infinity,'','45',true,[],{},24,121,45.5])assert.throws(()=>E.timeBudget(value),/25–120/)});
 test('backup rejects malformed duration rather than changing the workout',()=>{const b=base();b.defaultMinutes='abc';assert.throws(()=>E.validateBackup(b),/25–120/)});
+test('rejected load selections never mutate workout state',()=>{for(const id of ['swing','cast','doublePress']){const b=base();const before=JSON.stringify(b);assert.throws(()=>E.selectLoad(b,id,999));assert.equal(JSON.stringify(b),before)}});
+test('malformed backup duration rejection does not modify original data',()=>{const b=base();b.defaultMinutes='forty-five';const before=JSON.stringify(b);assert.throws(()=>E.validateBackup(b));assert.equal(JSON.stringify(b),before)});
 console.log(passed+' engine tests passed');
