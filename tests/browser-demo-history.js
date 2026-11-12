@@ -65,7 +65,7 @@ const report=JSON.parse(fs.readFileSync('strength-lab-engine-demo-backup-progres
       assert.ok(kettlebells.includes(windowName[id]),'Missing kettlebell '+id+' at '+width);
      const swing=groups.nth(0).locator('.overview-movement').filter({hasText:windowName.swing}).first();
      await swing.locator('summary').first().click();
-     assert.ok((await swing.innerText()).includes('Over the last six months'),'Missing six-month explanation at '+width);
+     assert.ok((await swing.innerText()).includes('In the last six months'),'Missing six-month explanation at '+width);
      const squat=groups.nth(0).locator('.overview-movement').filter({hasText:windowName.squat}).first();
      await squat.locator('summary').first().click();
      assert.equal(await groups.nth(0).locator('.overview-movement[open]').count(),1,'Opening a second movement did not close the first at '+width);
