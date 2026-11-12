@@ -54,3 +54,23 @@ test('same-day sessions retain stable ordering after a date correction',()=>{
  const out=N.correct(s,'first',edit,'same-day correction','2026-02-01T00:00:00Z');
  assert.deepEqual(E.records(out,'swing').map(x=>x._key),['first:0','second:0']);
 });
+
+test('correcting one of two clean exposures reverses stage advancement and undo restores it',()=>{
+ const id='swing',base={sessions:[],weights:{swing:16},nextWeights:{},skills:{},programming:{swing:{exposures:2}}};
+ const policy=E.policyFor(id,base),first=policy.stages[0];
+ assert.ok(policy.stages[1],'test requires at least two stages');
+ const prescription={id,name:E.MOVES[id].name,unit:'kg',side:1,weight:16,sets:first.sets,reps:first.reps,rest:first.rest,mode:'volume',policyKey:policy.key,profile:policy.profile,track:'base'};
+ const actualSets=()=>Array.from({length:first.sets},()=>({done:true,skipped:false,weight:16,reps:first.reps}));
+ const make=(sessionId,date)=>{
+  const record={...E.completeRecord(prescription,actualSets(),'clean',false),prescription:{...prescription},note:''};
+  assert.equal(record.completed,true,'test setup must earn a clean exposure');
+  return{id:sessionId,date,block:'abc',plan:{items:[prescription],deferred:[]},items:[record],finishOutcome:'complete',status:'Completed as prescribed'};
+ };
+ const initial={...base,sessions:[make('one','2026-01-01'),make('two','2026-01-03')]};
+ assert.equal(E.stateFor(initial,id).stage,1,'two exposures should advance');
+ const edit=N.historyDraft(initial.sessions[0]);edit.items[0].quality='hard';
+ const corrected=N.correct(initial,'one',edit,'quality correction','2026-02-01T00:00:00Z');
+ assert.equal(E.stateFor(corrected,id).stage,0,'corrected hard exposure should reverse advancement');
+ const restored=N.undo(corrected,'one','2026-02-02T00:00:00Z');
+ assert.equal(E.stateFor(restored,id).stage,1,'undo should restore the original stage');
+});
