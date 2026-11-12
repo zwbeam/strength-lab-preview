@@ -10,6 +10,7 @@ const report=JSON.parse(fs.readFileSync('strength-lab-engine-demo-backup-progres
    const page=await browser.newPage({viewport:{width,height:844}});
    const errors=[];
    page.on('pageerror',error=>errors.push(error.message));
+   page.on('console',message=>{if(message.type()==='error')errors.push('Console error: '+message.text());});
    await page.addInitScript(data=>{
     const key='sl-dev-preview-data-v33';
     localStorage.setItem(key,JSON.stringify(data));
@@ -18,6 +19,7 @@ const report=JSON.parse(fs.readFileSync('strength-lab-engine-demo-backup-progres
    },backup);
    await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded'});
    await page.locator('#app').waitFor();
+   await page.locator('[data-tab="progress"]').waitFor();
    const stored=await page.evaluate(()=>JSON.parse(localStorage.getItem('sl-dev-preview-data-v33')||'null'));
    assert.equal(stored?.sessions?.length,backup.sessions.length,'Demo history not loaded at '+width);
    const browserProgress=await page.evaluate(()=>{
@@ -36,6 +38,8 @@ const report=JSON.parse(fs.readFileSync('strength-lab-engine-demo-backup-progres
    for(const tab of ['progress','today']){
     await page.locator('[data-tab="'+tab+'"]').click();
     await page.waitForTimeout(500);
+    assert.ok(await page.locator('[data-tab="'+tab+'"]').evaluate(el=>el.classList.contains('active')),'Navigation failed to activate '+tab+' at '+width);
+    if(tab==='today')assert.ok((await page.locator('#app h1').first().innerText()).trim().length>0,'Home heading missing at '+width);
     if(tab==='progress'){
      const header=await page.locator('#app').innerText();
      assert.ok(header.includes(backup.sessions.length+' lifetime workouts recorded'),'Training Log did not render full session count at '+width);
