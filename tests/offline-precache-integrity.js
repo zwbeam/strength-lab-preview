@@ -33,8 +33,12 @@ for(const cssFile of ['styles.css','interface-polish.css']){
  for(const url of urls){
   if(/^(?:data:|https?:|#)/i.test(url))continue;
   const asset=url.split(/[?#]/)[0];
-  assert.ok(fs.existsSync(path.resolve(path.dirname(cssPath),asset)),
+  const resolved=path.resolve(path.dirname(cssPath),asset);
+  assert.ok(fs.existsSync(resolved),
    'missing CSS asset in '+cssFile+': '+url);
+  const local=path.relative(root,resolved).replace(/\\\\/g,'/');
+  assert.ok(normalized.includes(local),
+   'CSS asset not available on first offline launch: '+cssFile+' -> '+url);
  }
 }
 console.log('PASS primary CSS asset references resolve');
