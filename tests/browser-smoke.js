@@ -559,6 +559,12 @@ const {chromium}=require('playwright');
    await page.locator('[data-tab="progress"]').click();
    const log=page.locator('#app');
    if(!await log.getByRole('heading',{name:'Training Log'}).count())throw Error('Training Log heading missing');
+   // A completed mobility session counts as activity, never as a strength workout.
+   const summary=(await page.locator('.hero .small.muted').first().innerText()).trim();
+   if(!summary.includes('0 strength days')||!summary.includes('1 mobility days')||
+      !summary.includes('0 strength workouts recorded'))
+    throw Error('Training Log mobility/strength separation failed: '+summary);
+
    if(!await page.locator('.notebook-table').count())throw Error('Training Log notebook table missing');
    if(await page.locator('[data-more-notebook]').count())throw Error('Empty Training Log should not paginate');
    if(await page.locator('[data-more-movement-history]').count())throw Error('Empty Training Log should not show movement pagination');
