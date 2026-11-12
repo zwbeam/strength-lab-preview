@@ -25,4 +25,12 @@ for (const id of ['carry','front']) {
   assert.deepEqual(entry.sourceIds,[],id+': do not cite a different exercise as technique evidence');
   assert.deepEqual(entry.videoSourceIds,[],id+': do not link an unrelated exercise as instructional video');
 }
+// These two prescribed movements are not source-verified. Keep the engine
+// catalog and Learn warnings in sync until a deliberate exercise review.
+const engine=require('../engine.js');
+for(const id of ['carry','front']) {
+  assert.ok(Object.hasOwn(engine.MOVES,id),id+': exercise catalog changed; review instructional coverage');
+  assert.equal(typeof engine.MOVES[id].name,'string',id+': missing exercise name');
+  assert.ok(data.entries[id].coverage!=='reviewed outline',id+': unsourced exercise must not appear fully reviewed');
+}
 console.log('PASS '+(partial.length+6)+' incomplete-instruction safeguards');
