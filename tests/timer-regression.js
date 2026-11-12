@@ -63,4 +63,28 @@ test('timer modes preserve manual and hybrid control boundaries',()=>{
  assert.equal(hybrid.clock.running,false,'hybrid waits at exercise boundary');
  assert.equal(hybrid.clock.awaitConfirmation,true,'hybrid marks confirmation required');
 });
-console.log(passed+'/6 timer checks passed');
+test('timer completion and skip never mark exercise sets done',()=>{
+ const make=()=>({timerVersion:3,timerMode:'automatic',stage:'work',
+  plan:{items:[{name:'Press',sets:2,reps:5,roundSeconds:10,timed:true}]},
+  items:[{sets:[{done:false},{done:false}]}]});
+ const elapsed=make();
+ T.enterWork(elapsed,1000);
+ T.tick(elapsed,30000);
+ assert.equal(elapsed.clock.kind,'complete','elapsed sequence finishes pacing');
+ assert.deepEqual(elapsed.items[0].sets.map(x=>x.done),[false,false],
+  'elapsed timer must not record performed sets');
+ const skipped=make();
+ T.enterWork(skipped,1000);
+ T.skip(skipped,2000);
+ T.skip(skipped,3000);
+ assert.equal(skipped.clock.kind,'complete','skipped sequence finishes pacing');
+ assert.deepEqual(skipped.items[0].sets.map(x=>x.done),[false,false],
+  'skip must not award strength completion');
+ const logged=make();
+ T.enterWork(logged,1000);
+ logged.items[0].sets[0].done=true;
+ T.logged(logged,0,0,true,2000);
+ assert.deepEqual(logged.items[0].sets.map(x=>x.done),[true,false],
+  'logging first set must not automatically credit second');
+});
+console.log(passed+'/7 timer checks passed');
