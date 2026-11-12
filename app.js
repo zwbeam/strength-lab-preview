@@ -414,31 +414,38 @@ function renderProgress(){const sessions=[...state.sessions].sort((a,b)=>b.date.
  return `<section class="hero"><div class="eyebrow">Training notebook</div><h1>Training Log</h1><p class="small muted">${strengthDays} strength days · ${recentMobilityDays} mobility days · ${recentStrengthWorkouts} strength workouts in the last 28 days · ${sessions.length} lifetime workouts recorded</p></section>${correctionNotice?`<p class="notice" role="status">${esc(correctionNotice)}</p>`:''}${movementProgress()}<div class="history-table-wrap notebook-table-wrap" role="region" aria-label="Scrollable workout notebook" tabindex="0"><table class="history-table notebook-table"><thead><tr><th>Date</th><th>Movement</th><th>Load</th><th>Sets × reps</th><th>Quality</th></tr></thead><tbody>${notebook||'<tr><td colspan="5">Your completed sets will appear here, one movement per row.</td></tr>'}</tbody></table></div>${lines.length>notebookVisibleRows?`<button class="button secondary" data-more-notebook="1">Show 60 older entries (${lines.length-notebookVisibleRows} remaining)</button>`:''}<p class="small muted">Showing ${Math.min(lines.length,notebookVisibleRows)} of ${lines.length} movement entries. Scroll to review old workouts. Tap a movement to see its full session or correct the record.</p>${historyView?renderHistory():''}${activityEdit?activityForm():''}${activities.length?`<details><summary>Other activity · ${activities.length} entries</summary><div class="history-table-wrap"><table class="history-table"><thead><tr><th>Date</th><th>Activity</th><th>Duration</th></tr></thead><tbody>${activities.map(a=>`<tr><td>${esc(a.date)}</td><td><button class="text-button" data-edit-activity="${esc(a.id)}">${esc(C.TYPES[a.type])}</button></td><td>${esc(a.duration)} min</td></tr>`).join('')}</tbody></table></div></details>`:''}`;}
 function movementProgress(){
  const ids=Object.keys(E.MOVES).filter(id=>E.records(state,id).length);
- const section=(heading,selected)=>`<section class="training-overview-group"><h3>${heading}</h3>${selected.length?selected.map(id=>{
-  const m=E.MOVES[id],st=E.stateFor(state,id),rx=E.prescription(state,id),records=E.records(state,id);
-  const performed=records.filter(x=>x.actualSets>0),qualifying=records.filter(E.successful);
-  const phase=st.phase==='ready'?'Cycle ready for review':st.phase==='density'?'Building density':st.phase==='volume'?'Building volume':'Practice and recovery';
-  const progressionChoice=st.hold?'Progression paused until the movement review is resolved.':st.phase==='density'?'Continue the density protocol; complexity is a separate skill progression, not an automatic reward for completing density.':st.phase==='ready'&&st.policy.density&&st.stagePhase==='volume'?'Volume endpoint reached. A supported density cycle is available; a more complex skill requires separate prerequisites.':st.phase==='ready'?'Cycle endpoint reached. Options include maintaining, increasing load where supported, or assessing a more complex skill.':st.phase==='volume'?'Build repeatable volume first. Once this cycle is complete, review load, density (if supported), and skill prerequisites.':'Continue technique practice before progressing.';
-  const milestones=st.cycles>0?`${st.cycles} completed cycle${st.cycles===1?'':'s'}`:'No completed cycles yet';
-  const last=performed.at(-1);
-  return `<details><summary>${esc(m.name)} <span class="tag">${esc(phase)}</span></summary>
-   <p class="small muted"><strong>How you reached this stage</strong></p>
-   <p class="small">${performed.length} recorded training sessions · ${qualifying.length} qualifying completed sessions · ${milestones}.</p>
-   <p class="small">Current progression: ${esc(st.stagePhase==='density'?'density':'volume')} · stage ${st.stage+1} · ${st.streak}/${st.policy.exposures} clean exposures toward the next step.</p>
-   <p class="small">Current load: ${st.weight||'—'} ${m.unit}. ${last?`Most recent recorded session: ${esc(last.date||'see Notebook Log')}.`:''}</p>
-   <p class="small"><strong>Progression pathway:</strong> ${esc(progressionChoice)}</p>
-   <p>${esc(rx.reason)}</p>
-   <p class="small"><strong>Next:</strong> ${dose(rx)} · ${rx.roundSeconds?'round every '+rx.roundSeconds+'s':rx.rest+'s rest'} · ${st.track==='heavy'?'Heavy exposure':st.track==='light'?'Light exposure':'Current cycle'}</p>
-   ${st.phase==='ready'&&st.policy.density&&st.stagePhase==='volume'&&!st.hold?`<button class="button secondary" data-cycle-for="${id}">Choose snatch density cycle</button>`:''}
-   ${st.phase==='ready'&&st.policy.profile==='pushup'?'<button class="button secondary" data-retest-pushup>Review baseline and restart</button>':''}
-   ${st.hold?`<p class="warning">${esc(st.hold)}</p><button class="button secondary" data-resolve-pain="${id}">Review and resume movement</button>`:''}
-   ${st.phase==='ready'&&st.policy.profile==='wave'?'<p class="small">Wave endpoint reached. Maintain, or deliberately configure a new owned light/heavy pair in Settings.</p>':''}
-   ${st.phase==='ready'&&!st.hold&&st.policy.profile!=='wave'&&!m.bodyweight?`<button class="button smallbtn" data-weight-for="${id}">Choose next weight</button>`:''}
-  </details>`;
- }).join(''):'<p class="empty">No recorded movements in this category yet.</p>'}</section>`;
  const pathways=E.complexityOptions(state);
- const complexity=`<section class="training-overview-group"><h3>Kettlebell complex pathways</h3><p class="small muted">Eligible complexes may be scheduled on ABC skill days when a working load is configured. Each complex is tracked as its own movement; review technique before progressing.</p>${pathways.map(p=>`<details><summary>${esc(p.name)} <span class="tag">${p.ready?'Eligible':'Preparing'}</span></summary><p class="small">${p.ready?'Current practice, equipment, and working-load checks are satisfied. Review technique before training this complex.':'Requirements remaining: '+p.blockers.map(esc).join('; ')}</p><p class="small">Supporting movements: ${p.requires.map(id=>esc(E.MOVES[id]?.name||id)).join(' · ')}</p></details>`).join('')}</section>`;
- return card('Training overview',section('Kettlebells',ids.filter(id=>E.MOVES[id].gear==='kb'))+complexity+section('Heavy Clubs',ids.filter(id=>E.MOVES[id].gear==='club'))+(ids.some(id=>!['kb','club'].includes(E.MOVES[id].gear))?section('Other training',ids.filter(id=>!['kb','club'].includes(E.MOVES[id].gear))):''));
+ const sixMonthsAgo=new Date(today()+'T12:00:00Z');sixMonthsAgo.setUTCMonth(sixMonthsAgo.getUTCMonth()-6);
+ const since=sixMonthsAgo.toISOString().slice(0,10);
+ const item=id=>{
+  const m=E.MOVES[id],st=E.stateFor(state,id),rx=E.prescription(state,id),history=E.records(state,id);
+  const recent=history.filter(x=>x.date>=since),done=recent.filter(E.successful),last=recent.at(-1);
+  const phase=st.phase==='ready'?'Cycle ready':st.stagePhase==='density'?'Building density':'Building volume';
+  const track=st.policy.profile==='wave'?(st.track==='heavy'?'Heavy exposure next':'Light exposure next'):'';
+  const narrative=recent.length
+   ?'Over the last six months, you recorded '+recent.length+' exposures, including '+done.length+' completed cleanly. '+(last?'Your latest entry was '+last.date+'. ':'')+(st.cycles?'You have completed '+st.cycles+' progression cycle(s). ':'')+(st.stagePhase==='density'?'Your current target is more work per unit time.':'Your current target is repeatable sets and repetitions.')+(st.policy.profile==='wave'?' Heavy and light exposures alternate; each track has its own target.':'')
+   :'No recorded practice in the last six months. The current stage reflects earlier history or your configured starting point.';
+  return `<details class="overview-movement"><summary>${esc(m.name)} <span class="tag">${esc(phase)}${track?' · '+esc(track):''}</span></summary>
+   <p class="small">${esc(narrative)}</p>
+   <p class="small"><strong>Now:</strong> ${esc(phase)} · stage ${st.stage+1} · ${st.streak}/${st.policy.exposures} clean exposures · ${st.weight||'—'} ${esc(m.unit)}.</p>
+   <p class="small"><strong>Next:</strong> ${dose(rx)} · ${rx.roundSeconds?'round every '+rx.roundSeconds+'s':rx.rest+'s rest'}${track?' · '+esc(track):''}.</p>
+   ${st.phase==='ready'&&st.policy.density&&st.stagePhase==='volume'&&!st.hold?`<button class="button secondary" data-cycle-for="${id}">Choose density cycle</button>`:''}
+   ${st.hold?`<p class="warning">${esc(st.hold)}</p><button class="button secondary" data-resolve-pain="${id}">Review and resume movement</button>`:''}
+   ${st.phase==='ready'&&!st.hold&&st.policy.profile!=='wave'&&!m.bodyweight?`<button class="button smallbtn" data-weight-for="${id}">Choose next weight</button>`:''}
+   <p><button class="button secondary" data-movement-history="${esc(id)}">Historical data</button></p>
+  </details>`;
+ };
+ const group=(name,selected,extra='')=>`<details class="training-overview-group"><summary><strong>${esc(name)}</strong> <span class="small muted">${selected.length} movements</span></summary>${extra}${selected.length?selected.map(item).join(''):'<p class="empty">No recorded movements in this category yet.</p>'}</details>`;
+ const complexIds=ids.filter(id=>E.MOVES[id].gear==='kb'&&E.MOVES[id].complex);
+ const complexInfo=`<p class="small muted">Complexes progress independently. Readiness depends on practiced component skills and available loads.</p>${pathways.filter(p=>!complexIds.includes(p.id)).map(p=>`<details class="overview-movement"><summary>${esc(p.name)} <span class="tag">${p.ready?'Eligible':'Preparing'}</span></summary><p class="small">${esc(p.ready?'Ready for a conservative technique review.':'Next requirements: '+p.blockers.join('; '))}</p></details>`).join('')}`;
+ const clubIds=ids.filter(id=>E.MOVES[id].gear==='club');
+ const other=ids.filter(id=>!['kb','club'].includes(E.MOVES[id].gear));
+ return card('Training overview','<p class="small muted">Open one category, then one movement. Historical data opens the detailed movement log.</p>'+
+  group('Kettlebells',ids.filter(id=>E.MOVES[id].gear==='kb'&&!E.MOVES[id].complex))+
+  group('Kettlebell Complexes',complexIds,complexInfo)+
+  group('Heavy Clubs',clubIds)+
+  group('Heavy Club Complexes',[],'<p class="small muted">Advanced club combinations are under research review; no unverified prescriptions will be scheduled.</p>')+
+  (other.length?group('Other training',other):''));
 }
 function workingWeights(){return `${card('Working weights',`<p class="small muted">Set conservative starting weights. Leave a movement at 0 to select the load while training. No maximum testing required.</p>${Object.entries(E.MOVES).map(([id,m])=>`<div class="field"><label>${esc(m.name)} (${m.unit})</label><input type="number" min="0" step="0.5" data-weight="${id}" ${m.bodyweight?'readonly':''} value="${esc(m.bodyweight?0:state.weights[id]||0)}"></div>`).join('')}<button class="button secondary" id="save-weights">Save working weights</button>`)}`;}
 
