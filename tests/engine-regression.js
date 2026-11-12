@@ -31,4 +31,6 @@ test('equipment replacement rejects unowned destination',()=>{const b=base();b.n
 test('equipment replacement rejects unsupported movement',()=>{assert.throws(()=>E.replaceUnavailableLoad(base(),'notAMovement',12),/loaded movement/)});
 test('replacement cannot bypass wave configuration',()=>{const b=base();b.nextWeights={swing:20};b.programming={swing:{profile:'wave',lightWeight:12,heavyWeight:16}};assert.throws(()=>E.replaceUnavailableLoad(b,'swing',12),/wave weights/)});
 test('wave profile never offers ordinary load progression',()=>{const b=base();b.programming={swing:{profile:'wave',lightWeight:12,heavyWeight:16}};b.equipment.kb=[12,16,18,20];assert.deepEqual(E.loadOptions(b,'swing'),[]);assert.throws(()=>E.selectLoad(b,'swing',18))});
+test('missing kettlebell inventory never offers catalog progression weights',()=>{const b=base();delete b.equipment.kb;assert.deepEqual(E.loadOptions(b,'swing'),[])});
+test('missing club inventory never offers catalog progression weights',()=>{const b=base();delete b.equipment.club;assert.deepEqual(E.loadOptions(b,'cast'),[])});
 console.log(passed+' engine tests passed');
