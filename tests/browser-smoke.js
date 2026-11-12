@@ -128,6 +128,39 @@ const {chromium}=require('playwright');
    await page.locator('#today-readiness').selectOption('normal');
    console.log('Combined readiness and short-day changes preserve training history at '+viewport.width+'px');
 
+   // Changing the order of the controls should lead to the same prescription.
+   // Readiness first and time first must be commutative, not order-dependent.
+   await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
+   await page.locator('#today-readiness').selectOption('low');
+   await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
+   await page.locator('#today-minutes').selectOption('30');
+   const readinessFirst=await page.evaluate(()=>({
+     minutes:todayMinutes,level:readiness,
+     ids:E.plan(state,{now:today(),minutes:todayMinutes,readiness}).items.map(x=>x.id),
+     blocked:E.plan(state,{now:today(),minutes:todayMinutes,readiness}).timeBlocked.map(x=>x.id)
+   }));
+   await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
+   await page.locator('#today-readiness').selectOption('normal');
+   await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
+   await page.locator('#today-minutes').selectOption(String(savedTarget));
+   await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
+   await page.locator('#today-minutes').selectOption('30');
+   await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
+   await page.locator('#today-readiness').selectOption('low');
+   const timeFirst=await page.evaluate(()=>({
+     minutes:todayMinutes,level:readiness,
+     ids:E.plan(state,{now:today(),minutes:todayMinutes,readiness}).items.map(x=>x.id),
+     blocked:E.plan(state,{now:today(),minutes:todayMinutes,readiness}).timeBlocked.map(x=>x.id)
+   }));
+   if(JSON.stringify(readinessFirst)!==JSON.stringify(timeFirst))
+     throw Error('Readiness and duration adjustment order changed prescription: '+JSON.stringify({readinessFirst,timeFirst}));
+   await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
+   await page.locator('#today-readiness').selectOption('normal');
+   await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
+   await page.locator('#today-minutes').selectOption(String(savedTarget));
+   console.log('Readiness and duration control order yields identical prescription at '+viewport.width+'px');
+
+
 
    // A one-day adjustment must not be written to persistent state, including
    // after a full page reload. The usual target should be restored.
