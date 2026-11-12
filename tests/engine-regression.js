@@ -40,4 +40,20 @@ test('invalid duration cannot silently become 45 minutes',()=>{for(const value o
 test('backup rejects malformed duration rather than changing the workout',()=>{const b=base();b.defaultMinutes='abc';assert.throws(()=>E.validateBackup(b),/25–120/)});
 test('rejected load selections never mutate workout state',()=>{for(const id of ['swing','cast','doublePress']){const b=base();const before=JSON.stringify(b);assert.throws(()=>E.selectLoad(b,id,999));assert.equal(JSON.stringify(b),before)}});
 test('malformed backup duration rejection does not modify original data',()=>{const b=base();b.defaultMinutes='forty-five';const before=JSON.stringify(b);assert.throws(()=>E.validateBackup(b));assert.equal(JSON.stringify(b),before)});
+// Compare real engine stages with two directly documented programming examples.
+test('snatch starts with documented four five-per-side EMOM sets',()=>{
+ const p=E.policyFor('snatch',base());
+ assert.equal(p.exactParametersSource,411);
+ assert.deepEqual(p.stages[0],{sets:4,reps:5,rest:0});
+ assert.equal(p.roundSeconds,60);
+ assert.equal(p.stages.at(-1).sets,20);
+});
+test('push-up example uses clean baseline fraction and EMOM stages',()=>{
+ const b=base();b.programming={pushup:{profile:'pushup',cleanBaseline:10,fraction:.4}};
+ const p=E.policyFor('pushup',b);
+ assert.equal(p.exactParametersSource,609);
+ assert.deepEqual(p.stages[0],{sets:10,reps:4,rest:0});
+ assert.equal(p.roundSeconds,60);
+ assert.equal(p.stages.at(-1).sets,30);
+});
 console.log(passed+' engine tests passed');
