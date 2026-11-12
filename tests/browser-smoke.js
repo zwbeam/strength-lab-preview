@@ -191,6 +191,21 @@ const {chromium}=require('playwright');
    }
    console.log('Time-blocked strength mobility fallback passed at '+viewport.width+'px');
 
+   const fallbackDisclosure=await page.evaluate(()=>{
+     const originalPlan=E.plan,originalMobility=mobilityStartedAt;
+     try{
+       mobilityStartedAt=0;
+       E.plan=()=>({items:[],timeBlocked:[{id:'deadlift'}]});
+       const html=mobilityPanel(true);
+       const ordinary=mobilityPanel(false);
+       return {expanded:/id="mobility-session" open/.test(html),ordinaryCollapsed:!/id="mobility-session" open/.test(ordinary),action:html.includes('id="start-mobility"')};
+     }finally{E.plan=originalPlan;mobilityStartedAt=originalMobility;}
+   });
+   if(!fallbackDisclosure.expanded||!fallbackDisclosure.ordinaryCollapsed||!fallbackDisclosure.action)
+     throw Error('Time-blocked mobility should open its actionable alternative: '+JSON.stringify(fallbackDisclosure));
+   console.log('Time-blocked mobility auto-expansion passed at '+viewport.width+'px');
+
+
    await mobility.locator('#start-mobility').click();
    if(!await mobility.locator('#mobility-clock').count())throw Error('Mobility timer did not start');
    await page.waitForTimeout(1200);
