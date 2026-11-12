@@ -6,11 +6,18 @@ const skills={swing:true,clean:true,rack:true,overhead:true,clubGrip:true,clubTw
 let cases=0;
 for(const [kb,club,bw] of gears)for(const focus of ['strength','balanced','capacity','skill'])for(const variety of ['consistent','moderate','high'])for(const days of [2,3,4,5,7]){
  const state={version:33,defaultMinutes:30,programBlock:'abc',sessions:[],weights:{squat:16,press:12,row:16,swing:16,cast:10,carry:16,clean:12,front:10,circles:10},equipment:{kb:[12,16],club:[10],pairs:[]},nextWeights:{},skills,trainingPreferences:{daysPerWeek:days,useKb:kb,useClub:club,useBodyweight:bw,useDoubleKb:false,useTwoHandClub:true,focus,variety,conditioning:true,skillSessions:true}};
+ const before=JSON.stringify(state);
  const p=E.plan(state,{now:'2026-11-09'});
+ assert.equal(JSON.stringify(state),before,'planning mutated configuration '+JSON.stringify({kb,club,bw,focus,variety,days}));
  assert.ok(p.items.length,'empty workout '+JSON.stringify({kb,club,bw,focus,variety,days}));
  assert.ok(p.estimated<=p.cap+1,'budget exceeded');
  for(const rx of p.items){
   const gear=E.MOVES[rx.id].gear;
+  if(gear==='kb'||gear==='club'){
+   assert.ok(Number.isFinite(rx.weight)&&rx.weight>0,'invalid prescribed load '+rx.id);
+   const owned=gear==='kb'?state.equipment.kb:state.equipment.club;
+   assert.ok(owned.includes(rx.weight),'unowned prescribed load '+rx.id+': '+rx.weight);
+  }
   assert.ok(gear!=='kb'||kb,'KB prescribed while disabled');
   assert.ok(gear!=='club'||club,'club prescribed while disabled');
   assert.ok(gear!=='bodyweight'||bw,'bodyweight prescribed while disabled');
