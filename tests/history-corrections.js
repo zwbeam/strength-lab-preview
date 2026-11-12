@@ -28,4 +28,13 @@ const restored=N.undo(corrected,original.id,'2026-01-02T00:00:00.000Z');
 assert.equal(restored.sessions[299].items[0].quality,'clean','Undo did not restore original quality');
 assert.equal(restored.sessions.length,300,'Undo lost sessions');
 assert.ok(restored.sessions[299].corrections.length>=2,'Correction history missing');
+// A correction to an anchored historical workout must retain its stable identity.
+const anchored={...state,loadResetAfter:{swing:'session-150:0'}};
+const anchorSession=anchored.sessions[150];
+const anchorEdit=N.historyDraft(anchorSession);
+anchorEdit.date='2025-06-02';
+const moved=N.correct(anchored,anchorSession.id,anchorEdit,'Correct workout date','2026-01-03T00:00:00.000Z');
+assert.equal(moved.loadResetAfter.swing,'session-150:0','Date correction must preserve reset marker');
+assert.doesNotThrow(()=>E.validateBackup({...moved,equipment:{kb:[16,18],club:[],pairs:[]}}),'Corrected history must retain valid reset anchor');
+assert.doesNotThrow(()=>E.stateFor(moved,id),'Corrected date must preserve progression replay');
 console.log('300-session correction, immutable replay, stale load withdrawal and undo checks passed');
