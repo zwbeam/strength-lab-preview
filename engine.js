@@ -182,6 +182,22 @@ function requirementLabel(key){if(key==='baseline:pushup')return 'Enter a recent
 function prerequisites(s,id,opts={}){
  const m=MOVES[id];return[...(m?.defaultProfile==='pushup'&&policyFor(id,s).volume.reps<1?['baseline:pushup']:[]),...(m?.requires||[]).filter(skill=>s.skills?.[skill]!==true),...(m?.practicePrereqs||[]).filter(parent=>!practiceEvidence(s,parent,{...opts,forMovement:id}).ready).map(parent=>'practice:'+parent)];
 }
+/* Complexity recommendations are advisory until a supported complex has its own prescription and log. */
+const COMPLEX_PATHWAYS=Object.freeze([
+ {id:'clean-press',name:'Single-arm clean → press',gear:'kb',requires:['clean','press']},
+ {id:'clean-squat-press',name:'Single-arm clean → front squat → press',gear:'kb',requires:['clean','squat','press']},
+ {id:'double-clean-squat-press',name:'Double clean → front squat → press',gear:'kb',requires:['doubleClean','doubleSquat','doublePress'],matchedPair:true}
+]);
+function complexityOptions(s,opts={}){
+ const enabled=s.trainingPreferences?.useKb!==false&&s.trainingPreferences?.useComplexes!==false;
+ return COMPLEX_PATHWAYS.map(pathway=>{
+  const missing=pathway.requires.filter(id=>!Object.hasOwn(MOVES,id)||!practiceEvidence(s,id,{now:opts.now}).ready);
+  const pairAvailable=!pathway.matchedPair||(s.trainingPreferences?.useDoubleKb===true&&(s.equipment?.pairs||[]).length>0);
+  const blockers=[...missing.map(id=>Object.hasOwn(MOVES,id)?MOVES[id].name+' needs recent clean practice':id+' is not yet implemented'),...(!pairAvailable?['A matched kettlebell pair must be configured']:[])];
+  if(!enabled)blockers.unshift('Kettlebell complexes are disabled');
+  return {...pathway,ready:!blockers.length,blockers,advisory:true};
+ });
+}
 function prescription(s,id,opts={}){
  const m=MOVES[id],st=stateFor(s,id),policy=st.policy,defaults=s.trainingDefaults||{};
  let sets=st.sets,reps=st.reps,rest=st.rest,weight=st.weight,mode=st.phase==='ready'?'milestone':st.phase;
@@ -490,7 +506,7 @@ function retestPushup(s,baseline){const current=s.programming?.pushup||{};return
 function validateProgramming(s){
  if(s.equipment!==undefined){if(!s.equipment||typeof s.equipment!=='object'||Array.isArray(s.equipment))throw Error('Invalid equipment');for(const key of ['maxKbKg','maxClubLb'])if(s.equipment[key]!==undefined&&(!Number.isFinite(s.equipment[key])||s.equipment[key]<1||s.equipment[key]>100))throw Error('Invalid equipment ceiling: '+key);if(s.equipment.pairs!==undefined&&(!Array.isArray(s.equipment.pairs)||s.equipment.pairs.some(w=>!Number.isFinite(w)||w<=0||(s.equipment.maxKbKg!==undefined&&w>s.equipment.maxKbKg))))throw Error('Invalid matched kettlebell pairs');}
 
- if(s.trainingPreferences!==undefined){const p=s.trainingPreferences;if(p&&typeof p==='object'){for(const key of ['useKb','useClub','useBodyweight','useDoubleKb','useTwoHandClub','conditioning','skillSessions'])if(p[key]!==undefined&&typeof p[key]!=='boolean')throw Error('Invalid training preference: '+key);if(p.focus!==undefined&&!['balanced','strength','capacity','skill'].includes(p.focus))throw Error('Invalid training focus');if(p.variety!==undefined&&!['consistent','moderate','high'].includes(p.variety))throw Error('Invalid variety');if(p.useKb===false&&p.useClub===false&&p.useBodyweight===false)throw Error('Select at least one equipment type');}if(!p||typeof p!=='object'||!Number.isInteger(p.daysPerWeek)||p.daysPerWeek<1||p.daysPerWeek>7||p.beginnerSpacing!==undefined&&typeof p.beginnerSpacing!=='boolean'||p.activityTypes!==undefined&&(!Array.isArray(p.activityTypes)||p.activityTypes.some(x=>!['mountain','gravel','road','indoor','hiking','trail','labor','other'].includes(x))))throw Error('Invalid training setup');}
+ if(s.trainingPreferences!==undefined){const p=s.trainingPreferences;if(p&&typeof p==='object'){for(const key of ['useKb','useClub','useBodyweight','useDoubleKb','useTwoHandClub','useComplexes','conditioning','skillSessions'])if(p[key]!==undefined&&typeof p[key]!=='boolean')throw Error('Invalid training preference: '+key);if(p.focus!==undefined&&!['balanced','strength','capacity','skill'].includes(p.focus))throw Error('Invalid training focus');if(p.variety!==undefined&&!['consistent','moderate','high'].includes(p.variety))throw Error('Invalid variety');if(p.useKb===false&&p.useClub===false&&p.useBodyweight===false)throw Error('Select at least one equipment type');}if(!p||typeof p!=='object'||!Number.isInteger(p.daysPerWeek)||p.daysPerWeek<1||p.daysPerWeek>7||p.beginnerSpacing!==undefined&&typeof p.beginnerSpacing!=='boolean'||p.activityTypes!==undefined&&(!Array.isArray(p.activityTypes)||p.activityTypes.some(x=>!['mountain','gravel','road','indoor','hiking','trail','labor','other'].includes(x))))throw Error('Invalid training setup');}
  for(const key of ['pauseUntil','resumeDate','pauseStarted'])if(s[key]!==undefined&&s[key]!==null&&(typeof s[key]!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(s[key])||!Number.isFinite(Date.parse(s[key]+'T12:00:00Z'))||new Date(s[key]+'T12:00:00Z').toISOString().slice(0,10)!==s[key]))throw Error('Invalid pause date');
  if(s.calendarMoves!==undefined){if(!s.calendarMoves||typeof s.calendarMoves!=='object'||Array.isArray(s.calendarMoves))throw Error('Invalid calendar moves');for(const [key,value] of Object.entries(s.calendarMoves))if(key.length>300||typeof value!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(value)||!Number.isFinite(Date.parse(value+'T12:00:00Z'))||new Date(value+'T12:00:00Z').toISOString().slice(0,10)!==value)throw Error('Invalid moved date');}
  if(s.activities!==undefined){if(!Array.isArray(s.activities))throw Error('Invalid activities');const ids=new Set();for(const a of s.activities){validateActivity(a);if(ids.has(a.id))throw Error('Duplicate activity');ids.add(a.id);}}
@@ -624,5 +640,5 @@ function validateBackup(input){
  const workoutDraft=validateDraft(input.workoutDraft,input);
  return JSON.parse(JSON.stringify({...input,workoutDraft,nextWeights:input.nextWeights||{},defaultMinutes:input.defaultMinutes??45,deferredIds:input.deferredIds||[]}));
 }
-return{repairMissingLoadAnchor,replaceUnavailableLoad,availableWorkingLoads,trainingPaused,activityRecovery,validateActivity,MOVES,SKILLS,DAYS,BLOCKS,LOADS,PROFILE_NAMES,describeProgression,policyFor,availableProfiles,configureMovement,practiceEvidence,supportingMoves,requirementLabel,prerequisites,chooseCycle,loadOptions,selectLoad,retestPushup,validWorkingWeight,validateProgramming,validateDraft,validateBackup,records,successful,stateFor,prescription,minutesFor,timeBudget,plan,completeRecord,nextRest,deferredAfter,resolvePain,movementGap,movementDemands};
+return{COMPLEX_PATHWAYS,complexityOptions,repairMissingLoadAnchor,replaceUnavailableLoad,availableWorkingLoads,trainingPaused,activityRecovery,validateActivity,MOVES,SKILLS,DAYS,BLOCKS,LOADS,PROFILE_NAMES,describeProgression,policyFor,availableProfiles,configureMovement,practiceEvidence,supportingMoves,requirementLabel,prerequisites,chooseCycle,loadOptions,selectLoad,retestPushup,validWorkingWeight,validateProgramming,validateDraft,validateBackup,records,successful,stateFor,prescription,minutesFor,timeBudget,plan,completeRecord,nextRest,deferredAfter,resolvePain,movementGap,movementDemands};
 });
