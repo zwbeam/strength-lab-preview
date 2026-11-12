@@ -178,7 +178,7 @@ function emptyPlanMessage(p){
  if(p.prerequisite?.length||p.requirements?.length)return 'No workout is ready because movement prerequisites are incomplete. Open Settings → Foundational Movements to confirm the skills you can perform safely, and enter a push-up baseline if applicable. Review Learn for movement instructions. Do not mark skills complete until you can perform them.';
  if(p.scheduled?.length)return 'No workout is ready under the current recovery schedule. Rest and return when the spacing or weekly limit permits; no catch-up volume is needed.';
  if(p.unavailable?.length)return 'No workout is ready with the available equipment. Review your equipment and training block in Settings.';
- return 'No complete movement fits the available main-work time. Select a longer session or choose low energy / sore to reduce the prescription. Nothing has been silently shortened.';
+ return 'No complete strength movement fits this time window. Choose the 20-minute Mobility & Movement session below, based on the movement you would have trained, or select a longer workout target. Your strength progression stays queued.';
 }
 function trainingExplanation(plan){
  const sessions=(state.sessions||[]).filter(x=>x.items?.some(y=>y.actualSets>0)).sort((a,b)=>b.date.localeCompare(a.date));
@@ -241,6 +241,9 @@ let mobilityStartedAt=0,mobilityClock=null;
 function mobilityRoutine(){
  const current=E.plan(state,{now:today(),minutes:todayMinutes,readiness});
  const currentIds=(current.items||[]).map(x=>x.id);
+ // When the selected time window cannot fit a strength movement, base the
+ // 20-minute alternative on that deferred prescription before old history.
+ if(!currentIds.length)currentIds.push(...(current.timeBlocked||[]).map(x=>x.id).filter(id=>E.MOVES[id]));
  const recent=(state.sessions||[]).filter(x=>x.date<=today()).sort((a,b)=>String(b.date||'').localeCompare(String(a.date||''))).slice(0,3);
  const labels=(currentIds.length?currentIds.map(id=>E.MOVES[id]?.name||id):recent.flatMap(x=>(x.items||[]).filter(i=>i.completed||i.performed||(i.sets||[]).some(set=>set.done)).map(i=>String(i.name||E.MOVES[i.id]?.name||'')))).join(' ').toLowerCase();
  const overhead=/press|snatch|jerk|overhead|cast|mill/.test(labels);
