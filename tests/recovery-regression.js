@@ -67,4 +67,22 @@ test('hard-activity recovery cannot be bypassed by high readiness',()=>{
  }
  assert.equal(JSON.stringify(s),snapshot,'readiness changes cannot rewrite recovery history');
 });
-console.log(passed+'/13 recovery checks passed');
+test('activity intensity and duration have distinct recovery windows',()=>{
+ const make=(effort,duration,type='mountain')=>({id:'intensity',date:'2026-11-09',type,status:'completed',effort,duration,replacesStrength:true});
+ const cases=[
+  ['easy short ride',make('easy',30),0],
+  ['easy long ride',make('easy',120),1],
+  ['moderate short ride',make('moderate',30),1],
+  ['moderate long mountain ride',make('moderate',90),2],
+  ['moderate physical labor',make('moderate',60,'labor'),2],
+  ['hard short ride',make('hard',30),2]
+ ];
+ for(const [label,activity,days] of cases){
+  assert.equal(E.activityRecovery(activity),days,label+' recovery duration');
+  const state={...b,activities:[activity]},before=JSON.stringify(state);
+  assert.equal(E.plan(state,{now:'2026-11-09',minutes:45}).items.length,0,label+' replaces strength on activity day');
+  if(days===2)assert.equal(E.plan(state,{now:'2026-11-10',minutes:45}).items.length,0,label+' must block next-day strength');
+  assert.equal(JSON.stringify(state),before,label+' must not mutate training history');
+ }
+});
+console.log(passed+'/14 recovery checks passed');
