@@ -64,6 +64,24 @@ for(let shardNumber=0;shardNumber<24;shardNumber++) {
     assert.ok(original.text.trim().length>0,'empty transcript text '+original.id);
   });
 }
+// Engine prescriptions must cite existing archive records, independently of
+// the Learn lesson catalog. Source links are not proof of exact dose fidelity.
+let checkedEngineProfiles=0;
+for(const id of Object.keys(moves)) {
+  for(const profile of engine.availableProfiles(id)) {
+    const state={programming:{[id]:{profile}}};
+    // Configurable profiles may require user-entered weights or baselines.
+    if(profile==='wave'||profile==='pushup')continue;
+    const policy=engine.policyFor(id,state);
+    for(const sourceId of policy.principleSources || [])
+      assert.ok(inventoryIds.has(sourceId),id+'/'+profile+': unknown engine principle source '+sourceId);
+    const exact=policy.exactParametersSource;
+    for(const sourceId of exact===null||exact===undefined?[]:Array.isArray(exact)?exact:[exact])
+      assert.ok(inventoryIds.has(sourceId),id+'/'+profile+': unknown engine parameter source '+sourceId);
+    checkedEngineProfiles++;
+  }
+}
+console.log('ENGINE SOURCE REFERENCES '+checkedEngineProfiles+' default-config profiles checked');
 const gaps = [];
 let covered = 0;
 for (const [id, move] of Object.entries(moves)) {
