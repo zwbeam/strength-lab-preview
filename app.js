@@ -94,7 +94,7 @@ function saveSimpleTimer(){try{localStorage.setItem(SIMPLE_TIMER_KEY,JSON.string
 function simpleMove(index){const q=simpleSequence();simpleTimer.index=Math.max(0,Math.min(q.length-1,index));simpleTimer.remaining=q[simpleTimer.index]?.seconds||0;simpleTimer.running=false;delete simpleTimer.endAt;saveSimpleTimer();}
 function simpleTimerAction(action){
  const t=simpleTimer,q=simpleSequence();
- if(action==='start'){t.index=0;t.remaining=q[0]?.seconds||0;t.editing=false;t.running=true;t.endAt=Date.now()+t.remaining*1000;}
+ if(action==='start'){t.index=0;t.remaining=q[0]?.seconds||0;t.editing=false;t.running=q.length>0;t.endAt=Date.now()+t.remaining*1000;}
  else if(action==='pause'){if(t.running){t.remaining=simpleRemaining();t.running=false;delete t.endAt;}else if(t.remaining>0){t.running=true;t.endAt=Date.now()+t.remaining*1000;}}
  else if(action==='previous'){if(simpleRemaining()<simpleCurrent().seconds)simpleMove(t.index);else simpleMove(t.index-1);}
  else if(action==='next')simpleMove(t.index+1);
@@ -641,7 +641,7 @@ document.addEventListener('change',e=>{const el=e.target;
 });
 document.addEventListener('input',e=>{if(e.target.id==='learn-search'){learnQuery=e.target.value;$('#learn-results').innerHTML=renderLearningList();return;}if(e.target.id==='source-search'){search=e.target.value;fullMatches=null;const el=$('#sources');if(el&&sourceData)el.innerHTML=sourceResults();}if(e.target.id==='notes'&&draft&&checkWriter()){draft.notes=e.target.value;saveDraft();}});
 window.addEventListener('online',()=>{const network=$('#network');if(network)network.textContent='LOCAL FIRST';});window.addEventListener('offline',()=>{const network=$('#network');if(network)network.textContent='OFFLINE READY';});
-setInterval(()=>{if(draft)updateTimer()},250);
+setInterval(()=>{updateTimer()},250);
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&draft)updateTimer();});
 window.addEventListener('pageshow',()=>{if(draft)updateTimer();});
 if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
