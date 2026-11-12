@@ -36,6 +36,12 @@ for(let day=0;day<730;day++){
  }
  state.sessions.push({id:'engine-demo-'+day,title:'DEMO · '+(good?'Progression':isRecovery?'Recovery':isHard?'Hard':'Missed')+' · '+workoutIds.join(' / '),date:dayString(day),block:'abc',items,finishOutcome:isMissed?'partial':'complete',status:'Synthetic demonstration',notes:'Synthetic training data. Do not mix with real workouts.'});
  if(good)clean++;else if(isMissed)missed++;else if(isHard)hard++;else recovery++;
+ // Density is an explicit cycle choice, never an automatic consequence of volume.
+ // Make the choice as soon as the synthetic snatch completes its volume cycle.
+ const snatchProgress=E.stateFor(state,'snatch');
+ if(snatchProgress.phase==='ready'&&snatchProgress.stagePhase==='volume'&&!state.cycleChoices?.snatch){
+  state.cycleChoices=E.chooseCycle(state,'snatch','density').cycleChoices;
+ }
  if(state.sessions.length%25===0)checkpoints.push({session:state.sessions.length,date:dayString(day),movements:Object.fromEntries(ids.map(move=>{const progress=E.stateFor(state,move);return [move,{stage:progress.stage,weight:progress.weight,exposures:progress.allExposures}];}))});
 }
 // Capture the final post-workout state, including the last exposure's progression.
@@ -71,7 +77,8 @@ for(const id of ids){
 }
 const phases=Object.fromEntries(ids.map(id=>[id,E.stateFor(checked,id).phase]));
 assert.ok(checked.sessions.some(x=>x.items.some(y=>y.id==='complexCleanPress')),'Missing logged complex training');
-assert.ok(checked.sessions.some(x=>x.items.some(y=>y.mode==='density')),'Missing actual density work');
+assert.ok(checked.sessions.some(x=>x.items.some(y=>y.id==='snatch'&&y.mode==='density')),'Missing actual snatch density work');
+assert.ok(checked.cycleChoices?.snatch?.type==='density','Snatch density transition must be an explicit cycle choice');
 const lastCheckpoint=checkpoints.at(-1);
 for(const id of ids){
  const current=E.stateFor(checked,id),snapshot=lastCheckpoint.movements[id];
