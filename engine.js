@@ -230,9 +230,9 @@ function loadOptions(s,id){
  if(m.bodyweight||st.policy.profile==='wave')return [];
  if(st.hold||st.fail||st.phase!=='ready')return [];
  const inventory=m.pair?(Array.isArray(s.equipment?.pairs)?s.equipment.pairs:[]):s.equipment?.[m.gear];
- // If the user supplied an inventory, only offer loads they actually own.
- // With no inventory configured, retain suggested increments as setup candidates.
- const candidates=[...new Set(Array.isArray(inventory)?inventory:(LOADS[m.gear]||[]))].sort((a,b)=>a-b);
+ // Progression may only offer equipment the athlete has explicitly configured.
+ // Suggested catalog weights belong in setup, never in a live workout progression.
+ const candidates=[...new Set(Array.isArray(inventory)?inventory:[])].sort((a,b)=>a-b);
  const cap=s.trainingDefaults?.maxLoadJump??.25;
  const ceiling=s.equipment?.maxKbKg!==undefined&&m.gear==='kb'?Number(s.equipment.maxKbKg):s.equipment?.maxClubLb!==undefined&&m.gear==='club'?Number(s.equipment.maxClubLb):Infinity;
  return candidates.filter(w=>Number.isFinite(w)&&w>st.weight&&w<=st.weight*(1+cap)&&w<=ceiling).sort((a,b)=>a-b);
