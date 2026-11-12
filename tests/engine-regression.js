@@ -91,4 +91,19 @@ test('two difficult snatch sessions trigger rebuild without advancing',()=>{
  assert.equal(next.mode,'rebuild');
  assert.ok(next.sets<first.sets,'rebuild must reduce prescribed sets');
 });
+test('low-readiness snatch dose is reduced and never earns clean credit',()=>{
+ const b=base();b.weights.snatch=12;
+ const normal=E.prescription(b,'snatch',{now:'2026-11-09'});
+ const low=E.prescription(b,'snatch',{now:'2026-11-09',readiness:'low'});
+ assert.equal(low.mode,'recovery');
+ assert.ok(low.sets<normal.sets);
+ const policy=E.policyFor('snatch',b);
+ b.sessions.push({id:'low-day',date:'2026-11-09',items:[{
+   id:'snatch',policyKey:policy.key,weight:12,targetSets:low.sets,targetReps:low.reps,
+   actualSets:low.sets,actualReps:low.reps,rest:low.rest,
+   quality:'clean',completed:true,mode:'recovery'
+ }]});
+ assert.equal(E.stateFor(b,'snatch').stage,0);
+ assert.equal(E.stateFor(b,'snatch').streak,0);
+});
 console.log(passed+' engine tests passed');
