@@ -58,7 +58,7 @@ jobs:
           workflow=pathlib.Path('.github/workflows/research-coverage.yml').read_text()
           # Read only the audit job's command section, not the browser job.
           audit=workflow.split('  browser-smoke:',1)[0]
-          referenced=set(re.findall(r'node (tests/[A-Za-z0-9_-]+\\.js)',audit))
+          referenced=set(re.findall(r'node (tests/[A-Za-z0-9_-]+\.js)',audit))
           suites={str(p) for p in pathlib.Path('tests').glob('*.js') if p.name!='browser-smoke.js'}
           missing=sorted(suites-referenced)
           if missing:sys.exit('Unexecuted regression suites: '+', '.join(missing))
