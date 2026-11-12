@@ -628,3 +628,9 @@ details.preparation .prep-exercise .rx,details.preparation .prep-exercise .rx *{
 @media(max-width:340px){.home-report-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 .movement-chart-legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:12px 0;font-size:12px}.movement-chart-legend>div{display:flex;gap:5px;align-items:center;flex-wrap:wrap;min-width:0}.movement-chart-legend strong{margin-left:auto}
+
+/* Current stage for every fundamental movement, beneath each graph. */
+.movement-progress-chart .movement-chart-legend{grid-template-columns:1fr;gap:7px}
+.movement-progress-chart .movement-stage-row{display:flex;align-items:center;gap:9px;padding:7px 2px;border-bottom:1px solid #ffffff20}
+.movement-stage-details{display:flex;flex:1;flex-direction:column;gap:3px;min-width:0}
+.movement-stage-details small{font-size:11px;opacity:.78;line-height:1.3}
