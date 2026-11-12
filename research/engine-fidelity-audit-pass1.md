@@ -91,3 +91,33 @@ Read the complete stored transcript text around the numeric claims, not just sou
 **Important distinction:** Source #411 gives a snatch volume endpoint of 20 sets × 5 per side; #410 describes the density steps as 16×6, 14×7, 12×8, 11×9, and 10×10. The engine implements those values. No code change is justified to these numbers.
 
 **Remaining potential mismatch:** The engine's `grind` policy combines a 180-second round with a 150-second rest estimate. Confirm that workout timing and the timer actually respect the round boundary and do not double-count rest. Treat the rest estimate as an implementation choice, not a verbatim source claim. Next check the other movement profiles and the provenance labels shown to users.
+
+
+## Pass 5 — evidence classification and release-critical gaps (2026-11-11)
+
+This pass reviewed the existing direct-transcript numerical audit (Pass 4) alongside the movement-to-source traceability inventory. The two documents have different scopes: the traceability inventory maps **31 movement policies**, while Pass 4 directly checks a limited set of numerical examples. Neither establishes comprehensive coverage of all 719 reviewed usable sources.
+
+### Evidence classes for release review
+
+| Rule or behavior | Current evidence class | Release interpretation |
+|---|---|---|
+| Snatch volume and density steps (#411, #410) | Direct numerical example | Preserve verified options; do not imply a universal mandatory progression |
+| Get-up three-to-ten-minute progression (#423) | Direct numerical example | Supported option, with intermediate half-minute steps also described |
+| Single-arm club 20×5 endpoint (#578, #581) | Direct numerical example | Preserve endpoint and distinguish example start/jumps from requirements |
+| Double-grind three-minute rounds (#366) | Supported option | Two-minute rounds also described; confirm UI does not overstate |
+| Double-grind 150-second rest | App estimate | Audit timer and work/rest arithmetic before claiming exactness |
+| Eight-minute warmup (#550) | Direct example | A specific routine, not evidence every workout requires precisely eight minutes |
+| Ten-minute cooldown | App adaptation | Keep explicitly labeled |
+| Two clean exposures per stage | Unverified app progression gate | Must not be presented as Wildman's universal rule |
+| Alternate-activity recovery (0/1/2-day heuristic) | App adaptation | Tests verify implementation, not physiological or transcript authority |
+| Daily readiness and time-budget ceilings | App scheduling adaptation | Verify consistency and preserve provenance |
+
+### Priority for the next evidence passes
+
+1. Inspect the user-visible wording in Train, Learn, and Settings for unsupported attribution of universal progression/recovery thresholds.
+2. Inspect the 150-second rest and 180-second round interaction in the actual timer and block-plan calculations; add an executable invariant if needed.
+3. Reconcile the independent 719-source completion ledger, editorial map, and verification exceptions with repository source identifiers. Full transcript bundles are present, but that does not prove independent review integration.
+4. Check the remaining movement policies and warmup/cooldown instruction completeness, especially entries currently marked partial or pending.
+5. Keep transcript ambiguities and medical claims in the verification queue rather than promoting them to established technique or medical advice.
+
+**Release gate remains open.** A passing CI suite establishes consistency with tested expectations, not comprehensive research fidelity.
