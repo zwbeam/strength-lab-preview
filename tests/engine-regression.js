@@ -33,4 +33,6 @@ test('replacement cannot bypass wave configuration',()=>{const b=base();b.nextWe
 test('wave profile never offers ordinary load progression',()=>{const b=base();b.programming={swing:{profile:'wave',lightWeight:12,heavyWeight:16}};b.equipment.kb=[12,16,18,20];assert.deepEqual(E.loadOptions(b,'swing'),[]);assert.throws(()=>E.selectLoad(b,'swing',18))});
 test('missing kettlebell inventory never offers catalog progression weights',()=>{const b=base();delete b.equipment.kb;assert.deepEqual(E.loadOptions(b,'swing'),[])});
 test('missing club inventory never offers catalog progression weights',()=>{const b=base();delete b.equipment.club;assert.deepEqual(E.loadOptions(b,'cast'),[])});
+test('load progression ignores malformed and nonpositive inventory entries',()=>{const b=base();b.equipment.kb=[null,'18',-2,0,NaN,Infinity,18];const choices=E.loadOptions(b,'swing');assert.ok(choices.every(w=>typeof w==='number'&&Number.isFinite(w)&&w>0));assert.ok(!choices.includes('18'))});
+test('load progression respects configured equipment ceiling',()=>{const b=base();b.equipment.kb=[12,16,18,20];b.equipment.maxKbKg=16;assert.ok(E.loadOptions(b,'swing').every(w=>w<=16))});
 console.log(passed+' engine tests passed');
