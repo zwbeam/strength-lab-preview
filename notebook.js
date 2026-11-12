@@ -30,7 +30,7 @@ function finishItems(d,choice){
   if(set.skipped)set.done=false;
   else if(choice==='all'){set.done=true;if(rx.side===2&&set.bothSides===undefined)set.bothSides=true;if(rx.continuous&&set.continuous===undefined)set.continuous=true;if(rx.roundSeconds&&set.timingValid===undefined)set.timingValid=true;}
   if(set.done&&(!E.validWorkingWeight(rx.id,set.weight)||!Number.isInteger(set.reps)||set.reps<=0))throw Error(`Enter actual load and reps/seconds for ${rx.name}, or mark the set skipped`);
-  if(set.done&&rx.durationScope==='total'&&(!Number.isInteger(set.leftReps)||!Number.isInteger(set.rightReps)||set.leftReps<=0||set.rightReps<=0))throw Error('Record actual completed get-ups on each side; elapsed time cannot supply rep counts');
+  if(set.done&&rx.side===2&&(set.bothSides!==true||!Number.isInteger(set.leftReps)||!Number.isInteger(set.rightReps)||set.leftReps<=0||set.rightReps<=0))throw Error(`Record actual left and right repetitions and confirm both sides for ${rx.name}; the app cannot infer bilateral work`);
  });return actual;});
 }
 function records(plan,items){return plan.items.map((rx,i)=>({...E.completeRecord(rx,items[i].sets,items[i].quality,items[i].pain),prescription:copy(rx),note:items[i].note||''}));}
