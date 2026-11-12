@@ -17,4 +17,4 @@ test('bodyweight only',()=>{const b=base();b.trainingPreferences.useKb=false;b.t
 test('spacing advice',()=>{const b=base();b.sessions=[{id:'a',title:'a',date:'2026-11-09',slot:0,block:'abc',items:[{id:'squat',actualSets:2,performed:true}]}];assert.equal(E.plan(b,{now:'2026-11-10'}).spacingRecommended,true)});
 test('session respects time budget',()=>{const p=E.plan(base(),{now:'2026-11-09'});assert.ok(p.estimated<=p.cap+1)});
 test('invalid focus rejected',()=>{const b=base();b.trainingPreferences.focus='nonsense';assert.throws(()=>E.validateBackup(b))});
-console.log(passed+'/11 tests passed');
+console.log(passed+' engine tests passed');
