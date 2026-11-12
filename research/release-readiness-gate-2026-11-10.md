@@ -50,3 +50,13 @@
 2. Run the real-phone timer/audio/backgrounding and backup export/import walkthrough above.
 3. Review the one-month mixed-history Training Report and complete a research-fidelity spot audit against documented evidence.
 4. Resolve findings, retest, and obtain explicit authorization before any production deployment.
+
+## Current preview checkpoint — November 11, 2026 (later QA)
+
+The initial candidate-branch and frozen-preview descriptions above are historical. The active development candidate is now **`preview`** in `zwbeam/strength-lab-preview`; this is not authorization to replace the separate production app.
+
+- Commit `1683136c7b330dd29fa284b555b9fbb016da24bd`: Research coverage audit **success** (both `audit` and `browser-smoke` jobs), GitHub Actions run `43158927592`. The Chromium test includes a real service-worker offline reload and tab-navigation scenario at 390px.
+- That test first exposed a network-status handler exception in commit `ced9cf2`; commit `1683136` guarded the missing status element and the expanded test subsequently passed.
+- Commit `f740066e86411f28940b412a526027afc0b84a0e` updates documentation only. Its audit workflow was not triggered by that docs-only commit; do not claim a new green audit for it. The prior green code-test checkpoint remains `1683136`.
+- Instruction-evidence queue still has **seven incomplete lessons**. The independent 719-usable-source review completion must be reconciled with source-level lesson evidence; neither the old 504/720 checkpoint nor the inventory's provisional statuses are current certification.
+- **Manual Android timer/audio/backgrounding, OS-level JSON download and isolated restore, realistic month-history usability, and explicit production decision remain open. Release: HOLD.**
