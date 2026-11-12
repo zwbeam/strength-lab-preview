@@ -30,3 +30,13 @@ Inspected `index.html`, `app.js`, `styles.css`, `interface-polish.css`, `sw.js`,
 - A standalone asset removal should also check CSS `url(...)`, JS string references, legacy HTML/CSS/JS, tests, and documentation. The present scan is **not** sufficient evidence to delete files.
 
 **Decision:** Preserve the legacy app and image generations for now; continue tracing before deletion.
+
+## Pass 3 — Cross-generation reference check
+
+Scanned 15 application/runtime files: active and legacy HTML/CSS/JS, engine, learning, movement instruction, notebook, calendar, timer, programming education, and manifest (excluding `sw.js` to distinguish precache-only references).
+
+**Confirmed still in use by legacy CSS:** `header-history-v16.webp`, `header-train-v16.webp`, `header-hub-v16.webp`, `header-settings-v16.webp`, `header-workout-v28.webp`, and `background-graffiti.png`. These are not safe removal candidates while the Previous training log link remains.
+
+**Precache-only within these 15 files:** `concept-skull.png` and `art-hub.webp`. This is not proof of unuse: test scripts, dynamic references, and other non-scanned files remain to be checked. Retain pending full audit.
+
+**Cleanup decision:** Do not delete legacy art based on version suffixes. Preserve the working legacy route and offline precache. The next cleanup pass should enumerate all art assets against all tracked text files, including tests and docs, before proposing deletions.
