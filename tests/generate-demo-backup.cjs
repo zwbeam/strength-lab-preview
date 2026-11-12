@@ -34,7 +34,7 @@ assert.ok(ids.filter(id=>stageChanges[id]>0).length>=4,'Demo must show stage cha
 assert.equal(checked.sessions.length,state.sessions.length);
 for(const id of ids){const p=E.stateFor(checked,id);assert.ok(Number.isFinite(p.weight)&&p.stage>=0,'Invalid replay for '+id);}
 const file=path.resolve(process.argv[2]||'strength-lab-engine-demo-backup.json');
-const reportFile=file.replace(/\\.json$/,'-progression-report.json');
-fs.writeFileSync(reportFile,JSON.stringify({sessions:checked.sessions.length,clean,hard,recovery,missed,stageChanges,checkpoints},null,2)+'\\n');
+const reportFile=file.replace(/\.json$/,'-progression-report.json');
+fs.writeFileSync(reportFile,JSON.stringify({sessions:checked.sessions.length,clean,hard,recovery,missed,stageChanges,checkpoints},null,2)+'\n');
 fs.writeFileSync(file,JSON.stringify(checked,null,2)+'\n');
 console.log(JSON.stringify({file,reportFile,sessions:checked.sessions.length,clean,hard,recovery,missed,stageChanges,ids}));
