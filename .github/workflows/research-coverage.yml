@@ -68,6 +68,7 @@ jobs:
           node tests/five-year-history.js
           node tests/history-corrections.js
           node tests/backup-history.js
+          node tests/offline-precache-integrity.js
           node tests/log-pagination.js
       - name: Validate workout recording, timer, and recovery regressions
         run: |
