@@ -28,3 +28,11 @@ The audit executes the Node regression suites, verifies the offline cache and pa
 ## Release boundary
 
 Commits to `preview` do not constitute a verified Cloudflare production deployment. Keep production unchanged until the current commit passes QA, a user data backup is secured, and the new build is intentionally deployed and checked.
+
+## Verified QA checkpoint
+
+GitHub Actions run [43156130077](https://github.com/zwbeam/strength-lab-preview/actions/runs/43156130077) completed successfully for commit `7d498ab97fb94eb36716fa0463d99d12f66f22eb` (both `audit` and `browser-smoke`). The exact passing source tree is preserved at `archive/primary-qa-pass-2026-11-11`. Changes after that commit require another full QA run.
+
+## Current preview identity
+
+The installed web manifest intentionally identifies this branch as **Strength Lab Development Preview**. The visible release-candidate banner and `sl-dev-preview` storage namespace remain in place. Do not remove or rename them during routine cleanup: they distinguish testing from production and prevent accidental mixing of training histories. A production promotion needs a deliberate installation and data-migration decision.
