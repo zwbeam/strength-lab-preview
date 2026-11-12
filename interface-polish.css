@@ -652,3 +652,12 @@ details.preparation .prep-exercise .rx,details.preparation .prep-exercise .rx *{
 .movement-progress-chart .movement-stage-content{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:4px!important;min-width:0!important;text-align:left!important}
 .movement-progress-chart .movement-stage-name{display:block!important;color:#fff!important;font-size:clamp(15px,4vw,18px)!important;font-weight:800!important;line-height:1.25!important}
 .movement-progress-chart .movement-stage-snapshot{display:block!important;font-size:clamp(11px,3vw,13px)!important;line-height:1.45!important;opacity:.82!important;overflow-wrap:normal!important;word-break:normal!important}
+
+/* Compact active timer: phase | countdown | set on one row. */
+.timer-active-readout{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:5px 9px;padding:8px 4px!important}
+.timer-active-readout #timer-phase{grid-column:1;grid-row:1;text-align:left;font-size:13px;letter-spacing:.06em}
+.timer-active-readout #timer-current-time{grid-column:2;grid-row:1;text-align:center;font-size:clamp(23px,6vw,32px);font-variant-numeric:tabular-nums;white-space:nowrap;line-height:1.1}
+.timer-active-readout #timer-set{grid-column:3;grid-row:1;text-align:right;font-size:12px;white-space:nowrap}
+.timer-active-readout #timer-total-time{grid-column:1/-1;grid-row:2;text-align:center;font-size:11px;opacity:.72}
+.timer-navigation{display:flex!important;justify-content:center;gap:8px!important;margin:2px 0 6px!important}
+.timer-navigation [data-clock]{flex:1 1 0;min-width:0;min-height:40px;padding:6px!important;font-size:20px;line-height:1}
