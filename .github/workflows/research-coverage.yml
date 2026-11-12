@@ -121,7 +121,7 @@ jobs:
           # Only ship runtime assets, never repository docs or test scaffolding.
           import json, re
           sw=(root/'sw.js').read_text()
-          match=re.search(r'const FILES=(\\[[^;]+\\]);',sw)
+          match=re.search(r'const FILES=(\[[^;]+\]);',sw)
           if not match:
               raise SystemExit('Missing offline asset manifest')
           runtime={'index.html','sw.js'}
