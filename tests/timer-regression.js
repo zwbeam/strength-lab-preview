@@ -21,4 +21,21 @@ test('grind notebook timer counts three-minute rounds without extra rest',()=>{
  T.tick(d,541000);
  assert.equal(d.clock.kind,'complete','timer must finish at round boundary');
 });
-console.log(passed+'/4 timer checks passed');
+test('paused timer ignores background time and resumes exactly once',()=>{
+ const d={timerVersion:3,timerMode:'automatic',stage:'work',
+  plan:{items:[{name:'Timed practice',sets:2,reps:5,roundSeconds:60,rest:30,timed:true}]},
+  items:[{sets:[{done:false},{done:false}]}]};
+ T.enterWork(d,1000);
+ T.pause(d,21000);
+ assert.equal(d.clock.remaining,40,'pause after 20 seconds must preserve 40');
+ T.tick(d,3600000);
+ assert.equal(d.clock.remaining,40,'background time must not consume paused seconds');
+ assert.equal(d.clock.cursor,0,'background time must not advance paused round');
+ T.resume(d,3600000);
+ T.tick(d,3640000);
+ assert.equal(d.clock.cursor,1,'resumed timer must advance one round at its boundary');
+ assert.equal(d.clock.kind,'work','next round must start without duplicate rest');
+ T.tick(d,3700000);
+ assert.equal(d.clock.kind,'complete','second round must finish once');
+});
+console.log(passed+'/5 timer checks passed');
