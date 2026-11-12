@@ -679,3 +679,18 @@ details.preparation .prep-exercise .rx,details.preparation .prep-exercise .rx *{
 .simple-timer-active .timer-navigation [data-simple-timer-action="pause"],
 .simple-timer-active .timer-navigation [data-simple-timer-action="next"]{width:100%;min-height:40px}
 .simple-timer-active .timer-navigation .timer-edit-button{justify-self:end;width:auto;min-height:34px;font-size:11px;padding:5px 9px!important}
+
+/* Sticky compact orange interval disclosure at top of workout. */
+.simple-timer-disclosure{position:sticky;top:0;z-index:35;background:#c65b16;border:1px solid #e88030;border-radius:9px;margin:0 0 7px;box-shadow:0 3px 12px #0007;overflow:visible}
+.simple-timer-disclosure>summary{cursor:pointer;list-style:none;padding:5px 10px;font-size:12px;font-weight:800;color:#fff;line-height:1.25}
+.simple-timer-disclosure>summary::-webkit-details-marker{display:none}
+.simple-timer-disclosure>summary:before{content:'▾ ';font-size:11px}
+.simple-timer-disclosure:not([open])>summary:before{content:'▸ '}
+.simple-timer-disclosure .simple-timer{background:#19242a!important;border:0!important;border-radius:0 0 8px 8px!important;margin:0!important;padding:6px 9px!important}
+.simple-timer-disclosure .timer-active-readout{padding:2px 0!important;gap:2px 6px}
+.simple-timer-disclosure .timer-active-readout #timer-current-time{font-size:clamp(20px,5vw,26px)}
+.simple-timer-disclosure .timer-active-readout #timer-total-time{font-size:10px}
+.simple-timer-disclosure .timer-navigation{margin:2px 0 0!important;gap:4px!important}
+.simple-timer-disclosure .timer-navigation button{min-height:32px!important;padding:3px 6px!important}
+.simple-timer-disclosure .simple-timer-settings{margin-bottom:5px;gap:5px}
+.simple-timer-disclosure .simple-timer-settings input{padding:5px;font-size:15px}
