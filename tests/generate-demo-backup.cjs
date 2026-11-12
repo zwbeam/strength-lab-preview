@@ -18,16 +18,21 @@ let recovery=0,hard=0,missed=0,clean=0;
 for(let day=0;day<730;day++){
  const week=Math.floor(day/7),dow=day%7;
  if(week%17===16||![0,2,4].includes(dow))continue;
- const id=ids[(week+Math.floor(dow/2))%ids.length],policy=E.policyFor(id,state),st=E.stateFor(state,id);
+ const workoutIds=[0,1,2].map(offset=>ids[(week+Math.floor(dow/2)+offset*2)%ids.length]);
+ const items=[];
  const isMissed=day%41===0,isHard=!isMissed&&day%29===0,isRecovery=!isMissed&&!isHard&&day%23===0;
- if(st.stage!==stageBefore[id]){stageChanges[id]++;stageBefore[id]=st.stage;}
- if(id==='swing')swingTracks[st.track]=(swingTracks[st.track]||0)+1;
- const target={sets:st.sets,reps:st.reps,rest:st.rest};
  const good=!isMissed&&!isHard&&!isRecovery;
- const item={id,weight:st.weight,bodyweight:false,quality:isHard?'hard':'clean',pain:false,completed:good,performed:!isMissed,mode:isRecovery?'recovery':'volume',actualSets:isMissed?0:isHard?Math.max(0,target.sets-1):target.sets,actualReps:target.reps,targetSets:target.sets,targetReps:target.reps,rest:target.rest,policyKey:policy.key,track:st.track||'base',note:'SYNTHETIC ENGINE DEMO — NOT ACTUAL TRAINING'};
- state.sessions.push({id:'engine-demo-'+day,title:'DEMO · '+(good?'Progression':isRecovery?'Recovery':isHard?'Hard':'Missed')+' · '+id,date:dayString(day),block:'abc',items:[item],finishOutcome:isMissed?'partial':'complete',status:'Synthetic demonstration',notes:'Synthetic training data. Do not mix with real workouts.'});
+ for(const id of workoutIds){
+  const policy=E.policyFor(id,state),st=E.stateFor(state,id);
+  if(st.stage!==stageBefore[id]){stageChanges[id]++;stageBefore[id]=st.stage;}
+  if(id==='swing')swingTracks[st.track]=(swingTracks[st.track]||0)+1;
+  const target={sets:st.sets,reps:st.reps,rest:st.rest};
+  const item={id,weight:st.weight,bodyweight:false,quality:isHard?'hard':'clean',pain:false,completed:good,performed:!isMissed,mode:isRecovery?'recovery':'volume',actualSets:isMissed?0:isHard?Math.max(0,target.sets-1):target.sets,actualReps:target.reps,targetSets:target.sets,targetReps:target.reps,rest:target.rest,policyKey:policy.key,track:st.track||'base',note:'SYNTHETIC ENGINE DEMO — NOT ACTUAL TRAINING'};
+  items.push(item);
+  if(id==='swing'&&E.successful(item))swingEligibleTracks[st.track]++;
+ }
+ state.sessions.push({id:'engine-demo-'+day,title:'DEMO · '+(good?'Progression':isRecovery?'Recovery':isHard?'Hard':'Missed')+' · '+workoutIds.join(' / '),date:dayString(day),block:'abc',items,finishOutcome:isMissed?'partial':'complete',status:'Synthetic demonstration',notes:'Synthetic training data. Do not mix with real workouts.'});
  if(good)clean++;else if(isMissed)missed++;else if(isHard)hard++;else recovery++;
- if(id==='swing'&&E.successful(item))swingEligibleTracks[st.track]++;
  if(state.sessions.length%25===0)checkpoints.push({session:state.sessions.length,date:dayString(day),movements:Object.fromEntries(ids.map(move=>{const progress=E.stateFor(state,move);return [move,{stage:progress.stage,weight:progress.weight,exposures:progress.allExposures}];}))});
 }
 // Capture the final post-workout state, including the last exposure's progression.
@@ -37,6 +42,8 @@ for(const id of ids){
 }
 checkpoints.push({session:state.sessions.length,date:state.sessions.at(-1).date,movements:Object.fromEntries(ids.map(move=>{const progress=E.stateFor(state,move);return [move,{stage:progress.stage,weight:progress.weight,exposures:progress.allExposures,track:progress.track}];}))});
 assert.ok(state.sessions.length>250,'Expected substantial two-year history');
+assert.ok(state.sessions.every(session=>session.items.length===3),'Each demo workout must have three distinct movements');
+assert.ok(state.sessions.every(session=>new Set(session.items.map(item=>item.id)).size===3),'Duplicate movement in demo workout');
 const checked=E.validateBackup(state);
 assert.ok(clean>200,'Demo needs enough clean progression exposures');
 assert.ok(hard>0&&missed>0&&recovery>0,'Demo must show all outcome types');
