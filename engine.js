@@ -75,7 +75,7 @@ MOVES.deadlift={name:'Two-hand kettlebell deadlift',gear:'kb',unit:'kg',family:'
 const DAYS=[{name:'A · Squat / Press / Pull',focus:'Kettlebell strength',ids:['squat','press','row']},{name:'B · Hinge / Cast / Carry',focus:'Hinge and club control',ids:['swing','cast','carry']},{name:'C · Clean / Club / Squat',focus:'Skill and balanced strength',ids:['clean','front','circles']}];
 const LOADS={kb:[4,6,8,10,12,14,16,18,20,22,24,28,32,36,40,44,48],club:[2,3,4,5,7,10,12,15,17,20,25,30,35]};
 const clamp=(n,a,b)=>Math.min(b,Math.max(a,n));
-function records(s,id){return(s.sessions||[]).flatMap((x,sessionIndex)=>(x.items||[]).map((y,itemIndex)=>({...y,date:x.date,_key:`${x.id||x.date+':'+sessionIndex}:${itemIndex}`})).filter(y=>y.id===id)).sort((a,b)=>String(a.date).localeCompare(String(b.date)));}
+function records(s,id){return(s.sessions||[]).flatMap((x,sessionIndex)=>(x.items||[]).map((y,itemIndex)=>({...y,date:x.date,_key:`${x.id||x.date+':'+sessionIndex}:${itemIndex}`,_sessionOrder:sessionIndex,_itemOrder:itemIndex})).filter(y=>y.id===id)).sort((a,b)=>String(a.date).localeCompare(String(b.date))||a._sessionOrder-b._sessionOrder||a._itemOrder-b._itemOrder);}
 function successful(x){const validLoad=x&&(MOVES[x.id]?.bodyweight?x.bodyweight===true&&Number(x.weight)===0:Number(x.weight)>0);return !!(x&&x.quality==='clean'&&!x.pain&&x.completed===true&&x.actualSets>=x.targetSets&&x.actualReps>=x.targetReps&&validLoad);}
 // Each profile states exactly which parameters are examples from a transcript.
 // Promotion, recovery and scheduling thresholds remain configurable app decisions.
