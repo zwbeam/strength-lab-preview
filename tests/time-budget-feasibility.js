@@ -89,6 +89,30 @@ assert.deepEqual(partialRestored.items.map(x=>x.id),partialNext.items.map(x=>x.i
  'restoring normal time/readiness must restore the same remaining-work prescription');
 console.log('PASS partial-session continuation survives short-day and low-readiness replanning');
 
+ // Several consecutive short/low-readiness planning days must not consume
+ // unfinished work. Planning is pure: without a recorded completed session,
+ // neither the deferred queue nor the already performed sets may drift.
+const partialSnapshot=JSON.stringify(partialState);
+for(const day of ['2026-11-11','2026-11-12','2026-11-13','2026-11-14','2026-11-15']){
+ const p=E.plan(partialState,{now:day,minutes:30,readiness:'low'});
+ const accounted=[...p.items,...p.timeBlocked,...p.held,...p.prerequisite,
+  ...p.unavailable,...p.requirements].map(x=>x.id);
+ assert.ok(accounted.includes('row'),'unfinished row disappeared on '+day);
+ assert.ok(!p.items.some(x=>x.id==='squat'),'completed squat repeated on '+day);
+ assert.ok(p.total<=40,'short-day ceiling exceeded on '+day);
+ assert.equal(JSON.stringify(partialState),partialSnapshot,'planning mutated partial history on '+day);
+}
+const recoveredAfterShortWeek=E.plan(partialState,{now:'2026-11-16',minutes:45,readiness:'normal'});
+assert.ok(recoveredAfterShortWeek.items.some(x=>x.id==='row')||
+ recoveredAfterShortWeek.timeBlocked.some(x=>x.id==='row')||
+ recoveredAfterShortWeek.held.some(x=>x.id==='row')||
+ recoveredAfterShortWeek.prerequisite.some(x=>x.id==='row'),
+ 'remaining work must survive five consecutive short days');
+assert.ok(!recoveredAfterShortWeek.items.some(x=>x.id==='squat'),
+ 'completed movement must not reappear in remaining-work follow-up');
+console.log('PASS five short low-readiness days preserve partial strength history');
+
+
 
 
 console.log('PASS time-budget diagnostic (documents existing limitation, not a scheduling fix)');
