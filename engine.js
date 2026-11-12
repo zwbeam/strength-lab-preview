@@ -354,9 +354,13 @@ function blockPlan(s,opts={}){
  // Keep the existing day unchanged unless prerequisite evidence is current.
  const complexChoices=block==='abc'&&slot===2&&pref.useKb!==false&&pref.useComplexes!==false&&!continuing
   ?complexityOptions(s,opts).filter(x=>x.ready):[];
- const complexChoice=complexChoices.find(x=>x.id==='complexCleanSquatPress')
-  ||complexChoices.find(x=>x.id==='complexCleanPress')
-  ||complexChoices.find(x=>x.id==='complexDoubleCleanSquatPress');
+ // Rotate among independently eligible complexes so a permanently ready
+ // pathway cannot starve another. Use recorded exposures, not calendar turns.
+ const complexPriority=['complexCleanPress','complexCleanSquatPress','complexDoubleCleanSquatPress'];
+ const complexChoice=[...complexChoices].sort((a,b)=>
+  records(s,a.id).length-records(s,b.id).length
+  ||complexPriority.indexOf(a.id)-complexPriority.indexOf(b.id)
+ )[0];
  const complexIds=complexChoice?[complexChoice.id]:[];
  // Keep fundamentals if the complex cannot actually be prescribed at a configured load.
  const replaced=new Set(complexChoice?.requires||[]);
