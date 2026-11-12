@@ -3,7 +3,7 @@ const {chromium}=require('playwright');
 (async()=>{
  const browser=await chromium.launch({headless:true});
  try{
-  for(const viewport of [{width:390,height:844},{width:1280,height:800}]){
+  for(const viewport of [{width:320,height:700},{width:390,height:844},{width:832,height:384},{width:1280,height:800}]){
    const page=await browser.newPage({viewport});
    const errors=[];
    page.on('pageerror',e=>errors.push(e.message));
