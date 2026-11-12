@@ -1,7 +1,7 @@
 'use strict';
 const fs=require('node:fs'),assert=require('node:assert/strict');
 const {chromium}=require('playwright');
-const windowName={swing:'Two-hand swing',squat:'Goblet squat',press:'Single-arm strict press',row:'Single-arm row',clean:'Single-arm clean'};
+const windowName={swing:'Two-hand swing',squat:'Goblet squat',press:'Single-arm strict press',row:'Single-arm row',clean:'Single-arm clean',snatch:'Single-arm snatch',complexCleanPress:'Single-arm clean → press'};
 const backup=JSON.parse(fs.readFileSync('strength-lab-engine-demo-backup.json','utf8'));
 const report=JSON.parse(fs.readFileSync('strength-lab-engine-demo-backup-progression-report.json','utf8'));
 (async()=>{
@@ -26,7 +26,7 @@ const report=JSON.parse(fs.readFileSync('strength-lab-engine-demo-backup-progres
    const browserProgress=await page.evaluate(()=>{
     const engine=window.StrengthEngine;
     const saved=JSON.parse(localStorage.getItem('sl-dev-preview-data-v33'));
-    return Object.fromEntries(['swing','squat','press','row','clean','cast'].map(id=>{
+    return Object.fromEntries(['swing','squat','press','row','clean','cast','snatch','complexCleanPress'].map(id=>{
      const current=engine.stateFor(saved,id);
      return [id,{stage:current.stage,weight:current.weight,track:current.track,exposures:current.allExposures}];
     }));
@@ -58,7 +58,7 @@ const report=JSON.parse(fs.readFileSync('strength-lab-engine-demo-backup-progres
     }
     if(tab==='progress'){
      const overviewText=await page.locator('.training-overview-group').first().innerText();
-     for(const id of ['swing','squat','press','row','clean']){
+     for(const id of ['swing','squat','press','row','clean','snatch','complexCleanPress']){
       assert.ok(overviewText.includes(windowName[id]),'Missing movement '+id+' at '+width);
      }
      assert.ok((await page.locator('.training-overview-group').nth(2).innerText()).includes('Two-hand shield cast'),'Heavy club movement missing at '+width);
