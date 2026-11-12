@@ -26,4 +26,8 @@ test('matched pair inventory limits double press',()=>{const b=base();b.equipmen
 test('no pair inventory cannot offer double progression',()=>{const b=base();b.equipment.pairs=[];assert.deepEqual(E.loadOptions(b,'doublePress'),[])});
 test('unowned matched pair load rejected',()=>{const b=base();b.equipment.pairs=[12,16];assert.throws(()=>E.selectLoad(b,'doublePress',99))});
 test('unavailable load replacement preserves source state',()=>{const b=base();b.nextWeights={swing:20};const before=JSON.stringify(b);const updated=E.replaceUnavailableLoad(b,'swing',16);assert.equal(updated.nextWeights.swing,16);assert.equal(JSON.stringify(b),before)});
+test('equipment replacement rejects a currently available working load',()=>{const b=base();assert.throws(()=>E.replaceUnavailableLoad(b,'swing',12),/still available/)});
+test('equipment replacement rejects unowned destination',()=>{const b=base();b.nextWeights={swing:20};assert.throws(()=>E.replaceUnavailableLoad(b,'swing',99),/currently available/)});
+test('equipment replacement rejects unsupported movement',()=>{assert.throws(()=>E.replaceUnavailableLoad(base(),'notAMovement',12),/loaded movement/)});
+test('replacement cannot bypass wave configuration',()=>{const b=base();b.nextWeights={swing:20};b.programming={swing:{profile:'wave',lightWeight:12,heavyWeight:16}};assert.throws(()=>E.replaceUnavailableLoad(b,'swing',12),/wave weights/)});
 console.log(passed+' engine tests passed');
