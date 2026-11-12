@@ -83,6 +83,21 @@ jobs:
         run: node --test tests/history-corrections.test.cjs
       - name: Generate and validate two-year engine demo backup
         run: node tests/generate-demo-backup.cjs strength-lab-engine-demo-backup.json
+      - name: Cross-check generated demo backup and progression report
+        run: |
+          node - <<'NODE'
+          const fs=require('node:fs'),assert=require('node:assert/strict');
+          const backup=JSON.parse(fs.readFileSync('strength-lab-engine-demo-backup.json','utf8'));
+          const report=JSON.parse(fs.readFileSync('strength-lab-engine-demo-backup-progression-report.json','utf8'));
+          assert.equal(report.sessions,backup.sessions.length);
+          assert.ok(report.checkpoints.length>=10,'Missing progression checkpoints');
+          assert.equal(report.checkpoints.at(-1).session,backup.sessions.length,'Missing final checkpoint');
+          assert.equal(report.checkpoints.at(-1).date,backup.sessions.at(-1).date);
+          assert.ok(report.swingEligibleTracks.heavy>0&&report.swingEligibleTracks.light>0);
+          const ids=new Set(backup.sessions.flatMap(session=>session.items.map(item=>item.id)));
+          for(const id of ids)assert.ok(report.checkpoints.at(-1).movements[id],'Missing final state for '+id);
+          console.log('Demo backup and progression report cross-check passed');
+          NODE
       - name: Upload two-year demo backup
         uses: actions/upload-artifact@v4
         with:
