@@ -24,4 +24,18 @@ for(const file of normalized){
 assert.ok(normalized.includes('legacy/index.html'),'legacy route remains in offline cache while linked from Settings');
 assert.ok(fs.readFileSync(path.join(root,'app.js'),'utf8').includes('href="legacy/index.html"'),
  'legacy offline entry must remain reachable from Settings');
+// CSS can reference artwork outside the HTML dependency graph. In particular,
+// the legacy route still relies on older background and header images.
+for(const cssFile of ['styles.css','interface-polish.css','legacy/styles.css']){
+ const cssPath=path.join(root,cssFile);
+ const css=fs.readFileSync(cssPath,'utf8');
+ const urls=[...css.matchAll(/url\\(\\s*['\"]?([^)'\"]+)['\"]?\\s*\\)/g)].map(match=>match[1].trim());
+ for(const url of urls){
+  if(/^(?:data:|https?:|#)/i.test(url))continue;
+  const asset=url.split(/[?#]/)[0];
+  assert.ok(fs.existsSync(path.resolve(path.dirname(cssPath),asset)),
+   'missing CSS asset in '+cssFile+': '+url);
+ }
+}
+console.log('PASS current and legacy CSS asset references resolve');
 console.log('PASS '+files.length+' offline precache entries resolve to existing local files');
