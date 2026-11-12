@@ -56,6 +56,26 @@ const restoredDeferred=E.plan(deferredState,{now:'2026-11-11',minutes:45,readine
 assert.equal(restoredDeferred.items[0].id,'row','restoring normal session must restore deferred movement priority');
 console.log('PASS deferred strength priority survives shorter sessions and readiness changes');
 
+ // A partly performed strength session and a merely time-blocked movement
+ // are different histories. An actual exposure must remain recorded while
+ // the unfinished movement stays pending for its next eligible opportunity.
+const partialSession={id:'partial-strength',date:'2026-11-10',block:'abc',calendarVersion:1,
+ items:[
+  {id:'squat',performed:true,actualSets:2,actualReps:6,targetSets:3,targetReps:6,quality:'clean',mode:'volume'},
+  {id:'row',performed:false,actualSets:0,actualReps:0,targetSets:3,targetReps:6,quality:'clean',mode:'volume'}
+ ]};
+const partialState={...deferredState,sessions:[partialSession],deferredIds:['row']};
+const partialNext=E.plan(partialState,{now:'2026-11-11',minutes:45,readiness:'normal'});
+assert.equal(partialState.sessions[0].items[0].actualSets,2,'partially completed sets must remain recorded');
+assert.equal(partialState.sessions[0].items[1].actualSets,0,'unstarted movement must remain uncredited');
+assert.ok(partialNext.day.name.includes('remaining work'),'partial-session follow-up must be identified as remaining work');
+assert.ok(partialNext.items.some(x=>x.id==='row')||partialNext.timeBlocked.some(x=>x.id==='row')||
+ partialNext.held.some(x=>x.id==='row')||partialNext.prerequisite.some(x=>x.id==='row'),
+ 'unstarted movement must remain accounted for');
+assert.ok(!partialNext.items.some(x=>x.id==='squat'),'already performed movement must not be prescribed again as remaining work');
+console.log('PASS partial strength history differs from entirely time-blocked movement');
+
+
 console.log('PASS time-budget diagnostic (documents existing limitation, not a scheduling fix)');
 
  // Fairness regression: four completed exposures to a competing movement
