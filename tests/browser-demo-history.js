@@ -22,6 +22,7 @@ const report=JSON.parse(fs.readFileSync('strength-lab-engine-demo-backup-progres
      const header=await page.locator('#app').innerText();
      assert.ok(header.includes(backup.sessions.length+' lifetime workouts recorded'),'Training Log did not render full session count at '+width);
      await page.locator('#movement-progress').evaluate(el=>el.open=true);
+     await page.locator('#movement-progress details').first().evaluate(el=>el.open=true);
      const practiced=await page.locator('#movement-progress > summary').innerText();
      assert.ok(practiced.includes('6 practiced movements'),'Training Log omitted movements at '+width);
     }
@@ -29,6 +30,14 @@ const report=JSON.parse(fs.readFileSync('strength-lab-engine-demo-backup-progres
     assert.ok(view.text.trim().length>100,'Empty populated '+tab+' at '+width);
     assert.ok(view.document<=view.viewport+3,'Overflow in populated '+tab+' at '+width+': '+JSON.stringify(view));
     await page.screenshot({path:'demo-'+width+'-'+tab+'.png',fullPage:true});
+    if(tab==='progress'){
+     const progressText=await page.locator('#movement-progress').innerText();
+     for(const id of ['swing','squat','press','row','clean','cast']){
+      const name=backup.sessions.flatMap(session=>session.items).find(item=>item.id===id)?.id;
+      assert.ok(name,'Missing generated movement '+id);
+     }
+     assert.ok(progressText.includes('Detailed cycles and milestones'),'Detailed progression section absent at '+width);
+    }
    }
    assert.deepEqual(errors,[],'Browser errors at '+width);
    await page.close();
