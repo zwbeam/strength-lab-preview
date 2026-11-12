@@ -21,9 +21,10 @@ for(const file of normalized){
  assert.ok(!file.startsWith('/')&&!file.includes('..'),'precache must use local relative paths: '+file);
  assert.ok(fs.existsSync(path.join(root,file)),'missing precached file: '+file);
 }
-assert.ok(normalized.includes('legacy/index.html'),'legacy route remains in offline cache while linked from Settings');
-assert.ok(fs.readFileSync(path.join(root,'app.js'),'utf8').includes('href="legacy/index.html"'),
- 'legacy offline entry must remain reachable from Settings');
+assert.ok(!normalized.some(file=>file.startsWith('legacy/')),
+ 'retired legacy interface must not be included in the primary app offline cache');
+assert.ok(!fs.readFileSync(path.join(root,'app.js'),'utf8').includes('href="legacy/index.html"'),
+ 'primary Settings must not link to the retired legacy interface');
 // CSS can reference artwork outside the HTML dependency graph. In particular,
 // the legacy route still relies on older background and header images.
 for(const cssFile of ['styles.css','interface-polish.css','legacy/styles.css']){
