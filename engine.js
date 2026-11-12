@@ -242,7 +242,7 @@ function replaceUnavailableLoad(s,id,weight){const m=MOVES[id];if(!m||m.bodyweig
 function selectLoad(s,id,weight){if(!loadOptions(s,id).includes(weight))throw Error('Load must be an available, permitted increment after a clean cycle. Adjust the configurable jump limit deliberately if needed.');if(stateFor(s,id).policy.profile==='wave')throw Error('Configure a new heavy/light pair in Settings instead.');return{...s,nextWeights:{...s.nextWeights,[id]:weight}};}
 function minutesFor(p){const m=MOVES[p.id];return(p.sets*(p.roundSeconds||((p.secondsPerSet??m.sec)+Math.max(0,p.rest)))/60)+.55;}
 function timeBudget(minutes){
- const total=minutes===undefined||minutes===null?45:Number(minutes);
+ const total=minutes===undefined||minutes===null?45:typeof minutes==='number'?minutes:NaN;
  if(!Number.isInteger(total)||total<25||total>120)throw Error('Strength workout duration must be 25–120 minutes');
  // Protect preparation and recovery when session time is compressed.
  // Eight minutes follows the two-round four-station warm-up format (source 550).
