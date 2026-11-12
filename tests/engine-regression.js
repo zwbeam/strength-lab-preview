@@ -184,4 +184,19 @@ test('live history edit removing reset anchor fails closed',()=>{
  assert.throws(()=>E.stateFor(edited,'swing'),/Missing load reset anchor/);
  assert.throws(()=>E.prescription(edited,'swing'),/Missing load reset anchor/);
 });
+test('missing anchor recovery requires consent and never credits old workouts',()=>{
+ const b=base();b.sessions=[{id:'remaining',title:'Remaining',date:'2026-11-01',items:[{
+  id:'swing',weight:16,targetSets:4,targetReps:10,actualSets:4,actualReps:10,
+  rest:60,quality:'clean',completed:true
+ }]}];b.loadResetAfter={swing:'deleted:0'};
+ assert.throws(()=>E.stateFor(b,'swing'),/Missing load reset anchor/);
+ assert.throws(()=>E.repairMissingLoadAnchor(b,'swing'),/Explicit progression reset/);
+ const repaired=E.repairMissingLoadAnchor(b,'swing','RESET_PROGRESS_FROM_SCRATCH');
+ assert.equal(repaired.loadResetAfter.swing,'remaining:0');
+ assert.equal(E.stateFor(repaired,'swing').stage,0);
+ assert.equal(E.stateFor(repaired,'swing').streak,0);
+ assert.equal(b.loadResetAfter.swing,'deleted:0','repair does not mutate original');
+ assert.ok(E.validateBackup(repaired));
+ assert.throws(()=>E.repairMissingLoadAnchor(repaired,'swing','RESET_PROGRESS_FROM_SCRATCH'),/No missing load reset anchor/);
+});
 console.log(passed+' engine tests passed');
