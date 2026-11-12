@@ -36,7 +36,7 @@ for(const cssFile of ['styles.css','interface-polish.css']){
   const resolved=path.resolve(path.dirname(cssPath),asset);
   assert.ok(fs.existsSync(resolved),
    'missing CSS asset in '+cssFile+': '+url);
-  const local=path.relative(root,resolved).replace(/\\\\/g,'/');
+  const local=path.relative(root,resolved).split(path.sep).join('/');
   assert.ok(normalized.includes(local),
    'CSS asset not available on first offline launch: '+cssFile+' -> '+url);
  }
