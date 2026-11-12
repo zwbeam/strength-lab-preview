@@ -87,7 +87,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: strength-lab-engine-demo-backup
-          path: strength-lab-engine-demo-backup.json
+          path: |
+            strength-lab-engine-demo-backup.json
+            strength-lab-engine-demo-backup-progression-report.json
           retention-days: 14
       - name: Validate movement mappings and source integrity
         run: |
