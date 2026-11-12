@@ -10,14 +10,26 @@ const moves = engine.MOVES;
 const entries = instruction.entries || {};
 const sources = instruction.sources || instruction.sourceIndex || {};
 assert.ok(Object.keys(moves).length >= 20, 'Movement catalog unexpectedly empty');
-// Ground one stable evidence anchor in the checked-in original transcript,
-// rather than relying exclusively on the app-authored quotation catalog.
-const transcript704 = require('../sources-23.json').find(source=>source.id===704);
-assert.ok(transcript704 && typeof transcript704.text==='string','missing original deadlift transcript #704');
-const anchor704 = entries.deadlift?.evidence?.find(e=>e.sourceId===704);
-assert.ok(anchor704 && transcript704.text.toLowerCase().includes(anchor704.quote.toLowerCase()),
-  'deadlift evidence quote must appear verbatim in original transcript #704');
-assert.equal(sources[704]?.url,transcript704.url,'deadlift source URL must match original transcript #704');
+// Verify every quoted teaching anchor against its original checked-in transcript.
+// Normalization handles whitespace/caption punctuation, not paraphrased wording.
+const transcriptCache = new Map();
+const normalizeQuote = text => String(text).toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
+let checkedQuotes = 0;
+for (const [lessonId,lesson] of Object.entries(entries)) for (const evidence of lesson.evidence || []) {
+  const sourceId=evidence.sourceId;
+  if (!transcriptCache.has(sourceId)) {
+    const shard=String(Math.floor(sourceId/30)).padStart(2,'0');
+    const original=require('../sources-'+shard+'.json').find(source=>source.id===sourceId);
+    assert.ok(original && typeof original.text==='string',lessonId+': missing original transcript '+sourceId);
+    transcriptCache.set(sourceId,original);
+  }
+  const original=transcriptCache.get(sourceId);
+  assert.ok(normalizeQuote(original.text).includes(normalizeQuote(evidence.quote)),
+    lessonId+': evidence quote not found in original transcript '+sourceId);
+  assert.equal(sources[sourceId]?.url,original.url,lessonId+': source URL mismatch '+sourceId);
+  checkedQuotes++;
+}
+assert.ok(checkedQuotes>=20,'unexpected loss of quoted source evidence');
 const gaps = [];
 let covered = 0;
 for (const [id, move] of Object.entries(moves)) {
