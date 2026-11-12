@@ -11,6 +11,20 @@ const endpointMinutes=E.minutesFor(endpoint);
 assert.ok(endpointMinutes>budget30.main);
 const budget45=E.timeBudget(45);
 assert.ok(endpointMinutes<=budget45.main);
+// Three-minute grind rounds already include the programmed rest interval.
+// The feasibility estimate must not add 150 seconds a second time.
+const grind=E.policyFor('doublePress',{programming:{doublePress:{profile:'grind'}}});
+const grindStage=grind.stages[0];
+const grindRound={id:'doublePress',sets:grindStage.sets,roundSeconds:180,rest:150};
+assert.equal(E.minutesFor(grindRound),grindStage.sets*3+.55,
+ 'grind duration must count three-minute rounds once, not add rest twice');
+const grindTen={...grindRound,sets:10};
+assert.equal(E.minutesFor(grindTen),30.55,'ten grind rounds must occupy 30 minutes plus transition');
+assert.ok(E.minutesFor(grindTen)>E.timeBudget(45).main,
+ 'full ten-round grind endpoint cannot fit a 45-minute session main block');
+assert.ok(E.minutesFor(grindTen)<=E.timeBudget(60).main,
+ 'full ten-round grind endpoint should fit a 60-minute session main block');
+console.log('PASS grind rounds count recovery once and expose time-budget ceiling');
 const getup=E.policyFor('getup',{});
 assert.equal(getup.stages.at(-1).reps,600);
 const singleClub=E.policyFor('clubInside',{programming:{clubInside:{profile:'singleClub'}}});
