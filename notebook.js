@@ -59,7 +59,7 @@ function correct(s,id,edit,reason='User correction',at=new Date().toISOString())
  const before={date:session.date,items:copy(session.items),notes:session.notes||'',status:session.status||status(session.items),finishOutcome:session.finishOutcome||'complete'};
  const plan=historyDraft(session).plan,actual=records(plan,edit.items).map((record,i)=>{const old=session.items[i],item=edit.items[i];return !old.prescription&&JSON.stringify(old.sets)===JSON.stringify(item.sets)&&old.quality===item.quality&&!!old.pain===!!item.pain?{...copy(old),note:item.note||''}:record;});
  if(actual.some(x=>x.pain||x.quality==='pain'))for(const x of actual.filter(x=>x.pain||x.quality==='pain'))if(!before.items.find(y=>y.id===x.id&&(y.pain||y.quality==='pain'))&&next.painResolutions)delete next.painResolutions[x.id];
- session.corrections=[...(session.corrections||[]),{at,reason,before}];session.date=edit.date;session.notes=edit.notes||'';session.items=actual;session.finishOutcome=edit.outcome==='partial'?'partial':'complete';session.status=status(actual,session.finishOutcome);session.lastEdited=at;
+ session.corrections=[...(session.corrections||[]),{at,reason,before}];session.date=edit.date;session.notes=edit.notes||'';session.items=actual;session.finishOutcome=edit.outcome==='partial'||!actual.every(x=>x.performed)?'partial':'complete';session.status=status(actual,session.finishOutcome);session.lastEdited=at;
  return reconcile(next,actual.map(x=>x.id));
 }
 function undo(s,id,at=new Date().toISOString()){
