@@ -55,10 +55,12 @@ assert.equal(inventoryIds.size,inventory.length,'duplicate source IDs in invento
 for(let shardNumber=0;shardNumber<24;shardNumber++) {
   const shard=require('../sources-'+String(shardNumber).padStart(2,'0')+'.json');
   assert.equal(shard.length,30,'unexpected source shard length '+shardNumber);
-  for(const original of shard) {
+  shard.forEach((original,index) => {
     assert.ok(inventoryIds.has(original.id),'original transcript missing from index '+original.id);
-    assert.equal(original.id,shardNumber*30+shard.indexOf(original),'transcript shard ordering mismatch '+original.id);
-  }
+    assert.equal(original.id,shardNumber*30+index,'transcript shard ordering mismatch '+original.id);
+    assert.equal(typeof original.text,'string','missing transcript text '+original.id);
+    assert.ok(original.text.trim().length>0,'empty transcript text '+original.id);
+  });
 }
 const gaps = [];
 let covered = 0;
