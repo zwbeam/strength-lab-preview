@@ -11,6 +11,7 @@ const DAY=86400000,start=Date.UTC(2024,10,12);
 const stageChanges=Object.fromEntries(ids.map(id=>[id,0]));
 const stageBefore=Object.fromEntries(ids.map(id=>[id,0]));
 const checkpoints=[];
+const movementCounts=Object.fromEntries(ids.map(id=>[id,{total:0,clean:0,hard:0,recovery:0,missed:0}]));
 const swingTracks={heavy:0,light:0};
 const swingEligibleTracks={heavy:0,light:0};
 const dayString=n=>new Date(start+n*DAY).toISOString().slice(0,10);
@@ -29,6 +30,8 @@ for(let day=0;day<730;day++){
   const target={sets:st.sets,reps:st.reps,rest:st.rest};
   const item={id,weight:st.weight,bodyweight:false,quality:isHard?'hard':'clean',pain:false,completed:good,performed:!isMissed,mode:isRecovery?'recovery':'volume',actualSets:isMissed?0:isHard?Math.max(0,target.sets-1):target.sets,actualReps:target.reps,targetSets:target.sets,targetReps:target.reps,rest:target.rest,policyKey:policy.key,track:st.track||'base',note:'SYNTHETIC ENGINE DEMO — NOT ACTUAL TRAINING'};
   items.push(item);
+  movementCounts[id].total++;
+  movementCounts[id][isMissed?'missed':isHard?'hard':isRecovery?'recovery':'clean']++;
   if(id==='swing'&&E.successful(item))swingEligibleTracks[st.track]++;
  }
  state.sessions.push({id:'engine-demo-'+day,title:'DEMO · '+(good?'Progression':isRecovery?'Recovery':isHard?'Hard':'Missed')+' · '+workoutIds.join(' / '),date:dayString(day),block:'abc',items,finishOutcome:isMissed?'partial':'complete',status:'Synthetic demonstration',notes:'Synthetic training data. Do not mix with real workouts.'});
@@ -44,6 +47,11 @@ checkpoints.push({session:state.sessions.length,date:state.sessions.at(-1).date,
 assert.ok(state.sessions.length>250,'Expected substantial two-year history');
 assert.ok(state.sessions.every(session=>session.items.length===3),'Each demo workout must have three distinct movements');
 assert.ok(state.sessions.every(session=>new Set(session.items.map(item=>item.id)).size===3),'Duplicate movement in demo workout');
+for(const id of ids){
+ assert.ok(movementCounts[id].total>=100,'Insufficient history for '+id);
+ assert.ok(movementCounts[id].clean>=75,'Insufficient qualifying training for '+id);
+}
+assert.equal(Object.values(movementCounts).reduce((sum,x)=>sum+x.total,0),state.sessions.length*3,'Movement count mismatch');
 const checked=E.validateBackup(state);
 assert.ok(clean>200,'Demo needs enough clean progression exposures');
 assert.ok(hard>0&&missed>0&&recovery>0,'Demo must show all outcome types');
@@ -54,6 +62,6 @@ assert.equal(checked.sessions.length,state.sessions.length);
 for(const id of ids){const p=E.stateFor(checked,id);assert.ok(Number.isFinite(p.weight)&&p.stage>=0,'Invalid replay for '+id);}
 const file=path.resolve(process.argv[2]||'strength-lab-engine-demo-backup.json');
 const reportFile=file.replace(/\.json$/,'-progression-report.json');
-fs.writeFileSync(reportFile,JSON.stringify({sessions:checked.sessions.length,clean,hard,recovery,missed,stageChanges,swingTracks,swingEligibleTracks,checkpoints},null,2)+'\n');
+fs.writeFileSync(reportFile,JSON.stringify({sessions:checked.sessions.length,clean,hard,recovery,missed,stageChanges,swingTracks,swingEligibleTracks,movementCounts,checkpoints},null,2)+'\n');
 fs.writeFileSync(file,JSON.stringify(checked,null,2)+'\n');
-console.log(JSON.stringify({file,reportFile,sessions:checked.sessions.length,clean,hard,recovery,missed,stageChanges,swingTracks,swingEligibleTracks,ids}));
+console.log(JSON.stringify({file,reportFile,sessions:checked.sessions.length,clean,hard,recovery,missed,stageChanges,swingTracks,swingEligibleTracks,movementCounts,ids}));
