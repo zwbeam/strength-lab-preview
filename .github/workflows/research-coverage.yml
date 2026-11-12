@@ -79,6 +79,8 @@ jobs:
           if missing:sys.exit('Unexecuted regression suites: '+', '.join(missing))
           print('Node regression suites covered:',len(suites))
           PY
+      - name: Run additional history correction regression tests
+        run: node --test tests/history-corrections.test.cjs
       - name: Validate movement mappings and source integrity
         run: |
           node tests/research-coverage.js
