@@ -106,4 +106,17 @@ test('low-readiness snatch dose is reduced and never earns clean credit',()=>{
  assert.equal(E.stateFor(b,'snatch').stage,0);
  assert.equal(E.stateFor(b,'snatch').streak,0);
 });
+test('withdrawn kettlebell preserves history and safely replaces active load',()=>{
+ const b=base();
+ b.sessions=[{id:'prior',date:'2026-11-01',items:[{id:'swing',weight:16,actualSets:4,actualReps:10,quality:'clean',completed:true}]}];
+ const history=JSON.stringify(b.sessions);
+ b.equipment.kb=[12];
+ const before=JSON.stringify(b);
+ const updated=E.replaceUnavailableLoad(b,'swing',12);
+ assert.equal(JSON.stringify(b),before,'replacement must not mutate original state');
+ assert.equal(JSON.stringify(updated.sessions),history,'past workout records must be preserved');
+ assert.equal(updated.nextWeights.swing,12);
+ assert.equal(E.stateFor(updated,'swing').weight,12);
+ assert.equal(E.stateFor(updated,'swing').stage,0,'replacement starts a fresh load progression');
+});
 console.log(passed+' engine tests passed');
