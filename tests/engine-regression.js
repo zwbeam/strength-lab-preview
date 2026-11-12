@@ -166,4 +166,12 @@ test('deleted reset-anchor workout cannot silently restore old progression',()=>
  const deleted={...withMarker,sessions:[]};
  assert.throws(()=>E.validateBackup(deleted),/load reset boundary/i);
 });
+test('backup reset marker cannot point to a different movement',()=>{
+ const b=base();b.sessions=[{id:'anchor',title:'Anchor',date:'2026-11-01',items:[{
+  id:'press',weight:12,targetSets:3,targetReps:5,actualSets:3,actualReps:5,
+  rest:60,quality:'clean',completed:true
+ }]}];
+ assert.ok(E.validateBackup({...b,loadResetAfter:{press:'anchor:0'}}));
+ assert.throws(()=>E.validateBackup({...b,loadResetAfter:{swing:'anchor:0'}}),/load reset boundary/i);
+});
 console.log(passed+' engine tests passed');
