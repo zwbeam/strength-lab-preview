@@ -106,3 +106,21 @@ for(const [target,upper] of [[30,40],[45,50],[60,65],[75,80],[90,95],[120,120]])
  assert.ok(p.total<=upper,'target '+target+' exceeded its window');
 }
 console.log('PASS Settings and daily duration target windows');
+
+const Calendar=require('../rolling-calendar.js');
+// Mobility replaces the opportunity, never the strength progression record.
+const mobilityBase={...deferredState,sessions:[],activities:[],trainingPreferences:{...deferredState.trainingPreferences,daysPerWeek:3}};
+const originalKey=Calendar.key(mobilityBase);
+const originalPlan=E.plan(mobilityBase,{now:'2026-11-12',minutes:45});
+const mobilityRecord={id:'mobility-replacement',date:'2026-11-11',type:'mobility',duration:20,effort:'easy',status:'completed',replacesStrength:true,
+ notes:'Mobility instead of strength; no lifting credit'};
+const afterMobility=Calendar.activity(mobilityBase,mobilityRecord);
+assert.equal(afterMobility.sessions.length,0,'mobility must not manufacture a strength session');
+assert.equal(Calendar.count(afterMobility),0,'mobility must not advance the strength exposure count');
+assert.equal(Calendar.key(afterMobility),originalKey,'mobility must preserve the next strength slot');
+assert.deepEqual(E.plan(afterMobility,{now:'2026-11-12',minutes:45}).items.map(x=>x.id),originalPlan.items.map(x=>x.id),
+ 'the next strength prescription must survive a mobility substitution');
+const projected=Calendar.project(afterMobility,'2026-11-11','2026-11-25',{minutes:45});
+assert.ok(projected.length,'strength must remain schedulable after mobility');
+assert.ok(projected.every(x=>x.date!=='2026-11-11'),'replacement mobility must block duplicate same-day strength');
+console.log('PASS mobility substitution preserves queued strength and avoids duplicate same-day training');
