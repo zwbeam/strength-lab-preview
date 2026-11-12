@@ -43,6 +43,10 @@ const report=JSON.parse(fs.readFileSync('strength-lab-engine-demo-backup-progres
     assert.ok(view.text.trim().length>100,'Empty populated '+tab+' at '+width);
     assert.ok(view.document<=view.viewport+3,'Overflow in populated '+tab+' at '+width+': '+JSON.stringify(view));
     await page.screenshot({path:'demo-'+width+'-'+tab+'.png',fullPage:true});
+    await page.screenshot({path:'demo-'+width+'-'+tab+'-viewport.png'});
+    if(tab==='progress'){
+     await page.locator('#movement-progress').screenshot({path:'demo-'+width+'-progress-detail.png'});
+    }
     if(tab==='progress'){
      const progressText=await page.locator('#movement-progress').innerText();
      for(const id of ['swing','squat','press','row','clean','cast']){
