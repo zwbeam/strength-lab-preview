@@ -43,4 +43,17 @@ assert.ok(base.sessions.length>500,'expected substantial history');
 assert.equal(base.sessions.length,clean+hard+missed);
 const end=E.stateFor(base,id);
 assert.ok(Number.isInteger(end.stage)&&end.stage>=0);
+// History ordering and future imports must not rewrite the current prescription.
+const snapshotDate=dateAt(1825);
+const before=E.prescription(base,id,{now:snapshotDate});
+const reordered={...base,sessions:base.sessions.slice().reverse()};
+const after=E.prescription(reordered,id,{now:snapshotDate});
+assert.equal(after.id,before.id,'reordered history must preserve movement');
+assert.equal(after.sets,before.sets,'reordered history must preserve set target');
+assert.equal(after.reps,before.reps,'reordered history must preserve rep target');
+const future={...base,sessions:[...base.sessions,{id:'future-import',date:dateAt(1900),items:[entry('clean')]}]};
+const futurePrescription=E.prescription(future,id,{now:snapshotDate});
+assert.equal(futurePrescription.id,before.id,'future import must preserve movement identity');
+assert.ok(futurePrescription.sets>0&&futurePrescription.reps>0,'future import must retain valid prescription');
+console.log('PASS five-year history reorder and future import prescription sanity');
 console.log('Five-year synthetic replay passed:',JSON.stringify({sessions:base.sessions.length,clean,hard,missed,stage:end.stage}));
