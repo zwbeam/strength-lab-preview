@@ -57,6 +57,7 @@ jobs:
           node --check rolling-calendar.js
           node --check session-timer.js
           node --check programming-education.js
+          for file in tests/*.js; do node --check "$file"; done
       - name: Validate movement mappings and source integrity
         run: |
           node tests/research-coverage.js
