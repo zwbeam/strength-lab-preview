@@ -46,7 +46,7 @@ const report=JSON.parse(fs.readFileSync('strength-lab-engine-demo-backup-progres
      assert.ok(header.includes(backup.sessions.length+' lifetime workouts recorded'),'Training Log did not render full session count at '+width);
      const overview=page.locator('.training-overview-group');
      assert.ok(await overview.count()>=2,'Training Overview gear groups missing at '+width);
-     assert.ok((await page.locator('#app').innerText()).includes('Notebook'),'Notebook Log missing at '+width);
+     assert.equal(await page.locator('.notebook-table').count(),0,'Legacy notebook table still rendered at '+width);
     }
     const view=await page.evaluate(()=>({viewport:document.documentElement.clientWidth,document:document.documentElement.scrollWidth,text:document.querySelector('#app')?.innerText||''}));
     assert.ok(view.text.trim().length>100,'Empty populated '+tab+' at '+width);
@@ -57,11 +57,14 @@ const report=JSON.parse(fs.readFileSync('strength-lab-engine-demo-backup-progres
      await page.locator('.training-overview-group').first().screenshot({path:'demo-'+width+'-progress-detail.png'});
     }
     if(tab==='progress'){
+     await page.locator('.training-overview-group').first().locator('summary').first().click();
      const overviewText=await page.locator('.training-overview-group').first().innerText();
      for(const id of ['swing','squat','press','row','clean','snatch','complexCleanPress']){
       assert.ok(overviewText.includes(windowName[id]),'Missing movement '+id+' at '+width);
      }
+     await page.locator('.training-overview-group').nth(2).locator('summary').first().click();
      assert.ok((await page.locator('.training-overview-group').nth(2).innerText()).includes('Two-hand shield cast'),'Heavy club movement missing at '+width);
+     assert.equal(await page.locator('.training-overview-group[open]').count(),1,'More than one overview category open at '+width);
     }
    }
    assert.deepEqual(errors,[],'Browser errors at '+width);
