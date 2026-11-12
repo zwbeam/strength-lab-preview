@@ -171,6 +171,26 @@ const {chromium}=require('playwright');
      if(!expected[item.category].test(detail))throw Error('Wrong movement-specific mobility focus: '+JSON.stringify(item));
    }
    console.log('Current-prescription mobility focus and 20-minute structure passed at '+viewport.width+'px');
+   // If a time window blocks all strength work, use its blocked movement as
+   // the mobility target rather than an unrelated recent training session.
+   const blockedChecks=await page.evaluate(()=>{
+     const originalPlan=E.plan,results=[];
+     try{
+       for(const [category,id] of [['hinge','deadlift'],['squat','squat'],['overhead','press'],['grip','clubInside'],['ground','getup']]){
+         E.plan=()=>({items:[],timeBlocked:[{id}],budget:{total:30}});
+         const routine=mobilityRoutine();
+         results.push({category,minutes:routine.reduce((n,x)=>n+x.min,0),practice:routine[4].detail,focus:routine[8].detail});
+       }
+     }finally{E.plan=originalPlan;}
+     return results;
+   });
+   for(const item of blockedChecks){
+     if(item.minutes!==20)throw Error('Time-blocked mobility changed duration: '+JSON.stringify(item));
+     const detail=item.category==='grip'?item.focus:item.practice;
+     if(!expected[item.category].test(detail))throw Error('Time-blocked mobility ignored deferred movement: '+JSON.stringify(item));
+   }
+   console.log('Time-blocked strength mobility fallback passed at '+viewport.width+'px');
+
    await mobility.locator('#start-mobility').click();
    if(!await mobility.locator('#mobility-clock').count())throw Error('Mobility timer did not start');
    await page.waitForTimeout(1200);
