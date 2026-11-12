@@ -25,6 +25,15 @@ assert.ok(!normalized.some(file=>file.startsWith('legacy/')),
  'retired legacy interface must not be included in the primary app offline cache');
 assert.ok(!fs.readFileSync(path.join(root,'app.js'),'utf8').includes('href="legacy/index.html"'),
  'primary Settings must not link to the retired legacy interface');
+// HTML image and inline style URLs must also be available without a network.
+const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
+const htmlAssets=[...html.matchAll(/(?:src|href)="([^"]+)"/g)].map(m=>m[1])
+ .concat([...html.matchAll(/url\\(([^)]+)\\)/g)].map(m=>m[1].replace(/^['"]|['"]$/g,'')));
+for(const url of htmlAssets){
+ if(!url||/^(?:https?:|data:|#)/i.test(url))continue;
+ const asset=url.split(/[?#]/)[0];
+ assert.ok(normalized.includes(asset),'HTML asset not available on first offline launch: '+url);
+}
 // Promoting the preview interface must not silently strand existing training data.
 // These persisted keys are intentionally unchanged until a tested migration exists.
 const primaryApp=fs.readFileSync(path.join(root,'app.js'),'utf8');
