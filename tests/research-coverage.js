@@ -10,6 +10,14 @@ const moves = engine.MOVES;
 const entries = instruction.entries || {};
 const sources = instruction.sources || instruction.sourceIndex || {};
 assert.ok(Object.keys(moves).length >= 20, 'Movement catalog unexpectedly empty');
+// Ground one stable evidence anchor in the checked-in original transcript,
+// rather than relying exclusively on the app-authored quotation catalog.
+const transcript704 = require('../sources-23.json').find(source=>source.id===704);
+assert.ok(transcript704 && typeof transcript704.text==='string','missing original deadlift transcript #704');
+const anchor704 = entries.deadlift?.evidence?.find(e=>e.sourceId===704);
+assert.ok(anchor704 && transcript704.text.toLowerCase().includes(anchor704.quote.toLowerCase()),
+  'deadlift evidence quote must appear verbatim in original transcript #704');
+assert.equal(sources[704]?.url,transcript704.url,'deadlift source URL must match original transcript #704');
 const gaps = [];
 let covered = 0;
 for (const [id, move] of Object.entries(moves)) {
