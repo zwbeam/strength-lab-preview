@@ -59,6 +59,20 @@ assert.ok(swingTracks.heavy>0&&swingTracks.light>0,'Wave demo must alternate hea
 assert.ok(swingEligibleTracks.heavy>0&&swingEligibleTracks.light>0,'Wave demo must contain qualifying work on both tracks');
 assert.ok(ids.filter(id=>stageChanges[id]>0).length>=4,'Demo must show stage changes across multiple movements');
 assert.equal(checked.sessions.length,state.sessions.length);
+for(const id of ids){
+ const original=E.stateFor(state,id),restored=E.stateFor(checked,id);
+ for(const field of ['stage','weight','sets','reps','rest','track','phase','cycles','streak'])
+  assert.deepEqual(restored[field],original[field],'Backup replay changed '+id+' '+field);
+ const expected=movementCounts[id].total;
+ assert.equal(E.records(checked,id).length,expected,'Restored history count mismatch for '+id);
+}
+const lastCheckpoint=checkpoints.at(-1);
+for(const id of ids){
+ const current=E.stateFor(checked,id),snapshot=lastCheckpoint.movements[id];
+ for(const field of ['stage','weight','track'])
+  assert.deepEqual(snapshot[field],current[field],'Progression report disagrees with restored '+id+' '+field);
+ assert.equal(snapshot.exposures,current.allExposures,'Exposure report mismatch for '+id);
+}
 for(const id of ids){const p=E.stateFor(checked,id);assert.ok(Number.isFinite(p.weight)&&p.stage>=0,'Invalid replay for '+id);}
 const file=path.resolve(process.argv[2]||'strength-lab-engine-demo-backup.json');
 const reportFile=file.replace(/\.json$/,'-progression-report.json');
