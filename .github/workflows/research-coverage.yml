@@ -238,6 +238,16 @@ jobs:
             sleep 1
           done
           node tests/browser-smoke.js
+          node tests/generate-demo-backup.cjs strength-lab-engine-demo-backup.json
+          node tests/browser-demo-history.js
+      - name: Upload populated history screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: strength-lab-populated-history-screenshots
+          path: demo-*.png
+          retention-days: 14
+          if-no-files-found: ignore
       - name: Upload browser server diagnostics on failure
         if: failure()
         uses: actions/upload-artifact@v4
