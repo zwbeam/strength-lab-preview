@@ -1,5 +1,5 @@
 'use strict';
-const assert=require('node:assert/strict'),{chromium}=require('playwright');
+const assert=require('node:assert/strict'),{chromium}=require('playwright'),E=require('../engine.js');
 (async()=>{
  const browser=await chromium.launch({headless:true,...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH?{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH}:{})});
  try{for(const width of [320,390]){
@@ -13,7 +13,7 @@ const assert=require('node:assert/strict'),{chromium}=require('playwright');
    const lesson=page.locator('#movement-instruction');assert.ok((await lesson.innerText()).length>200,id);
    const links=await lesson.locator('.video-link').evaluateAll(nodes=>nodes.map(x=>({href:x.href,target:x.target,rel:x.rel})));
    assert.ok(links.length>=1&&links.length<=2,id);for(const link of links){assert.match(link.href,/^https:\/\/www.youtube.com\/watch\?v=/);assert.equal(link.target,'_blank');assert.match(link.rel,/noopener/);}
-   if(['bearCrawl','catCrawl','doubleClubInside','doubleClubOutside'].includes(id)){assert.match(await lesson.innerText(),/Education only/);assert.equal(await lesson.locator('[data-confirm-learned]').count(),0);}
+   if(['doubleClubInside','doubleClubOutside'].includes(id)){assert.match(await lesson.innerText(),/Education only/);assert.equal(await lesson.locator('[data-confirm-learned]').count(),0);}
    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+3),'Lesson overflow: '+id);
   }
   await page.locator('[data-tab="settings"]').tap();
@@ -36,7 +36,9 @@ const assert=require('node:assert/strict'),{chromium}=require('playwright');
   await context.close();console.log('Touch curriculum lessons, exact video mappings, reachable programming, actual partial workout and reload passed at '+width+'px');
  }
  const paired=await browser.newContext({viewport:{width:390,height:844},hasTouch:true,isMobile:true});
- await paired.addInitScript(()=>{if(!localStorage.getItem('sl-dev-preview-data-v33'))localStorage.setItem('sl-dev-preview-data-v33',JSON.stringify({version:33,defaultMinutes:45,programBlock:'abc',sessions:[],weights:{doubleClean:12},nextWeights:{},equipment:{kb:[12],club:[],pairs:[12]},skills:{rack:true,doubleClean:true},trainingPreferences:{daysPerWeek:3,useKb:true,useClub:false,useBodyweight:true,useDoubleKb:true}}));});
+ const pairState={version:33,defaultMinutes:45,programBlock:'abc',sessions:[],weights:{clean:12,doubleClean:12},nextWeights:{},equipment:{kb:[12],club:[],pairs:[12]},skills:{rack:true,doubleClean:true},trainingPreferences:{daysPerWeek:3,useKb:true,useClub:false,useBodyweight:true,useDoubleKb:true}};
+ for(let i=0;i<2;i++){const date=new Date(Date.now()-3*86400000).toISOString().slice(0,10),rx=E.prescription(pairState,'clean',{now:date});pairState.sessions.push({id:'single-clean-'+i,title:'Prior single clean',date,items:[E.completeRecord(rx,Array.from({length:rx.sets},()=>({done:true,weight:12,reps:rx.reps,leftReps:rx.reps,rightReps:rx.reps,bothSides:true})),'clean',false)]});}
+ await paired.addInitScript(fixture=>{if(!localStorage.getItem('sl-dev-preview-data-v33'))localStorage.setItem('sl-dev-preview-data-v33',JSON.stringify(fixture));},pairState);
  const page=await paired.newPage();await page.goto('http://127.0.0.1:8765/');await page.waitForFunction(()=>storageReady);
  await page.locator('[data-tab="settings"]').tap();await page.locator('#program-block').evaluate(el=>{for(let p=el.parentElement;p;p=p.parentElement)if(p.tagName==='DETAILS')p.open=true;});
  await page.locator('#program-block').selectOption('doubleCleanPractice');await page.locator('#save-programming').tap();await page.locator('[data-tab="today"]').tap();
@@ -47,7 +49,7 @@ const assert=require('node:assert/strict'),{chromium}=require('playwright');
  await page.locator('[data-tab="settings"]').tap();await page.locator('#training-setup').evaluate(el=>el.closest('details').open=true);await page.locator('#matched-kb-pairs').fill('');await page.locator('#save-setup').tap();
  assert.equal(await page.evaluate(()=>E.plan(state).items.some(x=>x.id==='doubleClean')),false);
  await paired.close();console.log('Actual paired-clean workout save and removed-pair equipment restriction passed at 390px');
- const E=require('../engine.js'),now=new Date().toISOString().slice(0,10),rackState={version:33,defaultMinutes:45,programBlock:'rackSquatPractice',sessions:[],weights:{squat:12,singleRackSquat:12},nextWeights:{},equipment:{kb:[12],club:[],pairs:[]},skills:{rack:true,singleRackSquat:true},trainingPreferences:{daysPerWeek:3,useKb:true,useClub:false,useBodyweight:true}};
+ const now=new Date().toISOString().slice(0,10),rackState={version:33,defaultMinutes:45,programBlock:'rackSquatPractice',sessions:[],weights:{squat:12,singleRackSquat:12},nextWeights:{},equipment:{kb:[12],club:[],pairs:[]},skills:{rack:true,singleRackSquat:true},trainingPreferences:{daysPerWeek:3,useKb:true,useClub:false,useBodyweight:true}};
  for(const days of [6,3]){const date=new Date(Date.now()-days*86400000).toISOString().slice(0,10),rx=E.prescription(rackState,'squat',{now:date});rackState.sessions.push({id:'goblet-'+days,title:'Reviewed prior goblet practice',date,items:[E.completeRecord(rx,Array.from({length:rx.sets},()=>({done:true,weight:12,reps:rx.reps})),'clean',false)]});}
  E.validateBackup(rackState);const rackContext=await browser.newContext({viewport:{width:390,height:844},hasTouch:true,isMobile:true});
  await rackContext.addInitScript(fixture=>{if(!localStorage.getItem('sl-dev-preview-data-v33'))localStorage.setItem('sl-dev-preview-data-v33',JSON.stringify(fixture));},rackState);

@@ -145,3 +145,65 @@ and hash checks pass. Targeted mobile acceptance verifies Settings pair removal 
 restoration, Movement Library instruction, actual generated swing-clean workout,
 completion, reload and Training Log reporting. Full CI verifies the checkpoint
 independently. Eight Books, V33 persistence and production remain unchanged.
+
+## Lifelong integration batch 2: bodyweight, paired prerequisites and evidence continuity
+
+Checkpoint d8a2d96 passed audit, browser-smoke, synthetic history and Pages.
+Preserved the interrupted work after the approval service hit a usage limit;
+no unconfirmed command was treated as executed.
+
+Close-reviewed #85/#88/#554 for bodyweight integration and timing; reused #82/#87
+technique. Bear and cat crawls now have engine profiles, explicit technique and
+traveling-space gates, actual-duration logging and two-to-four-bout progression.
+Thirty/30 is a source learning format; applying it to these crawls, the endpoint
+and evidence/recovery rules are app adaptations. No automatic advanced timing
+ladder or full paid-program equivalence is claimed.
+
+ABC now considers eligible bodyweight support and opt-in paired clubs, with
+family emphasis, freshness, time and recovery priorities. Deferred work remains
+available across later pool selections. Repeat partially established clean
+practice before introducing another optional pattern. Pure bodyweight training
+has lower-body and ground/crawl days. One paired-club pattern per workout, and
+paired clubs are not combined with a kettlebell complex in the same prescription.
+
+Reviewed #152/#186/#366 and reused #365/#305/#335: single clean precedes paired
+clean; single press plus paired clean precede double clean/press; distinct rack
+squat and paired clean precede double squat. Counts/windows are app gates. The
+broader source double-swing/outside-swing teaching pathway remains untracked.
+Complexes snapshot concise sequence meaning and estimate component work with
+conservative floors. Complex logs never also award component exposures.
+
+Fixed prerequisite evidence replay: a clean performed light exposure is neutral,
+not qualifying and not an interruption of prior clean evidence. Partial, poor
+technique, pain and recovery/re-entry remain nonqualifying. Added a regression
+with qualifying exposures separated by a clean light day. Historical values and
+policy keys are preserved; future selection uses corrected replay.
+
+Mobile execution uses the existing notebook and timer. “Use prescribed intervals”
+loads eligible simple timed prescriptions into the existing timer; the user
+starts it explicitly and timing never marks work complete. Ordinary reps stay
+untimed. Context/limits are available in movement instruction, duplicate
+educational/prerequisite map edges are removed, and technical swipe appears in
+club-combination reporting. Eight Books and production are unchanged.
+
+Verification: all 31 non-browser Node suites pass, plus history-corrections CJS.
+Source validation checks 61 instruction quote anchors/hashes and three additional
+paired-pathway source fingerprints/quotes. Four three-year actual-generator
+histories save 1,676 workouts with missed days, vacations, low readiness, partial
+work, technique and pain flags, pair removal, owned-load replacement, pause and
+backup replay. Dedicated club history reaches pullover and technical swipe.
+Existing decade/year suites remain passing. Browser-smoke passed at
+320/390/832/1280, curriculum touch flows at 320/390, generated 295-session demo and
+populated layouts passed. New mobile flows exercise all three double-club
+movements and both crawls, including real 30/30 countdown and no timer credit.
+Remote CI independently verifies the pushed checkpoint; physical Android remains
+unverified.
+
+Durable deliverable: MOVEMENT-INTEGRATION-COVERAGE.md and its JSON matrix, generated
+by scripts/audit-integration.cjs. Inventory: 43 programmable movements, 29 reviewed
+outlines, 14 instructional/source limits and two instruction-only double-club
+patterns. Current cadence warnings are block-level; broad mixed schedules still
+show frequent movement re-entry in stress tests. Refine movement-level continuity
+next without weakening eligibility, inventing technical mastery, or adding
+catch-up work. Alternating clubs, broader bodyweight/paired pathways, additional
+complexes and visual/source verification remain open.

@@ -21,6 +21,7 @@ on:
       - sw.js
       - index.html
       - manifest.webmanifest
+      - 'scripts/**'
       - 'tests/**'
       - notebook.js
       - app.js
@@ -42,6 +43,7 @@ on:
       - sw.js
       - index.html
       - manifest.webmanifest
+      - 'scripts/**'
       - 'tests/**'
       - notebook.js
       - app.js
@@ -109,6 +111,7 @@ jobs:
           retention-days: 14
       - name: Validate movement mappings and source integrity
         run: |
+          node tests/lifelong-integration.js
           node tests/movement-integration.js
           node tests/curriculum-integration.js
           node tests/research-coverage.js
@@ -123,6 +126,11 @@ jobs:
           node tests/backup-history.js
           node tests/offline-precache-integrity.js
           node tests/log-pagination.js
+      - name: Verify generated curriculum and integration reports
+        run: |
+          node scripts/audit-curriculum.cjs
+          node scripts/audit-integration.cjs
+          git diff --exit-code -- research/curriculum-coverage-current.json research/movement-programming-coverage.md research/movement-integration-coverage.json MOVEMENT-INTEGRATION-COVERAGE.md
       - name: Validate workout recording, timer, and recovery regressions
         run: |
           node tests/draft-save-regression.js

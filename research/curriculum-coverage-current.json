@@ -263,7 +263,10 @@
         "rack",
         "doublePress"
       ],
-      "practicePrerequisites": [],
+      "practicePrerequisites": [
+        "press",
+        "doubleClean"
+      ],
       "sequence": [],
       "policySources": [
         366,
@@ -290,7 +293,10 @@
         "rack",
         "doubleSquat"
       ],
-      "practicePrerequisites": [],
+      "practicePrerequisites": [
+        "singleRackSquat",
+        "doubleClean"
+      ],
       "sequence": [],
       "policySources": [
         366,
@@ -387,8 +393,9 @@
         "doublePress"
       ],
       "sequence": [
-        "doublePress",
-        "doubleSquat"
+        "doubleClean",
+        "doubleSquat",
+        "doublePress"
       ],
       "policySources": [
         335
@@ -1028,7 +1035,9 @@
         "rack",
         "doubleClean"
       ],
-      "practicePrerequisites": [],
+      "practicePrerequisites": [
+        "clean"
+      ],
       "sequence": [],
       "policySources": [
         365
@@ -1166,95 +1175,71 @@
         "readiness/recovery numeric adjustments",
         "equipment jump cap"
       ]
-    }
-  ],
-  "references": [
+    },
     {
       "id": "bearCrawl",
-      "purpose": "Travel on hands and feet with opposite-limb coordination; an instructional reference rather than an automatic endurance prescription.",
-      "setup": [
-        "Begin in a comfortable kneeling/child-position setup.",
-        "Tuck toes and move toward a comfortable down-dog-like position; do not force hamstring range."
-      ],
-      "steps": [
-        "Move an opposite hand and foot forward with controlled support.",
-        "Travel only as far as the surface and technique safely allow.",
-        "Stop or return to stationary practice when support or coordination changes."
-      ],
-      "bracing": [
-        "The source describes cross-body stabilization. Exact breathing timing is not specified."
-      ],
-      "mistakes": [
-        "Forcing straight knees or short hand/foot distance: keep a comfortable individual range.",
-        "Using an unsafe surface: choose clear stable ground and protect hands as appropriate."
-      ],
-      "sourceIds": [
-        87
-      ],
-      "videoSourceIds": [
-        87
-      ],
-      "evidence": [
-        {
-          "sourceId": 87,
-          "quote": "opposite hand opposite leg"
-        }
-      ],
-      "coverage": "reviewed outline",
       "name": "Bear crawl",
-      "gear": "bodyweight",
-      "bodyweight": true,
-      "family": "ground",
-      "instructionOnly": true,
-      "qualifications": [
-        "The source presents bear crawl before cat crawl. This is a teaching relationship, not automatic skill certification.",
-        "Four minutes under tension followed by one minute rest is a source example, not a beginner default or a workout assigned here."
+      "category": "bodyweight",
+      "automatic": true,
+      "profile": "crawl",
+      "coverage": "reviewed outline",
+      "sourceIds": [
+        87,
+        88,
+        554
       ],
-      "automatic": false
+      "skillPrerequisites": [
+        "bearCrawl"
+      ],
+      "practicePrerequisites": [],
+      "sequence": [],
+      "policySources": [
+        87,
+        554,
+        88
+      ],
+      "exactParametersSource": null,
+      "appDefaults": [
+        "exposure gates",
+        "readiness/recovery numeric adjustments",
+        "equipment jump cap"
+      ]
     },
     {
       "id": "catCrawl",
-      "purpose": "Low-knee quadruped travel, taught as a more demanding extension of bear-crawl coordination.",
-      "setup": [
-        "Start on hands and knees with toes tucked.",
-        "Hover knees around one to two inches from the ground only while comfortable and controlled."
-      ],
-      "steps": [
-        "Keep the spine approximately parallel to the floor and knees around a right angle.",
-        "Move opposite hand and leg, maintaining the low knee hover.",
-        "Use a short controlled practice period; return to grounded support when position fails."
-      ],
-      "bracing": [
-        "Maintain stable trunk support; the transcript does not establish a universal breath pattern."
-      ],
-      "mistakes": [
-        "Knees rising high or trunk losing position: return to stationary/earlier practice.",
-        "Treating advanced rails, stairs or height examples as entry practice: remain on safe ground."
-      ],
-      "sourceIds": [
-        82
-      ],
-      "videoSourceIds": [
-        82
-      ],
-      "evidence": [
-        {
-          "sourceId": 82,
-          "quote": "Whatever time under tension you do to start this movement"
-        }
-      ],
-      "coverage": "reviewed outline",
       "name": "Cat crawl",
-      "gear": "bodyweight",
-      "bodyweight": true,
-      "family": "ground",
-      "instructionOnly": true,
-      "qualifications": [
-        "The source discusses a four-minute goal, one-minute work/rest examples, and 60% of an observed controlled duration. These are contexts, not one universal dose.",
-        "No baseline test or automatic 60% calculation is added by this reference. Bear-crawl teaching is earlier context; eligibility is not automatically granted."
+      "category": "bodyweight",
+      "automatic": true,
+      "profile": "crawl",
+      "coverage": "reviewed outline",
+      "sourceIds": [
+        82,
+        88,
+        554
       ],
-      "automatic": false
-    },
+      "skillPrerequisites": [
+        "bearCrawl",
+        "catCrawl"
+      ],
+      "practicePrerequisites": [
+        "bearCrawl"
+      ],
+      "sequence": [],
+      "policySources": [
+        82,
+        87,
+        554,
+        88
+      ],
+      "exactParametersSource": null,
+      "appDefaults": [
+        "exposure gates",
+        "readiness/recovery numeric adjustments",
+        "equipment jump cap"
+      ]
+    }
+  ],
+  "references": [
     {
       "id": "doubleClubInside",
       "purpose": "Alternate inside circles while controlling a separate club in each hand.",

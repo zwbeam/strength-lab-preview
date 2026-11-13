@@ -9,31 +9,51 @@ source inventory and equipment matrix are reproducible with
 scheduled or credited. Source #441 is unusable. External review completion is
 retained as accounting evidence, not silently converted into instruction claims.
 
-Current coverage: 38 programmable movements, 38 dedicated lesson entries,
-five education-only lessons. Eleven programmable lessons retain explicit
-partial/source-verification warnings. Eight Book outlines remain separate,
-provisional volumes; the supplied Book I manuscript has not been published.
+Current coverage: 43 programmable movements with dedicated lessons, two
+instruction-only alternating double-club patterns. Twenty-nine outlines are
+reviewed; fourteen programmable lessons retain source/visual-verification gaps.
+See MOVEMENT-INTEGRATION-COVERAGE.md for every movement's complete-system route,
+prerequisites, equipment, profile and remaining boundaries. Eight Book outlines
+remain separate and provisional.
 
-Recent work: missing-complex Learn crash; filtered bounded history and retained
-pagination disclosure; CI offline-cache assertion; practical bodyweight and
-paired-clean lessons/opt-in blocks; distinct single-rack squat practice before
-its complex; education-only crawl/double-club foundations; explicit actual-side
-fields no longer show unrecorded prescribed reps as if they were saved results.
+New double-club system: explicit owned matched pairs in lb per club, opt-in
+preference, swing clean → pullover → four-count technical swipe, recent foundation
+practice and explicit skill/overhead gates. Independent app-defined cycles and
+load review; one paired-club pattern per session. Performance swipes are excluded.
 
-Check BOTH current-SHA audit and browser jobs before claiming QA completion.
-Run all non-browser tests/*.js and the additional history-corrections CJS suite.
-Browser suites are browser-smoke.js, browser-curriculum.cjs and
-browser-demo-history.js (generate its synthetic demo backup first).
-The mobile tests emulate Android-sized touch viewports; they do not establish
-physical Android behavior, audio reliability or correct human technique.
+New bodyweight integration: bear/cat 30/30 timed practice with explicit clear-space
+and technique checks; lower-body/ground block plus eligible bodyweight support in
+ABC. Actual seconds and bilateral results determine completion. The optional
+“Use prescribed intervals” button loads simple side-one timed work into the
+existing interval timer without logging work. Missing or reduced work never
+qualifies as progression.
 
-Highest-priority gaps: paired-club equipment and programming; reviewed double
-pullover/swipe prerequisites and progression; automatic quadruped methods;
-broader bodyweight pulling/step-up pathways; broader double-kettlebell and
-complex coverage; incomplete practical source/video mappings and visual review.
-Research leads are listed separately from reviewed sources in the coverage matrix.
-Missing master ledger and anchored external reviews prevent certifying all
-719 sources as fully integrated. No production promotion or finished-app claim.
+Single/paired kettlebell links now use recent single clean before double clean,
+single press + double clean before double clean/press, and distinct rack squat +
+double clean before double squat. App gates are not universal source prescriptions.
+Complexes snapshot one-sequence explanations and keep independent credit. Their
+time estimates include component work with conservative app floors.
+
+Clean light work preserves prior prerequisite evidence without adding credit.
+Pain, technique issues, incomplete and recovery/re-entry work remain nonqualifying.
+All doses/gates for these new systems are explicitly app adaptations; source
+facts, numerical examples and unresolved qualifications are stored separately.
+
+Tests include four three-year actual-generator histories with equipment removal,
+explicit replacement, missed days, pause, low readiness, poor technique, pain,
+partial sessions and repeated backup/replay. Mobile acceptance covers each of
+the three paired-club movements plus crawl timing/logging. Run ALL Node/CJS and
+browser suites; require BOTH current-commit audit and browser jobs before QA.
+These are synthetic histories and touch browser emulation, not clinical outcomes
+or physical Android/technique validation.
+
+Remaining: alternating double-club/performance systems, broader bodyweight/paired
+kettlebell pathways and complexes, visual technique validation and missing source
+mappings. Mixed schedules with too many independently rotated movements can
+require frequent re-entry. Current cadence warnings are block-level; refine
+movement-level continuity conservatively rather than weakening evidence gates.
+The master source ledger/anchored external reviews remain unavailable, so source
+accounting completion must not be presented as full engine integration.
 
 Continue from NEXT-CONTINUATION.md. Preserve V33 keys, backup compatibility,
 active drafts, writer locks, correction replay and archived recovery branches.

@@ -1,0 +1,128 @@
+{
+  "sourceIds": [
+    85,
+    88,
+    554,
+    82,
+    87
+  ],
+  "sourceFacts": [
+    "Bodyweight complements other systems in an ordered, shiftable ABC format (#85).",
+    "30/30 is a learning format; 20/10 and 60/60 serve different aims (#85/#88).",
+    "Crawl time, distance and technique are distinct; longer bouts can be very demanding (#554)."
+  ],
+  "appDecisions": [
+    "Use two to four 30/30 bouts for eligible familiar crawls; no universal application of the full paid program.",
+    "Explicit traveling-space preference, technique flags and recent bear practice before cat.",
+    "Least-recent eligible bodyweight support within ABC, with unchanged independent cycles and time/recovery safeguards.",
+    "No automatic advanced timing or added load."
+  ],
+  "qualifications": [
+    "#85 and #88 discuss different release formats and ordering. No universal timing ladder is inferred.",
+    "No claims about metabolic correction or disease outcomes are adopted."
+  ],
+  "entries": {
+    "bearCrawl": {
+      "purpose": "Travel on hands and feet with opposite-limb coordination; an instructional reference rather than an automatic endurance prescription.",
+      "setup": [
+        "Begin in a comfortable kneeling/child-position setup.",
+        "Tuck toes and move toward a comfortable down-dog-like position; do not force hamstring range."
+      ],
+      "steps": [
+        "Move an opposite hand and foot forward with controlled support.",
+        "Travel only as far as the surface and technique safely allow.",
+        "Stop or return to stationary practice when support or coordination changes."
+      ],
+      "bracing": [
+        "The source describes cross-body stabilization. Exact breathing timing is not specified."
+      ],
+      "mistakes": [
+        "Forcing straight knees or short hand/foot distance: keep a comfortable individual range.",
+        "Using an unsafe surface: choose clear stable ground and protect hands as appropriate."
+      ],
+      "sourceIds": [
+        87,
+        88,
+        554
+      ],
+      "videoSourceIds": [
+        87
+      ],
+      "evidence": [
+        {
+          "sourceId": 87,
+          "quote": "opposite hand opposite leg"
+        },
+        {
+          "sourceId": 88,
+          "quote": "30 seconds of work 30 seconds of break"
+        },
+        {
+          "sourceId": 554,
+          "quote": "anything above 90 seconds of quadruped movement on the ground in one direction starts to get very very hard on most people"
+        }
+      ],
+      "coverage": "reviewed outline",
+      "name": "Bear crawl",
+      "gear": "bodyweight",
+      "bodyweight": true,
+      "family": "ground",
+      "qualifications": [
+        "The source presents bear crawl before cat crawl. This is a teaching relationship, not automatic skill certification.",
+        "Four minutes under tension followed by one minute rest is a source example, not a beginner default or a workout assigned here.",
+        "Strength Lab applies a 30/30 learning structure with 2–4 bouts to this movement. The pairing, endpoints and advancement/recovery thresholds are app adaptations; longer source examples do not trigger automatic progression."
+      ]
+    },
+    "catCrawl": {
+      "purpose": "Low-knee quadruped travel, taught as a more demanding extension of bear-crawl coordination.",
+      "setup": [
+        "Start on hands and knees with toes tucked.",
+        "Hover knees around one to two inches from the ground only while comfortable and controlled."
+      ],
+      "steps": [
+        "Keep the spine approximately parallel to the floor and knees around a right angle.",
+        "Move opposite hand and leg, maintaining the low knee hover.",
+        "Use a short controlled practice period; return to grounded support when position fails."
+      ],
+      "bracing": [
+        "Maintain stable trunk support; the transcript does not establish a universal breath pattern."
+      ],
+      "mistakes": [
+        "Knees rising high or trunk losing position: return to stationary/earlier practice.",
+        "Treating advanced rails, stairs or height examples as entry practice: remain on safe ground."
+      ],
+      "sourceIds": [
+        82,
+        88,
+        554
+      ],
+      "videoSourceIds": [
+        82
+      ],
+      "evidence": [
+        {
+          "sourceId": 82,
+          "quote": "Whatever time under tension you do to start this movement"
+        },
+        {
+          "sourceId": 88,
+          "quote": "30 seconds of work 30 seconds of break"
+        },
+        {
+          "sourceId": 554,
+          "quote": "anything above 90 seconds of quadruped movement on the ground in one direction starts to get very very hard on most people"
+        }
+      ],
+      "coverage": "reviewed outline",
+      "name": "Cat crawl",
+      "gear": "bodyweight",
+      "bodyweight": true,
+      "family": "ground",
+      "qualifications": [
+        "The source discusses a four-minute goal, one-minute work/rest examples, and 60% of an observed controlled duration. These are contexts, not one universal dose.",
+        "No baseline test or automatic 60% calculation is added by this reference. Bear-crawl teaching is earlier context; eligibility is not automatically granted.",
+        "Strength Lab applies a 30/30 learning structure with 2–4 bouts to this movement. The pairing, endpoints and advancement/recovery thresholds are app adaptations; longer source examples do not trigger automatic progression."
+      ]
+    }
+  }
+}

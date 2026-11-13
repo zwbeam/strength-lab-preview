@@ -24,3 +24,15 @@ complex eligibility. Goblet history alone does not establish rack competence.
 Unrecorded left/right result fields stay blank, matching the existing explicit-
 actual save requirement. Check that these fields and the save feedback are clear
 on your phone. Double-club swing-clean is educational, not automatically dosed.
+
+
+Lifelong integration review: Settings now includes explicit matched club pairs
+and clear crawl space. Learn distinguishes the three programmable double-club
+foundations and programmable crawls from the two remaining instructional-only
+alternating patterns. Normal ABC can include eligible bodyweight support and
+opt-in paired clubs. Progress separates the technical club combination. Ordinary
+repetition work stays untimed. “Use prescribed intervals” copies a simple timed
+prescription into the existing timer; it neither starts physical work nor marks
+sets performed. Please review wording, interval setup and selection coherence on
+Android. Broader mixed programs can still revisit movements too infrequently;
+this is an open programming-continuity issue, not evidence of failed training.

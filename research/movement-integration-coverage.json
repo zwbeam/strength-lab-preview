@@ -1,0 +1,943 @@
+{
+  "scope": "Registry-to-engine implementation audit; shared execution/persistence/recovery/reporting contracts, not certification of human technique or all source integration.",
+  "rows": [
+    {
+      "id": "swing",
+      "name": "Two-hand swing",
+      "instruction": "reviewed outline",
+      "prerequisites": [],
+      "equipment": "kb",
+      "blocks": [
+        "abc"
+      ],
+      "profile": "legacy",
+      "sourceIds": [
+        299
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": true
+    },
+    {
+      "id": "squat",
+      "name": "Goblet squat",
+      "instruction": "reviewed outline",
+      "prerequisites": [],
+      "equipment": "kb",
+      "blocks": [
+        "abc"
+      ],
+      "profile": "legacy",
+      "sourceIds": [
+        304
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": true
+    },
+    {
+      "id": "press",
+      "name": "Single-arm strict press",
+      "instruction": "reviewed outline",
+      "prerequisites": [],
+      "equipment": "kb",
+      "blocks": [
+        "abc"
+      ],
+      "profile": "legacy",
+      "sourceIds": [
+        292
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": true
+    },
+    {
+      "id": "row",
+      "name": "Single-arm row",
+      "instruction": "reviewed outline",
+      "prerequisites": [],
+      "equipment": "kb",
+      "blocks": [
+        "abc"
+      ],
+      "profile": "legacy",
+      "sourceIds": [
+        424
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": true
+    },
+    {
+      "id": "clean",
+      "name": "Single-arm clean",
+      "instruction": "reviewed outline",
+      "prerequisites": [],
+      "equipment": "kb",
+      "blocks": [
+        "abc"
+      ],
+      "profile": "legacy",
+      "sourceIds": [
+        290
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": true
+    },
+    {
+      "id": "carry",
+      "name": "Suitcase carry",
+      "instruction": "app-authored practical guidance; source/video verification pending",
+      "prerequisites": [],
+      "equipment": "kb",
+      "blocks": [
+        "abc"
+      ],
+      "profile": "legacy",
+      "sourceIds": [],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": false
+    },
+    {
+      "id": "cast",
+      "name": "Two-hand shield cast",
+      "instruction": "partial: technique and prerequisites; clearance and breathing need visual verification",
+      "prerequisites": [],
+      "equipment": "club",
+      "blocks": [
+        "abc",
+        "club"
+      ],
+      "profile": "legacy",
+      "sourceIds": [
+        214,
+        222,
+        543
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": false
+    },
+    {
+      "id": "circles",
+      "name": "Two-hand club circles",
+      "instruction": "reviewed outline",
+      "prerequisites": [],
+      "equipment": "club",
+      "blocks": [
+        "abc",
+        "club"
+      ],
+      "profile": "legacy",
+      "sourceIds": [
+        237,
+        238
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": true
+    },
+    {
+      "id": "front",
+      "name": "Two-hand club front swing",
+      "instruction": "app-authored practical guidance; source/video verification pending",
+      "prerequisites": [],
+      "equipment": "club",
+      "blocks": [
+        "abc",
+        "club"
+      ],
+      "profile": "legacy",
+      "sourceIds": [],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": false
+    },
+    {
+      "id": "snatch",
+      "name": "Single-arm snatch",
+      "instruction": "partial: source-backed staged progression; ballistic timing requires video verification",
+      "prerequisites": [
+        "swing",
+        "clean",
+        "overhead"
+      ],
+      "equipment": "kb",
+      "blocks": [
+        "snatch"
+      ],
+      "profile": "snatch",
+      "sourceIds": [
+        413
+      ],
+      "exactParameters": 411,
+      "operational": true,
+      "sourceComplete": false
+    },
+    {
+      "id": "doublePress",
+      "name": "Double clean and press",
+      "instruction": "partial: sourced clean and press prerequisites; technique still needs visual verification",
+      "prerequisites": [
+        "rack",
+        "doublePress",
+        "practice:press",
+        "practice:doubleClean"
+      ],
+      "equipment": "owned matched kettlebell pair, kg per bell",
+      "blocks": [
+        "double"
+      ],
+      "profile": "grind",
+      "sourceIds": [
+        152,
+        365,
+        368
+      ],
+      "exactParameters": 366,
+      "operational": true,
+      "sourceComplete": false
+    },
+    {
+      "id": "doubleSquat",
+      "name": "Double front squat",
+      "instruction": "reviewed outline",
+      "prerequisites": [
+        "rack",
+        "doubleSquat",
+        "practice:singleRackSquat",
+        "practice:doubleClean"
+      ],
+      "equipment": "owned matched kettlebell pair, kg per bell",
+      "blocks": [
+        "double"
+      ],
+      "profile": "grind",
+      "sourceIds": [
+        186
+      ],
+      "exactParameters": 366,
+      "operational": true,
+      "sourceComplete": true
+    },
+    {
+      "id": "complexCleanPress",
+      "name": "Single-arm clean → press complex",
+      "instruction": "partial: combined technique outline; dose/rest are app defaults and visual review remains necessary",
+      "prerequisites": [
+        "practice:clean",
+        "practice:press"
+      ],
+      "equipment": "kb",
+      "blocks": [
+        "abc (conditional)"
+      ],
+      "profile": "legacy",
+      "sourceIds": [
+        295
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": false
+    },
+    {
+      "id": "complexCleanSquatPress",
+      "name": "Single-arm clean → squat → press complex",
+      "instruction": "partial: source-reviewed components; single-bell combination remains an app arrangement and transitions need visual verification",
+      "prerequisites": [
+        "practice:clean",
+        "practice:singleRackSquat",
+        "practice:press"
+      ],
+      "equipment": "kb",
+      "blocks": [
+        "abc (conditional)"
+      ],
+      "profile": "legacy",
+      "sourceIds": [
+        295,
+        305,
+        335
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": false
+    },
+    {
+      "id": "complexDoubleCleanSquatPress",
+      "name": "Double clean → squat → press complex",
+      "instruction": "partial: full sequence described in transcript; clearance and transitions need visual confirmation",
+      "prerequisites": [
+        "practice:doubleSquat",
+        "practice:doublePress"
+      ],
+      "equipment": "owned matched kettlebell pair, kg per bell",
+      "blocks": [
+        "abc (conditional)"
+      ],
+      "profile": "legacy",
+      "sourceIds": [
+        335
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": false
+    },
+    {
+      "id": "getup",
+      "name": "Turkish get-up",
+      "instruction": "partial: source-backed primer; full transitions still require video review",
+      "prerequisites": [
+        "floorPress",
+        "rollToElbow",
+        "pressToHand",
+        "hipPass",
+        "getupOverhead",
+        "getup"
+      ],
+      "equipment": "kb",
+      "blocks": [
+        "getup"
+      ],
+      "profile": "getup",
+      "sourceIds": [
+        423,
+        604
+      ],
+      "exactParameters": 423,
+      "operational": true,
+      "sourceComplete": false
+    },
+    {
+      "id": "clubInside",
+      "name": "Single-arm club inside circle",
+      "instruction": "reviewed outline",
+      "prerequisites": [
+        "clubTwoHandFoundation",
+        "clubGrip",
+        "clubInside"
+      ],
+      "equipment": "club",
+      "blocks": [
+        "singleClub"
+      ],
+      "profile": "singleClub",
+      "sourceIds": [
+        275
+      ],
+      "exactParameters": 578,
+      "operational": true,
+      "sourceComplete": true
+    },
+    {
+      "id": "clubOutside",
+      "name": "Single-arm club outside circle",
+      "instruction": "reviewed outline",
+      "prerequisites": [
+        "clubTwoHandFoundation",
+        "clubGrip",
+        "clubOutside"
+      ],
+      "equipment": "club",
+      "blocks": [
+        "singleClub"
+      ],
+      "profile": "singleClub",
+      "sourceIds": [
+        648
+      ],
+      "exactParameters": 578,
+      "operational": true,
+      "sourceComplete": true
+    },
+    {
+      "id": "clubShield",
+      "name": "Single-arm club shield cast",
+      "instruction": "reviewed outline",
+      "prerequisites": [
+        "clubTwoHandFoundation",
+        "clubGrip",
+        "clubShield"
+      ],
+      "equipment": "club",
+      "blocks": [
+        "singleClub"
+      ],
+      "profile": "singleClub",
+      "sourceIds": [
+        543
+      ],
+      "exactParameters": 578,
+      "operational": true,
+      "sourceComplete": true
+    },
+    {
+      "id": "getupFloor",
+      "name": "Get-up floor press practice",
+      "instruction": "reviewed outline",
+      "prerequisites": [
+        "floorPress"
+      ],
+      "equipment": "kb",
+      "blocks": [
+        "getupPractice"
+      ],
+      "profile": "getupDrill",
+      "sourceIds": [
+        422
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": true
+    },
+    {
+      "id": "getupElbow",
+      "name": "Get-up press to elbow",
+      "instruction": "reviewed outline",
+      "prerequisites": [
+        "floorPress",
+        "rollToElbow",
+        "practice:getupFloor"
+      ],
+      "equipment": "kb",
+      "blocks": [
+        "getupPractice"
+      ],
+      "profile": "getupDrill",
+      "sourceIds": [
+        298
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": true
+    },
+    {
+      "id": "getupHand",
+      "name": "Get-up press to hand",
+      "instruction": "reviewed outline",
+      "prerequisites": [
+        "floorPress",
+        "rollToElbow",
+        "pressToHand",
+        "practice:getupElbow"
+      ],
+      "equipment": "kb",
+      "blocks": [
+        "getupPractice"
+      ],
+      "profile": "getupDrill",
+      "sourceIds": [
+        372
+      ],
+      "exactParameters": 372,
+      "operational": true,
+      "sourceComplete": true
+    },
+    {
+      "id": "getupHipPass",
+      "name": "Get-up hip-pass practice",
+      "instruction": "reviewed outline",
+      "prerequisites": [
+        "floorPress",
+        "rollToElbow",
+        "pressToHand",
+        "hipPass",
+        "practice:getupHand"
+      ],
+      "equipment": "kb",
+      "blocks": [
+        "getupPractice"
+      ],
+      "profile": "getupDrill",
+      "sourceIds": [
+        324
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": true
+    },
+    {
+      "id": "clubInsidePendulum",
+      "name": "Single-arm club inside pendulum",
+      "instruction": "reviewed outline",
+      "prerequisites": [
+        "clubTwoHandFoundation",
+        "clubGrip",
+        "clubInside",
+        "clubOutside",
+        "clubShield",
+        "clubInsidePendulum",
+        "clubPendulumTwoHand",
+        "practice:clubInside",
+        "practice:clubOutside",
+        "practice:clubShield"
+      ],
+      "equipment": "club",
+      "blocks": [
+        "clubIntermediate"
+      ],
+      "profile": "clubIntermediate",
+      "sourceIds": [
+        260
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": true
+    },
+    {
+      "id": "clubOutsidePendulum",
+      "name": "Single-arm club outside pendulum",
+      "instruction": "reviewed outline",
+      "prerequisites": [
+        "clubTwoHandFoundation",
+        "clubGrip",
+        "clubInside",
+        "clubOutside",
+        "clubShield",
+        "clubOutsidePendulum",
+        "clubPendulumTwoHand",
+        "practice:clubInside",
+        "practice:clubOutside",
+        "practice:clubShield"
+      ],
+      "equipment": "club",
+      "blocks": [
+        "clubIntermediate"
+      ],
+      "profile": "clubIntermediate",
+      "sourceIds": [
+        265
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": true
+    },
+    {
+      "id": "clubFrontPullover",
+      "name": "Single-arm club front pullover",
+      "instruction": "reviewed outline",
+      "prerequisites": [
+        "clubTwoHandFoundation",
+        "clubGrip",
+        "clubInside",
+        "clubOutside",
+        "clubShield",
+        "clubFrontPullover",
+        "practice:clubShield"
+      ],
+      "equipment": "club",
+      "blocks": [
+        "clubIntermediate"
+      ],
+      "profile": "clubIntermediate",
+      "sourceIds": [
+        269
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": true
+    },
+    {
+      "id": "clubOutsidePullover",
+      "name": "Single-arm club outside pullover",
+      "instruction": "reviewed outline",
+      "prerequisites": [
+        "clubTwoHandFoundation",
+        "clubGrip",
+        "clubInside",
+        "clubOutside",
+        "clubShield",
+        "clubOutsidePullover",
+        "practice:clubFrontPullover"
+      ],
+      "equipment": "club",
+      "blocks": [
+        "clubIntermediate"
+      ],
+      "profile": "clubIntermediate",
+      "sourceIds": [
+        269
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": true
+    },
+    {
+      "id": "clubInsidePullover",
+      "name": "Single-arm club inside pullover three count",
+      "instruction": "reviewed outline",
+      "prerequisites": [
+        "clubTwoHandFoundation",
+        "clubGrip",
+        "clubInside",
+        "clubOutside",
+        "clubShield",
+        "clubInsidePullover",
+        "practice:clubOutsidePullover"
+      ],
+      "equipment": "club",
+      "blocks": [
+        "clubIntermediate"
+      ],
+      "profile": "clubIntermediate",
+      "sourceIds": [
+        624
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": true
+    },
+    {
+      "id": "hingePractice",
+      "name": "Unloaded hip-hinge practice",
+      "instruction": "reviewed outline",
+      "prerequisites": [
+        "hingePattern"
+      ],
+      "equipment": "bodyweight",
+      "blocks": [
+        "hingePractice"
+      ],
+      "profile": "hingePractice",
+      "sourceIds": [
+        704
+      ],
+      "exactParameters": 704,
+      "operational": true,
+      "sourceComplete": true
+    },
+    {
+      "id": "pushup",
+      "name": "Push-up EMOM volume",
+      "instruction": "partial: sourced EMOM volume progression; detailed hand placement and regressions unverified",
+      "prerequisites": [
+        "pushupTechnique"
+      ],
+      "equipment": "bodyweight",
+      "blocks": [
+        "pushup",
+        "abc (conditional)"
+      ],
+      "profile": "pushup",
+      "sourceIds": [
+        609
+      ],
+      "exactParameters": 609,
+      "operational": true,
+      "sourceComplete": false
+    },
+    {
+      "id": "hipDropTwoHand",
+      "name": "Two-hand hip-drop practice",
+      "instruction": "reviewed outline",
+      "prerequisites": [
+        "hipDropTwoHand"
+      ],
+      "equipment": "bodyweight",
+      "blocks": [
+        "bodyweight",
+        "groundPractice",
+        "abc (conditional)"
+      ],
+      "profile": "ground",
+      "sourceIds": [
+        84
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": true
+    },
+    {
+      "id": "hipDropSingleHand",
+      "name": "Single-hand hip-drop practice",
+      "instruction": "reviewed outline",
+      "prerequisites": [
+        "hipDropTwoHand",
+        "hipDropSingleHand",
+        "practice:hipDropTwoHand"
+      ],
+      "equipment": "bodyweight",
+      "blocks": [
+        "bodyweight",
+        "groundPractice",
+        "abc (conditional)"
+      ],
+      "profile": "ground",
+      "sourceIds": [
+        98
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": true
+    },
+    {
+      "id": "bearSquat",
+      "name": "Bear-squat mobility practice",
+      "instruction": "reviewed outline",
+      "prerequisites": [
+        "bearSquat"
+      ],
+      "equipment": "bodyweight",
+      "blocks": [
+        "bodyweight",
+        "groundPractice",
+        "abc (conditional)"
+      ],
+      "profile": "ground",
+      "sourceIds": [
+        100
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": true
+    },
+    {
+      "id": "deadlift",
+      "name": "Two-hand kettlebell deadlift",
+      "instruction": "reviewed outline",
+      "prerequisites": [
+        "hingePattern",
+        "deadliftTechnique",
+        "practice:hingePractice"
+      ],
+      "equipment": "kb",
+      "blocks": [
+        "hingePathway"
+      ],
+      "profile": "deadliftPractice",
+      "sourceIds": [
+        704
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": true
+    },
+    {
+      "id": "bodyweightSquat",
+      "name": "Bodyweight squat",
+      "instruction": "reviewed outline",
+      "prerequisites": [
+        "bodyweightSquat"
+      ],
+      "equipment": "bodyweight",
+      "blocks": [
+        "bodyweight",
+        "bodyweightFoundations",
+        "abc (conditional)"
+      ],
+      "profile": "ground",
+      "sourceIds": [
+        91
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": true
+    },
+    {
+      "id": "stepBackLunge",
+      "name": "Bodyweight step-back lunge",
+      "instruction": "reviewed outline",
+      "prerequisites": [
+        "stepBackLunge"
+      ],
+      "equipment": "bodyweight",
+      "blocks": [
+        "bodyweight",
+        "bodyweightFoundations",
+        "abc (conditional)"
+      ],
+      "profile": "ground",
+      "sourceIds": [
+        93
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": true
+    },
+    {
+      "id": "doubleClean",
+      "name": "Double kettlebell clean",
+      "instruction": "partial: hard-style transcript outline; paired clearance and catch still require visual verification",
+      "prerequisites": [
+        "rack",
+        "doubleClean",
+        "practice:clean"
+      ],
+      "equipment": "owned matched kettlebell pair, kg per bell",
+      "blocks": [
+        "doubleCleanPractice"
+      ],
+      "profile": "legacy",
+      "sourceIds": [
+        365
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": false
+    },
+    {
+      "id": "singleRackSquat",
+      "name": "Single-rack kettlebell front squat",
+      "instruction": "reviewed outline",
+      "prerequisites": [
+        "rack",
+        "singleRackSquat",
+        "practice:squat"
+      ],
+      "equipment": "kb",
+      "blocks": [
+        "rackSquatPractice"
+      ],
+      "profile": "legacy",
+      "sourceIds": [
+        305
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": true
+    },
+    {
+      "id": "doubleClubSwingClean",
+      "name": "Double-club swing clean to order",
+      "instruction": "partial: source-reviewed foundation; paired-club equipment, dose and visual verification remain incomplete",
+      "prerequisites": [
+        "clubGrip",
+        "clubTwoHandFoundation",
+        "doubleClubOrder",
+        "practice:clubInside",
+        "practice:clubOutside",
+        "practice:clubShield"
+      ],
+      "equipment": "owned matched club pair, lb per club",
+      "blocks": [
+        "doubleClub",
+        "abc (conditional)"
+      ],
+      "profile": "doubleClub",
+      "sourceIds": [
+        206
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": false
+    },
+    {
+      "id": "doubleClubPullover",
+      "name": "Double-club pullover",
+      "instruction": "partial: transcript-reviewed outline; overhead clearance and technique require visual review",
+      "prerequisites": [
+        "clubGrip",
+        "doubleClubOrder",
+        "doubleClubOverhead",
+        "doubleClubPullover",
+        "practice:doubleClubSwingClean",
+        "practice:clubShield"
+      ],
+      "equipment": "owned matched club pair, lb per club",
+      "blocks": [
+        "doubleClub",
+        "abc (conditional)"
+      ],
+      "profile": "doubleClub",
+      "sourceIds": [
+        205
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": false
+    },
+    {
+      "id": "doubleClubTechnicalSwipe",
+      "name": "Double-club technical swipe",
+      "instruction": "partial: transcript-reviewed four-count version; performance version and visual technique validation remain incomplete",
+      "prerequisites": [
+        "doubleClubOrder",
+        "doubleClubOverhead",
+        "doubleClubSwipe",
+        "practice:doubleClubSwingClean",
+        "practice:doubleClubPullover"
+      ],
+      "equipment": "owned matched club pair, lb per club",
+      "blocks": [
+        "doubleClub",
+        "abc (conditional)"
+      ],
+      "profile": "doubleClub",
+      "sourceIds": [
+        207,
+        206,
+        205
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": false
+    },
+    {
+      "id": "bearCrawl",
+      "name": "Bear crawl",
+      "instruction": "reviewed outline",
+      "prerequisites": [
+        "bearCrawl"
+      ],
+      "equipment": "bodyweight + confirmed traveling space",
+      "blocks": [
+        "bodyweight",
+        "abc (conditional)"
+      ],
+      "profile": "crawl",
+      "sourceIds": [
+        87,
+        88,
+        554
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": true
+    },
+    {
+      "id": "catCrawl",
+      "name": "Cat crawl",
+      "instruction": "reviewed outline",
+      "prerequisites": [
+        "bearCrawl",
+        "catCrawl",
+        "practice:bearCrawl"
+      ],
+      "equipment": "bodyweight + confirmed traveling space",
+      "blocks": [
+        "bodyweight",
+        "abc (conditional)"
+      ],
+      "profile": "crawl",
+      "sourceIds": [
+        82,
+        88,
+        554
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": true
+    }
+  ],
+  "instructionOnly": [
+    {
+      "id": "doubleClubInside",
+      "name": "Double-club alternating inside circles",
+      "coverage": "partial: source-reviewed outline; paired-club equipment/programming and visual technique validation remain incomplete",
+      "sourceIds": [
+        147
+      ]
+    },
+    {
+      "id": "doubleClubOutside",
+      "name": "Double-club alternating outside circles",
+      "coverage": "partial: source-reviewed outline; paired-club equipment/programming and visual technique validation remain incomplete",
+      "sourceIds": [
+        151
+      ]
+    }
+  ]
+}

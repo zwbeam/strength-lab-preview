@@ -1,37 +1,32 @@
-# Continue from the preview branch
+# Continue Strength Lab integration
 
-Use `zwbeam/strength-lab-preview`, branch `preview`. Read README and
-research/development-batches.md, research/movement-programming-coverage.md,
-research/curriculum-batch-2026-11-13.json, and the current Actions results first.
-The older strength-lab repository and archived legacy branches are separate.
-Do not delete or overwrite them. Do not promote Cloudflare/production.
+Use zwbeam/strength-lab-preview branch preview. Read README.md,
+DEVELOPMENT-STATUS.md, MOVEMENT-INTEGRATION-COVERAGE.md, and the latest entries in
+research/development-batches.md. Preserve production, existing V33 keys/history,
+writer locks, draft transactions, backups, correction replay and archive branches.
 
-The November 13 batches repair Learn missing-entry crashes, bounded filtered
-history, disclosure retention and the stale offline-cache browser assertion.
-They inventory 720 archived sources / 719 usable per supplied accounting, add
-four opt-in engine movements and five education-only lessons, and restore
-optional detailed programming access in Advanced Settings. All new numeric
-practice doses and admission gates are app decisions, not source prescriptions.
-The eight Book outlines remain separate and provisional.
+The first lifelong-integration checkpoint is d8a2d96 (all remote checks passed).
+Subsequent work promotes crawls, adds ABC support selection, connects paired
+kettlebell preparation, clarifies complex sequences and repairs light-day evidence
+retention. Inspect the actual latest GitHub commit and checks before continuing.
+Do not assume a later checkpoint passed just because this file exists.
 
-Next: verify current commit's audit AND browser jobs; inspect the live Pages
-preview and its service-worker revision. Continue double-club equipment and foundation programming (#206 close-read;
-#205/#207 still need close review), and quadruped timing/protocol integration
-(#85/#88/#554 need close reading). Source #305 now supplies a distinct rack-squat
-lesson, opt-in practice block and evidence gate before the single-bell triad.
-Its combination transitions still need visual verification.
-Double-club pair equipment and automatic scheduling are not implemented yet.
-Do not schedule the five instruction-only references or award them credit.
+Run all non-browser tests/*.js, the history-corrections.test.cjs suite, and the
+four browser suites: browser-smoke.js, browser-curriculum.cjs,
+browser-integration.cjs and browser-demo-history.js (generate its synthetic backup
+first). Serve at 127.0.0.1:8765. Installed Chromium may be selected locally with
+PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium. Actions uses its own bundle.
+Run scripts/audit-curriculum.cjs and scripts/audit-integration.cjs; generated
+reports must remain reproducible. All source quotes/hashes must resolve to actual
+archive text; #441 is unusable. No invented source prescriptions or timestamps.
 
-Use `node scripts/audit-curriculum.cjs` to reproduce the coverage inventory.
-Run every non-browser tests/*.js, `node --test tests/history-corrections.test.cjs`,
-then browser-smoke.js, browser-curriculum.cjs, and browser-demo-history.js after
-its demo generator. Serve the repo at 127.0.0.1:8765. Local system Chromium can
-be selected with PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH; CI uses bundled Chromium.
-Watch current CI annotations; network policy may block signed log-download URLs.
+Highest next priorities: movement-level continuity under broad mixed programming
+(the stress simulations show frequent re-entry with too many active patterns),
+then source-grounded alternating double-club cycles and additional bodyweight
+pulling/step-up/sliding pathways. Full #85/#88 timing-series context is not
+implemented. Double swing/outside-swing remain missing from the broader #186
+teaching sequence. Do not claim complete lifetime curriculum coverage.
 
-Full master review ledger and anchored external independent reviews are not
-available. The 214 journal keys match the archive; supplied fingerprints do not.
-Do not equate accounting completion, title discovery, or manuscript possession
-with newly verified technical instruction or complete engine integration.
-Preserve V33 keys, backups, writer locks, draft journal and correction replay.
+Physical Android review is separate from browser emulation. Keep eight Books
+separate from the Movement Library; no further major interface redesign without
+user review. Work in tested commits on preview; no production promotion.
