@@ -5,6 +5,16 @@ const {chromium}=require('playwright');
  try{
   for(const viewport of [{width:320,height:700},{width:390,height:844},{width:832,height:384},{width:1280,height:800}]){
    const page=await browser.newPage({viewport});
+   const openMovementHistoryFromOverview=async id=>{
+    const button=page.locator('[data-movement-history="'+id+'"]').first();
+    await button.evaluate(el=>{
+     const movement=el.closest('details.overview-movement');
+     const group=movement?.closest('details.training-overview-group');
+     if(group)group.open=true;
+     if(movement)movement.open=true;
+    });
+    await button.click();
+   };
    const errors=[];
    page.on('pageerror',e=>errors.push(e.message));
    page.on('console',message=>{if(message.type()==='error')errors.push('Console error: '+message.text());});
@@ -681,7 +691,7 @@ const {chromium}=require('playwright');
    if(await page.locator('.notebook-table tbody tr').count()!==120)throw Error('Notebook pagination did not show 120 rows');
    await page.locator('[data-more-notebook]').click();
    if(await page.locator('.notebook-table tbody tr').count()!==180)throw Error('Third notebook page should show 180 rows from 540-session history');
-   await page.locator('[data-movement-history="swing"]').first().click();
+   await openMovementHistoryFromOverview('swing');
    const dialog=page.locator('#movement-history-dialog');
    if(!await dialog.evaluate(el=>el.open))throw Error('Movement history did not open');
    if(await dialog.locator('tbody tr').count()!==60)throw Error('Movement history initial page should show 60 rows');
@@ -703,7 +713,7 @@ const {chromium}=require('playwright');
    if(!await page.locator('.notebook-table').isVisible())
     throw Error('Training Log table hidden after returning from Learn');
    console.log('540-session Training Log pagination passed at '+viewport.width+'px; initial render '+logRenderMs+'ms');
-   await page.locator('[data-movement-history="swing"]').first().click();
+   await openMovementHistoryFromOverview('swing');
    await dialog.locator('[data-history-view]').first().click();
    if(await dialog.evaluate(el=>el.open))throw Error('History dialog remained open after selecting a session');
    if(!await page.locator('[data-history]').count())throw Error('Selected workout details did not render');
@@ -893,7 +903,7 @@ const {chromium}=require('playwright');
     return {weights:JSON.stringify(state.nextWeights),equipment:JSON.stringify(state.equipment),
       oldest:JSON.stringify(state.sessions[0]),count:state.sessions.length};
    });
-   await page.locator('[data-movement-history="swing"]').first().click();
+   await openMovementHistoryFromOverview('swing');
    await dialog.locator('[data-history-view]').first().click();
    await page.locator('[data-edit-history]').first().click();
    await page.locator('#history-notes').fill('Decade-scale corrected session');
