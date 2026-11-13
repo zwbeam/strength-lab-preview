@@ -760,3 +760,7 @@ details.preparation .prep-exercise .rx,details.preparation .prep-exercise .rx *{
 .training-plan-disclosure .training-plan-option[open]>summary{border-bottom:1px solid #b5b4b0!important}
 .training-plan-disclosure .training-plan-option-body .small,
 .training-plan-disclosure .training-plan-option-body .muted{color:#303437!important}
+
+/* Mobility launch: same prominent teal action treatment as training launch. */
+#mobility-session #start-mobility.mobility-start-button{display:block;width:100%!important;box-sizing:border-box;background:#28b8aa!important;color:#081b1b!important;border:1px solid #54d6c8!important;border-radius:10px!important;font-weight:800!important;text-align:center!important;white-space:normal!important;padding:12px 14px!important;min-height:48px!important}
+#mobility-session #start-mobility.mobility-start-button:hover{background:#4ed1c2!important}
