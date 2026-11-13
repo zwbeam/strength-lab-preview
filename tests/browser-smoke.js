@@ -1,5 +1,7 @@
 'use strict';
 const {chromium}=require('playwright');
+const swText=require('node:fs').readFileSync(require('node:path').join(__dirname,'../sw.js'),'utf8');
+const expectedCache=JSON.parse(swText.match(/const PREFIX=("[^"]+")/)[1])+JSON.parse(swText.match(/const CACHE=PREFIX\+("[^"]+")/)[1]);
 (async()=>{
  const browser=await chromium.launch({headless:true,...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH?{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH}:{})});
  try{
@@ -1065,8 +1067,8 @@ const {chromium}=require('playwright');
      active:(await navigator.serviceWorker.ready).active?.scriptURL,
      caches:await caches.keys()
     }));
-    if(!cacheIdentity.caches.includes('sl-dev-preview-cache-rc25-compact-training-plan-20261113'))
-     throw Error('Expected RC25 offline cache was not installed: '+JSON.stringify(cacheIdentity));
+    if(!cacheIdentity.caches.includes(expectedCache))
+     throw Error('Expected '+expectedCache+' offline cache was not installed: '+JSON.stringify(cacheIdentity));
     await page.reload({waitUntil:'domcontentloaded'});
     await page.waitForFunction(()=>navigator.serviceWorker.controller!==null);
     await page.context().setOffline(true);
