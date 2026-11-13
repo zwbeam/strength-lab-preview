@@ -220,3 +220,37 @@ components now appear in the Combinations section without duplicate map edges.
 This changes presentation of existing relationships, not progression gates.
 Cache revision rc31-integration-copy-20261113; current commit requires independent
 QA again. Physical Android review remains outstanding.
+
+
+## Movement-level continuity checkpoint
+
+Started clean at origin/preview 1d5e059. Reused reviewed #85 Tetris/interleaving
+principles; the following scheduling rules and numeric limits are original app
+choices, not new source prescriptions. No transcript completion count changes.
+
+Coordinated selection first preserves the existing unfinished-work priority,
+then considers eligible movements approaching the configured return window,
+based on observed training intervals. A clean reduced return can receive up to
+two short follow-ups before another ready block gets its turn. Pain/technique
+failures, equipment loss, readiness reductions, gap re-entry and time limits
+remain enforced. A saved opt-out restores least-recent-block selection.
+
+Cadence feedback uses actual movement dates and recorded re-entry modes, names
+up to three affected patterns and excludes disabled families and future records.
+It does not infer physiology or technical mastery. Plan snapshots retain compact
+summaries rather than copying the entire analysis. Calendar/notebook forecasts
+disable hypothetical continuity priority after the first recommendation; empty
+sequence placeholders never stand in for future practice.
+
+Local synthetic comparison against 1d5e059: mixed four-block three-year re-entry
+sessions 317 → 240; club/bodyweight 183 → 170; bodyweight 30 → 31; single club block
+102 unchanged. These results are test observations, not guaranteed outcomes.
+Overloaded rotations remain a documented limitation; no evidence gate was relaxed.
+
+Verification: 32 non-browser Node suites passed plus history-corrections CJS.
+Targeted touch acceptance at 320/390 verifies the actual explanation, opt-out
+persistence/reload, opt-in restoration and partial follow-up workout saving.
+Existing full browser smoke and remaining suites are rerun by current-commit CI.
+V33 keys, prior backup formats, timer behavior, eight Books and production remain
+unchanged. See tests/continuity-regression.js for failure, gap, duration, fairness,
+future projection and immutable replay assertions.

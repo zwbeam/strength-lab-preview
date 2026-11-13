@@ -50,10 +50,20 @@ or physical Android/technique validation.
 Remaining: alternating double-club/performance systems, broader bodyweight/paired
 kettlebell pathways and complexes, visual technique validation and missing source
 mappings. Mixed schedules with too many independently rotated movements can
-require frequent re-entry. Current cadence warnings are block-level; refine
-movement-level continuity conservatively rather than weakening evidence gates.
+require frequent re-entry. Movement-level cadence feedback and bounded follow-up priority now reduce avoidable
+re-entry; broad schedules can still exceed a sustainable return cadence. Keep
+eligibility gates intact when refining selection.
 The master source ledger/anchored external reviews remain unavailable, so source
 accounting completion must not be presented as full engine integration.
 
 Continue from NEXT-CONTINUATION.md. Preserve V33 keys, backup compatibility,
 active drafts, writer locks, correction replay and archived recovery branches.
+
+
+Continuity checkpoint: coordinated programs default to protecting eligible
+movements near the configured return window, then a bounded follow-up after
+clean reduced return practice. At most two extra consecutive sessions when
+another block is ready. Advanced Settings can disable this priority. Warnings
+name up to three affected movements; only compact feedback is stored in plan
+snapshots. Provisional future sessions never assume a follow-up was performed.
+All doses, load choices, recovery gates and source profiles remain unchanged.

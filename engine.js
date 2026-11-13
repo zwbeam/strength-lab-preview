@@ -374,6 +374,7 @@ function validateActivity(a){
  if(a.versions!==undefined){if(!Array.isArray(a.versions)||a.versions.length>1000)throw Error('Invalid activity versions');for(const v of a.versions){if(!v||typeof v.at!=='string'||!Number.isFinite(Date.parse(v.at))||v.before?.versions!==undefined)throw Error('Invalid activity version');validateActivity(v.before);}}
  return a;
 }
+function movementEnabled(s,id){const pref=s.trainingPreferences||{},emphasis=pref.emphasis?trainingEmphasis(s).levels:null;const m=MOVES[id];if(!m)return false;if(emphasis&&(emphasis[m.complex?'complex':m.bodyweight?'bodyweight':m.gear]||'minor')==='off')return false;if(m.bodyweight)return pref.useBodyweight!==false;if(m.gear==='kb')return pref.useKb!==false&&(!m.pair||pref.useDoubleKb===true);if(m.gear==='club')return pref.useClub!==false&&(!m.clubPair||pref.useDoubleClub===true)&&(!['cast','circles','front'].includes(id)||pref.useTwoHandClub!==false);return true;}
 function blockPlan(s,opts={}){
  const block=s.programBlock||'abc';if(!BLOCKS[block])throw Error('Unknown program block');
  const preferences=s.trainingPreferences||{};
@@ -395,7 +396,7 @@ function blockPlan(s,opts={}){
  const maxMain=flexMax-budget.warmup-budget.cooldown;
  const pref=s.trainingPreferences||{};
  const emphasis=pref.emphasis?trainingEmphasis(s).levels:null;
- const enabled=id=>{const m=MOVES[id];if(!m)return false;if(emphasis&&(emphasis[m.complex?'complex':m.bodyweight?'bodyweight':m.gear]||'minor')==='off')return false;if(m.bodyweight)return pref.useBodyweight!==false;if(m.gear==='kb')return pref.useKb!==false&&(!m.pair||pref.useDoubleKb===true);if(m.gear==='club')return pref.useClub!==false&&(!m.clubPair||pref.useDoubleClub===true)&&(!['cast','circles','front'].includes(id)||pref.useTwoHandClub!==false);return true;};
+ const enabled=id=>movementEnabled(s,id);
  if(block==='abc'){
   const fallback=pref.useKb!==false?['squat','press','row']:pref.useClub!==false?(pref.useTwoHandClub!==false?['front','circles','cast']:['clubInside','clubOutside']):[['bodyweightSquat','stepBackLunge','hingePractice'],['hipDropTwoHand','bearCrawl','bearSquat','hingePractice'],['pushup','catCrawl','hipDropSingleHand','hingePractice']][slot];
   if(!day.ids.some(enabled))day={name:pref.useKb!==false?'Strength fundamentals':pref.useClub!==false?'Club fundamentals':'Bodyweight fundamentals',focus:'Equipment-compatible foundation practice',ids:fallback.filter(enabled)};
@@ -573,6 +574,57 @@ function mobilityOnlyPlan(s,opts={}){
   reentry:false,cap:0,budget:{...budget,targetMain:0,flexMax:total,main:0},extended:false,
   mobilityOnly:true,mobilityMinutes:total};
 }
+// Scheduling feedback and bounded continuity are app decisions, not source prescriptions.
+function movementCadence(s,ids,now,absenceDays){
+ const day=calendarDay(now),allowed=new Set(ids),rows=[];
+ for(const id of allowed){
+  const h=records(s,id).filter(x=>x.actualSets>0&&calendarDay(x.date)<=day&&day-calendarDay(x.date)<56);
+  if(!h.length)continue;
+  const dates=[...new Set(h.map(x=>x.date))].sort(),lastDate=dates.at(-1);
+  const meanDays=dates.length>=3?Math.ceil((calendarDay(lastDate)-calendarDay(dates[0]))/(dates.length-1)):null;
+  const reentries=h.filter(x=>x.mode==='reentry').length;
+  rows.push({id,name:MOVES[id].name,sampleDays:dates.length,lastDate,gapDays:day-calendarDay(lastDate),meanDays,reentries,atRisk:meanDays!==null&&meanDays>absenceDays,repeatedReentry:reentries>=2});
+ }
+ return rows.sort((a,b)=>Number(b.repeatedReentry)-Number(a.repeatedReentry)||b.reentries-a.reentries||a.id.localeCompare(b.id));
+}
+function continuityCandidate(s,candidates,history,opts){
+ if(opts.projection||s.programComposition?.continuity===false)return null;
+ const physical=history.filter(x=>(x.items||[]).some(y=>y.actualSets>0)),latest=physical.at(-1);
+ if(!latest)return null;
+ const block=latest.block||'abc',candidate=candidates.find(x=>x.block===block&&x.p.items.length);
+ if(!candidate)return null;
+ // At most two follow-ups (three consecutive sessions total); never consume a
+ // blocked opportunity or silently keep every other selected block waiting.
+ let run=0;for(let i=physical.length-1;i>=0&&(physical[i].block||'abc')===block;i--)run++;
+ if(run>=3&&candidates.some(x=>x.block!==block&&x.p.items.length))return null;
+ const ids=(latest.items||[]).filter(x=>x.performed&&x.quality==='clean'&&!x.pain).filter(x=>candidate.p.items.some(rx=>rx.id===x.id&&!['review','prerequisite','reentry'].includes(rx.mode)));
+ for(const item of ids){
+  const evidence=practiceEvidence(s,item.id,opts);
+  const returning=item.mode==='reentry';
+  const recentReturn=physical.slice(-run).some(x=>(x.items||[]).some(y=>y.id===item.id&&y.mode==='reentry'&&y.performed&&y.quality==='clean'&&!y.pain));
+  const learning=recentReturn&&evidence.recent&&evidence.count>0&&evidence.count<evidence.required;
+  if(returning||learning)return{candidate,id:item.id,reason:returning?'Follow up recent reduced return practice':'Build on recent clean supporting practice'};
+ }
+ return null;
+}
+function retentionCandidate(s,candidates,history,opts){
+ if(opts.projection||s.programComposition?.continuity===false)return null;
+ const days=[...new Set(history.filter(x=>(x.items||[]).some(y=>y.actualSets>0)).map(x=>calendarDay(x.date)))].slice(-8);
+ const interval=days.length>=3?Math.max(1,Math.ceil((days.at(-1)-days[0])/(days.length-1))):Math.ceil(7/(s.trainingPreferences?.daysPerWeek||3));
+ const physical=history.filter(x=>(x.items||[]).some(y=>y.actualSets>0));
+ const absence=s.trainingDefaults?.reentryDays??14,latest=physical.at(-1),block=latest?.block||'abc';
+ let run=0;for(let i=physical.length-1;i>=0&&(physical[i].block||'abc')===block;i--)run++;
+ const due=[];
+ for(const candidate of candidates){
+  if(run>=3&&candidate.block===block&&candidates.some(x=>x.block!==block&&x.p.items.length))continue;
+  for(const rx of candidate.p.items){
+   if(!['volume','light','density','milestone'].includes(rx.mode))continue;
+   const gap=movementGap(s,rx.id,opts.now);
+   if(gap>0&&gap<=absence&&gap+interval>absence)due.push({candidate,id:rx.id,gap});
+  }
+ }
+ return due.sort((a,b)=>b.gap-a.gap||a.candidate.last-b.candidate.last)[0]||null;
+}
 function plan(s,opts={}){
  if(s.trainingPreferences?.mobilityOnly===true)return mobilityOnlyPlan(s,opts);
  const c=s.programComposition;
@@ -587,7 +639,9 @@ function plan(s,opts={}){
   return {block,order,last,p};
  }).sort((a,b)=>a.last-b.last||a.order-b.order);
  const latest=history.at(-1),unfinished=latest?.calendarVersion===1&&latest.items.some(x=>x.actualSets>0)&&latest.items.some(x=>!x.performed)?candidates.find(x=>x.block===(latest.block||'abc')&&x.p.items.length):null;
- const chosen=unfinished||candidates.find(x=>x.p.items.length)||candidates[0],p=chosen.p;
+ const retention=unfinished?null:retentionCandidate(s,candidates,history,opts);
+ const continuity=unfinished||retention?null:continuityCandidate(s,candidates,history,opts);
+ const chosen=unfinished||retention?.candidate||continuity?.candidate||candidates.find(x=>x.p.items.length)||candidates[0],p=chosen.p;
  const recovery=p.items.some(x=>['recovery','reentry','rebuild','deload'].includes(x.mode));
  const skill=p.support.length>0||['getupPractice','clubIntermediate','groundPractice','hingePractice','hingePathway'].includes(p.block);
  const intensity=p.items.some(x=>x.track==='heavy'||x.profile==='grind'||x.mode==='density');
@@ -597,15 +651,20 @@ function plan(s,opts={}){
  const trainingDays=[...new Set(history.filter(x=>day-calendarDay(x.date)<56&&(x.items||[]).some(y=>y.actualSets>0)).map(x=>calendarDay(x.date)))].sort((a,b)=>a-b);
  const estimatedReturnDays=trainingDays.length>=4?Math.ceil((trainingDays.at(-1)-trainingDays[0])/(trainingDays.length-1)*c.blocks.length):null;
  const absenceDays=s.trainingDefaults?.reentryDays??14;
- const cadence={sampleDays:trainingDays.length,estimatedReturnDays,absenceDays,warning:estimatedReturnDays!==null&&estimatedReturnDays>absenceDays?'At your recent training frequency, revisiting every selected block may take longer than the absence window. Consider fewer active blocks; do not add catch-up work.':null};
+ const activeIds=[...new Set(candidates.flatMap(x=>[...BLOCKS[x.block].days.flatMap(d=>d.ids),...x.p.items.map(rx=>rx.id)]))].filter(id=>movementEnabled(s,id));
+ const movementRows=opts.projection?[]:movementCadence(s,activeIds,opts.now,absenceDays);
+ const repeated=movementRows.filter(x=>x.repeatedReentry),risk=movementRows.filter(x=>x.atRisk);
+ const movementWarning=repeated.length?'Repeated reduced returns: '+repeated.slice(0,3).map(x=>x.name).join(', ')+(repeated.length>3?' and '+(repeated.length-3)+' more':'')+'. Consider fewer active patterns; missed work has not earned progression credit.':risk.length?'Some movements are recurring less often than the configured return window: '+risk.slice(0,3).map(x=>x.name).join(', ')+'. Review the rotation rather than adding catch-up work.':null;
+ const cadence={movements:movementRows.filter(x=>x.repeatedReentry||x.atRisk).slice(0,3),movementSummary:{observed:movementRows.length,repeatedReentry:repeated.length,atRisk:risk.length},retention:retention?{id:retention.id,block:chosen.block}:null,continuity:continuity?{id:continuity.id,block:chosen.block}:null,sampleDays:trainingDays.length,estimatedReturnDays,absenceDays,warning:movementWarning||(estimatedReturnDays!==null&&estimatedReturnDays>absenceDays?'At your recent training frequency, revisiting every selected block may take longer than the absence window. Consider fewer active blocks; do not add catch-up work.':null)};
  const reason=!p.items.length?'All selected blocks are currently blocked or do not fit. Review the reasons below.':
-  (unfinished?'Continue the last unfinished workout before later blocks.':chosen.last<0?'This selected block has not yet been practiced.':'This is the least recently practiced selected block that is ready and fits today.')+
+  (unfinished?'Continue the last unfinished workout before later blocks.':retention?'Revisit '+MOVES[retention.id].name+' before its configured return window is exceeded, based on your recorded training frequency.':continuity?continuity.reason+' for '+MOVES[continuity.id].name+'. Existing progression and recovery requirements still apply.':chosen.last<0?'This selected block has not yet been practiced.':'This is the least recently practiced selected block that is ready and fits today.')+
   (pending.length?' Unfinished movements are considered first within this block.':'')+
   (p.support.length?' Supporting foundation practice is included to regain eligibility.':'');
  const status=x=>x.p.items.length?'Ready':x.p.paused?'Paused':x.p.held.length?'Pain review':x.p.scheduled.length?'Recovery schedule':x.p.prerequisite.length?'Prerequisites':x.p.unavailable.length?'Equipment':'Needs more time';
  return {...p,composition:{emphasis,reason,hardRecent,cadence,candidates:candidates.map(x=>({block:x.block,status:status(x)})),sourceIds:[548,578,...(p.items.some(x=>x.bodyweight)?[85]:[])],provenance:'Block selection, spacing and priority are configurable Strength Lab defaults; source methods remain independent.'}};
 }
 function validateComposition(c){
+ if(c?.continuity!==undefined&&typeof c.continuity!=='boolean')throw Error('Invalid continuity preference');
  if(!c||typeof c!=='object'||Array.isArray(c)||typeof c.enabled!=='boolean'||!Array.isArray(c.blocks)||!c.blocks.length||c.blocks.length>Object.keys(BLOCKS).length||new Set(c.blocks).size!==c.blocks.length||c.blocks.some(id=>!Object.hasOwn(BLOCKS,id)))throw Error('Select unique known training blocks');
  for(const key of ['minGapDays','hardGapDays'])if(c[key]!==undefined&&(!Number.isInteger(c[key])||c[key]<0||c[key]>7))throw Error('Composition spacing must be 0–7 days');
 }
@@ -787,5 +846,5 @@ function validateBackup(input){
  const workoutDraft=validateDraft(input.workoutDraft,input);
  return JSON.parse(JSON.stringify({...input,workoutDraft,nextWeights:input.nextWeights||{},defaultMinutes:input.defaultMinutes??45,deferredIds:input.deferredIds||[]}));
 }
-return{trainingEmphasis,validateTrainingEmphasis,emphasisDistribution,mobilityOnlyPlan,COMPLEX_PATHWAYS,complexityOptions,repairMissingLoadAnchor,replaceUnavailableLoad,availableWorkingLoads,trainingPaused,activityRecovery,validateActivity,MOVES,SKILLS,DAYS,BLOCKS,LOADS,PROFILE_NAMES,describeProgression,policyFor,availableProfiles,configureMovement,practiceEvidence,supportingMoves,requirementLabel,prerequisites,chooseCycle,loadOptions,selectLoad,retestPushup,validWorkingWeight,validateProgramming,validateDraft,validateBackup,records,successful,stateFor,prescription,minutesFor,timeBudget,plan,completeRecord,nextRest,deferredAfter,resolvePain,movementGap,movementDemands};
+return{trainingEmphasis,validateTrainingEmphasis,emphasisDistribution,mobilityOnlyPlan,COMPLEX_PATHWAYS,complexityOptions,repairMissingLoadAnchor,replaceUnavailableLoad,availableWorkingLoads,trainingPaused,activityRecovery,validateActivity,movementCadence,MOVES,SKILLS,DAYS,BLOCKS,LOADS,PROFILE_NAMES,describeProgression,policyFor,availableProfiles,configureMovement,practiceEvidence,supportingMoves,requirementLabel,prerequisites,chooseCycle,loadOptions,selectLoad,retestPushup,validWorkingWeight,validateProgramming,validateDraft,validateBackup,records,successful,stateFor,prescription,minutesFor,timeBudget,plan,completeRecord,nextRest,deferredAfter,resolvePain,movementGap,movementDemands};
 });

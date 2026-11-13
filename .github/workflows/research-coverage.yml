@@ -111,6 +111,7 @@ jobs:
           retention-days: 14
       - name: Validate movement mappings and source integrity
         run: |
+          node tests/continuity-regression.js
           node tests/lifelong-integration.js
           node tests/movement-integration.js
           node tests/curriculum-integration.js
@@ -252,6 +253,7 @@ jobs:
           node tests/browser-smoke.js
           node tests/browser-curriculum.cjs
           node tests/browser-integration.cjs
+          node tests/browser-continuity.cjs
           node tests/generate-demo-backup.cjs strength-lab-engine-demo-backup.json
           node tests/browser-demo-history.js
       - name: Publish UI review handoff summary

@@ -12,17 +12,18 @@ retention. Inspect the actual latest GitHub commit and checks before continuing.
 Do not assume a later checkpoint passed just because this file exists.
 
 Run all non-browser tests/*.js, the history-corrections.test.cjs suite, and the
-four browser suites: browser-smoke.js, browser-curriculum.cjs,
-browser-integration.cjs and browser-demo-history.js (generate its synthetic backup
+five browser suites: browser-smoke.js, browser-curriculum.cjs,
+browser-integration.cjs, browser-continuity.cjs and browser-demo-history.js (generate its synthetic backup
 first). Serve at 127.0.0.1:8765. Installed Chromium may be selected locally with
 PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium. Actions uses its own bundle.
 Run scripts/audit-curriculum.cjs and scripts/audit-integration.cjs; generated
 reports must remain reproducible. All source quotes/hashes must resolve to actual
 archive text; #441 is unusable. No invented source prescriptions or timestamps.
 
-Highest next priorities: movement-level continuity under broad mixed programming
-(the stress simulations show frequent re-entry with too many active patterns),
-then source-grounded alternating double-club cycles and additional bodyweight
+Movement-level continuity now includes bounded return follow-ups, impending
+return-window priority and per-movement feedback. It reduces avoidable re-entry
+without changing qualification. Further evaluate oversized mixed schedules;
+source-grounded alternating double-club cycles remain a next priority and additional bodyweight
 pulling/step-up/sliding pathways. Full #85/#88 timing-series context is not
 implemented. Double swing/outside-swing remain missing from the broader #186
 teaching sequence. Do not claim complete lifetime curriculum coverage.

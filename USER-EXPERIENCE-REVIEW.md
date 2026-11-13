@@ -36,3 +36,11 @@ prescription into the existing timer; it neither starts physical work nor marks
 sets performed. Please review wording, interval setup and selection coherence on
 Android. Broader mixed programs can still revisit movements too infrequently;
 this is an open programming-continuity issue, not evidence of failed training.
+
+
+Continuity review: Why this workout now explains bounded return follow-ups and
+movement retention priority. Rotation notes name actual repeatedly returning
+patterns. Advanced Movement Programming has an opt-out; existing block choices
+and history are retained. Check that these explanations help you understand the
+next workout and that upcoming weeks remain visibly provisional. No new major
+interface redesign is introduced.

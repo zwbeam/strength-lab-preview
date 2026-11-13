@@ -55,6 +55,11 @@ for(const config of [{name:'mixed',kb:true,club:true,bw:true,blocks:['abc','doub
  if(config.club)assert.ok(seen.has('doubleClubSwingClean'),'paired-club foundation missing '+config.name);
  if(config.kb)assert.ok(seen.has('doubleClean'),'paired-kb foundation missing');
  E.validateBackup(JSON.parse(JSON.stringify(s)));results.push({scenario:config.name,...counts,movements:[...seen]});
+ // Fixed historical baselines from checkpoint 1d5e059; bounds are synthetic QA,
+ // not predictions about any user's physiology. Single-block behavior is unchanged.
+ if(config.name==='mixed')assert.ok(counts.return<=280,'Mixed-program re-entry regression');
+ if(config.name==='club-bodyweight')assert.ok(counts.return<=200,'Club/bodyweight re-entry regression');
+ if(config.name==='bodyweight')assert.ok(counts.return<=40,'Bodyweight rotation regression');
 }
 // Explicit crawl progression and incomplete duration cannot become qualification.
 const c=fresh();c.programBlock='bodyweight';c.trainingPreferences.crawlSpace=true;

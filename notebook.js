@@ -11,7 +11,7 @@ function cycle(s,opts={}){
  // future skill confirmations, dates, load increases or progression evidence.
  const offset=Math.max(0,Math.min(90,Number(opts.offset)||0));
  for(let i=0;i<offset+Math.min(12,span);i++){
-  const p=E.plan(sim,{...opts,minutes:s.defaultMinutes||45,readiness:'normal'});
+  const p=E.plan(sim,{...opts,projection:i>0,minutes:s.defaultMinutes||45,readiness:'normal'});
   rows.push({number:count+i+1,key:String(count+i+1),plan:p,provisional:i>0});
   if(sim.programComposition?.enabled){const ids=sim.programComposition.blocks,at=ids.indexOf(p.block);sim.programComposition.blocks=[...ids.slice(at+1),...ids.slice(0,at+1)];
    // Coordinate by existing last-practiced ordering, with a separate ordering marker.

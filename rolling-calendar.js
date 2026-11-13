@@ -20,7 +20,7 @@ function project(s,now,end=add(now,83),opts={}){
   if(events.some(a=>a.replacesStrength!==false)||recent)continue;
   if(s.sessions.some(x=>x.date===cursor&&(x.items||[]).some(y=>y.actualSets>0)))continue;
   const allDays=[...new Set([...history.map(x=>x.date),...planned.map(x=>x.date)])];if(allDays.filter(d=>diff(cursor,d)>=0&&diff(cursor,d)<7).length>=days)continue;
-  const p=E.plan(virtual,{now:cursor,minutes:cursor===now&&i===0?opts.minutes??s.defaultMinutes??45:s.defaultMinutes||45,readiness:cursor===now&&i===0?opts.readiness:'normal'});if(!p.items.length)continue;
+  const p=E.plan(virtual,{now:cursor,projection:i>0,minutes:cursor===now&&i===0?opts.minutes??s.defaultMinutes??45:s.defaultMinutes||45,readiness:cursor===now&&i===0?opts.readiness:'normal'});if(!p.items.length)continue;
   const spacing=Math.max(s.trainingDefaults?.minGapDays||0,s.programComposition?.enabled?s.programComposition.minGapDays??1:0);
   if(planned.some(x=>diff(cursor,x.date)<spacing&&x.plan.items.some(a=>p.items.some(b=>E.movementDemands(a.id).some(k=>E.movementDemands(b.id).includes(k))))))continue;
   if(s.trainingPreferences?.beginnerSpacing&&planned.some(x=>diff(cursor,x.date)<2&&x.plan.items.some(a=>p.items.some(b=>a.id===b.id))))continue;
