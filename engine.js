@@ -381,6 +381,20 @@ function blockPlan(s,opts={}){
   const last=exposureSessions.findLastIndex(x=>(x.items||[]).some(y=>y.id===id&&y.actualSets>0&&y.performed));
   return last<0?exposureSessions.length:exposureSessions.length-1-last;
  };
+ // Prefer underrepresented Major families without overriding deferred work,
+ // readiness, or recovery. Counts are completed exposures, not calendar days.
+ const familyOf=id=>{const m=MOVES[id];return m?.complex?'complex':m?.bodyweight?'bodyweight':m?.gear==='kb'?'kb':m?.gear==='club'?'club':null;};
+ const priority=emphasis?Object.fromEntries(EMPHASIS_FAMILIES.map(id=>[id,emphasis[id]==='major'?3:emphasis[id]==='minor'?1:0])):null;
+ const familyExposure=Object.fromEntries(EMPHASIS_FAMILIES.map(id=>[id,0]));
+ if(priority)for(const session of exposureSessions)for(const item of session.items||[]){
+  if(item.actualSets>0&&item.performed){const family=familyOf(item.id);if(family)familyExposure[family]++;}
+ }
+ const familyDeficit=id=>{
+  const family=familyOf(id);if(!priority||!family||!priority[family])return 0;
+  const total=Object.values(familyExposure).reduce((a,b)=>a+b,0);
+  const weightTotal=Object.values(priority).reduce((a,b)=>a+b,0);
+  return (total+1)*priority[family]/Math.max(1,weightTotal)-familyExposure[family];
+ };
  const ids=[...candidateIds].sort((a,b)=>{
   const ap=pendingOrder.has(a),bp=pendingOrder.has(b);
   if(ap!==bp)return ap?-1:1;
@@ -390,7 +404,7 @@ function blockPlan(s,opts={}){
   const overdueA=skippedExposures(a)>=4,overdueB=skippedExposures(b)>=4;
   if(overdueA!==overdueB)return overdueA?-1:1;
   if(overdueA&&overdueB)return skippedExposures(b)-skippedExposures(a);
-  return progressRank(b)-progressRank(a)||scored(b)-scored(a);
+  return (priority?familyDeficit(b)-familyDeficit(a):0)||progressRank(b)-progressRank(a)||scored(b)-scored(a);
  });
  // Stable primary lifts remain; rotate only a single optional accessory after successful exposures.
  const completedCount=exposureSessions.length;
