@@ -1067,6 +1067,14 @@ const {chromium}=require('playwright');
    await page.locator('#reset').locator('xpath=ancestor::details[1]').evaluate(el=>el.open=true);
    await page.locator('#reset').click();
    await page.locator('#reset-backup-confirmed').check();
+   const beforeNativeCancel=await page.evaluate(()=>localStorage.getItem('sl-dev-preview-data-v33'));
+   page.once('dialog',dialog=>dialog.dismiss());
+   await page.locator('#reset-confirm').click();
+   const afterNativeCancel=await page.evaluate(()=>localStorage.getItem('sl-dev-preview-data-v33'));
+   if(afterNativeCancel!==beforeNativeCancel)
+    throw Error('Dismissing final native reset confirmation changed saved training');
+   if(!await page.locator('#reset-confirm-dialog').evaluate(el=>el.open))
+    throw Error('Reset dialog unexpectedly closed after dismissing final confirmation');
    const confirmationText=[];
    page.once('dialog',async dialog=>{confirmationText.push(dialog.message());await dialog.accept();});
    await page.locator('#reset-confirm').click();
