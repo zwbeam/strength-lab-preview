@@ -72,9 +72,11 @@ const report=JSON.parse(fs.readFileSync('strength-lab-engine-demo-backup-progres
      assert.ok((await swing.innerText()).includes('In the last six months'),'Missing six-month explanation at '+width);
      const squat=groups.nth(0).locator('.overview-movement').filter({hasText:windowName.squat}).first();
      await squat.locator('summary').first().click();
+     await page.waitForFunction(()=>document.querySelectorAll('.training-overview-group')[0]?.querySelectorAll('.overview-movement[open]').length===1);
      assert.equal(await groups.nth(0).locator('.overview-movement[open]').count(),1,'Opening a second movement did not close the first at '+width);
      assert.ok(await squat.evaluate(el=>el.open),'Second movement did not open at '+width);
      await swing.locator('summary').first().click();
+     await page.waitForFunction(()=>document.querySelectorAll('.training-overview-group')[0]?.querySelectorAll('.overview-movement[open]').length===1);
      assert.equal(await groups.nth(0).locator('.overview-movement[open]').count(),1,'Reopening a movement did not close its sibling at '+width);
      await swing.locator('[data-movement-history="swing"]').click();
      const history=page.locator('#movement-history-dialog');
