@@ -1081,7 +1081,7 @@ const {chromium}=require('playwright');
    await page.locator('#reset').click();
    await page.locator('#reset-backup-confirmed').check();
    if(!await page.locator('#reset-confirm-dialog').evaluate(el=>el.open))
-    throw Error('Reset dialog unexpectedly closed after dismissing final confirmation');
+    throw Error('Reset dialog failed to reopen for confirmed deletion after cancellation and reload');
    const confirmationText=[];
    page.once('dialog',async dialog=>{confirmationText.push(dialog.message());await dialog.accept();});
    await page.locator('#reset-confirm').click();
