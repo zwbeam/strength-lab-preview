@@ -1067,8 +1067,11 @@ const {chromium}=require('playwright');
    await page.locator('#reset').locator('xpath=ancestor::details[1]').evaluate(el=>el.open=true);
    await page.locator('#reset').click();
    await page.locator('#reset-backup-confirmed').check();
-   page.once('dialog',dialog=>dialog.accept());
+   const confirmationText=[];
+   page.once('dialog',async dialog=>{confirmationText.push(dialog.message());await dialog.accept();});
    await page.locator('#reset-confirm').click();
+   if(confirmationText.length!==1||!confirmationText[0].includes('permanently erase'))
+    throw Error('Destructive reset did not require final native confirmation');
    const cleared=await page.evaluate(()=>({
     state:JSON.parse(localStorage.getItem('sl-dev-preview-data-v33')||'null'),
     draft:localStorage.getItem('sl-dev-preview-draft-v33')
