@@ -101,4 +101,4 @@ const report=JSON.parse(fs.readFileSync('strength-lab-engine-demo-backup-progres
   assert.equal(report.sessions,backup.sessions.length);
   console.log('Populated two-year history browser layouts passed');
  }finally{await browser.close();}
-})().catch(error=>{console.error(error);process.exitCode=1;});
+})().catch(error=>{console.error(error);if(process.env.GITHUB_ACTIONS)console.log('::error::'+String(error.stack||error).replace(/%/g,'%25').replace(/\r/g,'%0D').replace(/\n/g,'%0A'));process.exitCode=1;});

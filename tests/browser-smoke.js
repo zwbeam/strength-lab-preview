@@ -20,7 +20,7 @@ const {chromium}=require('playwright');
    page.on('console',message=>{if(message.type()==='error')errors.push('Console error: '+message.text());});
    await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded'});
    await page.locator('#app').waitFor();
-   await page.waitForTimeout(750);
+   await page.waitForFunction(()=>typeof storageReady!=='undefined'&&storageReady);
    for(const tab of ['progress','learn','settings','today']){
     await page.locator('[data-tab="'+tab+'"]').click();
     await page.waitForTimeout(150);
@@ -45,15 +45,13 @@ const {chromium}=require('playwright');
     if(name!==label)throw Error('Unexpected navigation accessible text for '+tab+': '+name);
     await button.focus();
     await page.keyboard.press('Enter');
-    if(!await button.evaluate(el=>el.classList.contains('active')))
-      throw Error('Keyboard activation did not select '+tab+' at '+viewport.width+'px');
+    await page.waitForFunction(tab=>document.querySelector('[data-tab="'+tab+'"]')?.classList.contains('active'),tab,{timeout:5000});
    }
    // Space is also a native keyboard activation key for button navigation.
    const trainButton=nav.locator('[data-tab="today"]');
    await trainButton.focus();
    await page.keyboard.press('Space');
-   if(!await trainButton.evaluate(el=>el.classList.contains('active')))
-    throw Error('Space did not activate Train at '+viewport.width+'px');
+   await page.waitForFunction(()=>document.querySelector('[data-tab="today"]')?.classList.contains('active'),null,{timeout:5000});
    // The visible app must remain nonempty after keyboard tab switching.
    if(!(await page.locator('#app').innerText()).trim())
     throw Error('Keyboard navigation produced empty app content at '+viewport.width+'px');
@@ -1131,4 +1129,4 @@ const {chromium}=require('playwright');
    await page.close();
   }
  }finally{await browser.close();}
-})().catch(e=>{console.error(e);process.exitCode=1;});
+})().catch(e=>{console.error(e);if(process.env.GITHUB_ACTIONS)console.log('::error::'+String(e.stack||e).replace(/%/g,'%25').replace(/\r/g,'%0D').replace(/\n/g,'%0A'));process.exitCode=1;});
