@@ -692,7 +692,7 @@ function validateBackup(input){
   if(session.corrections!==undefined){if(!Array.isArray(session.corrections)||session.corrections.length>1000)throw Error('Invalid correction history');for(const revision of session.corrections){
    if(!object(revision)||typeof revision.at!=='string'||!Number.isFinite(Date.parse(revision.at))||typeof revision.reason!=='string'||!object(revision.before)||!Array.isArray(revision.before.items)||typeof revision.before.date!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(revision.before.date)||typeof revision.before.notes!=='string')throw Error('Invalid correction version');
    if(revision.before.items.some(x=>!Object.hasOwn(MOVES,x?.id)))throw Error('Invalid correction movement');
-   validateBackup({...input,sessions:[{id:session.id,title:session.title,date:revision.before.date,items:revision.before.items}],workoutDraft:null});
+   validateBackup({...input,loadResetAfter:undefined,sessions:[{id:session.id,title:session.title,date:revision.before.date,items:revision.before.items}],workoutDraft:null});
   }}
   if(sessionIds.has(session.id))throw Error('Duplicate workout identity');sessionIds.add(session.id);
   if(session.draftId!==undefined&&session.draftId!==null){if(typeof session.draftId!=='string'||!session.draftId||draftIds.has(session.draftId))throw Error('Duplicate or invalid workout draft identity');draftIds.add(session.draftId);}
