@@ -603,7 +603,7 @@ function renderSettings(){
  </div><div class="hub-group"><h2>Advanced &amp; Data</h2>${section('Timer & Alerts','Interval pacing',timer)}</div>
  <div class="hub-group"><h2>Backups</h2>${section('Export Backup','Save your training data',`<button class="button" id="export">Export JSON backup</button><button class="button secondary" id="export-csv">Export CSV</button>`)}
  ${section('Restore Backup','Import saved JSON',`<input id="import" type="file" accept=".json,application/json">`)}
- ${section('Clear All Data','Irreversible on this device',`<button class="button danger" id="reset">Reset V33 data</button>`)}</div>
+ ${section('Clear All App Data','Irreversible local reset',`<button class="button danger" id="reset">Clear All App Data</button><dialog id="reset-confirm-dialog"><h2>Clear all Strength Lab data?</h2><p>All saved workouts, progression, equipment settings, preferences and unfinished workouts on this device will be erased. This cannot be undone.</p><p>Download a complete JSON backup and verify that it is saved before continuing.</p><button type="button" class="button secondary" id="reset-download-backup">Download Backup</button><label class="gear-check"><input type="checkbox" id="reset-backup-confirmed"> I have verified that my backup is saved, or I accept permanent loss of my data.</label><div class="two"><button type="button" class="button secondary" id="reset-cancel">Cancel</button><button type="button" class="button danger" id="reset-confirm" disabled>Clear All Data</button></div></dialog>`)}</div>
  <div class="hub-group"><h2>About</h2>${section('App Info & Version','Strength Lab development preview',`<p>Data stays in your browser unless exported. Export a backup before clearing browser data or switching devices.</p>`)}</div></div>`;
 }
 
@@ -705,8 +705,15 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
  if(b.id==='save-equipment'){try{const equipment={...state.equipment};document.querySelectorAll('[data-equipment]').forEach(x=>{equipment[x.dataset.equipment]=[...new Set(x.value.split(',').map(Number).filter(n=>Number.isFinite(n)&&n>0))].sort((a,b)=>a-b)});const next=E.validateProgramming({...state,equipment}),previous=state;state=next;if(!save()){state=previous;return;}alert('Equipment saved.');render();}catch(error){alert('Cannot save equipment: '+error.message);}return;}
  if(b.id==='export'){download('strength-lab-v33-backup.json',JSON.stringify({...state,workoutDraft:draft},null,2),'application/json');return;}
  if(b.id==='export-csv'){const rows=[['date','session','movement','weight','unit','sets','min_reps_or_seconds','quality','pain']];state.sessions.forEach(x=>x.items.forEach(y=>rows.push([x.date,x.title,y.name,y.weight,y.unit,y.actualSets,y.actualReps,y.quality,y.pain])));download('strength-lab-v33-history.csv',rows.map(row=>row.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\n'),'text/csv');return;}
- if(b.id==='reset'){if(confirm('Erase ALL V33 training data on this device?')){const next=fresh();if(!persistTraining(next,null))return;state=next;todayMinutes=state.defaultMinutes;draft=null;clearInterval(timerInterval);tab='today';render();}return;}
+ if(b.id==='reset'){document.querySelector('#reset-confirm-dialog')?.showModal();return;}
+ if(b.id==='reset-download-backup'){try{const backup=E.validateBackup({...state,workoutDraft:draft});download('strength-lab-v33-backup-before-reset.json',JSON.stringify(backup,null,2),'application/json');}catch(error){alert('Backup could not be prepared: '+error.message);}return;}
+ if(b.id==='reset-cancel'){document.querySelector('#reset-confirm-dialog')?.close();return;}
+ if(b.id==='reset-confirm'){if(!document.querySelector('#reset-backup-confirmed')?.checked)return;
+  if(!confirm('Final confirmation: permanently erase all Strength Lab training data on this device?'))return;
+  const next=fresh();if(!persistTraining(next,null))return;state=next;draft=null;todayMinutes=state.defaultMinutes;mobilityStartedAt=0;clearInterval(timerInterval);if(mobilityClock)clearInterval(mobilityClock);mobilityClock=null;tab='today';render();return;
+ }
 });
+document.addEventListener('change',e=>{if(e.target?.id==='reset-backup-confirmed'){const confirmButton=document.querySelector('#reset-confirm');if(confirmButton)confirmButton.disabled=!e.target.checked;}});
 document.addEventListener('change',e=>{const el=e.target;
  if(el.id==='finish-kind'){if(!checkWriter()||!draft)return;draft.finishChoice=el.value;saveDraft();return;}
  if(['learn-equipment','learn-family','pathway-movement'].includes(el.id)){if(el.id==='learn-equipment')learnGear=el.value;if(el.id==='learn-family')learnFamily=el.value;if(el.id==='pathway-movement')learnSelected=el.value;render();return;}
