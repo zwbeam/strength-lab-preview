@@ -764,3 +764,13 @@ details.preparation .prep-exercise .rx,details.preparation .prep-exercise .rx *{
 /* Mobility launch: same prominent teal action treatment as training launch. */
 #mobility-session #start-mobility.mobility-start-button{display:block;width:100%!important;box-sizing:border-box;background:#28b8aa!important;color:#081b1b!important;border:1px solid #54d6c8!important;border-radius:10px!important;font-weight:800!important;text-align:center!important;white-space:normal!important;padding:12px 14px!important;min-height:48px!important}
 #mobility-session #start-mobility.mobility-start-button:hover{background:#4ed1c2!important}
+
+/* Workout history: compact, mobile-friendly collapsible date filtering. */
+.workout-history-card>.workout-history-disclosure>summary{cursor:pointer;font-size:17px;font-weight:750;padding:4px 0 12px}
+.workout-history-card .history-filters{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:9px;align-items:end;margin:8px 0 12px}
+.workout-history-card .history-filters>label{grid-column:1/-1}
+.workout-history-card .history-date-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;min-width:0}
+.workout-history-card .history-filters label{display:grid;gap:4px;font-size:13px;min-width:0}
+.workout-history-card .history-filters input,.workout-history-card .history-filters select{box-sizing:border-box;min-width:0;width:100%;font-size:14px;padding:8px 6px;min-height:40px}
+.workout-history-card #history-clear-dates{font-size:12px;padding:8px;white-space:nowrap}
+@media(max-width:380px){.workout-history-card .history-filters{grid-template-columns:1fr}.workout-history-card #history-clear-dates{justify-self:end}}
