@@ -116,6 +116,7 @@ jobs:
           node tests/full-training-cycle.js
           node tests/year-history.js
           node tests/five-year-history.js
+          node tests/decade-lifecycle-regression.js
           node tests/history-corrections.js
           node tests/backup-history.js
           node tests/offline-precache-integrity.js
