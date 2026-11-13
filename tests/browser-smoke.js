@@ -59,39 +59,30 @@ const {chromium}=require('playwright');
     throw Error('Keyboard navigation produced empty app content at '+viewport.width+'px');
    console.log('Keyboard navigation passed at '+viewport.width+'px');
    console.log('Tab layout widths passed at '+viewport.width+'px');
-   // Train page editors must be visible outside the collapsed calendar and persist.
+   // Training Plan editors live inside the disclosure and must persist.
    const calendar=page.locator('.calendar-disclosure');
-   await calendar.evaluate(el=>el.open=false);
-   if(!await page.locator('.train-emphasis-summary').isVisible())
-    throw Error('Training emphasis graph hidden with collapsed calendar at '+viewport.width+'px');
-   await page.locator('#open-training-style').click();
-   if(!await page.locator('#train-style-dialog').evaluate(el=>el.open))
-    throw Error('Workout style dialog failed to open');
+   await calendar.evaluate(el=>el.open=true);
+   await page.locator('.training-plan-option').nth(1).evaluate(el=>el.open=true);
    await page.locator('#train-style-focus').selectOption('skill');
    await page.locator('#train-style-variety').selectOption('high');
-   await page.locator('#save-training-style-dialog').click();
+   await page.locator('#save-training-style-inline').click();
+   await calendar.evaluate(el=>el.open=true);
+   await page.locator('.training-plan-option').nth(1).evaluate(el=>el.open=true);
    const savedStyle=await page.evaluate(()=>JSON.parse(localStorage.getItem('sl-dev-preview-data-v33'))?.trainingPreferences);
-   if(savedStyle?.focus!=='skill'||savedStyle?.variety!=='high')
-    throw Error('Workout style did not persist: '+JSON.stringify(savedStyle));
+   if(savedStyle?.focus!=='skill'||savedStyle?.variety!=='high')throw Error('Workout style did not persist');
+   await page.locator('.training-plan-emphasis').locator('details').evaluate(el=>el.open=true);
    await page.locator('#open-emphasis-settings').click();
-   if(!await page.locator('#train-emphasis-dialog').evaluate(el=>el.open))
-    throw Error('Training emphasis dialog failed to open');
+   if(!await page.locator('#train-emphasis-dialog').evaluate(el=>el.open))throw Error('Training emphasis dialog failed to open');
    await page.locator('#train-emphasis-dialog [data-emphasis-family="kb"]').selectOption('major');
    await page.locator('#save-emphasis-dialog').click();
    const savedEmphasis=await page.evaluate(()=>JSON.parse(localStorage.getItem('sl-dev-preview-data-v33'))?.trainingPreferences?.emphasis);
-   if(savedEmphasis?.kb!=='major')throw Error('Train emphasis did not persist: '+JSON.stringify(savedEmphasis));
+   if(savedEmphasis?.kb!=='major')throw Error('Train emphasis did not persist');
    await page.reload({waitUntil:'domcontentloaded'});
-   if(!await page.locator('.train-emphasis-summary').isVisible())throw Error('Emphasis summary missing after reload');
-   await page.locator('#open-training-style').click();
+   await page.locator('.calendar-disclosure').evaluate(el=>el.open=true);
+   await page.locator('.training-plan-option').nth(1).evaluate(el=>el.open=true);
    if(await page.locator('#train-style-focus').inputValue()!=='skill'||await page.locator('#train-style-variety').inputValue()!=='high')
     throw Error('Workout style selections lost after reload');
-   await page.locator('#train-style-focus').selectOption('capacity');
-   await page.locator('#train-style-dialog button[type="submit"]').click();
-   await page.locator('#open-training-style').click();
-   if(await page.locator('#train-style-focus').inputValue()!=='skill')
-    throw Error('Cancelled workout style edit leaked into saved preferences');
-   await page.locator('#train-style-dialog button[type="submit"]').click();
-   console.log('Train style and emphasis editor persistence and cancellation passed at '+viewport.width+'px');
+   console.log('Training Plan inline editor persistence passed at '+viewport.width+'px');
    // Reset confirmation must require a fresh acknowledgement on every opening.
    await page.locator('[data-tab="settings"]').click();
    const resetSection=page.locator('#reset').locator('xpath=ancestor::details[1]');
