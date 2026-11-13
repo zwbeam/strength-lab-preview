@@ -38,6 +38,10 @@ These have dedicated reviewed outlines and an operational engine path. Technique
 
 `doubleClubTechnicalSwipe`: partial: transcript-reviewed four-count version; performance version and visual technique validation remain incomplete
 
+`doubleClubInside`: partial: transcript-reviewed alternating pattern; visual technique and held-club control verification remain incomplete
+
+`doubleClubOutside`: partial: transcript-reviewed alternating pattern; visual technique and held-club control verification remain incomplete
+
 ## Full-path matrix
 
 Every row: Library → gates → inventory → schedule → prescription → actual execution/logging → qualification/progression → recovery → reporting. Shared-path tests do not substitute for movement-specific video review.
@@ -87,19 +91,20 @@ Every row: Library → gates → inventory → schedule → prescription → act
 | doubleClubTechnicalSwipe | partial: transcript-reviewed four-count version; performance version and visual technique validation remain incomplete | doubleClubOrder, doubleClubOverhead, doubleClubSwipe, practice:doubleClubSwingClean, practice:doubleClubPullover | owned matched club pair, lb per club | doubleClub, abc (conditional) | doubleClub; app numeric choices |
 | bearCrawl | reviewed outline | bearCrawl | bodyweight + confirmed traveling space | bodyweight, abc (conditional) | crawl; app numeric choices |
 | catCrawl | reviewed outline | bearCrawl, catCrawl, practice:bearCrawl | bodyweight + confirmed traveling space | bodyweight, abc (conditional) | crawl; app numeric choices |
+| doubleClubInside | partial: transcript-reviewed alternating pattern; visual technique and held-club control verification remain incomplete | clubGrip, clubTwoHandFoundation, doubleClubOrder, doubleClubInside, practice:doubleClubSwingClean, practice:clubInside, practice:clubOutside | owned matched club pair, lb per club | doubleClubAlternating | doubleClub; app numeric choices |
+| doubleClubOutside | partial: transcript-reviewed alternating pattern; visual technique and held-club control verification remain incomplete | clubGrip, clubTwoHandFoundation, doubleClubOrder, doubleClubInside, doubleClubOutside, practice:doubleClubInside, practice:clubOutside | owned matched club pair, lb per club | doubleClubAlternating | doubleClub; app numeric choices |
 
 ## Instructional-only movements
 
-- doubleClubInside: Double-club alternating inside circles; partial: source-reviewed outline; alternating-pattern programming and visual technique validation remain incomplete; sources #147. No automatic dose, completion credit or progression.
-- doubleClubOutside: Double-club alternating outside circles; partial: source-reviewed outline; alternating-pattern programming and visual technique validation remain incomplete; sources #151. No automatic dose, completion credit or progression.
+No remaining instructional-only catalog entries at this checkpoint. Broader source movements and methods remain unrepresented; see the gaps below.
 
 ## Missing research and remaining engineering
 
-- Double-club alternating inside/outside automatic cycles and performance swipes remain unimplemented. Overhead lessons require visual verification; the #207 naming inconsistency is preserved.
+- Alternating double-club inside/outside skill practice now has an opt-in automatic block; performance swipes and complete source strength/bodybuilding cycles remain unimplemented. Overhead lessons require visual verification; the #207 naming inconsistency is preserved.
 - Full bodyweight 101 timing release/ordering is context-dependent (#85/#88). The app implements a conservative crawl 30/30 adaptation, not every paid-program format. More bodyweight pulling, step-ups, sliding planks and flows need close review and engineering.
 - Double swing/outside-swing and broader paired-kettlebell sequences remain untracked. Current app admission gates cover a supported subset, not the whole #186 teaching context.
 - More complex families and exact verified timestamps remain incomplete. Component bookkeeping never grants component progression from a complex log.
-- Choosing too many independent blocks at a low training frequency can repeatedly require re-entry. The engine exposes a cadence warning; it does not fabricate eligibility or add catch-up work.
+- Choosing too many independent blocks at a low training frequency can repeatedly require re-entry. The engine now uses movement-level feedback, retention priority and bounded follow-ups; oversized rotations can still cause re-entry. It does not fabricate eligibility or add catch-up work.
 - The master 505-source ledger and anchored external review writeups remain unavailable. All 720 entries are inventoried, 719 usable per supplied audit, but archive accounting is not proof of full engine integration.
 - Physical Android/audio/technique review remains separate from touch browser emulation.
 

@@ -1,0 +1,14 @@
+'use strict';
+const assert=require('node:assert/strict'),E=require('../engine'),L=require('../learning').create(E,require('../movement-instruction')),{fresh,seed,sets}=require('./movement-integration');
+const s=fresh();s.programBlock='doubleClubAlternating';seed(s,'doubleClubSwingClean','2026-01-01');
+let p=E.plan(s,{now:'2026-01-03'});assert.equal(p.items.filter(x=>E.MOVES[x.id].clubPair).length,1);assert.equal(p.items.find(x=>E.MOVES[x.id].clubPair).id,'doubleClubInside');assert.ok(E.prerequisites(s,'doubleClubOutside',{now:'2026-01-03'}).includes('practice:doubleClubInside'));assert.equal(L.status(s,'doubleClubInside',{now:'2026-01-03'}).eligible,true);
+const rx=E.prescription(s,'doubleClubInside',{now:'2026-01-03'});assert.equal(rx.side,2);assert.equal(rx.secondsPerSet,48);assert.equal(rx.sourceParameters,null);const imbalance=sets(rx);imbalance.at(-1).rightReps=2;assert.equal(E.completeRecord(rx,imbalance,'clean',false).completed,false);assert.equal(E.completeRecord(rx,sets(rx),'breakdown',false).completed,false);assert.equal(E.completeRecord(rx,sets(rx),'clean',true).completed,false);
+assert.equal(E.prescription({...s,equipment:{...s.equipment,clubPairs:[]}},'doubleClubInside',{now:'2026-01-03'}).sets,0);assert.ok(E.prerequisites({...s,skills:{...s.skills,doubleClubInside:false}},'doubleClubInside',{now:'2026-01-03'}).includes('doubleClubInside'));
+seed(s,'doubleClubInside','2026-01-03');s.deferredByBlock={doubleClubAlternating:['doubleClubOutside']};p=E.plan(s,{now:'2026-01-05'});assert.equal(p.items.find(x=>E.MOVES[x.id].clubPair).id,'doubleClubOutside');assert.ok(E.prescription(s,'doubleClubOutside',{now:'2026-01-05',readiness:'low'}).mode==='recovery');
+let trained=0;const seen=new Set();for(let d=0;d<730;d++){
+ if(![0,2,4].includes(d%7)||d%61===0||d%365>=340)continue;const date=new Date(Date.UTC(2026,0,6)+d*86400000).toISOString().slice(0,10);
+ const p=E.plan(s,{now:date,minutes:d%17===0?30:45,readiness:d%23===0?'low':'normal'});assert.ok(p.estimated<=p.cap+1);assert.ok(p.items.filter(x=>E.MOVES[x.id].clubPair).length<=1);
+ const items=p.items.map(rx=>{const actual=sets(rx);if(d%37===0)actual.at(-1).done=false;const r=E.completeRecord(rx,actual,d%43===0?'breakdown':'clean',false);if(d%37===0||d%43===0||['reentry','recovery'].includes(rx.mode))assert.equal(r.completed,false);if(r.actualSets)seen.add(rx.id);return r;});
+ if(!items.some(x=>x.actualSets>0))continue;s.sessions.push({id:'alt-'+d,title:p.day.name,date,slot:p.slot,block:p.block,calendarVersion:1,items});s.deferredByBlock={[p.block]:E.deferredAfter(p,items)};trained++;
+}
+assert.ok(trained>200);assert.ok(seen.has('doubleClubInside')&&seen.has('doubleClubOutside'));assert.equal(E.validateBackup(JSON.parse(JSON.stringify(s))).programBlock,'doubleClubAlternating');console.log('PASS alternating-club two-year automatic history '+JSON.stringify({trained,movements:[...seen]}));

@@ -254,3 +254,34 @@ Existing full browser smoke and remaining suites are rerun by current-commit CI.
 V33 keys, prior backup formats, timer behavior, eight Books and production remain
 unchanged. See tests/continuity-regression.js for failure, gap, duration, fairness,
 future projection and immutable replay assertions.
+
+
+## Alternating double-club integration checkpoint
+
+Continuity checkpoint f75167d passed all GitHub checks. Close-read #147 and #151
+again before promoting the final two instructional-only catalog entries.
+
+Inside/outside alternating circles use a new opt-in doubleClubAlternating block,
+not an expansion of ABC or the existing foundation block. Matched club equipment,
+explicit held-club technique and recent single/paired practice remain mandatory;
+outside adds recent inside-circle practice. Sets, rest, matched-weight policy,
+planning estimates and exact evidence counts are app choices. #151's 3/5/6–8 and
+light timed examples remain contextual; no full bodybuilding ladder, arm-growth
+claim or universal two-year wait is programmed. Control of the held club and
+actual equal-sided results matter separately from mere repetitions.
+
+Targeted verification: two-year actual-generated history saves 288 workouts,
+reaches both inside/outside patterns and includes shortened sessions, gaps,
+recovery, incomplete work and technique problems. Equipment removal, skill gates,
+left/right imbalance and source-parameter labels are checked. Touch browser
+acceptance generates and saves both movements with explicit per-side editing,
+alongside the prior clean/pullover/technical-swipe and crawl workflows. All 33 Node suites pass locally, plus historical-correction CJS and targeted
+mobile acceptance. Existing curriculum acceptance passed at 320/390; full browser
+smoke, remaining suites and current-commit CI are verified before delivery.
+
+Current catalog: 45 programmable entries, 29 reviewed outlines and 16 explicit
+instructional/visual limits. No instructional-only entries remain in this catalog;
+this is not a claim that every movement or method in 719 usable research sources
+has been integrated. Performance swipes, fuller numerical cycles and broader
+bodyweight/paired movement families remain engineering/research work. Data keys,
+backups, history correction, eight Books and production remain unchanged.

@@ -23,8 +23,9 @@ archive text; #441 is unusable. No invented source prescriptions or timestamps.
 Movement-level continuity now includes bounded return follow-ups, impending
 return-window priority and per-movement feedback. It reduces avoidable re-entry
 without changing qualification. Further evaluate oversized mixed schedules;
-source-grounded alternating double-club cycles remain a next priority and additional bodyweight
-pulling/step-up/sliding pathways. Full #85/#88 timing-series context is not
+alternating double-club inside/outside skill practice now has a separate opt-in
+automatic block. Next priorities are fuller supported numerical cycles and
+foundational bodyweight pulling/step-up/sliding pathways. Full #85/#88 timing-series context is not
 implemented. Double swing/outside-swing remain missing from the broader #186
 teaching sequence. Do not claim complete lifetime curriculum coverage.
 

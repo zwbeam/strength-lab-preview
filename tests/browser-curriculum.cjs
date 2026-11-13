@@ -13,7 +13,7 @@ const assert=require('node:assert/strict'),{chromium}=require('playwright'),E=re
    const lesson=page.locator('#movement-instruction');assert.ok((await lesson.innerText()).length>200,id);
    const links=await lesson.locator('.video-link').evaluateAll(nodes=>nodes.map(x=>({href:x.href,target:x.target,rel:x.rel})));
    assert.ok(links.length>=1&&links.length<=2,id);for(const link of links){assert.match(link.href,/^https:\/\/www.youtube.com\/watch\?v=/);assert.equal(link.target,'_blank');assert.match(link.rel,/noopener/);}
-   if(['doubleClubInside','doubleClubOutside'].includes(id)){assert.match(await lesson.innerText(),/Education only/);assert.equal(await lesson.locator('[data-confirm-learned]').count(),0);}
+   if(['doubleClubInside','doubleClubOutside'].includes(id)){assert.ok(!(await lesson.innerText()).includes('Education only'));assert.match(await lesson.innerText(),/Not yet eligible for training/);}
    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+3),'Lesson overflow: '+id);
   }
   await page.locator('[data-tab="settings"]').tap();

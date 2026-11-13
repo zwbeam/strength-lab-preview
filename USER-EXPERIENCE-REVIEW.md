@@ -44,3 +44,10 @@ patterns. Advanced Movement Programming has an opt-out; existing block choices
 and history are retained. Check that these explanations help you understand the
 next workout and that upcoming weeks remain visibly provisional. No new major
 interface redesign is introduced.
+
+
+Alternating-club review: the two remaining double-club references are now
+programmable in an opt-in skill block, with explicit familiarity and recent
+foundation gates. Ordinary default programs are unchanged. Per-side results are
+required in the existing set editor. Please review the dose/eligibility wording;
+source bodybuilding examples are not an automatic progression ladder.

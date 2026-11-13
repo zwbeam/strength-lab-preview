@@ -920,24 +920,57 @@
       "exactParameters": null,
       "operational": true,
       "sourceComplete": true
-    }
-  ],
-  "instructionOnly": [
+    },
     {
       "id": "doubleClubInside",
       "name": "Double-club alternating inside circles",
-      "coverage": "partial: source-reviewed outline; alternating-pattern programming and visual technique validation remain incomplete",
+      "instruction": "partial: transcript-reviewed alternating pattern; visual technique and held-club control verification remain incomplete",
+      "prerequisites": [
+        "clubGrip",
+        "clubTwoHandFoundation",
+        "doubleClubOrder",
+        "doubleClubInside",
+        "practice:doubleClubSwingClean",
+        "practice:clubInside",
+        "practice:clubOutside"
+      ],
+      "equipment": "owned matched club pair, lb per club",
+      "blocks": [
+        "doubleClubAlternating"
+      ],
+      "profile": "doubleClub",
       "sourceIds": [
         147
-      ]
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": false
     },
     {
       "id": "doubleClubOutside",
       "name": "Double-club alternating outside circles",
-      "coverage": "partial: source-reviewed outline; alternating-pattern programming and visual technique validation remain incomplete",
+      "instruction": "partial: transcript-reviewed alternating pattern; visual technique and held-club control verification remain incomplete",
+      "prerequisites": [
+        "clubGrip",
+        "clubTwoHandFoundation",
+        "doubleClubOrder",
+        "doubleClubInside",
+        "doubleClubOutside",
+        "practice:doubleClubInside",
+        "practice:clubOutside"
+      ],
+      "equipment": "owned matched club pair, lb per club",
+      "blocks": [
+        "doubleClubAlternating"
+      ],
+      "profile": "doubleClub",
       "sourceIds": [
         151
-      ]
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": false
     }
-  ]
+  ],
+  "instructionOnly": []
 }

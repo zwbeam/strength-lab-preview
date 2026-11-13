@@ -9,9 +9,10 @@ source inventory and equipment matrix are reproducible with
 scheduled or credited. Source #441 is unusable. External review completion is
 retained as accounting evidence, not silently converted into instruction claims.
 
-Current coverage: 43 programmable movements with dedicated lessons, two
-instruction-only alternating double-club patterns. Twenty-nine outlines are
-reviewed; fourteen programmable lessons retain source/visual-verification gaps.
+Current coverage: 45 programmable movements with dedicated lessons and no remaining
+instruction-only entries in the current catalog. Uncatalogued source systems
+remain incomplete. Twenty-nine outlines are
+reviewed; sixteen programmable lessons retain source/visual-verification gaps.
 See MOVEMENT-INTEGRATION-COVERAGE.md for every movement's complete-system route,
 prerequisites, equipment, profile and remaining boundaries. Eight Book outlines
 remain separate and provisional.
@@ -47,7 +48,7 @@ browser suites; require BOTH current-commit audit and browser jobs before QA.
 These are synthetic histories and touch browser emulation, not clinical outcomes
 or physical Android/technique validation.
 
-Remaining: alternating double-club/performance systems, broader bodyweight/paired
+Remaining: performance-swipe and broader numerical double-club systems, bodyweight/paired
 kettlebell pathways and complexes, visual technique validation and missing source
 mappings. Mixed schedules with too many independently rotated movements can
 require frequent re-entry. Movement-level cadence feedback and bounded follow-up priority now reduce avoidable
@@ -67,3 +68,13 @@ another block is ready. Advanced Settings can disable this priority. Warnings
 name up to three affected movements; only compact feedback is stored in plan
 snapshots. Provisional future sessions never assume a follow-up was performed.
 All doses, load choices, recovery gates and source profiles remain unchanged.
+
+
+Alternating double-club checkpoint: inside and outside circles now have a separate
+opt-in automatic skill-practice block. Explicit held-club control, recent paired
+and single-arm foundations and owned club pairs gate eligibility. Outside uses
+recent inside practice; per-side actual counts are required. The foundation
+block and ABC pool are unchanged. Numeric practice doses/rest are app adaptations,
+not the full #151 strength/bodybuilding progression. Visual technique remains
+incomplete. This closes the two instructional-only catalog gaps without claiming
+all research movements are implemented.

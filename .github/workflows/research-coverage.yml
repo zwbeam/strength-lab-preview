@@ -111,6 +111,7 @@ jobs:
           retention-days: 14
       - name: Validate movement mappings and source integrity
         run: |
+          node tests/alternating-club.js
           node tests/continuity-regression.js
           node tests/lifelong-integration.js
           node tests/movement-integration.js

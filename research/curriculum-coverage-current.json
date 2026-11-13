@@ -1237,96 +1237,74 @@
         "readiness/recovery numeric adjustments",
         "equipment jump cap"
       ]
-    }
-  ],
-  "references": [
+    },
     {
       "id": "doubleClubInside",
-      "purpose": "Alternate inside circles while controlling a separate club in each hand.",
-      "setup": [
-        "Use familiar light clubs in clear space and an established order position.",
-        "Keep forearms vertical and a strong wrist; establish control before moving either club."
-      ],
-      "steps": [
-        "Make the inside circle on one side while limiting unintended movement of the other club.",
-        "Return to a controlled stop and regain balance before alternating.",
-        "Match the sides and stop when the resting club can no longer be stabilized."
-      ],
-      "bracing": [
-        "The source describes radiating trunk tension and glute involvement as one club stops and the other accelerates."
-      ],
-      "mistakes": [
-        "Letting the held club wobble or escape: lower demand and rebuild control.",
-        "Treating two clubs as equivalent to two hands on one club: these are different coordination demands."
-      ],
+      "name": "Double-club alternating inside circles",
+      "category": "double-club",
+      "automatic": true,
+      "profile": "doubleClub",
+      "coverage": "partial: transcript-reviewed alternating pattern; visual technique and held-club control verification remain incomplete",
       "sourceIds": [
         147
       ],
-      "videoSourceIds": [
+      "skillPrerequisites": [
+        "clubGrip",
+        "clubTwoHandFoundation",
+        "doubleClubOrder",
+        "doubleClubInside"
+      ],
+      "practicePrerequisites": [
+        "doubleClubSwingClean",
+        "clubInside",
+        "clubOutside"
+      ],
+      "sequence": [],
+      "policySources": [
         147
       ],
-      "evidence": [
-        {
-          "sourceId": 147,
-          "quote": "double Club is always the hardest"
-        }
-      ],
-      "coverage": "partial: source-reviewed outline; alternating-pattern programming and visual technique validation remain incomplete",
-      "name": "Double-club alternating inside circles",
-      "gear": "club",
-      "clubPair": true,
-      "family": "rotation",
-      "instructionOnly": true,
-      "qualifications": [
-        "The source places double-club work after single/two-hand experience and calls it more complex. It does not establish a universal two-year waiting rule.",
-        "This reference does not schedule paired-club sets or claim compatibility with kettlebell-pair equipment settings."
-      ],
-      "automatic": false
+      "exactParametersSource": null,
+      "appDefaults": [
+        "exposure gates",
+        "readiness/recovery numeric adjustments",
+        "equipment jump cap"
+      ]
     },
     {
       "id": "doubleClubOutside",
-      "purpose": "Alternate outside circles with two clubs while maintaining a controlled double order position.",
-      "setup": [
-        "Review familiar double inside-circle control first.",
-        "Establish vertical forearms, controlled wrists and feet generally forward; do not collapse the rack or flare the ribs."
-      ],
-      "steps": [
-        "Rotate and perform one outside circle while stabilizing the held club.",
-        "Return to a stable catch before the other side.",
-        "Keep transitions controlled; reduce demand when the held club wobbles."
-      ],
-      "bracing": [
-        "The source cues ribs down, glute engagement and stable lower-trunk tension."
-      ],
-      "mistakes": [
-        "Overtracking or letting the held club tip: rebuild the movement with lighter familiar tools.",
-        "Confusing numerical bodybuilding examples with a beginner prescription: no sets are assigned by this reference."
-      ],
+      "name": "Double-club alternating outside circles",
+      "category": "double-club",
+      "automatic": true,
+      "profile": "doubleClub",
+      "coverage": "partial: transcript-reviewed alternating pattern; visual technique and held-club control verification remain incomplete",
       "sourceIds": [
         151
       ],
-      "videoSourceIds": [
-        151
+      "skillPrerequisites": [
+        "clubGrip",
+        "clubTwoHandFoundation",
+        "doubleClubOrder",
+        "doubleClubInside",
+        "doubleClubOutside"
       ],
-      "evidence": [
-        {
-          "sourceId": 151,
-          "quote": "the double outside circle is harder than the double inside circle"
-        }
+      "practicePrerequisites": [
+        "doubleClubInside",
+        "clubOutside"
       ],
-      "coverage": "partial: source-reviewed outline; alternating-pattern programming and visual technique validation remain incomplete",
-      "name": "Double-club alternating outside circles",
-      "gear": "club",
-      "clubPair": true,
-      "family": "rotation",
-      "instructionOnly": true,
-      "qualifications": [
-        "The source describes outside as harder than inside. That teaching order is not an automatically measured qualification.",
-        "The source discusses minute-long light bouts and 3/5/6–8 rep examples with different aims; these are not universal doses or an automatic body-building program."
+      "sequence": [],
+      "policySources": [
+        151,
+        147
       ],
-      "automatic": false
+      "exactParametersSource": null,
+      "appDefaults": [
+        "exposure gates",
+        "readiness/recovery numeric adjustments",
+        "equipment jump cap"
+      ]
     }
   ],
+  "references": [],
   "sources": [
     {
       "id": 0,
