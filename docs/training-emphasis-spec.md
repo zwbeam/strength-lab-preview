@@ -30,3 +30,12 @@ A separate Mobility-only toggle temporarily overrides strength scheduling. Mobil
 2. Integrate into block planning and candidate scoring, with deterministic rotation and no progress mutation.
 3. Implement mobility-only plan and completion behavior.
 4. Expand verified eligible complexes, then full browser and engine regression tests.
+
+## Train page interaction (user-approved, November 13)
+- Keep the existing always-visible duration adjustment and calendar unchanged.
+- Under the expanded calendar display a compact live emphasis distribution bar visualization; tapping it opens a small emphasis editor with Major/Minor/Off for four families, mobility-only override and Save/Cancel.
+- Below that, display the current workout style as a separate compact action; tapping opens a second small style editor and Save/Cancel.
+- The settings page and Train dialogs share one source of truth, validation, and save behavior. Saving immediately updates the Train summary and future prescriptions; cancelling makes no change.
+- Mobility-only visually sets every other emphasis to Off while active, but retains the previous four emphasis values and both equipment maximums for restoration when disabled. Never overwrite or zero the underlying stored values.
+- Keep weight ceilings and double-equipment controls in the equipment section; do not cram them into the Train popup. Ensure accessible buttons, keyboard dialog dismissal, and narrow mobile layout.
+- Remove redundant workout-style controls from the duration quick-adjustment area while preserving the duration control itself.
