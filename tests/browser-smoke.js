@@ -1,7 +1,7 @@
 'use strict';
 const {chromium}=require('playwright');
 (async()=>{
- const browser=await chromium.launch({headless:true});
+ const browser=await chromium.launch({headless:true,...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH?{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH}:{})});
  try{
   for(const viewport of [{width:320,height:700},{width:390,height:844},{width:832,height:384},{width:1280,height:800}]){
    const page=await browser.newPage({viewport});
@@ -678,10 +678,31 @@ const {chromium}=require('playwright');
    const logRenderMs=Date.now()-logRenderStart;
    if(logRenderMs>8000)throw Error('540-session Training Log initial render exceeded 8 seconds: '+logRenderMs+'ms');
    if(await page.locator('.notebook-table tbody tr').count()!==60)throw Error('Initial history should show 60 rows');
+   const historyDisclosure=page.locator('.workout-history-disclosure');
+   if(await historyDisclosure.evaluate(el=>el.open))throw Error('Workout history must start collapsed');
+   await historyDisclosure.locator('summary').click();
+
    await page.locator('[data-more-notebook]').click();
    if(await page.locator('.notebook-table tbody tr').count()!==120)throw Error('Notebook pagination did not show 120 rows');
    await page.locator('[data-more-notebook]').click();
    if(await page.locator('.notebook-table tbody tr').count()!==180)throw Error('Third notebook page should show 180 rows from 540-session history');
+   if(!await historyDisclosure.evaluate(el=>el.open))throw Error('Pagination collapsed Workout History');
+   const historyBeforeFilters=await page.evaluate(()=>localStorage.getItem('sl-dev-preview-data-v33'));
+   await page.locator('#history-date-from').fill('2025-02-01');
+   await page.locator('#history-date-from').dispatchEvent('change');
+   await page.locator('#history-date-to').fill('2025-02-02');
+   await page.locator('#history-date-to').dispatchEvent('change');
+   if(await page.locator('.notebook-table tbody tr').count()!==2)throw Error('Inclusive dates must include both boundary workouts');
+   const boundaryText=await page.locator('.notebook-table tbody').innerText();
+   if(!boundaryText.includes('2025-02-01')||!boundaryText.includes('2025-02-02'))throw Error('History filter excluded a date boundary');
+   await page.locator('#history-date-from').fill('2030-01-01');await page.locator('#history-date-from').dispatchEvent('change');
+   if(!await page.getByText('No workouts in this date range.',{exact:true}).count())throw Error('Empty date range must show an empty state');
+   if(await page.evaluate(()=>localStorage.getItem('sl-dev-preview-data-v33'))!==historyBeforeFilters)throw Error('Date filtering changed saved data');
+   await page.locator('#history-range-preset').selectOption('all');
+   if(await page.locator('.notebook-table tbody tr').count()!==60)throw Error('All time must restore bounded initial history');
+   await page.locator('[data-more-notebook]').click();await page.locator('[data-more-notebook]').click();
+   console.log('Inclusive/empty history filters preserve full data and bounded pagination at '+viewport.width+'px');
+
    await openMovementHistoryFromOverview('swing');
    const dialog=page.locator('#movement-history-dialog');
    if(!await dialog.evaluate(el=>el.open))throw Error('Movement history did not open');
@@ -873,6 +894,7 @@ const {chromium}=require('playwright');
      throw Error('Decade-scale Training Log causes horizontal page overflow: '+JSON.stringify(decadeLayout));
    console.log('2600-session Training Log render '+decadeUiMs+'ms at '+viewport.width+'px');
 
+   await page.locator('.workout-history-disclosure>summary').click();
    const pageRows=[60,120,180,240,300];
    for(const expected of pageRows.slice(1)){
     const more=page.locator('[data-more-notebook]');

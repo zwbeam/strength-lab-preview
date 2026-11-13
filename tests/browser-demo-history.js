@@ -5,7 +5,7 @@ const windowName={swing:'Two-hand swing',squat:'Goblet squat',press:'Single-arm 
 const backup=JSON.parse(fs.readFileSync('strength-lab-engine-demo-backup.json','utf8'));
 const report=JSON.parse(fs.readFileSync('strength-lab-engine-demo-backup-progression-report.json','utf8'));
 (async()=>{
- const browser=await chromium.launch({headless:true});
+ const browser=await chromium.launch({headless:true,...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH?{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH}:{})});
  try{
   for(const width of [320,390,832,1280]){
    const page=await browser.newPage({viewport:{width,height:844}});

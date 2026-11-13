@@ -4,7 +4,7 @@
 function create(E,content){
  const gearLabels={kb:'Kettlebells',club:'Heavy clubs',bodyweight:'Bodyweight'};
  const familyLabels={hinge:'Hinge',squat:'Squat',press:'Press',pull:'Pull',carry:'Carry',rotation:'Rotation',getup:'Get-up',ground:'Ground movement'};
- function instruction(id){if(!E.MOVES[id])throw Error('Unknown movement');return content.entries[id];}
+ function instruction(id){if(!E.MOVES[id])throw Error('Unknown movement');return content.entries[id]||{purpose:E.MOVES[id].complex?'Combined practice of the named component movements. A complete source-reviewed combination lesson is not available yet.':'Movement instruction has not yet been source-reviewed.',setup:[],steps:[],bracing:[],mistakes:[],sourceIds:[],videoSourceIds:[],evidence:[],coverage:'pending: instructional coverage not yet verified; do not infer technique from a program name'};}
  function videos(id){const entry=instruction(id);return(entry.videoSourceIds||[]).slice(0,2).map(sourceId=>({...content.sources[sourceId],role:entry.videoRole||'instruction',label:entry.videoLabels?.[sourceId]||null,mapping:'Exact indexed transcript URL; no verified timestamps'}));}
  function status(s,id,opts={}){
   const m=E.MOVES[id],rx=E.prescription(s,id,opts),missing=E.prerequisites(s,id,opts),equipment=s.equipment?.[m.gear];

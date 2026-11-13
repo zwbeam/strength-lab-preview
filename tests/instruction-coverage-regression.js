@@ -34,3 +34,13 @@ for(const id of ['carry','front']) {
   assert.ok(data.entries[id].coverage!=='reviewed outline',id+': unsourced exercise must not appear fully reviewed');
 }
 console.log('PASS '+(partial.length+6)+' incomplete-instruction safeguards');
+
+// A newly registered movement must never break Learn before its dedicated
+// lesson exists. Missing lessons remain honestly pending rather than fabricated.
+const learn=require('../learning.js').create(engine,data);
+for(const id of Object.keys(engine.MOVES)){
+ const lesson=learn.instruction(id);assert.ok(lesson&&typeof lesson.coverage==='string',id+': missing accessible coverage state');
+ for(const field of ['setup','steps','bracing','mistakes','sourceIds','videoSourceIds'])assert.ok(Array.isArray(lesson[field]),id+': malformed '+field);
+ if(!Object.hasOwn(data.entries,id)){assert.match(lesson.coverage,/pending/);assert.deepEqual(learn.videos(id),[]);}
+}
+console.log('PASS: every canonical movement has a renderable reviewed or explicitly pending lesson');
