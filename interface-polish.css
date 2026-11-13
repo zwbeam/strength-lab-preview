@@ -746,3 +746,17 @@ details.preparation .prep-exercise .rx,details.preparation .prep-exercise .rx *{
 .training-plan-option-body .plan-toggle-row input[type=checkbox]{justify-self:end;position:static!important;display:block!important;width:22px!important;height:22px!important;min-width:22px!important;margin:0!important;accent-color:#249c85}
 .training-plan-option-body #save-training-plan-schedule,.training-plan-option-body #save-training-style-inline{display:block;margin:12px 0 0 auto!important;width:auto!important;min-height:36px!important;padding:7px 13px!important;font-size:13px!important;clear:both}
 @media(max-width:370px){.training-plan-option-body .plan-field-row{grid-template-columns:minmax(0,1fr) minmax(88px,45%);column-gap:7px}.training-plan-option-body .plan-field-row select{font-size:12px!important}}
+
+/* Match all Training Plan panels to the calendar's warm grey (#d1d0cc). */
+.training-plan-disclosure .training-plan-option,
+.training-plan-disclosure .training-plan-option>summary,
+.training-plan-disclosure .training-plan-option[open]>summary,
+.training-plan-disclosure .training-plan-option-body,
+.training-plan-disclosure .training-plan-option .train-emphasis-summary{
+ background:#d1d0cc!important;
+ color:#121416!important;
+}
+.training-plan-disclosure .training-plan-option{border:1px solid #c1c0bc!important}
+.training-plan-disclosure .training-plan-option[open]>summary{border-bottom:1px solid #b5b4b0!important}
+.training-plan-disclosure .training-plan-option-body .small,
+.training-plan-disclosure .training-plan-option-body .muted{color:#303437!important}
