@@ -77,6 +77,24 @@ const {chromium}=require('playwright');
     throw Error('Workout style selections lost after reload');
    await page.locator('#train-style-dialog button[type="submit"]').click();
    console.log('Train style and emphasis editor persistence passed at '+viewport.width+'px');
+   // Reset confirmation must require a fresh acknowledgement on every opening.
+   await page.locator('[data-tab="settings"]').click();
+   const resetSection=page.locator('#reset').locator('xpath=ancestor::details[1]');
+   await resetSection.evaluate(el=>el.open=true);
+   const beforeReset=await page.evaluate(()=>localStorage.getItem('sl-dev-preview-data-v33'));
+   await page.locator('#reset').click();
+   if(!await page.locator('#reset-confirm-dialog').evaluate(el=>el.open))throw Error('Reset dialog did not open');
+   if(!await page.locator('#reset-confirm').isDisabled())throw Error('Reset button enabled without acknowledgement');
+   await page.locator('#reset-backup-confirmed').check();
+   if(await page.locator('#reset-confirm').isDisabled())throw Error('Reset acknowledgement did not enable confirmation');
+   await page.locator('#reset-cancel').click();
+   await page.locator('#reset').click();
+   if(await page.locator('#reset-backup-confirmed').isChecked()||!await page.locator('#reset-confirm').isDisabled())
+    throw Error('Reset acknowledgement was reused after cancellation');
+   await page.locator('#reset-cancel').click();
+   if(await page.evaluate(()=>localStorage.getItem('sl-dev-preview-data-v33'))!==beforeReset)
+    throw Error('Cancelling reset changed saved training');
+   console.log('Reset acknowledgement and cancellation safety passed at '+viewport.width+'px');
    // Settings must persist equipment ceilings and explicit matched-pair availability.
    await page.locator('[data-tab="settings"]').click();
    const setup=page.locator('#training-setup');
