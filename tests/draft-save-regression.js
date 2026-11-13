@@ -6,7 +6,7 @@ const part=src.slice(src.indexOf('function changed('),src.indexOf('\nfunction sa
 assert.ok(part.startsWith('function changed('),'draft edit functions found');
 let checks=0;
 for(const failed of [false,true]){
- let draft={notebookVersion:1,plan:{items:[{id:'swing',side:2}]},items:[{sets:[{weight:12,reps:10,done:false}]}]},writes=0,renders=0;
+ let draft={notebookVersion:1,plan:{items:[{id:'swing',side:2}]},items:[{sets:[{weight:12,reps:10,leftReps:10,rightReps:10,done:false}]}]},writes=0,renders=0;
  const initial=JSON.stringify(draft);
  const run=new Function('draft','E','T','checkWriter','saveDraft','render','alert',part+';changed(0,0,"done",true);return draft;');
  draft=run(draft,{validWorkingWeight:()=>true},{logged:d=>{d.clock={running:true}}},()=>true,()=>{writes++;return !failed},()=>{renders++},()=>{});
