@@ -727,3 +727,11 @@ details.preparation .prep-exercise .rx,details.preparation .prep-exercise .rx *{
 .training-plan-disclosure .training-plan-option-body{color:#111!important}
 .training-plan-disclosure .training-plan-option-body label,.training-plan-disclosure .training-plan-option-body .small,.training-plan-disclosure .training-plan-option-body .muted{color:#111!important}
 .training-plan-disclosure .training-style-current{margin:0 0 9px;line-height:1.45;font-size:12px}
+
+/* Training Plan hierarchy and unobtrusive emphasis edit. */
+.training-plan-disclosure>.training-plan-controls{margin:8px 0}
+.training-plan-disclosure>#training-calendar{margin:10px 0}
+.training-plan-emphasis{margin-top:10px!important}
+.training-emphasis-footer{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-top:10px}
+.training-emphasis-footer .small{margin:0;flex:1;min-width:0}
+.training-emphasis-footer button{flex:0 0 auto;align-self:flex-end}
