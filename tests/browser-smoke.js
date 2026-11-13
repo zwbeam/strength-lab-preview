@@ -1073,6 +1073,13 @@ const {chromium}=require('playwright');
    const afterNativeCancel=await page.evaluate(()=>localStorage.getItem('sl-dev-preview-data-v33'));
    if(afterNativeCancel!==beforeNativeCancel)
     throw Error('Dismissing final native reset confirmation changed saved training');
+   await page.reload({waitUntil:'domcontentloaded'});
+   if(await page.evaluate(()=>localStorage.getItem('sl-dev-preview-data-v33'))!==beforeNativeCancel)
+    throw Error('Dismissing final confirmation did not preserve training across reload');
+   await page.locator('[data-tab="settings"]').click();
+   await page.locator('#reset').locator('xpath=ancestor::details[1]').evaluate(el=>el.open=true);
+   await page.locator('#reset').click();
+   await page.locator('#reset-backup-confirmed').check();
    if(!await page.locator('#reset-confirm-dialog').evaluate(el=>el.open))
     throw Error('Reset dialog unexpectedly closed after dismissing final confirmation');
    const confirmationText=[];
