@@ -85,6 +85,17 @@ const {chromium}=require('playwright');
    await page.locator('#reset').click();
    if(!await page.locator('#reset-confirm-dialog').evaluate(el=>el.open))throw Error('Reset dialog did not open');
    if(!await page.locator('#reset-confirm').isDisabled())throw Error('Reset button enabled without acknowledgement');
+   const backupDownloadPromise=page.waitForEvent('download');
+   await page.locator('#reset-download-backup').click();
+   const resetBackupDownload=await backupDownloadPromise;
+   if(!resetBackupDownload.suggestedFilename().endsWith('.json'))
+    throw Error('Pre-reset backup did not download as JSON');
+   const backupStream=await resetBackupDownload.createReadStream();
+   let backupJson='';
+   for await(const chunk of backupStream)backupJson+=chunk.toString('utf8');
+   const downloadedBackup=JSON.parse(backupJson);
+   if(downloadedBackup.version!==33||!Array.isArray(downloadedBackup.sessions))
+    throw Error('Pre-reset download missing expected training backup schema');
    await page.locator('#reset-backup-confirmed').check();
    if(await page.locator('#reset-confirm').isDisabled())throw Error('Reset acknowledgement did not enable confirmation');
    await page.locator('#reset-cancel').click();
