@@ -4,7 +4,7 @@
 'use strict';
 const assert = require('node:assert/strict');
 const E = require('../engine.js'), N = require('../notebook.js');
-const id='swing', state={sessions:[],weights:{swing:16},nextWeights:{swing:18},programming:{swing:{exposures:2}}};
+const id='swing', state={version:33,defaultMinutes:45,equipment:{kb:[16,18],club:[]},sessions:[],weights:{swing:16},nextWeights:{swing:18},programming:{swing:{exposures:2}}};
 const policy=E.policyFor(id,state), target=policy.stages[0];
 const rx={id,name:E.MOVES[id].name,unit:'kg',side:1,weight:16,sets:target.sets,reps:target.reps,rest:target.rest,mode:'volume',policyKey:policy.key,profile:'legacy',track:'base'};
 const sets=()=>Array.from({length:rx.sets},()=>({done:true,skipped:false,weight:16,reps:rx.reps}));
@@ -12,7 +12,7 @@ const first=Date.UTC(2025,0,1);
 for(let n=0;n<300;n++){
  const date=new Date(first+n*86400000).toISOString().slice(0,10);
  const record={...E.completeRecord(rx,sets(),'clean',false),prescription:{...rx},note:''};
- state.sessions.push({id:'session-'+n,date,block:'abc',items:[record],plan:{items:[rx],deferred:[]},status:'Completed as prescribed',finishOutcome:'complete'});
+ state.sessions.push({id:'session-'+n,date,title:'Strength history correction fixture',block:'abc',items:[record],plan:{day:{name:'History correction',focus:'Swing'},budget:{total:45,warmup:5,cooldown:5,main:35},cap:45,items:[rx],deferred:[]},status:'Completed as prescribed',finishOutcome:'complete'});
 }
 const before=E.stateFor(state,id);
 const original=state.sessions[299];
