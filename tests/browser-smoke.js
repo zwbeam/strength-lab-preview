@@ -96,6 +96,10 @@ const {chromium}=require('playwright');
    const downloadedBackup=JSON.parse(backupJson);
    if(downloadedBackup.version!==33||!Array.isArray(downloadedBackup.sessions))
     throw Error('Pre-reset download missing expected training backup schema');
+   const beforeResetState=JSON.parse(beforeReset||'null');
+   if(!beforeResetState||JSON.stringify(downloadedBackup.sessions)!==JSON.stringify(beforeResetState.sessions)||
+      JSON.stringify(downloadedBackup.weights)!==JSON.stringify(beforeResetState.weights))
+    throw Error('Pre-reset backup does not preserve saved workout history and weights');
    await page.locator('#reset-backup-confirmed').check();
    if(await page.locator('#reset-confirm').isDisabled())throw Error('Reset acknowledgement did not enable confirmation');
    await page.locator('#reset-cancel').click();
