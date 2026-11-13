@@ -78,3 +78,12 @@ block and ABC pool are unchanged. Numeric practice doses/rest are app adaptation
 not the full #151 strength/bodybuilding progression. Visual technique remains
 incomplete. This closes the two instructional-only catalog gaps without claiming
 all research movements are implemented.
+
+
+First-use load setup: Advanced Movement Programming now offers owned-equipment
+starting-load selection for unstarted loaded movements, including paired clubs
+and kettlebells. It cannot replace an established working load or certify a
+skill. Existing unavailable-load replacement controls are reachable there too.
+Browser regression starts with the target load unset, selects it through Settings,
+reloads and completes the generated workout. Prior seeded-load tests had not
+covered this reachability gap.

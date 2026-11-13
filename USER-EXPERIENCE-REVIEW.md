@@ -51,3 +51,10 @@ programmable in an opt-in skill block, with explicit familiarity and recent
 foundation gates. Ordinary default programs are unchanged. Per-side results are
 required in the existing set editor. Please review the dose/eligibility wording;
 source bodybuilding examples are not an automatic progression ladder.
+
+
+First-use setup review: open Advanced Movement Programming, expand an unstarted
+loaded movement and choose a familiar owned starting load. Paired selections
+use per-implement inventory. Established loads continue through review/progression
+controls; unavailable loads use explicit replacement. Please check that this
+route and the eligibility explanations are clear on Android.

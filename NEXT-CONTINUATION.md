@@ -32,3 +32,9 @@ teaching sequence. Do not claim complete lifetime curriculum coverage.
 Physical Android review is separate from browser emulation. Keep eight Books
 separate from the Movement Library; no further major interface redesign without
 user review. Work in tested commits on preview; no production promotion.
+
+First-use correction: Advanced Movement Programming has a per-movement owned
+starting-load selector. Keep setInitialLoad's established-load guard; later
+changes use progression/replacement review. Browser fixtures must test this from
+an unset load and preserve saved data across reload, rather than silently
+reseed preconfigured weights. See tests/initial-load.js and browser-integration.

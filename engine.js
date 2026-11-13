@@ -258,7 +258,7 @@ function complexityOptions(s,opts={}){
   const inventory=movement.pair?s.equipment?.pairs:s.equipment?.kb;
   const validLoad=weight>0&&Array.isArray(inventory)&&inventory.includes(weight);
   const rackReady=!pathway.matchedPair||s.skills?.rack===true;
-  const blockers=[...missing.map(id=>Object.hasOwn(MOVES,id)?MOVES[id].name+' needs recent clean practice':id+' is not yet implemented'),...(!pairAvailable?['A matched kettlebell pair must be configured']:[]),...(!rackReady?['Confirm a secure double rack in Settings']:[]),...(!validLoad?['Set an owned working weight for this complex in Working weights']:[])];
+  const blockers=[...missing.map(id=>Object.hasOwn(MOVES,id)?MOVES[id].name+' needs recent clean practice':id+' is not yet implemented'),...(!pairAvailable?['A matched kettlebell pair must be configured']:[]),...(!rackReady?['Confirm a secure double rack in Settings']:[]),...(!validLoad?['Review the owned working load in Settings → Advanced & Data → Movement Programming or Training Log']:[])];
   if(!enabled)blockers.unshift('Kettlebell complexes are disabled');
   return {...pathway,ready:!blockers.length,blockers,advisory:true};
  });
@@ -328,6 +328,12 @@ function repairMissingLoadAnchor(s,id,confirm){
  if(!marker||marker==='__start__'||records(s,id).some(x=>x._key===marker))throw Error('No missing load reset anchor to repair');
  const next={...s,loadResetAfter:{...s.loadResetAfter,[id]:records(s,id).at(-1)?._key||'__start__'}};
  return next;
+}
+function setInitialLoad(s,id,weight){
+ const m=MOVES[id];if(!m||m.bodyweight)throw Error('Select a loaded movement');
+ if(stateFor(s,id).weight>0||records(s,id).some(x=>x.actualSets>0&&x.weight>0))throw Error('Working load already established; use existing load review controls');
+ if(!availableWorkingLoads(s,id).includes(weight))throw Error('Starting load must be explicitly available for this movement');
+ return {...s,weights:{...s.weights,[id]:weight},nextWeights:{...s.nextWeights,[id]:weight}};
 }
 function replaceUnavailableLoad(s,id,weight){const m=MOVES[id];if(!m||m.bodyweight)throw Error('A loaded movement is required');if(policyFor(id,s).profile==='wave')throw Error('Change configured wave weights instead');if(!availableWorkingLoads(s,id).includes(weight))throw Error('Replacement weight must be currently available');const current=stateFor(s,id);if(availableWorkingLoads(s,id).includes(current.weight))throw Error('Current working weight is still available; use normal progression controls');return{...s,nextWeights:{...s.nextWeights,[id]:weight},loadResetAfter:{...s.loadResetAfter,[id]:records(s,id).at(-1)?._key||'__start__'}};}
 function selectLoad(s,id,weight){if(!loadOptions(s,id).includes(weight))throw Error('Load must be an available, permitted increment after a clean cycle. Adjust the configurable jump limit deliberately if needed.');if(stateFor(s,id).policy.profile==='wave')throw Error('Configure a new heavy/light pair in Settings instead.');return{...s,nextWeights:{...s.nextWeights,[id]:weight},loadResetAfter:{...s.loadResetAfter,[id]:records(s,id).at(-1)?._key||'__start__'}};}
@@ -853,5 +859,5 @@ function validateBackup(input){
  const workoutDraft=validateDraft(input.workoutDraft,input);
  return JSON.parse(JSON.stringify({...input,workoutDraft,nextWeights:input.nextWeights||{},defaultMinutes:input.defaultMinutes??45,deferredIds:input.deferredIds||[]}));
 }
-return{trainingEmphasis,validateTrainingEmphasis,emphasisDistribution,mobilityOnlyPlan,COMPLEX_PATHWAYS,complexityOptions,repairMissingLoadAnchor,replaceUnavailableLoad,availableWorkingLoads,trainingPaused,activityRecovery,validateActivity,movementCadence,MOVES,SKILLS,DAYS,BLOCKS,LOADS,PROFILE_NAMES,describeProgression,policyFor,availableProfiles,configureMovement,practiceEvidence,supportingMoves,requirementLabel,prerequisites,chooseCycle,loadOptions,selectLoad,retestPushup,validWorkingWeight,validateProgramming,validateDraft,validateBackup,records,successful,stateFor,prescription,minutesFor,timeBudget,plan,completeRecord,nextRest,deferredAfter,resolvePain,movementGap,movementDemands};
+return{trainingEmphasis,validateTrainingEmphasis,emphasisDistribution,mobilityOnlyPlan,COMPLEX_PATHWAYS,complexityOptions,repairMissingLoadAnchor,setInitialLoad,replaceUnavailableLoad,availableWorkingLoads,trainingPaused,activityRecovery,validateActivity,movementCadence,MOVES,SKILLS,DAYS,BLOCKS,LOADS,PROFILE_NAMES,describeProgression,policyFor,availableProfiles,configureMovement,practiceEvidence,supportingMoves,requirementLabel,prerequisites,chooseCycle,loadOptions,selectLoad,retestPushup,validWorkingWeight,validateProgramming,validateDraft,validateBackup,records,successful,stateFor,prescription,minutesFor,timeBudget,plan,completeRecord,nextRest,deferredAfter,resolvePain,movementGap,movementDemands};
 });

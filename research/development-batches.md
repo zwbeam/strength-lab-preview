@@ -285,3 +285,22 @@ this is not a claim that every movement or method in 719 usable research sources
 has been integrated. Performance swipes, fuller numerical cycles and broader
 bodyweight/paired movement families remain engineering/research work. Data keys,
 backups, history correction, eight Books and production remain unchanged.
+
+
+### First-use load reachability correction
+
+Checkpoint b0cc04a passed all GitHub checks. Final inspection found the old
+workingWeights renderer was unreachable: paired movements with no starting load
+could not enter a workout, while earlier browser fixtures prefilled that load.
+Advanced Movement Programming now provides a deliberate owned-load selector
+for unstarted movements and existing replacement controls for unavailable loads.
+The pure setInitialLoad guard rejects bodyweight, unowned/unmatched choices and
+any established positive load; skill flags and history are unchanged. Active
+drafts block the action. Existing progression/review controls remain mandatory
+for subsequent load changes. Updated empty-plan guidance points to the real UI.
+
+New tests begin with no target load, select it through the actual Settings UI,
+reload, generate the workout, enter bilateral actuals where required and save.
+The fixture initializer now preserves storage on reload instead of reseeding it.
+This addresses the gap that seeded-load tests missed. Source prescriptions and
+training intelligence are unchanged by this setup correction.
