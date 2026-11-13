@@ -708,3 +708,13 @@ details.preparation .prep-exercise .rx,details.preparation .prep-exercise .rx *{
 /* Four bottom tabs: subtle separation and rounded individual corners. */
 .shell .bottom{gap:5px!important;padding-left:5px!important;padding-right:5px!important}
 .shell .bottom>button{border-radius:9px!important;overflow:hidden}
+
+/* Compact training plan: calendar first, then three tidy nested controls. */
+.training-plan-disclosure>.training-plan-controls{display:grid;gap:8px;margin-top:10px}
+.training-plan-option{border:1px solid var(--border,#c8d2da);border-radius:12px;background:var(--surface,#fff);overflow:hidden}
+.training-plan-option>summary{cursor:pointer;padding:11px 13px;font-weight:650;line-height:1.4}
+.training-plan-option[open]>summary{border-bottom:1px solid var(--border,#c8d2da)}
+.training-plan-option-body{padding:10px 12px 12px}
+.training-plan-option-body .train-emphasis-summary{margin:0;padding:0;border:0;box-shadow:none;background:transparent}
+.training-plan-option-body .two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media(max-width:420px){.training-plan-option-body .two{grid-template-columns:1fr}}
