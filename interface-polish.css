@@ -718,3 +718,12 @@ details.preparation .prep-exercise .rx,details.preparation .prep-exercise .rx *{
 .training-plan-option-body .train-emphasis-summary{margin:0;padding:0;border:0;box-shadow:none;background:transparent}
 .training-plan-option-body .two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 @media(max-width:420px){.training-plan-option-body .two{grid-template-columns:1fr}}
+
+/* Training Plan compact controls: high-contrast labels, single-line headings. */
+.training-plan-disclosure .training-plan-option{background:#f7f9fb!important;color:#111!important}
+.training-plan-disclosure .training-plan-option>summary{color:#111!important;background:#f7f9fb!important;font-size:clamp(11px,2.7vw,13px)!important;font-weight:650!important;white-space:nowrap!important;overflow:hidden;text-overflow:ellipsis;line-height:1.25!important;padding:9px 9px!important;letter-spacing:-.15px}
+.training-plan-disclosure .training-plan-option>summary::marker{color:#111!important}
+.training-plan-disclosure .training-plan-option>summary::-webkit-details-marker{color:#111!important}
+.training-plan-disclosure .training-plan-option-body{color:#111!important}
+.training-plan-disclosure .training-plan-option-body label,.training-plan-disclosure .training-plan-option-body .small,.training-plan-disclosure .training-plan-option-body .muted{color:#111!important}
+.training-plan-disclosure .training-style-current{margin:0 0 9px;line-height:1.45;font-size:12px}
