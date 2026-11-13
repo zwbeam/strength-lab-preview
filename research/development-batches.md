@@ -82,3 +82,42 @@ lunge. A separate 390px paired-clean workout is generated, saved, and then
 blocked when matched-pair equipment is removed. Numerical rules are tested over
 multiweek histories including partial/imbalance/pain/low-readiness. Physical
 Android technique/audio testing remains outstanding. Cache rc27-source-curriculum-20261113.
+
+
+## Batch 3: distinct rack-squat evidence and club foundation instruction
+
+GitHub run 43496253448 passed audit and browser-smoke for batch 2 (83b5ecc).
+Public Pages build and HTTPS cache rc27 were verified; a touch-enabled 390px
+browser opened Learn with eight separate Books, new lessons and no overflow.
+
+Close-read #305 and #206. Add singleRackSquat with its own explicit rack/technique
+confirmation, recent goblet foundation evidence, independent volume history and
+opt-in block. The source supports 3–5 per side and adding sets at fixed reps;
+selected 3 reps, 2–4 sets, 90-second rest and qualification/recovery thresholds
+are app choices. Single clean/squat/press sequence and both eligibility systems
+now require this distinct rack squat, rather than accepting goblet history as
+proof of rack-squat technique. Old history and policy keys are preserved; this
+constrains future admission, not retroactive rewriting of stored sessions.
+
+Double-club swing-clean teaching (#206) is available as an instruction-only
+foundation. Its later-stage equipment/coordination context, back-burner practice
+example, grip, order, controlled return and historical test qualifications are
+preserved. No double-club automatic prescription is inferred from those examples.
+
+The actual rack-workout browser test exposed an existing display/data mismatch:
+unrecorded side counts looked prefilled although the save guard correctly
+required explicit actual counts. Ordinary unilateral actual fields now start
+blank when no results exist. Verified: save rejects missing sides without losing
+the draft, then explicit left/right entries allow a successful unilateral save.
+No bilateral safeguard was weakened. Existing saved side values are unchanged.
+
+Verification: 29 Node suites passed after the engine additions, plus the history
+correction CJS suite. Source audit checks 52 exact quote anchors and archive
+hashes. Multiweek rack tests cover partial work, goblet/rack separation,
+qualification expiration, explicit skill gates and supporting-practice return.
+Full browser-smoke passed all four widths after the engine change; the isolated
+390px rack flow passed after the side-field fix. Current combined browser tests
+and remote CI must finish independently for this checkpoint.
+Cache revision rc28-rack-foundation-20261113. Inventory: 38 programmable lessons,
+five instruction-only lessons; eleven programmable lessons retain explicit
+incomplete status. Production and browser storage namespace remain unchanged.

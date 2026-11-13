@@ -9,18 +9,19 @@ Do not delete or overwrite them. Do not promote Cloudflare/production.
 The November 13 batches repair Learn missing-entry crashes, bounded filtered
 history, disclosure retention and the stale offline-cache browser assertion.
 They inventory 720 archived sources / 719 usable per supplied accounting, add
-three opt-in engine movements and four education-only lessons, and restore
+four opt-in engine movements and five education-only lessons, and restore
 optional detailed programming access in Advanced Settings. All new numeric
 practice doses and admission gates are app decisions, not source prescriptions.
 The eight Book outlines remain separate and provisional.
 
 Next: verify current commit's audit AND browser jobs; inspect the live Pages
-preview and its service-worker revision. Continue source-reviewed double-club
-foundations (#206 before advanced alternating work), quadruped timing/protocol
-integration (#85/#88/#554 need close reading), and single rack-squat instruction
-(#305) before claiming complete single-bell clean/squat/press technique.
+preview and its service-worker revision. Continue double-club equipment and foundation programming (#206 close-read;
+#205/#207 still need close review), and quadruped timing/protocol integration
+(#85/#88/#554 need close reading). Source #305 now supplies a distinct rack-squat
+lesson, opt-in practice block and evidence gate before the single-bell triad.
+Its combination transitions still need visual verification.
 Double-club pair equipment and automatic scheduling are not implemented yet.
-Do not schedule the four instruction-only references or award them credit.
+Do not schedule the five instruction-only references or award them credit.
 
 Use `node scripts/audit-curriculum.cjs` to reproduce the coverage inventory.
 Run every non-browser tests/*.js, `node --test tests/history-corrections.test.cjs`,

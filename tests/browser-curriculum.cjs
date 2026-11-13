@@ -7,7 +7,7 @@ const assert=require('node:assert/strict'),{chromium}=require('playwright');
   page.on('pageerror',e=>errors.push(e.message));page.on('dialog',async d=>{errors.push('Unexpected dialog: '+d.message());await d.dismiss();});
   await page.goto('http://127.0.0.1:8765/');await page.waitForFunction(()=>storageReady);
   await page.locator('[data-tab="learn"]').tap();assert.equal(await page.locator('.book-volume').count(),8);
-  for(const [category,id] of [['bodyweight','bodyweightSquat'],['bodyweight','stepBackLunge'],['double-kb','doubleClean'],['complex','complexCleanPress'],['complex','complexCleanSquatPress'],['complex','complexDoubleCleanSquatPress'],['bodyweight','bearCrawl'],['bodyweight','catCrawl'],['double-club','doubleClubInside'],['double-club','doubleClubOutside']]){
+  for(const [category,id] of [['kb','singleRackSquat'],['double-club','doubleClubSwingClean'],['bodyweight','bodyweightSquat'],['bodyweight','stepBackLunge'],['double-kb','doubleClean'],['complex','complexCleanPress'],['complex','complexCleanSquatPress'],['complex','complexDoubleCleanSquatPress'],['bodyweight','bearCrawl'],['bodyweight','catCrawl'],['double-club','doubleClubInside'],['double-club','doubleClubOutside']]){
    await page.locator('[data-library-category="'+category+'"] ').evaluate(el=>el.open=true);
    await page.locator('[data-library-category="'+category+'"] [data-learn-move="'+id+'"]').tap();
    const lesson=page.locator('#movement-instruction');assert.ok((await lesson.innerText()).length>200,id);
@@ -47,5 +47,22 @@ const assert=require('node:assert/strict'),{chromium}=require('playwright');
  await page.locator('[data-tab="settings"]').tap();await page.locator('#training-setup').evaluate(el=>el.closest('details').open=true);await page.locator('#matched-kb-pairs').fill('');await page.locator('#save-setup').tap();
  assert.equal(await page.evaluate(()=>E.plan(state).items.some(x=>x.id==='doubleClean')),false);
  await paired.close();console.log('Actual paired-clean workout save and removed-pair equipment restriction passed at 390px');
+ const E=require('../engine.js'),now=new Date().toISOString().slice(0,10),rackState={version:33,defaultMinutes:45,programBlock:'rackSquatPractice',sessions:[],weights:{squat:12,singleRackSquat:12},nextWeights:{},equipment:{kb:[12],club:[],pairs:[]},skills:{rack:true,singleRackSquat:true},trainingPreferences:{daysPerWeek:3,useKb:true,useClub:false,useBodyweight:true}};
+ for(const days of [6,3]){const date=new Date(Date.now()-days*86400000).toISOString().slice(0,10),rx=E.prescription(rackState,'squat',{now:date});rackState.sessions.push({id:'goblet-'+days,title:'Reviewed prior goblet practice',date,items:[E.completeRecord(rx,Array.from({length:rx.sets},()=>({done:true,weight:12,reps:rx.reps})),'clean',false)]});}
+ E.validateBackup(rackState);const rackContext=await browser.newContext({viewport:{width:390,height:844},hasTouch:true,isMobile:true});
+ await rackContext.addInitScript(fixture=>{if(!localStorage.getItem('sl-dev-preview-data-v33'))localStorage.setItem('sl-dev-preview-data-v33',JSON.stringify(fixture));},rackState);
+ const rackPage=await rackContext.newPage(),rackDialogs=[];rackPage.on('dialog',async d=>{rackDialogs.push(d.message());await d.dismiss();});await rackPage.goto('http://127.0.0.1:8765/');await rackPage.waitForFunction(()=>storageReady);
+ assert.match(await rackPage.locator('#app').innerText(),/Single-rack kettlebell front squat/);await rackPage.locator('#start').tap();
+ await rackPage.locator('[data-quick-complete="0"]').check();await rackPage.locator('#save-workout').tap();
+ assert.equal(rackDialogs.length,1);assert.match(rackDialogs[0],/actual left and right/);assert.equal(await rackPage.evaluate(()=>state.sessions.length),2);
+ await rackPage.locator('[data-edit-movement="active:0"]').tap();
+ const count=await rackPage.evaluate(()=>draft.items[0].sets.length);
+ for(let j=0;j<count;j++)for(const side of ['leftReps','rightReps']){
+  const input=rackPage.locator('[data-set="0:'+j+':'+side+'"]');await input.evaluate(el=>el.closest('details').open=true);
+  assert.equal(await input.inputValue(),'','Unrecorded side must not look like an actual result');await input.fill('3');await input.press('Tab');
+ }
+ await rackPage.locator('#save-workout').tap();await rackPage.waitForFunction(()=>state.sessions.length===3);
+ const rackSaved=await rackPage.evaluate(()=>state.sessions.at(-1).items[0]);assert.equal(rackSaved.id,'singleRackSquat');assert.equal(rackSaved.completed,true);assert.ok(rackSaved.sets.every(x=>x.leftReps===3&&x.rightReps===3));
+ await rackContext.close();console.log('Actual prerequisite-qualified single-rack workout and unilateral save passed at 390px');
  }finally{await browser.close();}
 })().catch(error=>{console.error(error);if(process.env.GITHUB_ACTIONS)console.log('::error::'+String(error.stack||error).replace(/%/g,'%25').replace(/\r/g,'%0D').replace(/\n/g,'%0A'));process.exitCode=1;});

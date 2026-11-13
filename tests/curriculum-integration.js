@@ -28,3 +28,19 @@ const disabled=fresh();disabled.learnedMovements={complexCleanPress:true};assert
 for(const id of Object.keys(I.references)){assert.equal(L.status(fresh(),id).key,'reference');assert.ok(L.instruction(id).steps.length);assert.ok(!E.MOVES[id]);assert.throws(()=>E.prescription(fresh(),id));assert.ok(L.browse().some(x=>x.id===id));}
 assert.ok(L.relations('bearCrawl').educational.some(x=>x.to==='catCrawl'&&!x.gate));
 console.log('PASS:',anchors,'source anchors/hashes; multiweek bodyweight progression/partial/imbalance/pain; paired clean equipment/skill gates; complex eligibility consistency; reference-only isolation');
+// Single-rack squat is a separate skill and history from the goblet squat.
+const rack=fresh();rack.programBlock='rackSquatPractice';rack.weights={squat:12,singleRackSquat:12,clean:12,press:12,complexCleanSquatPress:12};rack.skills={rack:true,singleRackSquat:true};
+const append=(id,date,complete=true)=>{const rx=E.prescription(rack,id,{now:date});const sets=Array.from({length:rx.sets},(_,j)=>({done:complete||j===0,weight:rx.weight,reps:rx.reps,leftReps:rx.reps,rightReps:rx.reps,bothSides:true}));rack.sessions.push({id:'rack-'+rack.sessions.length,title:'Rack foundation evidence',date,items:[E.completeRecord(rx,sets,'clean',false)]});};
+assert.ok(E.prerequisites(rack,'singleRackSquat',{now:'2026-01-01'}).includes('practice:squat'));
+append('squat','2026-01-01');append('squat','2026-01-04');
+assert.ok(!E.prerequisites(rack,'singleRackSquat',{now:'2026-01-07'}).length);
+assert.ok(E.prerequisites(rack,'complexCleanSquatPress',{now:'2026-01-07'}).includes('practice:singleRackSquat'),'Goblet history must not qualify the distinct rack squat');
+const rackPlan=E.plan(rack,{now:'2026-01-07'});assert.ok(rackPlan.items.some(x=>x.id==='singleRackSquat'));const rackRx=rackPlan.items.find(x=>x.id==='singleRackSquat');assert.equal(rackRx.rest,90);assert.equal(rackRx.reps,3);assert.equal(rackRx.sourceParameters,null);
+append('singleRackSquat','2026-01-07',false);assert.equal(E.practiceEvidence(rack,'singleRackSquat',{now:'2026-01-07'}).ready,false);
+append('singleRackSquat','2026-01-10');append('singleRackSquat','2026-01-13');
+assert.equal(E.practiceEvidence(rack,'singleRackSquat',{now:'2026-01-13'}).ready,true);
+assert.equal(E.practiceEvidence(rack,'singleRackSquat',{now:'2026-02-13'}).ready,false);
+assert.ok(E.plan(rack,{now:'2026-02-13'}).items.some(x=>x.id==='squat'),'Stale eligibility schedules supporting goblet practice');
+assert.ok(!E.prerequisites({...rack,skills:{}},'singleRackSquat',{now:'2026-01-13'}).every(x=>x.startsWith('practice:')),'Explicit rack technique confirmation remains separate');
+assert.equal(E.validateBackup(rack).sessions.length,5);assert.equal(E.MOVES.complexCleanSquatPress.sequence[1],'singleRackSquat');
+console.log('PASS: actual rack-squat plans, distinct goblet/rack evidence, partial-work rejection, multiweek expiration and foundation scheduling');

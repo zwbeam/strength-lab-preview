@@ -17,3 +17,10 @@ If deliberately testing optional blocks, export a backup first; confirm only
 techniques you already perform safely. Report confusing wording or controls.
 Physical-device/audio/technique validation and full curriculum integration are
 not completed by browser emulation. Book chapters remain unpublished outlines.
+
+
+Follow-up: single-rack front squat has distinct instruction, practice and future
+complex eligibility. Goblet history alone does not establish rack competence.
+Unrecorded left/right result fields stay blank, matching the existing explicit-
+actual save requirement. Check that these fields and the save feedback are clear
+on your phone. Double-club swing-clean is educational, not automatically dosed.

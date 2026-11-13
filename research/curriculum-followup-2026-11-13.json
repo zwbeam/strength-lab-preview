@@ -1,0 +1,104 @@
+{
+  "read_sources": [
+    305,
+    206
+  ],
+  "classification": {
+    "explicit": "Rack-squat technique, 3–5 per side and fixed-rep/add-set method in #305; later double-club order/grip/swing-clean teaching in #206.",
+    "app": "Rack-squat 2–4-set endpoint, 90-second rest, recent goblet evidence, explicit confirmation and complex component gates. Double clubs remain education-only."
+  },
+  "instruction": {
+    "purpose": "Train the squat while holding one bell in a stable single-side rack; this is distinct from the two-hand goblet squat.",
+    "setup": [
+      "Use two hands initially to establish the rack. Place the corner of the handle in the hand with the handle angled about 45 degrees.",
+      "Keep the wrist straight, elbow close to the hip and thumb near collarbone height. Point feet generally forward."
+    ],
+    "steps": [
+      "Descend under control with the rack elbow tracking inside the knee. Use the free hand for initial stabilization if needed.",
+      "Keep the chest and trunk controlled; choose an individual comfortable range instead of forcing the source demonstration’s deepest position.",
+      "Stand fully, engage quadriceps and glutes, and keep the ribcage controlled. Match repetitions on both sides.",
+      "Use the free hand to support the bell and set it down with control."
+    ],
+    "bracing": [
+      "Choose repetitions and load that maintain structure and breathing. The transcript does not establish one mandatory breath cadence."
+    ],
+    "mistakes": [
+      "Bent wrist or flared elbow: rebuild the rack before adding squat depth.",
+      "Treating the source’s deepest squat demonstration as compulsory: preserve comfortable range and control.",
+      "Increasing repetitions instead of sets changes intensity in this source’s fixed-weight volume example."
+    ],
+    "sourceIds": [
+      305
+    ],
+    "videoSourceIds": [
+      305
+    ],
+    "coverage": "reviewed outline",
+    "evidence": [
+      {
+        "sourceId": 305,
+        "quote": "usually this exercise is done for sets of three to five on each side"
+      },
+      {
+        "sourceId": 305,
+        "quote": "instead of adding weight we add sets we do not add reps"
+      },
+      {
+        "sourceId": 305,
+        "quote": "we need to do an equal number of reps on both sides of our body"
+      }
+    ]
+  },
+  "doubleClubReference": {
+    "name": "Double-club swing clean to order",
+    "gear": "club",
+    "clubPair": true,
+    "family": "hinge",
+    "instructionOnly": true,
+    "purpose": "Develop the bottom portion of a double-club swipe: coordinated hip-driven swings into a stable double order.",
+    "setup": [
+      "Double-club work comes later than familiar single-arm and two-hand club work in this lesson. Use familiar manageable clubs with clear space outside the body.",
+      "Begin about 12–18 inches behind the clubs, feet generally forward. Reach down with thumbs pointing down, then rotate thumbs up and pack the shoulders."
+    ],
+    "steps": [
+      "Hinge into the skiing-like bottom position. Let the clubs swing outside the body while the hips drive the movement.",
+      "Pull elbows inward and stop in a controlled double order, rather than a kettlebell rack.",
+      "Push, swing, pull and stop deliberately. At the bottom, keep straight arms in line with the body rather than reaching far behind it.",
+      "Set the clubs down with the same controlled technique used to pick them up."
+    ],
+    "bracing": [
+      "The source describes lat engagement connecting shoulders to the back. It does not prescribe an exact breathing cadence.",
+      "The swing uses the traction-style ice-cream-cone grip; the stop compresses the upper hand with the finger/thumb OK grip."
+    ],
+    "mistakes": [
+      "Wide elbows or elbows tracking behind the body: rebuild a stable, controlled order.",
+      "Treating the catch as a double kettlebell rack: review the different grip and order position.",
+      "Turning this coordination practice into a high-volume test: the source’s historical instructor test is context, not a prescription."
+    ],
+    "qualifications": [
+      "The source describes this as back-burner coordinated skill practice after familiar swing, snatch or club work, with a couple of sets as an example. No automatic dose is implemented.",
+      "Swing clean precedes double pullovers and their later combination into swipes. These educational connections are not automatically measured technical qualifications."
+    ],
+    "sourceIds": [
+      206
+    ],
+    "videoSourceIds": [
+      206
+    ],
+    "coverage": "partial: source-reviewed foundation; paired-club equipment, dose and visual verification remain incomplete",
+    "evidence": [
+      {
+        "sourceId": 206,
+        "quote": "it is the bottom portion of a double Club swipe"
+      },
+      {
+        "sourceId": 206,
+        "quote": "I would make this a back burner movement pattern"
+      },
+      {
+        "sourceId": 206,
+        "quote": "always set the club's down exactly the same way you picked them up with good technique"
+      }
+    ]
+  }
+}

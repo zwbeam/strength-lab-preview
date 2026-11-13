@@ -6,14 +6,14 @@ The supplied audit reports 505 master + 214 independent completions. All 214 jou
 
 ## Runtime coverage
 
-| Category | Programmable movements | Dedicated lessons | Remaining boundary |
-|---|---:|---:|---|
-| Single kettlebell | 13 | 13 | Partial scope; see per-movement states below. |
-| Double kettlebell | 3 | 3 | Partial scope; see per-movement states below. |
-| Heavy club | 11 | 11 | Partial scope; see per-movement states below. |
-| Double club | 0 | 0 | No automatic system yet. |
-| Complexes | 3 | 3 | Partial scope; see per-movement states below. |
-| Bodyweight | 7 | 7 | Partial scope; see per-movement states below. |
+| Category | Programmable movements | Dedicated lessons | Instruction-only lessons | Remaining boundary |
+|---|---:|---:|---:|---|
+| Single kettlebell | 14 | 14 | 0 | Partial scope; see per-movement states below. |
+| Double kettlebell | 3 | 3 | 0 | Partial scope; see per-movement states below. |
+| Heavy club | 11 | 11 | 0 | Partial scope; see per-movement states below. |
+| Double club | 0 | 0 | 3 | No automatic system yet. |
+| Complexes | 3 | 3 | 0 | Partial scope; see per-movement states below. |
+| Bodyweight | 7 | 7 | 2 | Partial scope; see per-movement states below. |
 
 ## Every programmable movement
 
@@ -32,7 +32,7 @@ The supplied audit reports 505 master + 214 independent completions. All 214 jou
 | doublePress | grind | partial: sourced clean and press prerequisites; technique still needs visual verification | #152, #365, #368 |
 | doubleSquat | grind | reviewed outline | #186 |
 | complexCleanPress | legacy | partial: combined technique outline; dose/rest are app defaults and visual review remains necessary | #295 |
-| complexCleanSquatPress | legacy | partial: app combination of reviewed components; #335 gives only brief single-bell context | #295, #335 |
+| complexCleanSquatPress | legacy | partial: source-reviewed components; single-bell combination remains an app arrangement and transitions need visual verification | #295, #305, #335 |
 | complexDoubleCleanSquatPress | legacy | partial: full sequence described in transcript; clearance and transitions need visual confirmation | #335 |
 | getup | getup | partial: source-backed primer; full transitions still require video review | #423, #604 |
 | clubInside | singleClub | reviewed outline | #275 |
@@ -56,6 +56,7 @@ The supplied audit reports 505 master + 214 independent completions. All 214 jou
 | bodyweightSquat | ground | reviewed outline | #91 |
 | stepBackLunge | ground | reviewed outline | #93 |
 | doubleClean | legacy | partial: hard-style transcript outline; paired clearance and catch still require visual verification | #365 |
+| singleRackSquat | legacy | reviewed outline | #305 |
 
 ## Programming scope
 
@@ -68,9 +69,21 @@ These lessons never enter automatic prescriptions. Their source-supported teachi
 - catCrawl: Cat crawl — #82; reviewed outline
 - doubleClubInside: Double-club alternating inside circles — #147; partial: source-reviewed outline; paired-club equipment/programming and visual technique validation remain incomplete
 - doubleClubOutside: Double-club alternating outside circles — #151; partial: source-reviewed outline; paired-club equipment/programming and visual technique validation remain incomplete
+- doubleClubSwingClean: Double-club swing clean to order — #206; partial: source-reviewed foundation; paired-club equipment, dose and visual verification remain incomplete
+
+## High-priority programming gaps
+
+| System | Current status | Evidence boundary / next verification |
+|---|---|---|
+| Bodyweight lower-body | Implemented opt-in squat/lunge; rack prerequisites stay distinct | #91/#93 reviewed. Automatic crawl and fuller bodyweight integration remain missing; #85/#88/#554 are leads, not newly reviewed prescriptions. |
+| Double kettlebell | Clean practice plus existing press/squat and complex | #365/#305 reviewed here; broader alternating/row/lunge pathways remain missing (#183/#347/#71 are leads). |
+| Double club | Three instructional references, no automatic progression | #206 foundation and #147/#151 alternating work reviewed. Pair equipment, swing-clean → pullover → swipe progression and independent cycles remain missing; #205/#207 need close review. |
+| Complexes | Three programmable combinations; partial technique coverage | Rack squat now distinct. #335 worked examples are contextual. Get-up, snatch/lunge and other combinations are missing (#124/#586/#623 discovery leads). |
+| Volume / density / heavy-light | Existing source-specific snatch, club, push-up, wave profiles retained | Source examples are not universal prescriptions. Numeric exposure, recovery and calendar choices remain app decisions. |
+| Broader long-term programming | Partial | Current Tetris/ABC composition does not implement every system in the archive. Competition jerk/long-cycle (#464/#465), additional implement systems and contraindication review remain gaps, not automatic substitutions. |
 
 ## Research boundaries and next priorities
 
-New squat/lunge and paired-clean opt-in blocks address foundation gaps; quadruped automatic protocols, double-club equipment/qualification/programming, and richer supported combinations remain incomplete. Prioritize double-club swing-clean foundations (#206) before advanced swipes/mills. Candidate source IDs/titles are in the JSON inventory. A candidate match is not technique verification. Keep the eight Books separate from this catalog; the provided 23,751-word Book I manuscript is editorial context, not newly certified engine evidence.
+New squat/lunge and paired-clean opt-in blocks address foundation gaps; quadruped automatic protocols, double-club equipment/qualification/programming, and richer supported combinations remain incomplete. The #206 swing-clean foundation is now an instructional reference; verify #205/#207 before programming later double-club combinations. Candidate source IDs/titles are in the JSON inventory. A candidate match is not technique verification. Keep the eight Books separate from this catalog; the provided 23,751-word Book I manuscript is editorial context, not newly certified engine evidence.
 
 Reproduce with `node scripts/audit-curriculum.cjs`. No production data is read or modified.
