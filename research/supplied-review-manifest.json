@@ -1,0 +1,1534 @@
+{
+  "version": 1,
+  "received": "2026-11-13",
+  "files": {
+    "handoff": {
+      "name": "Strength_Lab_Codex_Handoff.md",
+      "sha256": "346604cbc70afadf8f7a4c681b766f350d6399fdfaee9f810da8e3e21e5de921"
+    },
+    "journal": {
+      "name": "Strength_Lab_Independent_Completion_Journal_v27.csv",
+      "sha256": "2e3ae8d04ab12cfd0ef9c9ec27907512e015b2f050eac9f9012340b109bc8961"
+    },
+    "editorial_map": {
+      "name": "Strength_Lab_Book_I_Editorial_Integration_Map_v1.md",
+      "sha256": "e147dfba38b752235da806da1db4fd9386ec85b28ad9169c5e47a5cd5396c9af"
+    },
+    "source_audit": {
+      "name": "Strength_Lab_Final_Source_Audit_v1.md",
+      "sha256": "bbc135a1169c48da68bd1ee1c05d7868644836e304448192888ab6ee05d9ef1d"
+    },
+    "book_i": {
+      "name": "Strength_Lab_Book_I_Integrated_v13.docx",
+      "sha256": "ec41462a6374d53fccee09b893ddfa8515ed1a1e5f7fbede45e54bd59a93299f"
+    }
+  },
+  "accounting": {
+    "reported_master_work_v49": 505,
+    "independent_journal_rows": 214,
+    "independent_unique_sources": 214,
+    "reported_total_accounted": 719,
+    "unusable_source_key": "kyhhTntpVdY",
+    "qualification": "The 505-row master ledger and full anchored independent review writeups were not attached. The accounting audit is not an independent technical review. Editorial map matches are leads only."
+  },
+  "independent_reviews": [
+    {
+      "source_key": "WbCUSxp2ewQ",
+      "title": "KETTLEBELL 47 - improve squat depth with a kettlbell front squat mobility drill",
+      "sha256": "aedbf52688c7e708e894524a4c6a87259b6b2aad212531d5dcba580ab0a31ee5",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "5Q4vMOYvAGg",
+      "title": "Kettlebell 18 - integrating basic hand transition into the clean and press - gateway to endurance",
+      "sha256": "cb0695e93c83492e82fad88248884355dfecf1e777285b7d626a1366b25f2d92",
+      "review_status": "Independent full review complete",
+      "anchor_count": "5"
+    },
+    {
+      "source_key": "oxksb8prjCg",
+      "title": "Kettlebell 2 Hand centerline overhead press - for competitive cheerleader bases",
+      "sha256": "e5577d78eee73b62c68beaccc6b25e7e27820a9835eef8717d58bbe21b13872c",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "7d3WKwry58k",
+      "title": "Kettlebell 25 - core training that works - Clean step back clean",
+      "sha256": "88c3813af60850790f328e2c63653931fb0ed5691d6d90640496c6bba836260e",
+      "review_status": "Independent full review complete",
+      "anchor_count": "5"
+    },
+    {
+      "source_key": "_SSEgx0GK_o",
+      "title": "Kettlebell 29 - Half kneeling clean and press - change the base of support to improve the core",
+      "sha256": "d90e2124b4c0f597c0de059197900b3d96a9a77204a39cfedcba15ee9f53169d",
+      "review_status": "Independent full review complete",
+      "anchor_count": "5"
+    },
+    {
+      "source_key": "dATi077msAI",
+      "title": "Kettlebell 2hand power upright row to goblet squat - For Cheer Bases or  beast work capacity",
+      "sha256": "182c62041142c2775fc853830192661b01de7f272a93261da618d8c8207535d1",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "XIy_XOUAEto",
+      "title": "Kettlebell 4 Count Turkish Getup Press to Roll",
+      "sha256": "dfd7cd5f015b97b0a65166cfaccf4bac039e8c7920f71c14eeb87643b85be23c",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "xVBRtOASNBo",
+      "title": "Kettlebell 41 - flat back pullover - breaking down the setup to break down getups",
+      "sha256": "cff2232637be459b191720afebbef820d0c1a56002f63d6d930ccd266adbeaa1",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "XAZKzuCNWMA",
+      "title": "Kettlebell 45 - rock bottom curl with goblet squat to improve squat depth and remove back pain",
+      "sha256": "901d5603e9ce28cbf76ebe474fc8a1018e2c4133715227bf22233d331404ff6a",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "Mr-l0Kvowi4",
+      "title": "Kettlebell 48 - the dreaded kettlebell thruster - Total body training in the minimum amount of time",
+      "sha256": "c27772a0b7e5ecc915c0d4bf104c429cab04346105d8264ebe5fa46d3cc65d13",
+      "review_status": "Independent full review complete",
+      "anchor_count": "5"
+    },
+    {
+      "source_key": "EIyOdqTf3r8",
+      "title": "Kettlebell Exercises - 2 Handed Swing",
+      "sha256": "f997a0baa31683d96a07d86f6040f05c3ecb6bdd9ceab8192f4eeacf6497804b",
+      "review_status": "Independent full transcript review complete",
+      "anchor_count": "3"
+    },
+    {
+      "source_key": "9ne1Z5_tQEc",
+      "title": "Kettlebell Abs - Pullover Squat - Standing Abs",
+      "sha256": "8f498dc58738308b445cdb9054ce2a702880b2238266dfedefb431fd012a3646",
+      "review_status": "Independent full transcript review complete",
+      "anchor_count": "3"
+    },
+    {
+      "source_key": "RE6CSomDvl8",
+      "title": "The Six Basic Movements of Kettlebelling",
+      "sha256": "19e9457a2946a10b41d7f0774978a38e97c5da7786bda9bb43d266368c1e3dea",
+      "review_status": "Independent full transcript review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "A98uhv66MC8",
+      "title": "non symmetric kettlebell weights - flip sides to face the other direction every set",
+      "sha256": "da0944fa454939cfd4cd1fb68592e5ff2a0d6191a90413d553b33f24477d7132",
+      "review_status": "Independent full transcript review complete",
+      "anchor_count": "3"
+    },
+    {
+      "source_key": "7o2AjkIzjwU",
+      "title": "Nerd math addition - clean and outside clean slammed together to get more from light weights",
+      "sha256": "b5910695bf8b8ebb18b1a29f80f7fe60f2ccebeb412b2eb72464142992cf8b61",
+      "review_status": "Independent full transcript review complete",
+      "anchor_count": "3"
+    },
+    {
+      "source_key": "T_lITJHSZ4M",
+      "title": "Kettlebell Warmups - Around the World Figure 8 Back to Front",
+      "sha256": "c92786d597a8d0482523f531ae7ec814641a3464cbc92ed69058c57e16d8670d",
+      "review_status": "Independent full transcript review complete",
+      "anchor_count": "3"
+    },
+    {
+      "source_key": "1ai4dMzNfTg",
+      "title": "Single Arm Heavy Club - Stagger Stance rear hand swing to order with look + the shield cast",
+      "sha256": "93838de3c3525f09b04462f9a07680be9d615e3328e0ef98be92031fda9610a6",
+      "review_status": "Independent full transcript review complete",
+      "anchor_count": "3"
+    },
+    {
+      "source_key": "CTPm9DBfZEU",
+      "title": "Single Hand Heavy Club Alternating Pendulum - Martial Specific Training",
+      "sha256": "700c9aa8859adedf613dbb1c975c94c16df75cd88d3c2ce713f85e01e95e7a86",
+      "review_status": "Independent full transcript review complete",
+      "anchor_count": "3"
+    },
+    {
+      "source_key": "JUcmmpcEP0w",
+      "title": "Kettlebell Warmups - Figure 8 - Front to Back",
+      "sha256": "6fff510b64e1be186072ae508da58ba98aee33ea88eafeec150e15d5b3b02fd5",
+      "review_status": "Independent full transcript review complete",
+      "anchor_count": "3"
+    },
+    {
+      "source_key": "WLN_wsZZ_i0",
+      "title": "Kettlebell high transition to step back lunge",
+      "sha256": "e302999facfe15f66abb6260caa6567bce90bfce291a1c1f14b724482d9b5130",
+      "review_status": "Independent full transcript review complete",
+      "anchor_count": "3"
+    },
+    {
+      "source_key": "3Wz30DVa1Z8",
+      "title": "Kettlebell Alternating Cleans & Pendulums -Fight Specific",
+      "sha256": "b4676c8671d4962858c6c3227d251123fefeadcf9487a0d5c7b06a62e2af4c89",
+      "review_status": "Independent full transcript review complete",
+      "anchor_count": "3"
+    },
+    {
+      "source_key": "uUmvC6VEXpQ",
+      "title": "Kettlebell inside circle press - martial arts specific training but beneficial to every athlete",
+      "sha256": "7e5cb74f60ab96628d8faa614dba70cd38e3c70053caa04cbfa5fc7f2e1c1221",
+      "review_status": "Independent full transcript review complete",
+      "anchor_count": "3"
+    },
+    {
+      "source_key": "Oud4B3oBeSU",
+      "title": "Kettlebell alternating outside circles with high clean hand transition",
+      "sha256": "ea0f2719cc09038b67d44a7940b40acde1b5242e4a3b90999334fe655fe5e56d",
+      "review_status": "Independent full transcript review complete",
+      "anchor_count": "3"
+    },
+    {
+      "source_key": "goxIFV4L8X4",
+      "title": "No Equipment, No Excuses",
+      "sha256": "f7aa01d51be152e34f800c761e799087370edc069876302d217f1e28aa4b58c4",
+      "review_status": "Independent full transcript review complete",
+      "anchor_count": "3"
+    },
+    {
+      "source_key": "FcoMJn3AlFs",
+      "title": "Kettlebell inside circle press + front clean and press - martial arts activity specific prep",
+      "sha256": "d2c88c59056c96103012f5c14f5ae68493d582dce856c12f9e50b181b60541af",
+      "review_status": "Independent full transcript review complete",
+      "anchor_count": "3"
+    },
+    {
+      "source_key": "djbf0z0XvXk",
+      "title": "Kettlebell soft style efficiency hand 2 hand swing compared to hard style hand 2 hand swing",
+      "sha256": "d598ae97c10cd7c4207b2f7d353315b2df1ec748311deac34a8ba2ebddbe85e2",
+      "review_status": "Independent full transcript review complete",
+      "anchor_count": "3"
+    },
+    {
+      "source_key": "owiXLvQmVrg",
+      "title": "Kettlebell Warmups - Around the World with Front to Back Figure 8",
+      "sha256": "8d0e3fbd5efa2ddda448043e4b9507b792d0501ecc11cff356a73ac457f9197b",
+      "review_status": "Independent full transcript review complete",
+      "anchor_count": "3"
+    },
+    {
+      "source_key": "lzGc7hHygmk",
+      "title": "Kettlebell Low Anchored Clean",
+      "sha256": "800767fe9043620e21904fbab5607cc886932130912302377ef6fba2063041d0",
+      "review_status": "Independent full transcript review complete",
+      "anchor_count": "3"
+    },
+    {
+      "source_key": "QONWQig1lS0",
+      "title": "Kettlebell high transition around the leg front squat",
+      "sha256": "b79bdfac10dbd92c6945d51caf548bbde29bdcaaed0fa5be00ab7f840d299bf7",
+      "review_status": "Independent full transcript review complete",
+      "anchor_count": "3"
+    },
+    {
+      "source_key": "E6gpvI1pFnY",
+      "title": "Kettlebell Abs - Double Windmill",
+      "sha256": "c0c235c4bd5e3a33e9e1f72a71a94bbbac15d93911fc0de2cffac3da5c679d87",
+      "review_status": "Independent full transcript review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "tMt2hzfFGzo",
+      "title": "Kettlebell 75 Two Hand Single Straight Leg Deadlift",
+      "sha256": "6b166c7bac9ad4804a4e9466e83dac946f56e10321884946a30db95ff41ed7ef",
+      "review_status": "Independent full review complete",
+      "anchor_count": "0"
+    },
+    {
+      "source_key": "ieDA4V9WGNQ",
+      "title": "Kettlebell 76 Double Dead Hang Clean And Press",
+      "sha256": "b0d2397dbc12a2e871fef68378d277e6b3107d43160d9a474f89b375f024ee63",
+      "review_status": "Independent full review complete",
+      "anchor_count": "0"
+    },
+    {
+      "source_key": "1K4hgXfUinU",
+      "title": "Kettlebell 77 Single Hand Single Leg Deadlift",
+      "sha256": "dbf520bdb5513da548e74e06e9f70865e03226561b9bf98cff5b85518237117f",
+      "review_status": "Independent full review complete",
+      "anchor_count": "0"
+    },
+    {
+      "source_key": "fWPDPBliCEk",
+      "title": "Kettlebell 78 Double Clean Squat Press",
+      "sha256": "35229db1e9e5d5c57c1244825608af32b52c99f71194196efed7d4c0ea1a51e7",
+      "review_status": "Independent full review complete",
+      "anchor_count": "0"
+    },
+    {
+      "source_key": "okO-7womT5Q",
+      "title": "Kettlebell 79 Half Kneeling Snatch Down",
+      "sha256": "20da0afc7d6c9c6b8872a93b40cd39c9bbf7b96bca1e6c5eb9a5b5ecda0041b9",
+      "review_status": "Independent full review complete",
+      "anchor_count": "0"
+    },
+    {
+      "source_key": "b6JhIX3H2Nc",
+      "title": "Kettlebell Abs - Kettlebell Flat Back Pullover - Part 1",
+      "sha256": "0f8f294ae34e7f9dff575c8523ae6f5a598c39ccf6e6838f4e1f9746f15d6e71",
+      "review_status": "Independent full review complete",
+      "anchor_count": "0"
+    },
+    {
+      "source_key": "gwGSXiOEVGA",
+      "title": "Kettlebell Abs - Low Windmill - Standing Abs",
+      "sha256": "f814ff7cf5ed7458967b160703e11549f9aacc25036b257d664f02567d56967c",
+      "review_status": "Independent full review complete",
+      "anchor_count": "0"
+    },
+    {
+      "source_key": "y4MFTparTmE",
+      "title": "Kettlebell Alternating Clean - Double Kettlebell Series",
+      "sha256": "cfa0af4efc60c756493df9215c4f7f1d92fdea1fb09b49692eb78de5986cb91b",
+      "review_status": "Independent full review complete",
+      "anchor_count": "0"
+    },
+    {
+      "source_key": "1xAJ749SIrU",
+      "title": "Kettlebell Around the Leg High Transition Clean aka upper cut clean",
+      "sha256": "e4b165cfda5d330cd2415bf1aed08924ce344123991d095b85d014093c2c77c3",
+      "review_status": "Independent full review complete",
+      "anchor_count": "0"
+    },
+    {
+      "source_key": "veaxVBKcTFI",
+      "title": "Kettlebell Around the Leg High Transition to Step back lunge",
+      "sha256": "4ff28615da5190b7c92512c4220512b0afaf5491ce046de50e7ee0afa3c30efe",
+      "review_status": "Independent full review complete",
+      "anchor_count": "0"
+    },
+    {
+      "source_key": "AnPkYnKAxy8",
+      "title": "Kettlebell Around the World to High Catch - Acceleration and Deceleration for Martial Athletes",
+      "sha256": "0d9c5881967ddb0283d9bad70766b8b368575e8b4c759d3c640f7b4ed83f4e6a",
+      "review_status": "Independent full review complete",
+      "anchor_count": "6"
+    },
+    {
+      "source_key": "FjXW-C3D5oQ",
+      "title": "Kettlebell Around the world to high catch (slingshot) - for Martial athletes and runners",
+      "sha256": "cf2bb1ef1138e6e9799ee09b2412110dc0f78bbb1774c8a4cabd64b9b3cc0385",
+      "review_status": "Independent full review complete",
+      "anchor_count": "6"
+    },
+    {
+      "source_key": "ogTCmJV_smo",
+      "title": "Kettlebell Bear Crawl - arms, abs, legs.",
+      "sha256": "590f233dde94bc0947b0853e682096d13fa54b936bb9ae04f3066e398da5ee65",
+      "review_status": "Independent full review complete",
+      "anchor_count": "6"
+    },
+    {
+      "source_key": "Bc3kZPDt6WE",
+      "title": "Kettlebell Bent position - Press to the Side",
+      "sha256": "b9240b77cf391745c35e6c06adbb5fe59db1dc0f5aaeffbed298574f4548d822",
+      "review_status": "Independent full review complete",
+      "anchor_count": "5"
+    },
+    {
+      "source_key": "oFeVqrO5afk",
+      "title": "Kettlebell Bottoms Up Inside Clean - Put your hand between the big chuck of metal and your face",
+      "sha256": "e70e17a6a8f187753f04bd4a1fca10cdda8d5df7c156aec032f4ad297a9b7c3d",
+      "review_status": "Independent full review complete",
+      "anchor_count": "5"
+    },
+    {
+      "source_key": "RyIq9ZBxnNo",
+      "title": "Kettlebell Clean",
+      "sha256": "c3a07fda6ae36747bc85c5b86afb041fbafa30085bf2de27f1a5d53838bd58e0",
+      "review_status": "Independent full review complete",
+      "anchor_count": "6"
+    },
+    {
+      "source_key": "48qvCvJJr8Y",
+      "title": "Kettlebell Clean and Press - a Primer on basic technique",
+      "sha256": "5694b635adc4888cfa4efef02683c3cdb4f325b9f0bbacc04431f27721fe57c2",
+      "review_status": "Independent full review complete",
+      "anchor_count": "7"
+    },
+    {
+      "source_key": "39ngyHsT6NA",
+      "title": "Kettlebell Conan Clean High",
+      "sha256": "5b98be02f399bf4c626986c110631eec81714a66a2dd4cde75e8be9ae499ab90",
+      "review_status": "Independent full review complete",
+      "anchor_count": "5"
+    },
+    {
+      "source_key": "P4-QApZNIGo",
+      "title": "Kettlebell Conan Cleans Low - Double kb clean to alternating cleans",
+      "sha256": "58b0657a6f3e27e3fde0a72b7142c4c0fc5d0dfa83ae68b4ec9bc7eeefe15206",
+      "review_status": "Independent full review complete",
+      "anchor_count": "6"
+    },
+    {
+      "source_key": "cEXrSDF2CzI",
+      "title": "Kettlebell Conan Press Low - symmetrical press to see saw press",
+      "sha256": "403aec408559731191bac193b52b14632e37873758371f861fa34ea0a4ea7768",
+      "review_status": "Independent full review complete",
+      "anchor_count": "6"
+    },
+    {
+      "source_key": "qYVd3sYyQNI",
+      "title": "Yoga mat gear recommendations for Full size individuals",
+      "sha256": "9d884e6ee9c8cc4d330247a2ad7a383c907921b2fe5b751a5a6d2a7fdfb5ab17",
+      "review_status": "Independent full review complete",
+      "anchor_count": "2"
+    },
+    {
+      "source_key": "XUWEweN4Q8M",
+      "title": "Wildman Athletica product shoot announcement - tell me what you want and the order you want it",
+      "sha256": "8db6180dc585c09f95cd48330e04d11f11657cc0cfcc666a9d7d1558181ff1fc",
+      "review_status": "Independent full review complete",
+      "anchor_count": "2"
+    },
+    {
+      "source_key": "WlCyWR07ikY",
+      "title": "flow shala live training announcment",
+      "sha256": "a1c6cec100d5472751cee97f51c26cc646fab0dc8eefcf266aab684182967bfb",
+      "review_status": "Independent full review complete",
+      "anchor_count": "2"
+    },
+    {
+      "source_key": "_TTaZX9FKao",
+      "title": "The Shoulder Exercise No One Told You About",
+      "sha256": "c19b805a941ccaeddc2869c03f7964f56efecd60cfb5e2feeb5e01cf9c4b1a2c",
+      "review_status": "Independent full review complete",
+      "anchor_count": "2"
+    },
+    {
+      "source_key": "VFHj4FehsfM",
+      "title": "Kettlebell Windmill (Straight Leg) Part 2 - Standing Abs series",
+      "sha256": "56b34113abce2e6747a7eaf7888ef888470c68394edd4d05970dfda5e2e8e3aa",
+      "review_status": "Independent full review complete",
+      "anchor_count": "2"
+    },
+    {
+      "source_key": "bLA2KSghSdc",
+      "title": "Mace 7 - inverted side to side swings - Abs and Arms galore",
+      "sha256": "dd631f57666af2d3b8e4da6ddbb695552802307a74507d95f6e04effedf69118",
+      "review_status": "Independent full review complete",
+      "anchor_count": "2"
+    },
+    {
+      "source_key": "8w9zQBv7Wvk",
+      "title": "Kettlebell Windmill (No Foot Movement) Part 3 - Standing Abs",
+      "sha256": "1951347dc2941b6eb757b2c58bb3f9bc63c1a0e6eaa01d07373fdee421511a42",
+      "review_status": "Independent full review complete",
+      "anchor_count": "2"
+    },
+    {
+      "source_key": "coDXMQjqfiY",
+      "title": "Kettlebell high hand change clean combined with inside circle to maximize training rotation",
+      "sha256": "aed08836bbbd524377315c20dcd036245b32ed848f2a5ee2149ef6e3f8a96f76",
+      "review_status": "Independent full review complete",
+      "anchor_count": "2"
+    },
+    {
+      "source_key": "MMJtXvnj2Kw",
+      "title": "Single arm heavy club - stagger stance rear swing to order with look + shield cast + cross body",
+      "sha256": "e3a0948c4aedeaf6ef761d7a16bd625a40eedfae7fbfa2e87788ba88d55b50ed",
+      "review_status": "Independent full review complete",
+      "anchor_count": "2"
+    },
+    {
+      "source_key": "fZXwdBRvIkg",
+      "title": "Kettlebell front clean to inside circle combination. Activity specific training for martial artists",
+      "sha256": "f5c89d59dd5fdf140fa39666e53af276a7e1cfff96d85e17475eff2dcb204d2a",
+      "review_status": "Independent full review complete",
+      "anchor_count": "2"
+    },
+    {
+      "source_key": "fzxHsYWorHk",
+      "title": "Kettlebell inside pendulum with 90 degree opposite leg pivot",
+      "sha256": "a657f9305c5d0c010d5b73e782cda2ad3c186abbba63cbddae034fb6724c2aca",
+      "review_status": "Independent full review complete",
+      "anchor_count": "2"
+    },
+    {
+      "source_key": "2XsD2l0w3-k",
+      "title": "USA iron kettlebell box opening",
+      "sha256": "3b807982e023f50b4047d04b3ffb77a1398fc8c674866e5e03b53e58aac87397",
+      "review_status": "Independent full review complete",
+      "anchor_count": "2"
+    },
+    {
+      "source_key": "--Va9kOkkKE",
+      "title": "Kettlebell Snatch Press - it is what it sounds like.",
+      "sha256": "5cae9714cd472e5a42c9c2ca6e6dbcce724518662f3646bdffe932836831d3f2",
+      "review_status": "Independent full review complete",
+      "anchor_count": "2"
+    },
+    {
+      "source_key": "bF4uiBADLdA",
+      "title": "Kettlebell alternating circle with press- activity specific training for martial artists",
+      "sha256": "d7fd632cdd5fc8b3c2a038f0e47d68b2dc4e8bf79c7d81e7708ba8e0fc80f211",
+      "review_status": "Independent full review complete",
+      "anchor_count": "2"
+    },
+    {
+      "source_key": "wIkxWnQs_30",
+      "title": "Kettlebell outside clean & press - a required step toward outside snatch",
+      "sha256": "43f18cce20f2788be80727cfe9b179e37d1fe4b8268d0d6097d91648e1f06166",
+      "review_status": "Independent full review complete",
+      "anchor_count": "2"
+    },
+    {
+      "source_key": "viCFuF7NMts",
+      "title": "kettlebell 26 - half kneeling clean - change the base of support to change how the core fires",
+      "sha256": "4744f8c92f37e14cb3105569879080a2e66e23d59118ba04721e2c9f6c61e41f",
+      "review_status": "Independent full review complete",
+      "anchor_count": "2"
+    },
+    {
+      "source_key": "phDCxF1Bs-I",
+      "title": "Kettlebell outside circle press - martial arts activity specific training",
+      "sha256": "5e6e43489dc437801bcde1b6a8433487d43816bee12ea4a4990292ca59075922",
+      "review_status": "Independent full review complete",
+      "anchor_count": "2"
+    },
+    {
+      "source_key": "fk8AG0s1-UI",
+      "title": "Mace 8 - Low Block Spin With Prayer Transition.",
+      "sha256": "a0aba0c4f5742e95ff77db8d2d6af1e7e2f9cee91dbb1af7b9960afa3bf7167b",
+      "review_status": "Independent full review complete",
+      "anchor_count": "2"
+    },
+    {
+      "source_key": "9YMRKqxUIsw",
+      "title": "Kettlebell Walking Around the leg clean with high transition - ideal for martial artists and runners",
+      "sha256": "41cf44a5c5576e37d45764943e44ddb33d7a5350eae20fe789071ab50f7bf621",
+      "review_status": "Independent full review complete",
+      "anchor_count": "2"
+    },
+    {
+      "source_key": "xtTI8yNgbS0",
+      "title": "Kettlebell High Windmill (Bent Leg) Part 1 - standing Abs series",
+      "sha256": "c36e2fe818575a01acaa97d8c9495b30438fac78609514db073962692c055119",
+      "review_status": "Independent full review complete",
+      "anchor_count": "2"
+    },
+    {
+      "source_key": "5AMLBj2ye8U",
+      "title": "Kettlebell Thumb up cleans - different angles cause different muscle firing",
+      "sha256": "21d75fdece2975669e08b8e8b98e32c3288d50c1a4cadb87a848c1604b218776",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "M1odDXOFRO8",
+      "title": "Single arm heavy club - stagger stance rear swing clean shield cast + RUSH STEP + cross body clean",
+      "sha256": "5882a73ce3c766c7419bcea232bbff132e9cffd01826935b24c721288af52180",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "Jtw0HexRySo",
+      "title": "Kettlebell Inside Clean & Kettlebell Inside Pendulum - Fight Specific",
+      "sha256": "a5b67fa81b7a5f90305e2ca86f4a10edb8531afc2f3f16657e2641ece989157a",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "87TMT9yCxx8",
+      "title": "Kettlebell Outside Clean & Kettlebell Outside Pendulum - Fight Specific",
+      "sha256": "56b4eb0beb435b07c4eaa1f16f9654982983bed6f229e1edba95bb8667657946",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "o53tSQrsVXA",
+      "title": "Kettlebell outside circle press with front clean and press - martial arts specific training.",
+      "sha256": "4878559e4830e3ce8c431cbbedb60b8fe08c5e670440df50c34c3407d7c3f3fc",
+      "review_status": "Independent full review complete",
+      "anchor_count": "3"
+    },
+    {
+      "source_key": "s8M1MSNVk-g",
+      "title": "straddle halo",
+      "sha256": "0114ba15ea6f7696d31b5203629cc8bba01e936febd0d4991ed14a178544319f",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "U6gnFVy6ecc",
+      "title": "Kettlebell high hand transition front squat",
+      "sha256": "2ec7d2427e90bdb2caf8d23d6c90e7de2fcd5c6eddeff99dc6b0a6491bcdd3c7",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "KTDVl0Lkdc4",
+      "title": "Kettlebell 23 - intro to single bell front squat - the fastest way to improve your abs",
+      "sha256": "658b37d6e30c6ddc28ea6a5313507eb44fdccc7344fb2514e3e32de63c7c9096",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "ocvd3ExmbrM",
+      "title": "Kettlebell around the leg high transition snatch",
+      "sha256": "bab5be0fede24b6f6464d1b84538f514d1e773f0e76c9d16b1b0284e56272272",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "0_wHseV7B-o",
+      "title": "Real Athletic Development - single arm heavy club 8 - Side Swing Low to High with Stop",
+      "sha256": "5b71e209eb25406e1902748665071b8de825dd4600d3a25042cdd93eeaba6aff",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "CcJqrCGxWIo",
+      "title": "Kettlebell Front Rock-it - Functional Booty Builder",
+      "sha256": "e0e1895cbbcb74fa84b2a7f933147d318900c7ce98b7bb596f9ccd67f22ed93c",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "hc8b8hXtYHA",
+      "title": "Kettlebell front clean outside circle combo lift - activity specific training for fight training",
+      "sha256": "12f54f88bca5211a048de287c5bac64bce2b7cd1c602eb82c8f27e0bad051ec2",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "MRXE9Ppiu_Q",
+      "title": "Kettlebell workman\u00e2\u20ac\u2122s deadlift row. A combination movement",
+      "sha256": "fc0554cc0b69b01e8fd724221d3598af797a5dc8e2f788b60216feabb99f127b",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "r1b8btVfk6w",
+      "title": "Kettlebell Start / Stop clean - start stop series to improve movement dynamics",
+      "sha256": "244fe6c4828197dc6ec1b4db51c661050a504a8883ef3cdb77be14aaaaa00502",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "gyD56KzniO8",
+      "title": "Kettlebell Warmups - Figure 8 - Back to Front",
+      "sha256": "462aab6b5af22b7cfd3487df38902963eadc817453d09c698e8fdb47de17ade6",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "Ik0U7DfvudM",
+      "title": "Kettlebell High Transition Clean and Press",
+      "sha256": "57737d55d1c11436adee836db4395e280178df1987923c24829d1f4bfce3f33b",
+      "review_status": "Independent full review complete",
+      "anchor_count": "3"
+    },
+    {
+      "source_key": "g8IuRD5w0rs",
+      "title": "Kettlebell inside dead clean - the annoying cousin of the outside dead clean",
+      "sha256": "4da72e924b293b5e44a4729bc10a1bee617ec07d970ca4f6ad8ed5c22a303866",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "da-mWDm54hw",
+      "title": "Kettlebell size recommendations for Women",
+      "sha256": "2a0a182d21b8c3425115e9bc3b7861815dd343c555429c2cdcadfeb61bd34a84",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "SlQajO3Pr10",
+      "title": "Kettlebell High Transition Snatch",
+      "sha256": "85bb23d2786924f9a235197796f8db1151a73b8626c31875a51f354b3eba19b0",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "XN-5l6SiSZU",
+      "title": "Mace & Heavy Club Back Position Swing - 360 breakout exercise to improve efficiency - Mace 5",
+      "sha256": "db5fefc319f20197f9c3600dd88ffcdbabb735a9e8adab04f0d0a43e53a34b38",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "mvMQGOyImf0",
+      "title": "The Single Most Valuable Shoulder Exercise You Can Do",
+      "sha256": "ab01428db40d1ee7a64c8bde86c810fd26c80f2b17513179cfbb72d90ca4b252",
+      "review_status": "Independent full review complete",
+      "anchor_count": "3"
+    },
+    {
+      "source_key": "SchCGLfQbjI",
+      "title": "OUTSIDE PENDULUM SINGLE ARM - a heavy club exercise - Martial Specific Training",
+      "sha256": "a441bdc1b8b601f45c98b69945b86842e1bfd4e3a7633899eb8e95cfdf99a9fd",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "IRnzQbozjio",
+      "title": "Kettlebell outside dead clean - a farm boy favorite",
+      "sha256": "6bc3f5b2dfb8192d89653ccb2ccaf614a0226f6320857fea18e2eae1a5fa7a68",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "G0uQRS9lKTU",
+      "title": "Kettlebell Outside clean with 90 degree pivot step",
+      "sha256": "28b49a7757bd2676ce199a2483812035982e62583642fc331ec86f7e8cd8fd59",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "9AE-geo8jBg",
+      "title": "The Core Exercise Everyone Overlooks: 2 Hand Hip Drop",
+      "sha256": "914f19969289f98facce8f5dc6cad1257e965404f51ea867e0134ffb12140b0b",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "r-xvqtg56tY",
+      "title": "The importance of speaking aloud.  Exercises for overweight individuals",
+      "sha256": "8401b4eb1f616386dea74eeca88ff0b2b005750d00d0541ff080ce53f40a31c7",
+      "review_status": "Independent full review complete",
+      "anchor_count": "1"
+    },
+    {
+      "source_key": "oyqKesp1Lqk",
+      "title": "Nerd math - 10 min monster clean series",
+      "sha256": "49b60a654b47f08c5117e9436509e7ab84f9e5db89bda54573c0f2923860ab11",
+      "review_status": "Independent full review complete",
+      "anchor_count": "1"
+    },
+    {
+      "source_key": "RdlLPAYCkZQ",
+      "title": "Kettlebell High hand Transition - a faster transition for those looking to minimize transition time.",
+      "sha256": "b3d2fd9c3c77b467a69acd34ba14e2e8d9983bef2030c27ea191fe9c4fe18c8c",
+      "review_status": "Independent full review complete",
+      "anchor_count": "1"
+    },
+    {
+      "source_key": "L8CnCMQze2U",
+      "title": "Kettlebell Kings / Living Fit hex dumbbell unboxing",
+      "sha256": "8edb8b0af6c6c9667b05f3c450e06ac3d9c8379298e0de75dcbbe0e2e4a64a68",
+      "review_status": "Independent full review complete",
+      "anchor_count": "1"
+    },
+    {
+      "source_key": "qYDZ4-LINUY",
+      "title": "Snatch Press Step Back Complex 2 - the Harder version",
+      "sha256": "20fa75a8c01f93621b7aac96f02e15a7fff119f8feff9d9fa08ee787b532a53c",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "P2-3XgnkAls",
+      "title": "Kettlebell Upright Row to Catch - an exercise for Cheerleading Bases",
+      "sha256": "0d9765dede6e5b7fa1fb5a16127e5fed7fa17b855c680c7e815b2bcdec773f15",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "dxRt4_Vtc_M",
+      "title": "The Trick to Lifting Heavy in the Kettlebell Clean & Press",
+      "sha256": "a93dc58883fe6a55881fccf6f6fce069fae5fd152334804de1c388faeb2a0667",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "yQUYjqDvvfM",
+      "title": "Kettlebell Single Arm Side to Side Swing - Standing foundation abs",
+      "sha256": "93359f42d9e021e7b19d9cc8a1d3d8ff62e64ceca60ae82736e23598cb990864",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "z3cwkA3pkh4",
+      "title": "Kettlebell Rock Bottom Front squat transitions for increased squat depth",
+      "sha256": "2a2b9805542bf54a41415a330c1977b1039a194afa407e25076e1a0b382f4bea",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "JDmRy0OTdCU",
+      "title": "Living Fit Big dumbell unboxing and chest press program design discussion",
+      "sha256": "946349751a0eb8fa37728c394b1db5b6b9a62d850386d1888e2a5845f8d56bfb",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "o0YDqKCFJOw",
+      "title": "Kettlebell Hand Changes (EXPLAINED)",
+      "sha256": "9fcbb7cd80a8923362bda89a47bb43942f699abbf141402cff65ad2d228da1b3",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "peTb9b1Z1TY",
+      "title": "Kettlebell hard style vs basic soft style clean",
+      "sha256": "0292ec831c51405c722aad16f21d220ddda769e2e9839d14d95da1ec914a2e5a",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "UBgmGdoUyEU",
+      "title": "Kettlebell walking high transition clean for martial athletes and runners - 2 versions",
+      "sha256": "3245fa28c8c6b2eea024cbb4516649ce7165b3389cf1cfdb7d89300816f2a0e2",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "Jg-6wXgx-uw",
+      "title": "Kettlebell power upright row squat press - for the cheerleader base",
+      "sha256": "d01ffbe43db90cdfb07032987981117d2c10174f601d280671c2e561ca7cfe32",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "qS-NxtfG4qw",
+      "title": "kettlebell 27 - Clean step back lunge clean - the best drill to improve lunge dynamics",
+      "sha256": "735ed6003ec31a8195c15b452facbd2c5d8bbffd0e466cb36470d25a95af1242",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "RCYDoawgGa8",
+      "title": "Turkey Week workout 1. Kettlebell, Slam Ball, heavy club",
+      "sha256": "53d8c2a14f0f2121e0be87a567d1db578ad09a744eecce3451348caad799106e",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "ayX7-O9hRdE",
+      "title": "Squat Depth Fixes - Plate version - Part 2",
+      "sha256": "d2d3a03533571e437da3b5c5620cfa18775edd4c4cef580594674557941548ef",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "mxuRsKibYrQ",
+      "title": "Kettlebell Warrior clean",
+      "sha256": "95446af5450fecbec3c3216dfc08e49ab6cd9167d02bb942322a8895c39cd685",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "IJZDi7BTXQk",
+      "title": "Kettlebell Start Stop Clean and Press - hamstring, glutes and abs",
+      "sha256": "405c0c622181c6923988d71e5f1488c1db941b0eebedd09941a8c7e5346333bb",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "VJZDDi-0vGU",
+      "title": "Kettlebell Double Press",
+      "sha256": "11d03a64908db94f4772951375292557d880f700cc0a47473f1ccd513e144e2b",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "EA4N9y9a7jA",
+      "title": "Kettlebell Outside Dead Snatch and Outside Dead Half Snatch",
+      "sha256": "cd58832eb05819df11a58cfc7b91f134220a4738baf4ee172752f4a358ea9636",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "Mlrxe8V_DvE",
+      "title": "Strong and Fit Kettlebell Program Announcement",
+      "sha256": "4df2caa32a770a80eb93af1d7dd7df950430f236f332ea145e06fc04bc21715d",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "EttGTi4MkwY",
+      "title": "Vulpes Fiji war club trainer box opening",
+      "sha256": "c267caa66a7de291fa957fe815b038a2d2625a77143a1d89a92fa2b17a1f077a",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "EQoFbGKM79M",
+      "title": "You Need Strength Endurance | Kettlebell 89 Double Outside Swing Clean",
+      "sha256": "618662912c0cb50d6213512d26257a22f284208a5ad39af74b5c032eeb4a824a",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "Znuo3pNQQMQ",
+      "title": "Kettlebell Outside Bottoms up Pendulum -",
+      "sha256": "ab287dd5389d69d77f84e1f3d99685487f19ca3e4a3e1c3d5fb95955b8b91c89",
+      "review_status": "Full-source validation completed against original transcript",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "76UsJCUVEUQ",
+      "title": "Master the Shield Cast _ Heavy Club 47 Full Kneeling Back Position Swing",
+      "sha256": "b0700be3f20448845a5e09a4dc6ecbe1e0d1e5dc8976402dd871ac37f0f6ccbb",
+      "review_status": "Full-source validation completed against original transcript",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "o5gwVapaO-s",
+      "title": "Kettlebell Figure 8 to Waiters Catch - Single side and Alternating Side Variations",
+      "sha256": "4f4c834ed762e997a2b854125323d81e197c5706852b57a639ab425689fa4e76",
+      "review_status": "Full-source validation completed against original transcript",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "_hwcsS3pNok",
+      "title": "Kettlebells Are for Adventure",
+      "sha256": "68a120276f6c020ed96b3f23dc09a4418845a78bf3c23a93596f38275ae1dfa2",
+      "review_status": "Full-source validation completed against original transcript",
+      "anchor_count": "5"
+    },
+    {
+      "source_key": "guwI1RWTiag",
+      "title": "Kettlebell Kneeling Snatch",
+      "sha256": "7ebd2fcde4ac4d8a10db5bdbb441cd1ffd77da5b53123d5ab063a3503d4d48b3",
+      "review_status": "Full-source validation completed against original transcript",
+      "anchor_count": "5"
+    },
+    {
+      "source_key": "Kp3vI32re9s",
+      "title": "Kettlebells Are Infinite | Kettlebell 86 Double Clean Double Press Alt Press From Rack",
+      "sha256": "8eda341e7a7da3df61caee6bb4d2454d0da1d809b365827ed488f9f695c691de",
+      "review_status": "Full-source validation completed against original transcript",
+      "anchor_count": "5"
+    },
+    {
+      "source_key": "AKijGRXII3c",
+      "title": "Working man training - Barn Incline Bench Press - chest development using multifunctional gear",
+      "sha256": "adae696e0f8bc91103909223c49f2c46ebea5beb7f4bc4ee7f141285ffe9599a",
+      "review_status": "Full-source validation completed against original transcript",
+      "anchor_count": "5"
+    },
+    {
+      "source_key": "I26O1ct_hik",
+      "title": "Line Up Your Structure For Better Athletic Function - Single Arm Heavy Club 9- Side-To-Side Rockit",
+      "sha256": "4b408449626fe7400a330254c02bed0b5bcbbce96df5cc8c5c54aca658fb8f1c",
+      "review_status": "Full-source validation completed against original transcript",
+      "anchor_count": "5"
+    },
+    {
+      "source_key": "eHdjJExPMW0",
+      "title": "MONSTER LIFTS - An introduction",
+      "sha256": "18e8a3971f781839b895d99bfbfb30d91dde0c40fc7bcdb63be9801771ae0e8d",
+      "review_status": "Full-source validation completed against original transcript",
+      "anchor_count": "5"
+    },
+    {
+      "source_key": "9RRWCkMIRSs",
+      "title": "Kettlebell Upper cut outside swing - a Fight movement pattern training exercise",
+      "sha256": "ffd5163c510333aedf26447aab3f2d12e0264c6269d62341a69c6cef8783c76c",
+      "review_status": "Full-source validation completed against original transcript",
+      "anchor_count": "5"
+    },
+    {
+      "source_key": "6GjtemsVJQk",
+      "title": "Kettlebell Kneeling Side Press",
+      "sha256": "6e777fdbb2cce76753fb42fe5029808e4b8f57d3785eb3e09b256fc9975b9bb4",
+      "review_status": "Full-source validation completed against original transcript",
+      "anchor_count": "5"
+    },
+    {
+      "source_key": "iK245LFa-VA",
+      "title": "Kettlebell stagger stance ATL to high transition - a static pattern for runners and fighters",
+      "sha256": "840655f1a3971b5dafcb263153ff88fa79a4bf3dc37611dc6c6c576c81e188b1",
+      "review_status": "Full-source validation completed against original transcript",
+      "anchor_count": "5"
+    },
+    {
+      "source_key": "qxZTvOKhCyE",
+      "title": "Kettlebell Hard style swing moving toward a soft style swing (double bounce swing)",
+      "sha256": "1e2efa28117287519b8266d3c92ca221833e955264397e2bebe9454576d60cdb",
+      "review_status": "Full-source validation completed against original transcript",
+      "anchor_count": "5"
+    },
+    {
+      "source_key": "scMnuG4Wx9A",
+      "title": "Palavandle TG heroic sport heavy club - fill it up with sand",
+      "sha256": "cb5c99b153a0e3595ca83805937d2dcef6a72ea18d5b4155e161f656ddf867a8",
+      "review_status": "Full-source validation completed against original transcript",
+      "anchor_count": "5"
+    },
+    {
+      "source_key": "MYpz7OykS7I",
+      "title": "Master the Kettlebell Clean | A Complete Guide for Beginners",
+      "sha256": "729c85ce357b62dc8c45fcf707fd13ec152735f6b983c1a2b05000df5f52abdf",
+      "review_status": "Full-source validation completed against original transcript",
+      "anchor_count": "5"
+    },
+    {
+      "source_key": "gxEpA4CGagc",
+      "title": "Walking cleans - training for runners and fighters",
+      "sha256": "3baec82d1bba71c1db2ad302c1f10797c97333cca0bc860402b1f2dbb5306b55",
+      "review_status": "Full-source validation completed against original transcript",
+      "anchor_count": "5"
+    },
+    {
+      "source_key": "B5cR6fX19O8",
+      "title": "Kettlebell single leg single arm Romanian deadlift",
+      "sha256": "3d47dee5014374f9b67aea48f4d56cc9081c650d55de2dd9e05f7b9a43f49ff5",
+      "review_status": "Full-source validation completed against original transcript",
+      "anchor_count": "5"
+    },
+    {
+      "source_key": "-RD1qqe7P8M",
+      "title": "Training Stabilization Is Important - Kettlebell 73 Two Hand Single Bent Leg Deadlift",
+      "sha256": "7764246185a0bf1d7abb94b15e7ced4275f705633bf2027a1741461dc01e3ec0",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "P8EvLTzRamU",
+      "title": "The Old-School Strength Tool That Fixes Modern Movement Problems | Single Arm Club - Inside Circle",
+      "sha256": "6829e622b9809eb92c8072cb0da4823d4c3280792987123b65561a95718d8822",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "Mf2QuZvRtQ4",
+      "title": "Train Like A Warrior & Reduce Back Pain With Ancient Training Techniques - Single Arm Heavy Club 3",
+      "sha256": "9f1c5efa3c520548682ef5171929a7fbaa82177d680b5651555dd007c764511f",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "g5sz5o3Xmnc",
+      "title": "Kettlebell:  Why would you use a Kettlebell Bottoms Up",
+      "sha256": "dc6237050c91fe9e5dd2b341ef04841546aaad96a4ee5e86a29b84b5e0a222ed",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "Y7x667svnYo",
+      "title": "Static Lunge - the most basic lunge - Unloaded and Kettlebell cross body Rack Load.",
+      "sha256": "5cda4dedeec4f0fd21ab828fda930c8738c18bc505fb7f734388b71e49926a29",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "axx4kfUzkl4",
+      "title": "Save Your Wrists! Kettlebell Snatch Break Down Drills | Kettlebell 81 Half Kneeling Full Snatch",
+      "sha256": "eda77dd3d69c4a695c903facc5156ed97e5dbc57b45d727798547c7cca090b88",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "z916C16iK54",
+      "title": "Train like a human with movement patterns to eliminate pain\u00e2\u20ac\u201dHeavy Club 34 Outside Circle Squat",
+      "sha256": "db71f8fe03fa9768d6d9f9f5bb14d7164ec398843300dbc7b7f7f9950a90f76f",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "2liJG-oIdtk",
+      "title": "Kettlebells, Heavy Clubs, Maces, and Chalk.",
+      "sha256": "6c5f2afe105cdfd2ac7d74470935e1d9b8048d3cb585f1d1c952321f13b236e2",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "91citDXgmoE",
+      "title": "Kettlebell Warmups - Around the World",
+      "sha256": "6196c080d181a4823861844e7917c6a0cc4460b915016e8990ef3e8bf39a8302",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "W_04Zv3p2HM",
+      "title": "Not Your Grandpa's Kettlebell Swing | Kettlebell 84 Side to Side Swing",
+      "sha256": "a014f576d8efa5d51691e3f1f78ee99e49e377a7f36d425ebff67bda9379fef9",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "EQGUPetJ3LY",
+      "title": "Kettlebell Side Rock-It -  Booty builder.  Athletic Ab base Builder",
+      "sha256": "cef8254a40b8859e0050b7a3a1337fbb7bf77d1736700f8294067294a60cc13e",
+      "review_status": "Independent full review complete",
+      "anchor_count": "5"
+    },
+    {
+      "source_key": "6p1niExqXSA",
+      "title": "Why Club Squats Are Best For Core Training\u00e2\u20ac\u201dHeavy Club 36 Squat Press",
+      "sha256": "0535aa25b9c0ddb11d8628d3eb60a9c997dbf0a537f812f5a4125415964fee21",
+      "review_status": "Independent full review complete",
+      "anchor_count": "5"
+    },
+    {
+      "source_key": "N-k-lreqpfg",
+      "title": "This Is How Hercules Would Have Trained | Heavy Club 50 Mill",
+      "sha256": "f12d2afc47273208705276e569f778f3bd81f6b9792bae5c5f8431f29a5422ea",
+      "review_status": "Independent full review complete",
+      "anchor_count": "5"
+    },
+    {
+      "source_key": "15m93HeM2m4",
+      "title": "Kettlebell hard vs soft style single arm swing.",
+      "sha256": "883bd59180cb6c7b1bf2aa62466d71ec3e1e0ccdb504077ce7204d19f3e5fd94",
+      "review_status": "Independent full review complete",
+      "anchor_count": "5"
+    },
+    {
+      "source_key": "SdPEkv56Lt8",
+      "title": "Strength Through Endurance Training\u00e2\u20ac\u201dKettlebell 74 Double Hang Clean To Squat",
+      "sha256": "e68b6b4b166f946da7ce1d6ca0ef013d824d1e577f0f7641d24b1103036f90a7",
+      "review_status": "Independent full review complete",
+      "anchor_count": "6"
+    },
+    {
+      "source_key": "icFHo5ufhUc",
+      "title": "Why Every Human Should Train With Heavy Clubs - 2 Hand Heavy Club 32 Inside Circle Squat",
+      "sha256": "f2d52734f917a91e10c6b4b43f90005a246b41c6fe2f7c2b99c57594251ff08a",
+      "review_status": "Independent full-source technical review complete; see batch closeout and prior validation files",
+      "anchor_count": "0"
+    },
+    {
+      "source_key": "3-LpR2FCHUI",
+      "title": "heavy club fitness - gun getup 1- seated club front press",
+      "sha256": "ac9e647640e3589a1cab0a51d1e1356f77a4fa36c58eddfc56063c86fffd193b",
+      "review_status": "Independent full-source technical review complete; see batch closeout and prior validation files",
+      "anchor_count": "0"
+    },
+    {
+      "source_key": "26GZTfSdz-s",
+      "title": "Kettlebell Double Clean",
+      "sha256": "b13c311da2ac43a1f9dbafd64b323d3604c1796625d8bd734f442433e1b57289",
+      "review_status": "Independent full-source technical review complete; see batch closeout and prior validation files",
+      "anchor_count": "0"
+    },
+    {
+      "source_key": "43dnNYARiAc",
+      "title": "Target Your 6 Pack -A Key Core Exercise - Flat Back Pullover -  Heavy Club 26",
+      "sha256": "00ec32f5db1e3282e1e01d02bf96f314e1fdbc86c6b2abb225cea8248f7f9e8d",
+      "review_status": "Independent full-source technical review complete; see batch closeout and prior validation files",
+      "anchor_count": "0"
+    },
+    {
+      "source_key": "85ecKoAtVhY",
+      "title": "Kettlebell hunters squat to press - for military and martial artists",
+      "sha256": "c4a7a40cfe9b395649eb1e38e69e2bd211fedc5190f7e9d0566d9b3a71e28204",
+      "review_status": "Independent full-source technical review complete; see batch closeout and prior validation files",
+      "anchor_count": "0"
+    },
+    {
+      "source_key": "SY9uscZKVno",
+      "title": "Nerd Math Kettlebell Swing program - Now Available",
+      "sha256": "f50cc67cb2fa7d5b4cd7861006a167b1d1407d3564813b3b3049cdb848b773e0",
+      "review_status": "Independent full-source technical review complete; see batch closeout and prior validation files",
+      "anchor_count": "0"
+    },
+    {
+      "source_key": "H_dHlURiHdw",
+      "title": "Kettlebell size recommendations for Men",
+      "sha256": "037f6997c043aac2fab3005aa1209ee8915b6406c3ef17cedde91588565539a2",
+      "review_status": "Independent full-source technical review complete; see batch closeout and prior validation files",
+      "anchor_count": "0"
+    },
+    {
+      "source_key": "0OYJ6kqJQQI",
+      "title": "SPRI 20 lb adjustable weight vest - expand your bodyweight skill training programs - save your $",
+      "sha256": "6b03d4faa232394a981ccc5e2feaa67c870d38656433759394ffae2e8b4f31e9",
+      "review_status": "Independent full-source technical review complete; see batch closeout and prior validation files",
+      "anchor_count": "0"
+    },
+    {
+      "source_key": "fvwlIUW04hg",
+      "title": "Kettlebell Start Stop Swing for glute development. Ideal for equestrians and dirt bikers",
+      "sha256": "1b0d76227b754171b395e640d0fcae3554b99bc6220487ac1dda6e02f2215bb3",
+      "review_status": "Independent full-source technical review complete; see batch closeout and prior validation files",
+      "anchor_count": "0"
+    },
+    {
+      "source_key": "bET3BJkaYKQ",
+      "title": "Kettlebell Double Dead Clean",
+      "sha256": "e93a8c39f0211fcc9586f42e9eb1130e4a5677a856c7f0ddaca1dd1f4a2c5b42",
+      "review_status": "Independent full-source technical review complete; see batch closeout and prior validation files",
+      "anchor_count": "0"
+    },
+    {
+      "source_key": "Rrqji4U6gws",
+      "title": "Kettlebell basic single leg Romanian Deadlift",
+      "sha256": "4b7ac6af70ed57d58644b04fb9375347642953ceeb61f707319fb3708f3da592",
+      "review_status": "Independent full-source technical review complete; see batch closeout and prior validation files",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "ip3_OeiUujQ",
+      "title": "The Exercise I Use to Avoid Knee Replacement Surgery",
+      "sha256": "533d0ca32c56d3782d6a19bd74953d3d03678f6c15cf504139adc285d28bb5b4",
+      "review_status": "Independent full-source technical review complete; see batch closeout and prior validation files",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "2VbR2WBbe90",
+      "title": "These Martial Arts Drills Could Save Your Life",
+      "sha256": "48e7a7945d5b57a4b3577493c4d7e78f792bb5d4942cd01fd2141b74afe85fe8",
+      "review_status": "Independent full-source technical review complete; see batch closeout and prior validation files",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "3wdbhjp3lsI",
+      "title": "Kettlebell Kings / Living Fit adjustable competition kettlebell unboxing",
+      "sha256": "1be93414043bfaace117de55e1a7336ec2f00c9b02f69a06fffe00ca7d36b5db",
+      "review_status": "Independent full-source technical review complete; see batch closeout and prior validation files",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "9DSTFolIG10",
+      "title": "The 2 Best Kettlebell Exercises Everyone Should Do Forever",
+      "sha256": "9ec9fd8a149e066c44431bf9c3f1493d7842472bbdfc22860ff55ddc5e8a01bd",
+      "review_status": "Independent full-source technical review complete; see batch closeout and prior validation files",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "TyZ8iYv6Ip0",
+      "title": "Mace 360  - a FUNDAMENTAL human movement - mace movement 1",
+      "sha256": "a39b47ecbcba33bf5f4492ccd9b943ea47e43507205b37632c29622f7d067658",
+      "review_status": "Independent full-source technical review complete; see batch closeout and prior validation files",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "66BuPCRIPdg",
+      "title": "Training for Overweight Individuals - Expanding on the single arm Outside circle to improve posture",
+      "sha256": "dbd488b060728e3816a82a9c85a8f087ccc0209ded1db2d34c5027ebb9da4cab",
+      "review_status": "Independent full-source technical review complete; see batch closeout and prior validation files",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "kdPuPtngYVw",
+      "title": "Rotating Squats, the Missing Link in Your Athletic Training | Heavy Club 54 Alt Circle Squat",
+      "sha256": "29ecd23d7871a8e75eab610b82199f3d6a7a42a2d0c0b38b0cb0b36ef3078001",
+      "review_status": "Independent full-source technical review complete; see batch closeout and prior validation files",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "X0MLRBuNiIg",
+      "title": "Step Forward Lunge - unloaded, bottoms up, window up, Rack - Ipsi and Contra",
+      "sha256": "709becb7aae14719e6a37ecd9490b83dee034665dc27ce763134afbd8a83cf24",
+      "review_status": "Independent full-source technical review complete; see batch closeout and prior validation files",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "hKc-F9dxTro",
+      "title": "Kettlebell Step Back Lunge - 3 variations",
+      "sha256": "bbb7f0c4664ebca4253d42c456a7ba6263e1cbe0de298c5f6b6dc34b3b296b79",
+      "review_status": "Independent full-source technical review complete; see batch closeout and prior validation files",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "hdcKPiCBblw",
+      "title": "Single Arm Ball Chest Press - The Sexy Maker",
+      "sha256": "4a7ebac078cfeeeedcc329016d51cdab1a7432652d05962d9dfa5f91a48580b4",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "9OBl-jEPWo4",
+      "title": "Kettlebell Dead Clean - contrasted with DumbBell dead clean",
+      "sha256": "dfa0db3968a14ca6e4f8ab34a74b300f6eba164b56b19fbd42a3578b0a1c4078",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "JPKCHFPoAFU",
+      "title": "Outside Swing - a Kettlebell and Heavy Club exercise for the abs and hamstrings",
+      "sha256": "a4a70ed790c4314903e2b60c4b2193c13f6ba0c213eb8de1fa5b7e94ee65f3a8",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "xzNqgTOPKXc",
+      "title": "Nerd Math for Kettlebells - determining Reverse Ladder Equivalent sets and reps for different weight",
+      "sha256": "dd7ee0ebfc3e9471c1d85420b61abafd47f4b97f7e9bb2582f806d14a0532c83",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "cnZ8Mx8NQPE",
+      "title": "Kettlebell 22 - goblet squat and halo squat - restore full squat range of movement",
+      "sha256": "d399380cf35b69764b34ddcba4f81ce25aa888d61586763c0846a101e973e5ed",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "LLt-wIkB_Xs",
+      "title": "Kettlebell Hunter's Squat - aka tactical lunge - static version",
+      "sha256": "3aefe9efeda269388eee4e5d5654a622b90843f62c10545e3cf35622eb14ca8e",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "L99sVERGT34",
+      "title": "Part 2-Nerd Math Edition: The 3 best exercises for Overweight individuals",
+      "sha256": "43e5def9740d43bf9429e42c3b6d5460999ee2b2369779346ae41ba9338db2f5",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "t5fDkX3vjiU",
+      "title": "The Hercules Maker | Kettlebell 82 Double Clean Press Squat",
+      "sha256": "3e01a7afa8ec8feda52aff01b4e582d755f9bc76213e75bea2053910b9666c43",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "XH_HFWZQt4c",
+      "title": "Swing Heavier, Faster - Heavy Club 25 - Half Kneeling Back Position Swing",
+      "sha256": "bf525c5f78deb5d36ec60e2d20b275235a744f2d58ed2b7e3d1c21df43eb393c",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "fOLSW0ptqKA",
+      "title": "Strong and Fit Program - Integrating it with the Mill/Squat club program in A/B schedule",
+      "sha256": "d7a52cc921e0789612d0317533a5e1e7e1a062ee59154e363715b0fcd6151b7b",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "izCJRU2u4ck",
+      "title": "Nerd Math - basic breakdown of thought process part 1",
+      "sha256": "de2893213791a99f05b10bbdccfdc7e148309692e8113d7d950355ade41c3822",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "rUdFrgwgbiI",
+      "title": "Recovering from injury or from potential injury -  Nerd Math series",
+      "sha256": "adafe4539bd962cf202d585f579c685e2afab0df5f32423e65f1c0e239f0a02f",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "R82K_GmdMvU",
+      "title": "Nerd Math Single Arm Clean and Press Kettlebell program release information for holidays 2021",
+      "sha256": "d2f4e823b300613c8454e5135426a4425404aaae3d412b218b192c39c7780867",
+      "review_status": "Independent full review complete",
+      "anchor_count": "6"
+    },
+    {
+      "source_key": "j3K0VByun6w",
+      "title": "Strengthen your core with the Inside Circle if you are overweight or deconditioned",
+      "sha256": "a24ccb40a58830f21d83b756fdbff5f7e9532050279990e0dca159688f128c16",
+      "review_status": "Independent full review complete",
+      "anchor_count": "7"
+    },
+    {
+      "source_key": "fd7p3ooHD_c",
+      "title": "Which Is Better? Kettlebell Clean & Press vs Snatch",
+      "sha256": "f4f6c9a1545812c2e1b1fc08a5c922b067b5cb848eb5b6b70a8684ef9e0dc5d3",
+      "review_status": "Independent full review complete",
+      "anchor_count": "9"
+    },
+    {
+      "source_key": "6mo09xM2LUQ",
+      "title": "Sandbag Ground to Shoulder - Farm Boy Strength Program",
+      "sha256": "94d6064eb857fcc4c1ebc6881fb3dfb6e57e43e831e5197968430872cb622f5b",
+      "review_status": "Independent full review complete",
+      "anchor_count": "10"
+    },
+    {
+      "source_key": "xB949KdpvYM",
+      "title": "Shot gun problem solving for questions people ask me on da interwebs - problems with a  2 hand swing",
+      "sha256": "be3518a3126e0375016187d2154cda4176ed265125f996003482f5a2c635935c",
+      "review_status": "Independent full review complete",
+      "anchor_count": "10"
+    },
+    {
+      "source_key": "-_zakCA2BKs",
+      "title": "The Heavy Club Advantage in All Athletic Performance | Single Arm Club 37 Stagger Stance Alt Circle",
+      "sha256": "7c36d736df8b598b3e7e043ac29698d155bfb3b3cae999bb5b30645285406c4f",
+      "review_status": "Independent full review complete",
+      "anchor_count": "10"
+    },
+    {
+      "source_key": "YDiCpsonXbY",
+      "title": "The Heavy Club Roadmap: Build Balance. Stay in the Game.",
+      "sha256": "d704a73cb8e6fae068ddde8d2d57794d9a04288a9b0478310560159200591329",
+      "review_status": "Independent full review complete",
+      "anchor_count": "11"
+    },
+    {
+      "source_key": "J4OefJ8KVcQ",
+      "title": "mace and heavy club shield cast and 360 for adaptive athletes",
+      "sha256": "a56f8b042341150335fef61b3c6932298675a55803275a7cacc42b25b5f9187d",
+      "review_status": "Independent full review complete",
+      "anchor_count": "5"
+    },
+    {
+      "source_key": "Q4xrDcjerv4",
+      "title": "Using Stepping Patterns for Longevity | Kettlebell 103 Stagger Stance Cross Body Swing",
+      "sha256": "e9615cc6d77128c70bae8095a965c5305ca47fbb9e0c8bf16048fd11a643e630",
+      "review_status": "Independent full review complete",
+      "anchor_count": "4"
+    },
+    {
+      "source_key": "2piGF24kFrI",
+      "title": "This Exercise Gives You Big Arms for the Rest of Your Life",
+      "sha256": "cffddf857e7c847f3d5caf57388d5e6a83f03032888a5abe8958de55643530f4",
+      "review_status": "Independent full review complete",
+      "anchor_count": "5"
+    },
+    {
+      "source_key": "sR1vpAqfcl8",
+      "title": "Will Safford conversations part 4 - Why Will is an expert in his field.",
+      "sha256": "2b95b2f39dbb5b70b5fce5034237ea2252e606a47f972b4633e7fa343612bb2d",
+      "review_status": "Independent full review complete",
+      "anchor_count": "3"
+    },
+    {
+      "source_key": "PwPFgbqn1IQ",
+      "title": "The Forgotten Weight: Your First 12 Minutes With a Heavy Club",
+      "sha256": "b9078231f90bdb7754a28251194ecf154977bca27d43b17556996ef809dbbf3c",
+      "review_status": "Independent full review complete",
+      "anchor_count": "5"
+    },
+    {
+      "source_key": "Nw7UP08BD5k",
+      "title": "The Kettlebell Exercise I Wish I Learned 30 Years Ago",
+      "sha256": "9696127be8b120db94a2142e83afba365c59ceead4919ce18adb366a0532dfd6",
+      "review_status": "Independent full review complete",
+      "anchor_count": "5"
+    },
+    {
+      "source_key": "xVaAbWDpZjI",
+      "title": "This One Change Makes Sure You Never Do Planks Wrong Again",
+      "sha256": "27a9527de985aa04d229e28e51926031906f32822556531884dae33d3ede1b93",
+      "review_status": "Independent full review complete",
+      "anchor_count": "5"
+    },
+    {
+      "source_key": "lz7uO7Tl2ls",
+      "title": "This Squat Builds Insane Core Strength | Kettlebell Manual 11",
+      "sha256": "8a00167563750e2d6b7e9d390faa9f8c1a8cc3cea35d362ea16c41253b0022bc",
+      "review_status": "Independent full review complete",
+      "anchor_count": "6"
+    },
+    {
+      "source_key": "K83RM7H9WrY",
+      "title": "Why You Have Low Back Pain After Kettlebell Swings",
+      "sha256": "b9eed11cf21a31d3e2552db1b63d49da0a24b6275d3cb9f86df82fa186a54ea1",
+      "review_status": "Independent full review complete",
+      "anchor_count": "6"
+    },
+    {
+      "source_key": "_OATUv3cSkQ",
+      "title": "kettlebell kings / living fit competition kettlebell nerd math economics",
+      "sha256": "9332817aa0a1638a4b83b3eaceb2e0dbe405c1f261dfe976a19e00333a0eab5f",
+      "review_status": "Independent full review complete",
+      "anchor_count": "6"
+    },
+    {
+      "source_key": "U2x6gpsVMbk",
+      "title": "Wildman Athletica App update - what\u00e2\u20ac\u2122s in the Beta",
+      "sha256": "eef155b10dea1bef6909b86e6fbbe059ba5f0684735e6b050f60b4356059c9f1",
+      "review_status": "Independent full review complete",
+      "anchor_count": "7"
+    },
+    {
+      "source_key": "Aik5-BStbnc",
+      "title": "Kettlebell 21 - goblet box squat with halo - a way to make sure you are maximizing your squats",
+      "sha256": "c4844991b91bd9163e8c31448cad085c22e29c5f4bae7763a309a183cf48f458",
+      "review_status": "Independent full review complete",
+      "anchor_count": "5"
+    },
+    {
+      "source_key": "QOTuMN9A0Hc",
+      "title": "Kettlebell Standing Side Press",
+      "sha256": "b87c829ee11639820adaa41366ee094dbd838eabd916105c2df34fec54189da4",
+      "review_status": "Independent full review complete",
+      "anchor_count": "5"
+    },
+    {
+      "source_key": "7Pnein1QoCk",
+      "title": "Kettlebelll SeeSaw Press",
+      "sha256": "13c848278ed47b207d123ea8ca5eebd9183205ff6b0d8e613053174e9d12e834",
+      "review_status": "Independent full review complete",
+      "anchor_count": "5"
+    },
+    {
+      "source_key": "BHvw12tqhNM",
+      "title": "\u00e2\u20ac\u0153Perfect\u00e2\u20ac\u009d brand 40 lb adjustable weight vest box opening and review. Weight vest video 3-save your $",
+      "sha256": "c11bdd265eba33d455fc9b753bc05bb1a2c44474632f936c7b92a9dec5f35dfb",
+      "review_status": "Independent full review complete",
+      "anchor_count": "5"
+    },
+    {
+      "source_key": "XJyBQcviNTw",
+      "title": "June 2 q and a",
+      "sha256": "6b5ff14ca0f106afc2f4ee98363d5bea54016e6fbd5a9365854c6b7de718e314",
+      "review_status": "Independent full review complete",
+      "anchor_count": "existing anchored review"
+    },
+    {
+      "source_key": "lKWWWgZ7XQc",
+      "title": "These Drills Will Help You Master Kettlebell Clean And Press | Kettlebell Manual 5",
+      "sha256": "2bd6e71743a5b931239eb5377e64b0f34b52240c420733ce50723a91654619e0",
+      "review_status": "Independent full review complete",
+      "anchor_count": "existing anchored review"
+    },
+    {
+      "source_key": "crNLMShSSh0",
+      "title": "Simple Drills to Master the Kettlebell Snatch",
+      "sha256": "6e359ee6517e319d1cfd7fce656183fc803a876d29541cbebb542385919a3fdd",
+      "review_status": "Independent full review complete",
+      "anchor_count": "8"
+    },
+    {
+      "source_key": "Q0Urv82m-A4",
+      "title": "Summer Huntington of  flowshala and Steel Mace Vinyasa -  interview for workshop April 2022",
+      "sha256": "42e81276882a6f9d079daf987432c2cec3372ef466ccd000ecf120b49806ac00",
+      "review_status": "Independent full review complete",
+      "anchor_count": "8"
+    },
+    {
+      "source_key": "KdV6wVVh3D0",
+      "title": "Will Safford ADCC Submission Fighting World Federation Rules Discussion",
+      "sha256": "d728b500cf6173968e5aac3a41c358528c8e9f5e143204dc2c4be137cd0bef2f",
+      "review_status": "Independent full review complete",
+      "anchor_count": "6"
+    },
+    {
+      "source_key": "QXRcPPBYniI",
+      "title": "Will Safford Bjj fanatics AdCC rule discussion",
+      "sha256": "38f31d5219b755cf03851cb9302f0d23502c23270a208d3d67ac0f22f748a8f1",
+      "review_status": "Independent full review complete",
+      "anchor_count": "6"
+    },
+    {
+      "source_key": "gmLExrElmVk",
+      "title": "Live may 21 - answering questions and product updates",
+      "sha256": "cbfa9f609ccbd6791900b5725fc11afa39f88a81193055944113f6c083370444",
+      "review_status": "Independent full review complete",
+      "anchor_count": "41"
+    },
+    {
+      "source_key": "Jut85_e-xAk",
+      "title": "Mark Wildman Q&A - May 13th, 2023",
+      "sha256": "880b2c7f89cc85c68ec2837600e6395d0fcda7a7ac7db802b49060cbbeb37485",
+      "review_status": "Independent full review complete",
+      "anchor_count": "30"
+    },
+    {
+      "source_key": "cCEWf6UHyJI",
+      "title": "Q and A may 26",
+      "sha256": "c1091a13aac2595c3fc9407bd012211dc821a578e9c8dc3e3693ea8814966751",
+      "review_status": "Independent full review complete",
+      "anchor_count": "33"
+    }
+  ]
+}

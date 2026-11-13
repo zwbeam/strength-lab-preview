@@ -4,9 +4,12 @@
 function create(E,content){
  const gearLabels={kb:'Kettlebells',club:'Heavy clubs',bodyweight:'Bodyweight'};
  const familyLabels={hinge:'Hinge',squat:'Squat',press:'Press',pull:'Pull',carry:'Carry',rotation:'Rotation',getup:'Get-up',ground:'Ground movement'};
- function instruction(id){if(!E.MOVES[id])throw Error('Unknown movement');return content.entries[id]||{purpose:E.MOVES[id].complex?'Combined practice of the named component movements. A complete source-reviewed combination lesson is not available yet.':'Movement instruction has not yet been source-reviewed.',setup:[],steps:[],bracing:[],mistakes:[],sourceIds:[],videoSourceIds:[],evidence:[],coverage:'pending: instructional coverage not yet verified; do not infer technique from a program name'};}
+ const catalog={...E.MOVES,...content.references};
+ const move=id=>catalog[id];
+ function instruction(id){if(!catalog[id])throw Error('Unknown movement');return content.entries[id]||content.references?.[id]||{purpose:E.MOVES[id].complex?'Combined practice of the named component movements. A complete source-reviewed combination lesson is not available yet.':'Movement instruction has not yet been source-reviewed.',setup:[],steps:[],bracing:[],mistakes:[],sourceIds:[],videoSourceIds:[],evidence:[],coverage:'pending: instructional coverage not yet verified; do not infer technique from a program name'};}
  function videos(id){const entry=instruction(id);return(entry.videoSourceIds||[]).slice(0,2).map(sourceId=>({...content.sources[sourceId],role:entry.videoRole||'instruction',label:entry.videoLabels?.[sourceId]||null,mapping:'Exact indexed transcript URL; no verified timestamps'}));}
  function status(s,id,opts={}){
+  if(catalog[id]?.instructionOnly)return{key:'reference',label:'Instruction only',reason:'Source-reviewed teaching reference. No automatic prescription or progression is implemented for this movement.',eligible:false};
   const m=E.MOVES[id],rx=E.prescription(s,id,opts),missing=E.prerequisites(s,id,opts),equipment=s.equipment?.[m.gear];
   const unavailable=!m.bodyweight&&Array.isArray(equipment)&&!equipment.length;
   const blocked=unavailable||missing.length>0||['review','prerequisite'].includes(rx.mode);
@@ -18,13 +21,13 @@ function create(E,content){
  }
  function relations(id){
   instruction(id);
-  const parents=(E.MOVES[id].practicePrereqs||[]).map(from=>({from,to:id,dimension:'complexity',gate:true,label:'Supporting practice gate · reviewed teaching plus app evidence rules',sourceIds:E.MOVES[id].teachingSources||[]}));
+  const parents=(E.MOVES[id]?.practicePrereqs||[]).map(from=>({from,to:id,dimension:'complexity',gate:true,label:'Supporting practice gate · reviewed teaching plus app evidence rules',sourceIds:E.MOVES[id].teachingSources||[]}));
   const children=Object.keys(E.MOVES).filter(next=>E.MOVES[next].practicePrereqs?.includes(id)).map(to=>({from:id,to,dimension:'complexity',gate:true,label:'Possible next practice · skill confirmation still required',sourceIds:E.MOVES[to].teachingSources||[]}));
   const educational=(content.links||[]).filter(x=>x.from===id||x.to===id).map(x=>({...x,gate:false}));
   return{parents,children,educational};
  }
- function browse({gear='',family='',query=''}={}){query=query.toLowerCase().trim();return Object.entries(E.MOVES).filter(([id,m])=>(!gear||m.gear===gear)&&(!family||m.family===family)&&(!query||m.name.toLowerCase().includes(query))).map(([id,m])=>({id,...m}));}
- return{gearLabels,familyLabels,instruction,videos,status,relations,browse};
+ function browse({gear='',family='',query=''}={}){query=query.toLowerCase().trim();return Object.entries(catalog).filter(([id,m])=>(!gear||m.gear===gear)&&(!family||m.family===family)&&(!query||m.name.toLowerCase().includes(query))).map(([id,m])=>({id,...m}));}
+ return{move,gearLabels,familyLabels,instruction,videos,status,relations,browse};
 }
 return{create};
 });
