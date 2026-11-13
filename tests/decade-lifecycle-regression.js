@@ -13,6 +13,8 @@ for(const scenario of scenarios){
  equipment:{kb:[12,14,16,18,20,22,24,26,28,30,32],club:[5,7,10,12,15,17],maxKbKg:32,maxClubLb:17,pairs:[]},nextWeights:{},
  skills:{swing:true,clean:true,rack:true,overhead:true,clubGrip:true,clubTwoHandFoundation:true,hingePattern:true,bearSquat:true,pushupTechnique:true},
  trainingPreferences:{daysPerWeek:3,useKb:scenario.kb,useClub:scenario.club,useBodyweight:scenario.bw,useDoubleKb:false,useTwoHandClub:true,focus:scenario.focus,variety:scenario.variety,conditioning:true,skillSessions:true}};
+ // Preselect an owned starting load for every enabled movement. Baseline setup is tested separately.
+ for(const [id,move] of Object.entries(E.MOVES))if(move.gear==='kb')state.weights[id]=12;else if(move.gear==='club')state.weights[id]=5;
  let sessions=0,mobility=0,missed=0,hard=0,partial=0,clean=0,breaks=0,checks=0;
  for(let d=0;d<3650;d++){
   if(![0,2,4].includes(d%7))continue;
