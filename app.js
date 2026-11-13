@@ -714,9 +714,9 @@ document.addEventListener('click',async e=>{const b=e.target.closest('button');i
    const registration=await navigator.serviceWorker.getRegistration('./');
    if(!registration)throw Error('No service worker is installed yet. Reload while online to install it.');
    await registration.update();
-   // Cache deletion is scoped to this app; localStorage and training records are untouched.
-   const keys=await caches.keys();
-   await Promise.all(keys.filter(key=>key.startsWith('sl-dev-preview-cache-')).map(key=>caches.delete(key)));
+   // Do not delete the active offline cache here. The service worker owns cache
+   // rotation on activation; deleting it before a replacement is ready can
+   // strand an installed app when the network drops during reload.
    if(status)status.textContent='Update check complete. Reloading app files; saved training is untouched.';
    window.location.reload();
   }catch(error){if(status)status.textContent='Update check could not finish: '+error.message;b.disabled=false;}
