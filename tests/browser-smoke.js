@@ -75,8 +75,13 @@ const {chromium}=require('playwright');
    await page.locator('#open-training-style').click();
    if(await page.locator('#train-style-focus').inputValue()!=='skill'||await page.locator('#train-style-variety').inputValue()!=='high')
     throw Error('Workout style selections lost after reload');
+   await page.locator('#train-style-focus').selectOption('capacity');
    await page.locator('#train-style-dialog button[type="submit"]').click();
-   console.log('Train style and emphasis editor persistence passed at '+viewport.width+'px');
+   await page.locator('#open-training-style').click();
+   if(await page.locator('#train-style-focus').inputValue()!=='skill')
+    throw Error('Cancelled workout style edit leaked into saved preferences');
+   await page.locator('#train-style-dialog button[type="submit"]').click();
+   console.log('Train style and emphasis editor persistence and cancellation passed at '+viewport.width+'px');
    // Reset confirmation must require a fresh acknowledgement on every opening.
    await page.locator('[data-tab="settings"]').click();
    const resetSection=page.locator('#reset').locator('xpath=ancestor::details[1]');
