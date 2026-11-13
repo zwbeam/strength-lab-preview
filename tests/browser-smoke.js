@@ -1045,8 +1045,8 @@ const {chromium}=require('playwright');
      active:(await navigator.serviceWorker.ready).active?.scriptURL,
      caches:await caches.keys()
     }));
-    if(!cacheIdentity.caches.includes('sl-dev-preview-cache-rc24-train-editors-reset-20261113'))
-     throw Error('Expected RC24 offline cache was not installed: '+JSON.stringify(cacheIdentity));
+    if(!cacheIdentity.caches.includes('sl-dev-preview-cache-rc25-compact-training-plan-20261113'))
+     throw Error('Expected RC25 offline cache was not installed: '+JSON.stringify(cacheIdentity));
     await page.reload({waitUntil:'domcontentloaded'});
     await page.waitForFunction(()=>navigator.serviceWorker.controller!==null);
     await page.context().setOffline(true);
