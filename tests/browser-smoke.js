@@ -1075,6 +1075,10 @@ const {chromium}=require('playwright');
    }));
    if(!cleared.state||cleared.state.sessions?.length!==0||cleared.draft!==null)
     throw Error('Confirmed reset failed to clear training sessions or unfinished workout');
+   if(cleared.state.defaultMinutes!==45||Object.keys(cleared.state.weights||{}).length||Object.keys(cleared.state.nextWeights||{}).length)
+    throw Error('Confirmed reset retained previous workout duration or weights');
+   if(await page.evaluate(()=>localStorage.getItem('sl-preview-interval-timer-v1'))!==null)
+    throw Error('Confirmed reset retained standalone interval timer preferences');
    await page.reload({waitUntil:'domcontentloaded'});
    const afterReset=await page.evaluate(()=>JSON.parse(localStorage.getItem('sl-dev-preview-data-v33')||'null'));
    if(!afterReset||afterReset.sessions?.length!==0)
