@@ -457,6 +457,28 @@ function blockPlan(s,opts={}){
  return{block,slot,day:continuing?{...day,name:day.name+' · remaining work'}:day,support,items,deferred,timeBlocked,held,unavailable,prerequisite,requirements,scheduled,restDay,spacingRecommended,spacingReason:spacingRecommended?'A rest or easier activity day is recommended after yesterday’s workout; you may train if recovered.':'',paused:trainingPaused(s,opts.now),estimated:Math.ceil(used),total:Math.ceil(used)+budget.warmup+budget.cooldown,reentry:items.some(x=>x.mode==='reentry'),cap:maxMain,budget:{...budget,targetMain:budget.main,flexMax,main:maxMain},extended:used>budget.main+1e-8};
 }
 // Coordinate independent blocks across workouts; never blend their numeric protocols.
+// Training Emphasis is a temporary scheduling preference, independent of equipment inventory.
+const EMPHASIS_FAMILIES=['bodyweight','kb','club','complex'];
+const EMPHASIS_LEVELS=['off','minor','major'];
+function trainingEmphasis(s){
+ const saved=s.trainingPreferences?.emphasis;
+ const defaults={bodyweight:'minor',kb:'major',club:'minor',complex:'minor'};
+ const levels=Object.fromEntries(EMPHASIS_FAMILIES.map(id=>[id,EMPHASIS_LEVELS.includes(saved?.[id])?saved[id]:defaults[id]]));
+ return {levels,mobilityOnly:s.trainingPreferences?.mobilityOnly===true};
+}
+function validateTrainingEmphasis(value){
+ if(!value||typeof value!=='object'||Array.isArray(value))throw Error('Invalid training emphasis');
+ for(const id of EMPHASIS_FAMILIES)if(!EMPHASIS_LEVELS.includes(value[id]))throw Error('Select Off, Minor or Major for '+id);
+ if(EMPHASIS_FAMILIES.every(id=>value[id]==='off'))throw Error('Choose at least one training emphasis');
+ return Object.fromEntries(EMPHASIS_FAMILIES.map(id=>[id,value[id]]));
+}
+function emphasisDistribution(s){
+ const {levels,mobilityOnly}=trainingEmphasis(s);
+ const effective=Object.fromEntries(EMPHASIS_FAMILIES.map(id=>[id,mobilityOnly?'off':levels[id]]));
+ const weights=Object.fromEntries(EMPHASIS_FAMILIES.map(id=>[id,effective[id]==='major'?3:effective[id]==='minor'?1:0]));
+ const total=Object.values(weights).reduce((a,b)=>a+b,0);
+ return {levels,effective,weights,total,mobilityOnly,shares:Object.fromEntries(EMPHASIS_FAMILIES.map(id=>[id,total?weights[id]/total:0]))};
+}
 function plan(s,opts={}){
  const c=s.programComposition;
  if(!c?.enabled)return blockPlan(s,opts);
@@ -668,5 +690,5 @@ function validateBackup(input){
  const workoutDraft=validateDraft(input.workoutDraft,input);
  return JSON.parse(JSON.stringify({...input,workoutDraft,nextWeights:input.nextWeights||{},defaultMinutes:input.defaultMinutes??45,deferredIds:input.deferredIds||[]}));
 }
-return{COMPLEX_PATHWAYS,complexityOptions,repairMissingLoadAnchor,replaceUnavailableLoad,availableWorkingLoads,trainingPaused,activityRecovery,validateActivity,MOVES,SKILLS,DAYS,BLOCKS,LOADS,PROFILE_NAMES,describeProgression,policyFor,availableProfiles,configureMovement,practiceEvidence,supportingMoves,requirementLabel,prerequisites,chooseCycle,loadOptions,selectLoad,retestPushup,validWorkingWeight,validateProgramming,validateDraft,validateBackup,records,successful,stateFor,prescription,minutesFor,timeBudget,plan,completeRecord,nextRest,deferredAfter,resolvePain,movementGap,movementDemands};
+return{trainingEmphasis,validateTrainingEmphasis,emphasisDistribution,COMPLEX_PATHWAYS,complexityOptions,repairMissingLoadAnchor,replaceUnavailableLoad,availableWorkingLoads,trainingPaused,activityRecovery,validateActivity,MOVES,SKILLS,DAYS,BLOCKS,LOADS,PROFILE_NAMES,describeProgression,policyFor,availableProfiles,configureMovement,practiceEvidence,supportingMoves,requirementLabel,prerequisites,chooseCycle,loadOptions,selectLoad,retestPushup,validWorkingWeight,validateProgramming,validateDraft,validateBackup,records,successful,stateFor,prescription,minutesFor,timeBudget,plan,completeRecord,nextRest,deferredAfter,resolvePain,movementGap,movementDemands};
 });
