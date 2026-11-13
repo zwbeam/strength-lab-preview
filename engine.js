@@ -341,7 +341,8 @@ function blockPlan(s,opts={}){
  const flexMax=budget.total===30?40:Math.min(120,budget.total+5);
  const maxMain=flexMax-budget.warmup-budget.cooldown;
  const pref=s.trainingPreferences||{};
- const enabled=id=>{const m=MOVES[id];if(!m)return false;if(m.bodyweight)return pref.useBodyweight!==false;if(m.gear==='kb')return pref.useKb!==false&&(!m.pair||pref.useDoubleKb===true);if(m.gear==='club')return pref.useClub!==false&&(!['cast','circles','front'].includes(id)||pref.useTwoHandClub!==false);return true;};
+ const emphasis=pref.emphasis?trainingEmphasis(s).levels:null;
+ const enabled=id=>{const m=MOVES[id];if(!m)return false;if(emphasis&&(emphasis[m.complex?'complex':m.bodyweight?'bodyweight':m.gear]||'minor')==='off')return false;if(m.bodyweight)return pref.useBodyweight!==false;if(m.gear==='kb')return pref.useKb!==false&&(!m.pair||pref.useDoubleKb===true);if(m.gear==='club')return pref.useClub!==false&&(!['cast','circles','front'].includes(id)||pref.useTwoHandClub!==false);return true;};
  if(block==='abc'){
   const fallback=pref.useKb!==false?['squat','press','row']:pref.useClub!==false?(pref.useTwoHandClub!==false?['front','circles','cast']:['clubInside','clubOutside']):['pushup','bearSquat','hingePractice'];
   if(!day.ids.some(enabled))day={name:pref.useKb!==false?'Strength fundamentals':pref.useClub!==false?'Club fundamentals':'Bodyweight fundamentals',focus:'Equipment-compatible foundation practice',ids:fallback.filter(enabled)};
@@ -352,7 +353,7 @@ function blockPlan(s,opts={}){
  const continuing=latest?.calendarVersion===1&&latest.items.some(x=>x.actualSets>0)&&latest.items.some(x=>!x.performed)&&pending.length>0;
  // On the third ABC day, substitute one eligible complex for overlapping basics.
  // Keep the existing day unchanged unless prerequisite evidence is current.
- const complexChoices=block==='abc'&&slot===2&&pref.useKb!==false&&pref.useComplexes!==false&&!continuing
+ const complexChoices=block==='abc'&&slot===2&&pref.useKb!==false&&pref.useComplexes!==false&&(!emphasis||emphasis.complex!=='off')&&!continuing
   ?complexityOptions(s,opts).filter(x=>x.ready):[];
  // Rotate among independently eligible complexes so a permanently ready
  // pathway cannot starve another. Use recorded exposures, not calendar turns.
