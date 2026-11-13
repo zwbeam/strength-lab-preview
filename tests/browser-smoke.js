@@ -1062,6 +1062,24 @@ const {chromium}=require('playwright');
      await page.context().setOffline(false);
     }
    }
+   // Destructive reset runs last so it cannot erase fixtures needed by earlier tests.
+   await page.locator('[data-tab="settings"]').click();
+   await page.locator('#reset').locator('xpath=ancestor::details[1]').evaluate(el=>el.open=true);
+   await page.locator('#reset').click();
+   await page.locator('#reset-backup-confirmed').check();
+   page.once('dialog',dialog=>dialog.accept());
+   await page.locator('#reset-confirm').click();
+   const cleared=await page.evaluate(()=>({
+    state:JSON.parse(localStorage.getItem('sl-dev-preview-data-v33')||'null'),
+    draft:localStorage.getItem('sl-dev-preview-draft-v33')
+   }));
+   if(!cleared.state||cleared.state.sessions?.length!==0||cleared.draft!==null)
+    throw Error('Confirmed reset failed to clear training sessions or unfinished workout');
+   await page.reload({waitUntil:'domcontentloaded'});
+   const afterReset=await page.evaluate(()=>JSON.parse(localStorage.getItem('sl-dev-preview-data-v33')||'null'));
+   if(!afterReset||afterReset.sessions?.length!==0)
+    throw Error('Training history reappeared after reset and reload');
+   console.log('Confirmed destructive reset and reload passed at '+viewport.width+'px');
    if(errors.length)throw Error(viewport.width+'px browser exceptions: '+errors.join(' | '));
    console.log('Browser navigation passed at '+viewport.width+'px');
    await page.close();
