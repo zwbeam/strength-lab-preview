@@ -603,6 +603,7 @@ function renderSettings(){
  </div><div class="hub-group"><h2>Advanced &amp; Data</h2>${section('Timer & Alerts','Interval pacing',timer)}</div>
  <div class="hub-group"><h2>Backups</h2>${section('Export Backup','Save your training data',`<button class="button" id="export">Export JSON backup</button><button class="button secondary" id="export-csv">Export CSV</button>`)}
  ${section('Restore Backup','Import saved JSON',`<input id="import" type="file" accept=".json,application/json">`)}
+ ${section('Check for App Update','Refresh app code without erasing workouts',`<p class="small muted">Checks for a newer installed version and refreshes the app. Your training data remains in local storage.</p><button class="button secondary" id="check-app-update">Check for App Update</button><p class="small muted" id="app-update-status" role="status"></p>`)}
  ${section('Clear All App Data','Irreversible local reset',`<button class="button danger" id="reset">Clear All App Data</button><dialog id="reset-confirm-dialog"><h2>Clear all Strength Lab data?</h2><p>All saved workouts, progression, equipment settings, preferences and unfinished workouts on this device will be erased. This cannot be undone.</p><p>Download a complete JSON backup and verify that it is saved before continuing.</p><button type="button" class="button secondary" id="reset-download-backup">Download Backup</button><label class="gear-check"><input type="checkbox" id="reset-backup-confirmed"> I have verified that my backup is saved, or I accept permanent loss of my data.</label><div class="two"><button type="button" class="button secondary" id="reset-cancel">Cancel</button><button type="button" class="button danger" id="reset-confirm" disabled>Clear All Data</button></div></dialog>`)}</div>
  <div class="hub-group"><h2>About</h2>${section('App Info & Version','Strength Lab development preview',`<p>Data stays in your browser unless exported. Export a backup before clearing browser data or switching devices.</p>`)}</div></div>`;
 }
@@ -705,6 +706,22 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
  if(b.id==='save-equipment'){try{const equipment={...state.equipment};document.querySelectorAll('[data-equipment]').forEach(x=>{equipment[x.dataset.equipment]=[...new Set(x.value.split(',').map(Number).filter(n=>Number.isFinite(n)&&n>0))].sort((a,b)=>a-b)});const next=E.validateProgramming({...state,equipment}),previous=state;state=next;if(!save()){state=previous;return;}alert('Equipment saved.');render();}catch(error){alert('Cannot save equipment: '+error.message);}return;}
  if(b.id==='export'){download('strength-lab-v33-backup.json',JSON.stringify({...state,workoutDraft:draft},null,2),'application/json');return;}
  if(b.id==='export-csv'){const rows=[['date','session','movement','weight','unit','sets','min_reps_or_seconds','quality','pain']];state.sessions.forEach(x=>x.items.forEach(y=>rows.push([x.date,x.title,y.name,y.weight,y.unit,y.actualSets,y.actualReps,y.quality,y.pain])));download('strength-lab-v33-history.csv',rows.map(row=>row.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\n'),'text/csv');return;}
+ if(b.id==='check-app-update'){
+  const status=document.querySelector('#app-update-status');
+  b.disabled=true;if(status)status.textContent='Checking for updated app files…';
+  try{
+   if(!('serviceWorker' in navigator))throw Error('This browser does not support offline app updates. Reload the page while connected.');
+   const registration=await navigator.serviceWorker.getRegistration('./');
+   if(!registration)throw Error('No service worker is installed yet. Reload while online to install it.');
+   await registration.update();
+   // Cache deletion is scoped to this app; localStorage and training records are untouched.
+   const keys=await caches.keys();
+   await Promise.all(keys.filter(key=>key.startsWith('sl-dev-preview-cache-')).map(key=>caches.delete(key)));
+   if(status)status.textContent='Update check complete. Reloading app files; saved training is untouched.';
+   window.location.reload();
+  }catch(error){if(status)status.textContent='Update check could not finish: '+error.message;b.disabled=false;}
+  return;
+ }
  if(b.id==='reset'){document.querySelector('#reset-confirm-dialog')?.showModal();return;}
  if(b.id==='reset-download-backup'){try{const backup=E.validateBackup({...state,workoutDraft:draft});download('strength-lab-v33-backup-before-reset.json',JSON.stringify(backup,null,2),'application/json');}catch(error){alert('Backup could not be prepared: '+error.message);}return;}
  if(b.id==='reset-cancel'){document.querySelector('#reset-confirm-dialog')?.close();return;}
