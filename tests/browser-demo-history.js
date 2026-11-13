@@ -58,7 +58,10 @@ const report=JSON.parse(fs.readFileSync('strength-lab-engine-demo-backup-progres
     }
     if(tab==='progress'){
      const groups=page.locator('.training-overview-group');
-     assert.equal(await groups.count(),4,'Expected four equipment categories at '+width);
+     assert.ok(await groups.count()>=4,'Expected at least four equipment categories at '+width);
+     const groupNames=await groups.locator(':scope > summary strong').allTextContents();
+     assert.deepEqual(groupNames.slice(0,4),['Kettlebells','Kettlebell Complexes','Heavy Clubs','Heavy Club Complexes'],'Core training categories are out of order at '+width);
+     assert.ok(groupNames.length===4||(groupNames.length===5&&groupNames[4]==='Other training'),'Unexpected equipment category at '+width);
      await groups.nth(0).locator('summary').first().click();
      const kettlebells=await groups.nth(0).innerText();
      for(const id of ['swing','squat','press','row','clean','snatch'])
