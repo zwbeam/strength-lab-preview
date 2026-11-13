@@ -1040,6 +1040,12 @@ const {chromium}=require('playwright');
    // installed service-worker cache and navigate without network access.
    if(viewport.width===390){
     await page.evaluate(()=>navigator.serviceWorker.ready);
+    const cacheIdentity=await page.evaluate(async()=>({
+     active:(await navigator.serviceWorker.ready).active?.scriptURL,
+     caches:await caches.keys()
+    }));
+    if(!cacheIdentity.caches.includes('sl-dev-preview-cache-rc24-train-editors-reset-20261113'))
+     throw Error('Expected RC24 offline cache was not installed: '+JSON.stringify(cacheIdentity));
     await page.reload({waitUntil:'domcontentloaded'});
     await page.waitForFunction(()=>navigator.serviceWorker.controller!==null);
     await page.context().setOffline(true);
