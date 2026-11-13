@@ -494,7 +494,17 @@ function emphasisDistribution(s){
  const total=Object.values(weights).reduce((a,b)=>a+b,0);
  return {levels,effective,weights,total,mobilityOnly,shares:Object.fromEntries(EMPHASIS_FAMILIES.map(id=>[id,total?weights[id]/total:0]))};
 }
+function mobilityOnlyPlan(s,opts={}){
+ const budget=timeBudget(opts.minutes??s.defaultMinutes??45);
+ const total=budget.total;
+ return {block:s.programBlock||'abc',slot:0,day:{name:'Mobility & recovery',focus:'Unloaded movement, comfortable range of motion, and recovery',ids:[]},
+  support:[],items:[],deferred:[],timeBlocked:[],held:[],unavailable:[],prerequisite:[],requirements:[],scheduled:[],
+  restDay:false,spacingRecommended:false,spacingReason:'',paused:false,estimated:0,total,
+  reentry:false,cap:0,budget:{...budget,targetMain:0,flexMax:total,main:0},extended:false,
+  mobilityOnly:true,mobilityMinutes:total};
+}
 function plan(s,opts={}){
+ if(s.trainingPreferences?.mobilityOnly===true)return mobilityOnlyPlan(s,opts);
  const c=s.programComposition;
  if(!c?.enabled)return blockPlan(s,opts);
  validateComposition(c);
@@ -705,5 +715,5 @@ function validateBackup(input){
  const workoutDraft=validateDraft(input.workoutDraft,input);
  return JSON.parse(JSON.stringify({...input,workoutDraft,nextWeights:input.nextWeights||{},defaultMinutes:input.defaultMinutes??45,deferredIds:input.deferredIds||[]}));
 }
-return{trainingEmphasis,validateTrainingEmphasis,emphasisDistribution,COMPLEX_PATHWAYS,complexityOptions,repairMissingLoadAnchor,replaceUnavailableLoad,availableWorkingLoads,trainingPaused,activityRecovery,validateActivity,MOVES,SKILLS,DAYS,BLOCKS,LOADS,PROFILE_NAMES,describeProgression,policyFor,availableProfiles,configureMovement,practiceEvidence,supportingMoves,requirementLabel,prerequisites,chooseCycle,loadOptions,selectLoad,retestPushup,validWorkingWeight,validateProgramming,validateDraft,validateBackup,records,successful,stateFor,prescription,minutesFor,timeBudget,plan,completeRecord,nextRest,deferredAfter,resolvePain,movementGap,movementDemands};
+return{trainingEmphasis,validateTrainingEmphasis,emphasisDistribution,mobilityOnlyPlan,COMPLEX_PATHWAYS,complexityOptions,repairMissingLoadAnchor,replaceUnavailableLoad,availableWorkingLoads,trainingPaused,activityRecovery,validateActivity,MOVES,SKILLS,DAYS,BLOCKS,LOADS,PROFILE_NAMES,describeProgression,policyFor,availableProfiles,configureMovement,practiceEvidence,supportingMoves,requirementLabel,prerequisites,chooseCycle,loadOptions,selectLoad,retestPushup,validWorkingWeight,validateProgramming,validateDraft,validateBackup,records,successful,stateFor,prescription,minutesFor,timeBudget,plan,completeRecord,nextRest,deferredAfter,resolvePain,movementGap,movementDemands};
 });
