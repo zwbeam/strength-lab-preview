@@ -38,7 +38,7 @@ for(const scenario of scenarios){
    const weight=E.MOVES[rx.id].bodyweight?0:rx.weight;
    const sets=Array.from({length:rx.sets},(_,i)=>({done:!(isPartial&&i===rx.sets-1),weight,reps:rx.reps,leftReps:rx.reps,rightReps:rx.reps,bothSides:true,timingValid:true,continuous:true}));
    const result=E.completeRecord(rx,sets,isHard?'hard':'clean',false);
-   assert.equal(result.performed,true,scenario.name+' record missing '+date);
+   assert.equal(result.performed,!isPartial||rx.sets>1,scenario.name+' performed status mismatch '+date+' '+rx.id);
    return result;
   });
   state.sessions.push({id:scenario.name+'-'+d,title:'Synthetic '+scenario.name,date,slot:plan.slot,block:plan.block,items,notebookVersion:1,calendarVersion:1});
