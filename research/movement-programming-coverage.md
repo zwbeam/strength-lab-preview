@@ -11,7 +11,7 @@ The supplied audit reports 505 master + 214 independent completions. All 214 jou
 | Single kettlebell | 14 | 14 | 0 | Partial scope; see per-movement states below. |
 | Double kettlebell | 3 | 3 | 0 | Partial scope; see per-movement states below. |
 | Heavy club | 11 | 11 | 0 | Partial scope; see per-movement states below. |
-| Double club | 0 | 0 | 3 | No automatic system yet. |
+| Double club | 3 | 3 | 2 | Partial scope; see per-movement states below. |
 | Complexes | 3 | 3 | 0 | Partial scope; see per-movement states below. |
 | Bodyweight | 7 | 7 | 2 | Partial scope; see per-movement states below. |
 
@@ -57,6 +57,9 @@ The supplied audit reports 505 master + 214 independent completions. All 214 jou
 | stepBackLunge | ground | reviewed outline | #93 |
 | doubleClean | legacy | partial: hard-style transcript outline; paired clearance and catch still require visual verification | #365 |
 | singleRackSquat | legacy | reviewed outline | #305 |
+| doubleClubSwingClean | doubleClub | partial: source-reviewed foundation; paired-club equipment, dose and visual verification remain incomplete | #206 |
+| doubleClubPullover | doubleClub | partial: transcript-reviewed outline; overhead clearance and technique require visual review | #205 |
+| doubleClubTechnicalSwipe | doubleClub | partial: transcript-reviewed four-count version; performance version and visual technique validation remain incomplete | #207, #206, #205 |
 
 ## Programming scope
 
@@ -69,7 +72,6 @@ These lessons never enter automatic prescriptions. Their source-supported teachi
 - catCrawl: Cat crawl — #82; reviewed outline
 - doubleClubInside: Double-club alternating inside circles — #147; partial: source-reviewed outline; paired-club equipment/programming and visual technique validation remain incomplete
 - doubleClubOutside: Double-club alternating outside circles — #151; partial: source-reviewed outline; paired-club equipment/programming and visual technique validation remain incomplete
-- doubleClubSwingClean: Double-club swing clean to order — #206; partial: source-reviewed foundation; paired-club equipment, dose and visual verification remain incomplete
 
 ## High-priority programming gaps
 
@@ -77,13 +79,13 @@ These lessons never enter automatic prescriptions. Their source-supported teachi
 |---|---|---|
 | Bodyweight lower-body | Implemented opt-in squat/lunge; rack prerequisites stay distinct | #91/#93 reviewed. Automatic crawl and fuller bodyweight integration remain missing; #85/#88/#554 are leads, not newly reviewed prescriptions. |
 | Double kettlebell | Clean practice plus existing press/squat and complex | #365/#305 reviewed here; broader alternating/row/lunge pathways remain missing (#183/#347/#71 are leads). |
-| Double club | Three instructional references, no automatic progression | #206 foundation and #147/#151 alternating work reviewed. Pair equipment, swing-clean → pullover → swipe progression and independent cycles remain missing; #205/#207 need close review. |
+| Double club | Swing-clean, pullover and technical-swipe automatic practice; alternating circles still instructional-only | #206 foundation and #147/#151 alternating work reviewed. Pair equipment, component evidence, independent cycles and conservative app doses implemented from #206/#205/#207. Alternating-circle automatic programming and performance swipes remain missing. |
 | Complexes | Three programmable combinations; partial technique coverage | Rack squat now distinct. #335 worked examples are contextual. Get-up, snatch/lunge and other combinations are missing (#124/#586/#623 discovery leads). |
 | Volume / density / heavy-light | Existing source-specific snatch, club, push-up, wave profiles retained | Source examples are not universal prescriptions. Numeric exposure, recovery and calendar choices remain app decisions. |
 | Broader long-term programming | Partial | Current Tetris/ABC composition does not implement every system in the archive. Competition jerk/long-cycle (#464/#465), additional implement systems and contraindication review remain gaps, not automatic substitutions. |
 
 ## Research boundaries and next priorities
 
-New squat/lunge and paired-clean opt-in blocks address foundation gaps; quadruped automatic protocols, double-club equipment/qualification/programming, and richer supported combinations remain incomplete. The #206 swing-clean foundation is now an instructional reference; verify #205/#207 before programming later double-club combinations. Candidate source IDs/titles are in the JSON inventory. A candidate match is not technique verification. Keep the eight Books separate from this catalog; the provided 23,751-word Book I manuscript is editorial context, not newly certified engine evidence.
+New squat/lunge and paired-clean opt-in blocks address foundation gaps; quadruped automatic protocols, broader double-club programming, and richer supported combinations remain incomplete. The #206/#205/#207 foundation pathway now has automatic practice with explicit app gates; performance swipes and alternating patterns need additional programming work. Candidate source IDs/titles are in the JSON inventory. A candidate match is not technique verification. Keep the eight Books separate from this catalog; the provided 23,751-word Book I manuscript is editorial context, not newly certified engine evidence.
 
 Reproduce with `node scripts/audit-curriculum.cjs`. No production data is read or modified.

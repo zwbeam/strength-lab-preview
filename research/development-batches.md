@@ -121,3 +121,27 @@ and remote CI must finish independently for this checkpoint.
 Cache revision rc28-rack-foundation-20261113. Inventory: 38 programmable lessons,
 five instruction-only lessons; eleven programmable lessons retain explicit
 incomplete status. Production and browser storage namespace remain unchanged.
+
+
+## Lifelong integration batch 1: double clubs
+
+Incoming checkpoint 36a8a27, verified against origin/preview. Close-reviewed #205
+and #207 in full and reused #206 evidence. The technical/performance naming
+inconsistency in #207 is retained in the instructional qualification; the app
+programs only the explicitly described four-count technical version.
+
+Add explicit equipment.clubPairs (lb per club) and useDoubleClub opt-in. Missing
+fields in existing V33 backups default to unavailable; no history/key migration.
+Pair weights must be owned, within the club ceiling and explicitly confirmed.
+Working-weight replacement and endpoint load choices use that pair inventory.
+Single/two-hand club preparation, recent supporting practice and separate
+technique/overhead confirmations gate clean → pullover → technical swipe.
+All new doses (2–4 sets of 3, 90-second rest), planning estimates, admission counts
+and load-jump limits are app adaptations. One double-club pattern per session
+limits duplicated demand; deferred patterns rotate without advancement credit.
+
+All 30 Node suites and historical-correction CJS pass locally. New source quote
+and hash checks pass. Targeted mobile acceptance verifies Settings pair removal /
+restoration, Movement Library instruction, actual generated swing-clean workout,
+completion, reload and Training Log reporting. Full CI verifies the checkpoint
+independently. Eight Books, V33 persistence and production remain unchanged.

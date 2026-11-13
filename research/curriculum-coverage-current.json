@@ -1067,6 +1067,105 @@
         "readiness/recovery numeric adjustments",
         "equipment jump cap"
       ]
+    },
+    {
+      "id": "doubleClubSwingClean",
+      "name": "Double-club swing clean to order",
+      "category": "double-club",
+      "automatic": true,
+      "profile": "doubleClub",
+      "coverage": "partial: source-reviewed foundation; paired-club equipment, dose and visual verification remain incomplete",
+      "sourceIds": [
+        206
+      ],
+      "skillPrerequisites": [
+        "clubGrip",
+        "clubTwoHandFoundation",
+        "doubleClubOrder"
+      ],
+      "practicePrerequisites": [
+        "clubInside",
+        "clubOutside",
+        "clubShield"
+      ],
+      "sequence": [],
+      "policySources": [
+        206
+      ],
+      "exactParametersSource": null,
+      "appDefaults": [
+        "exposure gates",
+        "readiness/recovery numeric adjustments",
+        "equipment jump cap"
+      ]
+    },
+    {
+      "id": "doubleClubPullover",
+      "name": "Double-club pullover",
+      "category": "double-club",
+      "automatic": true,
+      "profile": "doubleClub",
+      "coverage": "partial: transcript-reviewed outline; overhead clearance and technique require visual review",
+      "sourceIds": [
+        205
+      ],
+      "skillPrerequisites": [
+        "clubGrip",
+        "doubleClubOrder",
+        "doubleClubOverhead",
+        "doubleClubPullover"
+      ],
+      "practicePrerequisites": [
+        "doubleClubSwingClean",
+        "clubShield"
+      ],
+      "sequence": [],
+      "policySources": [
+        205
+      ],
+      "exactParametersSource": null,
+      "appDefaults": [
+        "exposure gates",
+        "readiness/recovery numeric adjustments",
+        "equipment jump cap"
+      ]
+    },
+    {
+      "id": "doubleClubTechnicalSwipe",
+      "name": "Double-club technical swipe",
+      "category": "double-club",
+      "automatic": true,
+      "profile": "doubleClub",
+      "coverage": "partial: transcript-reviewed four-count version; performance version and visual technique validation remain incomplete",
+      "sourceIds": [
+        207,
+        206,
+        205
+      ],
+      "skillPrerequisites": [
+        "doubleClubOrder",
+        "doubleClubOverhead",
+        "doubleClubSwipe"
+      ],
+      "practicePrerequisites": [
+        "doubleClubSwingClean",
+        "doubleClubPullover"
+      ],
+      "sequence": [
+        "doubleClubSwingClean",
+        "doubleClubPullover"
+      ],
+      "policySources": [
+        207,
+        206,
+        205
+      ],
+      "exactParametersSource": null,
+      "appDefaults": [
+        "exposure gates",
+        "readiness/recovery numeric adjustments",
+        "equipment jump cap"
+      ]
     }
   ],
   "references": [
@@ -1239,60 +1338,6 @@
       "qualifications": [
         "The source describes outside as harder than inside. That teaching order is not an automatically measured qualification.",
         "The source discusses minute-long light bouts and 3/5/6–8 rep examples with different aims; these are not universal doses or an automatic body-building program."
-      ],
-      "automatic": false
-    },
-    {
-      "id": "doubleClubSwingClean",
-      "name": "Double-club swing clean to order",
-      "gear": "club",
-      "clubPair": true,
-      "family": "hinge",
-      "instructionOnly": true,
-      "purpose": "Develop the bottom portion of a double-club swipe: coordinated hip-driven swings into a stable double order.",
-      "setup": [
-        "Double-club work comes later than familiar single-arm and two-hand club work in this lesson. Use familiar manageable clubs with clear space outside the body.",
-        "Begin about 12–18 inches behind the clubs, feet generally forward. Reach down with thumbs pointing down, then rotate thumbs up and pack the shoulders."
-      ],
-      "steps": [
-        "Hinge into the skiing-like bottom position. Let the clubs swing outside the body while the hips drive the movement.",
-        "Pull elbows inward and stop in a controlled double order, rather than a kettlebell rack.",
-        "Push, swing, pull and stop deliberately. At the bottom, keep straight arms in line with the body rather than reaching far behind it.",
-        "Set the clubs down with the same controlled technique used to pick them up."
-      ],
-      "bracing": [
-        "The source describes lat engagement connecting shoulders to the back. It does not prescribe an exact breathing cadence.",
-        "The swing uses the traction-style ice-cream-cone grip; the stop compresses the upper hand with the finger/thumb OK grip."
-      ],
-      "mistakes": [
-        "Wide elbows or elbows tracking behind the body: rebuild a stable, controlled order.",
-        "Treating the catch as a double kettlebell rack: review the different grip and order position.",
-        "Turning this coordination practice into a high-volume test: the source’s historical instructor test is context, not a prescription."
-      ],
-      "qualifications": [
-        "The source describes this as back-burner coordinated skill practice after familiar swing, snatch or club work, with a couple of sets as an example. No automatic dose is implemented.",
-        "Swing clean precedes double pullovers and their later combination into swipes. These educational connections are not automatically measured technical qualifications."
-      ],
-      "sourceIds": [
-        206
-      ],
-      "videoSourceIds": [
-        206
-      ],
-      "coverage": "partial: source-reviewed foundation; paired-club equipment, dose and visual verification remain incomplete",
-      "evidence": [
-        {
-          "sourceId": 206,
-          "quote": "it is the bottom portion of a double Club swipe"
-        },
-        {
-          "sourceId": 206,
-          "quote": "I would make this a back burner movement pattern"
-        },
-        {
-          "sourceId": 206,
-          "quote": "always set the club's down exactly the same way you picked them up with good technique"
-        }
       ],
       "automatic": false
     }

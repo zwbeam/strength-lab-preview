@@ -1,0 +1,158 @@
+{
+  "sourcesReviewed": [
+    206,
+    205,
+    207
+  ],
+  "sourceFacts": [
+    "Swing clean and pullover are bottom/top breakdowns of swipe.",
+    "Single/two-hand preparation precedes double-club overhead work.",
+    "Four-count technical version includes stops and exhales; transcript has a later naming inconsistency."
+  ],
+  "appDecisions": [
+    "Matched-pair confirmation and opt-in preference",
+    "Explicit skills and recent clean evidence counts",
+    "2–4 sets of 3, 90-second rest and 8/10/12-second planning estimates",
+    "Owned per-club loads and existing configurable jump cap",
+    "No automatic performance-swipe or 100-rep goal"
+  ],
+  "entries": {
+    "doubleClubSwingClean": {
+      "name": "Double-club swing clean to order",
+      "gear": "club",
+      "clubPair": true,
+      "family": "hinge",
+      "purpose": "Develop the bottom portion of a double-club swipe: coordinated hip-driven swings into a stable double order.",
+      "setup": [
+        "Double-club work comes later than familiar single-arm and two-hand club work in this lesson. Use familiar manageable clubs with clear space outside the body.",
+        "Begin about 12–18 inches behind the clubs, feet generally forward. Reach down with thumbs pointing down, then rotate thumbs up and pack the shoulders."
+      ],
+      "steps": [
+        "Hinge into the skiing-like bottom position. Let the clubs swing outside the body while the hips drive the movement.",
+        "Pull elbows inward and stop in a controlled double order, rather than a kettlebell rack.",
+        "Push, swing, pull and stop deliberately. At the bottom, keep straight arms in line with the body rather than reaching far behind it.",
+        "Set the clubs down with the same controlled technique used to pick them up."
+      ],
+      "bracing": [
+        "The source describes lat engagement connecting shoulders to the back. It does not prescribe an exact breathing cadence.",
+        "The swing uses the traction-style ice-cream-cone grip; the stop compresses the upper hand with the finger/thumb OK grip."
+      ],
+      "mistakes": [
+        "Wide elbows or elbows tracking behind the body: rebuild a stable, controlled order.",
+        "Treating the catch as a double kettlebell rack: review the different grip and order position.",
+        "Turning this coordination practice into a high-volume test: the source’s historical instructor test is context, not a prescription."
+      ],
+      "qualifications": [
+        "The source describes this as back-burner coordinated skill practice after familiar swing, snatch or club work, with a couple of sets as an example. No automatic dose is implemented.",
+        "Swing clean precedes double pullovers and their later combination into swipes. These educational connections are not automatically measured technical qualifications.",
+        "Automatic training uses explicitly owned matched clubs and conservative app-defined practice doses; the source does not prescribe these exact numbers."
+      ],
+      "sourceIds": [
+        206
+      ],
+      "videoSourceIds": [
+        206
+      ],
+      "coverage": "partial: source-reviewed foundation; paired-club equipment, dose and visual verification remain incomplete",
+      "evidence": [
+        {
+          "sourceId": 206,
+          "quote": "it is the bottom portion of a double Club swipe"
+        },
+        {
+          "sourceId": 206,
+          "quote": "I would make this a back burner movement pattern"
+        },
+        {
+          "sourceId": 206,
+          "quote": "always set the club's down exactly the same way you picked them up with good technique"
+        }
+      ]
+    },
+    "doubleClubPullover": {
+      "purpose": "Practice a controlled double-club overhead pullover back to double order after extensive familiar club preparation.",
+      "setup": [
+        "This is a later, technically demanding exercise. Review familiar single/two-hand circles, shields, halos and gamma preparation before confirming the app prerequisite.",
+        "Set the feet under the shoulders, generally forward, then use a familiar double swing clean into order."
+      ],
+      "steps": [
+        "Keep the glutes engaged and the pelvis controlled as both clubs move behind the head.",
+        "Minimize elbow flare, keep the elbows pointing forward and use the lats to return to a close double order.",
+        "Stay within controlled individual range. Stop if pelvic alignment, comfort or grip changes."
+      ],
+      "bracing": [
+        "Maintain glute and lower-trunk engagement; do not dump the lower back when the clubs go behind you.",
+        "The source does not establish a mandatory breath cadence for every repetition."
+      ],
+      "mistakes": [
+        "Letting the pelvis tip as the glutes relax: stop and review the earlier preparations.",
+        "Flared elbows or forcing range: reduce demand and return to familiar technique."
+      ],
+      "sourceIds": [
+        205
+      ],
+      "videoSourceIds": [
+        205
+      ],
+      "evidence": [
+        {
+          "sourceId": 205,
+          "quote": "you definitely should have done inside circles outside circles single hand and two hand"
+        },
+        {
+          "sourceId": 205,
+          "quote": "we keep our glutes tight the entire time"
+        }
+      ],
+      "coverage": "partial: transcript-reviewed outline; overhead clearance and technique require visual review"
+    },
+    "doubleClubTechnicalSwipe": {
+      "purpose": "Combine the double swing clean and pullover as a four-count technical swipe with deliberate stops.",
+      "setup": [
+        "Confirm familiar component technique, extensive club preparation and current practice before combining.",
+        "Use clear space, a familiar matched pair and generally forward feet around shoulder width."
+      ],
+      "steps": [
+        "Hinge and swing into order, then stop.",
+        "Perform the familiar pullover, return to order and stop.",
+        "Count swing, stop, pullover, stop as one complete technical repetition.",
+        "Keep controlled alignment and park the clubs with the same control as pickup."
+      ],
+      "bracing": [
+        "The source describes a forced exhale at each technical count, allowing the inhale between exhales.",
+        "Maintain glute engagement through the top phase and controlled trunk alignment."
+      ],
+      "mistakes": [
+        "Skipping the middle stops or losing wrist alignment: return to component practice.",
+        "Continuing with back pain or uncontrolled overhead range: stop and reassess; do not treat discomfort as progress."
+      ],
+      "sourceIds": [
+        207,
+        206,
+        205
+      ],
+      "videoSourceIds": [
+        207
+      ],
+      "evidence": [
+        {
+          "sourceId": 207,
+          "quote": "technical is what we're going to do is a four count"
+        },
+        {
+          "sourceId": 207,
+          "quote": "swing stop pull over stop"
+        },
+        {
+          "sourceId": 207,
+          "quote": "practice your technical swipe so that you can get to your performance swipe"
+        }
+      ],
+      "coverage": "partial: transcript-reviewed four-count version; performance version and visual technique validation remain incomplete",
+      "qualifications": [
+        "The transcript later calls the four-count version performance in one sentence, inconsistent with its earlier technical/performance distinction. This lesson follows the explicit four-count technical explanation, not the ambiguous sentence.",
+        "The source mentions a set of 100 as a performance context, not a beginner target or app qualification."
+      ]
+    }
+  }
+}
