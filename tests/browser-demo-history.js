@@ -46,7 +46,8 @@ const report=JSON.parse(fs.readFileSync('strength-lab-engine-demo-backup-progres
      assert.ok(header.includes(backup.sessions.length+' lifetime workouts recorded'),'Training Log did not render full session count at '+width);
      const overview=page.locator('.training-overview-group');
      assert.ok(await overview.count()>=2,'Training Overview gear groups missing at '+width);
-     assert.equal(await page.locator('.notebook-table').count(),0,'Legacy notebook table still rendered at '+width);
+     assert.equal(await page.locator('.notebook-table').count(),1,'Bounded workout history table missing at '+width);
+     assert.ok(await page.locator('.notebook-table tbody tr').count()<=60,'Workout history initial page exceeds 60 rows at '+width);
     }
     const view=await page.evaluate(()=>({viewport:document.documentElement.clientWidth,document:document.documentElement.scrollWidth,text:document.querySelector('#app')?.innerText||''}));
     assert.ok(view.text.trim().length>100,'Empty populated '+tab+' at '+width);
@@ -82,7 +83,7 @@ const report=JSON.parse(fs.readFileSync('strength-lab-engine-demo-backup-progres
      assert.ok(dates.length>0,'Movement history is empty at '+width);
      assert.deepEqual(dates,[...dates].sort().reverse(),'History must show newest first at '+width);
      assert.equal(await history.locator('tbody tr').count(),dates.length,'History row count differs from dates at '+width);
-     assert.equal(dates.length,backup.sessions.flatMap(x=>x.items.filter(y=>y.id==='swing'&&(y.actualSets>0||y.performed))).length,'Movement history was truncated at '+width);
+     assert.equal(dates.length,Math.min(60,backup.sessions.flatMap(x=>x.items.filter(y=>y.id==='swing'&&(y.actualSets>0||y.performed))).length),'Movement history first page has unexpected row count at '+width);
      await history.evaluate(el=>el.close());
      await groups.nth(1).locator('summary').first().click();
      assert.ok((await groups.nth(1).innerText()).includes(windowName.complexCleanPress),'Complex movement missing at '+width);
