@@ -1070,6 +1070,7 @@ const {chromium}=require('playwright');
    const confirmationText=[];
    page.once('dialog',async dialog=>{confirmationText.push(dialog.message());await dialog.accept();});
    await page.locator('#reset-confirm').click();
+   await page.waitForFunction(()=>document.querySelector('[data-tab="today"]')?.classList.contains('active'));
    if(confirmationText.length!==1||!confirmationText[0].includes('permanently erase'))
     throw Error('Destructive reset did not require final native confirmation');
    const cleared=await page.evaluate(()=>({
