@@ -722,7 +722,7 @@ document.addEventListener('click',async e=>{const b=e.target.closest('button');i
   }catch(error){if(status)status.textContent='Update check could not finish: '+error.message;b.disabled=false;}
   return;
  }
- if(b.id==='reset'){document.querySelector('#reset-confirm-dialog')?.showModal();return;}
+ if(b.id==='reset'){const dialog=document.querySelector('#reset-confirm-dialog');const acknowledgement=document.querySelector('#reset-backup-confirmed');const confirmButton=document.querySelector('#reset-confirm');if(acknowledgement)acknowledgement.checked=false;if(confirmButton)confirmButton.disabled=true;dialog?.showModal();return;}
  if(b.id==='reset-download-backup'){try{const backup=E.validateBackup({...state,workoutDraft:draft});download('strength-lab-v33-backup-before-reset.json',JSON.stringify(backup,null,2),'application/json');}catch(error){alert('Backup could not be prepared: '+error.message);}return;}
  if(b.id==='reset-cancel'){document.querySelector('#reset-confirm-dialog')?.close();return;}
  if(b.id==='reset-confirm'){if(!document.querySelector('#reset-backup-confirmed')?.checked)return;
