@@ -57,7 +57,7 @@ The supplied audit reports 505 master + 214 independent completions. All 214 jou
 | stepBackLunge | ground | reviewed outline | #93 |
 | doubleClean | legacy | partial: hard-style transcript outline; paired clearance and catch still require visual verification | #365 |
 | singleRackSquat | legacy | reviewed outline | #305 |
-| doubleClubSwingClean | doubleClub | partial: source-reviewed foundation; paired-club equipment, dose and visual verification remain incomplete | #206 |
+| doubleClubSwingClean | doubleClub | partial: source-reviewed foundation; visual technique and individual setup verification remain incomplete | #206 |
 | doubleClubPullover | doubleClub | partial: transcript-reviewed outline; overhead clearance and technique require visual review | #205 |
 | doubleClubTechnicalSwipe | doubleClub | partial: transcript-reviewed four-count version; performance version and visual technique validation remain incomplete | #207, #206, #205 |
 | bearCrawl | crawl | reviewed outline | #87, #88, #554 |
@@ -70,8 +70,8 @@ Existing volume, snatch density, heavy/light waves, timed club, get-up, push-up,
 ## Instruction-only references
 
 These lessons never enter automatic prescriptions. Their source-supported teaching is separate from unimplemented dose/equipment/eligibility systems.
-- doubleClubInside: Double-club alternating inside circles — #147; partial: source-reviewed outline; paired-club equipment/programming and visual technique validation remain incomplete
-- doubleClubOutside: Double-club alternating outside circles — #151; partial: source-reviewed outline; paired-club equipment/programming and visual technique validation remain incomplete
+- doubleClubInside: Double-club alternating inside circles — #147; partial: source-reviewed outline; alternating-pattern programming and visual technique validation remain incomplete
+- doubleClubOutside: Double-club alternating outside circles — #151; partial: source-reviewed outline; alternating-pattern programming and visual technique validation remain incomplete
 
 ## High-priority programming gaps
 

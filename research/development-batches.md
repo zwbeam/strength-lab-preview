@@ -207,3 +207,16 @@ show frequent movement re-entry in stress tests. Refine movement-level continuit
 next without weakening eligibility, inventing technical mastery, or adding
 catch-up work. Alternating clubs, broader bodyweight/paired pathways, additional
 complexes and visual/source verification remain open.
+
+
+### Final visual/source clarity follow-up
+
+Checkpoint 432d188 passed all GitHub checks and the public RC30 mobile/offline
+verification (43 movements, eight Books, no failed assets or browser exceptions).
+Visual inspection found stale reference-era wording on the now-programmable
+swing-clean lesson. Corrected its scope/qualification copy and the two remaining
+alternating-reference labels. Registry prerequisite links that are also sequence
+components now appear in the Combinations section without duplicate map edges.
+This changes presentation of existing relationships, not progression gates.
+Cache revision rc31-integration-copy-20261113; current commit requires independent
+QA again. Physical Android review remains outstanding.

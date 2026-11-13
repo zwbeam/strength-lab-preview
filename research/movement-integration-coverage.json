@@ -802,7 +802,7 @@
     {
       "id": "doubleClubSwingClean",
       "name": "Double-club swing clean to order",
-      "instruction": "partial: source-reviewed foundation; paired-club equipment, dose and visual verification remain incomplete",
+      "instruction": "partial: source-reviewed foundation; visual technique and individual setup verification remain incomplete",
       "prerequisites": [
         "clubGrip",
         "clubTwoHandFoundation",
@@ -926,7 +926,7 @@
     {
       "id": "doubleClubInside",
       "name": "Double-club alternating inside circles",
-      "coverage": "partial: source-reviewed outline; paired-club equipment/programming and visual technique validation remain incomplete",
+      "coverage": "partial: source-reviewed outline; alternating-pattern programming and visual technique validation remain incomplete",
       "sourceIds": [
         147
       ]
@@ -934,7 +934,7 @@
     {
       "id": "doubleClubOutside",
       "name": "Double-club alternating outside circles",
-      "coverage": "partial: source-reviewed outline; paired-club equipment/programming and visual technique validation remain incomplete",
+      "coverage": "partial: source-reviewed outline; alternating-pattern programming and visual technique validation remain incomplete",
       "sourceIds": [
         151
       ]

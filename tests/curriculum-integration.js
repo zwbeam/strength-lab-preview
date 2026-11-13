@@ -44,3 +44,6 @@ assert.ok(E.plan(rack,{now:'2026-02-13'}).items.some(x=>x.id==='squat'),'Stale e
 assert.ok(!E.prerequisites({...rack,skills:{}},'singleRackSquat',{now:'2026-01-13'}).every(x=>x.startsWith('practice:')),'Explicit rack technique confirmation remains separate');
 assert.equal(E.validateBackup(rack).sessions.length,5);assert.equal(E.MOVES.complexCleanSquatPress.sequence[1],'singleRackSquat');
 console.log('PASS: actual rack-squat plans, distinct goblet/rack evidence, partial-work rejection, multiweek expiration and foundation scheduling');
+
+assert.ok(L.relations('doubleClubTechnicalSwipe').parents.some(x=>x.from==='doubleClubPullover'&&x.dimension==='combination'&&x.gate));
+assert.ok(L.relations('doubleClubPullover').children.some(x=>x.to==='doubleClubTechnicalSwipe'&&x.dimension==='combination'&&x.gate));

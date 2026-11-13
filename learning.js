@@ -21,8 +21,8 @@ function create(E,content){
  }
  function relations(id){
   instruction(id);
-  const parents=(E.MOVES[id]?.practicePrereqs||[]).map(from=>({from,to:id,dimension:'complexity',gate:true,label:'Supporting practice gate · reviewed teaching plus app evidence rules',sourceIds:E.MOVES[id].teachingSources||[]}));
-  const children=Object.keys(E.MOVES).filter(next=>E.MOVES[next].practicePrereqs?.includes(id)).map(to=>({from:id,to,dimension:'complexity',gate:true,label:'Possible next practice · skill confirmation still required',sourceIds:E.MOVES[to].teachingSources||[]}));
+  const parents=(E.MOVES[id]?.practicePrereqs||[]).map(from=>({from,to:id,dimension:E.MOVES[id].sequence?.includes(from)?'combination':'complexity',gate:true,label:'Supporting practice gate · reviewed teaching plus app evidence rules',sourceIds:E.MOVES[id].teachingSources||[]}));
+  const children=Object.keys(E.MOVES).filter(next=>E.MOVES[next].practicePrereqs?.includes(id)).map(to=>({from:id,to,dimension:E.MOVES[to].sequence?.includes(id)?'combination':'complexity',gate:true,label:'Possible next practice · skill confirmation still required',sourceIds:E.MOVES[to].teachingSources||[]}));
   const educational=(content.links||[]).filter(x=>x.from===id||x.to===id).filter(x=>![...parents,...children].some(g=>g.from===x.from&&g.to===x.to)).map(x=>({...x,gate:false}));
   return{parents,children,educational};
  }

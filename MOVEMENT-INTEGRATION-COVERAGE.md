@@ -32,7 +32,7 @@ These have dedicated reviewed outlines and an operational engine path. Technique
 
 `doubleClean`: partial: hard-style transcript outline; paired clearance and catch still require visual verification
 
-`doubleClubSwingClean`: partial: source-reviewed foundation; paired-club equipment, dose and visual verification remain incomplete
+`doubleClubSwingClean`: partial: source-reviewed foundation; visual technique and individual setup verification remain incomplete
 
 `doubleClubPullover`: partial: transcript-reviewed outline; overhead clearance and technique require visual review
 
@@ -82,7 +82,7 @@ Every row: Library → gates → inventory → schedule → prescription → act
 | stepBackLunge | reviewed outline | stepBackLunge | bodyweight | bodyweight, bodyweightFoundations, abc (conditional) | ground; app numeric choices |
 | doubleClean | partial: hard-style transcript outline; paired clearance and catch still require visual verification | rack, doubleClean, practice:clean | owned matched kettlebell pair, kg per bell | doubleCleanPractice | legacy; app numeric choices |
 | singleRackSquat | reviewed outline | rack, singleRackSquat, practice:squat | kb | rackSquatPractice | legacy; app numeric choices |
-| doubleClubSwingClean | partial: source-reviewed foundation; paired-club equipment, dose and visual verification remain incomplete | clubGrip, clubTwoHandFoundation, doubleClubOrder, practice:clubInside, practice:clubOutside, practice:clubShield | owned matched club pair, lb per club | doubleClub, abc (conditional) | doubleClub; app numeric choices |
+| doubleClubSwingClean | partial: source-reviewed foundation; visual technique and individual setup verification remain incomplete | clubGrip, clubTwoHandFoundation, doubleClubOrder, practice:clubInside, practice:clubOutside, practice:clubShield | owned matched club pair, lb per club | doubleClub, abc (conditional) | doubleClub; app numeric choices |
 | doubleClubPullover | partial: transcript-reviewed outline; overhead clearance and technique require visual review | clubGrip, doubleClubOrder, doubleClubOverhead, doubleClubPullover, practice:doubleClubSwingClean, practice:clubShield | owned matched club pair, lb per club | doubleClub, abc (conditional) | doubleClub; app numeric choices |
 | doubleClubTechnicalSwipe | partial: transcript-reviewed four-count version; performance version and visual technique validation remain incomplete | doubleClubOrder, doubleClubOverhead, doubleClubSwipe, practice:doubleClubSwingClean, practice:doubleClubPullover | owned matched club pair, lb per club | doubleClub, abc (conditional) | doubleClub; app numeric choices |
 | bearCrawl | reviewed outline | bearCrawl | bodyweight + confirmed traveling space | bodyweight, abc (conditional) | crawl; app numeric choices |
@@ -90,8 +90,8 @@ Every row: Library → gates → inventory → schedule → prescription → act
 
 ## Instructional-only movements
 
-- doubleClubInside: Double-club alternating inside circles; partial: source-reviewed outline; paired-club equipment/programming and visual technique validation remain incomplete; sources #147. No automatic dose, completion credit or progression.
-- doubleClubOutside: Double-club alternating outside circles; partial: source-reviewed outline; paired-club equipment/programming and visual technique validation remain incomplete; sources #151. No automatic dose, completion credit or progression.
+- doubleClubInside: Double-club alternating inside circles; partial: source-reviewed outline; alternating-pattern programming and visual technique validation remain incomplete; sources #147. No automatic dose, completion credit or progression.
+- doubleClubOutside: Double-club alternating outside circles; partial: source-reviewed outline; alternating-pattern programming and visual technique validation remain incomplete; sources #151. No automatic dose, completion credit or progression.
 
 ## Missing research and remaining engineering
 
