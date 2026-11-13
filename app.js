@@ -727,7 +727,7 @@ document.addEventListener('click',async e=>{const b=e.target.closest('button');i
  if(b.id==='reset-cancel'){document.querySelector('#reset-confirm-dialog')?.close();return;}
  if(b.id==='reset-confirm'){if(!document.querySelector('#reset-backup-confirmed')?.checked)return;
   if(!confirm('Final confirmation: permanently erase all Strength Lab training data on this device?'))return;
-  const next=fresh();if(!persistTraining(next,null))return;state=next;draft=null;todayMinutes=state.defaultMinutes;mobilityStartedAt=0;clearInterval(timerInterval);if(mobilityClock)clearInterval(mobilityClock);mobilityClock=null;tab='today';render();return;
+  const next=fresh();if(!persistTraining(next,null))return;state=next;draft=null;todayMinutes=state.defaultMinutes;simpleTimer={prepare:10,work:20,rest:10,sets:8,index:0,remaining:10,running:false,editing:true};try{localStorage.removeItem(SIMPLE_TIMER_KEY);}catch{alert('Training data was cleared, but interval timer preferences could not be erased. Clear browser storage if a complete reset is required.');}mobilityStartedAt=0;clearInterval(timerInterval);if(mobilityClock)clearInterval(mobilityClock);mobilityClock=null;tab='today';render();return;
  }
 });
 document.addEventListener('change',e=>{if(e.target?.id==='reset-backup-confirmed'){const confirmButton=document.querySelector('#reset-confirm');if(confirmButton)confirmButton.disabled=!e.target.checked;}});
