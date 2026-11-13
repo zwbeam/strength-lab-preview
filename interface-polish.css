@@ -735,3 +735,14 @@ details.preparation .prep-exercise .rx,details.preparation .prep-exercise .rx *{
 .training-emphasis-footer{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-top:10px}
 .training-emphasis-footer .small{margin:0;flex:1;min-width:0}
 .training-emphasis-footer button{flex:0 0 auto;align-self:flex-end}
+
+/* Phone-first Training Plan: labels left, compact selectors right, toggles aligned. */
+.training-plan-option-body .plan-compact-fields{display:grid;gap:0}
+.training-plan-option-body .plan-field-row,.training-plan-option-body .plan-toggle-row{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(92px,43%);align-items:center;column-gap:12px;min-height:49px;margin:0!important;padding:6px 0!important;color:#111!important;font-size:clamp(13px,3.7vw,16px)!important;line-height:1.3}
+.training-plan-option-body .plan-field-row+.plan-field-row,.training-plan-option-body .plan-toggle-row{border-top:1px solid #dce1e5}
+.training-plan-option-body .plan-field-row>span,.training-plan-option-body .plan-toggle-row>span{min-width:0}
+.training-plan-option-body .plan-field-row select{box-sizing:border-box;width:100%!important;min-width:0!important;max-width:100%!important;min-height:38px!important;height:40px!important;margin:0!important;padding:5px 24px 5px 9px!important;font-size:14px!important;line-height:1.1!important;background:#15191b!important;color:#fff!important;border-radius:8px!important}
+.training-plan-option-body .plan-toggle-row{grid-template-columns:minmax(0,1fr) 44px}
+.training-plan-option-body .plan-toggle-row input[type=checkbox]{justify-self:end;position:static!important;display:block!important;width:22px!important;height:22px!important;min-width:22px!important;margin:0!important;accent-color:#249c85}
+.training-plan-option-body #save-training-plan-schedule,.training-plan-option-body #save-training-style-inline{display:block;margin:12px 0 0 auto!important;width:auto!important;min-height:36px!important;padding:7px 13px!important;font-size:13px!important;clear:both}
+@media(max-width:370px){.training-plan-option-body .plan-field-row{grid-template-columns:minmax(0,1fr) minmax(88px,45%);column-gap:7px}.training-plan-option-body .plan-field-row select{font-size:12px!important}}
