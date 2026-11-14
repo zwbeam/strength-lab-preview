@@ -1382,6 +1382,56 @@
         "readiness/recovery numeric adjustments",
         "equipment jump cap"
       ]
+    },
+    {
+      "id": "boxStepUp",
+      "name": "Alternating-lead bodyweight step-up",
+      "category": "bodyweight",
+      "automatic": true,
+      "profile": "bodyweightPractice",
+      "coverage": "reviewed outline",
+      "sourceIds": [
+        97
+      ],
+      "skillPrerequisites": [
+        "boxStepUp"
+      ],
+      "practicePrerequisites": [],
+      "sequence": [],
+      "policySources": [
+        97
+      ],
+      "exactParametersSource": null,
+      "appDefaults": [
+        "exposure gates",
+        "readiness/recovery numeric adjustments",
+        "equipment jump cap"
+      ]
+    },
+    {
+      "id": "staticStepUp",
+      "name": "Static-foot bodyweight step-up",
+      "category": "bodyweight",
+      "automatic": true,
+      "profile": "bodyweightPractice",
+      "coverage": "reviewed outline",
+      "sourceIds": [
+        97
+      ],
+      "skillPrerequisites": [
+        "staticStepUp"
+      ],
+      "practicePrerequisites": [],
+      "sequence": [],
+      "policySources": [
+        97
+      ],
+      "exactParametersSource": null,
+      "appDefaults": [
+        "exposure gates",
+        "readiness/recovery numeric adjustments",
+        "equipment jump cap"
+      ]
     }
   ],
   "references": [],

@@ -13,7 +13,7 @@ The supplied audit reports 505 master + 214 independent completions. All 214 jou
 | Heavy club | 11 | 11 | 0 | Partial scope; see per-movement states below. |
 | Double club | 5 | 5 | 0 | Partial scope; see per-movement states below. |
 | Complexes | 3 | 3 | 0 | Partial scope; see per-movement states below. |
-| Bodyweight | 12 | 12 | 0 | Partial scope; see per-movement states below. |
+| Bodyweight | 14 | 14 | 0 | Partial scope; see per-movement states below. |
 
 ## Every programmable movement
 
@@ -67,6 +67,8 @@ The supplied audit reports 505 master + 214 independent completions. All 214 jou
 | kneeSlidingPlank | ground | reviewed outline | #86 |
 | hoverSlidingPlank | ground | reviewed outline | #94, #86 |
 | bodyweightRow | bodyweightPractice | reviewed outline | #89 |
+| boxStepUp | bodyweightPractice | reviewed outline | #97 |
+| staticStepUp | bodyweightPractice | reviewed outline | #97 |
 
 ## Programming scope
 
@@ -80,7 +82,7 @@ These lessons never enter automatic prescriptions. Their source-supported teachi
 
 | System | Current status | Evidence boundary / next verification |
 |---|---|---|
-| Bodyweight lower-body | Implemented opt-in squat/lunge; rack prerequisites stay distinct | #91/#93 reviewed. Crawl 30/30 app adaptation and eligible ABC bodyweight support are implemented from close-reviewed #85/#88/#554; Supported/knee-hover sliding planks and secured-bar bent-knee rows are integrated with explicit skills, setup-aware progression and conservative app doses. Step-ups and fuller bodyweight methods remain incomplete. |
+| Bodyweight lower-body | Implemented opt-in squat/lunge; rack prerequisites stay distinct | #91/#93 reviewed. Crawl 30/30 app adaptation and eligible ABC bodyweight support are implemented from close-reviewed #85/#88/#554; Supported/knee-hover sliding planks and secured-bar bent-knee rows are integrated with explicit skills, setup-aware progression and conservative app doses. Alternating/static-foot unloaded step-ups now use stable-platform and recorded-height gates from #97 teaching, with explicit app doses. Loaded stepping and fuller bodyweight methods remain incomplete. |
 | Double kettlebell | Clean practice plus existing press/squat and complex | #365/#305 reviewed here; broader alternating/row/lunge pathways remain missing (#183/#347/#71 are leads). |
 | Double club | Swing-clean, pullover and technical-swipe automatic practice; alternating circles in a separate opt-in automatic block | #206 foundation and #147/#151 alternating work reviewed. Pair equipment, component evidence, independent cycles and conservative app doses implemented from #206/#205/#207. Alternating-circle skill practice is now implemented in a separate opt-in block; full performance/hypertrophy systems remain missing. |
 | Complexes | Three programmable combinations; partial technique coverage | Rack squat now distinct. #335 worked examples are contextual. Get-up, snatch/lunge and other combinations are missing (#124/#586/#623 discovery leads). |

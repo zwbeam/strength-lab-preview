@@ -1032,6 +1032,45 @@
       "exactParameters": null,
       "operational": true,
       "sourceComplete": true
+    },
+    {
+      "id": "boxStepUp",
+      "name": "Alternating-lead bodyweight step-up",
+      "instruction": "reviewed outline",
+      "prerequisites": [
+        "boxStepUp"
+      ],
+      "equipment": "stable platform + recorded height and clear overhead space",
+      "blocks": [
+        "stepUpPractice",
+        "abc (conditional)"
+      ],
+      "profile": "bodyweightPractice",
+      "sourceIds": [
+        97
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": true
+    },
+    {
+      "id": "staticStepUp",
+      "name": "Static-foot bodyweight step-up",
+      "instruction": "reviewed outline",
+      "prerequisites": [
+        "staticStepUp"
+      ],
+      "equipment": "stable platform + recorded height and clear overhead space",
+      "blocks": [
+        "stepUpPractice"
+      ],
+      "profile": "bodyweightPractice",
+      "sourceIds": [
+        97
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": true
     }
   ],
   "instructionOnly": []

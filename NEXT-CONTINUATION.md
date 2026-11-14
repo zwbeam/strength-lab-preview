@@ -12,8 +12,9 @@ retention. Inspect the actual latest GitHub commit and checks before continuing.
 Do not assume a later checkpoint passed just because this file exists.
 
 Run all non-browser tests/*.js, the history-corrections.test.cjs suite, and the
-six browser suites: browser-smoke.js, browser-curriculum.cjs,
-browser-integration.cjs, browser-continuity.cjs, browser-foundations.cjs and browser-demo-history.js (generate its synthetic backup
+seven browser suites: browser-smoke.js, browser-curriculum.cjs,
+browser-integration.cjs, browser-continuity.cjs, browser-foundations.cjs,
+browser-step-ups.cjs and browser-demo-history.js (generate its synthetic backup
 first). Serve at 127.0.0.1:8765. Installed Chromium may be selected locally with
 PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium. Actions uses its own bundle.
 Run scripts/audit-curriculum.cjs and scripts/audit-integration.cjs; generated
@@ -25,7 +26,7 @@ return-window priority and per-movement feedback. It reduces avoidable re-entry
 without changing qualification. Further evaluate oversized mixed schedules;
 alternating double-club inside/outside skill practice now has a separate opt-in
 automatic block. Next priorities are fuller supported numerical cycles and
-foundational bodyweight pulling/step-up/sliding pathways. Full #85/#88 timing-series context is not
+foundational bodyweight pathways; pulling, sliding planks and unloaded stepping now have real generator routes. Full #85/#88 timing-series context is not
 implemented. Double swing/outside-swing remain missing from the broader #186
 teaching sequence. Do not claim complete lifetime curriculum coverage.
 
@@ -43,6 +44,10 @@ reseed preconfigured weights. See tests/initial-load.js and browser-integration.
 Sources #86/#94 now have supported and knee-hover sliding-plank programming and
 mobile acceptance in browser-foundations.cjs. Source #89 bent-knee rows now have secured-bar availability, recorded geometry,
 actual-result credit gates, historical correction and offline browser tests.
-Next: step-ups (#97) with a properly modeled platform; broader row variants and
-the full source 60/80 example remain separate work.
+Source #97 alternating/static-foot step-ups now require stable platform confirmation
+and recorded height. Pattern-specific skills and bilateral actuals are independent;
+no automatic height/load progression or mandatory ordering between variants is inferred.
+Next: further source-reviewed foundational coverage and coherent mixed schedules;
+broader row variants, full source 60/80 examples, loaded stepping and broader
+paired-kettlebell systems remain separate work.
 Do not treat bodyweight as meaning equipment-free for those movements.

@@ -1,0 +1,116 @@
+{
+  "sourceIds": [
+    97
+  ],
+  "sourceFacts": [
+    "Unloaded practice precedes adding external load.",
+    "Alternating-lead and static-foot versions are complementary teaching patterns; equal sides and controlled quiet deceleration are emphasized.",
+    "A lower platform is appropriate when trunk alignment cannot be maintained; demonstrated box dimensions are not universal starting heights."
+  ],
+  "appDecisions": [
+    "Explicit stable-platform and overhead-clearance confirmation, recorded height and independent pattern skill confirmations.",
+    "Two-to-four sets of three reps per lead leg, 90-second rest and six-second per-side rep planning estimate. These are configurable app defaults, not #97 numerical prescriptions.",
+    "One complete up/down sequence counts as one lead-leg repetition; actual bilateral counts are recorded.",
+    "No automatic height or external-load advancement. A configured height change starts a separate comparison cycle; actual height or pattern changes receive no credit against the written setup.",
+    "1–100 cm is an input validation range, not a recommended height or universal limit of safe practice."
+  ],
+  "limits": [
+    "No automatic loaded step-ups, float variations, taller platforms or additional specialty steps.",
+    "The app cannot measure platform stability, actual deceleration, body alignment or overhead clearance. Pain requires stopping/reassessment, not using this lesson as a rehabilitation prescription."
+  ],
+  "entries": {
+    "boxStepUp": {
+      "sourceIds": [
+        97
+      ],
+      "videoSourceIds": [
+        97
+      ],
+      "videoRole": "instruction",
+      "coverage": "reviewed outline",
+      "setup": [
+        "Begin without external load on a stable, non-slip platform that cannot tip. Use a familiar low height that allows controlled stepping; record the actual height in Settings.",
+        "Check overhead clearance before the first ascent. The source demonstrates 20/24/30-inch box faces but explicitly says many people need a lower starting step; those are not universal targets."
+      ],
+      "bracing": [
+        "Stand all the way up, engage the glutes and control the ribcage and trunk. Lower the platform if you cannot retain controlled alignment.",
+        "The transcript does not specify a breathing cadence; do not infer one from the rep counter."
+      ],
+      "mistakes": [
+        "Noisy, uncontrolled descent: reduce demand and regain slow deceleration.",
+        "Leaning onto the thigh or powering through lost trunk alignment: lower the step instead of increasing height.",
+        "Unequal lead-leg practice: record actual counts on each side; extra work on the stronger side does not establish balanced progression."
+      ],
+      "evidence": [
+        {
+          "sourceId": 97,
+          "quote": "step one of training step ups is always do it without weight"
+        },
+        {
+          "sourceId": 97,
+          "quote": "of course do an equal number of reps on the other side"
+        },
+        {
+          "sourceId": 97,
+          "quote": "take the height of your box back down"
+        }
+      ],
+      "purpose": "Practice equal lead-leg stepping and controlled ascent/descent before considering loaded or more complex stepping.",
+      "steps": [
+        "Step onto the platform with one lead leg, bring the second foot up and stand fully.",
+        "Step down with control rather than dropping noisily.",
+        "Change lead and repeat on the opposite side. Count one complete up/down sequence as one repetition for that lead leg; match both sides."
+      ]
+    },
+    "staticStepUp": {
+      "sourceIds": [
+        97
+      ],
+      "videoSourceIds": [
+        97
+      ],
+      "videoRole": "instruction",
+      "coverage": "reviewed outline",
+      "setup": [
+        "Begin without external load on a stable, non-slip platform that cannot tip. Use a familiar low height that allows controlled stepping; record the actual height in Settings.",
+        "Check overhead clearance before the first ascent. The source demonstrates 20/24/30-inch box faces but explicitly says many people need a lower starting step; those are not universal targets."
+      ],
+      "bracing": [
+        "Stand all the way up, engage the glutes and control the ribcage and trunk. Lower the platform if you cannot retain controlled alignment.",
+        "The transcript does not specify a breathing cadence; do not infer one from the rep counter."
+      ],
+      "mistakes": [
+        "Noisy, uncontrolled descent: reduce demand and regain slow deceleration.",
+        "Leaning onto the thigh or powering through lost trunk alignment: lower the step instead of increasing height.",
+        "Unequal lead-leg practice: record actual counts on each side; extra work on the stronger side does not establish balanced progression."
+      ],
+      "evidence": [
+        {
+          "sourceId": 97,
+          "quote": "step one of training step ups is always do it without weight"
+        },
+        {
+          "sourceId": 97,
+          "quote": "of course do an equal number of reps on the other side"
+        },
+        {
+          "sourceId": 97,
+          "quote": "take the height of your box back down"
+        }
+      ],
+      "purpose": "Practice controlled stepping while keeping one foot planted, reducing foot-placement variables.",
+      "steps": [
+        "Place one foot on the platform pointing generally forward; keep that foot in the same position throughout the side.",
+        "Drive up, straighten the working leg and engage the glute while keeping the trunk controlled.",
+        "Lower slowly and use a light toe tap with the trailing foot to regain position. The source also demonstrates a float, but the app does not automatically prescribe that harder option.",
+        "Complete the same number of controlled repetitions with the other foot planted."
+      ]
+    }
+  },
+  "source": {
+    "title": "Bodyweight box step up",
+    "url": "https://www.youtube.com/watch?v=gF9mAgwFV0U",
+    "sha256": "3cc0f59ca11bb70ee78d54f47d03593dda2f831fd0dc9370bb93a4a0a984994c",
+    "timestamps": null
+  }
+}

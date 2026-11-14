@@ -352,3 +352,54 @@ Touch browser tests at 320/390 passed equipment setup, modified actual results,
 backup export, historical correction, progression replay and offline reload.
 Remaining: full 60/80 source scheme, straight/elevated-foot progression, platform
 step-ups, physical-device/technique review and broader source integration.
+
+
+## Unloaded step-up foundations and station-aware reporting
+
+Incoming 6452678 matched origin/preview and all GitHub checks passed. Re-read the
+full indexed #97 Bodyweight box step up transcript. Its exact URL, normalized
+content hash and quote anchors are preserved in research/step-up-evidence.json
+and the shared instructional catalog. The 20/24/30-inch demonstration is qualified
+by the source's lower-platform advice; no universal height or dose is inferred.
+
+Alternating-lead and static-foot unloaded step-ups now have shared registry
+entries, separate explicit skills, verified indexed video links and an opt-in
+two-day practice block. Eligible basic alternating work can enter ABC support.
+The source treats these as complementary patterns; the app does not invent a
+mandatory ladder between them. Stable platform and overhead-clearance confirmation
+and recorded height gate generation. Each pattern/height has independent
+comparison evidence. There is no automatic height, float or loaded-step advancement.
+Starting 2–4 sets of 3 per lead leg, 90-second rests, planning pace, evidence gates
+and the input-height range are explicitly app choices.
+
+Written platform height/pattern remain immutable; actual changes are recorded
+without advancement credit or an automatic technique-failure penalty. Bilateral
+counts remain explicit. New station fields are optional additions to V33; existing
+keys, transactions, writer ownership, backups and correction replay are preserved.
+Actual-method fields persist through drafts and historical edits. Reported
+completion now respects setup changes for both rows and step-ups instead of saying
+"as prescribed" when geometry changed. Settings use registry starting reps so
+saving all profiles does not silently change a step-up target from 3 to 5.
+
+Focused verification: three years of actual step-up generation saved 419 workouts
+(210 alternating, 209 static), with equipment loss, changing heights, missed days,
+short sessions, low readiness, incomplete/unequal actuals, technique flags and
+backup replay. A separate three-year mixed composition actually scheduled steps,
+rows, paired clubs and kettlebells, preserving independent evidence and method
+confirmations. Pain holds, historical correction/undo, forged setup snapshots,
+malformed actuals, missing skills and unavailable platforms have targeted checks.
+Touch Chromium at 320/390 passed real equipment/skill setup, both generated
+patterns, bilateral logging, a historical correction, interrupted draft restoration
+and offline save. All six existing browser suites passed as well.
+
+The initial provenance check caught missing literal app-default wording; the
+explanation was corrected without weakening the invariant. Browser fixtures now
+advance to a separate training day rather than attempting a second strength
+workout on a completed calendar date. Mixed fixtures explicitly record continuous
+single-club practice before paired work; skill confirmation alone is not evidence.
+No source claim was broadened to satisfy a test.
+
+Remaining: loaded stepping and float variants, fuller row source cycles, broader
+paired-kettlebell systems, oversized-rotation cadence, source/visual gaps and
+physical Android/technique review. Fifty programmable movements now have lessons;
+34 reviewed outlines and 16 partial lessons do not imply complete corpus integration.

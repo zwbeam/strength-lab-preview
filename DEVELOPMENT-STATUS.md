@@ -9,9 +9,9 @@ source inventory and equipment matrix are reproducible with
 scheduled or credited. Source #441 is unusable. External review completion is
 retained as accounting evidence, not silently converted into instruction claims.
 
-Current coverage: 48 programmable movements with dedicated lessons and no remaining
+Current coverage: 50 programmable movements with dedicated lessons and no remaining
 instruction-only entries in the current catalog. Uncatalogued source systems
-remain incomplete. Thirty-two outlines are
+remain incomplete. Thirty-four outlines are
 reviewed; sixteen programmable lessons retain source/visual-verification gaps.
 See MOVEMENT-INTEGRATION-COVERAGE.md for every movement's complete-system route,
 prerequisites, equipment, profile and remaining boundaries. Eight Book outlines
@@ -100,3 +100,11 @@ required. Actual geometry changes receive no progression credit; changing the
 configured height starts a separate comparison cycle. Source #89 supplies technique
 and qualifications, while the conservative dose is an app default. Full source
 60/80 programming and straight/elevated-leg variants remain unimplemented.
+
+Unloaded step-up foundations now support alternating-lead and static-foot patterns
+from source #97. Stable platform/overhead-clearance confirmation, recorded height
+and separate explicit skills are required; both sides must be recorded. Each
+pattern has independent volume credit. Height changes start separate comparison
+cycles; neither height nor external load increases automatically. The two patterns
+are alternatives, not an invented mandatory prerequisite ladder. Dose, rest,
+planning pace and comparison gates are Strength Lab choices.

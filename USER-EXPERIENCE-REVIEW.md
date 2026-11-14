@@ -73,3 +73,13 @@ geometry fields. Changed height or straight legs are recorded without earning
 credit against the original bent-knee setup. History correction preserves the
 original prescription and supports undo. Please review on physical Android before
 any further major interface changes; browser touch emulation is not device testing.
+
+
+### Step-up foundation review checkpoint
+Training Setup can record a stable platform and familiar height. Advanced
+programming offers an unloaded step-up block with alternating-lead and static-foot
+days, independent skill confirmation and no automatic height increase. Prescriptions
+show platform height; optional actual-setup controls appear only for these movements.
+Please test equipment setup, both-side logging, changed-height records and history
+corrections on Android. No major interface redesign is included. The app cannot
+certify apparatus stability, technique or overhead clearance.
