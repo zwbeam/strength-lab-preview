@@ -1137,6 +1137,28 @@
       "exactParameters": null,
       "operational": true,
       "sourceComplete": true
+    },
+    {
+      "id": "singleArmSwing",
+      "name": "Introductory single-arm kettlebell swing",
+      "instruction": "reviewed outline",
+      "prerequisites": [
+        "swing",
+        "singleArmSwing",
+        "practice:swing"
+      ],
+      "equipment": "kb",
+      "blocks": [
+        "singleArmSwingPractice"
+      ],
+      "profile": "swingSkill",
+      "sourceIds": [
+        67,
+        446
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": true
     }
   ],
   "instructionOnly": []

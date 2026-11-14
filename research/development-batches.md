@@ -530,3 +530,53 @@ Outside swings, isolated single-arm swing cycles, fuller numerical club/paired
 systems, oversized-rotation cadence and visual/physical Android verification remain
 incomplete. Existing V33 keys, writer ownership, backups, eight Books, history and
 production are preserved. Source accounting remains separate from full integration.
+
+## Introductory single-arm swing and QA coverage continuation (2026-11-14)
+
+Verified environment and clean local checkout first. The initially supplied
+strength-lab checkout was an older main tree; the requested preview and c7dcfdc
+exist in zwbeam/strength-lab-preview. Cloned that repository separately, confirmed
+origin/preview at c7dcfdc and all six associated GitHub checks successful. Existing
+checkout, main, production settings and archive branches were preserved.
+
+Close-read the complete indexed #67 introductory single-arm swing and #446
+hard/soft-style comparison. Exact URLs, whitespace-normalized hashes and four
+literal anchors are retained in research/single-arm-swing-evidence.json and Learn.
+The new opt-in singleArmSwingPractice block requires explicit familiar thumb-back
+technique and recent qualified two-hand practice. Independent owned starting load,
+2–4 sets of 3–5 per side, 90-second rests, planning pace and progression/recovery
+gates are app choices. Work on one side, park, then repeat on the other. No airborne
+hand change, soft-style endurance, thumb-up or overhead swing is prescribed.
+Existing hand-change and paired prescriptions/gates are preserved. Coverage now
+contains 54 programmable lessons: 38 reviewed outlines and 16 partial lessons.
+
+Focused tests save 399/403/390 workouts across three separate three-year actual
+histories (single bell, mixed ABC, delayed skill confirmation), including absence,
+load/equipment loss, pause, reduced duration/readiness, pain, technique breakdown,
+unequal/incomplete actuals and repeated backup validation. Checks cover independent
+credit, explicit load review, missing skills/practice, source hashes, malformed
+actuals/drafts and correction/undo. Touch acceptance at 320/390 starts from an unset
+working load, uses Settings and Learn, generates and saves actual bilateral work,
+corrects history and restores draft/history offline. No personal training data is
+used. Physical Android and visual technique remain unverified.
+
+The timer acceptance initially observed 00:06 where an exact 00:07 was expected:
+real time advanced during browser interactions before the simulated fast-forward.
+Both swing browser fixtures now pause the simulated clock before interaction;
+Start must still immediately run and advance the rendered countdown. Production
+timer behavior was not changed to satisfy the test.
+
+The CI suite guard now checks all JS/CJS Node and browser files, including shared
+demo setup, rather than only non-browser JS. Negative temporary fixtures confirm
+omitted JS, CJS and browser suites are rejected. Research and transcript changes
+now trigger the same QA jobs. This prevents evidence-only updates and future CJS
+acceptance additions from silently bypassing verification.
+
+Final local verification: all 43 non-browser JS suites, six historical-correction
+CJS tests, all ten browser suites and the 295-workout demo generation/replay passed.
+Audit reports regenerate byte-for-byte; 50 offline assets resolve. Existing
+hand-change prescription output was compared with c7dcfdc and remains identical;
+its original policy label is retained. The new selected profile uses its distinct
+single-arm label in Settings. Cache and HTML query revision are rc41. Current
+commit GitHub checks and actual DEV HTTPS must still be verified after push;
+local results are not substituted for those remote checks.

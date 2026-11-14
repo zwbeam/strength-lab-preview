@@ -112,6 +112,7 @@ jobs:
       - name: Validate movement mappings and source integrity
         run: |
           node tests/interval-start.js
+          node tests/single-arm-swing.js
           node tests/hand-changes.js
           node tests/composition-setup.js
           node tests/prerequisite-maintenance.js
@@ -263,6 +264,7 @@ jobs:
           node tests/browser-smoke.js
           node tests/browser-curriculum.cjs
           node tests/browser-integration.cjs
+          node tests/browser-single-arm-swing.cjs
           node tests/browser-hand-changes.cjs
           node tests/browser-double-hinge.cjs
           node tests/browser-step-ups.cjs

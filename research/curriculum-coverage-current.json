@@ -1519,6 +1519,36 @@
         "readiness/recovery numeric adjustments",
         "equipment jump cap"
       ]
+    },
+    {
+      "id": "singleArmSwing",
+      "name": "Introductory single-arm kettlebell swing",
+      "category": "kb",
+      "automatic": true,
+      "profile": "swingSkill",
+      "coverage": "reviewed outline",
+      "sourceIds": [
+        67,
+        446
+      ],
+      "skillPrerequisites": [
+        "swing",
+        "singleArmSwing"
+      ],
+      "practicePrerequisites": [
+        "swing"
+      ],
+      "sequence": [],
+      "policySources": [
+        67,
+        446
+      ],
+      "exactParametersSource": null,
+      "appDefaults": [
+        "exposure gates",
+        "readiness/recovery numeric adjustments",
+        "equipment jump cap"
+      ]
     }
   ],
   "references": [],

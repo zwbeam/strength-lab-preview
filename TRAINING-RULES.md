@@ -59,3 +59,16 @@ rest, owned single-bell load review and explicit skill/recent-practice gates.
 Five per hand means ten alternating swings total. Unequal/missing side counts
 never earn completion credit. This cycle does not advance two-hand swings or
 create automatic eligibility for paired kettlebell movements.
+
+
+## Introductory single-arm swing
+
+Source #67 teaches thumb-down/back, small swings, low introductory arm path,
+inhale down/exhale up and controlled parking. #446 distinguishes hard-style
+and soft-style endurance as separate skills. This new opt-in path covers the
+introduction only. Confirm familiarity explicitly and retain recent qualified
+two-hand practice. Complete one side, park, then repeat on the other; actual
+bilateral counts are required. Sets, 3–5 reps per side, rest, planning pace,
+evidence gates and load limits are Strength Lab app defaults. Existing
+hand-change/paired gates and histories do not acquire a new prerequisite or
+component progression. No source numerical cycle or technique mastery is claimed.

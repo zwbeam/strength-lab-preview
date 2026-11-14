@@ -12,10 +12,10 @@ retention. Inspect the actual latest GitHub commit and checks before continuing.
 Do not assume a later checkpoint passed just because this file exists.
 
 Run all non-browser tests/*.js, the history-corrections.test.cjs suite, and the
-nine browser suites: browser-smoke.js, browser-curriculum.cjs,
+ten browser suites: browser-smoke.js, browser-curriculum.cjs,
 browser-integration.cjs, browser-continuity.cjs, browser-foundations.cjs,
 browser-step-ups.cjs, browser-double-hinge.cjs, browser-hand-changes.cjs
-and browser-demo-history.js (generate its synthetic backup
+browser-single-arm-swing.cjs and browser-demo-history.js (generate its synthetic backup
 first). Serve at 127.0.0.1:8765. Installed Chromium may be selected locally with
 PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium. Actions uses its own bundle.
 Run scripts/audit-curriculum.cjs and scripts/audit-integration.cjs; generated
@@ -29,7 +29,7 @@ alternating double-club inside/outside skill practice now has a separate opt-in
 automatic block. Next priorities are fuller supported numerical cycles and
 foundational bodyweight pathways; pulling, sliding planks and unloaded stepping now have real generator routes. Full #85/#88 timing-series context is not
 implemented. Paired deadlift/swing foundations from #142 now have a real opt-in path.
-Hand-to-hand swing from #185 is now tracked. Outside swing and isolated one-arm swing remain missing from the broader #186
+Hand-to-hand swing from #185 is now tracked. Outside swing and soft-style endurance remain missing from the broader #186
 teaching sequence. Do not claim complete lifetime curriculum coverage.
 
 Physical Android review is separate from browser emulation. Keep eight Books
@@ -80,3 +80,13 @@ Timer regression: preserve explicit interval Start -> running countdown. Earlier
 tests masked a paused-start bug by immediately pressing Resume. Keep reload
 deliberately stopped and verify the rendered readout/instruction interaction in
 tests/browser-hand-changes.cjs plus tests/interval-start.js.
+
+
+Introductory single-arm swing is now integrated separately from alternating hand
+changes. Read research/single-arm-swing-evidence.json: #67 supplies thumb-back
+introduction, #446 distinguishes power from soft-style endurance. Do not infer
+soft-style/overhead/thumb-up or paired readiness from these records. Preserve
+independent skill, load, actual side counts and cycles. The new browser suite
+supports STRENGTH_LAB_TEST_URL for actual DEV HTTPS acceptance. Timer browser
+fixtures pause their simulated clock before interaction to avoid elapsed-real-time
+races; explicit Start still must run, and reload still stays stopped.

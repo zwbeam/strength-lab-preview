@@ -1,4 +1,4 @@
-# Development status — November 13, 2026
+# Development status — November 14, 2026
 
 Working repository: zwbeam/strength-lab-preview, preview branch. Production is
 unchanged. README data and promotion boundaries remain authoritative.
@@ -9,9 +9,9 @@ source inventory and equipment matrix are reproducible with
 scheduled or credited. Source #441 is unusable. External review completion is
 retained as accounting evidence, not silently converted into instruction claims.
 
-Current coverage: 53 programmable movements with dedicated lessons and no remaining
+Current coverage: 54 programmable movements with dedicated lessons and no remaining
 instruction-only entries in the current catalog. Uncatalogued source systems
-remain incomplete. Thirty-seven outlines are
+remain incomplete. Thirty-eight outlines are
 reviewed; sixteen programmable lessons retain source/visual-verification gaps.
 See MOVEMENT-INTEGRATION-COVERAGE.md for every movement's complete-system route,
 prerequisites, equipment, profile and remaining boundaries. Eight Book outlines
@@ -140,3 +140,13 @@ Earlier automation masked a paused-start defect by pressing Resume next. New
 unit and touch-browser assertions check Start alone and rendered elapsed time;
 reload remains deliberately stopped and timer activity never logs physical work.
 Physical Android audio/background verification remains a user-review item.
+
+
+Introductory single-arm swing checkpoint: #67 now has a separate opt-in
+singleArmSwingPractice block, explicit thumb-back technique confirmation and
+recent two-hand foundation practice. #446 distinguishes soft-style endurance;
+that skill is not prescribed here. Bilateral actuals, owned starting load,
+independent progression, correction replay and offline drafts use existing
+contracts. The 2–4 sets, 3–5 per side, 90-second rest and gates are app choices.
+Hand-change and paired histories/admission are preserved. Coverage is now 54
+programmable lessons, 38 reviewed outlines and 16 explicit instructional gaps.

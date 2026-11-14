@@ -1,0 +1,87 @@
+{
+  "sourceIds": [
+    67,
+    446
+  ],
+  "sources": [
+    {
+      "id": 67,
+      "title": "Basic Kettlebell instruction 9 - intro to single arm swing",
+      "url": "https://www.youtube.com/watch?v=ejPpyLKZ1L4",
+      "sha256": "479d9fef3f191f74301dd8672db978ac59386c62557964e17a1cf353cdd922bf",
+      "timestamps": null
+    },
+    {
+      "id": 446,
+      "title": "Kettlebell hard vs soft style single arm swing.",
+      "url": "https://www.youtube.com/watch?v=15m93HeM2m4",
+      "sha256": "2f1cbdae77a9673f262651f4d256f4090ed6afef5e50dcb48d7207c6ec496d10",
+      "timestamps": null
+    }
+  ],
+  "sourceFacts": [
+    "#67 teaches an introductory thumb-down/back single-arm swing with a low arm path and controlled parking.",
+    "#67 specifies inhale down/exhale up; no numerical training program is given.",
+    "#446 distinguishes hard-style power and soft-style/double-dip endurance as separate skills."
+  ],
+  "appDecisions": [
+    "Separate opt-in block, explicit single-arm familiarity and recent two-hand swing practice.",
+    "Independent owned load/cycle, 2–4 sets of 3–5 per side, 90-second rests, planning pace and load review are app defaults.",
+    "Park between sides; bilateral actuals are required, not fictional hand-change or paired component credit."
+  ],
+  "limits": [
+    "No soft-style, thumb-up, overhead or outside-swing pathway.",
+    "No universal source dose, automatic load conversion, mastery or new paired gate is inferred.",
+    "Physical technique and video timing remain unverified; no timestamps are invented."
+  ],
+  "entry": {
+    "purpose": "Practice the introductory single-arm hip-driven swing with controlled trunk and grip, separately on each side.",
+    "setup": [
+      "Review a familiar two-hand swing and the #67 demonstration before confirming the separate single-arm skill. Use a manageable familiar bell and clear space.",
+      "Turn the handle perpendicular to the body line, step back about 12–18 inches as demonstrated, and take the handle corner with the thumb down/back. Individual setup still needs technique review."
+    ],
+    "steps": [
+      "Drive the shoulder away from the ear to engage the lat. Hike back and begin with small swings.",
+      "Stand with hip and leg drive, squeeze the glutes and control the rib cage. Keep the introductory arm path low, about 45 degrees, rather than lifting with the shoulder.",
+      "On the return, hinge with the forearm tracking against the inside of the thigh as demonstrated.",
+      "Track the bell forward and park gently in its starting position. Repeat on the other side; do not change hands in the air for this movement."
+    ],
+    "bracing": [
+      "Inhale down and exhale up in the introductory lesson; keep the shoulder supported and trunk controlled.",
+      "The hard-style introduction and soft-style double-dip endurance swing are different skills. This app does not prescribe the latter or its breathing patterns."
+    ],
+    "mistakes": [
+      "Thumb-up technique is not the introductory variation. Review the demonstrated thumb-down/back grip rather than changing it to chase more reps.",
+      "Lifting the arm too high and raising the rib cage, or swinging below the demonstrated thigh contact: stop and review the introductory positions.",
+      "Rushed parking, deteriorating grip or trunk control: stop the set and record only actual work.",
+      "Five per side means ten total; missing or unequal side counts cannot advance this independent cycle."
+    ],
+    "sourceIds": [
+      67,
+      446
+    ],
+    "videoSourceIds": [
+      67
+    ],
+    "videoRole": "instruction",
+    "coverage": "reviewed outline",
+    "evidence": [
+      {
+        "sourceId": 67,
+        "quote": "this is an introduction to the single arm swing think of this as a baby single arm swing"
+      },
+      {
+        "sourceId": 67,
+        "quote": "inhale down exhale up"
+      },
+      {
+        "sourceId": 67,
+        "quote": "track it out in front of you to set it down gently"
+      },
+      {
+        "sourceId": 446,
+        "quote": "they are two separate athletic skills"
+      }
+    ]
+  }
+}
