@@ -1,7 +1,7 @@
 # Continue Strength Lab integration
 
 Use zwbeam/strength-lab-preview branch preview. Read README.md,
-DEVELOPMENT-STATUS.md, MOVEMENT-INTEGRATION-COVERAGE.md, and the latest entries in
+DEVELOPMENT-STATUS.md, TRAINING-RULES.md, MOVEMENT-INTEGRATION-COVERAGE.md, and the latest entries in
 research/development-batches.md. Preserve production, existing V33 keys/history,
 writer locks, draft transactions, backups, correction replay and archive branches.
 
@@ -57,3 +57,11 @@ convert #142 years, 60% load discussion or 6-to-20 reps into universal targets.
 Do not retrofit new gates into existing double-clean/press/squat histories without
 a tested compatibility strategy.
 Do not treat bodyweight as meaning equipment-free for those movements.
+
+Program-continuity checkpoint: keep coordinated load setup separate from owed
+physical work. Preserve real partial-work priority and the bounded follow-up rule.
+Multi-level maintenance follows only registry-gated descendants with actual clean
+evidence; it transfers recency, never exposures/load/mastery. Missing skills,
+ancestor corrections, pain, failure, policy/load changes and gaps still block.
+Reproduce with tests/composition-setup.js, tests/prerequisite-maintenance.js and
+the extended touch tests/browser-continuity.cjs.

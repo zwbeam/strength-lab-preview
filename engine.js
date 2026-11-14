@@ -247,24 +247,31 @@ function stateFor(s,id){
 }
 function resolvePain(s,id){if(!MOVES[id])throw Error('Unknown movement');return {...s,painResolutions:{...s.painResolutions,[id]:{painKeys:records(s,id).filter(x=>x.pain||x.quality==='pain').map(x=>x._key)}}};}
 function movementGap(s,id,now=new Date()){const last=records(s,id).filter(x=>x.actualSets>0).at(-1);if(!last)return 0;return Math.max(0,Math.floor(calendarDay(now)-calendarDay(last.date)));}
+// App continuity rule: only registry-gated descendants may maintain a previously
+// qualified prerequisite. This transfers recency, never exposures, load or mastery.
+function gatedDescendant(child,parent,seen=new Set()){
+ if(!MOVES[child]||seen.has(child))return false;seen.add(child);
+ return (MOVES[child].practicePrereqs||[]).some(id=>id===parent||gatedDescendant(id,parent,seen));
+}
 function practiceEvidence(s,id,opts={}){
  const st=stateFor(s,id),history=records(s,id).filter(x=>(x.policyKey||'legacy-v1')===st.policy.key&&Number(x.weight)===st.weight);
  const neutralLight=x=>x.performed&&x.mode==='light'&&x.quality==='clean'&&!x.pain&&!x.setupChanged;
  const bad=history.findLastIndex(x=>!neutralLight(x)&&(!successful(x)||['rebuild','reentry','recovery','deload'].includes(x.mode)));
  const count=history.slice(bad+1).filter(successful).length,required=s.trainingDefaults?.skillExposures??2,absence=s.trainingDefaults?.reentryDays??14;
  let recent=movementGap(s,id,opts.now)<=absence,maintained=false;
- if(!recent&&opts.forMovement){
-  const child=stateFor(s,opts.forMovement),h=records(s,opts.forMovement).filter(x=>(x.policyKey||'legacy-v1')===child.policy.key&&Number(x.weight)===child.weight);
+ const maintenanceFor=opts.maintenanceFor||opts.forMovement;
+ if(!recent&&maintenanceFor&&gatedDescendant(maintenanceFor,id)){
+  const child=stateFor(s,maintenanceFor),h=records(s,maintenanceFor).filter(x=>(x.policyKey||'legacy-v1')===child.policy.key&&Number(x.weight)===child.weight);
   const lastBad=h.findLastIndex(x=>!successful(x)&&!neutralLight(x));
-  maintained=h.slice(lastBad+1).filter(successful).length>=required&&movementGap(s,opts.forMovement,opts.now)<=absence&&!child.hold;
+  maintained=h.slice(lastBad+1).filter(successful).length>=required&&movementGap(s,maintenanceFor,opts.now)<=absence&&!child.hold&&(MOVES[maintenanceFor].requires||[]).every(key=>s.skills?.[key]===true);
  }
- const upstreamReady=prerequisites(s,id,opts).length===0;
+ const upstreamReady=prerequisites(s,id,{...opts,maintenanceFor:maintained?maintenanceFor:opts.maintenanceFor}).length===0;
  return{count,required,ready:count>=required&&(recent||maintained)&&!st.hold&&upstreamReady,recent,maintained,held:!!st.hold};
 }
 function supportingMoves(s,ids,opts={}){
  const result=[],seen=new Set();
- function visit(id){if(seen.has(id))return;seen.add(id);for(const parent of MOVES[id]?.practicePrereqs||[]){visit(parent);if(!practiceEvidence(s,parent,{...opts,forMovement:id}).ready&&!ids.includes(parent)&&!result.includes(parent))result.push(parent);}}
- ids.forEach(visit);return result;
+ function visit(id,root){if(seen.has(id))return;seen.add(id);for(const parent of MOVES[id]?.practicePrereqs||[]){visit(parent,root);if(!practiceEvidence(s,parent,{...opts,forMovement:id,maintenanceFor:root}).ready&&!ids.includes(parent)&&!result.includes(parent))result.push(parent);}}
+ ids.forEach(id=>visit(id,id));return result;
 }
 function requirementLabel(key){if(key==='baseline:pushup')return 'Enter a recent conservative clean-rep baseline for push-ups in Settings';return key.startsWith('practice:')?'Recent clean supporting practice: '+MOVES[key.slice(9)].name:SKILLS[key]?.name||key;}
 function prerequisites(s,id,opts={}){
@@ -464,7 +471,7 @@ function blockPlan(s,opts={}){
  const blockIds=block==='abc'?[...new Set([...days.flatMap(x=>x.ids),...day.ids,...Object.values(SUPPORT_POOLS).flat()])]:days.flatMap(x=>x.ids),support=supportingMoves(s,day.ids,opts);
  const allowed=new Set([...blockIds,...support,...COMPLEX_PATHWAYS.map(x=>x.id)]),pending=s.deferredByBlock?.[block]||(block==='abc'?s.deferredIds:[])||[];
  const latest=(s.sessions||[]).filter(x=>(x.block||'abc')===block&&calendarDay(x.date)<=calendarDay(opts.now)).sort((a,b)=>calendarDay(a.date)-calendarDay(b.date)).at(-1);
- const continuing=latest?.calendarVersion===1&&latest.items.some(x=>x.actualSets>0)&&latest.items.some(x=>!x.performed)&&pending.length>0;
+ const continuing=latest?.calendarVersion===1&&latest.items.some(x=>x.actualSets>0)&&latest.items.some(x=>!x.performed&&x.mode!=='baseline')&&pending.length>0;
  // On the third ABC day, substitute one eligible complex for overlapping basics.
  // Keep the existing day unchanged unless prerequisite evidence is current.
  const complexChoices=block==='abc'&&slot===2&&pref.useKb!==false&&pref.useComplexes!==false&&(!emphasis||emphasis.complex!=='off')&&!continuing
@@ -565,6 +572,7 @@ function blockPlan(s,opts={}){
     if(reduced<rx.sets)rx={...rx,sets:reduced,mode:'light',reason:'Light exposure: '+reduced+' of '+rx.sets+' planned sets at the established load. This is deliberate reduced-volume practice; it does not advance the progression cycle.'};
    }
   }
+  if(opts.omitUnstartedLoads&&!MOVES[id].bodyweight&&rx.mode==='baseline'){unavailable.push(id);requirements.push({id,reason:'Choose an owned familiar starting load in Settings → Advanced & Data → Movement Programming. Unstarted load setup is not unfinished physical work.'});continue;}
   if(rx.mode==='prerequisite'){prerequisite.push(id);requirements.push({id,reason:rx.reason});deferred.push(id);continue;}
   const demands=movementDemands(id);
   const recent=history.some(x=>today-calendarDay(x.date)<(defaults.minGapDays??0)&&(x.items||[]).some(y=>y.actualSets>0&&MOVES[y.id]&&movementDemands(y.id).some(d=>demands.includes(d))));
@@ -681,10 +689,10 @@ function plan(s,opts={}){
  const defaults={...s.trainingDefaults,minGapDays:Math.max(s.trainingDefaults?.minGapDays??0,c.minGapDays??1)};
  const candidates=c.blocks.map((block,order)=>{
   const last=history.findLastIndex(x=>(x.block||'abc')===block&&(x.items||[]).some(y=>y.actualSets>0));
-  const p=blockPlan({...s,programBlock:block,trainingDefaults:defaults},{...opts,avoidHard:hardRecent});
+  const p=blockPlan({...s,programBlock:block,trainingDefaults:defaults},{...opts,avoidHard:hardRecent,omitUnstartedLoads:true});
   return {block,order,last,p};
  }).sort((a,b)=>a.last-b.last||a.order-b.order);
- const latest=history.at(-1),unfinished=latest?.calendarVersion===1&&latest.items.some(x=>x.actualSets>0)&&latest.items.some(x=>!x.performed)?candidates.find(x=>x.block===(latest.block||'abc')&&x.p.items.length):null;
+ const latest=history.at(-1),unfinished=latest?.calendarVersion===1&&latest.items.some(x=>x.actualSets>0)&&latest.items.some(x=>!x.performed&&x.mode!=='baseline')?candidates.find(x=>x.block===(latest.block||'abc')&&x.p.items.length):null;
  const retention=unfinished?null:retentionCandidate(s,candidates,history,opts);
  const continuity=unfinished||retention?null:continuityCandidate(s,candidates,history,opts);
  const chosen=unfinished||retention?.candidate||continuity?.candidate||candidates.find(x=>x.p.items.length)||candidates[0],p=chosen.p;
@@ -714,7 +722,7 @@ function validateComposition(c){
  if(!c||typeof c!=='object'||Array.isArray(c)||typeof c.enabled!=='boolean'||!Array.isArray(c.blocks)||!c.blocks.length||c.blocks.length>Object.keys(BLOCKS).length||new Set(c.blocks).size!==c.blocks.length||c.blocks.some(id=>!Object.hasOwn(BLOCKS,id)))throw Error('Select unique known training blocks');
  for(const key of ['minGapDays','hardGapDays'])if(c[key]!==undefined&&(!Number.isInteger(c[key])||c[key]<0||c[key]>7))throw Error('Composition spacing must be 0–7 days');
 }
-function deferredAfter(plan,records){const pending=new Set(plan.deferred||[]);for(const record of records){if(!(record.performed??record.completed))pending.add(record.id);else pending.delete(record.id);}return [...pending];}
+function deferredAfter(plan,records){const pending=new Set(plan.deferred||[]);for(const record of records){if(record.mode==='baseline'){pending.delete(record.id);continue;}if(!(record.performed??record.completed))pending.add(record.id);else pending.delete(record.id);}return [...pending];}
 function completeRecord(rx,actual,quality,pain){
  const sets=(actual||[]).filter(x=>x.done&&!x.skipped),totalTime=rx.durationScope==='total';
  const valid=x=>validWorkingWeight(rx.id,x.weight)&&Number.isInteger(Number(x.reps))&&Number(x.reps)>0&&(rx.side!==2||(x.bothSides===true&&Number.isInteger(Number(x.leftReps))&&Number(x.leftReps)>0&&Number.isInteger(Number(x.rightReps))&&Number(x.rightReps)>0));

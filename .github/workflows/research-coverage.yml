@@ -111,6 +111,8 @@ jobs:
           retention-days: 14
       - name: Validate movement mappings and source integrity
         run: |
+          node tests/composition-setup.js
+          node tests/prerequisite-maintenance.js
           node tests/double-hinge.js
           node tests/step-ups.js
           node tests/bodyweight-row.js

@@ -117,3 +117,12 @@ recent paired deadlifts and single swings precede double swing. Doses, rest,
 planning pace and load caps are app choices. No automatic 60% loading, multi-year
 certification or 6-to-20 rep cycle is inferred. Existing paired clean/press/squat
 paths and histories are unchanged; broader source ordering remains incomplete.
+
+Program-continuity correction: coordinated plans omit unstarted zero-load
+placeholders and report setup needs instead of treating them as unfinished
+physical training. Legacy mixed histories can resume their rotation; actual
+partial work is still prioritized. Qualified recent descendants can maintain
+previously earned prerequisite recency along registry-gated chains. Every
+ancestor still needs its own clean evidence, matching policy/load, explicit skills
+and no unresolved pain or newer failed work. No parent progression is awarded.
+See TRAINING-RULES.md for implementation boundaries.

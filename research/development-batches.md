@@ -455,3 +455,34 @@ visual technique confirmation remain outstanding.
 Coverage: 52 programmable movements; 36 reviewed outlines and 16 partial lessons.
 The source inventory is still 720 indexed / 719 usable per supplied accounting;
 this is not a claim of complete engine integration or recovered external review.
+
+
+## Coordinated setup and prerequisite continuity
+Incoming 4cb9ada verified against origin/preview with all checks green. Revisited
+#548's independent foundational-program/implement-wave context. Selection, recency
+maintenance and cleanup rules below are Strength Lab decisions, not prescriptions
+from that transcript.
+
+Coordinated plans no longer include zero-load setup placeholders as executable
+work. Equipment/setup reasons remain available. Baseline placeholders in legacy
+mixed records no longer retain unfinished-work priority or create new physical
+debt. Genuine skipped/incomplete prescriptions still carry forward. Single-block
+first-use setup and all historical records are preserved.
+
+Previously, recent advanced practice could maintain one prerequisite but lose
+that benefit at the next ancestor, forcing repeated preparation despite qualified
+practice. Maintenance now follows registry-gated chains only. Each ancestor still
+needs its own previously earned clean exposures, current policy/load, explicit
+skills and no unresolved pain/newer failed work. Only recency transfers: no reps,
+cycles, loads, mastery or future practice is invented. Supporting-move insertion
+uses the same context as eligibility. Unrelated educational links cannot qualify.
+
+Focused tests pass a two-year load-setup transition (182 ABC and 127 unloaded
+preparation workouts), five months of maintained get-up ancestry, older-record
+correction/undo, missing skills, pain/failure/load/gap and unrelated-movement
+controls. Existing three-year multi-family histories and bounded continuity tests
+pass. Touch Chromium at 320/390 passes real setup-to-training transitions and
+offline history. A 390px case opens Learn, generates and saves a maintained
+hip-pass prescription without modifying old foundation evidence. No major UI
+redesign, storage migration, source-dose change or production modification.
+Broader oversized rotations remain an acknowledged scheduling limitation.
