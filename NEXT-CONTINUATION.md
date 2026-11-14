@@ -105,3 +105,8 @@ Reproduce tests/dated-evidence.js (432 workouts and ten dated snapshots) and the
 new mobile/HTTPS suite; the old five-year future test now checks exact targets.
 Current equipment, skill confirmation and configuration are not historical
 snapshots. No source-dose change or new movement coverage count is claimed.
+
+Learn status also uses dated records: future-only practice cannot label a movement
+Currently practicing. Explicit Learned self-confirmation remains a separate user
+choice. Preserve this distinction and the rc43 worker/query update when refining
+eligibility or rendering history. No stored records are removed by the date scope.

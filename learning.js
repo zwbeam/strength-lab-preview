@@ -16,7 +16,7 @@ function create(E,content){
   const reason=unavailable?'Required equipment is not available. Review Settings.':blocked?rx.reason:'';
   if(blocked)return{key:'blocked',label:'Not yet eligible for training',reason,eligible:false};
   if(s.learnedMovements?.[id])return{key:'learned',label:'Learned · self-confirmed',reason:'Your familiarity report is not automatic technique certification.',eligible:true};
-  if(E.records(s,id).some(x=>x.actualSets>0))return{key:'practicing',label:'Currently practicing',reason:'Recorded practice does not by itself establish technical mastery.',eligible:true};
+  if(E.records(s,id,{...opts,now:opts.now??new Date()}).some(x=>x.actualSets>0))return{key:'practicing',label:'Currently practicing',reason:'Recorded practice does not by itself establish technical mastery.',eligible:true};
   return{key:'available',label:'Available to learn',reason:'Review the lesson and confirm required skills before progressing.',eligible:true};
  }
  function relations(id){

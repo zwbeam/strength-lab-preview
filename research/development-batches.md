@@ -652,3 +652,15 @@ incorrectly yielded two current single-arm sets; the dated implementation blocks
 those sets until supporting practice is available. Cache/query revision is rc42.
 GitHub current-commit QA and actual DEV HTTPS verification remain required after
 push; local passes alone are not represented as remote verification.
+
+
+Final Learn-status follow-up: the eligibility gate already used dated evidence,
+but its “currently practicing” label still inspected the full raw archive.
+That label now uses the same requested-date boundary. Node and touch checks
+verify a future-only movement stays Available, then becomes Practicing when real
+current work is saved. Explicit self-confirmed Learned flags stay independent;
+full Training Log remains inspectable. Cache/query revision is rc43 so existing
+offline installations receive the updated learning asset. The preceding 360e875
+DEV build matched all 50 HTTPS runtime assets and passed touch date-correction /
+offline acceptance at both widths; this follow-up needs its own current-commit
+QA and deployment checks before delivery.
