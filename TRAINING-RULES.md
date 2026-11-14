@@ -49,3 +49,13 @@ Keep V33 storage keys, writer ownership, atomic state/draft transactions, backup
 validation and correction replay intact. Eight Books stay separate from the
 Movement Library. The preview is distinct from production; passing automation
 is not physical Android or human technique verification.
+
+## Hand-change practice
+
+Source #185 supplies alternating hand-change instruction and two-hand swing
+review, but no numerical program or compulsory breath cadence. The swingSkill
+profile uses app-selected 3–5 reps per driving hand, 2–4 default sets, 90-second
+rest, owned single-bell load review and explicit skill/recent-practice gates.
+Five per hand means ten alternating swings total. Unequal/missing side counts
+never earn completion credit. This cycle does not advance two-hand swings or
+create automatic eligibility for paired kettlebell movements.

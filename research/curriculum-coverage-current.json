@@ -1490,6 +1490,35 @@
         "readiness/recovery numeric adjustments",
         "equipment jump cap"
       ]
+    },
+    {
+      "id": "handToHandSwing",
+      "name": "Hand-to-hand kettlebell swing",
+      "category": "kb",
+      "automatic": true,
+      "profile": "swingSkill",
+      "coverage": "reviewed outline",
+      "sourceIds": [
+        185
+      ],
+      "skillPrerequisites": [
+        "swing",
+        "handToHandSwing"
+      ],
+      "practicePrerequisites": [
+        "swing"
+      ],
+      "sequence": [],
+      "policySources": [
+        185,
+        142
+      ],
+      "exactParametersSource": null,
+      "appDefaults": [
+        "exposure gates",
+        "readiness/recovery numeric adjustments",
+        "equipment jump cap"
+      ]
     }
   ],
   "references": [],

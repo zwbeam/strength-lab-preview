@@ -4,7 +4,7 @@ All listed engine movements use the shared notebook, actual-result evaluator, re
 
 ## Fully integrated within the reviewed instructional scope
 
-`swing`, `squat`, `press`, `row`, `clean`, `circles`, `doubleSquat`, `clubInside`, `clubOutside`, `clubShield`, `getupFloor`, `getupElbow`, `getupHand`, `getupHipPass`, `clubInsidePendulum`, `clubOutsidePendulum`, `clubFrontPullover`, `clubOutsidePullover`, `clubInsidePullover`, `hingePractice`, `hipDropTwoHand`, `hipDropSingleHand`, `bearSquat`, `deadlift`, `bodyweightSquat`, `stepBackLunge`, `singleRackSquat`, `bearCrawl`, `catCrawl`, `kneeSlidingPlank`, `hoverSlidingPlank`, `bodyweightRow`, `boxStepUp`, `staticStepUp`, `doubleDeadlift`, `doubleSwing`.
+`swing`, `squat`, `press`, `row`, `clean`, `circles`, `doubleSquat`, `clubInside`, `clubOutside`, `clubShield`, `getupFloor`, `getupElbow`, `getupHand`, `getupHipPass`, `clubInsidePendulum`, `clubOutsidePendulum`, `clubFrontPullover`, `clubOutsidePullover`, `clubInsidePullover`, `hingePractice`, `hipDropTwoHand`, `hipDropSingleHand`, `bearSquat`, `deadlift`, `bodyweightSquat`, `stepBackLunge`, `singleRackSquat`, `bearCrawl`, `catCrawl`, `kneeSlidingPlank`, `hoverSlidingPlank`, `bodyweightRow`, `boxStepUp`, `staticStepUp`, `doubleDeadlift`, `doubleSwing`, `handToHandSwing`.
 
 These have dedicated reviewed outlines and an operational engine path. Technique remains self-confirmed. Broader curriculum branches can still be missing.
 
@@ -100,6 +100,7 @@ Every row: Library → gates → inventory → schedule → prescription → act
 | staticStepUp | reviewed outline | staticStepUp | stable platform + recorded height and clear overhead space | stepUpPractice | bodyweightPractice; app numeric choices |
 | doubleDeadlift | reviewed outline | hingePattern, deadliftTechnique, doubleKbReadiness, doubleDeadlift | owned matched kettlebell pair, kg per bell | doubleHinge | doubleHinge; app numeric choices |
 | doubleSwing | reviewed outline | doubleKbReadiness, doubleDeadlift, doubleSwing, practice:doubleDeadlift, practice:swing | owned matched kettlebell pair, kg per bell | doubleHinge | doubleHinge; app numeric choices |
+| handToHandSwing | reviewed outline | swing, handToHandSwing, practice:swing | kb | handChangePractice | swingSkill; app numeric choices |
 
 ## Instructional-only movements
 
@@ -109,9 +110,9 @@ No remaining instructional-only catalog entries at this checkpoint. Broader sour
 
 - Alternating double-club inside/outside skill practice now has an opt-in automatic block; performance swipes and complete source strength/bodybuilding cycles remain unimplemented. Overhead lessons require visual verification; the #207 naming inconsistency is preserved.
 - Full bodyweight 101 timing release/ordering is context-dependent (#85/#88). The app implements a conservative crawl 30/30 adaptation, not every paid-program format. Supported and knee-hover sliding-plank stages are integrated; fixed-setup bent-knee rows are integrated with secured-bar gates and geometry-aware credit. Unloaded alternating/static step-ups now use stable-platform and recorded-height gates. Loaded stepping, full row 60/80 cycling, straight/elevated-leg branches and broader flows remain incomplete.
-- Double deadlift/swing now have an opt-in matched-pair foundation pathway from #142. Outside swings, tracked hand changes and broader paired-kettlebell sequences remain unimplemented. Current app admission gates cover a supported subset, not the whole #186 teaching context.
+- Double deadlift/swing now have an opt-in matched-pair foundation pathway from #142. Hand-to-hand swings now have an opt-in single-bell path with per-hand actual counts. Outside swings, isolated one-arm swing pathways and broader paired-kettlebell sequences remain unimplemented. Current app admission gates cover a supported subset, not the whole #186 teaching context.
 - More complex families and exact verified timestamps remain incomplete. Component bookkeeping never grants component progression from a complex log.
-- Choosing too many independent blocks at a low training frequency can repeatedly require re-entry. The engine now uses movement-level feedback, retention priority and bounded follow-ups; oversized rotations can still cause re-entry. It does not fabricate eligibility or add catch-up work.
+- Choosing too many independent blocks at a low training frequency can repeatedly require re-entry. The engine uses movement-level feedback, retention priority and bounded follow-ups; setup-only zero-load targets no longer stall coordinated work, and qualified descendants can maintain previously earned prerequisite recency. Oversized rotations can still cause re-entry. It does not fabricate eligibility or add catch-up work.
 - The master 505-source ledger and anchored external review writeups remain unavailable. All 720 entries are inventoried, 719 usable per supplied audit, but archive accounting is not proof of full engine integration.
 - Physical Android/audio/technique review remains separate from touch browser emulation.
 

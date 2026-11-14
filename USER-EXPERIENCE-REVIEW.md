@@ -93,3 +93,20 @@ The source-linked lessons explain lighter paired preparation and controlled
 set-down. Please test setup, foundation scheduling and modified set logging on
 Android. Existing clean/press/squat admission and all saved data remain intact.
 No major interface redesign is included.
+
+
+### Program continuity and hand-change review checkpoint
+Coordinated plans distinguish unconfigured starting loads from physical work,
+while keeping genuinely unfinished prescriptions in the queue. Recent qualified
+advanced practice can maintain previously earned prerequisite eligibility without
+creating foundation credit. The hand-to-hand swing block and Learn lesson show
+per-hand counting explicitly; actual left/right work and history correction use
+the existing editor. Please test these workflows on Android. No major interface
+redesign is included, and automation does not substitute for usability review.
+
+Timer interaction correction: explicit Start now starts the interval countdown
+instead of only preparing a paused sequence. Earlier tests immediately pressed
+Resume and therefore missed this behavior. Regression now checks Start alone,
+the rendered countdown, pause, instruction-dialog continuity and absence of
+physical-work credit. Reload still stops playback pending deliberate resume.
+Please verify this interaction and audible signals on physical Android.

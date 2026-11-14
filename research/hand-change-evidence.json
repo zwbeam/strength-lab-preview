@@ -1,0 +1,72 @@
+{
+  "sourceIds": [
+    185,
+    142
+  ],
+  "source": {
+    "title": "Hand to Hand Kettle Bell Swing",
+    "url": "https://www.youtube.com/watch?v=FCcKJ78k7mQ",
+    "sha256": "cb772a4279180cf3710d7e11f9a169c5db683011da4dc8df792f6b946412a07f",
+    "timestamps": null
+  },
+  "sourceFacts": [
+    "Review the two-hand swing before alternating hand changes.",
+    "The lesson demonstrates thumb-back to thumb-up at the change and emphasizes controlled parking.",
+    "One-handed support introduces cross-body stabilization; numerical superiority or a universal optimal program is not inferred."
+  ],
+  "appDecisions": [
+    "Explicit familiar hand-change confirmation and recent qualified two-hand swing practice.",
+    "Count each swing for its driving hand, prescribe 3–5 per hand, start with 2–4 sets and 90-second rests; all numerical doses and count conventions are app defaults.",
+    "Dedicated opt-in block, independent cycle and deliberate owned single-bell load review. No automatic new gate is added to existing paired histories."
+  ],
+  "limits": [
+    "No numerical hand-to-hand program or breathing cadence is provided by #185.",
+    "Release/catch timing requires reviewing the demonstrated video; no timestamps are verified.",
+    "Broader one-arm swings, outside swings and full paired preparation remain incomplete."
+  ],
+  "entry": {
+    "purpose": "Practice alternating hand changes while the trunk controls rotation during a familiar single-kettlebell swing.",
+    "setup": [
+      "Establish a comfortable controlled two-hand swing first, using a familiar manageable bell and clear space.",
+      "Review the demonstrated hand change before confirming the separate skill. The app does not prescribe overhead hand changes."
+    ],
+    "steps": [
+      "Begin with the reviewed two-hand swing pattern: hinge back with grounded heels and supported shoulders.",
+      "For the hand-change version, begin with the thumb pointing back, stand and turn the thumb up for the demonstrated change to the other hand.",
+      "Continue alternating hands with a controlled trunk. In the app, count each swing for the hand that drives it and match the counts on both sides.",
+      "Finish and park the bell with the same controlled technique used at the start."
+    ],
+    "bracing": [
+      "Maintain trunk control as one hand takes the load; the source discusses cross-body stabilization and resisting rotation.",
+      "This transcript does not specify a compulsory breathing cadence. Retain familiar controlled breathing rather than inventing a new timed breath sequence."
+    ],
+    "mistakes": [
+      "Uncontrolled release or reaching awkwardly to force a change: stop, review the video and return to the familiar two-hand swing.",
+      "Hurrying the set-down or dropping the bell on the last rep: finish with the same control as the first rep.",
+      "Counting five swings total as five per hand: the app prescribes and records actual driving-hand counts separately; five per hand means ten alternating swings.",
+      "Repetitions do not certify release/catch technique. Text and app confirmations do not replace reviewing the demonstrated hand path."
+    ],
+    "sourceIds": [
+      185
+    ],
+    "videoSourceIds": [
+      185
+    ],
+    "videoRole": "instruction",
+    "coverage": "reviewed outline",
+    "evidence": [
+      {
+        "sourceId": 185,
+        "quote": "hand-to-hand means it was going from one hand to the other hand"
+      },
+      {
+        "sourceId": 185,
+        "quote": "starting thumb points back stand up thumb goes up change hands"
+      },
+      {
+        "sourceId": 185,
+        "quote": "finish it the same way you started good technique pick up good technique put down"
+      }
+    ]
+  }
+}

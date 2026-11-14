@@ -9,9 +9,9 @@ source inventory and equipment matrix are reproducible with
 scheduled or credited. Source #441 is unusable. External review completion is
 retained as accounting evidence, not silently converted into instruction claims.
 
-Current coverage: 52 programmable movements with dedicated lessons and no remaining
+Current coverage: 53 programmable movements with dedicated lessons and no remaining
 instruction-only entries in the current catalog. Uncatalogued source systems
-remain incomplete. Thirty-six outlines are
+remain incomplete. Thirty-seven outlines are
 reviewed; sixteen programmable lessons retain source/visual-verification gaps.
 See MOVEMENT-INTEGRATION-COVERAGE.md for every movement's complete-system route,
 prerequisites, equipment, profile and remaining boundaries. Eight Book outlines
@@ -126,3 +126,17 @@ previously earned prerequisite recency along registry-gated chains. Every
 ancestor still needs its own clean evidence, matching policy/load, explicit skills
 and no unresolved pain or newer failed work. No parent progression is awarded.
 See TRAINING-RULES.md for implementation boundaries.
+
+Hand-to-hand swings now have an opt-in single-bell practice block from #185.
+Recent two-hand swing practice and separate hand-change confirmation are required.
+Per-driving-hand counts, 2–4 sets of 5 per hand, 90-second rests, planning pace
+and load review are app defaults; the source supplies no numerical program.
+Alternating work never earns two-hand or paired movement progression. Existing
+paired readiness gates remain unchanged. Ordinary repetitions stay untimed, and
+timer activity never logs work. Broader one-arm/outside swing systems remain gaps.
+
+Timer Start now begins interval playback immediately after the explicit tap.
+Earlier automation masked a paused-start defect by pressing Resume next. New
+unit and touch-browser assertions check Start alone and rendered elapsed time;
+reload remains deliberately stopped and timer activity never logs physical work.
+Physical Android audio/background verification remains a user-review item.

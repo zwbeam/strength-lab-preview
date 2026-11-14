@@ -8,7 +8,7 @@ The supplied audit reports 505 master + 214 independent completions. All 214 jou
 
 | Category | Programmable movements | Dedicated lessons | Instruction-only lessons | Remaining boundary |
 |---|---:|---:|---:|---|
-| Single kettlebell | 14 | 14 | 0 | Partial scope; see per-movement states below. |
+| Single kettlebell | 15 | 15 | 0 | Partial scope; see per-movement states below. |
 | Double kettlebell | 5 | 5 | 0 | Partial scope; see per-movement states below. |
 | Heavy club | 11 | 11 | 0 | Partial scope; see per-movement states below. |
 | Double club | 5 | 5 | 0 | Partial scope; see per-movement states below. |
@@ -71,6 +71,7 @@ The supplied audit reports 505 master + 214 independent completions. All 214 jou
 | staticStepUp | bodyweightPractice | reviewed outline | #97 |
 | doubleDeadlift | doubleHinge | reviewed outline | #142 |
 | doubleSwing | doubleHinge | reviewed outline | #142 |
+| handToHandSwing | swingSkill | reviewed outline | #185 |
 
 ## Programming scope
 
@@ -85,7 +86,7 @@ These lessons never enter automatic prescriptions. Their source-supported teachi
 | System | Current status | Evidence boundary / next verification |
 |---|---|---|
 | Bodyweight lower-body | Implemented opt-in squat/lunge; rack prerequisites stay distinct | #91/#93 reviewed. Crawl 30/30 app adaptation and eligible ABC bodyweight support are implemented from close-reviewed #85/#88/#554; Supported/knee-hover sliding planks and secured-bar bent-knee rows are integrated with explicit skills, setup-aware progression and conservative app doses. Alternating/static-foot unloaded step-ups now use stable-platform and recorded-height gates from #97 teaching, with explicit app doses. Loaded stepping and fuller bodyweight methods remain incomplete. |
-| Double kettlebell | Paired deadlift/swing foundations, clean practice plus existing press/squat and complex | #142 paired hinge preparation now uses explicit experience/technique confirmation and app-defined recent practice/dose gates; #365/#305 reviewed here. Outside swing and broader alternating/row/lunge pathways remain missing (#183/#347/#71 are leads). |
+| Double kettlebell | Paired deadlift/swing foundations, clean practice plus existing press/squat and complex | #142 paired hinge preparation now uses explicit experience/technique confirmation and app-defined recent practice/dose gates; #365/#305 reviewed here. Hand-to-hand swing practice from #185 is integrated separately with explicit skill confirmation and app-selected per-hand counts. Outside swing and broader paired alternating/row/lunge pathways remain missing (#183/#347/#71 are leads). |
 | Double club | Swing-clean, pullover and technical-swipe automatic practice; alternating circles in a separate opt-in automatic block | #206 foundation and #147/#151 alternating work reviewed. Pair equipment, component evidence, independent cycles and conservative app doses implemented from #206/#205/#207. Alternating-circle skill practice is now implemented in a separate opt-in block; full performance/hypertrophy systems remain missing. |
 | Complexes | Three programmable combinations; partial technique coverage | Rack squat now distinct. #335 worked examples are contextual. Get-up, snatch/lunge and other combinations are missing (#124/#586/#623 discovery leads). |
 | Volume / density / heavy-light | Existing source-specific snatch, club, push-up, wave profiles retained | Source examples are not universal prescriptions. Numeric exposure, recovery and calendar choices remain app decisions. |

@@ -486,3 +486,47 @@ offline history. A 390px case opens Learn, generates and saves a maintained
 hip-pass prescription without modifying old foundation evidence. No major UI
 redesign, storage migration, source-dose change or production modification.
 Broader oversized rotations remain an acknowledged scheduling limitation.
+
+
+## Hand-change foundation and explicit timer Start
+
+Preceding cc8b5a3 passed all GitHub checks. Fully reviewed #185 Hand to Hand
+Kettle Bell Swing and used the existing reviewed #142 preparation context. Exact
+indexed URL, normalized source hash and three quote anchors are preserved in
+research/hand-change-evidence.json and the instructional catalog. No source
+numeric program, breath cadence, timestamp or universal superiority claim is
+inferred from this short tutorial.
+
+The new handChangePractice block uses the shared registry, owned single-bell
+starting load, explicit familiar technique plus recent two-hand swing gates,
+actual per-hand counts, independent progression/recovery and Training Log.
+Five per driving hand means ten alternating swings per set. The selectable
+3–5 per-hand target, default 2–4 sets, 90-second rest, pace estimate and load cap
+are app decisions. Ordinary reps stay untimed. Missing or unequal side counts,
+partial/failed work and recovery doses cannot advance the cycle. Educational
+links explain broader paired preparation without retroactively changing existing
+paired gates or awarding two-hand/paired component credit.
+
+The real interaction test exposed a separate timer defect: explicit Start prepared
+the interval sequence but left it paused. Earlier acceptance pressed Resume next,
+masking the behavior. Start now starts the wall-clock countdown immediately; empty
+sequences stay stopped, pause/resume preserve elapsed time, and reload still waits
+for deliberate playback. Unit checks and touch acceptance assert Start alone, the
+rendered 00:07 readout after three seconds, retained timing while an instruction
+dialog is open, and no automatic physical-work credit. No major redesign or new
+server/storage dependency was introduced.
+
+All 42 Node suites and six historical-correction CJS tests passed locally. New
+three-year actual-generator scenarios cover single bell (399 workouts / 316 hand
+change exposures), mixed programming (403 / 238) and delayed explicit confirmation
+(390 / 304), with load/equipment changes, interruptions, recovery, technique/pain
+flags, unequal work and backup replay. Touch Chromium at 320/390 passes real load
+and skill setup, source-linked instruction, visible running timer, edited per-hand
+actuals, historical correction and offline draft/history restoration. Final complete
+browser/CI and public-preview verification remain required before delivery.
+
+Coverage is 53 programmable movements: 37 reviewed outlines, 16 partial lessons.
+Outside swings, isolated single-arm swing cycles, fuller numerical club/paired
+systems, oversized-rotation cadence and visual/physical Android verification remain
+incomplete. Existing V33 keys, writer ownership, backups, eight Books, history and
+production are preserved. Source accounting remains separate from full integration.

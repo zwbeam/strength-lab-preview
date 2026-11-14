@@ -1116,6 +1116,27 @@
       "exactParameters": null,
       "operational": true,
       "sourceComplete": true
+    },
+    {
+      "id": "handToHandSwing",
+      "name": "Hand-to-hand kettlebell swing",
+      "instruction": "reviewed outline",
+      "prerequisites": [
+        "swing",
+        "handToHandSwing",
+        "practice:swing"
+      ],
+      "equipment": "kb",
+      "blocks": [
+        "handChangePractice"
+      ],
+      "profile": "swingSkill",
+      "sourceIds": [
+        185
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": true
     }
   ],
   "instructionOnly": []

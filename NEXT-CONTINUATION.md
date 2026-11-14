@@ -12,9 +12,10 @@ retention. Inspect the actual latest GitHub commit and checks before continuing.
 Do not assume a later checkpoint passed just because this file exists.
 
 Run all non-browser tests/*.js, the history-corrections.test.cjs suite, and the
-eight browser suites: browser-smoke.js, browser-curriculum.cjs,
+nine browser suites: browser-smoke.js, browser-curriculum.cjs,
 browser-integration.cjs, browser-continuity.cjs, browser-foundations.cjs,
-browser-step-ups.cjs, browser-double-hinge.cjs and browser-demo-history.js (generate its synthetic backup
+browser-step-ups.cjs, browser-double-hinge.cjs, browser-hand-changes.cjs
+and browser-demo-history.js (generate its synthetic backup
 first). Serve at 127.0.0.1:8765. Installed Chromium may be selected locally with
 PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium. Actions uses its own bundle.
 Run scripts/audit-curriculum.cjs and scripts/audit-integration.cjs; generated
@@ -28,7 +29,7 @@ alternating double-club inside/outside skill practice now has a separate opt-in
 automatic block. Next priorities are fuller supported numerical cycles and
 foundational bodyweight pathways; pulling, sliding planks and unloaded stepping now have real generator routes. Full #85/#88 timing-series context is not
 implemented. Paired deadlift/swing foundations from #142 now have a real opt-in path.
-Outside swing and tracked hand changes remain missing from the broader #186
+Hand-to-hand swing from #185 is now tracked. Outside swing and isolated one-arm swing remain missing from the broader #186
 teaching sequence. Do not claim complete lifetime curriculum coverage.
 
 Physical Android review is separate from browser emulation. Keep eight Books
@@ -65,3 +66,17 @@ evidence; it transfers recency, never exposures/load/mastery. Missing skills,
 ancestor corrections, pain, failure, policy/load changes and gaps still block.
 Reproduce with tests/composition-setup.js, tests/prerequisite-maintenance.js and
 the extended touch tests/browser-continuity.cjs.
+
+Hand-to-hand swing practice is integrated end to end with explicit skill and
+recent two-hand practice gates, single-bell inventory, per-hand actual counts,
+independent progression and correction replay. Count each swing for its driving
+hand: five per hand means ten total. No #185 numeric program, breathing cadence
+or automatic admission to paired work is inferred. Read research/hand-change-evidence.json.
+Next: use the source inventory to prioritize complete foundational/intermediate
+systems and release reliability over obscure variants. Outside swings require
+advanced-context/visual review; fuller source numerical cycles remain separate work.
+
+Timer regression: preserve explicit interval Start -> running countdown. Earlier
+tests masked a paused-start bug by immediately pressing Resume. Keep reload
+deliberately stopped and verify the rendered readout/instruction interaction in
+tests/browser-hand-changes.cjs plus tests/interval-start.js.
