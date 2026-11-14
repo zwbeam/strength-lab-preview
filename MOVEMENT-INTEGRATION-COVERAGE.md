@@ -1,6 +1,6 @@
 # Movement integration coverage report
 
-All listed engine movements use the shared notebook, actual-result evaluator, replay, pain/re-entry handling, backup validation and Training Log. “Operational path implemented” means these contracts and a real generator route exist; it does not mean a source-complete lifetime program or physical technique has been certified. Browser acceptance specifically exercises new paired-club/crawl and existing bodyweight/paired-kettlebell/rack workflows. Longitudinal tests use actual generated prescriptions, not invented successful sessions.
+All listed engine movements use the shared notebook, actual-result evaluator, dated evidence replay, pain/re-entry handling, backup validation and Training Log. “Operational path implemented” means these contracts and a real generator route exist; it does not mean a source-complete lifetime program or physical technique has been certified. Browser acceptance specifically exercises new paired-club/crawl and existing bodyweight/paired-kettlebell/rack workflows. Longitudinal tests use actual generated prescriptions, not invented successful sessions.
 
 ## Fully integrated within the reviewed instructional scope
 

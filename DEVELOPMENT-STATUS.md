@@ -150,3 +150,14 @@ independent progression, correction replay and offline drafts use existing
 contracts. The 2–4 sets, 3–5 per side, 90-second rest and gates are app choices.
 Hand-change and paired histories/admission are preserved. Coverage is now 54
 programmable lessons, 38 reviewed outlines and 16 explicit instructional gaps.
+
+
+Dated-evidence reliability: planning now excludes later-dated actual records
+from progression, skill/prerequisite evidence, heavy/light selection, absence
+and deload counts, cycle slots and unfinished-work reconstruction. Current UI
+and explicit load/cycle actions use today's evidence. Full history and stable
+record keys remain available for inspection/correction; nothing is deleted.
+Known unresolved pain remains a hold regardless of its recorded date. Calendar
+forecasts freeze physical evidence at the date of the forecast and add only
+empty ordering placeholders. Current equipment/configuration choices still
+apply; this is not a reconstruction of old user settings.

@@ -53,7 +53,6 @@ assert.equal(after.sets,before.sets,'reordered history must preserve set target'
 assert.equal(after.reps,before.reps,'reordered history must preserve rep target');
 const future={...base,sessions:[...base.sessions,{id:'future-import',date:dateAt(1900),items:[entry('clean')]}]};
 const futurePrescription=E.prescription(future,id,{now:snapshotDate});
-assert.equal(futurePrescription.id,before.id,'future import must preserve movement identity');
-assert.ok(futurePrescription.sets>0&&futurePrescription.reps>0,'future import must retain valid prescription');
-console.log('PASS five-year history reorder and future import prescription sanity');
+assert.deepEqual(futurePrescription,before,'future import must preserve the entire dated prescription');
+console.log('PASS five-year history reorder and future import exact-prescription invariance');
 console.log('Five-year synthetic replay passed:',JSON.stringify({sessions:base.sessions.length,clean,hard,missed,stage:end.stage}));

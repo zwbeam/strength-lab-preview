@@ -72,3 +72,27 @@ bilateral counts are required. Sets, 3–5 reps per side, rest, planning pace,
 evidence gates and load limits are Strength Lab app defaults. Existing
 hand-change/paired gates and histories do not acquire a new prerequisite or
 component progression. No source numerical cycle or technique mastery is claimed.
+
+
+## Dated physical evidence
+
+Prescriptions and prerequisite checks use records through the requested training
+date (today when omitted). Later-dated imports/corrections remain in Training Log
+but do not add current credit, failure counts, wave turns or supporting practice,
+or erase an existing absence. Known unresolved pain is still held for review.
+Date correction/undo replays the same original prescriptions and actuals.
+
+Dated load review cannot qualify from later work. A valid later load-reset anchor
+is retained and does not apply its pending increase before the anchor date;
+a genuinely missing anchor still blocks replay. Explicit current settings and
+unanchored starting loads stay current—no historical settings are invented.
+Unscoped engine record/state inspection still exposes the full retained archive;
+the current interface and dated actions request today's evidence explicitly.
+
+Future unfinished work cannot replace real earlier debt. Existing explicit/legacy
+pending work is preserved unless it is introduced solely by future unfinished
+records; earlier physical debt is reconstructed from earlier written plans and
+actuals. Forecasts freeze evidence at their starting date, even when displaying
+later opportunities. Empty internal ordering placeholders can turn a provisional
+slot but cannot earn progression, recency, mastery or load advancement. These
+are application data/selection rules, not new transcript prescriptions.

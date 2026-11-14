@@ -580,3 +580,75 @@ its original policy label is retained. The new selected profile uses its distinc
 single-arm label in Settings. Cache and HTML query revision are rc41. Current
 commit GitHub checks and actual DEV HTTPS must still be verified after push;
 local results are not substituted for those remote checks.
+
+## Dated-evidence and forecast reliability (2026-11-14)
+
+Started clean at origin/preview 2afde54 with all six GitHub checks successful.
+The prior RC41 DEV build had passed exact HTTPS asset comparison and mobile
+single-arm/offline acceptance; production main remained 4cb58d8. No newer origin
+work was present. This batch addresses a shared replay gap across existing
+movements rather than adding another variant or claiming new source integration.
+
+Scheduling already excluded future dates in some places, but progression,
+prerequisites, movement gaps, profile turns and slot counts still consumed later
+actuals. The previous five-year regression checked only that a future import left
+positive targets. It now requires the entire dated prescription to stay identical.
+
+Dated records/state replay now carries an evidence cutoff through prescriptions,
+prerequisite/descendant maintenance, waves, failures, deloads, absence, supplemental
+selection and coordinated programs. Stable original record keys are constructed
+before filtering. Current UI and explicit load/cycle review pass today. Unscoped
+archive inspection remains available; raw records, backups, original prescriptions,
+correction/undo and all V33 storage keys are retained. No date is silently rewritten.
+Known unresolved pain retains its original conservative cross-date hold.
+
+A valid future load-reset marker does not apply its pending increase before its
+record date. Genuinely missing markers still block progression rather than being
+silently repaired. Current equipment, skill flags, policy and unanchored starting
+load settings still apply; no historical configuration state is invented.
+
+Unfinished physical debt is reconstructed through the planning date when a block
+has future records. The legacy time-budget suite caught an important boundary:
+explicit old pending entries unrelated to future debt must remain prioritized.
+Those entries are retained alongside earlier physical debt; future unfinished
+records cannot replace today's candidate list. The existing future/deferred-work,
+chronological fairness, accessory and mobility contracts now pass unchanged.
+
+Calendar forecasts freeze physical evidence at their starting date, even when
+planning later opportunities. Only internal empty ordering placeholders may turn
+provisional slots. They cannot qualify future supporting practice, increase load
+or grant completion. Queue keys and notebook numbering use dated counts while
+retaining the stored archive. The existing explanation panel names future-dated
+records, says they remain in Training Log and points to date correction.
+
+Focused verification: 432 actual generated workouts over three years, ten dated
+snapshots compared against the full later mixed archive, independent single-arm /
+hand-change / bodyweight / hinge blocks, missed intervals, reduced
+duration/readiness, incomplete and technically failed work, stable keys, backups
+and immutable replay. Additional direct cases cover waves, deloads, absence,
+future load markers, pain holds, correction/undo, physical debt and freeze-through
+forecasts. Future supporting work cannot qualify paired swings/clubs, get-up
+ancestry, sliding planks or crawls early. All existing skills/equipment/recency
+gates remain intact. No new source prescription, transcript review count or
+technique certification is claimed.
+
+Touch acceptance at 320/390 begins with three future records. It corrects two
+dates through the actual historical editor, observes the resulting current
+progression, keeps the third future record without credit, reloads the original
+active draft offline and saves actual bilateral work. The fixture explicitly
+records lunge sides; the save safeguard is not bypassed. The first draft of the
+test placed a corrected workout yesterday and correctly received a reduced
+consecutive-day prescription; spaced dates now isolate ordinary progression.
+
+Final local checks: all 44 non-browser JS suites and six correction CJS tests
+passed. All eleven browser suites and 295-session demo generation/replay passed;
+broad browser-smoke was rerun on the final compatibility fix and passed all four
+widths, including 2,601 saved workouts, quota rollback, import/reload and offline.
+Recovery, dated evidence, continuity and exact five-year future-import checks
+also passed after final review. All 50 offline assets resolve; generated inventory
+and integration reports remain reproducible, with coverage unchanged at 54.
+A direct baseline comparison reproduced the original bug: future foundation logs
+incorrectly yielded two current single-arm sets; the dated implementation blocks
+those sets until supporting practice is available. Cache/query revision is rc42.
+GitHub current-commit QA and actual DEV HTTPS verification remain required after
+push; local passes alone are not represented as remote verification.

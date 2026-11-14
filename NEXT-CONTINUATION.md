@@ -12,10 +12,10 @@ retention. Inspect the actual latest GitHub commit and checks before continuing.
 Do not assume a later checkpoint passed just because this file exists.
 
 Run all non-browser tests/*.js, the history-corrections.test.cjs suite, and the
-ten browser suites: browser-smoke.js, browser-curriculum.cjs,
+eleven browser suites: browser-smoke.js, browser-curriculum.cjs,
 browser-integration.cjs, browser-continuity.cjs, browser-foundations.cjs,
 browser-step-ups.cjs, browser-double-hinge.cjs, browser-hand-changes.cjs
-browser-single-arm-swing.cjs and browser-demo-history.js (generate its synthetic backup
+browser-single-arm-swing.cjs, browser-dated-evidence.cjs and browser-demo-history.js (generate its synthetic backup
 first). Serve at 127.0.0.1:8765. Installed Chromium may be selected locally with
 PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium. Actions uses its own bundle.
 Run scripts/audit-curriculum.cjs and scripts/audit-integration.cjs; generated
@@ -90,3 +90,18 @@ independent skill, load, actual side counts and cycles. The new browser suite
 supports STRENGTH_LAB_TEST_URL for actual DEV HTTPS acceptance. Timer browser
 fixtures pause their simulated clock before interaction to avoid elapsed-real-time
 races; explicit Start still must run, and reload still stays stopped.
+
+
+Dated-evidence checkpoint: preserve the new opts.now/evidenceThrough boundary.
+Planning must not read later physical evidence; forecasts freeze evidence at the
+forecast start date while scheduling later opportunities. Unscoped records/state
+remain full-history audit views; current UI and load/cycle actions pass today.
+Known unresolved pain remains held across all dates. Future load anchors remain
+stored and cannot apply early; genuinely missing anchors still fail closed.
+Do not delete future records or silently rewrite dates. The existing correction
+UI explains their retention, and date correction/undo uses original actuals.
+Keep legitimate explicit/legacy pending work and provisional ordering placeholders.
+Reproduce tests/dated-evidence.js (432 workouts and ten dated snapshots) and the
+new mobile/HTTPS suite; the old five-year future test now checks exact targets.
+Current equipment, skill confirmation and configuration are not historical
+snapshots. No source-dose change or new movement coverage count is claimed.

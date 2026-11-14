@@ -6,7 +6,8 @@ const reduced=rx=>['baseline','recovery','reentry','rebuild','deload','time-fit'
 function structure(rx){return rx.roundSeconds?`${rx.roundSeconds===60?'Every minute (EMOM)':`Every ${rx.roundSeconds} seconds`} · remaining round time is rest`:rx.durationScope==='total'?`Alternating single reps · ${rx.reps} seconds total under load`:rx.continuous?`Continuous sets · no inter-set rest · ${rx.betweenExercises||0}s between movements`:`Straight ${rx.timed?'timed':'rep'} sets · ${rx.rest}s rest between sets`;}
 function differences(original,adjusted){const lines=[];for(const rx of original.items){const next=adjusted.items.find(x=>x.id===rx.id);if(!next)lines.push(`${rx.name}: deferred; not counted as completed`);else if(['sets','reps','weight','rest'].some(k=>next[k]!==rx[k])||next.mode!==rx.mode)lines.push(`${rx.name}: ${rx.sets} × ${rx.reps} → ${next.sets} × ${next.reps}${next.timed?' sec':''}${reduced(next)?'; reduced practice, no advancement credit':''}`);}for(const rx of adjusted.items)if(!original.items.some(x=>x.id===rx.id))lines.push(`${rx.name}: included as eligible work that fits`);return lines;}
 function cycle(s,opts={}){
- const count=s.sessions.length,rows=[],sim=copy(s),span=s.programComposition?.enabled?Math.max(3,s.programComposition.blocks.length):Math.max(3,E.BLOCKS[s.programBlock||'abc'].days.length);
+ const through=typeof opts.now==='string'?opts.now:new Date(opts.now??Date.now()).toLocaleDateString('sv-SE');
+ const count=s.sessions.filter(x=>x.date<=through).length,rows=[],sim=copy(s),span=s.programComposition?.enabled?Math.max(3,s.programComposition.blocks.length):Math.max(3,E.BLOCKS[s.programBlock||'abc'].days.length);
  // Only sequence placeholders are projected: never fabricate successful training,
  // future skill confirmations, dates, load increases or progression evidence.
  const offset=Math.max(0,Math.min(90,Number(opts.offset)||0));
