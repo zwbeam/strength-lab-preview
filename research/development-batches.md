@@ -304,3 +304,32 @@ reload, generate the workout, enter bilateral actuals where required and save.
 The fixture initializer now preserves storage on reload instead of reseeding it.
 This addresses the gap that seeded-load tests missed. Source prescriptions and
 training intelligence are unchanged by this setup correction.
+
+
+## Supported sliding-plank pathway
+
+Incoming eb8b66c verified on GitHub, with a clean tree and passing checks. Read
+#86/#94 in full and reviewed #89/#97 as the next pulling/stepping research leads.
+Added knee-supported sliding plank and outbound knee-hover/knee-down return to
+the shared registry, Learn and an opt-in block. The supported pattern can join
+eligible ABC bodyweight support. Harder practice needs both recent supported
+work and explicit technique confirmation. Repetitions do not confer mastery.
+Two-to-four sets of three, 60-second rests and planning seconds are app choices;
+no source numeric prescription or further circular-flow progression is inferred.
+The #86 captions contain an inconsistent toe cue; instruction uses the explicit
+supported setup and distinguishes the toe-tucked hover version taught in #94.
+
+Verification: a two-year actual-generator history saves 288 workouts with gaps,
+technique problems, incomplete work, low readiness and backup replay. Touch
+browser acceptance at 320/390 opens instruction, starts each real prescription,
+saves actual work and reloads it. Ordinary reps stay untimed. Full regression
+and current-commit CI are required before delivery. Storage keys, history,
+existing programs, eight Books and production are preserved.
+
+
+The first full run exposed a test-fixture issue: the historical continuity test
+confirmed every newly added skill dynamically, changing its movement set while
+comparing against old numeric baselines. It now explicitly keeps the new sliding
+skills unconfirmed in that fixed comparison. The original thresholds are intact;
+new skills have their own two-year and actual-browser tests. This mirrors an
+existing user's unchanged confirmations rather than silently opting into additions.

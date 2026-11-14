@@ -4,7 +4,7 @@ All listed engine movements use the shared notebook, actual-result evaluator, re
 
 ## Fully integrated within the reviewed instructional scope
 
-`swing`, `squat`, `press`, `row`, `clean`, `circles`, `doubleSquat`, `clubInside`, `clubOutside`, `clubShield`, `getupFloor`, `getupElbow`, `getupHand`, `getupHipPass`, `clubInsidePendulum`, `clubOutsidePendulum`, `clubFrontPullover`, `clubOutsidePullover`, `clubInsidePullover`, `hingePractice`, `hipDropTwoHand`, `hipDropSingleHand`, `bearSquat`, `deadlift`, `bodyweightSquat`, `stepBackLunge`, `singleRackSquat`, `bearCrawl`, `catCrawl`.
+`swing`, `squat`, `press`, `row`, `clean`, `circles`, `doubleSquat`, `clubInside`, `clubOutside`, `clubShield`, `getupFloor`, `getupElbow`, `getupHand`, `getupHipPass`, `clubInsidePendulum`, `clubOutsidePendulum`, `clubFrontPullover`, `clubOutsidePullover`, `clubInsidePullover`, `hingePractice`, `hipDropTwoHand`, `hipDropSingleHand`, `bearSquat`, `deadlift`, `bodyweightSquat`, `stepBackLunge`, `singleRackSquat`, `bearCrawl`, `catCrawl`, `kneeSlidingPlank`, `hoverSlidingPlank`.
 
 These have dedicated reviewed outlines and an operational engine path. Technique remains self-confirmed. Broader curriculum branches can still be missing.
 
@@ -93,6 +93,8 @@ Every row: Library → gates → inventory → schedule → prescription → act
 | catCrawl | reviewed outline | bearCrawl, catCrawl, practice:bearCrawl | bodyweight + confirmed traveling space | bodyweight, abc (conditional) | crawl; app numeric choices |
 | doubleClubInside | partial: transcript-reviewed alternating pattern; visual technique and held-club control verification remain incomplete | clubGrip, clubTwoHandFoundation, doubleClubOrder, doubleClubInside, practice:doubleClubSwingClean, practice:clubInside, practice:clubOutside | owned matched club pair, lb per club | doubleClubAlternating | doubleClub; app numeric choices |
 | doubleClubOutside | partial: transcript-reviewed alternating pattern; visual technique and held-club control verification remain incomplete | clubGrip, clubTwoHandFoundation, doubleClubOrder, doubleClubInside, doubleClubOutside, practice:doubleClubInside, practice:clubOutside | owned matched club pair, lb per club | doubleClubAlternating | doubleClub; app numeric choices |
+| kneeSlidingPlank | reviewed outline | kneeSlidingPlank | bodyweight | slidingPlank, abc (conditional) | ground; app numeric choices |
+| hoverSlidingPlank | reviewed outline | kneeSlidingPlank, hoverSlidingPlank, practice:kneeSlidingPlank | bodyweight | slidingPlank | ground; app numeric choices |
 
 ## Instructional-only movements
 
@@ -101,7 +103,7 @@ No remaining instructional-only catalog entries at this checkpoint. Broader sour
 ## Missing research and remaining engineering
 
 - Alternating double-club inside/outside skill practice now has an opt-in automatic block; performance swipes and complete source strength/bodybuilding cycles remain unimplemented. Overhead lessons require visual verification; the #207 naming inconsistency is preserved.
-- Full bodyweight 101 timing release/ordering is context-dependent (#85/#88). The app implements a conservative crawl 30/30 adaptation, not every paid-program format. More bodyweight pulling, step-ups, sliding planks and flows need close review and engineering.
+- Full bodyweight 101 timing release/ordering is context-dependent (#85/#88). The app implements a conservative crawl 30/30 adaptation, not every paid-program format. Supported and knee-hover sliding-plank stages are integrated; bodyweight pulling, step-ups and broader flows still need engineering.
 - Double swing/outside-swing and broader paired-kettlebell sequences remain untracked. Current app admission gates cover a supported subset, not the whole #186 teaching context.
 - More complex families and exact verified timestamps remain incomplete. Component bookkeeping never grants component progression from a complex log.
 - Choosing too many independent blocks at a low training frequency can repeatedly require re-entry. The engine now uses movement-level feedback, retention priority and bounded follow-ups; oversized rotations can still cause re-entry. It does not fabricate eligibility or add catch-up work.

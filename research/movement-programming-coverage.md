@@ -13,7 +13,7 @@ The supplied audit reports 505 master + 214 independent completions. All 214 jou
 | Heavy club | 11 | 11 | 0 | Partial scope; see per-movement states below. |
 | Double club | 5 | 5 | 0 | Partial scope; see per-movement states below. |
 | Complexes | 3 | 3 | 0 | Partial scope; see per-movement states below. |
-| Bodyweight | 9 | 9 | 0 | Partial scope; see per-movement states below. |
+| Bodyweight | 11 | 11 | 0 | Partial scope; see per-movement states below. |
 
 ## Every programmable movement
 
@@ -64,6 +64,8 @@ The supplied audit reports 505 master + 214 independent completions. All 214 jou
 | catCrawl | crawl | reviewed outline | #82, #88, #554 |
 | doubleClubInside | doubleClub | partial: transcript-reviewed alternating pattern; visual technique and held-club control verification remain incomplete | #147 |
 | doubleClubOutside | doubleClub | partial: transcript-reviewed alternating pattern; visual technique and held-club control verification remain incomplete | #151 |
+| kneeSlidingPlank | ground | reviewed outline | #86 |
+| hoverSlidingPlank | ground | reviewed outline | #94, #86 |
 
 ## Programming scope
 

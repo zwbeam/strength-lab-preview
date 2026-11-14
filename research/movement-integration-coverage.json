@@ -970,6 +970,48 @@
       "exactParameters": null,
       "operational": true,
       "sourceComplete": false
+    },
+    {
+      "id": "kneeSlidingPlank",
+      "name": "Knee-supported sliding plank",
+      "instruction": "reviewed outline",
+      "prerequisites": [
+        "kneeSlidingPlank"
+      ],
+      "equipment": "bodyweight",
+      "blocks": [
+        "slidingPlank",
+        "abc (conditional)"
+      ],
+      "profile": "ground",
+      "sourceIds": [
+        86
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": true
+    },
+    {
+      "id": "hoverSlidingPlank",
+      "name": "Knee-hover sliding plank",
+      "instruction": "reviewed outline",
+      "prerequisites": [
+        "kneeSlidingPlank",
+        "hoverSlidingPlank",
+        "practice:kneeSlidingPlank"
+      ],
+      "equipment": "bodyweight",
+      "blocks": [
+        "slidingPlank"
+      ],
+      "profile": "ground",
+      "sourceIds": [
+        94,
+        86
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": true
     }
   ],
   "instructionOnly": []

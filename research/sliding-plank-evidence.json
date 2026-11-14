@@ -1,0 +1,100 @@
+{
+  "sourcesReviewed": [
+    86,
+    94
+  ],
+  "sourceFacts": [
+    "Supported knee sliding precedes the outbound knee-hover/knee-down return.",
+    "Controlled elbow sequence, head height and glute engagement are teaching priorities."
+  ],
+  "appDecisions": [
+    "Opt-in block and eligible basic ABC support",
+    "2–4 sets of 3, 60-second rests, planning seconds and freshness/exposure gates"
+  ],
+  "entries": {
+    "kneeSlidingPlank": {
+      "purpose": "Develop controlled core engagement while moving between child-position reach and knee-supported low-plank positions.",
+      "setup": [
+        "Use a clear, comfortable surface for hands, elbows and knees. Begin standing and lower under control.",
+        "Find hand distance with a comfortable child-position reach; start the supported version with knees and tops of feet down."
+      ],
+      "steps": [
+        "Slide forward with eyes toward the floor and a controlled, nearly constant head height.",
+        "Let the elbows touch and then lift as hands come beneath shoulders, keeping elbows close.",
+        "At extension, engage the glutes, tuck the tailbone and keep the abdomen engaged.",
+        "Reverse with elbow contact, then straighten the arms in the rear position. Return to standing with control when finished."
+      ],
+      "bracing": [
+        "Exhale at the front where the greatest tension is sought; maintain glute and abdominal engagement."
+      ],
+      "mistakes": [
+        "Rising and falling instead of sliding at controlled height: slow down and return to supported range.",
+        "Omitting the glute squeeze or flaring elbows: reduce the demand and rehearse the sequence."
+      ],
+      "sourceIds": [
+        86
+      ],
+      "videoSourceIds": [
+        86
+      ],
+      "evidence": [
+        {
+          "sourceId": 86,
+          "quote": "our nose is going to stay the same distance away from the ground on the way out and on the way back"
+        },
+        {
+          "sourceId": 86,
+          "quote": "exhale where you want to have the most tension"
+        }
+      ],
+      "coverage": "reviewed outline",
+      "qualifications": [
+        "The captions include an inconsistent toe cue. This lesson follows the explicitly described initial supported setup, while the toe-tucked knee-hover progression is distinguished in #94.",
+        "The app selects 2–4 sets of 3 reps and 60-second rest as practice defaults; #86 does not prescribe those numbers."
+      ]
+    },
+    "hoverSlidingPlank": {
+      "purpose": "Extend the supported sliding plank by hovering the knees on the outbound portion, then lowering them for the return.",
+      "setup": [
+        "Confirm the supported sliding pattern first. Use comfortable low kneeling and reach out to establish hand distance.",
+        "Tuck toes and push back with the arms so the knees lift slightly without forcing range."
+      ],
+      "steps": [
+        "From the rear hover, touch elbows and slide forward under control.",
+        "At extension, keep elbows close, engage glutes and tuck the tailbone.",
+        "Without collapsing the trunk, place the knees down and return through elbow contact.",
+        "Reset toes and repeat deliberately."
+      ],
+      "bracing": [
+        "Retain the earlier trunk and glute engagement; the hover adds complexity rather than permission to lose alignment."
+      ],
+      "mistakes": [
+        "Rushing and missing the knee-down return: rehearse slowly or use the supported version.",
+        "Sagging at extension: reduce demand and regain the basic sequence."
+      ],
+      "sourceIds": [
+        94,
+        86
+      ],
+      "videoSourceIds": [
+        94
+      ],
+      "evidence": [
+        {
+          "sourceId": 94,
+          "quote": "lift our knees up when we're in the child's pose at the back slide forward put our knees on the ground then slide back"
+        },
+        {
+          "sourceId": 94,
+          "quote": "so it's hard on the way out easy on the way back"
+        }
+      ],
+      "coverage": "reviewed outline",
+      "qualifications": [
+        "Knee-hover height and depth are individual technique context, not an automatic target.",
+        "Explicit skill confirmation and recent-practice counts are app safeguards. No repetitions automatically certify technique.",
+        "Rep/set/rest numbers and planning seconds are app choices; further circular and traveling versions remain unimplemented."
+      ]
+    }
+  }
+}

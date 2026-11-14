@@ -5,7 +5,10 @@ const {fresh,seed,sets}=require('./movement-integration');
 const day=n=>new Date(Date.UTC(2024,0,1)+n*86400000).toISOString().slice(0,10);
 const results=[];
 for(const config of [{name:'mixed',kb:true,club:true,bw:true,blocks:['abc','doubleClub','bodyweight','double']},{name:'double-club',kb:false,club:true,bw:false,blocks:['doubleClub']},{name:'bodyweight',kb:false,club:false,bw:true,blocks:['abc','bodyweight']},{name:'club-bodyweight',kb:false,club:true,bw:true,blocks:['abc','doubleClub','bodyweight']}]){
- let s=fresh();s.programBlock='abc';Object.assign(s.trainingPreferences,{useKb:config.kb,useClub:config.club,useBodyweight:config.bw,crawlSpace:true,focus:'balanced',variety:'high'});s.programComposition={enabled:true,blocks:config.blocks,minGapDays:1,hardGapDays:2};
+ let s=fresh();s.programBlock='abc';
+ // Keep the historical continuity comparison on its original movement set.
+ // Newly added skills have dedicated generated-history and browser suites.
+ s.skills.kneeSlidingPlank=false;s.skills.hoverSlidingPlank=false;Object.assign(s.trainingPreferences,{useKb:config.kb,useClub:config.club,useBodyweight:config.bw,crawlSpace:true,focus:'balanced',variety:'high'});s.programComposition={enabled:true,blocks:config.blocks,minGapDays:1,hardGapDays:2};
  // Prior skill practice is explicit synthetic history, not generated qualification.
  for(const id of ['clubInside','clubOutside','clubShield','singleRackSquat','doubleClean','press'])seed(s,id,day(-3));
  if(!config.kb){s.equipment.kb=[];s.equipment.pairs=[];}if(!config.club){s.equipment.club=[];s.equipment.clubPairs=[];}

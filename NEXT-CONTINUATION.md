@@ -12,8 +12,8 @@ retention. Inspect the actual latest GitHub commit and checks before continuing.
 Do not assume a later checkpoint passed just because this file exists.
 
 Run all non-browser tests/*.js, the history-corrections.test.cjs suite, and the
-five browser suites: browser-smoke.js, browser-curriculum.cjs,
-browser-integration.cjs, browser-continuity.cjs and browser-demo-history.js (generate its synthetic backup
+six browser suites: browser-smoke.js, browser-curriculum.cjs,
+browser-integration.cjs, browser-continuity.cjs, browser-foundations.cjs and browser-demo-history.js (generate its synthetic backup
 first). Serve at 127.0.0.1:8765. Installed Chromium may be selected locally with
 PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium. Actions uses its own bundle.
 Run scripts/audit-curriculum.cjs and scripts/audit-integration.cjs; generated
@@ -38,3 +38,10 @@ starting-load selector. Keep setInitialLoad's established-load guard; later
 changes use progression/replacement review. Browser fixtures must test this from
 an unset load and preserve saved data across reload, rather than silently
 reseed preconfigured weights. See tests/initial-load.js and browser-integration.
+
+
+Sources #86/#94 now have supported and knee-hover sliding-plank programming and
+mobile acceptance in browser-foundations.cjs. Next: bodyweight horizontal rows
+(#89), with explicit secured-bar availability and stable geometry tracking before
+any progression credit; then step-ups (#97) with a properly modeled platform.
+Do not treat bodyweight as meaning equipment-free for those movements.

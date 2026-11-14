@@ -125,6 +125,12 @@ Object.assign(SKILLS,{
 });
 MOVES.doubleClubInside={name:'Double-club alternating inside circles',gear:'club',clubPair:true,unit:'lb per club',family:'rotation',side:2,reps:3,start:2,end:4,rest:90,sec:48,repSeconds:8,defaultProfile:'doubleClub',requires:['clubGrip','clubTwoHandFoundation','doubleClubOrder','doubleClubInside'],practicePrereqs:['doubleClubSwingClean','clubInside','clubOutside'],teachingSources:[147],cues:['Stabilize the held club while the other performs its inside circle.','Catch, regain balance and alternate; record actual repetitions for each side.'],avoid:'Stop if either club escapes order, wrist control or controlled deceleration.'};
 MOVES.doubleClubOutside={name:'Double-club alternating outside circles',gear:'club',clubPair:true,unit:'lb per club',family:'rotation',side:2,reps:3,start:2,end:4,rest:90,sec:48,repSeconds:8,defaultProfile:'doubleClub',requires:['clubGrip','clubTwoHandFoundation','doubleClubOrder','doubleClubInside','doubleClubOutside'],practicePrereqs:['doubleClubInside','clubOutside'],teachingSources:[151,147],cues:['Keep a stable order, controlled ribs and glute engagement.','Alternate outside circles without overtracking or letting the held club tip.'],avoid:'Do not add load or repetitions when the held club cannot be controlled.'};
+Object.assign(SKILLS,{
+ kneeSlidingPlank:{name:'Familiar knee-supported sliding plank with controlled elbows, trunk and comfortable floor support',sources:[86]},
+ hoverSlidingPlank:{name:'Familiar knee-hover outbound sliding plank with controlled knee-down return',sources:[94]}
+});
+MOVES.kneeSlidingPlank={name:'Knee-supported sliding plank',gear:'bodyweight',bodyweight:true,unit:'bodyweight',family:'ground',side:1,reps:3,start:2,end:4,rest:60,sec:30,repSeconds:10,defaultProfile:'ground',foundationPractice:true,requires:['kneeSlidingPlank'],teachingSources:[86],cues:['Set hand distance from a comfortable child-position reach.','Slide out and back at a controlled head height, with elbows close.','Engage glutes and tuck the tailbone at extension; exhale where tension is greatest.'],avoid:'Do not force kneeling range, bounce the trunk or progress through wrist, elbow or knee pain.'};
+MOVES.hoverSlidingPlank={name:'Knee-hover sliding plank',gear:'bodyweight',bodyweight:true,unit:'bodyweight',family:'ground',side:1,reps:3,start:2,end:4,rest:60,sec:36,repSeconds:12,defaultProfile:'ground',foundationPractice:true,requires:['kneeSlidingPlank','hoverSlidingPlank'],practicePrereqs:['kneeSlidingPlank'],teachingSources:[94,86],cues:['Lift the knees slightly at the back, then slide forward with controlled elbows.','Engage glutes at extension, lower knees without collapsing the trunk and return.','Keep hands and feet controlled; speed does not replace the sequence.'],avoid:'Regress to knee support if the hover, trunk position or controlled return cannot be maintained.'};
 MOVES.complexCleanPress.sequenceDescription='One rep: clean → strict press; match both sides.';
 MOVES.complexCleanSquatPress.sequenceDescription='One rep: clean → single-rack squat → strict press; match both sides.';
 MOVES.complexDoubleCleanSquatPress.sequenceDescription='One rep: double clean → front squat → press from rack; no extra clean.';
@@ -349,6 +355,7 @@ function timeBudget(minutes){
  return {total,warmup,cooldown,main:total-warmup-cooldown};
 }
 const BLOCKS={
+ slidingPlank:{name:'Sliding-plank foundations',days:[{name:'Supported to knee-hover sliding practice',focus:'Explicit floor-support skills, recent basic practice and controlled returns',ids:['kneeSlidingPlank','hoverSlidingPlank']}]},
  doubleClubAlternating:{name:'Alternating double-club skill practice',days:[{name:'Alternating inside / outside club practice',focus:'Opt-in later coordination pathway; app practice dose with separate side results',ids:['doubleClubInside','doubleClubOutside']}]},
  bodyweight:{name:'Bodyweight foundations and crawling',days:[{name:'Bodyweight lower-body practice',focus:'Squat and equal-sided lunge practice',ids:['bodyweightSquat','stepBackLunge']},{name:'Bodyweight ground practice',focus:'Ground transitions and controlled 30/30 crawl practice',ids:['hipDropTwoHand','hipDropSingleHand','bearSquat','bearCrawl','catCrawl']}]},
  doubleClub:{name:'Double-club foundations and technical swipe',days:[{name:'Double-club coordinated practice',focus:'Swing clean → pullover → four-count technical swipe; app practice dose',ids:['doubleClubSwingClean','doubleClubPullover','doubleClubTechnicalSwipe']}]},
@@ -368,7 +375,7 @@ const BLOCKS={
  singleClub:{name:'Single-arm club foundation block',days:[{name:'Inside / Outside / Shield',focus:'Continuous volume within each movement; breaks between movements',ids:['clubInside','clubOutside','clubShield']}]},
  club:{name:'Two-hand club practice block',days:[{name:'Two-hand club patterns',focus:'Familiar club patterns; choose timed profiles in Settings',ids:['front','cast','circles']}]}
 };
-const SUPPORT_POOLS={bodyweight:['bodyweightSquat','stepBackLunge','hipDropTwoHand','bearCrawl','catCrawl','bearSquat','pushup'],club:['doubleClubSwingClean','doubleClubPullover','doubleClubTechnicalSwipe']};
+const SUPPORT_POOLS={bodyweight:['bodyweightSquat','stepBackLunge','hipDropTwoHand','bearCrawl','catCrawl','bearSquat','pushup','kneeSlidingPlank'],club:['doubleClubSwingClean','doubleClubPullover','doubleClubTechnicalSwipe']};
 const DEMANDS={ground:['lower','shoulder'],getup:['lower','shoulder','grip'],hinge:['lower','grip'],squat:['lower'],press:['shoulder','grip'],pull:['shoulder','grip'],carry:['grip'],rotation:['shoulder','grip'],complex:['lower','shoulder','grip']};
 function movementDemands(id){if(MOVES[id]?.clubPair)return ['lower','shoulder','grip'];return [...(DEMANDS[MOVES[id]?.family]||[])];}
 function calendarDay(value){const text=typeof value==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(value)?value:new Date(value??Date.now()).toLocaleDateString('sv-SE');return Date.parse(text+'T12:00:00Z')/86400000;}

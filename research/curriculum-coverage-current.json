@@ -1302,6 +1302,61 @@
         "readiness/recovery numeric adjustments",
         "equipment jump cap"
       ]
+    },
+    {
+      "id": "kneeSlidingPlank",
+      "name": "Knee-supported sliding plank",
+      "category": "bodyweight",
+      "automatic": true,
+      "profile": "ground",
+      "coverage": "reviewed outline",
+      "sourceIds": [
+        86
+      ],
+      "skillPrerequisites": [
+        "kneeSlidingPlank"
+      ],
+      "practicePrerequisites": [],
+      "sequence": [],
+      "policySources": [
+        86
+      ],
+      "exactParametersSource": null,
+      "appDefaults": [
+        "exposure gates",
+        "readiness/recovery numeric adjustments",
+        "equipment jump cap"
+      ]
+    },
+    {
+      "id": "hoverSlidingPlank",
+      "name": "Knee-hover sliding plank",
+      "category": "bodyweight",
+      "automatic": true,
+      "profile": "ground",
+      "coverage": "reviewed outline",
+      "sourceIds": [
+        94,
+        86
+      ],
+      "skillPrerequisites": [
+        "kneeSlidingPlank",
+        "hoverSlidingPlank"
+      ],
+      "practicePrerequisites": [
+        "kneeSlidingPlank"
+      ],
+      "sequence": [],
+      "policySources": [
+        94,
+        86
+      ],
+      "exactParametersSource": null,
+      "appDefaults": [
+        "exposure gates",
+        "readiness/recovery numeric adjustments",
+        "equipment jump cap"
+      ]
     }
   ],
   "references": [],

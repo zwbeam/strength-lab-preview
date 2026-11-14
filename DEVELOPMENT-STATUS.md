@@ -9,9 +9,9 @@ source inventory and equipment matrix are reproducible with
 scheduled or credited. Source #441 is unusable. External review completion is
 retained as accounting evidence, not silently converted into instruction claims.
 
-Current coverage: 45 programmable movements with dedicated lessons and no remaining
+Current coverage: 47 programmable movements with dedicated lessons and no remaining
 instruction-only entries in the current catalog. Uncatalogued source systems
-remain incomplete. Twenty-nine outlines are
+remain incomplete. Thirty-one outlines are
 reviewed; sixteen programmable lessons retain source/visual-verification gaps.
 See MOVEMENT-INTEGRATION-COVERAGE.md for every movement's complete-system route,
 prerequisites, equipment, profile and remaining boundaries. Eight Book outlines
@@ -87,3 +87,9 @@ skill. Existing unavailable-load replacement controls are reachable there too.
 Browser regression starts with the target load unset, selects it through Settings,
 reloads and completes the generated workout. Prior seeded-load tests had not
 covered this reachability gap.
+
+
+Sliding-plank foundations: sources #86/#94 support a knee-supported stage and
+outbound knee-hover/knee-down return. Both use explicit skills and recent practice
+before the harder stage. The opt-in block and eligible basic ABC support use
+app rep/set/rest/time estimates; no source numeric dose or mastery is invented.

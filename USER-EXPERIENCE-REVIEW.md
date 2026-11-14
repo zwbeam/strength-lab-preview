@@ -58,3 +58,9 @@ loaded movement and choose a familiar owned starting load. Paired selections
 use per-implement inventory. Established loads continue through review/progression
 controls; unavailable loads use explicit replacement. Please check that this
 route and the eligibility explanations are clear on Android.
+
+
+Sliding-plank review: the basic and hover variants are available in Learn and
+Advanced Movement Programming. The harder stage needs recent supported practice
+and separate skill confirmation. Inspect the rep/rest prescription and return
+sequence; the timer does not invent a work countdown for these ordinary reps.
