@@ -664,3 +664,75 @@ offline installations receive the updated learning asset. The preceding 360e875
 DEV build matched all 50 HTTPS runtime assets and passed touch date-correction /
 offline acceptance at both widths; this follow-up needs its own current-commit
 QA and deployment checks before delivery.
+
+## Optional row baseline-fraction volume wave (2026-11-14)
+
+Started clean at latest origin/preview 4b156c5, with all six GitHub checks green.
+Re-read the complete indexed #89 horizontal-row transcript. Retained the original
+URL, normalized content hash and exact numerical quote anchors in
+research/row-wave-evidence.json and the existing row lesson. No new movement or
+source-review completion count is claimed: coverage remains 54 programmable
+movements, 38 reviewed outlines and 16 partial lessons.
+
+The source gives 60%/80% rep fractions, an 80% day at two-thirds of 60% total
+volume, adding sets and an optional 4–6-week review; its example schedules two
+days of each type weekly. The opt-in rowWave profile implements the fraction /
+volume relationship at a fixed bent-knee bar setup. It explicitly adapts the
+baseline to a user-reviewed conservative clean number, rather than requesting a
+maximum test. Rolling timing, 2–4 default lower-rep sets, 90-second rests,
+whole-rep/whole-set floor rounding and two clean exposures of each track before
+joint stage advancement are app decisions. No forced four-day week or automatic
+timed retest is imposed. Ordinary reps remain untimed, and no timer grants credit.
+
+Checks over all 196 supported baseline values exposed a meaningful rounding
+boundary: some baselines need at least three lower-rep starting sets to fit even
+one higher-rep whole set under the volume cap. Too-small explicit set counts are
+rejected with the required minimum. Whole higher-rep sets may plateau across a
+stage; they never exceed two-thirds of the paired lower-rep target. Integer
+fraction arithmetic avoids needless binary decimal rounding at whole targets.
+
+A positive baseline is tied to the reviewed bar height. Changing configured
+height blocks the wave pending explicit review; actual geometry changes retain
+the immutable original setup but earn no comparison credit. Explicit baseline
+changes, same-number restarts, geometry reviews and returns to the profile get
+fresh comparison identities, including an A → B → A baseline sequence. This
+prevents reviving an obsolete completed cycle. Endpoint maintenance alternates
+without advancing targets. The existing fixed-dose profile remains default,
+with its original policy identity and history; direct checkpoint comparison
+confirmed byte-identical default row plans and prescriptions.
+
+Existing actual-result, pain, recovery, time-fit, dated/evidenceThrough replay,
+backup, correction/undo and writer/draft contracts remain. Failed, partial,
+changed-setup or reduced work cannot advance this wave. Joint evidence restarts
+with lower-rep practice after recovery. Higher-rep does not mean a heavier
+external load. Profile settings never certify pull-up readiness or human technique.
+
+Focused verification includes all baseline arithmetic bounds, exact lower/higher
+sequence and joint stages, complete endpoints and maintenance, explicit restarts,
+old-profile isolation, geometry review, failure/pain/partial/rest/recovery controls,
+future-date isolation, source hashes, and historical correction/undo. Two three-year
+actual-generator histories save 388 row-only and 431 mixed workouts, including
+bar loss/return, height/baseline review, missed intervals, short sessions, reduced
+readiness, partial work, technical difficulty, pain and repeated backup validation.
+They record 388/142 row exposures, including 179/66 higher-rep exposures.
+
+Touch acceptance at 320/390 begins without bar/skill/profile setup, configures all
+through actual Settings, opens the source lesson, completes lower and higher
+prescriptions, corrects a changed actual height, restores an original draft
+offline, completes the full cycle, explicitly restarts the same baseline and
+reviews at a new height. All old records and original heights remain intact.
+Physical Android/apparatus/technique verification remains separate.
+
+All 45 Node JS suites and six correction CJS tests passed. All twelve browser
+suites and 295-session demo generation/replay passed. Source audits, 50-asset
+offline integrity and JavaScript checks pass; audits now list supported optional
+profiles rather than only each movement's default. Cache/query revision is rc44.
+Current-commit GitHub checks and exact DEV HTTPS verification remain required
+following push; local results alone are not claimed as remote verification.
+
+Final focused acceptance also verifies that rejected whole-set fit leaves the
+entire saved state unchanged, and saving unchanged Settings preserves wave counts
+and policy identity. Numeric checks prove higher-rep whole-set selection is the
+largest count under the cap, not merely an arbitrary smaller count. Oversized
+normal targets are deferred rather than reduced for credit; explicit reduced
+readiness remains nonqualifying. Active-draft station tampering is rejected.

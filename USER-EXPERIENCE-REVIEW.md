@@ -110,3 +110,13 @@ Resume and therefore missed this behavior. Regression now checks Start alone,
 the rendered countdown, pause, instruction-dialog continuity and absence of
 physical-work credit. Reload still stops playback pending deliberate resume.
 Please verify this interaction and audible signals on physical Android.
+
+
+### Optional row volume-wave review
+Advanced Movement Programming keeps fixed-dose rows and offers a separate
+60%/80% profile. Confirm the secured bar, height and familiar skill, then review
+a clean baseline at that setup. The app does not request a maximum test. Check
+lower/higher-rep targets, the whole-set rounding explanation and independent
+track counts. Baseline review/restart is explicit, including after changing bar
+height, and never deletes saved rows. Please review this wording and the ordinary
+untimed logging on physical Android; automated touch tests do not certify technique.

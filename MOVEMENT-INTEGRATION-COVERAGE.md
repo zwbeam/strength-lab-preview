@@ -48,15 +48,15 @@ Every row: Library → gates → inventory → schedule → prescription → act
 
 | Movement | Instruction | Gates | Equipment | Automatic route | Dose/profile |
 |---|---|---|---|---|
-| swing | reviewed outline | No additional gate | kb | abc | legacy; app numeric choices |
-| squat | reviewed outline | No additional gate | kb | abc | legacy; app numeric choices |
-| press | reviewed outline | No additional gate | kb | abc | legacy; app numeric choices |
-| row | reviewed outline | No additional gate | kb | abc | legacy; app numeric choices |
-| clean | reviewed outline | No additional gate | kb | abc | legacy; app numeric choices |
+| swing | reviewed outline | No additional gate | kb | abc | legacy; optional wave; app numeric choices |
+| squat | reviewed outline | No additional gate | kb | abc | legacy; optional wave; app numeric choices |
+| press | reviewed outline | No additional gate | kb | abc | legacy; optional wave; app numeric choices |
+| row | reviewed outline | No additional gate | kb | abc | legacy; optional wave; app numeric choices |
+| clean | reviewed outline | No additional gate | kb | abc | legacy; optional wave; app numeric choices |
 | carry | app-authored practical guidance; source/video verification pending | No additional gate | kb | abc | legacy; app numeric choices |
-| cast | partial: technique and prerequisites; clearance and breathing need visual verification | No additional gate | club | abc, club | legacy; app numeric choices |
-| circles | reviewed outline | No additional gate | club | abc, club | legacy; app numeric choices |
-| front | app-authored practical guidance; source/video verification pending | No additional gate | club | abc, club | legacy; app numeric choices |
+| cast | partial: technique and prerequisites; clearance and breathing need visual verification | No additional gate | club | abc, club | legacy; optional club; app numeric choices |
+| circles | reviewed outline | No additional gate | club | abc, club | legacy; optional club; app numeric choices |
+| front | app-authored practical guidance; source/video verification pending | No additional gate | club | abc, club | legacy; optional club; app numeric choices |
 | snatch | partial: source-backed staged progression; ballistic timing requires video verification | swing, clean, overhead | kb | snatch | snatch; source example #411 |
 | doublePress | partial: sourced clean and press prerequisites; technique still needs visual verification | rack, doublePress, practice:press, practice:doubleClean | owned matched kettlebell pair, kg per bell | double | grind; source example #366 |
 | doubleSquat | reviewed outline | rack, doubleSquat, practice:singleRackSquat, practice:doubleClean | owned matched kettlebell pair, kg per bell | double | grind; source example #366 |
@@ -95,7 +95,7 @@ Every row: Library → gates → inventory → schedule → prescription → act
 | doubleClubOutside | partial: transcript-reviewed alternating pattern; visual technique and held-club control verification remain incomplete | clubGrip, clubTwoHandFoundation, doubleClubOrder, doubleClubInside, doubleClubOutside, practice:doubleClubInside, practice:clubOutside | owned matched club pair, lb per club | doubleClubAlternating | doubleClub; app numeric choices |
 | kneeSlidingPlank | reviewed outline | kneeSlidingPlank | bodyweight | slidingPlank, abc (conditional) | ground; app numeric choices |
 | hoverSlidingPlank | reviewed outline | kneeSlidingPlank, hoverSlidingPlank, practice:kneeSlidingPlank | bodyweight | slidingPlank | ground; app numeric choices |
-| bodyweightRow | reviewed outline | bodyweightRow | secured row bar + recorded height; bent knees | bodyweightPull, abc (conditional) | bodyweightPractice; app numeric choices |
+| bodyweightRow | reviewed outline | bodyweightRow | secured row bar + recorded height; bent knees | bodyweightPull, abc (conditional) | bodyweightPractice; optional rowWave; app numeric choices |
 | boxStepUp | reviewed outline | boxStepUp | stable platform + recorded height and clear overhead space | stepUpPractice, abc (conditional) | bodyweightPractice; app numeric choices |
 | staticStepUp | reviewed outline | staticStepUp | stable platform + recorded height and clear overhead space | stepUpPractice | bodyweightPractice; app numeric choices |
 | doubleDeadlift | reviewed outline | hingePattern, deadliftTechnique, doubleKbReadiness, doubleDeadlift | owned matched kettlebell pair, kg per bell | doubleHinge | doubleHinge; app numeric choices |
@@ -110,7 +110,7 @@ No remaining instructional-only catalog entries at this checkpoint. Broader sour
 ## Missing research and remaining engineering
 
 - Alternating double-club inside/outside skill practice now has an opt-in automatic block; performance swipes and complete source strength/bodybuilding cycles remain unimplemented. Overhead lessons require visual verification; the #207 naming inconsistency is preserved.
-- Full bodyweight 101 timing release/ordering is context-dependent (#85/#88). The app implements a conservative crawl 30/30 adaptation, not every paid-program format. Supported and knee-hover sliding-plank stages are integrated; fixed-setup bent-knee rows are integrated with secured-bar gates and geometry-aware credit. Unloaded alternating/static step-ups now use stable-platform and recorded-height gates. Loaded stepping, full row 60/80 cycling, straight/elevated-leg branches and broader flows remain incomplete.
+- Full bodyweight 101 timing release/ordering is context-dependent (#85/#88). The app implements a conservative crawl 30/30 adaptation, not every paid-program format. Supported and knee-hover sliding-plank stages are integrated; fixed-setup bent-knee rows are integrated with secured-bar gates and geometry-aware credit. Unloaded alternating/static step-ups now use stable-platform and recorded-height gates. Rows now offer an opt-in 60%/80% profile with a reviewed fixed-height baseline, whole-set volume cap and paired exposure gates. Exact source weekly/retest scheduling, loaded stepping, straight/elevated-leg branches and broader flows remain incomplete.
 - Double deadlift/swing now have an opt-in matched-pair foundation pathway from #142. Hand-to-hand swings now have an opt-in single-bell path with per-hand actual counts. Introductory thumb-back single-arm swings now have a separate opt-in route from #67, with independent bilateral actuals and app-defined doses; soft-style endurance, outside swings and broader paired-kettlebell sequences remain unimplemented. Current app admission gates cover a supported subset, not the whole #186 teaching context.
 - More complex families and exact verified timestamps remain incomplete. Component bookkeeping never grants component progression from a complex log.
 - Choosing too many independent blocks at a low training frequency can repeatedly require re-entry. The engine uses movement-level feedback, retention priority and bounded follow-ups; setup-only zero-load targets no longer stall coordinated work, and qualified descendants can maintain previously earned prerequisite recency. Oversized rotations can still cause re-entry. It does not fabricate eligibility or add catch-up work.

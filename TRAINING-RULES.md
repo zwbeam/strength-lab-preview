@@ -96,3 +96,39 @@ actuals. Forecasts freeze evidence at their starting date, even when displaying
 later opportunities. Empty internal ordering placeholders can turn a provisional
 slot but cannot earn progression, recency, mastery or load advancement. These
 are application data/selection rules, not new transcript prescriptions.
+
+
+## Optional row 60% / 80% volume wave
+
+Source #89 gives an optional baseline-fraction example: 60% and 80% rep targets,
+80% work at two-thirds of the 60% volume, add sets, and optional review after
+4–6 weeks. Its example has two days of each type weekly. Strength Lab adapts
+this to rolling opportunities; it does not prescribe a four-day week or force a
+maximum/retest. The default fixed-dose row profile and its policy keys are unchanged.
+
+The optional rowWave profile takes a user-reviewed clean baseline at a fixed bar
+height. Rep fractions and higher-rep sets are floored to whole numbers; the
+higher-rep target never exceeds two-thirds of the paired lower-rep total reps.
+If one whole higher-rep set will not fit, an explicit too-small lower-rep starting
+set count is rejected with the required minimum. Defaults are 2–4 lower-rep sets
+(3 minimum where needed), 90-second rests and two qualifying exposures on each
+track before jointly moving to the next lower-set stage. Higher-rep whole sets
+may remain constant across a stage because of rounding. These numeric set ranges,
+rests, joint gates and rounding are app choices, not a fully reproduced source week.
+
+Only qualifying work alternates the progression tracks. Failed, incomplete,
+changed-setup or recovery work cannot advance; recovery returns to the lower-rep
+track and clears paired evidence. Setup changes do not count as technique failures.
+Both tracks retain the shared pain, absence, owned-equipment and time-fitting
+rules. Rows remain bodyweight and ordinary reps remain untimed. Higher-rep work
+is not called a heavier external load and grants no pull-up readiness certificate.
+
+Bar-height changes require explicit baseline review before this wave resumes.
+Current actual geometry must still match its immutable prescription to qualify.
+Baseline changes, same-number restarts and re-entering the profile get a separate
+comparison identity, preventing reuse of an obsolete cycle. Profile settings and
+history remain exportable; corrections and undo replay the same original targets.
+At the endpoint, maintenance can alternate without increasing targets, or the user
+can explicitly review/restart. Source frequency/retest timing, straight legs,
+elevated feet, actual grip/angle measurement and physical technique validation
+remain outside the automatic method.

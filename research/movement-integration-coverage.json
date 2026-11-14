@@ -11,6 +11,10 @@
         "abc"
       ],
       "profile": "legacy",
+      "availableProfiles": [
+        "legacy",
+        "wave"
+      ],
       "sourceIds": [
         299
       ],
@@ -28,6 +32,10 @@
         "abc"
       ],
       "profile": "legacy",
+      "availableProfiles": [
+        "legacy",
+        "wave"
+      ],
       "sourceIds": [
         304
       ],
@@ -45,6 +53,10 @@
         "abc"
       ],
       "profile": "legacy",
+      "availableProfiles": [
+        "legacy",
+        "wave"
+      ],
       "sourceIds": [
         292
       ],
@@ -62,6 +74,10 @@
         "abc"
       ],
       "profile": "legacy",
+      "availableProfiles": [
+        "legacy",
+        "wave"
+      ],
       "sourceIds": [
         424
       ],
@@ -79,6 +95,10 @@
         "abc"
       ],
       "profile": "legacy",
+      "availableProfiles": [
+        "legacy",
+        "wave"
+      ],
       "sourceIds": [
         290
       ],
@@ -96,6 +116,9 @@
         "abc"
       ],
       "profile": "legacy",
+      "availableProfiles": [
+        "legacy"
+      ],
       "sourceIds": [],
       "exactParameters": null,
       "operational": true,
@@ -112,6 +135,10 @@
         "club"
       ],
       "profile": "legacy",
+      "availableProfiles": [
+        "legacy",
+        "club"
+      ],
       "sourceIds": [
         214,
         222,
@@ -132,6 +159,10 @@
         "club"
       ],
       "profile": "legacy",
+      "availableProfiles": [
+        "legacy",
+        "club"
+      ],
       "sourceIds": [
         237,
         238
@@ -151,6 +182,10 @@
         "club"
       ],
       "profile": "legacy",
+      "availableProfiles": [
+        "legacy",
+        "club"
+      ],
       "sourceIds": [],
       "exactParameters": null,
       "operational": true,
@@ -170,6 +205,9 @@
         "snatch"
       ],
       "profile": "snatch",
+      "availableProfiles": [
+        "snatch"
+      ],
       "sourceIds": [
         413
       ],
@@ -192,6 +230,9 @@
         "double"
       ],
       "profile": "grind",
+      "availableProfiles": [
+        "grind"
+      ],
       "sourceIds": [
         152,
         365,
@@ -216,6 +257,9 @@
         "double"
       ],
       "profile": "grind",
+      "availableProfiles": [
+        "grind"
+      ],
       "sourceIds": [
         186
       ],
@@ -236,6 +280,9 @@
         "abc (conditional)"
       ],
       "profile": "legacy",
+      "availableProfiles": [
+        "legacy"
+      ],
       "sourceIds": [
         295
       ],
@@ -257,6 +304,9 @@
         "abc (conditional)"
       ],
       "profile": "legacy",
+      "availableProfiles": [
+        "legacy"
+      ],
       "sourceIds": [
         295,
         305,
@@ -279,6 +329,9 @@
         "abc (conditional)"
       ],
       "profile": "legacy",
+      "availableProfiles": [
+        "legacy"
+      ],
       "sourceIds": [
         335
       ],
@@ -303,6 +356,9 @@
         "getup"
       ],
       "profile": "getup",
+      "availableProfiles": [
+        "getup"
+      ],
       "sourceIds": [
         423,
         604
@@ -325,6 +381,9 @@
         "singleClub"
       ],
       "profile": "singleClub",
+      "availableProfiles": [
+        "singleClub"
+      ],
       "sourceIds": [
         275
       ],
@@ -346,6 +405,9 @@
         "singleClub"
       ],
       "profile": "singleClub",
+      "availableProfiles": [
+        "singleClub"
+      ],
       "sourceIds": [
         648
       ],
@@ -367,6 +429,9 @@
         "singleClub"
       ],
       "profile": "singleClub",
+      "availableProfiles": [
+        "singleClub"
+      ],
       "sourceIds": [
         543
       ],
@@ -386,6 +451,9 @@
         "getupPractice"
       ],
       "profile": "getupDrill",
+      "availableProfiles": [
+        "getupDrill"
+      ],
       "sourceIds": [
         422
       ],
@@ -407,6 +475,9 @@
         "getupPractice"
       ],
       "profile": "getupDrill",
+      "availableProfiles": [
+        "getupDrill"
+      ],
       "sourceIds": [
         298
       ],
@@ -429,6 +500,9 @@
         "getupPractice"
       ],
       "profile": "getupDrill",
+      "availableProfiles": [
+        "getupDrill"
+      ],
       "sourceIds": [
         372
       ],
@@ -452,6 +526,9 @@
         "getupPractice"
       ],
       "profile": "getupDrill",
+      "availableProfiles": [
+        "getupDrill"
+      ],
       "sourceIds": [
         324
       ],
@@ -480,6 +557,9 @@
         "clubIntermediate"
       ],
       "profile": "clubIntermediate",
+      "availableProfiles": [
+        "clubIntermediate"
+      ],
       "sourceIds": [
         260
       ],
@@ -508,6 +588,9 @@
         "clubIntermediate"
       ],
       "profile": "clubIntermediate",
+      "availableProfiles": [
+        "clubIntermediate"
+      ],
       "sourceIds": [
         265
       ],
@@ -533,6 +616,9 @@
         "clubIntermediate"
       ],
       "profile": "clubIntermediate",
+      "availableProfiles": [
+        "clubIntermediate"
+      ],
       "sourceIds": [
         269
       ],
@@ -558,6 +644,9 @@
         "clubIntermediate"
       ],
       "profile": "clubIntermediate",
+      "availableProfiles": [
+        "clubIntermediate"
+      ],
       "sourceIds": [
         269
       ],
@@ -583,6 +672,9 @@
         "clubIntermediate"
       ],
       "profile": "clubIntermediate",
+      "availableProfiles": [
+        "clubIntermediate"
+      ],
       "sourceIds": [
         624
       ],
@@ -602,6 +694,9 @@
         "hingePractice"
       ],
       "profile": "hingePractice",
+      "availableProfiles": [
+        "hingePractice"
+      ],
       "sourceIds": [
         704
       ],
@@ -622,6 +717,9 @@
         "abc (conditional)"
       ],
       "profile": "pushup",
+      "availableProfiles": [
+        "pushup"
+      ],
       "sourceIds": [
         609
       ],
@@ -643,6 +741,9 @@
         "abc (conditional)"
       ],
       "profile": "ground",
+      "availableProfiles": [
+        "ground"
+      ],
       "sourceIds": [
         84
       ],
@@ -666,6 +767,9 @@
         "abc (conditional)"
       ],
       "profile": "ground",
+      "availableProfiles": [
+        "ground"
+      ],
       "sourceIds": [
         98
       ],
@@ -687,6 +791,9 @@
         "abc (conditional)"
       ],
       "profile": "ground",
+      "availableProfiles": [
+        "ground"
+      ],
       "sourceIds": [
         100
       ],
@@ -708,6 +815,9 @@
         "hingePathway"
       ],
       "profile": "deadliftPractice",
+      "availableProfiles": [
+        "deadliftPractice"
+      ],
       "sourceIds": [
         704
       ],
@@ -729,6 +839,9 @@
         "abc (conditional)"
       ],
       "profile": "ground",
+      "availableProfiles": [
+        "ground"
+      ],
       "sourceIds": [
         91
       ],
@@ -750,6 +863,9 @@
         "abc (conditional)"
       ],
       "profile": "ground",
+      "availableProfiles": [
+        "ground"
+      ],
       "sourceIds": [
         93
       ],
@@ -771,6 +887,9 @@
         "doubleCleanPractice"
       ],
       "profile": "legacy",
+      "availableProfiles": [
+        "legacy"
+      ],
       "sourceIds": [
         365
       ],
@@ -792,6 +911,9 @@
         "rackSquatPractice"
       ],
       "profile": "legacy",
+      "availableProfiles": [
+        "legacy"
+      ],
       "sourceIds": [
         305
       ],
@@ -817,6 +939,9 @@
         "abc (conditional)"
       ],
       "profile": "doubleClub",
+      "availableProfiles": [
+        "doubleClub"
+      ],
       "sourceIds": [
         206
       ],
@@ -842,6 +967,9 @@
         "abc (conditional)"
       ],
       "profile": "doubleClub",
+      "availableProfiles": [
+        "doubleClub"
+      ],
       "sourceIds": [
         205
       ],
@@ -866,6 +994,9 @@
         "abc (conditional)"
       ],
       "profile": "doubleClub",
+      "availableProfiles": [
+        "doubleClub"
+      ],
       "sourceIds": [
         207,
         206,
@@ -888,6 +1019,9 @@
         "abc (conditional)"
       ],
       "profile": "crawl",
+      "availableProfiles": [
+        "crawl"
+      ],
       "sourceIds": [
         87,
         88,
@@ -912,6 +1046,9 @@
         "abc (conditional)"
       ],
       "profile": "crawl",
+      "availableProfiles": [
+        "crawl"
+      ],
       "sourceIds": [
         82,
         88,
@@ -939,6 +1076,9 @@
         "doubleClubAlternating"
       ],
       "profile": "doubleClub",
+      "availableProfiles": [
+        "doubleClub"
+      ],
       "sourceIds": [
         147
       ],
@@ -964,6 +1104,9 @@
         "doubleClubAlternating"
       ],
       "profile": "doubleClub",
+      "availableProfiles": [
+        "doubleClub"
+      ],
       "sourceIds": [
         151
       ],
@@ -984,6 +1127,9 @@
         "abc (conditional)"
       ],
       "profile": "ground",
+      "availableProfiles": [
+        "ground"
+      ],
       "sourceIds": [
         86
       ],
@@ -1005,6 +1151,9 @@
         "slidingPlank"
       ],
       "profile": "ground",
+      "availableProfiles": [
+        "ground"
+      ],
       "sourceIds": [
         94,
         86
@@ -1026,6 +1175,10 @@
         "abc (conditional)"
       ],
       "profile": "bodyweightPractice",
+      "availableProfiles": [
+        "bodyweightPractice",
+        "rowWave"
+      ],
       "sourceIds": [
         89
       ],
@@ -1046,6 +1199,9 @@
         "abc (conditional)"
       ],
       "profile": "bodyweightPractice",
+      "availableProfiles": [
+        "bodyweightPractice"
+      ],
       "sourceIds": [
         97
       ],
@@ -1065,6 +1221,9 @@
         "stepUpPractice"
       ],
       "profile": "bodyweightPractice",
+      "availableProfiles": [
+        "bodyweightPractice"
+      ],
       "sourceIds": [
         97
       ],
@@ -1087,6 +1246,9 @@
         "doubleHinge"
       ],
       "profile": "doubleHinge",
+      "availableProfiles": [
+        "doubleHinge"
+      ],
       "sourceIds": [
         142
       ],
@@ -1110,6 +1272,9 @@
         "doubleHinge"
       ],
       "profile": "doubleHinge",
+      "availableProfiles": [
+        "doubleHinge"
+      ],
       "sourceIds": [
         142
       ],
@@ -1131,6 +1296,9 @@
         "handChangePractice"
       ],
       "profile": "swingSkill",
+      "availableProfiles": [
+        "swingSkill"
+      ],
       "sourceIds": [
         185
       ],
@@ -1152,6 +1320,9 @@
         "singleArmSwingPractice"
       ],
       "profile": "swingSkill",
+      "availableProfiles": [
+        "swingSkill"
+      ],
       "sourceIds": [
         67,
         446

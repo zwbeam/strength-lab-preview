@@ -98,8 +98,10 @@ Secured-bar bent-knee horizontal rows now have an opt-in block and eligible ABC
 support. Bar availability, configured height and explicit skill confirmation are
 required. Actual geometry changes receive no progression credit; changing the
 configured height starts a separate comparison cycle. Source #89 supplies technique
-and qualifications, while the conservative dose is an app default. Full source
-60/80 programming and straight/elevated-leg variants remain unimplemented.
+and qualifications, while the conservative dose is an app default. An optional 60%/80%
+row profile now implements the rep/volume relationship with app-defined paired
+gates. Exact weekly/retest scheduling and straight/elevated-leg variants remain
+unimplemented.
 
 Unloaded step-up foundations now support alternating-lead and static-foot patterns
 from source #97. Stable platform/overhead-clearance confirmation, recorded height
@@ -161,3 +163,16 @@ Known unresolved pain remains a hold regardless of its recorded date. Calendar
 forecasts freeze physical evidence at the date of the forecast and add only
 empty ordering placeholders. Current equipment/configuration choices still
 apply; this is not a reconstruction of old user settings.
+
+
+Row volume-wave checkpoint: the existing bent-knee row now offers an opt-in
+rowWave profile alongside the unchanged fixed-dose default. Source #89 supplies
+60%/80% rep fractions and a two-thirds volume relationship. Integer rep/set
+rounding, 90-second rests, rolling alternation and paired exposure gates are app
+choices. A reviewed baseline is tied to the configured bar height; height changes
+require explicit review. Both tracks must qualify before the next set stage.
+A same-number baseline restart, baseline change or return to this profile creates
+a fresh comparison identity and preserves all old records. No maximum test,
+automatic height increase or fixed four-day week is required. Coverage remains
+54 movements / 38 reviewed outlines / 16 partial lessons; optional profiles now
+appear in the reproducible audits.

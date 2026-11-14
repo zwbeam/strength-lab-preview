@@ -1,0 +1,37 @@
+{
+  "source": {
+    "id": 89,
+    "title": "Bodyweight Bar Horizontal rows.  a pull up regression",
+    "url": "https://www.youtube.com/watch?v=116pizAOTH0",
+    "sha256": "8b3f1b37bf0af9f81fcbdd1e377c791e036b73a08652b7c6a3062fa76868038b",
+    "timestamps": null
+  },
+  "sourceFacts": [
+    "Choose doable rep counts at 60% and 80% of a reviewed baseline.",
+    "The 80% day uses two-thirds of the 60% day volume; add sets at fixed geometry.",
+    "The source gives two days of each type per week and optional 4–6-week maximum retest as an example."
+  ],
+  "appDecisions": [
+    "Optional profile for the existing bent-knee row; the default fixed-dose profile and its history identity are unchanged.",
+    "A conservative self-reviewed clean baseline (5–200) instead of requiring a maximum test; 0 leaves the optional method inactive.",
+    "Floor both rep fractions and higher-rep whole-set volume; reject an explicit lower-rep starting set count that cannot fit even one higher-rep whole set.",
+    "Default 2–4 lower-rep sets (3 minimum when rounding requires it), 90-second rests, alternating qualifying tracks and two clean exposures of each before jointly increasing stage. All are app defaults.",
+    "Incomplete, changed-setup, painful, failed or reduced work cannot progress the wave. Recovery resets paired evidence and returns to lower-rep practice.",
+    "Endpoint maintenance alternates without increasing targets; explicit baseline review/restart creates a separate policy identity, including same-number restarts."
+  ],
+  "limits": [
+    "No forced four-day training week, daily maximum, timed automatic retest or guarantee of pull-up readiness.",
+    "Grip, foot placement and apparatus safety remain self-confirmed; changing height starts a separate comparison cycle.",
+    "Straight-leg, elevated-feet and automatic geometry progression remain unimplemented."
+  ],
+  "quotes": [
+    {
+      "sourceId": 89,
+      "quote": "the 80% should be 2/3 of the volume of the 60% day"
+    },
+    {
+      "sourceId": 89,
+      "quote": "after four to 6 weeks you could retest your Max"
+    }
+  ]
+}

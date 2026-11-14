@@ -12,10 +12,10 @@ retention. Inspect the actual latest GitHub commit and checks before continuing.
 Do not assume a later checkpoint passed just because this file exists.
 
 Run all non-browser tests/*.js, the history-corrections.test.cjs suite, and the
-eleven browser suites: browser-smoke.js, browser-curriculum.cjs,
+twelve browser suites: browser-smoke.js, browser-curriculum.cjs,
 browser-integration.cjs, browser-continuity.cjs, browser-foundations.cjs,
 browser-step-ups.cjs, browser-double-hinge.cjs, browser-hand-changes.cjs
-browser-single-arm-swing.cjs, browser-dated-evidence.cjs and browser-demo-history.js (generate its synthetic backup
+browser-single-arm-swing.cjs, browser-dated-evidence.cjs, browser-row-wave.cjs and browser-demo-history.js (generate its synthetic backup
 first). Serve at 127.0.0.1:8765. Installed Chromium may be selected locally with
 PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium. Actions uses its own bundle.
 Run scripts/audit-curriculum.cjs and scripts/audit-integration.cjs; generated
@@ -110,3 +110,20 @@ Learn status also uses dated records: future-only practice cannot label a moveme
 Currently practicing. Explicit Learned self-confirmation remains a separate user
 choice. Preserve this distinction and the rc43 worker/query update when refining
 eligibility or rendering history. No stored records are removed by the date scope.
+
+
+Row 60%/80% programming is now optional on the existing bodyweightRow. Read
+research/row-wave-evidence.json and the full #89 transcript before changing it.
+The source fractions and two-thirds volume relationship are distinct from app
+rounding, set/rest ranges, joint exposure gates, rolling timing and baseline review.
+Keep the unchanged fixed-dose profile available and preserve its original key.
+Do not rename higher-rep work as a heavier external load. Review at a new bar
+height explicitly; do not silently reuse a baseline from different geometry.
+Profile return / changed baseline / same-number restart identities must not reuse
+old cycle credit. Maintain the date/evidenceThrough boundary in replayRowWave.
+Tests cover all 196 supported baseline values, two generated three-year histories
+and complete touch cycles, corrections, offline drafts and explicit review.
+Broader pulling geometry, exact source weekly/retest scheduling, other bodyweight
+and paired numeric systems remain separate work. No full lifetime integration or
+new source-review completion count is claimed. Run all 45 Node JS suites, the six
+correction CJS tests, all twelve browser suites, demo generation and both audits.

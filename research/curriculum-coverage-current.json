@@ -19,6 +19,10 @@
       "category": "kb",
       "automatic": true,
       "profile": "legacy",
+      "availableProfiles": [
+        "legacy",
+        "wave"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         299
@@ -42,6 +46,10 @@
       "category": "kb",
       "automatic": true,
       "profile": "legacy",
+      "availableProfiles": [
+        "legacy",
+        "wave"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         304
@@ -65,6 +73,10 @@
       "category": "kb",
       "automatic": true,
       "profile": "legacy",
+      "availableProfiles": [
+        "legacy",
+        "wave"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         292
@@ -88,6 +100,10 @@
       "category": "kb",
       "automatic": true,
       "profile": "legacy",
+      "availableProfiles": [
+        "legacy",
+        "wave"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         424
@@ -111,6 +127,10 @@
       "category": "kb",
       "automatic": true,
       "profile": "legacy",
+      "availableProfiles": [
+        "legacy",
+        "wave"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         290
@@ -134,6 +154,9 @@
       "category": "kb",
       "automatic": true,
       "profile": "legacy",
+      "availableProfiles": [
+        "legacy"
+      ],
       "coverage": "app-authored practical guidance; source/video verification pending",
       "sourceIds": [],
       "skillPrerequisites": [],
@@ -155,6 +178,10 @@
       "category": "club",
       "automatic": true,
       "profile": "legacy",
+      "availableProfiles": [
+        "legacy",
+        "club"
+      ],
       "coverage": "partial: technique and prerequisites; clearance and breathing need visual verification",
       "sourceIds": [
         214,
@@ -180,6 +207,10 @@
       "category": "club",
       "automatic": true,
       "profile": "legacy",
+      "availableProfiles": [
+        "legacy",
+        "club"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         237,
@@ -204,6 +235,10 @@
       "category": "club",
       "automatic": true,
       "profile": "legacy",
+      "availableProfiles": [
+        "legacy",
+        "club"
+      ],
       "coverage": "app-authored practical guidance; source/video verification pending",
       "sourceIds": [],
       "skillPrerequisites": [],
@@ -225,6 +260,9 @@
       "category": "kb",
       "automatic": true,
       "profile": "snatch",
+      "availableProfiles": [
+        "snatch"
+      ],
       "coverage": "partial: source-backed staged progression; ballistic timing requires video verification",
       "sourceIds": [
         413
@@ -253,6 +291,9 @@
       "category": "double-kb",
       "automatic": true,
       "profile": "grind",
+      "availableProfiles": [
+        "grind"
+      ],
       "coverage": "partial: sourced clean and press prerequisites; technique still needs visual verification",
       "sourceIds": [
         152,
@@ -285,6 +326,9 @@
       "category": "double-kb",
       "automatic": true,
       "profile": "grind",
+      "availableProfiles": [
+        "grind"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         186
@@ -315,6 +359,9 @@
       "category": "complex",
       "automatic": true,
       "profile": "legacy",
+      "availableProfiles": [
+        "legacy"
+      ],
       "coverage": "partial: combined technique outline; dose/rest are app defaults and visual review remains necessary",
       "sourceIds": [
         295
@@ -346,6 +393,9 @@
       "category": "complex",
       "automatic": true,
       "profile": "legacy",
+      "availableProfiles": [
+        "legacy"
+      ],
       "coverage": "partial: source-reviewed components; single-bell combination remains an app arrangement and transitions need visual verification",
       "sourceIds": [
         295,
@@ -383,6 +433,9 @@
       "category": "complex",
       "automatic": true,
       "profile": "legacy",
+      "availableProfiles": [
+        "legacy"
+      ],
       "coverage": "partial: full sequence described in transcript; clearance and transitions need visual confirmation",
       "sourceIds": [
         335
@@ -415,6 +468,9 @@
       "category": "kb",
       "automatic": true,
       "profile": "getup",
+      "availableProfiles": [
+        "getup"
+      ],
       "coverage": "partial: source-backed primer; full transitions still require video review",
       "sourceIds": [
         423,
@@ -447,6 +503,9 @@
       "category": "club",
       "automatic": true,
       "profile": "singleClub",
+      "availableProfiles": [
+        "singleClub"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         275
@@ -475,6 +534,9 @@
       "category": "club",
       "automatic": true,
       "profile": "singleClub",
+      "availableProfiles": [
+        "singleClub"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         648
@@ -503,6 +565,9 @@
       "category": "club",
       "automatic": true,
       "profile": "singleClub",
+      "availableProfiles": [
+        "singleClub"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         543
@@ -531,6 +596,9 @@
       "category": "kb",
       "automatic": true,
       "profile": "getupDrill",
+      "availableProfiles": [
+        "getupDrill"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         422
@@ -556,6 +624,9 @@
       "category": "kb",
       "automatic": true,
       "profile": "getupDrill",
+      "availableProfiles": [
+        "getupDrill"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         298
@@ -584,6 +655,9 @@
       "category": "kb",
       "automatic": true,
       "profile": "getupDrill",
+      "availableProfiles": [
+        "getupDrill"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         372
@@ -613,6 +687,9 @@
       "category": "kb",
       "automatic": true,
       "profile": "getupDrill",
+      "availableProfiles": [
+        "getupDrill"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         324
@@ -643,6 +720,9 @@
       "category": "club",
       "automatic": true,
       "profile": "clubIntermediate",
+      "availableProfiles": [
+        "clubIntermediate"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         260
@@ -680,6 +760,9 @@
       "category": "club",
       "automatic": true,
       "profile": "clubIntermediate",
+      "availableProfiles": [
+        "clubIntermediate"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         265
@@ -717,6 +800,9 @@
       "category": "club",
       "automatic": true,
       "profile": "clubIntermediate",
+      "availableProfiles": [
+        "clubIntermediate"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         269
@@ -751,6 +837,9 @@
       "category": "club",
       "automatic": true,
       "profile": "clubIntermediate",
+      "availableProfiles": [
+        "clubIntermediate"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         269
@@ -785,6 +874,9 @@
       "category": "club",
       "automatic": true,
       "profile": "clubIntermediate",
+      "availableProfiles": [
+        "clubIntermediate"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         624
@@ -819,6 +911,9 @@
       "category": "bodyweight",
       "automatic": true,
       "profile": "hingePractice",
+      "availableProfiles": [
+        "hingePractice"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         704
@@ -844,6 +939,9 @@
       "category": "bodyweight",
       "automatic": true,
       "profile": "pushup",
+      "availableProfiles": [
+        "pushup"
+      ],
       "coverage": "partial: sourced EMOM volume progression; detailed hand placement and regressions unverified",
       "sourceIds": [
         609
@@ -869,6 +967,9 @@
       "category": "bodyweight",
       "automatic": true,
       "profile": "ground",
+      "availableProfiles": [
+        "ground"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         84
@@ -894,6 +995,9 @@
       "category": "bodyweight",
       "automatic": true,
       "profile": "ground",
+      "availableProfiles": [
+        "ground"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         98
@@ -923,6 +1027,9 @@
       "category": "bodyweight",
       "automatic": true,
       "profile": "ground",
+      "availableProfiles": [
+        "ground"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         100
@@ -949,6 +1056,9 @@
       "category": "kb",
       "automatic": true,
       "profile": "deadliftPractice",
+      "availableProfiles": [
+        "deadliftPractice"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         704
@@ -977,6 +1087,9 @@
       "category": "bodyweight",
       "automatic": true,
       "profile": "ground",
+      "availableProfiles": [
+        "ground"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         91
@@ -1002,6 +1115,9 @@
       "category": "bodyweight",
       "automatic": true,
       "profile": "ground",
+      "availableProfiles": [
+        "ground"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         93
@@ -1027,6 +1143,9 @@
       "category": "double-kb",
       "automatic": true,
       "profile": "legacy",
+      "availableProfiles": [
+        "legacy"
+      ],
       "coverage": "partial: hard-style transcript outline; paired clearance and catch still require visual verification",
       "sourceIds": [
         365
@@ -1055,6 +1174,9 @@
       "category": "kb",
       "automatic": true,
       "profile": "legacy",
+      "availableProfiles": [
+        "legacy"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         305
@@ -1083,6 +1205,9 @@
       "category": "double-club",
       "automatic": true,
       "profile": "doubleClub",
+      "availableProfiles": [
+        "doubleClub"
+      ],
       "coverage": "partial: source-reviewed foundation; visual technique and individual setup verification remain incomplete",
       "sourceIds": [
         206
@@ -1114,6 +1239,9 @@
       "category": "double-club",
       "automatic": true,
       "profile": "doubleClub",
+      "availableProfiles": [
+        "doubleClub"
+      ],
       "coverage": "partial: transcript-reviewed outline; overhead clearance and technique require visual review",
       "sourceIds": [
         205
@@ -1145,6 +1273,9 @@
       "category": "double-club",
       "automatic": true,
       "profile": "doubleClub",
+      "availableProfiles": [
+        "doubleClub"
+      ],
       "coverage": "partial: transcript-reviewed four-count version; performance version and visual technique validation remain incomplete",
       "sourceIds": [
         207,
@@ -1182,6 +1313,9 @@
       "category": "bodyweight",
       "automatic": true,
       "profile": "crawl",
+      "availableProfiles": [
+        "crawl"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         87,
@@ -1211,6 +1345,9 @@
       "category": "bodyweight",
       "automatic": true,
       "profile": "crawl",
+      "availableProfiles": [
+        "crawl"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         82,
@@ -1244,6 +1381,9 @@
       "category": "double-club",
       "automatic": true,
       "profile": "doubleClub",
+      "availableProfiles": [
+        "doubleClub"
+      ],
       "coverage": "partial: transcript-reviewed alternating pattern; visual technique and held-club control verification remain incomplete",
       "sourceIds": [
         147
@@ -1276,6 +1416,9 @@
       "category": "double-club",
       "automatic": true,
       "profile": "doubleClub",
+      "availableProfiles": [
+        "doubleClub"
+      ],
       "coverage": "partial: transcript-reviewed alternating pattern; visual technique and held-club control verification remain incomplete",
       "sourceIds": [
         151
@@ -1309,6 +1452,9 @@
       "category": "bodyweight",
       "automatic": true,
       "profile": "ground",
+      "availableProfiles": [
+        "ground"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         86
@@ -1334,6 +1480,9 @@
       "category": "bodyweight",
       "automatic": true,
       "profile": "ground",
+      "availableProfiles": [
+        "ground"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         94,
@@ -1364,6 +1513,10 @@
       "category": "bodyweight",
       "automatic": true,
       "profile": "bodyweightPractice",
+      "availableProfiles": [
+        "bodyweightPractice",
+        "rowWave"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         89
@@ -1389,6 +1542,9 @@
       "category": "bodyweight",
       "automatic": true,
       "profile": "bodyweightPractice",
+      "availableProfiles": [
+        "bodyweightPractice"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         97
@@ -1414,6 +1570,9 @@
       "category": "bodyweight",
       "automatic": true,
       "profile": "bodyweightPractice",
+      "availableProfiles": [
+        "bodyweightPractice"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         97
@@ -1439,6 +1598,9 @@
       "category": "double-kb",
       "automatic": true,
       "profile": "doubleHinge",
+      "availableProfiles": [
+        "doubleHinge"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         142
@@ -1467,6 +1629,9 @@
       "category": "double-kb",
       "automatic": true,
       "profile": "doubleHinge",
+      "availableProfiles": [
+        "doubleHinge"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         142
@@ -1497,6 +1662,9 @@
       "category": "kb",
       "automatic": true,
       "profile": "swingSkill",
+      "availableProfiles": [
+        "swingSkill"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         185
@@ -1526,6 +1694,9 @@
       "category": "kb",
       "automatic": true,
       "profile": "swingSkill",
+      "availableProfiles": [
+        "swingSkill"
+      ],
       "coverage": "reviewed outline",
       "sourceIds": [
         67,

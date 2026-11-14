@@ -19,15 +19,15 @@ The supplied audit reports 505 master + 214 independent completions. All 214 jou
 
 | ID | Profile | Instruction coverage | Instruction sources |
 |---|---|---|---|
-| swing | legacy | reviewed outline | #299 |
-| squat | legacy | reviewed outline | #304 |
-| press | legacy | reviewed outline | #292 |
-| row | legacy | reviewed outline | #424 |
-| clean | legacy | reviewed outline | #290 |
+| swing | legacy; optional wave | reviewed outline | #299 |
+| squat | legacy; optional wave | reviewed outline | #304 |
+| press | legacy; optional wave | reviewed outline | #292 |
+| row | legacy; optional wave | reviewed outline | #424 |
+| clean | legacy; optional wave | reviewed outline | #290 |
 | carry | legacy | app-authored practical guidance; source/video verification pending | Unmapped |
-| cast | legacy | partial: technique and prerequisites; clearance and breathing need visual verification | #214, #222, #543 |
-| circles | legacy | reviewed outline | #237, #238 |
-| front | legacy | app-authored practical guidance; source/video verification pending | Unmapped |
+| cast | legacy; optional club | partial: technique and prerequisites; clearance and breathing need visual verification | #214, #222, #543 |
+| circles | legacy; optional club | reviewed outline | #237, #238 |
+| front | legacy; optional club | app-authored practical guidance; source/video verification pending | Unmapped |
 | snatch | snatch | partial: source-backed staged progression; ballistic timing requires video verification | #413 |
 | doublePress | grind | partial: sourced clean and press prerequisites; technique still needs visual verification | #152, #365, #368 |
 | doubleSquat | grind | reviewed outline | #186 |
@@ -66,7 +66,7 @@ The supplied audit reports 505 master + 214 independent completions. All 214 jou
 | doubleClubOutside | doubleClub | partial: transcript-reviewed alternating pattern; visual technique and held-club control verification remain incomplete | #151 |
 | kneeSlidingPlank | ground | reviewed outline | #86 |
 | hoverSlidingPlank | ground | reviewed outline | #94, #86 |
-| bodyweightRow | bodyweightPractice | reviewed outline | #89 |
+| bodyweightRow | bodyweightPractice; optional rowWave | reviewed outline | #89 |
 | boxStepUp | bodyweightPractice | reviewed outline | #97 |
 | staticStepUp | bodyweightPractice | reviewed outline | #97 |
 | doubleDeadlift | doubleHinge | reviewed outline | #142 |
@@ -86,7 +86,7 @@ These lessons never enter automatic prescriptions. Their source-supported teachi
 
 | System | Current status | Evidence boundary / next verification |
 |---|---|---|
-| Bodyweight lower-body | Implemented opt-in squat/lunge; rack prerequisites stay distinct | #91/#93 reviewed. Crawl 30/30 app adaptation and eligible ABC bodyweight support are implemented from close-reviewed #85/#88/#554; Supported/knee-hover sliding planks and secured-bar bent-knee rows are integrated with explicit skills, setup-aware progression and conservative app doses. Alternating/static-foot unloaded step-ups now use stable-platform and recorded-height gates from #97 teaching, with explicit app doses. Loaded stepping and fuller bodyweight methods remain incomplete. |
+| Bodyweight lower-body | Implemented opt-in squat/lunge; rack prerequisites stay distinct | #91/#93 reviewed. Crawl 30/30 app adaptation and eligible ABC bodyweight support are implemented from close-reviewed #85/#88/#554; Supported/knee-hover sliding planks and secured-bar bent-knee rows are integrated with explicit skills, setup-aware progression and conservative app doses. Alternating/static-foot unloaded step-ups now use stable-platform and recorded-height gates from #97 teaching, with explicit app doses. The opt-in row 60%/80% profile now uses reviewed fixed-setup baselines and whole-set caps; exact source weekly/retest scheduling, loaded stepping and fuller bodyweight methods remain incomplete. |
 | Double kettlebell | Paired deadlift/swing foundations, clean practice plus existing press/squat and complex | #142 paired hinge preparation now uses explicit experience/technique confirmation and app-defined recent practice/dose gates; #365/#305 reviewed here. Hand-to-hand swing practice from #185 is integrated separately with explicit skill confirmation and app-selected per-hand counts. Introductory single-arm swings from #67/#446 now have an independent opt-in practice cycle. Soft-style endurance, outside swing and broader paired alternating/row/lunge pathways remain missing (#183/#347/#71 are leads). |
 | Double club | Swing-clean, pullover and technical-swipe automatic practice; alternating circles in a separate opt-in automatic block | #206 foundation and #147/#151 alternating work reviewed. Pair equipment, component evidence, independent cycles and conservative app doses implemented from #206/#205/#207. Alternating-circle skill practice is now implemented in a separate opt-in block; full performance/hypertrophy systems remain missing. |
 | Complexes | Three programmable combinations; partial technique coverage | Rack squat now distinct. #335 worked examples are contextual. Get-up, snatch/lunge and other combinations are missing (#124/#586/#623 discovery leads). |

@@ -13,7 +13,7 @@
   ],
   "limits": [
     "The app cannot measure body angle, grip spacing, apparatus strength or actual foot placement.",
-    "Full 60/80% cycling, straight-leg automatic prescription and pull-ups remain unimplemented."
+    "An opt-in app adaptation of 60%/80% cycling is now implemented; the exact weekly frequency, forced maximum retest, straight-leg automatic prescription and pull-ups remain outside its scope."
   ],
   "entry": {
     "purpose": "Practice horizontal pulling with bent knees and a stable bar as preparation for more demanding pulling.",
@@ -53,11 +53,19 @@
       {
         "sourceId": 89,
         "quote": "rep count is entirely up to the athlete"
+      },
+      {
+        "sourceId": 89,
+        "quote": "the 80% should be 2/3 of the volume of the 60% day"
+      },
+      {
+        "sourceId": 89,
+        "quote": "after four to 6 weeks you could retest your Max"
       }
     ],
     "qualifications": [
       "The source describes bent-to-straight legs and elevated feet as ways to change demand. Automatic prescriptions currently use bent knees only.",
-      "The source gives an optional maximum-test example followed by 60%/80% days, with the 80% day at two-thirds of the 60% day volume and a 4–6-week retest. That complete scheme is not implemented and no maximum test is requested here.",
+      "The optional row 60%/80% profile uses the source rep fractions and two-thirds volume relationship. Whole-rep/whole-set rounding, a conservative user-reviewed baseline, paired clean-exposure gates, set endpoints, 90-second rests and rolling scheduling are app choices. The source two-days-each weekly example and optional 4–6-week maximum retest are not imposed. No maximum test is requested.",
       "The selected five-rep, two-to-four-set, 90-second-rest practice is an app adaptation, as are setup matching and qualification thresholds.",
       "Bar height and leg position are tracked, but the user must also keep grip, foot placement and range repeatable. The app cannot measure actual body angle or certify apparatus safety."
     ]
