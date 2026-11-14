@@ -197,3 +197,14 @@ remain. Fresh profile/configuration revisions prevent reviving old endpoint
 credit. Coverage remains 54 movements / 38 reviewed outlines / 16 partial lessons;
 this deepens programming rather than adding an exercise or claiming source
 completion. Tests now include 47 Node JS suites and fourteen browser suites.
+
+
+Endpoint-review reliability batch: clean full maintenance can now clear a stuck
+endpoint failure and anchor a later snatch-density transition. Dated load/density
+review respects actual current readiness, absence, pain/skill and equipment gates;
+reduced/incomplete or changed-method work cannot certify a new decision. Zero-set
+recovery no longer erases failures. Earned stages/cycles and written history stay
+intact. Focused verification covers eight profiles, correction/undo, density
+anchors and 430 generated workouts over three years. Runtime cache is rc47;
+regression inventory is 48 Node JS suites, six correction tests and fifteen
+browser suites. No transcript dose or curriculum completion count changed.

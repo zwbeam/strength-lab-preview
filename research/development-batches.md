@@ -818,3 +818,53 @@ remain required after push.
 Final local verification passed all 47 Node JS suites, six correction tests,
 all fourteen browser suites and 295-session demo generation/replay. Source
 audits, syntax, suite registration and 51-asset offline checks passed.
+
+
+## Engine endpoint maintenance and progression-review reliability
+
+Incoming 0c6ad52 preview was clean/current after fetch. Reproduced two background
+errors: an earned swing endpoint still offered a heavier load after a forty-day
+absence, and one hard endpoint maintenance record left fail=1 permanently even
+after later full clean maintenance. Tests also reproduced zero-set recovery
+erasing fail=2 despite no physical work.
+
+Generic replay now evaluates full endpoint maintenance, clears prior difficulty
+and updates lastEligibleKey without advancing another stage or cycle. A density
+choice anchored to later maintenance replays at that event. Existing source
+volume/density tables, source profiles, keys and numeric gates are unchanged.
+Generic and row-wave recovery entries need actual sets before clearing failure.
+
+New advancementReview separates earned completion from a new load/density action.
+Dated/live actions require a currently unreduced eligible endpoint prescription
+and the latest clean full matching method/load/track/target/rest attempt. Reduced,
+incomplete or changed-method work blocks the decision until normal endpoint
+maintenance is recorded. Matching planned clean light work remains neutral.
+Current readiness, absence, pain/skill and inventory checks come from the existing
+prescription engine. Undated audit calls deliberately retain full-history
+compatibility; all live action callers pass today. Rejections are read-only.
+
+The existing overview reports pending review honestly and hides unavailable
+progression actions. No frontend redesign, storage migration, invented source
+prescription or production/main change. Written targets, earned cycles and
+original records remain; corrections/undo retain their established replay role.
+
+Focused tests cover eight loaded profiles, neutral light work, zero-set recovery
+in both replayers, reduced rebuilding, lost inventory/skills, malformed rest,
+future isolation, low readiness, long absence, pain resolution, alternate-method
+return and density maintenance-anchor correction/undo. The three-year actual
+generator history saves 430 workouts, recovers four observed single-failure
+maintenance states and makes fourteen explicit allowed load changes. Phone
+acceptance covers low readiness and absence, real reduced/hard/clean work, density
+selection at the new maintenance anchor, correcting/restoring its actuals and
+an immutable offline density draft at 320/390.
+
+Full inventory is 48 Node JS suites, six correction tests and fifteen browser
+suites. Worker/query revision rc47-endpoint-reviews retains 51 assets. Exact-commit
+CI and DEV verification remain required after push. No increase to the 54-movement,
+38-reviewed/16-partial instructional coverage is claimed.
+
+Final local verification passed all 48 Node JS suites, six correction tests,
+all fifteen browser suites and the 295-session demo replay. Source audits,
+syntax, suite registration and 51-asset offline integrity passed. Initial
+prescriptions for all 54 movements and every default block plan match 0c6ad52;
+the intended changes depend on recorded maintenance/recovery history.

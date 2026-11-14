@@ -182,3 +182,29 @@ The optional profile has its own comparison identity. Returning from another
 profile, or changing then restoring qualification/stall settings, starts a fresh
 revision. Saving unchanged settings preserves progress. All old records, original
 profile targets and current active-draft prescriptions remain intact.
+
+
+## Completed endpoints and progression review
+
+Completing a cycle and authorizing a new load/density decision are distinct.
+A completed endpoint remains earned during absence, reduced work and maintenance.
+Current dated review must pass the same readiness, re-entry, pain/skill and owned
+load checks as an unreduced endpoint prescription. The latest movement attempt
+must match the current policy, load, track, target and rest and be clean/full.
+Reduced, incomplete, changed-target and changed-method work cannot certify a new
+load or density action. Matching performed clean planned-light work is neutral.
+One clean full endpoint maintenance workout restores review eligibility; this
+does not invent another cycle or require repeating all earlier stages. These
+are app reliability rules, not newly sourced numerical prescriptions.
+
+Clean full maintenance clears an old failure count and updates the eligible
+anchor. Density selection from this later anchor must replay correctly; correcting
+that actual work can withdraw the transition and undo can restore it. Reduced
+work with no actual sets cannot clear failures in either generic or row-wave
+replay. Actual performed reduced work may still clear difficulty while remaining
+nonqualifying for advancement.
+
+Every live load/density action passes today's date. Undated helpers retain their
+existing full-history audit behavior for compatibility with historical tools;
+records/state audit reads remain unscoped unless a cutoff is supplied. Current
+review never removes future records or rewrites earlier prescriptions.

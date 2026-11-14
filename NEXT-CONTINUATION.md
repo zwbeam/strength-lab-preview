@@ -12,9 +12,9 @@ retention. Inspect the actual latest GitHub commit and checks before continuing.
 Do not assume a later checkpoint passed just because this file exists.
 
 Run all non-browser tests/*.js, the history-corrections.test.cjs suite, and the
-fourteen browser suites: browser-smoke.js, browser-curriculum.cjs,
+fifteen browser suites: browser-smoke.js, browser-curriculum.cjs,
 browser-integration.cjs, browser-continuity.cjs, browser-foundations.cjs,
-browser-step-ups.cjs, browser-double-hinge.cjs, browser-paired-swing-reps.cjs, browser-hand-changes.cjs
+browser-step-ups.cjs, browser-double-hinge.cjs, browser-paired-swing-reps.cjs, browser-endpoint-reviews.cjs, browser-hand-changes.cjs
 browser-single-arm-swing.cjs, browser-dated-evidence.cjs, browser-row-wave.cjs, browser-settings-sync.cjs and browser-demo-history.js (generate its synthetic backup
 first). Serve at 127.0.0.1:8765. Installed Chromium may be selected locally with
 PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium. Actions uses its own bundle.
@@ -125,8 +125,8 @@ Tests cover all 196 supported baseline values, two generated three-year historie
 and complete touch cycles, corrections, offline drafts and explicit review.
 Broader pulling geometry, exact source weekly/retest scheduling, other bodyweight
 and paired numeric systems remain separate work. No full lifetime integration or
-new source-review completion count is claimed. Run all 47 Node JS suites, the six
-correction CJS tests, all fourteen browser suites, demo generation and both audits.
+new source-review completion count is claimed. Run all 48 Node JS suites, the six
+correction CJS tests, all fifteen browser suites, demo generation and both audits.
 
 
 Explicit user-directed Settings/Train audit supersedes historical temporary-time
@@ -156,3 +156,21 @@ starts a fresh comparison revision; unchanged Save retains credit. Load selectio
 remains explicit after the endpoint. Ordinary reps remain untimed. Reproduce
 with tests/paired-swing-reps.js and tests/browser-paired-swing-reps.cjs; the latter
 supports STRENGTH_LAB_TEST_URL for isolated live DEV acceptance.
+
+
+Endpoint-review reliability: earned endpoint stage/cycle history is retained,
+but dated load/density decisions now use advancementReview. Current readiness,
+absence, pain review, prerequisites and owned-load availability must permit an
+unreduced endpoint prescription. The latest comparable movement attempt must be
+clean full endpoint work; reduced, incomplete, changed-method or changed-target
+work cannot certify a new action. Matching planned clean light work stays neutral.
+Undated review helpers retain full-history audit compatibility; every live app
+action passes today. Do not accidentally scope unqualified audit calls to the
+machine clock or let live calls omit their date.
+
+Clean full endpoint maintenance clears old difficulty and updates lastEligibleKey
+without adding cycles/stages. Density choice must replay from that maintenance
+anchor, including correction/undo. A recovery/rebuild/reentry/deload entry with
+zero actual sets cannot clear failures (generic and row-wave replay). Test through
+tests/endpoint-reviews.js and tests/browser-endpoint-reviews.cjs; the latter
+supports isolated DEV HTTPS acceptance. No source numeric dose was changed.

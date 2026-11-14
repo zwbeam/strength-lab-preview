@@ -111,6 +111,7 @@ jobs:
         run: |
           node tests/training-settings.js
           node tests/paired-swing-reps.js
+          node tests/endpoint-reviews.js
           node tests/row-wave.js
           node tests/dated-evidence.js
           node tests/interval-start.js
@@ -273,6 +274,7 @@ jobs:
           node tests/browser-hand-changes.cjs
           node tests/browser-double-hinge.cjs
           node tests/browser-paired-swing-reps.cjs
+          node tests/browser-endpoint-reviews.cjs
           node tests/browser-step-ups.cjs
           node tests/browser-foundations.cjs
           node tests/browser-continuity.cjs

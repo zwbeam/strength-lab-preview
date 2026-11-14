@@ -231,7 +231,7 @@ function replayRowWave(s,id,policy,opts){
  const shape=()=>track==='higher'?policy.higherStages[stage]:policy.stages[stage];
  for(const x of h){
   if(x.performed&&x.mode==='light'&&x.quality==='clean'&&!x.pain&&!x.setupChanged)continue;
-  if(['reentry','recovery','rebuild','deload'].includes(x.mode)) {counts={lower:0,higher:0};track='lower';if(x.quality==='clean'&&!x.pain)fail=0;continue;}
+  if(['reentry','recovery','rebuild','deload'].includes(x.mode)) {counts={lower:0,higher:0};track='lower';if(x.quality==='clean'&&!x.pain&&x.actualSets>0)fail=0;continue;}
   if(x.setupChanged&&x.quality==='clean'&&!x.pain){counts={lower:0,higher:0};track='lower';continue;}
   const target=shape();
   if(successful(x)&&x.track===track&&x.targetSets===target.sets&&x.targetReps===target.reps&&Math.abs(Number(x.rest)-target.rest)<1){
@@ -250,11 +250,14 @@ function replay(s,id,policy,track='base',opts={}){
   if(!MOVES[id].bodyweight&&Number(x.weight)>0&&Number(x.weight)!==weight){weight=Number(x.weight);stage=0;stagePhase='volume';ready=false;streak=0;fail=0;}
   if(x.pain||x.quality==='pain'){streak=0;fail++;continue;}
   if(x.performed&&x.mode==='light')continue;
-  if(['rebuild','reentry','recovery','deload'].includes(x.mode)){streak=0;if(x.quality==='clean')fail=0;continue;}
+  if(['rebuild','reentry','recovery','deload'].includes(x.mode)){streak=0;if(x.quality==='clean'&&x.actualSets>0)fail=0;continue;}
   if(MOVES[id].station&&x.setupChanged&&x.quality==='clean'&&!x.pain){streak=0;continue;}
   if(x.quality!=='clean'||x.completed===false){streak=0;if(x.actualSets>0||['hard','breakdown'].includes(x.quality))fail++;continue;}
-  if(ready)continue;
   const target=shape();
+  if(ready){
+   if(successful(x)&&x.targetSets===target.sets&&x.targetReps===target.reps&&Math.abs(Number(x.rest)-target.rest)<1){fail=0;lastEligibleKey=x._key;if(stagePhase==='volume'&&policy.density&&s.cycleChoices?.[id]?.at===x._key){stagePhase='density';stage=0;ready=false;streak=0;}}
+   continue;
+  }
   if(successful(x)&&x.targetSets===target.sets&&x.targetReps===target.reps&&Math.abs(Number(x.rest)-target.rest)<1){
    fail=0;streak++;
    if(streak>=policy.exposures){streak=0;lastEligibleKey=x._key;const steps=stagePhase==='density'?policy.density:policy.stages;
@@ -385,16 +388,30 @@ function prescription(s,id,opts={}){
  const station=m.station==='rowBar'?{kind:'rowBar',heightCm:s.equipment?.rowBar?.heightCm??null,legPosition:'bent'}:m.station==='stepPlatform'?{kind:'stepPlatform',heightCm:s.equipment?.stepPlatform?.heightCm??null,stepPattern:m.stepPattern}:undefined;
  return{id,name:m.name,unit:m.unit,...(station?{station,setupDescription:station.kind==='rowBar'?'Bar '+station.heightCm+' cm · bent knees; keep setup constant':'Platform '+station.heightCm+' cm · '+(station.stepPattern==='static'?'static foot':'alternate lead')+'; keep height constant'}:{}),weight,sets,reps,rest,bodyweight:!!m.bodyweight,sequenceDescription:policy.profile==='rowWave'?`${st.track==='higher'?'80% higher-rep / lower-volume':'60% lower-rep'} exposure at the reviewed bar setup. ${st.sets} sets of ${st.reps}; both tracks require ${policy.exposures} clean exposures before the next step.`:m.sequenceDescription||null,provenanceNote:policy.parameterNotes,continuous:policy.continuous,betweenExercises:policy.betweenExercises,durationScope:policy.durationScope,weakSide:policy.weakSide,side:m.side,timed:policy.timed,mode,reason,phase:st.phase,streak:st.streak,cycle:st.cycles,policyKey:policy.key,profile:policy.profile,track:st.track,roundSeconds,secondsPerSet,sourceIds:policy.principleSources,sourceParameters,exposureTarget:policy.exposures};
 }
+// Endpoint completion is retained; a new load/density action needs a usable current review.
+// Undated calls remain full-history audit helpers; live app callers pass today's date.
+function advancementReview(s,id,opts={}){
+ const st=stateFor(s,id,opts);
+ if(st.hold)return{eligible:false,reason:st.hold};
+ if(st.phase!=='ready')return{eligible:false,reason:'Complete a clean cycle and resolve any review first.'};
+ if(st.fail)return{eligible:false,reason:'The cycle remains complete. Record clean full endpoint work after any required rebuilding before progression review.'};
+ if(st.reviewRecovery)return{eligible:false,reason:'Record the reduced return after pain review before considering progression.'};
+ if(opts.now!==undefined||opts.evidenceThrough!==undefined){const rx=prescription(s,id,{...opts,now:opts.now??opts.evidenceThrough});if(rx.sets<1||rx.mode!=='milestone')return{eligible:false,reason:rx.reason};}
+ const sameCycle=x=>(x.policyKey||'legacy-v1')===st.policy.key&&Number(x.weight)===st.weight&&(x.track||'base')===st.track;
+ const last=records(s,id,opts).filter(x=>!(sameCycle(x)&&x.performed&&x.mode==='light'&&x.quality==='clean'&&!x.pain&&!x.setupChanged)).at(-1);
+ if(!last||!sameCycle(last)||!successful(last)||['recovery','reentry','rebuild','deload','time-fit','light'].includes(last.mode)||last.setupChanged||last.targetSets!==st.sets||last.targetReps!==st.reps||!(Math.abs(Number(last.rest)-st.rest)<1))return{eligible:false,reason:'The cycle remains complete. Record clean full endpoint work after reduced, incomplete or changed-target practice before choosing a heavier load or density cycle.'};
+ return{eligible:true,reason:'Current clean endpoint work is eligible for explicit progression review.'};
+}
 function chooseCycle(s,id,choice,opts={}){
  const st=stateFor(s,id,opts);
- if(st.hold||st.fail||st.phase!=='ready')throw Error('Complete a clean cycle and resolve any review first');
+ const review=advancementReview(s,id,opts);if(!review.eligible)throw Error(review.reason);
  if(choice!=='density'||!st.policy.density||st.stagePhase!=='volume')throw Error('This movement has no supported density transition');
  return {...s,cycleChoices:{...s.cycleChoices,[id]:{at:st.lastEligibleKey,type:choice}}};
 }
 function loadOptions(s,id,opts={}){
  const st=stateFor(s,id,opts),m=MOVES[id];
  if(m.bodyweight||st.policy.profile==='wave')return [];
- if(st.hold||st.fail||st.phase!=='ready')return [];
+ if(!advancementReview(s,id,opts).eligible)return [];
  const inventory=m.clubPair?s.equipment?.clubPairs:m.pair?(Array.isArray(s.equipment?.pairs)?s.equipment.pairs:[]):s.equipment?.[m.gear];
  // Progression may only offer equipment the athlete has explicitly configured.
  // Suggested catalog weights belong in setup, never in a live workout progression.
@@ -986,5 +1003,5 @@ function validateBackup(input){
  const workoutDraft=validateDraft(input.workoutDraft,input);
  return JSON.parse(JSON.stringify({...input,workoutDraft,nextWeights:input.nextWeights||{},defaultMinutes:input.defaultMinutes??45,deferredIds:input.deferredIds||[]}));
 }
-return{readinessFor,retestRowWave,trainingEmphasis,validateTrainingEmphasis,emphasisDistribution,mobilityOnlyPlan,COMPLEX_PATHWAYS,complexityOptions,repairMissingLoadAnchor,setInitialLoad,replaceUnavailableLoad,availableWorkingLoads,trainingPaused,activityRecovery,validateActivity,movementCadence,MOVES,SKILLS,DAYS,BLOCKS,LOADS,PROFILE_NAMES,describeProgression,policyFor,availableProfiles,configureMovement,practiceEvidence,supportingMoves,requirementLabel,prerequisites,chooseCycle,loadOptions,selectLoad,retestPushup,validWorkingWeight,validateProgramming,validateDraft,validateBackup,records,successful,stateFor,prescription,minutesFor,timeBudget,plan,completeRecord,nextRest,deferredAfter,resolvePain,movementGap,movementDemands};
+return{advancementReview,readinessFor,retestRowWave,trainingEmphasis,validateTrainingEmphasis,emphasisDistribution,mobilityOnlyPlan,COMPLEX_PATHWAYS,complexityOptions,repairMissingLoadAnchor,setInitialLoad,replaceUnavailableLoad,availableWorkingLoads,trainingPaused,activityRecovery,validateActivity,movementCadence,MOVES,SKILLS,DAYS,BLOCKS,LOADS,PROFILE_NAMES,describeProgression,policyFor,availableProfiles,configureMovement,practiceEvidence,supportingMoves,requirementLabel,prerequisites,chooseCycle,loadOptions,selectLoad,retestPushup,validWorkingWeight,validateProgramming,validateDraft,validateBackup,records,successful,stateFor,prescription,minutesFor,timeBudget,plan,completeRecord,nextRest,deferredAfter,resolvePain,movementGap,movementDemands};
 });
