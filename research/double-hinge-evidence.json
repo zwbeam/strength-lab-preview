@@ -1,0 +1,145 @@
+{
+  "sourceIds": [
+    142
+  ],
+  "source": {
+    "title": "Develop Your Glutes with the Double Kettlebell Swing \u00e2\u20ac\u201d No Barbells Required - Kettlebell 60",
+    "url": "https://www.youtube.com/watch?v=P5IFTJySA_s",
+    "sha256": "e99e4341bf2de191289a8273d0bd28ca3a27b288d85e9204d7fa4969e4dc5960",
+    "timestamps": null
+  },
+  "sourceFacts": [
+    "Double deadlift is the introduction before double swing.",
+    "Substantial single-bell swing, hand-change, clean and press preparation is discussed before paired-bell work.",
+    "Thumbs-back introductory swing, controlled trunk/standing and parking are emphasized."
+  ],
+  "sourceNumericalContext": [
+    {
+      "quote": "you may start with something like six reps but you build up towards sets of 20",
+      "scope": "Worked starting/endurance range, not automatically prescribed."
+    },
+    {
+      "quote": "probably 60% of your clean and pressed weight",
+      "scope": "Approximate per-bell discussion; the nearby example is single 24 kg to double 16 kg. Not a compulsory conversion."
+    },
+    {
+      "quote": "maybe two to three years",
+      "scope": "Experience/preparation context, not a universal timed prerequisite or an app certification threshold."
+    },
+    {
+      "quote": "half K jumps means you are more likely to succeed",
+      "scope": "Equipment-specific small-increment discussion, not a mandatory universal jump."
+    },
+    {
+      "quote": "work your way up to maybe 20 to 24K for the ladies and about 32k for the men",
+      "scope": "Source single-bell preparation example, together with probably at least 10 sets of 20 and maybe 2\u20133 years. Not implemented as gender-specific loads, a universal prerequisite, or a paired-bell dose."
+    },
+    {
+      "quote": "step back 12 to 18 in",
+      "scope": "Demonstration setup context, not a rigid universal stance prescription."
+    },
+    {
+      "quote": "you do them maybe twice a week for the rest of your life",
+      "scope": "Long-term swing practice discussion, not a mandatory frequency applied to every user."
+    }
+  ],
+  "appDecisions": [
+    "Explicit experienced-trainee readiness and separate paired deadlift/swing confirmations.",
+    "Paired deadlift requires explicit hinge/deadlift technique and experienced-trainee readiness. Recent paired deadlift and single swing precede double swing. These configurable exposure windows are app recency gates, not a substitute for broader clean/press/hand-change experience.",
+    "Owned matched pair, explicit per-bell starting load, 2\u20134 sets of 5 with 90-second rest and conservative pace estimates.",
+    "Separate opt-in alternating foundation days and independent progression/load review. Existing double-clean/press/squat histories and admission gates are preserved."
+  ],
+  "limits": [
+    "No automatic source 6-to-20 rep cycle, fixed-year qualification, 60% load assignment or mandatory half-kilo increment.",
+    "Hand-to-hand swing is discussed as preparation but still lacks its own tracked engine pathway; familiarity remains explicitly confirmed.",
+    "Outside swings, broader paired systems and physical/visual technique review remain incomplete."
+  ],
+  "entries": {
+    "doubleDeadlift": {
+      "purpose": "Practice controlled paired-kettlebell lifting as preparation for a familiar double swing.",
+      "setup": [
+        "Review the paired-bell lesson and its substantial single-bell preparation context before beginning. A short app evidence window does not certify this experience.",
+        "Use a manageable familiar matched pair and a stable stance wide enough to clear both bells. Record load per bell; total external load is twice that amount."
+      ],
+      "steps": [
+        "With both bells between the feet, hinge to take a controlled grip.",
+        "Stand fully with the trunk controlled, legs straight and glutes engaged.",
+        "Return the bells with a controlled hinge; practice the vertical lift before adding a ballistic swing."
+      ],
+      "bracing": [
+        "Maintain abdominal and glute engagement rather than arching the lower back or shrugging the shoulders."
+      ],
+      "mistakes": [
+        "Choosing the same per-bell load as a familiar single bell doubles total load; review a lighter familiar pair explicitly.",
+        "Dropping the bells or losing control on set-down: stop and revisit the controlled lift.",
+        "Treating two recent workouts as proof of paired-bell readiness: explicit experience and technique confirmation remain separate."
+      ],
+      "sourceIds": [
+        142
+      ],
+      "videoSourceIds": [
+        142
+      ],
+      "videoRole": "instruction",
+      "coverage": "reviewed outline",
+      "evidence": [
+        {
+          "sourceId": 142,
+          "quote": "we always work on the deadlift before we introduce the swing"
+        },
+        {
+          "sourceId": 142,
+          "quote": "set the bells down in the exact same position as you pick them up"
+        },
+        {
+          "sourceId": 142,
+          "quote": "most people need to go to lighter weights when they go to double bels"
+        }
+      ]
+    },
+    "doubleSwing": {
+      "purpose": "Practice a controlled hip-driven swing with two familiar kettlebells after paired deadlift preparation.",
+      "setup": [
+        "Establish substantial single-bell swing, hand-change, clean and press experience; review the source preparation context and confirm paired technique separately.",
+        "Choose a familiar matched pair, generally lighter per bell than single-bell work, with sufficient stance and swing clearance. Do not calculate a compulsory starting load from the source example.",
+        "Begin with both bells in front and a controlled hinge. Use the thumbs-back version taught for this introduction."
+      ],
+      "steps": [
+        "Hike the bells back and drive through the hips to stand fully with grounded heels.",
+        "Keep the lats engaged and let hip drive move the bells; stop at or below shoulder height while retaining ribcage control.",
+        "Hinge on the return and park both bells under control in the starting position."
+      ],
+      "bracing": [
+        "Keep the abdominal wall engaged, ribs controlled and glutes active at the top. The source demonstrates inhaling at the bottom and exhaling at the top."
+      ],
+      "mistakes": [
+        "Thumbs-up sport technique is not the introductory variant taught here.",
+        "Bent knees at the top, backward arching or rib flare: reduce demand and revisit the standing/hinge pattern.",
+        "Straightening the legs to reach the floor during parking or dropping the bells: use the same controlled return as the start.",
+        "Automatic high-rep or heavy-pair jumps: the source describes long preparation and small equipment-dependent increments, not a universal starting dose."
+      ],
+      "sourceIds": [
+        142
+      ],
+      "videoSourceIds": [
+        142
+      ],
+      "videoRole": "instruction",
+      "coverage": "reviewed outline",
+      "evidence": [
+        {
+          "sourceId": 142,
+          "quote": "we always work on the deadlift before we introduce the swing"
+        },
+        {
+          "sourceId": 142,
+          "quote": "set the bells down in the exact same position as you pick them up"
+        },
+        {
+          "sourceId": 142,
+          "quote": "most people need to go to lighter weights when they go to double bels"
+        }
+      ]
+    }
+  }
+}

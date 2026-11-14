@@ -83,3 +83,13 @@ show platform height; optional actual-setup controls appear only for these movem
 Please test equipment setup, both-side logging, changed-height records and history
 corrections on Android. No major interface redesign is included. The app cannot
 certify apparatus stability, technique or overhead clearance.
+
+
+### Paired-kettlebell hinge review checkpoint
+Advanced Movement Programming offers Double-kettlebell hinge foundations, with
+separate owned starting loads for paired deadlift and swing. Explicit experience
+and technique confirmation is required; paired load is shown in kg per bell.
+The source-linked lessons explain lighter paired preparation and controlled
+set-down. Please test setup, foundation scheduling and modified set logging on
+Android. Existing clean/press/squat admission and all saved data remain intact.
+No major interface redesign is included.

@@ -403,3 +403,55 @@ Remaining: loaded stepping and float variants, fuller row source cycles, broader
 paired-kettlebell systems, oversized-rotation cadence, source/visual gaps and
 physical Android/technique review. Fifty programmable movements now have lessons;
 34 reviewed outlines and 16 partial lessons do not imply complete corpus integration.
+
+
+## Double-kettlebell hinge foundation integration
+
+Incoming eeb21d0 matched origin/preview and passed all GitHub checks. Fully read
+source #142, revisited #186/#365 teaching context and retained outside-swing
+sources as separate research leads rather than treating them as implemented.
+Exact URL, normalized text hash, quote anchors and qualified numerical examples
+are preserved in research/double-hinge-evidence.json and the instructional catalog.
+
+New paired deadlift and double swing entries have practical lessons, explicit
+experience/technique confirmation, matched-pair inventory gates and independent
+owned per-bell load selection, cycle history and load review. The opt-in doubleHinge
+block schedules foundation work before an eligible swing. Recent paired deadlift
+and single swing evidence are app recency gates. Source experience context covers
+much more than two recent workouts; the explicit readiness confirmation remains
+separate, including hand-change/clean/press familiarity. No source years, approximate
+60% load discussion, gender-specific single-bell examples, half-kilo plate increment
+or 6-to-20 rep range is converted into an automatic prescription or mastery test.
+Starting 2–4 sets of 5, 90-second rests, pace estimates and load caps are app defaults.
+
+A source-sequence educational relationship points toward double clean, without
+retroactively changing existing clean/press/squat gates or histories. Outside swings,
+tracked hand changes and full paired numerical systems remain incomplete.
+Eight Books, V33 storage keys, writer locks, history correction and timer behavior
+are preserved. Imported active drafts for the new hinge movements must use their
+configured owned matched load; historical/modified actual work is still retained.
+
+Testing informed the new application decisions before publication: imposing recent
+practice on every single-bell skill repeatedly sent trainees back to preparation.
+The app now separates the broad explicit experience requirement from narrow recent
+paired-deadlift/swing evidence instead of inventing universal deadlines for cleans
+and presses. Realistic mixed fixtures choose working loads and confirm only the
+relevant skills, rather than enabling every advanced movement with unset loads.
+No existing source prescription or admission gate was weakened.
+
+Verification: all 38 Node suites passed, plus six historical-correction CJS tests.
+The new three-year actual-generator history saves 430 workouts, including 101
+paired deadlifts and 65 double swings, with equipment loss, missed days, reduced
+time/readiness, incomplete sets, technique problems and backup replay. Focused
+checks cover pain holds, failed foundation work, independent single/paired credit,
+explicit capped load review, stale prerequisites, correction/undo, malformed draft
+loads and Learn relationship consistency. Touch Chromium at 320/390 passed real
+starting-load selection, explicit readiness, two-exposure preparation, ordinary
+untimed reps, reduced actual work, correction, offline draft and history reload.
+The complete existing browser regression and current-commit GitHub checks remain
+required before reporting the preview as fully verified. Physical Android and
+visual technique confirmation remain outstanding.
+
+Coverage: 52 programmable movements; 36 reviewed outlines and 16 partial lessons.
+The source inventory is still 720 indexed / 719 usable per supplied accounting;
+this is not a claim of complete engine integration or recovered external review.

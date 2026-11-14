@@ -12,9 +12,9 @@ retention. Inspect the actual latest GitHub commit and checks before continuing.
 Do not assume a later checkpoint passed just because this file exists.
 
 Run all non-browser tests/*.js, the history-corrections.test.cjs suite, and the
-seven browser suites: browser-smoke.js, browser-curriculum.cjs,
+eight browser suites: browser-smoke.js, browser-curriculum.cjs,
 browser-integration.cjs, browser-continuity.cjs, browser-foundations.cjs,
-browser-step-ups.cjs and browser-demo-history.js (generate its synthetic backup
+browser-step-ups.cjs, browser-double-hinge.cjs and browser-demo-history.js (generate its synthetic backup
 first). Serve at 127.0.0.1:8765. Installed Chromium may be selected locally with
 PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium. Actions uses its own bundle.
 Run scripts/audit-curriculum.cjs and scripts/audit-integration.cjs; generated
@@ -27,7 +27,8 @@ without changing qualification. Further evaluate oversized mixed schedules;
 alternating double-club inside/outside skill practice now has a separate opt-in
 automatic block. Next priorities are fuller supported numerical cycles and
 foundational bodyweight pathways; pulling, sliding planks and unloaded stepping now have real generator routes. Full #85/#88 timing-series context is not
-implemented. Double swing/outside-swing remain missing from the broader #186
+implemented. Paired deadlift/swing foundations from #142 now have a real opt-in path.
+Outside swing and tracked hand changes remain missing from the broader #186
 teaching sequence. Do not claim complete lifetime curriculum coverage.
 
 Physical Android review is separate from browser emulation. Keep eight Books
@@ -50,4 +51,9 @@ no automatic height/load progression or mandatory ordering between variants is i
 Next: further source-reviewed foundational coverage and coherent mixed schedules;
 broader row variants, full source 60/80 examples, loaded stepping and broader
 paired-kettlebell systems remain separate work.
+The doubleHinge block preserves explicit experience/technique checks, owned matched
+loads and recent paired-deadlift/single-swing evidence. Its app defaults do not
+convert #142 years, 60% load discussion or 6-to-20 reps into universal targets.
+Do not retrofit new gates into existing double-clean/press/squat histories without
+a tested compatibility strategy.
 Do not treat bodyweight as meaning equipment-free for those movements.

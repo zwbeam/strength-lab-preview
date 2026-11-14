@@ -9,9 +9,9 @@ source inventory and equipment matrix are reproducible with
 scheduled or credited. Source #441 is unusable. External review completion is
 retained as accounting evidence, not silently converted into instruction claims.
 
-Current coverage: 50 programmable movements with dedicated lessons and no remaining
+Current coverage: 52 programmable movements with dedicated lessons and no remaining
 instruction-only entries in the current catalog. Uncatalogued source systems
-remain incomplete. Thirty-four outlines are
+remain incomplete. Thirty-six outlines are
 reviewed; sixteen programmable lessons retain source/visual-verification gaps.
 See MOVEMENT-INTEGRATION-COVERAGE.md for every movement's complete-system route,
 prerequisites, equipment, profile and remaining boundaries. Eight Book outlines
@@ -108,3 +108,12 @@ pattern has independent volume credit. Height changes start separate comparison
 cycles; neither height nor external load increases automatically. The two patterns
 are alternatives, not an invented mandatory prerequisite ladder. Dose, rest,
 planning pace and comparison gates are Strength Lab choices.
+
+Double-kettlebell deadlift and swing now have a dedicated opt-in hinge block.
+Source #142 supports paired deadlift before swing, substantial single-bell
+preparation, lighter familiar per-bell loading and controlled parking. Explicit
+experience/technique confirmation remains separate from the app recency gate:
+recent paired deadlifts and single swings precede double swing. Doses, rest,
+planning pace and load caps are app choices. No automatic 60% loading, multi-year
+certification or 6-to-20 rep cycle is inferred. Existing paired clean/press/squat
+paths and histories are unchanged; broader source ordering remains incomplete.

@@ -1071,6 +1071,51 @@
       "exactParameters": null,
       "operational": true,
       "sourceComplete": true
+    },
+    {
+      "id": "doubleDeadlift",
+      "name": "Double kettlebell deadlift",
+      "instruction": "reviewed outline",
+      "prerequisites": [
+        "hingePattern",
+        "deadliftTechnique",
+        "doubleKbReadiness",
+        "doubleDeadlift"
+      ],
+      "equipment": "owned matched kettlebell pair, kg per bell",
+      "blocks": [
+        "doubleHinge"
+      ],
+      "profile": "doubleHinge",
+      "sourceIds": [
+        142
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": true
+    },
+    {
+      "id": "doubleSwing",
+      "name": "Double kettlebell swing",
+      "instruction": "reviewed outline",
+      "prerequisites": [
+        "doubleKbReadiness",
+        "doubleDeadlift",
+        "doubleSwing",
+        "practice:doubleDeadlift",
+        "practice:swing"
+      ],
+      "equipment": "owned matched kettlebell pair, kg per bell",
+      "blocks": [
+        "doubleHinge"
+      ],
+      "profile": "doubleHinge",
+      "sourceIds": [
+        142
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": true
     }
   ],
   "instructionOnly": []

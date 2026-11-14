@@ -1432,6 +1432,64 @@
         "readiness/recovery numeric adjustments",
         "equipment jump cap"
       ]
+    },
+    {
+      "id": "doubleDeadlift",
+      "name": "Double kettlebell deadlift",
+      "category": "double-kb",
+      "automatic": true,
+      "profile": "doubleHinge",
+      "coverage": "reviewed outline",
+      "sourceIds": [
+        142
+      ],
+      "skillPrerequisites": [
+        "hingePattern",
+        "deadliftTechnique",
+        "doubleKbReadiness",
+        "doubleDeadlift"
+      ],
+      "practicePrerequisites": [],
+      "sequence": [],
+      "policySources": [
+        142
+      ],
+      "exactParametersSource": null,
+      "appDefaults": [
+        "exposure gates",
+        "readiness/recovery numeric adjustments",
+        "equipment jump cap"
+      ]
+    },
+    {
+      "id": "doubleSwing",
+      "name": "Double kettlebell swing",
+      "category": "double-kb",
+      "automatic": true,
+      "profile": "doubleHinge",
+      "coverage": "reviewed outline",
+      "sourceIds": [
+        142
+      ],
+      "skillPrerequisites": [
+        "doubleKbReadiness",
+        "doubleDeadlift",
+        "doubleSwing"
+      ],
+      "practicePrerequisites": [
+        "doubleDeadlift",
+        "swing"
+      ],
+      "sequence": [],
+      "policySources": [
+        142
+      ],
+      "exactParametersSource": null,
+      "appDefaults": [
+        "exposure gates",
+        "readiness/recovery numeric adjustments",
+        "equipment jump cap"
+      ]
     }
   ],
   "references": [],
