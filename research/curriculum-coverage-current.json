@@ -1357,6 +1357,31 @@
         "readiness/recovery numeric adjustments",
         "equipment jump cap"
       ]
+    },
+    {
+      "id": "bodyweightRow",
+      "name": "Bent-knee bodyweight bar row",
+      "category": "bodyweight",
+      "automatic": true,
+      "profile": "bodyweightPractice",
+      "coverage": "reviewed outline",
+      "sourceIds": [
+        89
+      ],
+      "skillPrerequisites": [
+        "bodyweightRow"
+      ],
+      "practicePrerequisites": [],
+      "sequence": [],
+      "policySources": [
+        89
+      ],
+      "exactParametersSource": null,
+      "appDefaults": [
+        "exposure gates",
+        "readiness/recovery numeric adjustments",
+        "equipment jump cap"
+      ]
     }
   ],
   "references": [],

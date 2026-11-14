@@ -333,3 +333,22 @@ comparing against old numeric baselines. It now explicitly keeps the new sliding
 skills unconfirmed in that fixed comparison. The original thresholds are intact;
 new skills have their own two-year and actual-browser tests. This mirrors an
 existing user's unchanged confirmations rather than silently opting into additions.
+
+
+## Secured-bar bodyweight row integration
+Reviewed source #89 and preserved exact video/quote/hash evidence in
+research/bodyweight-row-evidence.json. Stable bar, repeatable setup, bent-knee
+foundation and no sag are source-supported; starting 5 reps, 2–4 sets, 90-second
+rest, exposure gates and planning pace are configurable app decisions. The source
+60/80 example is not automatically prescribed, and maximum testing is not requested.
+
+The actual generator now supports an opt-in pulling block and eligible ABC support,
+requiring secured-bar availability, recorded height and explicit skill confirmation.
+Original station setup is immutable; actual geometry changes earn no comparison
+credit or technique penalty. Configured-height changes start independent cycles.
+Backup/draft validation rejects malformed or missing setup without changing keys.
+All 36 Node suites passed, including a two-year 278-workout generated row history.
+Touch browser tests at 320/390 passed equipment setup, modified actual results,
+backup export, historical correction, progression replay and offline reload.
+Remaining: full 60/80 source scheme, straight/elevated-foot progression, platform
+step-ups, physical-device/technique review and broader source integration.

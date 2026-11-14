@@ -64,3 +64,12 @@ Sliding-plank review: the basic and hover variants are available in Learn and
 Advanced Movement Programming. The harder stage needs recent supported practice
 and separate skill confirmation. Inspect the rep/rest prescription and return
 sequence; the timer does not invent a work countdown for these ordinary reps.
+
+
+### Secured-bar row review checkpoint
+Equipment setup now asks whether a secured stable row bar is available and records
+its height. Generated rows show the written setup; only row editors expose optional
+geometry fields. Changed height or straight legs are recorded without earning
+credit against the original bent-knee setup. History correction preserves the
+original prescription and supports undo. Please review on physical Android before
+any further major interface changes; browser touch emulation is not device testing.

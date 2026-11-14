@@ -1,0 +1,65 @@
+{
+  "sourceIds": [
+    89
+  ],
+  "sourceFacts": [
+    "Bar height, leg position and foot elevation change demand.",
+    "Repeatable grip and no sagging hips are emphasized; volume increases sets at fixed demand."
+  ],
+  "appDecisions": [
+    "Secured-bar confirmation and recorded height; 1–250 cm is an input-validation range, not a recommended height.",
+    "Bent-knee automatic practice only; two-to-four sets of five with 90-second rest.",
+    "Changed height starts a separate comparison cycle; changed actual geometry earns no progression credit against the written setup."
+  ],
+  "limits": [
+    "The app cannot measure body angle, grip spacing, apparatus strength or actual foot placement.",
+    "Full 60/80% cycling, straight-leg automatic prescription and pull-ups remain unimplemented."
+  ],
+  "entry": {
+    "purpose": "Practice horizontal pulling with bent knees and a stable bar as preparation for more demanding pulling.",
+    "setup": [
+      "Use a secured, load-appropriate stable bar that cannot roll or move off its support. Record its actual height in Settings; no universal height is prescribed.",
+      "Lie beneath the bar, use consistent wide hand marks and place feet flat with knees bent. Adjust foot placement for a familiar controlled position."
+    ],
+    "steps": [
+      "Engage glutes and abdomen to keep the hips from sagging.",
+      "Pull toward the middle of the chest with controlled movement.",
+      "Lower with control, retaining the chosen bar height, leg position and repeatable foot placement."
+    ],
+    "bracing": [
+      "Keep knee, hip and shoulder alignment controlled, glutes engaged and ribcage controlled. The source does not establish one mandatory breath cadence."
+    ],
+    "mistakes": [
+      "Sagging hips: reduce demand and regain the supported line.",
+      "Comparing different heights or bent/straight-leg work as the same intensity: record setup changes and do not infer progression from rep count alone.",
+      "Using an unsecured or rolling bar: do not begin."
+    ],
+    "sourceIds": [
+      89
+    ],
+    "videoSourceIds": [
+      89
+    ],
+    "coverage": "reviewed outline",
+    "evidence": [
+      {
+        "sourceId": 89,
+        "quote": "the lower the bar the harder it is"
+      },
+      {
+        "sourceId": 89,
+        "quote": "no saggy hips"
+      },
+      {
+        "sourceId": 89,
+        "quote": "rep count is entirely up to the athlete"
+      }
+    ],
+    "qualifications": [
+      "The source describes bent-to-straight legs and elevated feet as ways to change demand. Automatic prescriptions currently use bent knees only.",
+      "The source gives an optional maximum-test example followed by 60%/80% days, with the 80% day at two-thirds of the 60% day volume and a 4–6-week retest. That complete scheme is not implemented and no maximum test is requested here.",
+      "The selected five-rep, two-to-four-set, 90-second-rest practice is an app adaptation, as are setup matching and qualification thresholds.",
+      "Bar height and leg position are tracked, but the user must also keep grip, foot placement and range repeatable. The app cannot measure actual body angle or certify apparatus safety."
+    ]
+  }
+}

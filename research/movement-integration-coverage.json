@@ -1012,6 +1012,26 @@
       "exactParameters": null,
       "operational": true,
       "sourceComplete": true
+    },
+    {
+      "id": "bodyweightRow",
+      "name": "Bent-knee bodyweight bar row",
+      "instruction": "reviewed outline",
+      "prerequisites": [
+        "bodyweightRow"
+      ],
+      "equipment": "secured row bar + recorded height; bent knees",
+      "blocks": [
+        "bodyweightPull",
+        "abc (conditional)"
+      ],
+      "profile": "bodyweightPractice",
+      "sourceIds": [
+        89
+      ],
+      "exactParameters": null,
+      "operational": true,
+      "sourceComplete": true
     }
   ],
   "instructionOnly": []

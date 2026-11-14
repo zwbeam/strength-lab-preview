@@ -41,7 +41,8 @@ reseed preconfigured weights. See tests/initial-load.js and browser-integration.
 
 
 Sources #86/#94 now have supported and knee-hover sliding-plank programming and
-mobile acceptance in browser-foundations.cjs. Next: bodyweight horizontal rows
-(#89), with explicit secured-bar availability and stable geometry tracking before
-any progression credit; then step-ups (#97) with a properly modeled platform.
+mobile acceptance in browser-foundations.cjs. Source #89 bent-knee rows now have secured-bar availability, recorded geometry,
+actual-result credit gates, historical correction and offline browser tests.
+Next: step-ups (#97) with a properly modeled platform; broader row variants and
+the full source 60/80 example remain separate work.
 Do not treat bodyweight as meaning equipment-free for those movements.

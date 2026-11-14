@@ -9,9 +9,9 @@ source inventory and equipment matrix are reproducible with
 scheduled or credited. Source #441 is unusable. External review completion is
 retained as accounting evidence, not silently converted into instruction claims.
 
-Current coverage: 47 programmable movements with dedicated lessons and no remaining
+Current coverage: 48 programmable movements with dedicated lessons and no remaining
 instruction-only entries in the current catalog. Uncatalogued source systems
-remain incomplete. Thirty-one outlines are
+remain incomplete. Thirty-two outlines are
 reviewed; sixteen programmable lessons retain source/visual-verification gaps.
 See MOVEMENT-INTEGRATION-COVERAGE.md for every movement's complete-system route,
 prerequisites, equipment, profile and remaining boundaries. Eight Book outlines
@@ -93,3 +93,10 @@ Sliding-plank foundations: sources #86/#94 support a knee-supported stage and
 outbound knee-hover/knee-down return. Both use explicit skills and recent practice
 before the harder stage. The opt-in block and eligible basic ABC support use
 app rep/set/rest/time estimates; no source numeric dose or mastery is invented.
+
+Secured-bar bent-knee horizontal rows now have an opt-in block and eligible ABC
+support. Bar availability, configured height and explicit skill confirmation are
+required. Actual geometry changes receive no progression credit; changing the
+configured height starts a separate comparison cycle. Source #89 supplies technique
+and qualifications, while the conservative dose is an app default. Full source
+60/80 programming and straight/elevated-leg variants remain unimplemented.

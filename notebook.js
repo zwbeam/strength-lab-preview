@@ -23,13 +23,14 @@ function cycle(s,opts={}){
  return rows.slice(offset);
 }
 function adjusted(s,opts={}){const original=E.plan(s,{minutes:s.defaultMinutes||45,readiness:'normal'}),plan=E.plan(s,{minutes:opts.minutes??s.defaultMinutes??45,readiness:opts.readiness==='low'?'low':'normal'});return{original,plan,adjustments:{normalMinutes:s.defaultMinutes||45,minutes:plan.budget.total,readiness:opts.readiness||'normal',changes:differences(original,plan)}};}
-function newItems(plan){return plan.items.map(rx=>({id:rx.id,sets:Array.from({length:rx.sets},()=>({done:false,reps:rx.reps,weight:rx.weight})),quality:'clean',pain:false}));}
+function newItems(plan){return plan.items.map(rx=>({id:rx.id,sets:Array.from({length:rx.sets},()=>({done:false,reps:rx.reps,weight:rx.weight,...(rx.station?{stationHeightCm:rx.station.heightCm,legPosition:rx.station.legPosition}:{})})),quality:'clean',pain:false}));}
 function finishItems(d,choice){
  if(!['all','partial'].includes(choice))throw Error('Choose how this workout was completed');
  return d.items.map((item,i)=>{const rx=d.plan.items[i],actual=copy(item);actual.sets.forEach(set=>{
   if(set.skipped)set.done=false;
   else if(choice==='all'){set.done=true;if(rx.side===2&&set.bothSides===undefined)set.bothSides=true;if(rx.continuous&&set.continuous===undefined)set.continuous=true;if(rx.roundSeconds&&set.timingValid===undefined)set.timingValid=true;}
   if(set.done&&(!E.validWorkingWeight(rx.id,set.weight)||!Number.isInteger(set.reps)||set.reps<=0))throw Error(`Enter actual load and reps/seconds for ${rx.name}, or mark the set skipped`);
+  if(set.done&&rx.station&&(!Number.isFinite(set.stationHeightCm)||set.stationHeightCm<1||set.stationHeightCm>250||!['bent','straight'].includes(set.legPosition)))throw Error('Record the actual row-bar setup before saving');
   if(set.done&&rx.side===2&&(set.bothSides!==true||!Number.isInteger(set.leftReps)||!Number.isInteger(set.rightReps)||set.leftReps<=0||set.rightReps<=0))throw Error(`Record actual left and right repetitions and confirm both sides for ${rx.name}; the app cannot infer bilateral work`);
  });return actual;});
 }
