@@ -1,0 +1,35 @@
+{
+  "source": {
+    "id": 142,
+    "title": "Develop Your Glutes with the Double Kettlebell Swing \u00e2\u20ac\u201d No Barbells Required - Kettlebell 60",
+    "url": "https://www.youtube.com/watch?v=P5IFTJySA_s",
+    "sha256": "e99e4341bf2de191289a8273d0bd28ca3a27b288d85e9204d7fa4969e4dc5960",
+    "timestamps": null
+  },
+  "sourceFacts": [
+    "Source #142 describes beginning around six reps and building toward sets of twenty.",
+    "Paired deadlift preparation and substantial single-bell experience remain separate requirements."
+  ],
+  "appDecisions": [
+    "Optional existing-doubleSwing profile; default doubleHinge remains unchanged.",
+    "Two fixed sets, two-rep steps from 6 to 20, 90-second rests, four seconds per rep planning estimate and clean-exposure gates are app choices.",
+    "Ordinary repetitions remain untimed; no timer grants work credit.",
+    "Independent comparison identity; returning to this profile after another starts a fresh comparison cycle.",
+    "Endpoint maintains current load until an owned permitted increment is explicitly selected."
+  ],
+  "limits": [
+    "Not a complete source-authored paired-kettlebell program.",
+    "No compulsory 60% load conversion, sex-specific targets, fixed-year qualification or automatic admission to paired work.",
+    "No broader paired clean/press/squat gate changes."
+  ],
+  "quotes": [
+    {
+      "sourceId": 142,
+      "quote": "you may start with something like six reps but you build up towards sets of 20"
+    },
+    {
+      "sourceId": 142,
+      "quote": "we always work on the deadlift before we introduce the swing"
+    }
+  ]
+}

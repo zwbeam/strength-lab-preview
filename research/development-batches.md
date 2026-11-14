@@ -773,3 +773,48 @@ verification are required after push; local checks do not establish remote statu
 Local final verification passed: all 46 Node JS suites, six correction tests,
 all thirteen browser suites and the 295-session demo/history replay. Source
 audits, suite registration, syntax and 51-asset offline integrity also passed.
+
+
+## Engine-first optional paired-swing rep progression
+
+Incoming preview 494211f was clean and current after fetch. The user prioritizes
+engine/background integration and defers frontend redesign. Close-read #142
+again and recorded its exact numerical quote and archived source hash separately
+in paired-swing-reps-evidence.json. #85/#88 timing-system context was also read;
+their full workout series is not reconstructed from missing program sheets.
+
+The existing doubleSwing now offers optional pairedSwingReps: two fixed sets at
+6–20 reps, adding two reps per stage after configurable clean exposures, with
+90-second rests. Only the approximate start/end rep discussion is source-backed;
+sets, intermediate increments, rest, pace and qualification are app choices. This
+is deliberately an optional adaptation rather than a source-complete program.
+The default method and original admission gates are retained. No new movement,
+mandatory load conversion, experience-year certification or frontend redesign.
+
+New-profile comparisons are revisioned. Leaving and returning, or changing then
+restoring exposure/stall settings, cannot reuse obsolete endpoint credit. Saving
+unchanged programming retains progress. Whole actuals, reduced-work noncredit,
+re-entry, matched inventory, explicit load selection, correction/undo, dated
+evidence and immutable draft contracts use the existing engine paths. The
+existing profile selector exposes the method without new setup questions.
+
+Focused unit verification covers all eight stages, different exposure thresholds,
+actual failure/load/rest/recovery cases, endpoint/load reset, original-profile
+isolation, configuration return, date bounds and malformed revisions. Two real
+three-year generator histories save 415 paired-only / 430 mixed workouts with
+140 / 54 paired-swing exposures, both reaching twenty reps, alongside interruptions,
+short sessions, partial work, equipment loss and backup checkpoints. A direct
+comparison to 494211f confirms identical default prescriptions for all 54
+movements and identical plans for every default block. Touch acceptance covers
+actual selection, full cycles, correction, offline draft recovery, unchanged Save
+and profile-return isolation.
+
+Complete regression inventory is 47 Node JS suites, six correction CJS tests and
+fourteen browser suites. Cache/query revision rc46-paired-swing-reps retains the
+51 existing runtime assets. Source audits remain reproducible; no instruction
+coverage-completion increase is claimed. Exact-commit CI and live DEV checks
+remain required after push.
+
+Final local verification passed all 47 Node JS suites, six correction tests,
+all fourteen browser suites and 295-session demo generation/replay. Source
+audits, syntax, suite registration and 51-asset offline checks passed.

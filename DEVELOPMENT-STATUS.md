@@ -187,3 +187,13 @@ excluded equipment while retaining saved priorities/inventory. Custom intervals
 are shared, backed up and mutually exclusive with newly reachable prescribed
 pacing. Active drafts retain their original targets and pacing. See
 SETTINGS-CONTROLS-AUDIT.md for every control category and validation scope.
+
+
+Engine-first paired-swing batch: optional pairedSwingReps now builds 6–20 reps
+at two fixed sets beside the unchanged default foundation method. The endpoints
+come from #142 discussion; intermediate steps, sets, rest and gates are app
+adaptations. Existing qualification, recovery, inventory and explicit load review
+remain. Fresh profile/configuration revisions prevent reviving old endpoint
+credit. Coverage remains 54 movements / 38 reviewed outlines / 16 partial lessons;
+this deepens programming rather than adding an exercise or claiming source
+completion. Tests now include 47 Node JS suites and fourteen browser suites.

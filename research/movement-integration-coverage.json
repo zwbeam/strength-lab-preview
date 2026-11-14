@@ -1273,7 +1273,8 @@
       ],
       "profile": "doubleHinge",
       "availableProfiles": [
-        "doubleHinge"
+        "doubleHinge",
+        "pairedSwingReps"
       ],
       "sourceIds": [
         142

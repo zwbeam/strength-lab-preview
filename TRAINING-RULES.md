@@ -159,3 +159,26 @@ fields are now shared saved preferences. Editing resets custom playback, and
 starting either timer pauses the other. Both remain independent of actual work
 confirmation and advancement. These are application/control rules, not source
 prescriptions or a change to exercise qualification.
+
+
+## Optional paired-swing rep building
+
+The default paired hinge method stays at fixed reps and adds sets. An explicitly
+selected pairedSwingReps profile for doubleSwing uses two fixed sets at 6, 8, 10,
+12, 14, 16, 18 and 20 reps per set. Source #142 discusses starting around six
+and building toward twenty; fixed set count, intermediate steps, 90-second rest,
+four-second-per-rep planning pace and clean-exposure qualification are app choices.
+It is not a complete source-authored paired program.
+
+Actual clean complete exposures advance the rep stage at the current owned
+per-bell load. Incomplete, changed-load, changed-rest, painful, technically failed
+or reduced work cannot advance it. Existing absence/recovery, experience/skill,
+recent paired-deadlift/single-swing and matched-equipment checks remain mandatory.
+Reps are untimed; timer activity never records work.
+
+At twenty reps the app maintains rather than automatically increasing load.
+A permitted owned increment requires explicit review and resets to six reps.
+The optional profile has its own comparison identity. Returning from another
+profile, or changing then restoring qualification/stall settings, starts a fresh
+revision. Saving unchanged settings preserves progress. All old records, original
+profile targets and current active-draft prescriptions remain intact.

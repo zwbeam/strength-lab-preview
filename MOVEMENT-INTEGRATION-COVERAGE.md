@@ -99,7 +99,7 @@ Every row: Library → gates → inventory → schedule → prescription → act
 | boxStepUp | reviewed outline | boxStepUp | stable platform + recorded height and clear overhead space | stepUpPractice, abc (conditional) | bodyweightPractice; app numeric choices |
 | staticStepUp | reviewed outline | staticStepUp | stable platform + recorded height and clear overhead space | stepUpPractice | bodyweightPractice; app numeric choices |
 | doubleDeadlift | reviewed outline | hingePattern, deadliftTechnique, doubleKbReadiness, doubleDeadlift | owned matched kettlebell pair, kg per bell | doubleHinge | doubleHinge; app numeric choices |
-| doubleSwing | reviewed outline | doubleKbReadiness, doubleDeadlift, doubleSwing, practice:doubleDeadlift, practice:swing | owned matched kettlebell pair, kg per bell | doubleHinge | doubleHinge; app numeric choices |
+| doubleSwing | reviewed outline | doubleKbReadiness, doubleDeadlift, doubleSwing, practice:doubleDeadlift, practice:swing | owned matched kettlebell pair, kg per bell | doubleHinge | doubleHinge; optional pairedSwingReps; app numeric choices |
 | handToHandSwing | reviewed outline | swing, handToHandSwing, practice:swing | kb | handChangePractice | swingSkill; app numeric choices |
 | singleArmSwing | reviewed outline | swing, singleArmSwing, practice:swing | kb | singleArmSwingPractice | swingSkill; app numeric choices |
 

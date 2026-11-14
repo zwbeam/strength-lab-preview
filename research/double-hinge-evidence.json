@@ -16,7 +16,7 @@
   "sourceNumericalContext": [
     {
       "quote": "you may start with something like six reps but you build up towards sets of 20",
-      "scope": "Worked starting/endurance range, not automatically prescribed."
+      "scope": "Optional pairedSwingReps app adaptation now uses the source 6-to-20 endpoints. Two fixed sets, two-rep steps, rests and clean-exposure qualification are app choices; the default foundation dose is unchanged."
     },
     {
       "quote": "probably 60% of your clean and pressed weight",
@@ -47,11 +47,12 @@
     "Explicit experienced-trainee readiness and separate paired deadlift/swing confirmations.",
     "Paired deadlift requires explicit hinge/deadlift technique and experienced-trainee readiness. Recent paired deadlift and single swing precede double swing. These configurable exposure windows are app recency gates, not a substitute for broader clean/press/hand-change experience.",
     "Owned matched pair, explicit per-bell starting load, 2\u20134 sets of 5 with 90-second rest and conservative pace estimates.",
-    "Separate opt-in alternating foundation days and independent progression/load review. Existing double-clean/press/squat histories and admission gates are preserved."
+    "Separate opt-in alternating foundation days and independent progression/load review. Existing double-clean/press/squat histories and admission gates are preserved.",
+    "Optional pairedSwingReps builds reps at two fixed sets, independently from the unchanged fixed-rep/add-set foundation profile. See paired-swing-reps-evidence.json."
   ],
   "limits": [
-    "No automatic source 6-to-20 rep cycle, fixed-year qualification, 60% load assignment or mandatory half-kilo increment.",
-    "Hand-to-hand swing is discussed as preparation but still lacks its own tracked engine pathway; familiarity remains explicitly confirmed.",
+    "No compulsory source 6-to-20 cycle, fixed-year qualification, 60% load assignment or mandatory half-kilo increment. The numerical profile is explicitly selected and is an app adaptation.",
+    "Hand-to-hand and introductory single-arm swings now have separate tracked paths; neither their app evidence nor paired-swing rep progression certifies the broader single-bell preparation discussed by the source.",
     "Outside swings, broader paired systems and physical/visual technique review remain incomplete."
   ],
   "entries": {

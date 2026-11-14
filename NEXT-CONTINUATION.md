@@ -12,9 +12,9 @@ retention. Inspect the actual latest GitHub commit and checks before continuing.
 Do not assume a later checkpoint passed just because this file exists.
 
 Run all non-browser tests/*.js, the history-corrections.test.cjs suite, and the
-thirteen browser suites: browser-smoke.js, browser-curriculum.cjs,
+fourteen browser suites: browser-smoke.js, browser-curriculum.cjs,
 browser-integration.cjs, browser-continuity.cjs, browser-foundations.cjs,
-browser-step-ups.cjs, browser-double-hinge.cjs, browser-hand-changes.cjs
+browser-step-ups.cjs, browser-double-hinge.cjs, browser-paired-swing-reps.cjs, browser-hand-changes.cjs
 browser-single-arm-swing.cjs, browser-dated-evidence.cjs, browser-row-wave.cjs, browser-settings-sync.cjs and browser-demo-history.js (generate its synthetic backup
 first). Serve at 127.0.0.1:8765. Installed Chromium may be selected locally with
 PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium. Actions uses its own bundle.
@@ -125,8 +125,8 @@ Tests cover all 196 supported baseline values, two generated three-year historie
 and complete touch cycles, corrections, offline drafts and explicit review.
 Broader pulling geometry, exact source weekly/retest scheduling, other bodyweight
 and paired numeric systems remain separate work. No full lifetime integration or
-new source-review completion count is claimed. Run all 46 Node JS suites, the six
-correction CJS tests, all thirteen browser suites, demo generation and both audits.
+new source-review completion count is claimed. Run all 47 Node JS suites, the six
+correction CJS tests, all fourteen browser suites, demo generation and both audits.
 
 
 Explicit user-directed Settings/Train audit supersedes historical temporary-time
@@ -142,3 +142,17 @@ them. Source program selection survives style edits. Preserve view synchronizati
 after import, reader storage updates, failed writes and midnight changes.
 The new browser suite tests actual Settings/Train controls and plan effects, not
 only matching object fields. No source numeric program was changed by this audit.
+
+
+Engine-first continuation: the user explicitly prioritizes background programming
+and reliability over frontend simplification. doubleSwing now offers optional
+pairedSwingReps alongside unchanged doubleHinge. Read the full #142 transcript
+and research/paired-swing-reps-evidence.json. Only the approximate 6-to-20 rep
+endpoints are source discussion; two fixed sets, two-rep steps, 90-second rests,
+pace and qualification are app choices. All old skills, inventory and recent
+foundation gates remain. No fixed-year or 60% load assignment is introduced.
+Returning to this profile, or changing then restoring exposure/stall settings,
+starts a fresh comparison revision; unchanged Save retains credit. Load selection
+remains explicit after the endpoint. Ordinary reps remain untimed. Reproduce
+with tests/paired-swing-reps.js and tests/browser-paired-swing-reps.cjs; the latter
+supports STRENGTH_LAB_TEST_URL for isolated live DEV acceptance.

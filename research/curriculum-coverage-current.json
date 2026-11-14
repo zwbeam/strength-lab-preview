@@ -1630,7 +1630,8 @@
       "automatic": true,
       "profile": "doubleHinge",
       "availableProfiles": [
-        "doubleHinge"
+        "doubleHinge",
+        "pairedSwingReps"
       ],
       "coverage": "reviewed outline",
       "sourceIds": [
