@@ -6,6 +6,9 @@ on:
       - integration/research-coverage-audit
       - preview
     paths:
+      - 'research/**'
+      - 'sources-*.json'
+      - source-index.json
       - engine.js
       - movement-instruction.js
       - rolling-calendar.js
@@ -28,6 +31,9 @@ on:
       - .github/workflows/research-coverage.yml
   pull_request:
     paths:
+      - 'research/**'
+      - 'sources-*.json'
+      - source-index.json
       - engine.js
       - movement-instruction.js
       - rolling-calendar.js
@@ -69,19 +75,8 @@ jobs:
           node --check sw.js
           for file in tests/*.js; do node --check "$file"; done
           for file in tests/*.cjs; do [ -f "$file" ] && node --check "$file"; done
-      - name: Ensure every Node regression suite is executed
-        run: |
-          python3 - <<'PY'
-          import pathlib,re,sys
-          workflow=pathlib.Path('.github/workflows/research-coverage.yml').read_text()
-          # Read only the audit job's command section, not the browser job.
-          audit=workflow.split(chr(10)+'  browser-smoke:',1)[0]
-          referenced=set(re.findall(r'node (tests/[A-Za-z0-9_-]+\.js)',audit))
-          suites={str(p) for p in pathlib.Path('tests').glob('*.js') if p.name not in {'browser-smoke.js','browser-demo-history.js'}}
-          missing=sorted(suites-referenced)
-          if missing:sys.exit('Unexecuted regression suites: '+', '.join(missing))
-          print('Node regression suites covered:',len(suites))
-          PY
+      - name: Ensure every Node and browser regression suite is executed
+        run: node scripts/check-suite-coverage.cjs
       - name: Run additional history correction regression tests
         run: node --test tests/history-corrections.test.cjs
       - name: Generate and validate two-year engine demo backup
