@@ -4,6 +4,7 @@ on:
   push:
     branches: [preview]
     paths:
+      - training-settings.js
       - engine.js
       - app.js
       - tests/generate-demo-backup.cjs

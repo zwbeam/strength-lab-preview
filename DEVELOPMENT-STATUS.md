@@ -176,3 +176,14 @@ a fresh comparison identity and preserves all old records. No maximum test,
 automatic height increase or fixed four-day week is required. Coverage remains
 54 movements / 38 reviewed outlines / 16 partial lessons; optional profiles now
 appear in the reproducible audits.
+
+
+Settings / Train synchronization audit: shared duration now persists through all
+three target selectors; the prior temporary override is intentionally replaced
+by the user's explicit request. Today’s readiness is shared and saved with its
+date, expires on a new day and affects actual prescriptions. Shared style saves
+no longer silently replace a selected source program. Emphasis display filters
+excluded equipment while retaining saved priorities/inventory. Custom intervals
+are shared, backed up and mutually exclusive with newly reachable prescribed
+pacing. Active drafts retain their original targets and pacing. See
+SETTINGS-CONTROLS-AUDIT.md for every control category and validation scope.

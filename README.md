@@ -25,6 +25,8 @@ Run **Research coverage audit** from GitHub Actions on the `preview` branch. Bot
 
 The audit executes the Node regression suites, verifies the offline cache and packaged review build, and uploads a review artifact. The browser job tests the interface at multiple viewport sizes, including long-history and backup/reload scenarios.
 
+See [Settings and Train control audit](SETTINGS-CONTROLS-AUDIT.md) for shared preference behavior, actual training effects and regression coverage.
+
 ## Release boundary
 
 Commits to `preview` do not constitute a verified Cloudflare production deployment. Keep production unchanged until the current commit passes QA, a user data backup is secured, and the new build is intentionally deployed and checked.

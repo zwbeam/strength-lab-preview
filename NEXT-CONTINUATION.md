@@ -12,10 +12,10 @@ retention. Inspect the actual latest GitHub commit and checks before continuing.
 Do not assume a later checkpoint passed just because this file exists.
 
 Run all non-browser tests/*.js, the history-corrections.test.cjs suite, and the
-twelve browser suites: browser-smoke.js, browser-curriculum.cjs,
+thirteen browser suites: browser-smoke.js, browser-curriculum.cjs,
 browser-integration.cjs, browser-continuity.cjs, browser-foundations.cjs,
 browser-step-ups.cjs, browser-double-hinge.cjs, browser-hand-changes.cjs
-browser-single-arm-swing.cjs, browser-dated-evidence.cjs, browser-row-wave.cjs and browser-demo-history.js (generate its synthetic backup
+browser-single-arm-swing.cjs, browser-dated-evidence.cjs, browser-row-wave.cjs, browser-settings-sync.cjs and browser-demo-history.js (generate its synthetic backup
 first). Serve at 127.0.0.1:8765. Installed Chromium may be selected locally with
 PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium. Actions uses its own bundle.
 Run scripts/audit-curriculum.cjs and scripts/audit-integration.cjs; generated
@@ -125,5 +125,20 @@ Tests cover all 196 supported baseline values, two generated three-year historie
 and complete touch cycles, corrections, offline drafts and explicit review.
 Broader pulling geometry, exact source weekly/retest scheduling, other bodyweight
 and paired numeric systems remain separate work. No full lifetime integration or
-new source-review completion count is claimed. Run all 45 Node JS suites, the six
-correction CJS tests, all twelve browser suites, demo generation and both audits.
+new source-review completion count is claimed. Run all 46 Node JS suites, the six
+correction CJS tests, all thirteen browser suites, demo generation and both audits.
+
+
+Explicit user-directed Settings/Train audit supersedes historical temporary-time
+behavior: Train target, Train schedule and Settings target share defaultMinutes.
+Do not reintroduce a separate temporary duration that leaves Settings stale.
+Read SETTINGS-CONTROLS-AUDIT.md and training-settings.js. Dated readiness is shared,
+persists for the day and expires without inventing a future readiness choice.
+Interval preferences are canonical saved/backup data; old local timer playback
+settings remain compatible. Prescribed pacing is now reachable, with mutual
+exclusion against custom intervals. Neither controller logs physical work.
+Active workout targets and pacing remain snapshots; blocked edits must not alter
+them. Source program selection survives style edits. Preserve view synchronization
+after import, reader storage updates, failed writes and midnight changes.
+The new browser suite tests actual Settings/Train controls and plan effects, not
+only matching object fields. No source numeric program was changed by this audit.

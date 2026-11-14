@@ -282,6 +282,7 @@ function stateFor(s,id,opts={}){
  return{...result,hold,reviewRecovery,policy,track,allExposures:h.length};
 }
 function resolvePain(s,id){if(!MOVES[id])throw Error('Unknown movement');return {...s,painResolutions:{...s.painResolutions,[id]:{painKeys:records(s,id).filter(x=>x.pain||x.quality==='pain').map(x=>x._key)}}};}
+function readinessFor(s,now=new Date()){const date=typeof now==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(now)?now:new Date(now).toLocaleDateString('sv-SE');return s.todayReadiness?.date===date&&['normal','low','great'].includes(s.todayReadiness.value)?s.todayReadiness.value:'normal';}
 function movementGap(s,id,now=new Date(),evidenceThrough){const last=records(s,id,{now,evidenceThrough}).filter(x=>x.actualSets>0).at(-1);if(!last)return 0;return Math.max(0,Math.floor(calendarDay(now)-calendarDay(last.date)));}
 // App continuity rule: only registry-gated descendants may maintain a previously
 // qualified prerequisite. This transfers recency, never exposures, load or mastery.
@@ -337,7 +338,7 @@ function complexityOptions(s,opts={}){
  });
 }
 function prescription(s,id,opts={}){
- opts={...opts,now:opts.now??new Date()};
+ opts={...opts,now:opts.now??new Date()};opts.readiness??=readinessFor(s,opts.now);
  const m=MOVES[id],st=stateFor(s,id,opts),policy=st.policy,defaults=s.trainingDefaults||{};
  let sets=st.sets,reps=st.reps,rest=st.rest,weight=st.weight,mode=st.phase==='ready'?'milestone':st.phase;
  let reason=policy.profile==='rowWave'?`${st.track==='higher'?'80% higher-rep / lower-volume':'60% lower-rep'} row exposure; both tracks must meet the paired clean-exposure gate before adding sets. ${policy.parameterNotes}`:policy.profile==='wave'?`${st.track==='heavy'?'Heavy: lower total work':'Light: higher total work'}; each movement advances independently.`:`${policy.label}: complete the prescription cleanly ${policy.exposures} time(s) before the next step.`;
@@ -481,7 +482,7 @@ function pendingThrough(s,block,now){
  return [...new Set([...pending,...current.filter(id=>!futureDebt.has(id))])];
 }
 function blockPlan(s,opts={}){
- opts={...opts,now:opts.now??new Date()};
+ opts={...opts,now:opts.now??new Date()};opts.readiness??=readinessFor(s,opts.now);
  const through=opts.evidenceThrough??opts.now,timeline=sessionsThrough(s,through,opts.projection);
  const block=s.programBlock||'abc';if(!BLOCKS[block])throw Error('Unknown program block');
  const preferences=s.trainingPreferences||{};
@@ -668,7 +669,8 @@ function validateTrainingEmphasis(value){
 }
 function emphasisDistribution(s){
  const {levels,mobilityOnly}=trainingEmphasis(s);
- const effective=Object.fromEntries(EMPHASIS_FAMILIES.map(id=>[id,mobilityOnly?'off':levels[id]]));
+ const pref=s.trainingPreferences||{},included={kb:pref.useKb!==false,club:pref.useClub!==false,bodyweight:pref.useBodyweight!==false,complex:pref.useKb!==false&&pref.useComplexes!==false};
+ const effective=Object.fromEntries(EMPHASIS_FAMILIES.map(id=>[id,mobilityOnly||!included[id]?'off':levels[id]]));
  const weights=Object.fromEntries(EMPHASIS_FAMILIES.map(id=>[id,effective[id]==='major'?3:effective[id]==='minor'?1:0]));
  const total=Object.values(weights).reduce((a,b)=>a+b,0);
  return {levels,effective,weights,total,mobilityOnly,shares:Object.fromEntries(EMPHASIS_FAMILIES.map(id=>[id,total?weights[id]/total:0]))};
@@ -734,7 +736,7 @@ function retentionCandidate(s,candidates,history,opts){
  return due.sort((a,b)=>b.gap-a.gap||a.candidate.last-b.candidate.last)[0]||null;
 }
 function plan(s,opts={}){
- opts={...opts,now:opts.now??new Date()};
+ opts={...opts,now:opts.now??new Date()};opts.readiness??=readinessFor(s,opts.now);
  if(s.trainingPreferences?.mobilityOnly===true)return mobilityOnlyPlan(s,opts);
  const c=s.programComposition;
  if(!c?.enabled)return blockPlan(s,opts);
@@ -828,6 +830,9 @@ function validStepHeight(x){return typeof x==='number'&&Number.isFinite(x)&&x>=1
 function validateStation(rx){if(MOVES[rx.id]?.station==='stepPlatform'){const station=rx.station;let key;try{key=JSON.parse(rx.policyKey);}catch{throw Error('Invalid step-up setup identity');}if(!station||station.kind!=='stepPlatform'||!validStepHeight(station.heightCm)||station.stepPattern!==MOVES[rx.id].stepPattern||!Array.isArray(key)||key[0]!=='step-practice-v1'||key[1]!==rx.id||key[8]!==station.heightCm)throw Error('Invalid step-up prescription setup or cycle identity');}if(MOVES[rx.id]?.station==='rowBar'&&(!rx.station||rx.station.kind!=='rowBar'||!validRowHeight(rx.station.heightCm)||rx.station.legPosition!=='bent'))throw Error('Invalid row prescription setup');if(MOVES[rx.id]?.station==='rowBar'){let key;try{key=JSON.parse(rx.policyKey);}catch{throw Error('Invalid row setup identity');}if(!Array.isArray(key)||key[0]!=='row-practice-v1'||key[7]!==rx.station.heightCm||key[8]!==rx.station.legPosition)throw Error('Row setup disagrees with its cycle identity');}}
 function validateStationActual(set,rx){if(!set||typeof set!=='object'||Array.isArray(set))throw Error('Invalid actual set');if(set.stationHeightCm!==undefined&&!validRowHeight(set.stationHeightCm))throw Error('Invalid actual bar height');if(rx?.station?.kind==='stepPlatform'&&((set.stationHeightCm!==undefined&&!validStepHeight(set.stationHeightCm))||set.done&&(!validStepHeight(set.stationHeightCm)||!['alternating','static'].includes(set.stepPattern))))throw Error('Invalid actual step-platform setup');if(set.stepPattern!==undefined&&!['alternating','static'].includes(set.stepPattern))throw Error('Invalid actual stepping pattern');if(set.legPosition!==undefined&&!['bent','straight'].includes(set.legPosition))throw Error('Invalid actual row leg position');}
 function validateProgramming(s){
+ if(s.todayReadiness!==undefined){const choice=s.todayReadiness;if(!choice||typeof choice!=='object'||Array.isArray(choice)||typeof choice.date!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(choice.date)||!Number.isFinite(Date.parse(choice.date+'T12:00:00Z'))||new Date(choice.date+'T12:00:00Z').toISOString().slice(0,10)!==choice.date||!['normal','low','great'].includes(choice.value))throw Error('Invalid dated readiness preference');}
+ if(s.intervalPreferences!==undefined){const prefs=s.intervalPreferences;if(!prefs||typeof prefs!=='object'||Array.isArray(prefs)||Object.keys(prefs).some(key=>!['prepare','work','rest','sets'].includes(key)))throw Error('Invalid interval preferences');for(const key of ['prepare','work','rest','sets'])if(!Number.isInteger(prefs[key])||prefs[key]<(key==='sets'?1:0)||prefs[key]>(key==='sets'?100:3600))throw Error('Invalid interval preference: '+key);}
+
  if(s.equipment?.stepPlatform!==undefined){const step=s.equipment.stepPlatform;if(!step||typeof step!=='object'||Array.isArray(step)||typeof step.available!=='boolean'||step.heightCm!==null&&!validStepHeight(step.heightCm)||step.available&&!validStepHeight(step.heightCm))throw Error('Invalid stable step-platform setup');}
  if(s.equipment?.rowBar!==undefined){const row=s.equipment.rowBar;if(!row||typeof row!=='object'||Array.isArray(row)||typeof row.available!=='boolean'||row.heightCm!==null&&!validRowHeight(row.heightCm)||row.available&&!validRowHeight(row.heightCm))throw Error('Invalid secured row-bar setup');}
 
@@ -973,5 +978,5 @@ function validateBackup(input){
  const workoutDraft=validateDraft(input.workoutDraft,input);
  return JSON.parse(JSON.stringify({...input,workoutDraft,nextWeights:input.nextWeights||{},defaultMinutes:input.defaultMinutes??45,deferredIds:input.deferredIds||[]}));
 }
-return{retestRowWave,trainingEmphasis,validateTrainingEmphasis,emphasisDistribution,mobilityOnlyPlan,COMPLEX_PATHWAYS,complexityOptions,repairMissingLoadAnchor,setInitialLoad,replaceUnavailableLoad,availableWorkingLoads,trainingPaused,activityRecovery,validateActivity,movementCadence,MOVES,SKILLS,DAYS,BLOCKS,LOADS,PROFILE_NAMES,describeProgression,policyFor,availableProfiles,configureMovement,practiceEvidence,supportingMoves,requirementLabel,prerequisites,chooseCycle,loadOptions,selectLoad,retestPushup,validWorkingWeight,validateProgramming,validateDraft,validateBackup,records,successful,stateFor,prescription,minutesFor,timeBudget,plan,completeRecord,nextRest,deferredAfter,resolvePain,movementGap,movementDemands};
+return{readinessFor,retestRowWave,trainingEmphasis,validateTrainingEmphasis,emphasisDistribution,mobilityOnlyPlan,COMPLEX_PATHWAYS,complexityOptions,repairMissingLoadAnchor,setInitialLoad,replaceUnavailableLoad,availableWorkingLoads,trainingPaused,activityRecovery,validateActivity,movementCadence,MOVES,SKILLS,DAYS,BLOCKS,LOADS,PROFILE_NAMES,describeProgression,policyFor,availableProfiles,configureMovement,practiceEvidence,supportingMoves,requirementLabel,prerequisites,chooseCycle,loadOptions,selectLoad,retestPushup,validWorkingWeight,validateProgramming,validateDraft,validateBackup,records,successful,stateFor,prescription,minutesFor,timeBudget,plan,completeRecord,nextRest,deferredAfter,resolvePain,movementGap,movementDemands};
 });

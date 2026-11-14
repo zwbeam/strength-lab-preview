@@ -161,14 +161,13 @@ const expectedCache=JSON.parse(swText.match(/const PREFIX=("[^"]+")/)[1])+JSON.p
    const savedTarget=await page.evaluate(()=>state.defaultMinutes);
    await adjustments.locator('#today-minutes').selectOption('30');
    const changedTargets=await page.evaluate(()=>({daily:todayMinutes,saved:state.defaultMinutes}));
-   if(changedTargets.daily!==30||changedTargets.saved!==savedTarget)
-     throw Error('One-day duration override changed Settings: '+JSON.stringify(changedTargets));
+   if(changedTargets.daily!==30||changedTargets.saved!==30)
+     throw Error('Train duration failed to update shared Settings target: '+JSON.stringify(changedTargets));
    await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
    await page.locator('#today-minutes').selectOption(String(savedTarget));
-   console.log('Settings and daily duration windows plus temporary override passed at '+viewport.width+'px');
+   console.log('Shared Settings and Train duration passed at '+viewport.width+'px');
 
-   // A one-day shortened session must survive render without mutating the
-   // normal Settings target; the mobility route must remain accessible.
+   // A shorter shared target must survive render and update Settings; the mobility route must remain accessible.
    await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
    await page.locator('#today-minutes').selectOption('30');
    const shortDay=await page.evaluate(()=>({
@@ -176,8 +175,8 @@ const expectedCache=JSON.parse(swText.match(/const PREFIX=("[^"]+")/)[1])+JSON.p
      plan:E.plan(state,{now:today(),minutes:todayMinutes,readiness}),
      mobility:document.querySelector('#mobility-session')!==null
    }));
-   if(shortDay.chosen!==30||shortDay.usual!==savedTarget||!shortDay.mobility)
-     throw Error('Short-day workflow lost usual target or mobility alternative');
+   if(shortDay.chosen!==30||shortDay.usual!==30||!shortDay.mobility)
+     throw Error('Shared short target or mobility alternative was lost');
    if(shortDay.plan.budget.flexMax!==40||shortDay.plan.total>40)
      throw Error('Short-day plan violated 25–40 minute window');
    await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
@@ -185,7 +184,7 @@ const expectedCache=JSON.parse(swText.match(/const PREFIX=("[^"]+")/)[1])+JSON.p
    console.log('Short-day plan and mobility availability passed at '+viewport.width+'px');
 
    // Exercise both adjustments together. Readiness and time may change the
-   // prescription, but neither may mutate history or saved preferences.
+   // prescription and saved controls, but neither may mutate physical history.
    const combinedBaseline=await page.evaluate(()=>({
      usual:state.defaultMinutes,
      strength:window.RollingCalendar.count(state),
@@ -205,7 +204,7 @@ const expectedCache=JSON.parse(swText.match(/const PREFIX=("[^"]+")/)[1])+JSON.p
        plan:E.plan(state,{now:today(),minutes:todayMinutes,readiness}),
        mobility:!!document.querySelector('#mobility-session')
      }));
-     if(probe.minutes!==30||probe.level!==level||probe.usual!==combinedBaseline.usual||
+     if(probe.minutes!==30||probe.level!==level||probe.usual!==30||
        probe.strength!==combinedBaseline.strength||probe.sessions!==combinedBaseline.sessions||
        probe.activities!==combinedBaseline.activities||!probe.mobility)
        throw Error('Combined readiness and time adjustments mutated training state: '+JSON.stringify(probe));
@@ -250,8 +249,7 @@ const expectedCache=JSON.parse(swText.match(/const PREFIX=("[^"]+")/)[1])+JSON.p
    await page.locator('#today-minutes').selectOption(String(savedTarget));
    console.log('Readiness and duration control order yields identical prescription at '+viewport.width+'px');
 
-   // Temporary readiness must also reset after reopening the app, just as
-   // temporary duration does. Neither setting may become a hidden preference.
+   // Shared time and today's readiness survive reload and remain visible.
    await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
    await page.locator('#today-readiness').selectOption('great');
    await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
@@ -262,13 +260,14 @@ const expectedCache=JSON.parse(swText.match(/const PREFIX=("[^"]+")/)[1])+JSON.p
      minutes:todayMinutes,readiness,usual:state.defaultMinutes,
      strength:window.RollingCalendar.count(state)
    }));
-   if(resetAdjustments.minutes!==savedTarget||resetAdjustments.readiness!=='normal'||
-      resetAdjustments.usual!==savedTarget||resetAdjustments.strength!==combinedBaseline.strength)
-     throw Error('Temporary readiness or time persisted across reload: '+JSON.stringify(resetAdjustments));
-   console.log('Combined temporary adjustments reset after reload at '+viewport.width+'px');
+   if(resetAdjustments.minutes!==30||resetAdjustments.readiness!=='great'||
+      resetAdjustments.usual!==30||resetAdjustments.strength!==combinedBaseline.strength)
+     throw Error('Shared readiness or time failed to persist across reload: '+JSON.stringify(resetAdjustments));
+   console.log('Shared adjustments persist after reload at '+viewport.width+'px');
+   await page.locator('.today-adjustments').evaluate(el=>el.open=true);await page.locator('#today-readiness').selectOption('normal');
 
    // Every selectable daily target must use the same upper duration bound as
-   // Settings, even with low readiness, without altering saved preferences.
+   // Settings, even with low readiness, while sharing the saved target.
    for(const [target,maximum] of [[30,40],[45,50],[60,65],[75,80],[90,95],[120,120]]){
      await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
      await page.locator('#today-minutes').selectOption(String(target));
@@ -279,7 +278,7 @@ const expectedCache=JSON.parse(swText.match(/const PREFIX=("[^"]+")/)[1])+JSON.p
        plan:E.plan(state,{now:today(),minutes:todayMinutes,readiness}),
        strength:window.RollingCalendar.count(state)
      }));
-     if(result.target!==target||result.readiness!=='low'||result.usual!==savedTarget||
+     if(result.target!==target||result.readiness!=='low'||result.usual!==target||
        result.strength!==combinedBaseline.strength||
        result.plan.budget.flexMax!==maximum||result.plan.total>maximum)
        throw Error('Daily duration/readiness bound failed: '+JSON.stringify({target,maximum,actual:result.plan.total,budget:result.plan.budget,usual:result.usual}));
@@ -302,7 +301,7 @@ const expectedCache=JSON.parse(swText.match(/const PREFIX=("[^"]+")/)[1])+JSON.p
        plan:E.plan(state,{now:today(),minutes:todayMinutes,readiness}),
        strength:window.RollingCalendar.count(state)
      }));
-     if(result.target!==target||result.readiness!=='great'||result.usual!==savedTarget||
+     if(result.target!==target||result.readiness!=='great'||result.usual!==target||
        result.strength!==combinedBaseline.strength||
        result.plan.budget.flexMax!==maximum||result.plan.total>maximum)
        throw Error('High-readiness duration ceiling failed: '+JSON.stringify({target,maximum,actual:result.plan.total,budget:result.plan.budget,usual:result.usual}));
@@ -323,7 +322,7 @@ const expectedCache=JSON.parse(swText.match(/const PREFIX=("[^"]+")/)[1])+JSON.p
        plan:E.plan(state,{now:today(),minutes:todayMinutes,readiness}),
        strength:window.RollingCalendar.count(state)
      }));
-     if(result.target!==target||result.readiness!=='normal'||result.usual!==savedTarget||
+     if(result.target!==target||result.readiness!=='normal'||result.usual!==target||
        result.strength!==combinedBaseline.strength||
        result.plan.budget.flexMax!==maximum||result.plan.total>maximum)
        throw Error('Normal-readiness duration ceiling failed: '+JSON.stringify({target,maximum,actual:result.plan.total,budget:result.plan.budget,usual:result.usual}));
@@ -338,16 +337,16 @@ const expectedCache=JSON.parse(swText.match(/const PREFIX=("[^"]+")/)[1])+JSON.p
 
 
 
-   // A one-day adjustment must not be written to persistent state, including
-   // after a full page reload. The usual target should be restored.
+   // A shared target is saved and must remain identical after a full reload.
    await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
    await page.locator('#today-minutes').selectOption('30');
    await page.reload({waitUntil:'domcontentloaded'});
    await page.locator('[data-tab="today"]').click();
    const reloadedDuration=await page.evaluate(()=>({usual:state.defaultMinutes,daily:todayMinutes}));
-   if(reloadedDuration.usual!==savedTarget||reloadedDuration.daily!==savedTarget)
-     throw Error('One-day duration adjustment leaked into saved preferences: '+JSON.stringify(reloadedDuration));
-   console.log('Daily duration override resets on reload without changing Settings at '+viewport.width+'px');
+   if(reloadedDuration.usual!==30||reloadedDuration.daily!==30)
+     throw Error('Shared duration did not retain the last saved selection: '+JSON.stringify(reloadedDuration));
+   console.log('Shared duration persists in Settings and Train after reload at '+viewport.width+'px');
+   await page.locator('.today-adjustments').evaluate(el=>el.open=true);await page.locator('#today-minutes').selectOption(String(savedTarget));
 
 
 

@@ -23,7 +23,7 @@ function cycle(s,opts={}){
  }
  return rows.slice(offset);
 }
-function adjusted(s,opts={}){const original=E.plan(s,{minutes:s.defaultMinutes||45,readiness:'normal'}),plan=E.plan(s,{minutes:opts.minutes??s.defaultMinutes??45,readiness:opts.readiness==='low'?'low':'normal'});return{original,plan,adjustments:{normalMinutes:s.defaultMinutes||45,minutes:plan.budget.total,readiness:opts.readiness||'normal',changes:differences(original,plan)}};}
+function adjusted(s,opts={}){const readiness=opts.readiness??E.readinessFor(s,opts.now);const original=E.plan(s,{now:opts.now,minutes:s.defaultMinutes||45,readiness:'normal'}),plan=E.plan(s,{now:opts.now,minutes:opts.minutes??s.defaultMinutes??45,readiness:readiness==='low'?'low':'normal'});return{original,plan,adjustments:{normalMinutes:s.defaultMinutes||45,minutes:plan.budget.total,readiness,changes:differences(original,plan)}};}
 function newItems(plan){return plan.items.map(rx=>({id:rx.id,sets:Array.from({length:rx.sets},()=>({done:false,reps:rx.reps,weight:rx.weight,...(rx.station?{stationHeightCm:rx.station.heightCm,...(rx.station.kind==='rowBar'?{legPosition:rx.station.legPosition}:{stepPattern:rx.station.stepPattern})}:{})})),quality:'clean',pain:false}));}
 function finishItems(d,choice){
  if(!['all','partial'].includes(choice))throw Error('Choose how this workout was completed');

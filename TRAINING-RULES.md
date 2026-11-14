@@ -132,3 +132,30 @@ At the endpoint, maintenance can alternate without increasing targets, or the us
 can explicitly review/restart. Source frequency/retest timing, straight legs,
 elevated feet, actual grip/angle measurement and physical technique validation
 remain outside the automatic method.
+
+
+## Shared Settings and Train controls
+
+The persistent workout target is shared by all three duration selectors. Both
+surfaces feed the same time budget and actual generator; a short target never
+silently earns full-dose progression. The user explicitly replaced temporary
+Train-only duration overrides with this shared preference.
+
+Readiness is a dated choice, shared between Settings and Train. Low readiness
+reduces actual planned work without ordinary progression credit; Great retains
+normal progression rules. Same-day reload retains the choice; future days revert
+to Normal. The unadjusted original and actual adjusted draft targets remain
+separate. A timer cannot supply readiness, familiarity or completed sets.
+
+Equipment availability and scheduling priority are distinct. Effective emphasis
+shares exclude unavailable families while retaining their saved priority and
+owned weights. A style edit does not silently choose a different source program;
+A/B/C variety/conditioning options do not rewrite independent source profiles.
+
+Workout pacing is saved for new drafts. The active workout retains its own mode
+and immutable written targets. Prescribed pacing uses the existing source-aware
+timer queue; ordinary repetitions remain untimed. The separate custom interval
+fields are now shared saved preferences. Editing resets custom playback, and
+starting either timer pauses the other. Both remain independent of actual work
+confirmation and advancement. These are application/control rules, not source
+prescriptions or a change to exercise qualification.

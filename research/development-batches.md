@@ -736,3 +736,40 @@ and policy identity. Numeric checks prove higher-rep whole-set selection is the
 largest count under the cap, not merely an arbitrary smaller count. Oversized
 normal targets are deferred rather than reduced for credit; explicit reduced
 readiness remains nonqualifying. Active-draft station tampering is rejected.
+
+## Shared Settings and Train controls audit
+
+User-directed reliability batch: shared duration replaces the earlier temporary
+Train override. Settings, Training Plan and Today’s Adjustments now use the same
+saved target. Same-day readiness is shared and dated; it expires to Normal on a
+new day, including an open page. Low readiness changes the actual prescription;
+Great retains normal progression. Imported valid non-preset targets remain intact.
+
+Both style forms use one validated transformer and preserve the selected source
+program. Effective emphasis excludes disabled equipment without deleting owned
+loads or stored priorities. Pause, baselines, equipment gates, advanced dose
+controls and calendar effects are checked against actual generated output.
+Grouped forms retain explicit Save; immediate controls commit through the existing
+paired journal with write-failure rollback and reader protection.
+
+Settings and active Train share backed-up interval configuration. Loading a
+prescribed interval also saves the shared values; explicit timer opening survives
+rendering. Editing a field before Start preserves the click instead of replacing
+its target on blur. Existing prescribed pacing now has reachable controls; both
+timers pause one another and never grant physical-work credit. Active draft
+targets, actuals and pacing remain preserved. Legacy timer settings remain readable.
+
+The new pure shared-control suite and 320/390 touch suite cover both directions,
+actual budgets/doses/countdowns, offline reload, JSON restore, midnight expiry,
+failed writes and reader handoff. Existing smoke expectations now reflect the
+user-authorized persistent target while retaining history/progression checks.
+The enhanced crawl integration test loads prescribed values over different saved
+custom values and immediately starts after editing. The complete inventory is
+46 Node JS suites, six correction CJS tests and thirteen browser suites. Runtime
+precache contains 51 assets at rc45-shared-training-controls. See
+SETTINGS-CONTROLS-AUDIT.md for the control-to-effect map. Exact-commit CI and DEV
+verification are required after push; local checks do not establish remote status.
+
+Local final verification passed: all 46 Node JS suites, six correction tests,
+all thirteen browser suites and the 295-session demo/history replay. Source
+audits, suite registration, syntax and 51-asset offline integrity also passed.
