@@ -298,3 +298,14 @@ Focused verification covers 57 incomplete cases across eleven method/track
 contexts, legacy/date boundaries and a 430-workout three-year mixed history.
 Inventory is 56 Node JS suites, six correction tests and twenty-three browser
 suites; rc55-reduced-evidence retains 51 assets. Source doses/counts are unchanged.
+
+
+Return-continuity batch: a partial absence return no longer restores a full normal
+dose merely because a physical set was recorded. Dated pending status keeps the
+next target reduced until suitable clean work is delivered. Later valid ordinary
+history remains valid, pain-review requirements stay separate, and old zero-load
+setup does not create return debt. Progress status/reasons agree with the engine.
+Focused verification covers 46 interrupted cases across nine methods and a real
+430-workout mixed history with 21 interrupted returns. Inventory: 57 Node JS
+suites, six correction tests, twenty-four browser suites; rc56-return-continuity
+retains 51 runtime assets. Instructional coverage counts remain unchanged.

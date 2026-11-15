@@ -1261,3 +1261,51 @@ all twenty-three browser suites, including the 295-session populated-history
 replay. Both source audits, syntax, suite registration and 51-asset offline
 integrity passed. Exact-commit CI and public DEV verification remain required
 before reporting deployment success.
+
+
+## Persisting unfinished physical returns
+
+Incoming preview dd20947 was current/clean after fetch. Reproduced normal swing
+work on January 1, an absent return on February 1 with only one of two prescribed
+sets done, and February 2 offering the full three-set normal dose. movementGap
+correctly recorded attendance, but no separate state retained the unfinished
+return obligation. Redefining attendance as clean completion would incorrectly
+call regular difficult practice an absence, so preserve that distinction.
+
+Derive reentryPending from dated movement history. Incomplete/failed or mismatched
+re-entry remains pending until clean reduced work is delivered. Later genuinely
+successful ordinary history can settle the physical return; preserve its meaning
+without inventing credit. The reviewed-pain requirement remains separate and
+strict. Exclude setup-only zero-load/zero-set legacy placeholders. Keep working
+load comparisons, source doses, record keys and V33 schema unchanged.
+
+Use the pending flag in prescriptions and movement status/narrative. Normal/great
+readiness cannot silently enlarge an unfinished return into ordinary work. New
+workout targets still reflect current programming; already-written prescriptions
+and active drafts remain immutable. Corrections/undo and date/future cutoffs
+recalculate the state without rewriting original physical work.
+
+Focused coverage checks 46 interrupted cases across nine methods, actual load
+changes, rest/timing/continuity/station errors, ordinary and aggregate legacy
+completion, zero-load setup, regular difficulty, separate reviewed-pain evidence
+and correction/date boundaries. A three-year actual mixed generator saves 430
+workouts with 302 return movement results and 21 interrupted returns.
+
+Phone acceptance at 320/390px uses a dedicated configured fixed-row block, logs
+a positive partial return, verifies readiness cannot bypass the reduced target
+and that progress status agrees, completes a real retry from an immutable offline
+draft, corrects/restores that completion and resumes ordinary progression.
+Original history stays intact. Inventory is 57 Node JS suites, six correction
+tests and twenty-four browser suites; rc56-return-continuity retains 51 assets.
+Full local suites, exact-commit CI and public DEV verification remain required.
+
+Compatibility checks match all 216 initial prescriptions, every default block
+plan and 224 complete ordinary/recovery/rebuild/return trajectory targets against
+dd20947. The browser fixture uses a one-movement row block so unfinished A/B/C
+load setup cannot obscure this return-specific workflow.
+
+Final local verification passed all 57 Node JS suites, six correction tests and
+all twenty-four browser suites, including the 295-session populated-history
+replay. Both source audits, syntax, suite registration and 51-asset offline
+integrity passed. Exact-commit CI and public DEV verification remain required
+before reporting deployment success.

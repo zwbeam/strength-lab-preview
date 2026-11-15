@@ -382,3 +382,24 @@ written target clears that return requirement. Wrong actual load or changed
 station geometry cannot certify it. This is app evidence consistency, not medical
 clearance or a new source prescription. Pain holds, review keys and written/actual
 history stay intact; correction/undo and date cutoffs recalculate acknowledgement.
+
+
+## Unfinished physical returns
+
+Positive actual sets establish physical attendance; they do not by themselves
+finish a prescribed re-entry target. A failed/incomplete or mismatched re-entry
+creates a history-derived pending return. Normal or great readiness does not
+bypass it. Subsequent plans remain reduced until clean reduced work is delivered.
+A genuine later successful ordinary record already in older history also settles
+the physical return without adding new credit or rewriting that history.
+
+The separate reviewed-pain requirement still needs its existing performed clean
+re-entry/recovery evidence. Ordinary history cannot bypass that requirement.
+Old zero-load/zero-set setup placeholders do not create physical return debt,
+and active regular difficulty is not relabelled as absence. Working-load/method
+comparison and advancement rules remain independent. No new source dose is added.
+
+Pending status is derived at the evidence date. Future delivery cannot clear a
+current return; correcting dates/actuals or undoing a correction recalculates it.
+Original prescriptions and active drafts remain snapshots. Movement status and
+next-dose explanations reflect the unfinished return consistently.

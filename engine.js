@@ -319,8 +319,10 @@ function stateFor(s,id,opts={}){
  // Known unresolved pain remains a hold even if its record date is in the future.
  const hold=all.some(x=>(x.pain||x.quality==='pain')&&!resolvedKeys.includes(x._key))?'Pain reported: stop and review this movement.':'';
  const reviewRecovery=(reviewedIndex>=0||resolvedKeys.some(key=>!all.some(x=>x._key===key)))&&!h.slice(reviewedIndex+1).some(x=>x.performed&&['reentry','recovery'].includes(x.mode)&&deliveredReduced(x));
+ // A physical touch does not finish a prescribed return; later valid ordinary work remains valid.
+ let reentryPending=false;for(const x of h){if(x.mode==='reentry'&&!setupOnly(x))reentryPending=!deliveredReduced(x);else if(reentryPending&&(deliveredReduced(x)||successful(x)&&x.actualSets>0&&!x.setupChanged))reentryPending=false;}
  let result=policy.profile==='wave'?replayWave(s,id,policy,opts):replay(s,id,policy,'base',opts),track=result.track||'base';
- return{...result,hold,reviewRecovery,policy,track,allExposures:h.length};
+ return{...result,hold,reviewRecovery,reentryPending,policy,track,allExposures:h.length};
 }
 function resolvePain(s,id){if(!MOVES[id])throw Error('Unknown movement');return {...s,painResolutions:{...s.painResolutions,[id]:{painKeys:records(s,id).filter(x=>x.pain||x.quality==='pain').map(x=>x._key)}}};}
 function readinessFor(s,now=new Date()){const date=typeof now==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(now)?now:new Date(now).toLocaleDateString('sv-SE');return s.todayReadiness?.date===date&&['normal','low','great'].includes(s.todayReadiness.value)?s.todayReadiness.value:'normal';}
@@ -440,7 +442,7 @@ function prescription(s,id,opts={}){
  else if(mode==='milestone')reason='Cycle endpoint reached. Maintain, choose an available load, or select the supported next cycle explicitly.';
  const gapDays=defaults.reentryDays??14;
  if(opts.readiness==='low'&&(m.bodyweight||weight>0)){const before=sets*reps,fraction=defaults.recoveryFraction??.5;({sets,reps}=reducedDose(sets,reps,policy,fraction,Math.ceil));mode='recovery';reason='Reduced readiness: no advancement credit. '+reason+reducedDoseNote(sets,reps,before,fraction);}
- if((opts.reentry||st.reviewRecovery||movementGap(s,id,opts.now,opts.evidenceThrough)>gapDays)&&(m.bodyweight||weight>0)){const before=st.sets*st.reps,fraction=defaults.reentryFraction??.7,dose=reducedDose(st.sets,st.reps,policy,fraction);sets=Math.min(sets,dose.sets);reps=Math.min(reps,dose.reps);mode='reentry';reason='Return after absence or review; no advancement credit. '+reason+reducedDoseNote(sets,reps,before,fraction);}
+ if((opts.reentry||st.reviewRecovery||st.reentryPending||movementGap(s,id,opts.now,opts.evidenceThrough)>gapDays)&&(m.bodyweight||weight>0)){const before=st.sets*st.reps,fraction=defaults.reentryFraction??.7,dose=reducedDose(st.sets,st.reps,policy,fraction);sets=Math.min(sets,dose.sets);reps=Math.min(reps,dose.reps);mode='reentry';reason='Return after absence or review; no advancement credit. '+reason+reducedDoseNote(sets,reps,before,fraction)+(st.reentryPending?' Previous reduced return is unfinished; complete a clean return target before normal progression.':'');}
  const deloadEvery=defaults.deloadEvery??0;
  if(deloadEvery>0&&['volume','density','milestone'].includes(mode)&&deloadCadence(s,id,opts,st).due){const normalWork=sets*reps;({sets,reps}=reducedDose(sets,reps,policy,.5));mode='deload';reason=sets*reps<normalWork?'Planned lighter exposure (app-configured interval); no progression credit.':'Minimum whole-unit practice: this prescription cannot be reduced further; no progression credit.';}
  if(policy.profile==='wave'&&st.track==='heavy'){const cap=waveHeavySets(st.waveLightWork,reps,policy.config.heavyWeight);if(sets>cap){sets=cap;reason+=' Whole heavy sets were capped below the last qualifying light exposure.';}}

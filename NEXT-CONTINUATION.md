@@ -12,9 +12,9 @@ retention. Inspect the actual latest GitHub commit and checks before continuing.
 Do not assume a later checkpoint passed just because this file exists.
 
 Run all non-browser tests/*.js, the history-corrections.test.cjs suite, and the
-twenty-three browser suites: browser-smoke.js, browser-curriculum.cjs,
+twenty-four browser suites: browser-smoke.js, browser-curriculum.cjs,
 browser-integration.cjs, browser-continuity.cjs, browser-foundations.cjs,
-browser-step-ups.cjs, browser-double-hinge.cjs, browser-paired-swing-reps.cjs, browser-endpoint-reviews.cjs, browser-prerequisite-evidence.cjs, browser-wave-replay.cjs, browser-deload-cadence.cjs, browser-recovery-dose.cjs, browser-load-setup.cjs, browser-baseline-cycles.cjs, browser-weekly-limits.cjs, browser-reduced-evidence.cjs, browser-hand-changes.cjs
+browser-step-ups.cjs, browser-double-hinge.cjs, browser-paired-swing-reps.cjs, browser-endpoint-reviews.cjs, browser-prerequisite-evidence.cjs, browser-wave-replay.cjs, browser-deload-cadence.cjs, browser-recovery-dose.cjs, browser-load-setup.cjs, browser-baseline-cycles.cjs, browser-weekly-limits.cjs, browser-reduced-evidence.cjs, browser-return-continuity.cjs, browser-hand-changes.cjs
 browser-single-arm-swing.cjs, browser-dated-evidence.cjs, browser-row-wave.cjs, browser-settings-sync.cjs and browser-demo-history.js (generate its synthetic backup
 first). Serve at 127.0.0.1:8765. Installed Chromium may be selected locally with
 PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium. Actions uses its own bundle.
@@ -125,8 +125,8 @@ Tests cover all 196 supported baseline values, two generated three-year historie
 and complete touch cycles, corrections, offline drafts and explicit review.
 Broader pulling geometry, exact source weekly/retest scheduling, other bodyweight
 and paired numeric systems remain separate work. No full lifetime integration or
-new source-review completion count is claimed. Run all 56 Node JS suites, the six
-correction CJS tests, all twenty-three browser suites, demo generation and both audits.
+new source-review completion count is claimed. Run all 57 Node JS suites, the six
+correction CJS tests, all twenty-four browser suites, demo generation and both audits.
 
 
 Explicit user-directed Settings/Train audit supersedes historical temporary-time
@@ -232,7 +232,7 @@ imported fraction 1 remains supported and explained as configured full-dose work
 Inactive baselines and impossible zero-set heavy targets remain blocked. The
 shared reducedDose helper also preserves the prior planned-deload policy. Keep
 tests/recovery-dose.js and browser-recovery-dose.cjs in full validation (52 Node
-JS suites, six correction tests, twenty-three browser suites). Runtime rc51-recovery-dose
+JS suites, six correction tests, twenty-four browser suites). Runtime rc51-recovery-dose
 retains 51 assets. This is app recovery consistency, no transcript-dose addition.
 
 Valid saved training-default values outside preset dropdown choices are retained
@@ -253,7 +253,7 @@ sets are setup-only for pending/unfinished-work planning. Exclude their apparent
 debt using dated evidence, without rewriting records or erasing actual partial
 work, unloaded bodyweight practice, pain holds, explicit legacy debt or future
 isolation. Keep tests/load-setup-recovery.js and browser-load-setup.cjs in full
-validation (53 Node JS suites, six correction tests, twenty-three browser suites).
+validation (53 Node JS suites, six correction tests, twenty-four browser suites).
 Runtime rc52-load-setup retains 51 assets; no source prescription is added.
 
 Require explicit zero-load evidence for inferred historical setup-only work.
@@ -274,7 +274,7 @@ Source #609 rolling push-up cycles and #89 fixed-setup row waves retain their
 existing numerical prescriptions. This is app comparison consistency, not a
 forced maximum test, monthly schedule or new transcript program. Keep
 tests/baseline-cycles.js and browser-baseline-cycles.cjs in full verification:
-54 Node JS suites, six correction tests and twenty-three browser suites. Worker
+54 Node JS suites, six correction tests and twenty-four browser suites. Worker
 rc53-baseline-cycles retains 51 runtime assets.
 
 
@@ -290,8 +290,8 @@ Before observed cadence exists, retention fallback respects configured capacity
 rather than assuming an impossible daily schedule. Keep real activity/spacing,
 pause, manual moves, date evidence cutoffs and draft snapshots intact. This is
 app scheduling consistency, not a new source training frequency. Run
-tests/weekly-limits.js and browser-weekly-limits.cjs with all 56 Node JS suites,
-six correction tests and twenty-three browser suites. rc54-weekly-limits retains
+tests/weekly-limits.js and browser-weekly-limits.cjs with all 57 Node JS suites,
+six correction tests and twenty-four browser suites. rc54-weekly-limits retains
 51 runtime assets.
 
 
@@ -310,5 +310,22 @@ The original review decision, pain hold and actual history remain. Corrections/
 undo and date cutoffs replay this evidence. Generic actual-load comparison resets
 remain unchanged; do not confuse that separate rule with clearing a same-load
 difficulty flag. Run tests/reduced-evidence.js and browser-reduced-evidence.cjs
-with all 56 Node JS suites, six correction tests and twenty-three browser suites.
+with all 57 Node JS suites, six correction tests and twenty-four browser suites.
 rc55-reduced-evidence retains 51 runtime assets.
+
+
+Unfinished return continuity: stateFor derives reentryPending from dated history,
+not mutable settings. A re-entry attempt that does not deliver its clean written
+target remains pending even after positive actual sets make movementGap recent.
+The next prescription stays reduced until delivered reduced work, or genuine
+later successful ordinary work already present in history, settles the physical
+return. Existing reviewed-pain return requirements remain separate and stricter.
+
+Do not redefine physical attendance as clean completion: regular difficulty is
+not absence. Exclude old explicit zero-load/zero-set setup placeholders from the
+return obligation. No history or schema migration. Corrections/undo and future
+cutoffs replay the flag. Progress status/narrative and prescription reason explain
+an unfinished return; readiness changes cannot bypass it. Keep
+tests/return-continuity.js and browser-return-continuity.cjs in full validation:
+57 Node JS suites, six correction tests, twenty-four browser suites.
+rc56-return-continuity retains 51 runtime assets.
