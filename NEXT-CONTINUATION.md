@@ -12,9 +12,9 @@ retention. Inspect the actual latest GitHub commit and checks before continuing.
 Do not assume a later checkpoint passed just because this file exists.
 
 Run all non-browser tests/*.js, the history-corrections.test.cjs suite, and the
-twenty browser suites: browser-smoke.js, browser-curriculum.cjs,
+twenty-one browser suites: browser-smoke.js, browser-curriculum.cjs,
 browser-integration.cjs, browser-continuity.cjs, browser-foundations.cjs,
-browser-step-ups.cjs, browser-double-hinge.cjs, browser-paired-swing-reps.cjs, browser-endpoint-reviews.cjs, browser-prerequisite-evidence.cjs, browser-wave-replay.cjs, browser-deload-cadence.cjs, browser-recovery-dose.cjs, browser-load-setup.cjs, browser-hand-changes.cjs
+browser-step-ups.cjs, browser-double-hinge.cjs, browser-paired-swing-reps.cjs, browser-endpoint-reviews.cjs, browser-prerequisite-evidence.cjs, browser-wave-replay.cjs, browser-deload-cadence.cjs, browser-recovery-dose.cjs, browser-load-setup.cjs, browser-baseline-cycles.cjs, browser-hand-changes.cjs
 browser-single-arm-swing.cjs, browser-dated-evidence.cjs, browser-row-wave.cjs, browser-settings-sync.cjs and browser-demo-history.js (generate its synthetic backup
 first). Serve at 127.0.0.1:8765. Installed Chromium may be selected locally with
 PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium. Actions uses its own bundle.
@@ -125,8 +125,8 @@ Tests cover all 196 supported baseline values, two generated three-year historie
 and complete touch cycles, corrections, offline drafts and explicit review.
 Broader pulling geometry, exact source weekly/retest scheduling, other bodyweight
 and paired numeric systems remain separate work. No full lifetime integration or
-new source-review completion count is claimed. Run all 53 Node JS suites, the six
-correction CJS tests, all twenty browser suites, demo generation and both audits.
+new source-review completion count is claimed. Run all 54 Node JS suites, the six
+correction CJS tests, all twenty-one browser suites, demo generation and both audits.
 
 
 Explicit user-directed Settings/Train audit supersedes historical temporary-time
@@ -232,7 +232,7 @@ imported fraction 1 remains supported and explained as configured full-dose work
 Inactive baselines and impossible zero-set heavy targets remain blocked. The
 shared reducedDose helper also preserves the prior planned-deload policy. Keep
 tests/recovery-dose.js and browser-recovery-dose.cjs in full validation (52 Node
-JS suites, six correction tests, twenty browser suites). Runtime rc51-recovery-dose
+JS suites, six correction tests, twenty-one browser suites). Runtime rc51-recovery-dose
 retains 51 assets. This is app recovery consistency, no transcript-dose addition.
 
 Valid saved training-default values outside preset dropdown choices are retained
@@ -253,9 +253,26 @@ sets are setup-only for pending/unfinished-work planning. Exclude their apparent
 debt using dated evidence, without rewriting records or erasing actual partial
 work, unloaded bodyweight practice, pain holds, explicit legacy debt or future
 isolation. Keep tests/load-setup-recovery.js and browser-load-setup.cjs in full
-validation (53 Node JS suites, six correction tests, twenty browser suites).
+validation (53 Node JS suites, six correction tests, twenty-one browser suites).
 Runtime rc52-load-setup retains 51 assets; no source prescription is added.
 
 Require explicit zero-load evidence for inferred historical setup-only work.
 Missing older load metadata is unknown and must retain its existing pending-work
 meaning; never infer zero from an absent field.
+
+
+Reviewed-baseline cycle identity: push-up baseline/fraction/step/exposure/stall
+changes and all rowWave cycle-defining settings now create a newer comparison
+revision. Returning to earlier settings cannot revive old credit, even when two
+baselines floor to the same rep count. Compare effective policy at the prior
+revision, so unchanged Save retains old keys and evidence. Explicit same-number
+review increments once; changed-number review must not increment twice. Safe
+integer revisions cannot regress or overflow. Existing backups/history remain
+readable, and fixed-dose row history remains independent.
+
+Source #609 rolling push-up cycles and #89 fixed-setup row waves retain their
+existing numerical prescriptions. This is app comparison consistency, not a
+forced maximum test, monthly schedule or new transcript program. Keep
+tests/baseline-cycles.js and browser-baseline-cycles.cjs in full verification:
+54 Node JS suites, six correction tests and twenty-one browser suites. Worker
+rc53-baseline-cycles retains 51 runtime assets.

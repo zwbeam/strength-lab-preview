@@ -1119,3 +1119,56 @@ One replacement-load browser run timed out locating its control; isolated state/
 diagnostics and the unchanged complete workflow passed on rerun. Keep exact-commit
 CI as the final independent check. Source audits, syntax, suite registration and
 51-asset offline integrity passed. Public DEV verification remains required.
+
+
+## Reviewed-baseline push-up and row comparison identities
+
+Incoming preview 6ef7300 was current/clean after fetch. Reproduced push-up and
+row-wave exposure settings changed from two to three then back to two reviving
+older stage progress. Push-up baseline changes had the same weakness; row baseline
+reviews already reset, but other cycle-defining row settings could revive credit.
+
+Compare each proposed effective cycle at the prior revision. Changed cycle
+settings create a newer identity; unchanged effective Save retains existing keys
+and evidence, including revision-zero imported histories. Preserve explicit newer
+review revisions, so same-number review advances once and changed-number review
+does not advance twice. Push-up revision validation now uses safe integers like
+row waves; revisions cannot be lowered or silently overflow. No record rewrite,
+policy-key migration or fixed-dose row-history change.
+
+Read full #609 and #89 source text. Preserve existing push-up EMOM volume, rep
+fractions, row lower/higher work relationship, rests, timing and qualification.
+This is app comparison consistency; it does not impose source max tests or a
+calendar-based retest schedule. Existing source/lesson coverage counts stay put.
+
+Focused verification includes eleven changed/restored settings, baselines with
+identical rounded reps, no-op defaults/saves, inactive/reactivated push-ups, old
+earned endpoints, explicit same/changed-number reviews, revision bounds, correction/
+undo, future/frozen evidence, backup compatibility and independent fixed row history.
+A three-year real generator history saves 430 workouts, with 141 push-up and 144
+row movement results and four explicit annual baseline reviews.
+
+Phone acceptance covers both methods at 320/390px through actual Settings changes,
+no-op Save, fresh recorded work, historical corrections/restoration, explicit
+same-number review and immutable offline drafts. Original physical history stays
+intact; active programming edits remain blocked. Inventory is 54 Node JS suites,
+six correction tests and twenty-one browser suites. Worker rc53-baseline-cycles
+retains 51 assets. Full local, exact-commit CI and public DEV checks remain required.
+
+No-op normalization additionally checks 993 supported baseline/fraction/step
+combinations, including inactive baselines and rounding-dependent row starting
+sets. All retain their original key when effective settings are unchanged.
+All 216 configured initial prescriptions (four readiness/return conditions across
+54 movements) and every default block plan match 6ef7300 exactly.
+
+An existing row browser test immediately reloaded after tapping Save; add an
+explicit check of live and persisted row settings before reload. The full
+row-wave workflow then passes at both phone widths. No save/reload assertion is
+removed and no retry click is added. The refreshed local environment's missing
+HTTP server was restarted and verified before the browser run.
+
+Final local verification passed all 54 Node JS suites, six correction tests and
+all twenty-one browser suites, including the populated 295-session replay.
+Focused baseline coverage also passed after adding the 993 no-op combinations.
+Both source audits, syntax, suite registration and 51-asset offline integrity
+passed. Exact-commit CI and public DEV remain required before reporting deployment.

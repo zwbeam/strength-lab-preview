@@ -319,3 +319,23 @@ Pain review is retained independently; setup cannot dismiss a pain hold.
 Require explicit zero-load evidence for inferred historical setup-only work.
 Missing older load metadata is unknown and must retain its existing pending-work
 meaning; never infer zero from an absent field.
+
+
+## Reviewed-baseline cycle comparisons
+
+For push-up and row 60%/80% methods, changing a cycle-defining setting starts a
+new comparison revision. This includes baseline, fraction/step where supported,
+exposure requirement, stall choice and row set range/reviewed baseline height.
+Changing then restoring a setting cannot revive an earlier cycle's credit, even
+if two reviewed baselines round to the same reps. Unchanged effective settings
+preserve the current key and credit; no history migration is required.
+
+Explicit baseline review/restart creates exactly one new revision, including a
+same-number review. A changed-number review does not increment twice. Revisions
+are safe nonnegative integers; a caller cannot lower them or silently overflow.
+Old physical work and written targets stay visible. Fresh actual work, correction
+and undo drive only the new comparison. Fixed-dose row history stays independent.
+
+Full #609 and #89 source text was checked for this repair. Existing EMOM span,
+baseline fractions, row volume cap, rests, exposure gates and rolling timing stay
+unchanged. No required maximum test or automatic retest schedule is introduced.

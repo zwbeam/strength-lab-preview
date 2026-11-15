@@ -266,3 +266,14 @@ including older recovery labels. Actual history, partial work, bodyweight work,
 pain/prerequisite gates and dated forecast isolation remain. Inventory is now
 53 Node JS suites, six correction tests and twenty browser suites; worker
 rc52-load-setup retains 51 assets. No instructional completion count changed.
+
+
+Reviewed-baseline cycle reliability: changing/restoring push-up and row-wave
+settings no longer revives old cycle progress. Effective no-op saves keep the
+existing policy key, including old backups; explicit baseline reviews increment
+once. Normal source doses and fixed-dose row history remain unchanged. Focused
+verification covers eleven configuration reversals, review/correction/date bounds
+and a three-year 430-workout mixed history with annual explicit baseline reviews.
+Inventory: 54 Node JS suites, six correction tests and twenty-one browser suites;
+rc53-baseline-cycles retains 51 offline assets. Instructional counts remain
+54 movements / 38 reviewed outlines / 16 partial lessons.

@@ -197,7 +197,7 @@ function policyFor(id,s={}){
  if(profile==='ground'){start=c.startSets??2;end=c.endSets??4;reps=c.repCount??m.reps;rest=60;if(!Number.isInteger(start)||!Number.isInteger(end)||start<1||start>4||end<start||end>6||!(m.timed?[30,60,90]:[3,4,5]).includes(reps))throw Error('Ground practice needs 1–6 sets and a supported dose');sources=m.teachingSources;exactParametersSource=null;}
  if(profile==='deadliftPractice'){start=c.startSets??2;end=c.endSets??4;reps=c.repCount??5;rest=90;if(!Number.isInteger(start)||!Number.isInteger(end)||start<1||start>4||end<start||end>6||![3,5,8].includes(reps))throw Error('Loaded hinge practice needs 1–6 sets and 3, 5 or 8 reps');sources=[704];exactParametersSource=null;}
  if(profile==='hingePractice'){start=2;end=3;reps=10;rest=60;sources=[704];exactParametersSource=704;}
- if(profile==='pushup'){const baseline=c.cleanBaseline??0,fraction=c.fraction??.4;if(!Number.isInteger(baseline)||baseline<0||baseline>200||baseline>0&&baseline<3||![.4,.5].includes(fraction))throw Error('Use a conservative clean baseline of 3–200 and a 40% or 50% fraction');if(c.cycleRevision!==undefined&&(!Number.isInteger(c.cycleRevision)||c.cycleRevision<0))throw Error('Invalid baseline revision');start=10;end=30;reps=Math.floor(baseline*fraction);rest=0;step=c.step??1;if(![1,2].includes(step))throw Error('Push-up set increment must be 1 or 2');roundSeconds=60;sources=[609];exactParametersSource=609;}
+ if(profile==='pushup'){const baseline=c.cleanBaseline??0,fraction=c.fraction??.4;if(!Number.isInteger(baseline)||baseline<0||baseline>200||baseline>0&&baseline<3||![.4,.5].includes(fraction))throw Error('Use a conservative clean baseline of 3–200 and a 40% or 50% fraction');if(c.cycleRevision!==undefined&&(!Number.isSafeInteger(c.cycleRevision)||c.cycleRevision<0))throw Error('Invalid baseline revision');start=10;end=30;reps=Math.floor(baseline*fraction);rest=0;step=c.step??1;if(![1,2].includes(step))throw Error('Push-up set increment must be 1 or 2');roundSeconds=60;sources=[609];exactParametersSource=609;}
  const heavyReps=c.heavyReps??Math.max(1,Math.floor(m.reps*.6));if(profile==='wave'&&(!Number.isInteger(heavyReps)||heavyReps<1||heavyReps>m.reps))throw Error('Heavy reps must be whole and no greater than light reps');
  const stages=[];if(profile==='pairedSwingReps'){for(let count=6;count<=20;count+=2)stages.push({sets:2,reps:count,rest});}else if(profile==='getup'){for(let seconds=180;seconds<=600;seconds+=step)stages.push({sets:1,reps:seconds,rest:0});}else if(profile==='getupDrill'){for(let count=3;count<=m.practiceRepEnd;count++)stages.push({sets:1,reps:count,rest});}else{for(let sets=start;sets<end;sets+=step)stages.push({sets,reps,rest});stages.push({sets:end,reps,rest});}
  const custom=profile==='club'&&(start!==2||end!==6||rest!==60)?{start,end,rest}:profile==='wave'&&heavyReps!==Math.max(1,Math.floor(m.reps*.6))?{heavyReps}:null;
@@ -212,6 +212,13 @@ function policyFor(id,s={}){
 }
 function availableProfiles(id){if(id==='doubleSwing')return ['doubleHinge','pairedSwingReps'];if(id==='bodyweightRow')return ['bodyweightPractice','rowWave'];if(MOVES[id]?.defaultProfile)return [MOVES[id].defaultProfile];if(id==='snatch')return ['snatch'];if(['doublePress','doubleSquat'].includes(id))return ['grind'];if(MOVES[id]?.gear==='club')return ['legacy','club'];if(['swing','squat','press','row','clean'].includes(id))return ['legacy','wave'];return ['legacy'];}
 function configureMovement(s,id,config){
+ // Compare the effective cycle at the prior revision; explicit reviews may already request a newer one.
+ const changedBaselineCycle=(candidate,revision)=>policyFor(id,s).key!==policyFor(id,{...s,programming:{...s.programming,[id]:{...candidate,cycleRevision:revision}}}).key;
+ if(id==='pushup'&&(config.profile===undefined||config.profile==='pushup')){
+  const previous=s.programming?.[id]||{},revision=previous.cycleRevision??0;config={...config};
+  if(config.cycleRevision!==undefined&&(!Number.isSafeInteger(config.cycleRevision)||config.cycleRevision<0))throw Error('Invalid baseline revision');
+  config.cycleRevision=Math.max(config.cycleRevision??revision,revision+(changedBaselineCycle(config,revision)?1:0));
+ }
  if(id==='doubleSwing'&&config.profile==='pairedSwingReps'){
   const previous=s.programming?.[id]||{};config={...config};if(config.cycleRevision!==undefined&&(!Number.isSafeInteger(config.cycleRevision)||config.cycleRevision<0))throw Error('Invalid paired-swing cycle revision');
   if(previous.profile==='pairedSwingReps'){const changed=(previous.exposures??2)!==(config.exposures??2)||(previous.stallStrategy||'repeat')!==(config.stallStrategy||'repeat');config.cycleRevision=Math.max((previous.cycleRevision??0)+(changed?1:0),config.cycleRevision??0);}
@@ -220,7 +227,7 @@ function configureMovement(s,id,config){
  if(id==='bodyweightRow'&&config.profile==='rowWave'){
   const previous=s.programming?.[id]||{};config={...config};if(config.cycleRevision!==undefined&&(!Number.isSafeInteger(config.cycleRevision)||config.cycleRevision<0))throw Error('Invalid row baseline revision');
   if(config.cleanBaseline>0&&config.baselineHeightCm===undefined)config.baselineHeightCm=s.equipment?.rowBar?.heightCm;
-  if(previous.profile==='rowWave')config.cycleRevision=Math.max(config.cycleRevision??previous.cycleRevision??0,(previous.cycleRevision??0)+(config.cleanBaseline!==previous.cleanBaseline||config.baselineHeightCm!==previous.baselineHeightCm?1:0));
+  if(previous.profile==='rowWave'){const revision=previous.cycleRevision??0;config.cycleRevision=Math.max(config.cycleRevision??revision,revision+(changedBaselineCycle(config,revision)?1:0));}
   else{const revisions=records(s,id).filter(x=>x.profile==='rowWave').map(x=>{try{return JSON.parse(x.policyKey)[11];}catch{return -1;}}).filter(Number.isSafeInteger);config.cycleRevision=Math.max(config.cycleRevision??0,revisions.length?revisions.reduce((max,value)=>Math.max(max,value),-1)+1:0);}
  }
 if(config.profile==='legacy'&&(config.exposures??2)===2&&(!config.stallStrategy||config.stallStrategy==='repeat'))config={};const next={...s,programming:{...s.programming,[id]:config}};const policy=policyFor(id,next);if(policy.profile==='wave'&&![config.lightWeight,config.heavyWeight].every(w=>(s.equipment?.[MOVES[id].gear]||[]).includes(w)))throw Error('Both wave weights must be available');return next;}
