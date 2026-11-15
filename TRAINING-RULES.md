@@ -208,3 +208,25 @@ Every live load/density action passes today's date. Undated helpers retain their
 existing full-history audit behavior for compatibility with historical tools;
 records/state audit reads remain unscoped unless a cutoff is supplied. Current
 review never removes future records or rewrites earlier prescriptions.
+
+
+## Prerequisite comparison evidence
+
+Qualification uses the same dated load-reset boundary as progression. Before a
+future reset event, the earlier comparison remains available; on/after it, older
+records cannot supply new qualification. A genuinely missing anchor stays blocked
+until explicit history repair. No history is removed.
+
+Within that boundary, qualifying proof comes from the current uninterrupted
+method/load comparison. A recorded attempt at another method/load separates
+comparisons; returning to an older method or load cannot revive its old supporting
+exposure count. Recency comes from actual comparable practice, rather than any
+recent record for that movement. Configured wave light/heavy tracks are one
+method; their current-load/track counts remain distinct. Matching clean planned
+light work stays neutral, while reduced/incomplete practice remains nonqualifying.
+
+Descendant maintenance applies these same rules to the descendant. A load reset
+or changed comparison cannot let older child proof maintain stale ancestors.
+Fresh qualifying practice can restore the pathway; maintenance never adds parent
+exposures or progression. These are app evidence-consistency rules, not new
+transcript numerical requirements or automatic technique certification.

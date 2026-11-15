@@ -241,9 +241,16 @@ function replayRowWave(s,id,policy,opts){
  }
  return{...shape(),phase:ready?'ready':'volume',stagePhase:'volume',stage,track,weight:0,streak:Math.min(counts.lower,counts.higher),waveCounts:counts,fail,cycles:ready?1:0,lastEligibleKey,last:h.at(-1)||null,exposures:h.length};
 }
+// One dated reset boundary for progression and prerequisite evidence; history stays intact.
+function recordsAfterLoadReset(s,id,opts={}){
+ const all=records(s,id),resetAfter=s.loadResetAfter?.[id],boundary=resetAfter?all.findIndex(x=>x._key===resetAfter):-1;
+ if(resetAfter&&resetAfter!=='__start__'&&boundary<0)throw Error('Missing load reset anchor: restore or repair training history before progressing');
+ const through=evidenceDay(opts),futureBoundary=boundary>=0&&calendarDay(all[boundary].date)>through;
+ return{futureBoundary,history:(!futureBoundary&&boundary>=0?all.slice(boundary+1):all).filter(x=>calendarDay(x.date)<=through)};
+}
 function replay(s,id,policy,track='base',opts={}){
  if(policy.profile==='rowWave')return replayRowWave(s,id,policy,opts);
- const all=records(s,id);const resetAfter=s.loadResetAfter?.[id];const boundary=resetAfter?all.findIndex(x=>x._key===resetAfter):-1;if(resetAfter&&resetAfter!=='__start__'&&boundary<0)throw Error('Missing load reset anchor: restore or repair training history before progressing');const through=evidenceDay(opts),futureBoundary=boundary>=0&&calendarDay(all[boundary].date)>through;const h=(!futureBoundary&&boundary>=0?all.slice(boundary+1):all).filter(x=>(calendarDay(x.date)<=through)&&(x.policyKey||'legacy-v1')===policy.key&&(x.track||'base')===track);
+ const {history,futureBoundary}=recordsAfterLoadReset(s,id,opts);const h=history.filter(x=>(x.policyKey||'legacy-v1')===policy.key&&(x.track||'base')===track);
  let stage=0,stagePhase='volume',ready=false,streak=0,fail=0,cycles=0,weight=MOVES[id].bodyweight?0:policy.profile==='wave'?(track==='heavy'?policy.config.heavyWeight:policy.config.lightWeight):(Number(s.weights?.[id])||0),lastEligibleKey=null;
  const shape=()=>stagePhase==='density'?{...policy.density[stage],rest:0}:policy.stages[stage];
  for(const x of h){
@@ -300,18 +307,27 @@ function gatedDescendant(child,parent,seen=new Set()){
  if(!MOVES[child]||seen.has(child))return false;seen.add(child);
  return (MOVES[child].practicePrereqs||[]).some(id=>id===parent||gatedDescendant(id,parent,seen));
 }
+// Qualification belongs to the current uninterrupted comparison, not any recent touch.
+function comparablePractice(s,id,st,opts){
+ const scoped=recordsAfterLoadReset(s,id,opts).history,policy=st.policy;
+ const compatible=x=>(x.policyKey||'legacy-v1')===policy.key&&(policy.profile==='wave'?(x.track==='light'&&Number(x.weight)===policy.config.lightWeight||x.track==='heavy'&&Number(x.weight)===policy.config.heavyWeight):Number(x.weight)===st.weight);
+ const boundary=scoped.findLastIndex(x=>!compatible(x));
+ const history=scoped.slice(boundary+1).filter(x=>Number(x.weight)===st.weight&&(policy.profile!=='wave'||x.track===st.track));
+ const last=history.filter(x=>x.actualSets>0).at(-1),absence=s.trainingDefaults?.reentryDays??14;
+ return{history,recent:!!last&&calendarDay(opts.now)-calendarDay(last.date)<=absence};
+}
 function practiceEvidence(s,id,opts={}){
  opts={...opts,now:opts.now??new Date()};
- const st=stateFor(s,id,opts),history=records(s,id,opts).filter(x=>(x.policyKey||'legacy-v1')===st.policy.key&&Number(x.weight)===st.weight);
+ const st=stateFor(s,id,opts),comparison=comparablePractice(s,id,st,opts),history=comparison.history;
  const neutralLight=x=>x.performed&&x.mode==='light'&&x.quality==='clean'&&!x.pain&&!x.setupChanged;
  const bad=history.findLastIndex(x=>!neutralLight(x)&&(!successful(x)||['rebuild','reentry','recovery','deload'].includes(x.mode)));
- const count=history.slice(bad+1).filter(successful).length,required=s.trainingDefaults?.skillExposures??2,absence=s.trainingDefaults?.reentryDays??14;
- let recent=movementGap(s,id,opts.now,opts.evidenceThrough)<=absence,maintained=false;
+ const count=history.slice(bad+1).filter(successful).length,required=s.trainingDefaults?.skillExposures??2;
+ let recent=comparison.recent,maintained=false;
  const maintenanceFor=opts.maintenanceFor||opts.forMovement;
  if(!recent&&maintenanceFor&&gatedDescendant(maintenanceFor,id)){
-  const child=stateFor(s,maintenanceFor,opts),h=records(s,maintenanceFor,opts).filter(x=>(x.policyKey||'legacy-v1')===child.policy.key&&Number(x.weight)===child.weight);
+  const child=stateFor(s,maintenanceFor,opts),childComparison=comparablePractice(s,maintenanceFor,child,opts),h=childComparison.history;
   const lastBad=h.findLastIndex(x=>!successful(x)&&!neutralLight(x));
-  maintained=h.slice(lastBad+1).filter(successful).length>=required&&movementGap(s,maintenanceFor,opts.now,opts.evidenceThrough)<=absence&&!child.hold&&(MOVES[maintenanceFor].requires||[]).every(key=>s.skills?.[key]===true);
+  maintained=h.slice(lastBad+1).filter(successful).length>=required&&childComparison.recent&&!child.hold&&(MOVES[maintenanceFor].requires||[]).every(key=>s.skills?.[key]===true);
  }
  const upstreamReady=prerequisites(s,id,{...opts,maintenanceFor:maintained?maintenanceFor:opts.maintenanceFor}).length===0;
  return{count,required,ready:count>=required&&(recent||maintained)&&!st.hold&&upstreamReady,recent,maintained,held:!!st.hold};

@@ -208,3 +208,13 @@ intact. Focused verification covers eight profiles, correction/undo, density
 anchors and 430 generated workouts over three years. Runtime cache is rc47;
 regression inventory is 48 Node JS suites, six correction tests and fifteen
 browser suites. No transcript dose or curriculum completion count changed.
+
+
+Prerequisite-evidence batch: qualification now shares the progression load-reset
+boundary and uses comparable-method/load recency. Returning to a previous load
+or method cannot revive old qualification via unrelated recent work. Descendant
+maintenance uses the same scope; normal wave alternation and planned light
+practice remain supported. Current instruction coverage remains 54 movements /
+38 reviewed / 16 partial. Verification inventory is 49 Node JS suites, six
+correction tests and sixteen browser suites. Runtime cache revision rc48 retains
+51 assets; no source dose or stored history is changed.

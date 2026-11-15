@@ -868,3 +868,50 @@ all fifteen browser suites and the 295-session demo replay. Source audits,
 syntax, suite registration and 51-asset offline integrity passed. Initial
 prescriptions for all 54 movements and every default block plan match 0c6ad52;
 the intended changes depend on recorded maintenance/recovery history.
+
+
+## Prerequisite comparison boundaries and recency
+
+Incoming preview a978be6 was clean/current after fetch, including recheck after
+continuation/date steering. Reproduced a real mismatch: after an earned 8 kg
+swing cycle, selected 10 kg, a later reduced 10 kg exposure, loss of that load
+and explicit owned replacement back to 8 kg, progression restarted at stage zero
+but qualification still counted eight old 8 kg exposures. The recent 10 kg
+record made those older records appear current and enabled single-arm practice.
+
+recordsAfterLoadReset now supplies the same chronological/date-cutoff boundary
+to progression replay and prerequisite evidence. Future anchors remain inactive
+before their date; missing anchors remain blocked. Comparable proof is limited
+to the current uninterrupted policy/load comparison, and recency comes from
+physical records in that comparison. An intervening recorded method/load attempt
+cannot renew an older comparison when the user returns. Normal configured wave
+alternation stays within one method, with separate current-weight/track counts.
+Matching planned light practice remains neutral.
+
+Descendant maintenance now uses the same scoped child proof. Old child records
+before a load reset cannot maintain stale ancestors; after actual requalification,
+long-term multi-level maintenance resumes. No parent exposures, progression,
+technique confirmation, old records or current active-draft targets are invented.
+No new source prescriptions, movement variants or frontend questions were added.
+
+Focused tests cover returned loads and methods, zero/one/two fresh exposures,
+dated/frozen evidence, future and missing anchors, wave alternation and malformed
+track evidence, planned light/reduced work, correction/undo and multi-level child
+reset/requalification. A real three-year mixed generator history saves 430
+workouts, makes four returned-load resets and records 74 single-arm exposures.
+The five-month maintenance and 432-workout dated archive suites remain covered.
+Touch acceptance performs actual Settings inventory removal and replacement,
+fresh preparation, corrected/restored physical results, advanced admission and
+offline child actuals at 320/390 while preserving all original records.
+
+Regression inventory is 49 Node JS suites, six correction tests and sixteen
+browser suites. Worker/query revision rc48-prerequisite-evidence retains 51
+assets. Source audits remain reproducible; instructional coverage stays
+54 movements / 38 reviewed / 16 partial. Exact-commit CI and live DEV checks
+remain required after push. A separate malformed-wave replay lead is recorded
+in NEXT-CONTINUATION.md without claiming that prescription issue is fixed here.
+
+Final local verification passed all 49 Node JS suites, six correction tests,
+all sixteen browser suites and the 295-session demo replay. Source audits,
+syntax, suite registration and 51-asset offline integrity passed. All 54 initial
+prescriptions and every default block plan match the a978be6 checkpoint.

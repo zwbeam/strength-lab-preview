@@ -12,9 +12,9 @@ retention. Inspect the actual latest GitHub commit and checks before continuing.
 Do not assume a later checkpoint passed just because this file exists.
 
 Run all non-browser tests/*.js, the history-corrections.test.cjs suite, and the
-fifteen browser suites: browser-smoke.js, browser-curriculum.cjs,
+sixteen browser suites: browser-smoke.js, browser-curriculum.cjs,
 browser-integration.cjs, browser-continuity.cjs, browser-foundations.cjs,
-browser-step-ups.cjs, browser-double-hinge.cjs, browser-paired-swing-reps.cjs, browser-endpoint-reviews.cjs, browser-hand-changes.cjs
+browser-step-ups.cjs, browser-double-hinge.cjs, browser-paired-swing-reps.cjs, browser-endpoint-reviews.cjs, browser-prerequisite-evidence.cjs, browser-hand-changes.cjs
 browser-single-arm-swing.cjs, browser-dated-evidence.cjs, browser-row-wave.cjs, browser-settings-sync.cjs and browser-demo-history.js (generate its synthetic backup
 first). Serve at 127.0.0.1:8765. Installed Chromium may be selected locally with
 PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium. Actions uses its own bundle.
@@ -125,8 +125,8 @@ Tests cover all 196 supported baseline values, two generated three-year historie
 and complete touch cycles, corrections, offline drafts and explicit review.
 Broader pulling geometry, exact source weekly/retest scheduling, other bodyweight
 and paired numeric systems remain separate work. No full lifetime integration or
-new source-review completion count is claimed. Run all 48 Node JS suites, the six
-correction CJS tests, all fifteen browser suites, demo generation and both audits.
+new source-review completion count is claimed. Run all 49 Node JS suites, the six
+correction CJS tests, all sixteen browser suites, demo generation and both audits.
 
 
 Explicit user-directed Settings/Train audit supersedes historical temporary-time
@@ -174,3 +174,21 @@ anchor, including correction/undo. A recovery/rebuild/reentry/deload entry with
 zero actual sets cannot clear failures (generic and row-wave replay). Test through
 tests/endpoint-reviews.js and tests/browser-endpoint-reviews.cjs; the latter
 supports isolated DEV HTTPS acceptance. No source numeric dose was changed.
+
+
+Prerequisite comparison scope: progression and qualification now share
+recordsAfterLoadReset, including dated/future-anchor behavior. practiceEvidence
+and descendant maintenance only count the current uninterrupted policy/load
+comparison after that boundary. Recent work at another method/load cannot make
+old proof current. Expected wave light/heavy tracks remain one method, with
+track-specific current-load proof; matching clean planned light work stays
+neutral. Records, earned progression and source doses are not rewritten.
+Reproduce tests/prerequisite-evidence.js and browser-prerequisite-evidence.cjs
+(the latter supports isolated public DEV HTTPS acceptance).
+
+Further engine lead from the malformed-wave fixture: generic replay can let an
+incorrect actual heavy weight replace a configured wave weight, and heavy-track
+normal targets differ from generic stage shapes. Qualification now fails closed
+for that inconsistent evidence, but audit fixed wave prescription loads and
+heavy-track failure recovery as a separate tested programming batch. Do not
+claim that broader wave replay issue is fixed by the prerequisite scope work.
