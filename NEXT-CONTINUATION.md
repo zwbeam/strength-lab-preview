@@ -12,9 +12,9 @@ retention. Inspect the actual latest GitHub commit and checks before continuing.
 Do not assume a later checkpoint passed just because this file exists.
 
 Run all non-browser tests/*.js, the history-corrections.test.cjs suite, and the
-twenty-four browser suites: browser-smoke.js, browser-curriculum.cjs,
+twenty-five browser suites: browser-smoke.js, browser-curriculum.cjs,
 browser-integration.cjs, browser-continuity.cjs, browser-foundations.cjs,
-browser-step-ups.cjs, browser-double-hinge.cjs, browser-paired-swing-reps.cjs, browser-endpoint-reviews.cjs, browser-prerequisite-evidence.cjs, browser-wave-replay.cjs, browser-deload-cadence.cjs, browser-recovery-dose.cjs, browser-load-setup.cjs, browser-baseline-cycles.cjs, browser-weekly-limits.cjs, browser-reduced-evidence.cjs, browser-return-continuity.cjs, browser-hand-changes.cjs
+browser-step-ups.cjs, browser-double-hinge.cjs, browser-paired-swing-reps.cjs, browser-endpoint-reviews.cjs, browser-prerequisite-evidence.cjs, browser-wave-replay.cjs, browser-deload-cadence.cjs, browser-recovery-dose.cjs, browser-load-setup.cjs, browser-baseline-cycles.cjs, browser-weekly-limits.cjs, browser-reduced-evidence.cjs, browser-return-continuity.cjs, browser-emphasis-evidence.cjs, browser-hand-changes.cjs
 browser-single-arm-swing.cjs, browser-dated-evidence.cjs, browser-row-wave.cjs, browser-settings-sync.cjs and browser-demo-history.js (generate its synthetic backup
 first). Serve at 127.0.0.1:8765. Installed Chromium may be selected locally with
 PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium. Actions uses its own bundle.
@@ -329,3 +329,17 @@ an unfinished return; readiness changes cannot bypass it. Keep
 tests/return-continuity.js and browser-return-continuity.cjs in full validation:
 57 Node JS suites, six correction tests, twenty-four browser suites.
 rc56-return-continuity retains 51 runtime assets.
+
+
+Emphasis consistency: planner and display now share effective equipment-filtered
+weights. Only enabled, non-Off family physical practice affects emphasis balance;
+excluded-family actuals and priorities cannot dilute active shares. Lifetime
+movement history/progression and pending/four-skipped-session precedence remain.
+A proposed 56-day emphasis window failed the existing club/bodyweight continuity
+bound (211 re-entry sessions); retain lifetime accounting until a shorter window
+passes those unchanged checks. The effective-weight fix alone produced 138 in
+that diagnostic, with the original bound of 200 retained.
+Run tests/emphasis-evidence.js and browser-emphasis-evidence.cjs with every suite:
+58 Node JS suites, six correction tests and twenty-five browser suites.
+rc57-emphasis-evidence retains the same 51 runtime assets. Instructional counts
+remain 54 movements / 38 reviewed outlines / 16 partial lessons.

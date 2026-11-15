@@ -15,7 +15,7 @@ outside the preset list, remain selectable and are not rounded away on load.
 | Training days | `trainingPreferences.daysPerWeek`; Settings and Train schedule | Rolling opportunity frequency and weekly limits; the same strength/four-day validation in both paths. Does not create completed work. |
 | Today’s readiness | `todayReadiness.date/value`; Train and Settings | Low readiness reduces the actual generated prescription without ordinary progression credit. Great follows normal progression. Survives same-day reload; expires on a new day, including an open page. |
 | Focus / variety / conditioning / skills | One shared style transformer for both forms | Both forms preserve the selected program. Focus affects existing priority/spacing rules; variety and optional conditioning/skill opportunities are A/B/C choices. A source block retains its own numeric method. |
-| Training emphasis / mobility only | Same saved priorities and same save handler in Settings and Train dialog | Effective display accounts for included equipment; actual movement filters and mobility-only plan use those choices. Availability and priority remain distinct; excluding equipment retains owned weights and saved priorities. |
+| Training emphasis / mobility only | Same saved priorities and same save handler in Settings and Train dialog | Display and generator use the same equipment-filtered weights. Actual selection balances enabled-family physical practice; excluded/Off families cannot dilute current priorities. Movement filters and mobility-only plans use the saved choices. Availability and priority remain distinct; excluding equipment retains owned weights and saved priorities. |
 | Included equipment / owned loads / ceilings / matched pairs | Settings inventory and inclusion flags | Actual eligibility, configured-load availability, paired gates and load offers. Existing integration suites test single/paired bells/clubs, replacement and starting loads. Equipment edits do not erase history. |
 | Row bar / step platform / crawl space | Settings station/space fields | Actual generation gates and fixed-geometry comparison. Existing row, row-wave, step-up and crawl suites cover changed/missing setup, progression, correction and offline drafts. |
 | Pause / resume | Same pause controls in Settings and Train schedule | Actual opportunities pause or resume with the unfinished queue retained. Manual and dated/duration pauses remain distinct; no catch-up credit. |
@@ -60,3 +60,13 @@ as actual engine plans. Settings and Train requested frequency still share the
 same saved value; a stricter maximum changes effective opportunities without
 quietly overwriting that request. Browser-weekly-limits checks both surfaces,
 cap changes, three actual training dates, rolling boundaries and offline drafts.
+
+
+Emphasis regression: `tests/emphasis-evidence.js` and
+`tests/browser-emphasis-evidence.cjs` reproduce the excluded-priority selection
+bug and test active changes in both directions at 320/390px. They retain owned
+weights, history and the selected block, guard unfinished targets, log actual
+work and reload offline. The Node suite checks retained lifetime history and
+movement progression, backup/date isolation and 142 actual generated workouts
+across three years of preference changes. Relative shares do not promise
+exact workout percentages; source methods, pending work and recovery still apply.

@@ -148,8 +148,16 @@ to Normal. The unadjusted original and actual adjusted draft targets remain
 separate. A timer cannot supply readiness, familiarity or completed sets.
 
 Equipment availability and scheduling priority are distinct. Effective emphasis
-shares exclude unavailable families while retaining their saved priority and
-owned weights. A style edit does not silently choose a different source program;
+shares and generator weights exclude families disabled by the equipment inclusion
+flags while retaining their saved priority and owned weights. Emphasis balances
+recorded physical practice in currently enabled, non-Off families. Older actuals
+remain part of this accounting; a proposed shorter window is deferred because it
+worsened existing multi-year continuity checks. This accounting never erases
+history or resets movement-level progression. Deferred work and the four-skipped-
+session fairness rule retain precedence. Shares are relative priorities, not exact
+delivery percentages.
+
+A style edit does not silently choose a different source program;
 A/B/C variety/conditioning options do not rewrite independent source profiles.
 
 Workout pacing is saved for new drafts. The active workout retains its own mode

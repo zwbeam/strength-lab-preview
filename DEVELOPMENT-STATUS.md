@@ -309,3 +309,16 @@ Focused verification covers 46 interrupted cases across nine methods and a real
 430-workout mixed history with 21 interrupted returns. Inventory: 57 Node JS
 suites, six correction tests, twenty-four browser suites; rc56-return-continuity
 retains 51 runtime assets. Instructional coverage counts remain unchanged.
+
+
+Emphasis consistency batch: excluded equipment priorities no longer affect actual
+workout selection. The generator shares the display's effective family weights
+and counts only currently enabled, non-Off family physical practice in its balance.
+Lifetime movement history/progression, source methods and deferred/fairness/recovery
+precedence remain. A proposed shorter history window was deferred after it failed
+an existing long-term continuity bound. New coverage includes eighteen excluded-
+priority combinations, retained earned progression, three-year actual changing-
+emphasis histories and bidirectional Train/Settings mobile acceptance with guarded
+drafts, actual logging and offline reload. Inventory is 58 Node JS suites, six
+correction tests and twenty-five browser suites; rc57-emphasis-evidence retains
+51 assets. Source instructional counts are unchanged.

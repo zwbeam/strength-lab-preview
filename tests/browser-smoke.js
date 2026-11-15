@@ -1010,6 +1010,9 @@ const expectedCache=JSON.parse(swText.match(/const PREFIX=("[^"]+")/)[1])+JSON.p
    if(appendedReload.count!==2601||appendedReload.ids!==2601||appendedReload.latest!=='Workout 2601 browser save')
      throw Error('Decade-scale new workout lost or duplicated after reload: '+JSON.stringify(appendedReload));
    console.log('2601st workout saved through browser and survived reload at '+viewport.width+'px');
+   // Reload initializes writer ownership asynchronously; exercise quota rollback
+   // only after this page has actually acquired its normal writable snapshot.
+   await page.waitForFunction(()=>storageReady&&storageWritable);
 
    const quotaFailure=await page.evaluate(()=>{
     const key='sl-dev-preview-data-v33',draftKey='sl-dev-preview-draft-v33',journalKey='sl-dev-preview-transaction-v33';

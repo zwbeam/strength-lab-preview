@@ -663,12 +663,12 @@ function blockPlan(s,opts={}){
   return last<0?exposureSessions.length:exposureSessions.length-1-last;
  };
  // Prefer underrepresented Major families without overriding deferred work,
- // readiness, or recovery. Counts are completed exposures, not calendar days.
+ // readiness, or recovery. Counts are recorded physical exposures, not calendar days.
  const familyOf=id=>{const m=MOVES[id];return m?.complex?'complex':m?.bodyweight?'bodyweight':m?.gear==='kb'?'kb':m?.gear==='club'?'club':null;};
- const priority=(emphasis||supplemental.length)?Object.fromEntries(EMPHASIS_FAMILIES.map(id=>[id,(emphasis||trainingEmphasis(s).levels)[id]==='major'?3:(emphasis||trainingEmphasis(s).levels)[id]==='minor'?1:0])):null;
+ const priority=(emphasis||supplemental.length)?emphasisDistribution(s).weights:null;
  const familyExposure=Object.fromEntries(EMPHASIS_FAMILIES.map(id=>[id,0]));
  if(priority)for(const session of exposureSessions)for(const item of session.items||[]){
-  if(item.actualSets>0&&item.performed){const family=familyOf(item.id);if(family)familyExposure[family]++;}
+  if(item.actualSets>0&&item.performed){const family=familyOf(item.id);if(family&&priority[family]>0)familyExposure[family]++;}
  }
  const familyDeficit=id=>{
   const family=familyOf(id);if(!priority||!family||!priority[family])return 0;

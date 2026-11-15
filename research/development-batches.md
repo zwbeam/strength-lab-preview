@@ -1309,3 +1309,56 @@ all twenty-four browser suites, including the 295-session populated-history
 replay. Both source audits, syntax, suite registration and 51-asset offline
 integrity passed. Exact-commit CI and public DEV verification remain required
 before reporting deployment success.
+
+## Effective emphasis and included-family practice
+
+Incoming verified checkpoint: 2ebdcf6. Fetched origin/preview and confirmed the
+same commit before editing; retained the newer work after the original c7dcfdc
+handoff. Production main remains 4cb58d8a4d30796246a83db752b8e420c8bc05c2.
+
+A short 25-minute A/B/C example exposed a real priority mismatch: the display
+showed Major bodyweight / Minor clubs as 75/25, but saved Major KB/complex levels
+continued to dilute the generator's family weights after those implements were
+excluded. Changing only excluded priorities changed the actual workout. The
+planner now consumes the display's canonical effective weights. Historical
+physical work in excluded or Off families likewise does not dilute current
+emphasis. Owned equipment, stored levels and actual history remain retained.
+
+Lifetime movement progression, pain/skill/setup gates, deferred priority and
+four-skipped-session fairness remain independent. Relative shares are not exact
+delivered workout quotas. No source dose, movement policy identity or storage key
+changes. A proposed eight-week accounting window was rejected during full QA:
+club/bodyweight synthetic re-entry rose to 211, violating the unchanged bound of
+200. The effective-weight fix alone produced 138 in the same diagnostic. Keep
+lifetime accounting until future window/cadence work passes the existing bound.
+
+New Node coverage includes eighteen excluded-priority combinations across two
+gear configurations, actual active-priority selection, excluded physical history,
+preserved earned progression and archives, backups, future/zero evidence,
+recovery and a three-year actual-generator history with changing priorities,
+equipment inclusion, short sessions, partial work and low readiness.
+The focused test fails against the incoming engine. A separate baseline comparison
+preserved all 216 per-movement prescriptions and 96 initial all-included block
+plans across four durations.
+
+New 320/390px touch acceptance exercises Train → Settings and Settings → Train,
+actual target changes, excluded priorities leaving the plan invariant, guarded
+unfinished prescriptions, preserved equipment/history, real completion and
+offline reload. CI registers both new suites; inventory is 58 Node JS suites,
+six correction tests and twenty-five browser suites. Worker/query revision
+rc57-emphasis-evidence keeps the same 51 runtime assets. Source audits remain
+54 movements / 38 reviewed outlines / 16 partial lessons. Exact-commit CI and
+public DEV checks are required before reporting deployment success.
+
+Full browser QA also exposed an existing test-startup race after the 2,601st
+workout reload: quota injection ran before asynchronous writer initialization,
+so it exercised read-only protection instead of quota rollback. The smoke test
+now requires storageReady and storageWritable before injection; all original
+rollback/data-preservation assertions remain. No writer-lock behavior changed.
+
+Final local verification passed all 58 Node JS suites, six correction tests and
+all twenty-five browser suites, including four-width smoke, 2,601-workout
+quota rollback and 295-session populated-history replay. Both source audits,
+syntax, CI suite registration and 51-asset offline integrity passed. Production
+and storage namespaces remain unchanged; current-commit remote checks still
+must pass before this batch is reported as a verified DEV deployment.
