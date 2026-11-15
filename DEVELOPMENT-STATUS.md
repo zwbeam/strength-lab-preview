@@ -287,3 +287,14 @@ manual moves and outside recovery remain coherent. Sparse-history retention uses
 feasible capacity. Verification inventory is 55 Node JS suites, six correction
 tests and twenty-two browser suites; rc54-weekly-limits retains 51 assets.
 Instructional coverage remains 54 movements / 38 reviewed / 16 partial.
+
+
+Reduced-evidence consistency batch: an incomplete rebuild no longer clears prior
+difficulty merely because one set was recorded. Generic, row-wave and configured
+wave replay require a full clean written reduced target. Post-review return
+requirements likewise remain after wrong-load, changed-setup or incomplete work.
+Actuals and review decisions remain visible; correction/undo replays delivery.
+Focused verification covers 57 incomplete cases across eleven method/track
+contexts, legacy/date boundaries and a 430-workout three-year mixed history.
+Inventory is 56 Node JS suites, six correction tests and twenty-three browser
+suites; rc55-reduced-evidence retains 51 assets. Source doses/counts are unchanged.

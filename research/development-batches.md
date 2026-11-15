@@ -1217,3 +1217,47 @@ Focused phone acceptance passed at 320/390px, including explicit discard of its
 synthetic unfinished draft without adding history. Both source audits, syntax,
 suite registration and 51-asset offline integrity passed. Exact-commit CI and
 public DEV verification remain required before reporting deployment.
+
+
+## Full reduced-work delivery and post-review return evidence
+
+Incoming preview 7cd005a was current/clean after fetch. Reproduced two hard swing
+attempts followed by one set of a two-set rebuild clearing fail from two to zero,
+even though performed was false. Also reproduced a wrong-load press return
+(performed true but actual 10 against written 8) clearing reviewRecovery after
+explicit review. Similar reduced replay conditions trusted any positive set.
+
+Generalize the existing deload delivery evaluator to shared deliveredReduced.
+Use it for generic, row-wave and configured-wave difficulty recovery, deload
+cadence and the existing performed re-entry/recovery acknowledgement after review.
+Recheck structured actuals against their saved target, load, setup, bilateral work,
+pacing and continuous requirements. Preserve valid legacy aggregate quantities;
+missing targets cannot acknowledge delivery. Existing current-track checks and
+wave caps remain. Reduced work never earns ordinary progression credit.
+
+Keep the user's explicit review decision, unresolved pain hold, generic actual-
+load comparison rules and all recorded work/prescriptions. Corrections/undo and
+dated/frozen replay recalculate delivery without rewriting original targets.
+This repairs app evidence consistency; no source numerical dose or medical
+clearance claim is added.
+
+Focused verification checks 57 incomplete cases across eleven method/track
+contexts, including positive partial work, rest/timing/continuity/setup errors,
+review returns at wrong loads, quantitative legacy summaries, absent targets and
+future isolation. A three-year actual mixed generator saves 430 workouts with
+374 reduced movement results, 69 incomplete. Backups validate throughout.
+
+Phone acceptance at 320/390px records a genuine partial rebuild and wrong-load
+post-review return, verifies retained flags, corrects/restores actuals repeatedly,
+checks zero cycle credit and preserves original history/offline draft targets.
+Compatibility checks match all 216 initial prescriptions, every default block
+plan and 224 full matching/recovery/rebuild/return trajectory targets to 7cd005a.
+Inventory: 56 Node JS suites, six correction tests and twenty-three browser suites;
+rc55-reduced-evidence keeps 51 assets. Full local, exact-commit CI and public DEV
+verification remain required.
+
+Final local verification passed all 56 Node JS suites, six correction tests and
+all twenty-three browser suites, including the 295-session populated-history
+replay. Both source audits, syntax, suite registration and 51-asset offline
+integrity passed. Exact-commit CI and public DEV verification remain required
+before reporting deployment success.

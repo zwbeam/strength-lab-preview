@@ -119,6 +119,7 @@ jobs:
           node tests/load-setup-recovery.js
           node tests/baseline-cycles.js
           node tests/weekly-limits.js
+          node tests/reduced-evidence.js
           node tests/row-wave.js
           node tests/dated-evidence.js
           node tests/interval-start.js
@@ -289,6 +290,7 @@ jobs:
           node tests/browser-load-setup.cjs
           node tests/browser-baseline-cycles.cjs
           node tests/browser-weekly-limits.cjs
+          node tests/browser-reduced-evidence.cjs
           node tests/browser-step-ups.cjs
           node tests/browser-foundations.cjs
           node tests/browser-continuity.cjs

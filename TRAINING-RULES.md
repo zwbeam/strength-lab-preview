@@ -360,3 +360,25 @@ Outside activity, pauses, specific demand spacing and active draft immutability
 still apply. The retention fallback uses configured capacity before sufficient
 observed cadence exists; it cannot assume seven feasible days under a lower cap.
 Observed cadence remains feedback from actual work rather than invented dates.
+
+
+## Delivered reduced targets and return acknowledgement
+
+Rebuild, re-entry, recovery and deload records acknowledge their purpose only
+when the full written reduced target is cleanly performed. Positive actual sets
+alone do not clear accumulated difficulty. Structured notebook records are
+re-evaluated against their saved prescription and actual sets: quantity, load,
+setup, bilateral work, cadence and continuity must agree. Valid older aggregate
+quantities remain readable without invented sets; unknown targets fail closed.
+
+Generic, row-wave and configured-wave replay share this delivery check. Existing
+wave track matching and heavy-work caps remain. A genuine generic actual-load
+change still follows its existing fresh-comparison rules; these are independent
+of recovery acknowledgement. Reduced work grants no ordinary cycle advancement.
+
+The user's explicit pain-review decision remains separate from the subsequent
+required return work. Only a performed, clean re-entry/recovery matching its own
+written target clears that return requirement. Wrong actual load or changed
+station geometry cannot certify it. This is app evidence consistency, not medical
+clearance or a new source prescription. Pain holds, review keys and written/actual
+history stay intact; correction/undo and date cutoffs recalculate acknowledgement.

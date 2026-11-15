@@ -238,7 +238,7 @@ function replayRowWave(s,id,policy,opts){
  const shape=()=>track==='higher'?policy.higherStages[stage]:policy.stages[stage];
  for(const x of h){
   if(x.performed&&x.mode==='light'&&x.quality==='clean'&&!x.pain&&!x.setupChanged)continue;
-  if(['reentry','recovery','rebuild','deload'].includes(x.mode)) {counts={lower:0,higher:0};track='lower';if(x.quality==='clean'&&!x.pain&&x.actualSets>0)fail=0;continue;}
+  if(['reentry','recovery','rebuild','deload'].includes(x.mode)) {counts={lower:0,higher:0};track='lower';if(deliveredReduced(x))fail=0;continue;}
   if(x.setupChanged&&x.quality==='clean'&&!x.pain){counts={lower:0,higher:0};track='lower';continue;}
   const target=shape();
   if(successful(x)&&x.track===track&&x.targetSets===target.sets&&x.targetReps===target.reps&&Math.abs(Number(x.rest)-target.rest)<1){
@@ -264,7 +264,7 @@ function replay(s,id,policy,track='base',opts={}){
   if(!MOVES[id].bodyweight&&Number(x.weight)>0&&Number(x.weight)!==weight){weight=Number(x.weight);stage=0;stagePhase='volume';ready=false;streak=0;fail=0;}
   if(x.pain||x.quality==='pain'){streak=0;fail++;continue;}
   if(x.performed&&x.mode==='light')continue;
-  if(['rebuild','reentry','recovery','deload'].includes(x.mode)){streak=0;if(x.quality==='clean'&&x.actualSets>0)fail=0;continue;}
+  if(['rebuild','reentry','recovery','deload'].includes(x.mode)){streak=0;if(deliveredReduced(x))fail=0;continue;}
   if(MOVES[id].station&&x.setupChanged&&x.quality==='clean'&&!x.pain){streak=0;continue;}
   if(x.quality!=='clean'||x.completed===false){streak=0;if(x.actualSets>0||['hard','breakdown'].includes(x.quality))fail++;continue;}
   const target=shape();
@@ -301,7 +301,7 @@ function replayWave(s,id,policy,opts){
   const actualTrack=x.track==='light'||x.track==='heavy'?x.track:track,weight=actualTrack==='light'?policy.config.lightWeight:policy.config.heavyWeight;
   if(x.pain||x.quality==='pain'){failures[actualTrack]++;if(actualTrack==='light')streak=0;continue;}
   if(x.performed&&x.mode==='light'&&x.quality==='clean'&&Number(x.weight)===weight)continue;
-  if(['rebuild','reentry','recovery','deload'].includes(x.mode)){if(actualTrack==='light')streak=0;if(x.quality==='clean'&&x.actualSets>0&&Number(x.weight)===weight&&actualTrack===track)failures[actualTrack]=0;continue;}
+  if(['rebuild','reentry','recovery','deload'].includes(x.mode)){if(actualTrack==='light')streak=0;if(deliveredReduced(x)&&Number(x.weight)===weight&&actualTrack===track)failures[actualTrack]=0;continue;}
   const target=shape(),matches=x.track===track&&Number(x.weight)===(track==='light'?policy.config.lightWeight:policy.config.heavyWeight)&&x.targetSets===target.sets&&x.targetReps===target.reps&&Math.abs(Number(x.rest)-target.rest)<1;
   if(successful(x)&&matches&&!['baseline','review','prerequisite','time-fit'].includes(x.mode)){
    failures[track]=0;
@@ -318,7 +318,7 @@ function stateFor(s,id,opts={}){
  const reviewedIndex=h.reduce((last,x,index)=>resolvedKeys.includes(x._key)?index:last,-1);
  // Known unresolved pain remains a hold even if its record date is in the future.
  const hold=all.some(x=>(x.pain||x.quality==='pain')&&!resolvedKeys.includes(x._key))?'Pain reported: stop and review this movement.':'';
- const reviewRecovery=(reviewedIndex>=0||resolvedKeys.some(key=>!all.some(x=>x._key===key)))&&!h.slice(reviewedIndex+1).some(x=>x.performed&&['reentry','recovery'].includes(x.mode)&&x.quality==='clean');
+ const reviewRecovery=(reviewedIndex>=0||resolvedKeys.some(key=>!all.some(x=>x._key===key)))&&!h.slice(reviewedIndex+1).some(x=>x.performed&&['reentry','recovery'].includes(x.mode)&&deliveredReduced(x));
  let result=policy.profile==='wave'?replayWave(s,id,policy,opts):replay(s,id,policy,'base',opts),track=result.track||'base';
  return{...result,hold,reviewRecovery,policy,track,allExposures:h.length};
 }
@@ -391,16 +391,16 @@ function complexityOptions(s,opts={}){
   return {...pathway,ready:!blockers.length,blockers,advisory:true};
  });
 }
-// Optional app cadence: an actually completed lighter exposure services one interval.
-function deliveredDeload(x){
- if(x.mode!=='deload'||x.quality!=='clean'||x.pain||x.setupChanged||x.performed===false||!(x.targetSets>0&&x.targetReps>0&&x.actualSets>=x.targetSets&&x.actualReps>=x.targetReps))return false;
- if(x.prescription&&Array.isArray(x.sets)){
-  const rx=x.prescription;if(rx.mode!=='deload'||rx.policyKey!==undefined&&rx.policyKey!==x.policyKey||rx.sets!==x.targetSets||rx.reps!==x.targetReps)return false;
-  const actual=completeRecord(rx,x.sets,x.quality,x.pain);
-  return actual.performed&&!actual.setupChanged&&actual.weight===Number(rx.weight);
+// Acknowledging reduced work requires its full clean written target, never ordinary cycle credit.
+function deliveredReduced(x){
+ if(!['rebuild','reentry','recovery','deload'].includes(x.mode)||x.quality!=='clean'||x.pain||x.setupChanged||x.performed===false||!(x.targetSets>0&&x.targetReps>0&&x.actualSets>=x.targetSets&&x.actualReps>=x.targetReps))return false;
+ if(x.prescription){
+  const rx=x.prescription;if(rx.mode!==x.mode||rx.policyKey!==undefined&&rx.policyKey!==x.policyKey||rx.track!==undefined&&rx.track!==x.track||rx.sets!==x.targetSets||rx.reps!==x.targetReps||Number(x.weight)!==Number(rx.weight))return false;
+  if(Array.isArray(x.sets)){const actual=completeRecord(rx,x.sets,x.quality,x.pain);return actual.performed&&!actual.setupChanged&&actual.weight===Number(rx.weight);}
  }
  return validWorkingWeight(x.id,x.weight);
 }
+function deliveredDeload(x){return x.mode==='deload'&&deliveredReduced(x);}
 function deloadCadence(s,id,opts,st){
  const interval=s.trainingDefaults?.deloadEvery??0;
  if(!Number.isInteger(interval)||interval<0||interval>100)throw Error('Invalid deloadEvery');
