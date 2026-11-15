@@ -240,3 +240,19 @@ three-year actual-plan histories each save 430 workouts and continue progressing
 Inventory is now 51 Node JS suites, six correction tests and eighteen browser
 suites; rc50-deload-cadence retains 51 offline assets. No source-review completion
 count or production/main change is claimed.
+
+
+Recovery-dose consistency batch: low-readiness and re-entry settings now change
+single-set reps/time; a reduced fraction cannot silently round up to every normal
+set. Shared rounding preserves normal source targets, minimum whole units, wave
+caps, blocked baselines and non-advancing recovery semantics. Settings labels now
+say work fraction. Phone acceptance covers both shared readiness controls, actual
+reduced targets, immutable offline drafts, return after absence and correction.
+Inventory: 52 Node JS suites, six correction tests and nineteen browser suites;
+rc51-recovery-dose retains 51 assets. Instructional coverage is still 54 movements,
+38 reviewed outlines and 16 partial lessons. Production/main remain separate.
+
+Valid saved training-default values outside preset dropdown choices are retained
+as selected saved options. Saving programming must not silently replace an
+imported recovery fraction of 1, a custom return fraction or another valid
+training default. Browser recovery acceptance covers actual round-trip saves.

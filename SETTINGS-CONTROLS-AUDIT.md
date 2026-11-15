@@ -40,3 +40,16 @@ Reproduce with `tests/training-settings.js`, `tests/browser-settings-sync.cjs` a
 all existing Node/browser suites. The new browser suite exercises both directions
 at 320/390, real plan outputs, pacing and interval countdowns, failed writes,
 active-draft preservation, offline reload, JSON restore and reader handoff.
+
+
+Recovery fraction follow-up: the low-readiness/re-entry controls are work
+fractions. Single-set methods reduce reps/time; multi-set low-readiness rounding
+with a fraction below one cannot retain every normal set. Minimum whole-unit and
+imported full-dose cases are explained. Browser-recovery-dose checks real Settings
+values, both readiness surfaces, targets, offline draft immutability, absence and
+actual correction without advancement credit. Normal source doses stay unchanged.
+
+Valid saved training-default values outside preset dropdown choices are retained
+as selected saved options. Saving programming must not silently replace an
+imported recovery fraction of 1, a custom return fraction or another valid
+training default. Browser recovery acceptance covers actual round-trip saves.

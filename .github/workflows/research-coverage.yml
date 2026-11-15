@@ -115,6 +115,7 @@ jobs:
           node tests/prerequisite-evidence.js
           node tests/wave-replay.js
           node tests/deload-cadence.js
+          node tests/recovery-dose.js
           node tests/row-wave.js
           node tests/dated-evidence.js
           node tests/interval-start.js
@@ -281,6 +282,7 @@ jobs:
           node tests/browser-prerequisite-evidence.cjs
           node tests/browser-wave-replay.cjs
           node tests/browser-deload-cadence.cjs
+          node tests/browser-recovery-dose.cjs
           node tests/browser-step-ups.cjs
           node tests/browser-foundations.cjs
           node tests/browser-continuity.cjs

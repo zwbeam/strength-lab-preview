@@ -404,6 +404,17 @@ function deloadCadence(s,id,opts,st){
  return{interval,qualifyingSinceDeload:count,lastDeloadKey:last>=0?h[last]._key:null,due:count>=interval};
 }
 function deloadStatus(s,id,opts={}){opts={...opts,now:opts.now??new Date()};return deloadCadence(s,id,opts,stateFor(s,id,opts));}
+// App recovery rounding: preserve whole units without silently keeping a full dose.
+function reducedDose(sets,reps,policy,fraction,roundSets=Math.floor){
+ if(sets<1||reps<1)return{sets,reps};
+ if(policy.durationScope==='total')return{sets,reps:Math.min(reps,Math.max(30,Math.floor(reps*fraction/30)*30))};
+ if(sets===1)return{sets,reps:Math.max(1,Math.floor(reps*fraction))};
+ return{sets:Math.max(1,Math.min(sets-(fraction<1?1:0),roundSets(sets*fraction))),reps};
+}
+function reducedDoseNote(sets,reps,before,fraction){
+ if(sets*reps<before)return '';
+ return fraction===1?' Configured full-dose fraction; this practice still grants no advancement credit.':' Minimum whole-unit practice: this prescription cannot be reduced further; no advancement credit.';
+}
 function prescription(s,id,opts={}){
  opts={...opts,now:opts.now??new Date()};opts.readiness??=readinessFor(s,opts.now);
  const m=MOVES[id],st=stateFor(s,id,opts),policy=st.policy,defaults=s.trainingDefaults||{};
@@ -421,10 +432,10 @@ function prescription(s,id,opts={}){
  }
  else if(mode==='milestone')reason='Cycle endpoint reached. Maintain, choose an available load, or select the supported next cycle explicitly.';
  const gapDays=defaults.reentryDays??14;
- if(opts.readiness==='low'){if(policy.durationScope==='total')reps=Math.max(30,Math.floor(reps*(defaults.recoveryFraction??.5)/30)*30);else if(policy.profile==='getupDrill'&&sets===1)reps=Math.max(1,Math.floor(reps*(defaults.recoveryFraction??.5)));else sets=Math.max(1,Math.ceil(sets*(defaults.recoveryFraction??.5)));mode='recovery';reason='Reduced readiness: less work, no advancement credit. '+reason;}
- if(opts.reentry||st.reviewRecovery||movementGap(s,id,opts.now,opts.evidenceThrough)>gapDays){if(policy.durationScope==='total')reps=Math.min(reps,Math.max(30,Math.floor(st.reps*(defaults.reentryFraction??.7)/30)*30));else if(policy.profile==='getupDrill'&&sets===1)reps=Math.min(reps,Math.max(1,Math.floor(st.reps*(defaults.reentryFraction??.7))));else sets=Math.min(sets,Math.max(1,Math.floor(st.sets*(defaults.reentryFraction??.7))));mode='reentry';reason='Return after absence or review: reduced work; no advancement credit. '+reason;}
+ if(opts.readiness==='low'){const before=sets*reps,fraction=defaults.recoveryFraction??.5;({sets,reps}=reducedDose(sets,reps,policy,fraction,Math.ceil));mode='recovery';reason='Reduced readiness: no advancement credit. '+reason+reducedDoseNote(sets,reps,before,fraction);}
+ if(opts.reentry||st.reviewRecovery||movementGap(s,id,opts.now,opts.evidenceThrough)>gapDays){const before=st.sets*st.reps,fraction=defaults.reentryFraction??.7,dose=reducedDose(st.sets,st.reps,policy,fraction);sets=Math.min(sets,dose.sets);reps=Math.min(reps,dose.reps);mode='reentry';reason='Return after absence or review; no advancement credit. '+reason+reducedDoseNote(sets,reps,before,fraction);}
  const deloadEvery=defaults.deloadEvery??0;
- if(deloadEvery>0&&['volume','density','milestone'].includes(mode)&&deloadCadence(s,id,opts,st).due){const normalWork=sets*reps;if(policy.durationScope==='total')reps=Math.max(30,Math.floor(reps*.5/30)*30);else if(sets<=1)reps=Math.max(1,Math.floor(reps*.5));else sets=Math.max(1,Math.floor(sets*.5));mode='deload';reason=sets*reps<normalWork?'Planned lighter exposure (app-configured interval); no progression credit.':'Minimum whole-unit practice: this prescription cannot be reduced further; no progression credit.';}
+ if(deloadEvery>0&&['volume','density','milestone'].includes(mode)&&deloadCadence(s,id,opts,st).due){const normalWork=sets*reps;({sets,reps}=reducedDose(sets,reps,policy,.5));mode='deload';reason=sets*reps<normalWork?'Planned lighter exposure (app-configured interval); no progression credit.':'Minimum whole-unit practice: this prescription cannot be reduced further; no progression credit.';}
  if(policy.profile==='wave'&&st.track==='heavy'){const cap=waveHeavySets(st.waveLightWork,reps,policy.config.heavyWeight);if(sets>cap){sets=cap;reason+=' Whole heavy sets were capped below the last qualifying light exposure.';}}
  let blocked=policy.profile==='rowWave'&&reps>0&&policy.config.baselineHeightCm!==s.equipment?.rowBar?.heightCm?'Review the clean row baseline at this new bar height before starting the 60% / 80% profile.':policy.profile==='rowWave'&&reps<1?'Enter a reviewed clean row baseline in Advanced Movement Programming before using the 60% / 80% profile.':'';if(m.station==='stepPlatform'&&(!s.equipment?.stepPlatform?.available||!validStepHeight(s.equipment.stepPlatform.heightCm)))blocked='Confirm a stable step platform, overhead clearance and a familiar controlled height in Settings before step-up practice.';if(m.station==='rowBar'&&(!s.equipment?.rowBar?.available||!validRowHeight(s.equipment.rowBar.heightCm)))blocked='Confirm a secured stable row bar and record its height in Settings before bodyweight pulling.';if(m.defaultProfile==='crawl'&&s.trainingPreferences?.crawlSpace!==true)blocked='Confirm clear, stable traveling space for crawl practice in Settings.';if(policy.profile==='pushup'&&reps<1)blocked='Enter a recent conservative clean-rep baseline in Settings before starting this source method.';const missing=prerequisites(s,id,opts);
  if(sets<1)blocked='No whole heavy set fits below the last light exposure. Choose a closer heavy weight or build the light cycle first.';

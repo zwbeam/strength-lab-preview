@@ -12,9 +12,9 @@ retention. Inspect the actual latest GitHub commit and checks before continuing.
 Do not assume a later checkpoint passed just because this file exists.
 
 Run all non-browser tests/*.js, the history-corrections.test.cjs suite, and the
-eighteen browser suites: browser-smoke.js, browser-curriculum.cjs,
+nineteen browser suites: browser-smoke.js, browser-curriculum.cjs,
 browser-integration.cjs, browser-continuity.cjs, browser-foundations.cjs,
-browser-step-ups.cjs, browser-double-hinge.cjs, browser-paired-swing-reps.cjs, browser-endpoint-reviews.cjs, browser-prerequisite-evidence.cjs, browser-wave-replay.cjs, browser-deload-cadence.cjs, browser-hand-changes.cjs
+browser-step-ups.cjs, browser-double-hinge.cjs, browser-paired-swing-reps.cjs, browser-endpoint-reviews.cjs, browser-prerequisite-evidence.cjs, browser-wave-replay.cjs, browser-deload-cadence.cjs, browser-recovery-dose.cjs, browser-hand-changes.cjs
 browser-single-arm-swing.cjs, browser-dated-evidence.cjs, browser-row-wave.cjs, browser-settings-sync.cjs and browser-demo-history.js (generate its synthetic backup
 first). Serve at 127.0.0.1:8765. Installed Chromium may be selected locally with
 PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium. Actions uses its own bundle.
@@ -125,8 +125,8 @@ Tests cover all 196 supported baseline values, two generated three-year historie
 and complete touch cycles, corrections, offline drafts and explicit review.
 Broader pulling geometry, exact source weekly/retest scheduling, other bodyweight
 and paired numeric systems remain separate work. No full lifetime integration or
-new source-review completion count is claimed. Run all 51 Node JS suites, the six
-correction CJS tests, all eighteen browser suites, demo generation and both audits.
+new source-review completion count is claimed. Run all 52 Node JS suites, the six
+correction CJS tests, all nineteen browser suites, demo generation and both audits.
 
 
 Explicit user-directed Settings/Train audit supersedes historical temporary-time
@@ -218,3 +218,24 @@ suite. The two three-year cadence scenarios each save 430 workouts without the
 A/B/C lighter-work/deload deadlock. Cache rc50-deload-cadence retains 51 assets.
 Next engine work should continue source-reviewed cycles and mixed-plan reliability;
 this repair adds no transcript coverage completion or universal deload prescription.
+
+
+Recovery-dose checkpoint: shared low-readiness/re-entry work fractions now reduce
+single-set reps/time, rather than silently preserving the full dose. Low-readiness
+ceil rounding is bounded to fewer than all normal sets when a fraction below one
+is selected. Other existing rounding, rests, loads, policy keys and full normal
+source doses remain. Combined low readiness and re-entry take the smaller targets;
+an absent/pain-reviewed return cannot expand an already reduced draft.
+
+One rep / 30-second total-time minima remain explicit non-advancing practice;
+imported fraction 1 remains supported and explained as configured full-dose work.
+Inactive baselines and impossible zero-set heavy targets remain blocked. The
+shared reducedDose helper also preserves the prior planned-deload policy. Keep
+tests/recovery-dose.js and browser-recovery-dose.cjs in full validation (52 Node
+JS suites, six correction tests, nineteen browser suites). Runtime rc51-recovery-dose
+retains 51 assets. This is app recovery consistency, no transcript-dose addition.
+
+Valid saved training-default values outside preset dropdown choices are retained
+as selected saved options. Saving programming must not silently replace an
+imported recovery fraction of 1, a custom return fraction or another valid
+training default. Browser recovery acceptance covers actual round-trip saves.

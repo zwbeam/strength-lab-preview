@@ -1011,3 +1011,54 @@ Both source audits, syntax, suite registration and 51-asset offline integrity
 passed. All 54 initial prescriptions and every default block plan match 60da8f3
 with cadence disabled. Exact-commit CI and public DEV verification remain required
 before reporting deployment success.
+
+
+## Recovery work fractions across single-set methods
+
+Incoming preview 7385c06 was current/clean after fetch. Reproduced a one-set
+six-rep fixed row staying 1×6 both at 25% low readiness and 50% re-entry, despite
+claiming reduced work. A two-set target also stayed two sets at 75% low readiness
+because of upward rounding. These made configured recovery settings ineffective.
+
+A shared whole-unit reduction now uses reps/time for single-set practice and
+bounds low-readiness rounding below all normal sets for a fraction below one.
+Keep the established multi-set half-dose rounding, familiar loads/rests, source
+normal doses, timing/bilateral requirements, policy identities and V33 storage.
+Combined low readiness and re-entry take smaller quantities; a return cannot
+expand prior reductions. The helper also serves planned deloads without changing
+their dose policy. Explain irreducible minimum practice and imported fraction 1;
+never label either as a smaller dose. Both remain non-advancing. Inactive
+baselines and impossible heavy targets stay blocked; heavy caps remain enforced.
+Settings labels now accurately call these work fractions. No source-dose claim.
+
+Focused coverage checks 504 fraction/shape/combined-condition cases, all 54 current
+movement prescriptions, single-set fixed rows, higher-rep row waves, timed practice,
+get-up drills/total time, minimum heavy work and impossible heavy work. Absence,
+pain review, original-target correction/undo and future evidence are covered. A
+three-year actual single-set generator history saves 430 workouts, with 41 reduced
+and 380 normal qualifying movement results. Backups validate throughout.
+
+Phone acceptance at 320/390px changes the actual Settings fractions, uses both
+shared readiness controls, checks real 25%/75% targets, reloads a stopped offline
+draft, rejects active-program edits, logs recovery and a partial absent return,
+corrects the actual return and resumes normal work. Original history/policy identity
+remain intact; reduced work never advances a cycle. Inventory is 52 Node JS suites,
+six correction tests and nineteen browser suites; rc51-recovery-dose has 51 assets.
+Full local suites, exact-commit CI and public DEV checks remain required.
+
+The follow-up Settings check found a valid imported fraction outside the preset
+list was unselected, so Save could replace it with the first option. The shared
+training-default select retains valid saved values as selected saved options.
+Phone tests preserve imported recovery 1, re-entry .6 and load-jump .3 through
+a real Save before exercising reduced fractions. This prevents incidental data
+replacement; it does not broaden validation or rewrite stored history.
+All 54 normal initial prescriptions and every default block plan match 7385c06.
+
+Final local validation passed all 52 Node JS suites, six correction tests and
+all nineteen browser suites, including populated 295-session history. The endpoint
+UI check caught a readiness wording compatibility assertion; preserve its existing
+Reduced readiness phrase while avoiding a false less-work claim, and rerun the
+endpoint suite successfully. Focused recovery/endpoint Node checks also passed
+after that wording adjustment and the inactive-row-baseline assertion. Both source
+audits, syntax, suite registration and 51-asset offline integrity passed.
+Exact-commit CI and DEV verification remain required before reporting deployment.

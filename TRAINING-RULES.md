@@ -277,3 +277,23 @@ Lighter work reduces whole sets, or reps/time for a single-set prescription. Whe
 no smaller positive whole-unit dose exists, explain the minimum practice rather
 than imply a reduction. It still grants no advancement credit. Normal endpoint
 review and heavy-wave work caps remain in force.
+
+
+## Recovery and return work fractions
+
+Low-readiness and re-entry fractions are app recovery choices, not new transcript
+programs. They reduce whole sets; when only one set is prescribed, they reduce
+whole reps or seconds instead. Low-readiness upward rounding cannot retain every
+normal set when the selected fraction is below one. Existing multi-set half-dose
+rounding and get-up total-time 30-second rounding remain.
+
+Combined low readiness and return/review never increase either already reduced
+quantity. Keep familiar loads, rests, timing and bilateral requirements. Reduced
+work receives no ordinary advancement credit even when its own target is fully
+performed. Actuals and written targets remain independently recorded.
+
+A one-rep minimum or 30-second total-time minimum may be irreducible; explain this
+instead of claiming less work. Imported fraction 1 remains allowed and explicitly
+means configured full-dose non-advancing practice. Inactive baselines and blocked
+zero-set wave prescriptions never become valid through recovery rounding. Heavy
+work remains below its light-work cap. No policy identity or history migration.
