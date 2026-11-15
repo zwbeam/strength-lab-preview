@@ -1,0 +1,38 @@
+{
+  "sources": [
+    {
+      "id": 403,
+      "file": "sources-13.json",
+      "url": "https://www.youtube.com/watch?v=Q5oU9CLYyqY",
+      "sha256": "feb858263cfa89a607f2ff58d6271d6cd93569bb9b58326ea76b95b721726c6a",
+      "quotes": [
+        "50% to 80% of the volume",
+        "get more training days out of the year"
+      ]
+    },
+    {
+      "id": 228,
+      "file": "sources-07.json",
+      "url": "https://www.youtube.com/watch?v=Sc4ROQ-l7ZU",
+      "sha256": "cdb91b9f24133f5455d1c1955f513dbf56dccd9b8ffa456c23e1cd3f016dbb3f",
+      "quotes": [
+        "heavy day needs to have a lower total overall work capacity",
+        "we need to do one whole rep for it to count"
+      ]
+    }
+  ],
+  "sourcePrinciples": [
+    "Heavy work below light work using complete repetitions/sets; each lift has its own arithmetic.",
+    "Heavy/light is a long-term method, not a requirement to max out or use a universal percentage."
+  ],
+  "appDecisions": [
+    "Existing wave key, light-stage progression, heavy rep selection and exposure thresholds stay intact.",
+    "Correct qualifying light work establishes the cap for the derived heavy target.",
+    "Configured loads remain fixed despite misreported actual loads. Full matched heavy work clears heavy difficulty; reduced/failed work never advances the track.",
+    "Heavy rebuild/redistribution is capped again after reductions to preserve the strict total-work relationship."
+  ],
+  "limits": [
+    "No automatic load increase, full independent heavy-volume progression or universal source 50\u201380% prescription is added.",
+    "If no whole heavy set fits, it remains blocked for explicit pair/program review."
+  ]
+}

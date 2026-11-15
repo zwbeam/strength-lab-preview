@@ -230,3 +230,27 @@ or changed comparison cannot let older child proof maintain stale ancestors.
 Fresh qualifying practice can restore the pathway; maintenance never adds parent
 exposures or progression. These are app evidence-consistency rules, not new
 transcript numerical requirements or automatic technique certification.
+
+
+## Configured heavy/light wave replay
+
+The existing wave method keeps its configured light/heavy loads, light progression
+stages and derived heavy whole-set targets. Actual load mistakes never replace
+those configured loads. Records stay intact, including failed and wrong-load work.
+Only successful complete work at the expected track, configured load and current
+target/rest turns the wave. Light work advances the existing light stages; heavy
+work clears heavy difficulty against its own derived target. It does not invent
+independent heavy stages or extra completed cycles.
+
+Source #228 supports lower heavy total work and whole-repetition/set arithmetic;
+#403 supplies long-term heavy/light context. Existing rep choices, alternation,
+qualification counts and recovery settings are app decisions. Heavy work stays
+strictly below the last qualifying light exposure, including after stall
+redistribution or other reductions. Whole-set bounds are checked against the
+computed work; impossible or nonfinite arithmetic cannot produce a heavy set.
+No automatic pair increase or universal source percentage is added.
+
+Reduced or failed work does not advance the turn. Correct performed reduced work
+may clear difficulty; zero-set recovery cannot. Corrections/undo and date cutoffs
+replay the same rules without rewriting original prescriptions. Shared wave stage
+reporting follows light progression, while current-track failures stay separate.

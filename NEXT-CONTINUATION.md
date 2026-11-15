@@ -12,9 +12,9 @@ retention. Inspect the actual latest GitHub commit and checks before continuing.
 Do not assume a later checkpoint passed just because this file exists.
 
 Run all non-browser tests/*.js, the history-corrections.test.cjs suite, and the
-sixteen browser suites: browser-smoke.js, browser-curriculum.cjs,
+seventeen browser suites: browser-smoke.js, browser-curriculum.cjs,
 browser-integration.cjs, browser-continuity.cjs, browser-foundations.cjs,
-browser-step-ups.cjs, browser-double-hinge.cjs, browser-paired-swing-reps.cjs, browser-endpoint-reviews.cjs, browser-prerequisite-evidence.cjs, browser-hand-changes.cjs
+browser-step-ups.cjs, browser-double-hinge.cjs, browser-paired-swing-reps.cjs, browser-endpoint-reviews.cjs, browser-prerequisite-evidence.cjs, browser-wave-replay.cjs, browser-hand-changes.cjs
 browser-single-arm-swing.cjs, browser-dated-evidence.cjs, browser-row-wave.cjs, browser-settings-sync.cjs and browser-demo-history.js (generate its synthetic backup
 first). Serve at 127.0.0.1:8765. Installed Chromium may be selected locally with
 PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium. Actions uses its own bundle.
@@ -125,8 +125,8 @@ Tests cover all 196 supported baseline values, two generated three-year historie
 and complete touch cycles, corrections, offline drafts and explicit review.
 Broader pulling geometry, exact source weekly/retest scheduling, other bodyweight
 and paired numeric systems remain separate work. No full lifetime integration or
-new source-review completion count is claimed. Run all 49 Node JS suites, the six
-correction CJS tests, all sixteen browser suites, demo generation and both audits.
+new source-review completion count is claimed. Run all 50 Node JS suites, the six
+correction CJS tests, all seventeen browser suites, demo generation and both audits.
 
 
 Explicit user-directed Settings/Train audit supersedes historical temporary-time
@@ -186,9 +186,19 @@ neutral. Records, earned progression and source doses are not rewritten.
 Reproduce tests/prerequisite-evidence.js and browser-prerequisite-evidence.cjs
 (the latter supports isolated public DEV HTTPS acceptance).
 
-Further engine lead from the malformed-wave fixture: generic replay can let an
-incorrect actual heavy weight replace a configured wave weight, and heavy-track
-normal targets differ from generic stage shapes. Qualification now fails closed
-for that inconsistent evidence, but audit fixed wave prescription loads and
-heavy-track failure recovery as a separate tested programming batch. Do not
-claim that broader wave replay issue is fixed by the prerequisite scope work.
+Wave replay checkpoint: the malformed-load/heavy-failure lead is now addressed
+by replayWave. Read the full #228/#403 text and research/wave-replay-evidence.json.
+Keep existing policy keys, configured loads, light stage tables, heavy rep choices
+and clean-exposure thresholds. Only full matching current-track actuals turn the
+wave. Heavy targets come from the last qualifying light exposure; heavy success
+clears heavy difficulty rather than matching the light-stage shape. Wrong loads
+remain recorded but never replace configured weights. Reduced/failed/skipped work
+does not turn the wave, and zero-set recovery never clears difficulty.
+
+Redistributed/reduced heavy work is capped again after adaptation so total work
+stays strictly below light work. A zero-set heavy target remains blocked for
+explicit pair/program review; it is never rounded up. Heavy/light stage display
+now follows shared light progression instead of spuriously bouncing to zero on
+heavy days. This is the existing app method, not a full independently advancing
+heavy-volume system or mandatory source 50–80% prescription. Tests:
+tests/wave-replay.js and browser-wave-replay.cjs (DEV HTTPS supported).

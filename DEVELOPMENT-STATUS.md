@@ -218,3 +218,13 @@ practice remain supported. Current instruction coverage remains 54 movements /
 38 reviewed / 16 partial. Verification inventory is 49 Node JS suites, six
 correction tests and sixteen browser suites. Runtime cache revision rc48 retains
 51 assets; no source dose or stored history is changed.
+
+
+Heavy/light wave replay batch: configured loads now survive incorrect actual
+loads; full heavy work can clear heavy difficulty against its own target.
+Wrong-track, reduced and failed records cannot move the wave. Strict heavy/light
+whole-set work bounds also apply after redistribution. Healthy wave prescriptions
+remain unchanged (140 exposures compared with acb8285); stage reporting no longer
+bounces to zero on heavy days. Fifty Node JS suites, six correction tests and
+seventeen browser suites now cover the app. Cache revision rc49 keeps 51 assets.
+Instructional coverage stays 54 movements / 38 reviewed / 16 partial.

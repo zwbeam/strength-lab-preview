@@ -276,26 +276,43 @@ function replay(s,id,policy,track='base',opts={}){
  if(!MOVES[id].bodyweight&&policy.profile!=='wave'&&override>0&&override!==weight){weight=override;stage=0;stagePhase='volume';ready=false;streak=0;fail=0;}
  return{...shape(),phase:ready?'ready':stagePhase,stagePhase,stage,weight,streak,fail,cycles,lastEligibleKey,last:h.at(-1)||null,exposures:h.length};
 }
+// #228 lower heavy work; configured weights, light progression and qualification are app rules.
+function waveHeavySets(lightWork,reps,weight){
+ const unit=reps*weight;if(!Number.isFinite(lightWork)||!Number.isFinite(unit)||unit<=0)return 0;let sets=Math.max(0,Math.ceil(lightWork/unit)-1);
+ while(sets>0&&sets*unit>=lightWork)sets--;
+ while((sets+1)*unit<lightWork)sets++;
+ return sets;
+}
+function replayWave(s,id,policy,opts){
+ const h=recordsAfterLoadReset(s,id,opts).history.filter(x=>x.policyKey===policy.key);
+ let track='light',stage=0,streak=0,ready=false,lastLight=null;
+ const failures={light:0,heavy:0},eligible={light:null,heavy:null};
+ const lightShape=()=>policy.stages[stage];
+ const lightWork=()=>{const x=lastLight||lightShape();return (x.targetSets??x.sets)*(x.targetReps??x.reps)*policy.config.lightWeight;};
+ const shape=()=>track==='light'?lightShape():{sets:waveHeavySets(lightWork(),policy.heavyReps,policy.config.heavyWeight),reps:policy.heavyReps,rest:policy.volume.rest};
+ for(const x of h){
+  const actualTrack=x.track==='light'||x.track==='heavy'?x.track:track,weight=actualTrack==='light'?policy.config.lightWeight:policy.config.heavyWeight;
+  if(x.pain||x.quality==='pain'){failures[actualTrack]++;if(actualTrack==='light')streak=0;continue;}
+  if(x.performed&&x.mode==='light'&&x.quality==='clean'&&Number(x.weight)===weight)continue;
+  if(['rebuild','reentry','recovery','deload'].includes(x.mode)){if(actualTrack==='light')streak=0;if(x.quality==='clean'&&x.actualSets>0&&Number(x.weight)===weight&&actualTrack===track)failures[actualTrack]=0;continue;}
+  const target=shape(),matches=x.track===track&&Number(x.weight)===(track==='light'?policy.config.lightWeight:policy.config.heavyWeight)&&x.targetSets===target.sets&&x.targetReps===target.reps&&Math.abs(Number(x.rest)-target.rest)<1;
+  if(successful(x)&&matches&&!['baseline','review','prerequisite','time-fit'].includes(x.mode)){
+   failures[track]=0;
+   if(track==='light'){
+    lastLight=x;if(ready)eligible.light=x._key;else if(++streak>=policy.exposures){streak=0;eligible.light=x._key;if(stage<policy.stages.length-1)stage++;else ready=true;}
+   }else eligible.heavy=x._key;
+   track=track==='light'?'heavy':'light';
+  }else{if(actualTrack==='light')streak=0;if(x.actualSets>0||['hard','breakdown'].includes(x.quality))failures[actualTrack]++;}
+ }
+ return{...shape(),phase:ready?'ready':'volume',stagePhase:'volume',stage,track,weight:track==='light'?policy.config.lightWeight:policy.config.heavyWeight,streak:track==='light'?streak:0,fail:failures[track],cycles:ready?1:0,lastEligibleKey:eligible[track],last:h.filter(x=>x.track===track).at(-1)||null,exposures:h.filter(x=>x.track===track).length,waveLightWork:lightWork()};
+}
 function stateFor(s,id,opts={}){
  const policy=policyFor(id,s),all=records(s,id),through=evidenceDay(opts),h=through===Infinity?all:all.filter(x=>calendarDay(x.date)<=through),resolvedKeys=s.painResolutions?.[id]?.painKeys||[];
  const reviewedIndex=h.reduce((last,x,index)=>resolvedKeys.includes(x._key)?index:last,-1);
  // Known unresolved pain remains a hold even if its record date is in the future.
  const hold=all.some(x=>(x.pain||x.quality==='pain')&&!resolvedKeys.includes(x._key))?'Pain reported: stop and review this movement.':'';
  const reviewRecovery=(reviewedIndex>=0||resolvedKeys.some(key=>!all.some(x=>x._key===key)))&&!h.slice(reviewedIndex+1).some(x=>x.performed&&['reentry','recovery'].includes(x.mode)&&x.quality==='clean');
- let track='base';
- if(policy.profile==='wave'){const eligible=h.filter(x=>x.policyKey===policy.key&&successful(x));track=eligible.length%2?'heavy':'light';}
- let result=replay(s,id,policy,track,opts);if(policy.profile==='rowWave')track=result.track;
- if(policy.profile==='wave'){
-  const light=replay(s,id,policy,'light',opts);
-  if(track==='heavy'){
-   const heavyReps=policy.heavyReps;
-   // Whole sets; heavy work must stay strictly below light work (#228).
-   const lastLight=records(s,id,opts).filter(x=>x.policyKey===policy.key&&x.track==='light'&&successful(x)).at(-1);
-   const lightWork=(lastLight?.targetSets??light.sets)*(lastLight?.targetReps??light.reps)*policy.config.lightWeight;
-   const sets=Math.max(0,Math.ceil(lightWork/(heavyReps*policy.config.heavyWeight))-1);
-   result={...result,sets,reps:heavyReps,phase:light.phase,cycles:light.cycles,streak:0};
-  }
- }
+ let result=policy.profile==='wave'?replayWave(s,id,policy,opts):replay(s,id,policy,'base',opts),track=result.track||'base';
  return{...result,hold,reviewRecovery,policy,track,allExposures:h.length};
 }
 function resolvePain(s,id){if(!MOVES[id])throw Error('Unknown movement');return {...s,painResolutions:{...s.painResolutions,[id]:{painKeys:records(s,id).filter(x=>x.pain||x.quality==='pain').map(x=>x._key)}}};}
@@ -386,6 +403,7 @@ function prescription(s,id,opts={}){
  const eligible=records(s,id,opts).filter(x=>successful(x)&&!['recovery','reentry','rebuild','deload'].includes(x.mode)).length;
  const sinceDeload=records(s,id,opts).filter(x=>x.actualSets>0).findLastIndex(x=>x.mode==='deload'&&x.performed);
  if(deloadEvery>0&&eligible>0&&eligible%deloadEvery===0&&sinceDeload!==records(s,id,opts).filter(x=>x.actualSets>0).length-1&&mode==='volume'){if(policy.durationScope==='total')reps=Math.max(30,Math.floor(reps*.5/30)*30);else if(policy.profile==='getupDrill'&&sets===1)reps=Math.max(1,Math.floor(reps*.5));else sets=Math.max(1,Math.floor(sets*.5));mode='deload';reason='Planned lighter exposure (app-configured interval); no progression credit.';}
+ if(policy.profile==='wave'&&st.track==='heavy'){const cap=waveHeavySets(st.waveLightWork,reps,policy.config.heavyWeight);if(sets>cap){sets=cap;reason+=' Whole heavy sets were capped below the last qualifying light exposure.';}}
  let blocked=policy.profile==='rowWave'&&reps>0&&policy.config.baselineHeightCm!==s.equipment?.rowBar?.heightCm?'Review the clean row baseline at this new bar height before starting the 60% / 80% profile.':policy.profile==='rowWave'&&reps<1?'Enter a reviewed clean row baseline in Advanced Movement Programming before using the 60% / 80% profile.':'';if(m.station==='stepPlatform'&&(!s.equipment?.stepPlatform?.available||!validStepHeight(s.equipment.stepPlatform.heightCm)))blocked='Confirm a stable step platform, overhead clearance and a familiar controlled height in Settings before step-up practice.';if(m.station==='rowBar'&&(!s.equipment?.rowBar?.available||!validRowHeight(s.equipment.rowBar.heightCm)))blocked='Confirm a secured stable row bar and record its height in Settings before bodyweight pulling.';if(m.defaultProfile==='crawl'&&s.trainingPreferences?.crawlSpace!==true)blocked='Confirm clear, stable traveling space for crawl practice in Settings.';if(policy.profile==='pushup'&&reps<1)blocked='Enter a recent conservative clean-rep baseline in Settings before starting this source method.';const missing=prerequisites(s,id,opts);
  if(sets<1)blocked='No whole heavy set fits below the last light exposure. Choose a closer heavy weight or build the light cycle first.';
  if(missing.length)blocked='Prerequisites pending: '+missing.map(requirementLabel).join('; ');

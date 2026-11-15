@@ -915,3 +915,56 @@ Final local verification passed all 49 Node JS suites, six correction tests,
 all sixteen browser suites and the 295-session demo replay. Source audits,
 syntax, suite registration and 51-asset offline integrity passed. All 54 initial
 prescriptions and every default block plan match the a978be6 checkpoint.
+
+
+## Configured wave loads and heavy-track recovery
+
+Incoming preview acb8285 was clean/current after fetch. Followed the prior batch's
+wave lead and read full #228/#403. Preserve their exact archived hashes and quotes
+in wave-replay-evidence.json. These sources support lower heavy work, whole
+repetitions/sets and long-term alternation; no compulsory universal percentage
+or max test is inferred. Existing app progression choices remain explicit.
+
+Reproduced incorrect heavy actuals changing the next configured prescription and
+heavy difficulty sticking because generic replay compared heavy targets against
+light-stage shapes. Dedicated chronological replay now fixes configured loads,
+uses the last qualifying light exposure for the heavy cap and validates each turn
+against its actual target. Heavy success clears heavy failure; light progression
+and its earned endpoint are preserved. No policy-key migration or new source dose.
+Healthy prescriptions across five supported movements and 28 exposures each
+(140 total) match the prior checkpoint exactly. Wave stage reporting follows
+light progression instead of bouncing between light progress and heavy stage zero.
+
+Incorrect/out-of-turn actuals remain visible but cannot move the wave. Reduced
+work may clear matching difficulty only when actually performed; it cannot turn
+the wave. Recheck the heavy cap after redistribution/reductions: a 240 kg light
+reference, 9 kg heavy load and five-rep normal heavy sets would redistribute to
+nine sets of three (243 kg); the corrected whole-set cap permits eight (216 kg).
+An impossible heavy set remains blocked, including with low readiness.
+
+Focused verification includes five complete/maintenance wave paths, 442 bounded
+weight/rep arithmetic cases, wrong loads on both tracks, partial/rest/technique/
+track errors, rebuilding, correction/undo, pain review, future isolation and
+nonfinite/zero-set bounds. A real three-year generator history saves 430 workouts
+with 66 heavy opportunities and 23 injected difficulty sessions. Phone acceptance
+selects the method through Settings, records wrong actual load, corrects/restores
+it, performs real intervening unfinished workouts, tests repeated heavy failure
+and rebuilding, and restores an immutable offline draft. Original physical work
+and unperformed siblings remain intact.
+
+The prior malformed-wave prerequisite regression now asserts the configured
+heavy load survives the error and qualification remains blocked immediately
+afterward; later genuinely correct configured-track work can restore eligibility.
+This updates the test to the repaired behavior rather than preserving the bug.
+Inventory: 50 Node JS suites, six correction tests and seventeen browser suites.
+Runtime worker/query rc49-wave-replay retains 51 assets. Source audits and exact
+DEV/current-commit GitHub checks remain required; no new instructional coverage
+completion or production/main change is claimed.
+
+Final local verification passed all 50 Node JS suites, six correction tests,
+all seventeen browser suites and the 295-session populated-history replay.
+Source audits, syntax, suite registration and 51-asset offline integrity passed.
+All 54 initial prescriptions and every default block plan match acb8285; the
+140 healthy-wave exposure comparison also matches exactly. The demo retains
+all 295 workouts and now reports three real swing-stage increases rather than
+98 changes caused by the previous heavy/light stage-display bounce.
