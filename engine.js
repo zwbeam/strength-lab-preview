@@ -432,8 +432,8 @@ function prescription(s,id,opts={}){
  }
  else if(mode==='milestone')reason='Cycle endpoint reached. Maintain, choose an available load, or select the supported next cycle explicitly.';
  const gapDays=defaults.reentryDays??14;
- if(opts.readiness==='low'){const before=sets*reps,fraction=defaults.recoveryFraction??.5;({sets,reps}=reducedDose(sets,reps,policy,fraction,Math.ceil));mode='recovery';reason='Reduced readiness: no advancement credit. '+reason+reducedDoseNote(sets,reps,before,fraction);}
- if(opts.reentry||st.reviewRecovery||movementGap(s,id,opts.now,opts.evidenceThrough)>gapDays){const before=st.sets*st.reps,fraction=defaults.reentryFraction??.7,dose=reducedDose(st.sets,st.reps,policy,fraction);sets=Math.min(sets,dose.sets);reps=Math.min(reps,dose.reps);mode='reentry';reason='Return after absence or review; no advancement credit. '+reason+reducedDoseNote(sets,reps,before,fraction);}
+ if(opts.readiness==='low'&&(m.bodyweight||weight>0)){const before=sets*reps,fraction=defaults.recoveryFraction??.5;({sets,reps}=reducedDose(sets,reps,policy,fraction,Math.ceil));mode='recovery';reason='Reduced readiness: no advancement credit. '+reason+reducedDoseNote(sets,reps,before,fraction);}
+ if((opts.reentry||st.reviewRecovery||movementGap(s,id,opts.now,opts.evidenceThrough)>gapDays)&&(m.bodyweight||weight>0)){const before=st.sets*st.reps,fraction=defaults.reentryFraction??.7,dose=reducedDose(st.sets,st.reps,policy,fraction);sets=Math.min(sets,dose.sets);reps=Math.min(reps,dose.reps);mode='reentry';reason='Return after absence or review; no advancement credit. '+reason+reducedDoseNote(sets,reps,before,fraction);}
  const deloadEvery=defaults.deloadEvery??0;
  if(deloadEvery>0&&['volume','density','milestone'].includes(mode)&&deloadCadence(s,id,opts,st).due){const normalWork=sets*reps;({sets,reps}=reducedDose(sets,reps,policy,.5));mode='deload';reason=sets*reps<normalWork?'Planned lighter exposure (app-configured interval); no progression credit.':'Minimum whole-unit practice: this prescription cannot be reduced further; no progression credit.';}
  if(policy.profile==='wave'&&st.track==='heavy'){const cap=waveHeavySets(st.waveLightWork,reps,policy.config.heavyWeight);if(sets>cap){sets=cap;reason+=' Whole heavy sets were capped below the last qualifying light exposure.';}}
@@ -563,13 +563,16 @@ function validateActivity(a){
 function movementEnabled(s,id){const pref=s.trainingPreferences||{},emphasis=pref.emphasis?trainingEmphasis(s).levels:null;const m=MOVES[id];if(!m)return false;if(emphasis&&(emphasis[m.complex?'complex':m.bodyweight?'bodyweight':m.gear]||'minor')==='off')return false;if(m.bodyweight)return pref.useBodyweight!==false;if(m.gear==='kb')return pref.useKb!==false&&(!m.pair||pref.useDoubleKb===true);if(m.gear==='club')return pref.useClub!==false&&(!m.clubPair||pref.useDoubleClub===true)&&(!['cast','circles','front'].includes(id)||pref.useTwoHandClub!==false);return true;}
 // Forecast placeholders carry ordering only and never physical evidence.
 function sessionsThrough(s,now,projection=false){return(s.sessions||[]).filter(x=>calendarDay(x.date)<=calendarDay(now)||projection&&!(x.items||[]).length&&/^(calendar-projection-|preview-only-)/.test(x.id||''));}
+// Setup placeholders are not owed physical work, including older mislabelled recovery.
+function setupOnly(x){return !!x&&(x.mode==='baseline'||!!MOVES[x.id]&&!MOVES[x.id].bodyweight&&x.actualSets===0&&(x.prescription?.weight??x.weight)===0);}
 function pendingThrough(s,block,now){
- const current=s.deferredByBlock?.[block]||(block==='abc'?s.deferredIds:[])||[];
+ const saved=s.deferredByBlock?.[block]||(block==='abc'?s.deferredIds:[])||[];
+ const current=saved.length?(()=>{const last=new Map();for(const session of sessionsThrough(s,now).filter(x=>(x.block||'abc')===block).sort((a,b)=>calendarDay(a.date)-calendarDay(b.date)))for(const x of session.items||[])last.set(x.id,x);return saved.filter(id=>!setupOnly(last.get(id)));})():saved;
  const future=(s.sessions||[]).filter(x=>(x.block||'abc')===block&&calendarDay(x.date)>calendarDay(now)&&(x.items||[]).length);
  if(!future.length)return current;
  let pending=[];for(const session of sessionsThrough(s,now).filter(x=>(x.block||'abc')===block).sort((a,b)=>calendarDay(a.date)-calendarDay(b.date)))pending=deferredAfter({deferred:[...new Set([...pending,...(session.plan?.deferred||[])])]},session.items||[]);
  // Retain explicit/legacy debt that was not introduced by future unfinished work.
- const futureDebt=new Set(future.flatMap(x=>[...(x.plan?.deferred||[]),...(x.items||[]).filter(y=>!y.performed&&y.mode!=='baseline').map(y=>y.id)]));
+ const futureDebt=new Set(future.flatMap(x=>[...(x.plan?.deferred||[]),...(x.items||[]).filter(y=>!y.performed&&!setupOnly(y)).map(y=>y.id)]));
  return [...new Set([...pending,...current.filter(id=>!futureDebt.has(id))])];
 }
 function blockPlan(s,opts={}){
@@ -617,7 +620,7 @@ function blockPlan(s,opts={}){
  const blockIds=block==='abc'?[...new Set([...days.flatMap(x=>x.ids),...day.ids,...Object.values(SUPPORT_POOLS).flat()])]:days.flatMap(x=>x.ids),support=supportingMoves(s,day.ids,opts);
  const allowed=new Set([...blockIds,...support,...COMPLEX_PATHWAYS.map(x=>x.id)]),pending=pendingThrough(s,block,through);
  const latest=timeline.filter(x=>(x.block||'abc')===block&&calendarDay(x.date)<=calendarDay(opts.now)).sort((a,b)=>calendarDay(a.date)-calendarDay(b.date)).at(-1);
- const continuing=latest?.calendarVersion===1&&latest.items.some(x=>x.actualSets>0)&&latest.items.some(x=>!x.performed&&x.mode!=='baseline')&&pending.length>0;
+ const continuing=latest?.calendarVersion===1&&latest.items.some(x=>x.actualSets>0)&&latest.items.some(x=>!x.performed&&!setupOnly(x))&&pending.length>0;
  // On the third ABC day, substitute one eligible complex for overlapping basics.
  // Keep the existing day unchanged unless prerequisite evidence is current.
  const complexChoices=block==='abc'&&slot===2&&pref.useKb!==false&&pref.useComplexes!==false&&(!emphasis||emphasis.complex!=='off')&&!continuing
@@ -718,7 +721,7 @@ function blockPlan(s,opts={}){
     if(reduced<rx.sets)rx={...rx,sets:reduced,mode:'light',reason:'Light exposure: '+reduced+' of '+rx.sets+' planned sets at the established load. This is deliberate reduced-volume practice; it does not advance the progression cycle.'};
    }
   }
-  if(opts.omitUnstartedLoads&&!MOVES[id].bodyweight&&rx.mode==='baseline'){unavailable.push(id);requirements.push({id,reason:'Choose an owned familiar starting load in Settings → Advanced & Data → Movement Programming. Unstarted load setup is not unfinished physical work.'});continue;}
+  if(opts.omitUnstartedLoads&&!MOVES[id].bodyweight&&rx.sets>0&&!validWorkingWeight(id,rx.weight)){unavailable.push(id);requirements.push({id,reason:'Choose an owned familiar starting load in Settings → Advanced & Data → Movement Programming. Unstarted load setup is not unfinished physical work.'});continue;}
   if(rx.mode==='prerequisite'){prerequisite.push(id);requirements.push({id,reason:rx.reason});deferred.push(id);continue;}
   const demands=movementDemands(id);
   const recent=history.some(x=>today-calendarDay(x.date)<(defaults.minGapDays??0)&&(x.items||[]).some(y=>y.actualSets>0&&MOVES[y.id]&&movementDemands(y.id).some(d=>demands.includes(d))));
@@ -840,7 +843,7 @@ function plan(s,opts={}){
   const p=blockPlan({...s,programBlock:block,trainingDefaults:defaults},{...opts,avoidHard:hardRecent,omitUnstartedLoads:true});
   return {block,order,last,p};
  }).sort((a,b)=>a.last-b.last||a.order-b.order);
- const latest=history.at(-1),unfinished=latest?.calendarVersion===1&&latest.items.some(x=>x.actualSets>0)&&latest.items.some(x=>!x.performed&&x.mode!=='baseline')?candidates.find(x=>x.block===(latest.block||'abc')&&x.p.items.length):null;
+ const latest=history.at(-1),unfinished=latest?.calendarVersion===1&&latest.items.some(x=>x.actualSets>0)&&latest.items.some(x=>!x.performed&&!setupOnly(x))?candidates.find(x=>x.block===(latest.block||'abc')&&x.p.items.length):null;
  const retention=unfinished?null:retentionCandidate(s,candidates,history,opts);
  const continuity=unfinished||retention?null:continuityCandidate(s,candidates,history,opts);
  const chosen=unfinished||retention?.candidate||continuity?.candidate||candidates.find(x=>x.p.items.length)||candidates[0],p=chosen.p;
@@ -870,7 +873,7 @@ function validateComposition(c){
  if(!c||typeof c!=='object'||Array.isArray(c)||typeof c.enabled!=='boolean'||!Array.isArray(c.blocks)||!c.blocks.length||c.blocks.length>Object.keys(BLOCKS).length||new Set(c.blocks).size!==c.blocks.length||c.blocks.some(id=>!Object.hasOwn(BLOCKS,id)))throw Error('Select unique known training blocks');
  for(const key of ['minGapDays','hardGapDays'])if(c[key]!==undefined&&(!Number.isInteger(c[key])||c[key]<0||c[key]>7))throw Error('Composition spacing must be 0–7 days');
 }
-function deferredAfter(plan,records){const pending=new Set(plan.deferred||[]);for(const record of records){if(record.mode==='baseline'){pending.delete(record.id);continue;}if(!(record.performed??record.completed))pending.add(record.id);else pending.delete(record.id);}return [...pending];}
+function deferredAfter(plan,records){const pending=new Set(plan.deferred||[]);for(const record of records){if(setupOnly(record)){pending.delete(record.id);continue;}if(!(record.performed??record.completed))pending.add(record.id);else pending.delete(record.id);}return [...pending];}
 function completeRecord(rx,actual,quality,pain){
  const sets=(actual||[]).filter(x=>x.done&&!x.skipped),totalTime=rx.durationScope==='total';
  const valid=x=>validWorkingWeight(rx.id,x.weight)&&Number.isInteger(Number(x.reps))&&Number(x.reps)>0&&(rx.side!==2||(x.bothSides===true&&Number.isInteger(Number(x.leftReps))&&Number(x.leftReps)>0&&Number.isInteger(Number(x.rightReps))&&Number(x.rightReps)>0));

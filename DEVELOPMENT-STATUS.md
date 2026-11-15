@@ -256,3 +256,13 @@ Valid saved training-default values outside preset dropdown choices are retained
 as selected saved options. Saving programming must not silently replace an
 imported recovery fraction of 1, a custom return fraction or another valid
 training default. Browser recovery acceptance covers actual round-trip saves.
+
+
+Unset-load recovery batch: low readiness/return no longer turn missing loaded
+setup into zero-weight recovery. Coordinated plans continue eligible unloaded
+practice until explicit owned-load setup; single-block first-use setup remains.
+Historical zero-work setup placeholders no longer create unfinished-work priority,
+including older recovery labels. Actual history, partial work, bodyweight work,
+pain/prerequisite gates and dated forecast isolation remain. Inventory is now
+53 Node JS suites, six correction tests and twenty browser suites; worker
+rc52-load-setup retains 51 assets. No instructional completion count changed.

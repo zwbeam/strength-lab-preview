@@ -297,3 +297,25 @@ instead of claiming less work. Imported fraction 1 remains allowed and explicitl
 means configured full-dose non-advancing practice. Inactive baselines and blocked
 zero-set wave prescriptions never become valid through recovery rounding. Heavy
 work remains below its light-work cap. No policy identity or history migration.
+
+
+## Load setup before loaded recovery
+
+Recovery, absence and reviewed-return adaptations do not replace an unset working
+load. Unstarted loaded movements remain setup/baseline targets in a single-block
+plan. Coordinated plans omit executable zero-load targets and may choose eligible
+unloaded preparation. Genuine prerequisites and unresolved pain keep their own
+blocks. Only an explicit owned initial-load selection activates loaded recovery;
+no load is selected automatically, and established-load guards remain.
+
+A historical zero-load placeholder with no actual sets is setup-only even when an
+older version labelled it recovery, re-entry, rebuild, deload or time-fit. It does
+not become owed physical work or retain unfinished-block priority. Evaluate this
+from dated records without changing saved history/targets. Positive actual work,
+real partial loaded work, zero-load bodyweight work and unrelated explicit/legacy
+pending work retain their meaning. Future placeholders cannot clear today's debt.
+Pain review is retained independently; setup cannot dismiss a pain hold.
+
+Require explicit zero-load evidence for inferred historical setup-only work.
+Missing older load metadata is unknown and must retain its existing pending-work
+meaning; never infer zero from an absent field.

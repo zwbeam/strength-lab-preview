@@ -1062,3 +1062,60 @@ endpoint suite successfully. Focused recovery/endpoint Node checks also passed
 after that wording adjustment and the inactive-row-baseline assertion. Both source
 audits, syntax, suite registration and 51-asset offline integrity passed.
 Exact-commit CI and DEV verification remain required before reporting deployment.
+
+
+## Unset-load setup across recovery and coordinated plans
+
+Incoming preview 20faeec was current/clean after fetch. Reproduced low readiness
+and explicit re-entry replacing zero-load baseline mode with recovery/return mode.
+A coordinated A/B/C + unloaded-hinge plan then preferred three zero-weight loaded
+targets over real unloaded preparation. Setup-only omission depended on the mode
+that recovery had just overwritten.
+
+Adapt low-readiness/return work only when the loaded movement has a working load.
+Keep single-block baseline setup; coordinated plans also reject executable
+zero-load targets independently of their mode. Preserve zero-set prerequisite
+classification and unresolved pain holds. Explicit owned starting-load selection
+then activates real loaded recovery; no invented load or weakened established-load
+guard. Familiar positive-load and normal source prescriptions remain unchanged.
+
+Classify old non-bodyweight zero-load placeholders with no actual sets as setup
+for dated pending work and unfinished-block priority, including earlier recovery/
+return labels. Do not rewrite history or remove real physical work. Keep positive
+actuals, genuine partial loaded work, bodyweight work and explicit/legacy pending
+work. Future setup cannot clear today's real debt. Correction/undo restores the
+same distinctions; pain review remains independent of setup.
+
+Focused coverage includes 60 unset-load cases, persisted readiness, explicit
+owned-load transition, five legacy reduced-mode placeholders, genuine partial
+work and historical actual preservation, correction/undo, pain review, prerequisite
+classification, future isolation and read-only forecasts. A real three-year mixed
+generator run starts with low-readiness/return on day zero, later sets familiar
+loads explicitly, removes/restores equipment and includes missed/partial work.
+It saves 437 workouts: 194 with unloaded practice and 243 with loaded work.
+
+Phone acceptance at 320/390px changes shared readiness, trains unloaded preparation
+instead of zero-weight loaded work, sets the actual owned press load in Settings,
+starts non-advancing loaded recovery and restores its untouched offline draft.
+Original history is preserved. Inventory is 53 Node JS suites, six correction
+tests and twenty browser suites; rc52-load-setup retains 51 offline assets.
+Full local suites, exact-commit CI and public DEV verification remain required.
+
+Configured-prescription compatibility check: all 54 movements across normal, low
+readiness, explicit re-entry and combined conditions match 20faeec exactly (216
+comparisons), as do every default block plan. This repair changes unset-load
+setup and false queue debt, not familiar configured doses or source programming.
+
+The existing partial-workout regression caught missing legacy load metadata being
+mistaken for zero. Tighten setup-only inference to explicit numeric zero with no
+actual sets. Missing metadata remains unknown and its pending work stays intact;
+add a focused assertion and rerun the complete Node suite. No history is changed.
+
+Final local verification passed the complete 53 Node JS suites and six correction
+tests, plus all twenty browser suites and the populated 295-session history.
+The legacy-metadata fix was included in a complete Node rerun; broad browser smoke
+also passed again afterward, including 2,601-session history and quota rollback.
+One replacement-load browser run timed out locating its control; isolated state/UI
+diagnostics and the unchanged complete workflow passed on rerun. Keep exact-commit
+CI as the final independent check. Source audits, syntax, suite registration and
+51-asset offline integrity passed. Public DEV verification remains required.
