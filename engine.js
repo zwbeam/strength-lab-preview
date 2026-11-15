@@ -325,11 +325,15 @@ function gatedDescendant(child,parent,seen=new Set()){
  return (MOVES[child].practicePrereqs||[]).some(id=>id===parent||gatedDescendant(id,parent,seen));
 }
 // Qualification belongs to the current uninterrupted comparison, not any recent touch.
-function comparablePractice(s,id,st,opts){
+function comparisonRecords(s,id,st,opts,writtenLoads=false){
  const scoped=recordsAfterLoadReset(s,id,opts).history,policy=st.policy;
- const compatible=x=>(x.policyKey||'legacy-v1')===policy.key&&(policy.profile==='wave'?(x.track==='light'&&Number(x.weight)===policy.config.lightWeight||x.track==='heavy'&&Number(x.weight)===policy.config.heavyWeight):Number(x.weight)===st.weight);
+ const load=x=>Number(writtenLoads&&x.prescription?x.prescription.weight:x.weight);
+ const compatible=x=>(x.policyKey||'legacy-v1')===policy.key&&(policy.profile==='wave'?(x.track==='light'&&load(x)===policy.config.lightWeight||x.track==='heavy'&&load(x)===policy.config.heavyWeight):load(x)===st.weight);
  const boundary=scoped.findLastIndex(x=>!compatible(x));
- const history=scoped.slice(boundary+1).filter(x=>Number(x.weight)===st.weight&&(policy.profile!=='wave'||x.track===st.track));
+ return scoped.slice(boundary+1);
+}
+function comparablePractice(s,id,st,opts){
+ const policy=st.policy,history=comparisonRecords(s,id,st,opts).filter(x=>Number(x.weight)===st.weight&&(policy.profile!=='wave'||x.track===st.track));
  const last=history.filter(x=>x.actualSets>0).at(-1),absence=s.trainingDefaults?.reentryDays??14;
  return{history,recent:!!last&&calendarDay(opts.now)-calendarDay(last.date)<=absence};
 }
@@ -380,6 +384,26 @@ function complexityOptions(s,opts={}){
   return {...pathway,ready:!blockers.length,blockers,advisory:true};
  });
 }
+// Optional app cadence: an actually completed lighter exposure services one interval.
+function deliveredDeload(x){
+ if(x.mode!=='deload'||x.quality!=='clean'||x.pain||x.setupChanged||x.performed===false||!(x.targetSets>0&&x.targetReps>0&&x.actualSets>=x.targetSets&&x.actualReps>=x.targetReps))return false;
+ if(x.prescription&&Array.isArray(x.sets)){
+  const rx=x.prescription;if(rx.mode!=='deload'||rx.policyKey!==undefined&&rx.policyKey!==x.policyKey||rx.sets!==x.targetSets||rx.reps!==x.targetReps)return false;
+  const actual=completeRecord(rx,x.sets,x.quality,x.pain);
+  return actual.performed&&!actual.setupChanged&&actual.weight===Number(rx.weight);
+ }
+ return validWorkingWeight(x.id,x.weight);
+}
+function deloadCadence(s,id,opts,st){
+ const interval=s.trainingDefaults?.deloadEvery??0;
+ if(!Number.isInteger(interval)||interval<0||interval>100)throw Error('Invalid deloadEvery');
+ if(!interval)return{interval,qualifyingSinceDeload:0,lastDeloadKey:null,due:false};
+ const h=comparisonRecords(s,id,st,opts,true),last=h.findLastIndex(deliveredDeload);
+ const reduced=['baseline','light','recovery','reentry','time-fit','review','rebuild','deload','prerequisite'];
+ const count=h.slice(last+1).filter(x=>successful(x)&&!reduced.includes(x.mode)&&(!x.prescription||Number(x.weight)===Number(x.prescription.weight))).length;
+ return{interval,qualifyingSinceDeload:count,lastDeloadKey:last>=0?h[last]._key:null,due:count>=interval};
+}
+function deloadStatus(s,id,opts={}){opts={...opts,now:opts.now??new Date()};return deloadCadence(s,id,opts,stateFor(s,id,opts));}
 function prescription(s,id,opts={}){
  opts={...opts,now:opts.now??new Date()};opts.readiness??=readinessFor(s,opts.now);
  const m=MOVES[id],st=stateFor(s,id,opts),policy=st.policy,defaults=s.trainingDefaults||{};
@@ -400,9 +424,7 @@ function prescription(s,id,opts={}){
  if(opts.readiness==='low'){if(policy.durationScope==='total')reps=Math.max(30,Math.floor(reps*(defaults.recoveryFraction??.5)/30)*30);else if(policy.profile==='getupDrill'&&sets===1)reps=Math.max(1,Math.floor(reps*(defaults.recoveryFraction??.5)));else sets=Math.max(1,Math.ceil(sets*(defaults.recoveryFraction??.5)));mode='recovery';reason='Reduced readiness: less work, no advancement credit. '+reason;}
  if(opts.reentry||st.reviewRecovery||movementGap(s,id,opts.now,opts.evidenceThrough)>gapDays){if(policy.durationScope==='total')reps=Math.min(reps,Math.max(30,Math.floor(st.reps*(defaults.reentryFraction??.7)/30)*30));else if(policy.profile==='getupDrill'&&sets===1)reps=Math.min(reps,Math.max(1,Math.floor(st.reps*(defaults.reentryFraction??.7))));else sets=Math.min(sets,Math.max(1,Math.floor(st.sets*(defaults.reentryFraction??.7))));mode='reentry';reason='Return after absence or review: reduced work; no advancement credit. '+reason;}
  const deloadEvery=defaults.deloadEvery??0;
- const eligible=records(s,id,opts).filter(x=>successful(x)&&!['recovery','reentry','rebuild','deload'].includes(x.mode)).length;
- const sinceDeload=records(s,id,opts).filter(x=>x.actualSets>0).findLastIndex(x=>x.mode==='deload'&&x.performed);
- if(deloadEvery>0&&eligible>0&&eligible%deloadEvery===0&&sinceDeload!==records(s,id,opts).filter(x=>x.actualSets>0).length-1&&mode==='volume'){if(policy.durationScope==='total')reps=Math.max(30,Math.floor(reps*.5/30)*30);else if(policy.profile==='getupDrill'&&sets===1)reps=Math.max(1,Math.floor(reps*.5));else sets=Math.max(1,Math.floor(sets*.5));mode='deload';reason='Planned lighter exposure (app-configured interval); no progression credit.';}
+ if(deloadEvery>0&&['volume','density','milestone'].includes(mode)&&deloadCadence(s,id,opts,st).due){const normalWork=sets*reps;if(policy.durationScope==='total')reps=Math.max(30,Math.floor(reps*.5/30)*30);else if(sets<=1)reps=Math.max(1,Math.floor(reps*.5));else sets=Math.max(1,Math.floor(sets*.5));mode='deload';reason=sets*reps<normalWork?'Planned lighter exposure (app-configured interval); no progression credit.':'Minimum whole-unit practice: this prescription cannot be reduced further; no progression credit.';}
  if(policy.profile==='wave'&&st.track==='heavy'){const cap=waveHeavySets(st.waveLightWork,reps,policy.config.heavyWeight);if(sets>cap){sets=cap;reason+=' Whole heavy sets were capped below the last qualifying light exposure.';}}
  let blocked=policy.profile==='rowWave'&&reps>0&&policy.config.baselineHeightCm!==s.equipment?.rowBar?.heightCm?'Review the clean row baseline at this new bar height before starting the 60% / 80% profile.':policy.profile==='rowWave'&&reps<1?'Enter a reviewed clean row baseline in Advanced Movement Programming before using the 60% / 80% profile.':'';if(m.station==='stepPlatform'&&(!s.equipment?.stepPlatform?.available||!validStepHeight(s.equipment.stepPlatform.heightCm)))blocked='Confirm a stable step platform, overhead clearance and a familiar controlled height in Settings before step-up practice.';if(m.station==='rowBar'&&(!s.equipment?.rowBar?.available||!validRowHeight(s.equipment.rowBar.heightCm)))blocked='Confirm a secured stable row bar and record its height in Settings before bodyweight pulling.';if(m.defaultProfile==='crawl'&&s.trainingPreferences?.crawlSpace!==true)blocked='Confirm clear, stable traveling space for crawl practice in Settings.';if(policy.profile==='pushup'&&reps<1)blocked='Enter a recent conservative clean-rep baseline in Settings before starting this source method.';const missing=prerequisites(s,id,opts);
  if(sets<1)blocked='No whole heavy set fits below the last light exposure. Choose a closer heavy weight or build the light cycle first.';
@@ -1037,5 +1059,5 @@ function validateBackup(input){
  const workoutDraft=validateDraft(input.workoutDraft,input);
  return JSON.parse(JSON.stringify({...input,workoutDraft,nextWeights:input.nextWeights||{},defaultMinutes:input.defaultMinutes??45,deferredIds:input.deferredIds||[]}));
 }
-return{advancementReview,readinessFor,retestRowWave,trainingEmphasis,validateTrainingEmphasis,emphasisDistribution,mobilityOnlyPlan,COMPLEX_PATHWAYS,complexityOptions,repairMissingLoadAnchor,setInitialLoad,replaceUnavailableLoad,availableWorkingLoads,trainingPaused,activityRecovery,validateActivity,movementCadence,MOVES,SKILLS,DAYS,BLOCKS,LOADS,PROFILE_NAMES,describeProgression,policyFor,availableProfiles,configureMovement,practiceEvidence,supportingMoves,requirementLabel,prerequisites,chooseCycle,loadOptions,selectLoad,retestPushup,validWorkingWeight,validateProgramming,validateDraft,validateBackup,records,successful,stateFor,prescription,minutesFor,timeBudget,plan,completeRecord,nextRest,deferredAfter,resolvePain,movementGap,movementDemands};
+return{deloadStatus,advancementReview,readinessFor,retestRowWave,trainingEmphasis,validateTrainingEmphasis,emphasisDistribution,mobilityOnlyPlan,COMPLEX_PATHWAYS,complexityOptions,repairMissingLoadAnchor,setInitialLoad,replaceUnavailableLoad,availableWorkingLoads,trainingPaused,activityRecovery,validateActivity,movementCadence,MOVES,SKILLS,DAYS,BLOCKS,LOADS,PROFILE_NAMES,describeProgression,policyFor,availableProfiles,configureMovement,practiceEvidence,supportingMoves,requirementLabel,prerequisites,chooseCycle,loadOptions,selectLoad,retestPushup,validWorkingWeight,validateProgramming,validateDraft,validateBackup,records,successful,stateFor,prescription,minutesFor,timeBudget,plan,completeRecord,nextRest,deferredAfter,resolvePain,movementGap,movementDemands};
 });

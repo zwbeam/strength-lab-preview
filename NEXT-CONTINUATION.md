@@ -12,9 +12,9 @@ retention. Inspect the actual latest GitHub commit and checks before continuing.
 Do not assume a later checkpoint passed just because this file exists.
 
 Run all non-browser tests/*.js, the history-corrections.test.cjs suite, and the
-seventeen browser suites: browser-smoke.js, browser-curriculum.cjs,
+eighteen browser suites: browser-smoke.js, browser-curriculum.cjs,
 browser-integration.cjs, browser-continuity.cjs, browser-foundations.cjs,
-browser-step-ups.cjs, browser-double-hinge.cjs, browser-paired-swing-reps.cjs, browser-endpoint-reviews.cjs, browser-prerequisite-evidence.cjs, browser-wave-replay.cjs, browser-hand-changes.cjs
+browser-step-ups.cjs, browser-double-hinge.cjs, browser-paired-swing-reps.cjs, browser-endpoint-reviews.cjs, browser-prerequisite-evidence.cjs, browser-wave-replay.cjs, browser-deload-cadence.cjs, browser-hand-changes.cjs
 browser-single-arm-swing.cjs, browser-dated-evidence.cjs, browser-row-wave.cjs, browser-settings-sync.cjs and browser-demo-history.js (generate its synthetic backup
 first). Serve at 127.0.0.1:8765. Installed Chromium may be selected locally with
 PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium. Actions uses its own bundle.
@@ -125,8 +125,8 @@ Tests cover all 196 supported baseline values, two generated three-year historie
 and complete touch cycles, corrections, offline drafts and explicit review.
 Broader pulling geometry, exact source weekly/retest scheduling, other bodyweight
 and paired numeric systems remain separate work. No full lifetime integration or
-new source-review completion count is claimed. Run all 50 Node JS suites, the six
-correction CJS tests, all seventeen browser suites, demo generation and both audits.
+new source-review completion count is claimed. Run all 51 Node JS suites, the six
+correction CJS tests, all eighteen browser suites, demo generation and both audits.
 
 
 Explicit user-directed Settings/Train audit supersedes historical temporary-time
@@ -202,3 +202,19 @@ now follows shared light progression instead of spuriously bouncing to zero on
 heavy days. This is the existing app method, not a full independently advancing
 heavy-volume system or mandatory source 50–80% prescription. Tests:
 tests/wave-replay.js and browser-wave-replay.cjs (DEV HTTPS supported).
+
+
+Optional deload cadence: the delivered planned lighter exposure services its
+interval. Count only full normal qualifying work since that deload, within the
+current uninterrupted method/written-load comparison and load-reset/date bounds.
+Light/recovery/partial work cannot reopen the same interval. Failed, painful,
+wrong-load or setup-changed deloads do not service it. Corrections/undo replay
+actual evidence; keep original history and V33 keys. Density and earned-endpoint
+maintenance respect the same optional setting. Single-set methods reduce reps or
+time where whole units allow; an irreducible minimum is explicitly explained and
+never receives ordinary progression credit. Default interval zero stays disabled.
+Run tests/deload-cadence.js and browser-deload-cadence.cjs in addition to the full
+suite. The two three-year cadence scenarios each save 430 workouts without the
+A/B/C lighter-work/deload deadlock. Cache rc50-deload-cadence retains 51 assets.
+Next engine work should continue source-reviewed cycles and mixed-plan reliability;
+this repair adds no transcript coverage completion or universal deload prescription.

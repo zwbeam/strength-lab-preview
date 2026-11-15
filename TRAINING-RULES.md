@@ -254,3 +254,26 @@ Reduced or failed work does not advance the turn. Correct performed reduced work
 may clear difficulty; zero-set recovery cannot. Corrections/undo and date cutoffs
 replay the same rules without rewriting original prescriptions. Shared wave stage
 reporting follows light progression, while current-track failures stay separate.
+
+
+## Optional planned lighter exposures
+
+The existing Settings interval (zero disables it) counts full qualifying normal
+work for each movement since its last actually delivered planned deload. It applies
+to volume, density and earned-endpoint maintenance. It is an app preference, not
+a source-mandated universal schedule. Current method/written-load comparisons,
+explicit load resets and evidence dates bound the count. Incorrect actual loads
+cannot erase owed work at an unchanged written load.
+
+A clean completed lighter target services the interval without ordinary advancement
+credit. Later light, recovery, re-entry, rebuild, time-fit, prerequisite or partial
+work cannot retrigger that same interval or count as normal qualifying work. An
+incomplete, painful, wrong-load, rest-invalid or setup-changed deload leaves it
+due. Structured notebook records are re-evaluated from actual sets; valid older
+aggregate evidence remains readable. Corrections/undo and future cutoffs use the
+same replay without changing original prescriptions.
+
+Lighter work reduces whole sets, or reps/time for a single-set prescription. Where
+no smaller positive whole-unit dose exists, explain the minimum practice rather
+than imply a reduction. It still grants no advancement credit. Normal endpoint
+review and heavy-wave work caps remain in force.

@@ -1,4 +1,4 @@
-# Development status — November 14, 2026
+# Development status — November 15, 2026
 
 Working repository: zwbeam/strength-lab-preview, preview branch. Production is
 unchanged. README data and promotion boundaries remain authoritative.
@@ -228,3 +228,15 @@ remain unchanged (140 exposures compared with acb8285); stage reporting no longe
 bounces to zero on heavy days. Fifty Node JS suites, six correction tests and
 seventeen browser suites now cover the app. Cache revision rc49 keeps 51 assets.
 Instructional coverage stays 54 movements / 38 reviewed / 16 partial.
+
+
+Optional deload cadence batch: completed planned lighter work now services its
+interval, preventing A/B/C from cycling indefinitely between light and deload
+work. Only full normal qualifying work counts toward the next interval, within
+current method/load/date bounds. Density and earned maintenance use the setting;
+single-set work reduces whole reps/time where possible. Failed/partial deloads
+and corrections replay actual evidence. Default zero remains disabled. Two
+three-year actual-plan histories each save 430 workouts and continue progressing.
+Inventory is now 51 Node JS suites, six correction tests and eighteen browser
+suites; rc50-deload-cadence retains 51 offline assets. No source-review completion
+count or production/main change is claimed.

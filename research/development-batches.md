@@ -968,3 +968,46 @@ All 54 initial prescriptions and every default block plan match acb8285; the
 140 healthy-wave exposure comparison also matches exactly. The demo retains
 all 295 workouts and now reports three real swing-stage increases rather than
 98 changes caused by the previous heavy/light stage-display bounce.
+
+
+## Delivered deload cadence and long-term normal-work resumption
+
+Incoming preview 60da8f3 was clean/current after fetch; production main remains
+4cb58d8a4d30796246a83db752b8e420c8bc05c2. Reproduced the optional lighter-exposure
+setting repeatedly selecting deload after later neutral light/partial work, since
+the lifetime qualifying count remained exactly divisible by its interval. In
+A/B/C this can alternate deload and light indefinitely without normal progression.
+
+Count full qualifying normal work after the last delivered planned deload, within
+the current method/written-load comparison and explicit reset/date bounds. Actual
+load mistakes at the same written load cannot erase the interval. Re-evaluate
+structured deload actuals against their written target, technique, rest, load and
+setup; retain valid legacy aggregate evidence without inventing sets. Only
+actually delivered clean deload work services the interval. It remains neutral
+for progression. Reduced/partial work neither counts nor retriggers it.
+
+Apply the existing generic option to density and earned maintenance as well as
+volume. Reduce single-set reps/time when possible; explain irreducible whole-unit
+minimum practice. Preserve heavy-wave caps and endpoint review. Default interval
+zero remains disabled. This is app cadence consistency, no new source prescription.
+No history migration, policy-key change, V33 storage change or archive rewrite.
+
+Focused coverage includes multiple loaded/bodyweight/timed/wave methods, partial/
+zero/quality/pain/rest/load/station failures, correction/undo, future/frozen
+evidence, load replacement, method changes, legacy evidence and interval bounds.
+Two three-year actual-generator simulations save 430 workouts each: A/B/C records
+124 delivered deloads and 776 normal qualifying movement results; mixed blocks
+record 82 deloads and 539 normal qualifying results. A/B/C reaches its earned
+endpoint instead of trapping before it.
+
+Phone acceptance at 320/390px changes the real Settings control, performs the
+resulting deload, records partial work, corrects/restores the deload in History
+and resumes a real normal workout from an immutable offline draft. Prior actual
+history stays byte-identical. Inventory: 51 Node JS suites, six correction tests,
+eighteen browser suites; cache rc50-deload-cadence retains 51 runtime assets.
+Final local verification passed all 51 Node JS suites, six correction tests and
+all eighteen browser suites, including the 295-session populated-history replay.
+Both source audits, syntax, suite registration and 51-asset offline integrity
+passed. All 54 initial prescriptions and every default block plan match 60da8f3
+with cadence disabled. Exact-commit CI and public DEV verification remain required
+before reporting deployment success.
