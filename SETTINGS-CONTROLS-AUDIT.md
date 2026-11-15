@@ -53,3 +53,10 @@ Valid saved training-default values outside preset dropdown choices are retained
 as selected saved options. Saving programming must not silently replace an
 imported recovery fraction of 1, a custom return fraction or another valid
 training default. Browser recovery acceptance covers actual round-trip saves.
+
+
+Rolling-capacity follow-up: maximum training days now bounds the calendar as well
+as actual engine plans. Settings and Train requested frequency still share the
+same saved value; a stricter maximum changes effective opportunities without
+quietly overwriting that request. Browser-weekly-limits checks both surfaces,
+cap changes, three actual training dates, rolling boundaries and offline drafts.

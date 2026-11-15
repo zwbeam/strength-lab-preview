@@ -7,8 +7,10 @@ function monday(d){return add(d,-((new Date(d+'T12:00:00Z').getUTCDay()+6)%7));}
 function count(s,now){return s.sessions.filter(x=>(now===undefined||x.date<=now)&&(x.items||[]).some(y=>y.actualSets>0)&&(x.calendarVersion!==1||x.items.every(y=>y.performed===true))).length;}
 function key(s,i=0,now){return (s.programComposition?.enabled?s.programComposition.blocks.join('+'):s.programBlock||'abc')+':'+(count(s,now)+i);}
 function pause(s,now){return E.trainingPaused(s,now);}
+// Older open clients may briefly load this module before their engine updates.
+const weeklyLimit=s=>typeof E.weeklyTrainingLimit==='function'?E.weeklyTrainingLimit(s):Math.min(s.trainingDefaults?.maxTrainingDays??7,s.trainingPreferences?.daysPerWeek??7,s.trainingPreferences?.focus==='strength'?4:7);
 function project(s,now,end=add(now,83),opts={}){
- const entries=[],days=s.trainingPreferences?.daysPerWeek||3,virtual=JSON.parse(JSON.stringify(s)),planned=[],history=s.sessions.filter(x=>x.date<=now&&(x.items||[]).some(y=>y.actualSets>0)).sort((a,b)=>a.date.localeCompare(b.date)),last=history.at(-1)?.date;
+ const entries=[],days=Math.min(s.trainingPreferences?.daysPerWeek||3,weeklyLimit(s)),virtual=JSON.parse(JSON.stringify(s)),planned=[],history=s.sessions.filter(x=>x.date<=now&&(x.items||[]).some(y=>y.actualSets>0)).sort((a,b)=>a.date.localeCompare(b.date)),last=history.at(-1)?.date;
  let cursor=[now,s.resumeDate||now,s.paused&&s.pauseUntil||now,last?add(last,Math.max(1,Math.floor(7/days))):now].sort().at(-1),i=0,remaining=virtual.programComposition?.blocks?.slice();
  if(s.calendarMoves?.[key(s,0,now)])cursor=[cursor,s.calendarMoves[key(s,0,now)]].sort().at(-1);
  if(pause(s,now)&&!s.pauseUntil)return entries;

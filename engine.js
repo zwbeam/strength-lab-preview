@@ -582,6 +582,8 @@ function pendingThrough(s,block,now){
  const futureDebt=new Set(future.flatMap(x=>[...(x.plan?.deferred||[]),...(x.items||[]).filter(y=>!y.performed&&!setupOnly(y)).map(y=>y.id)]));
  return [...new Set([...pending,...current.filter(id=>!futureDebt.has(id))])];
 }
+// One rolling seven-day capacity rule for actual planning and provisional opportunities.
+function weeklyTrainingLimit(s){return Math.min(s.trainingDefaults?.maxTrainingDays??7,s.trainingPreferences?.daysPerWeek??7,s.trainingPreferences?.focus==='strength'?4:7);}
 function blockPlan(s,opts={}){
  opts={...opts,now:opts.now??new Date()};opts.readiness??=readinessFor(s,opts.now);
  const through=opts.evidenceThrough??opts.now,timeline=sessionsThrough(s,through,opts.projection);
@@ -698,7 +700,7 @@ function blockPlan(s,opts={}){
  const today=calendarDay(opts.now),history=timeline.filter(x=>calendarDay(x.date)<=today);
  const trainingDays=new Set(history.filter(x=>today-calendarDay(x.date)<7&&(x.items||[]).some(y=>y.actualSets>0)).map(x=>x.date));
  const alreadyToday=history.some(x=>calendarDay(x.date)===today&&(x.items||[]).some(y=>y.actualSets>0));
- const weeklyLimit=Math.min(defaults.maxTrainingDays??7,pref.daysPerWeek??7,pref.focus==='strength'?4:7);
+ const weeklyLimit=weeklyTrainingLimit(s);
  const restDay=!alreadyToday&&trainingDays.size>=weeklyLimit;
  const previousTraining=history.filter(x=>calendarDay(x.date)<today&&(x.items||[]).some(y=>y.actualSets>0)).sort((a,b)=>calendarDay(b.date)-calendarDay(a.date))[0];
  const gap=previousTraining?today-calendarDay(previousTraining.date):Infinity;
@@ -821,7 +823,7 @@ function continuityCandidate(s,candidates,history,opts){
 function retentionCandidate(s,candidates,history,opts){
  if(opts.projection||s.programComposition?.continuity===false)return null;
  const days=[...new Set(history.filter(x=>(x.items||[]).some(y=>y.actualSets>0)).map(x=>calendarDay(x.date)))].slice(-8);
- const interval=days.length>=3?Math.max(1,Math.ceil((days.at(-1)-days[0])/(days.length-1))):Math.ceil(7/(s.trainingPreferences?.daysPerWeek||3));
+ const interval=days.length>=3?Math.max(1,Math.ceil((days.at(-1)-days[0])/(days.length-1))):Math.ceil(7/Math.min(s.trainingPreferences?.daysPerWeek||3,weeklyTrainingLimit(s)));
  const physical=history.filter(x=>(x.items||[]).some(y=>y.actualSets>0));
  const absence=s.trainingDefaults?.reentryDays??14,latest=physical.at(-1),block=latest?.block||'abc';
  let run=0;for(let i=physical.length-1;i>=0&&(physical[i].block||'abc')===block;i--)run++;
@@ -1080,5 +1082,5 @@ function validateBackup(input){
  const workoutDraft=validateDraft(input.workoutDraft,input);
  return JSON.parse(JSON.stringify({...input,workoutDraft,nextWeights:input.nextWeights||{},defaultMinutes:input.defaultMinutes??45,deferredIds:input.deferredIds||[]}));
 }
-return{deloadStatus,advancementReview,readinessFor,retestRowWave,trainingEmphasis,validateTrainingEmphasis,emphasisDistribution,mobilityOnlyPlan,COMPLEX_PATHWAYS,complexityOptions,repairMissingLoadAnchor,setInitialLoad,replaceUnavailableLoad,availableWorkingLoads,trainingPaused,activityRecovery,validateActivity,movementCadence,MOVES,SKILLS,DAYS,BLOCKS,LOADS,PROFILE_NAMES,describeProgression,policyFor,availableProfiles,configureMovement,practiceEvidence,supportingMoves,requirementLabel,prerequisites,chooseCycle,loadOptions,selectLoad,retestPushup,validWorkingWeight,validateProgramming,validateDraft,validateBackup,records,successful,stateFor,prescription,minutesFor,timeBudget,plan,completeRecord,nextRest,deferredAfter,resolvePain,movementGap,movementDemands};
+return{weeklyTrainingLimit,deloadStatus,advancementReview,readinessFor,retestRowWave,trainingEmphasis,validateTrainingEmphasis,emphasisDistribution,mobilityOnlyPlan,COMPLEX_PATHWAYS,complexityOptions,repairMissingLoadAnchor,setInitialLoad,replaceUnavailableLoad,availableWorkingLoads,trainingPaused,activityRecovery,validateActivity,movementCadence,MOVES,SKILLS,DAYS,BLOCKS,LOADS,PROFILE_NAMES,describeProgression,policyFor,availableProfiles,configureMovement,practiceEvidence,supportingMoves,requirementLabel,prerequisites,chooseCycle,loadOptions,selectLoad,retestPushup,validWorkingWeight,validateProgramming,validateDraft,validateBackup,records,successful,stateFor,prescription,minutesFor,timeBudget,plan,completeRecord,nextRest,deferredAfter,resolvePain,movementGap,movementDemands};
 });

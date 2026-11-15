@@ -1172,3 +1172,48 @@ all twenty-one browser suites, including the populated 295-session replay.
 Focused baseline coverage also passed after adding the 993 no-op combinations.
 Both source audits, syntax, suite registration and 51-asset offline integrity
 passed. Exact-commit CI and public DEV remain required before reporting deployment.
+
+
+## Shared rolling weekly training capacity
+
+Incoming preview f9bebd8 was current/clean after fetch. Reproduced a valid saved
+seven-day request and three-day maximum producing seven forecast opportunities
+in its first week. Actual engine planning would then reject extra days as they
+were recorded. Calendar frequency had ignored maxTrainingDays and the existing
+strength-style capacity, while frozen projection placeholders spent no engine
+physical-day capacity.
+
+Extract the existing rolling-week formula to weeklyTrainingLimit and use it for
+calendar effective frequency. Preserve the saved requested frequency, default
+three-day calendar behavior, actual engine capacity and all numerical source
+prescriptions. Distinct actual and proposed dates share each projected seven-day
+window. No simulated work or progression is recorded. Before observed cadence
+exists, retention fallback now respects the effective configured capacity.
+No new universal source frequency or forced catch-up schedule is added.
+
+Focused checks cover 196 frequency/maximum/style combinations across twelve
+weeks, original defaults, real partial work, same-day duplicate sessions, changed
+limits without history rewrites, corrections/undo, manual moves, activity recovery,
+pauses, future evidence and read-only forecasts. A three-year actual mixed run
+with limits changing from three to two to four, missed/partial work and hard bike
+rides saves 424 workouts and validates nine forecast/backup checkpoints.
+
+Phone acceptance uses both Settings and Train requested-frequency controls,
+changes maximum capacity, records three actual workouts, checks the next rolling
+boundary, raises/lowers the cap without changing history, restores an immutable
+offline draft and rejects active programming changes. Requested days remain
+intact. Inventory: 55 Node JS suites, six correction tests and twenty-two browser
+suites; rc54-weekly-limits retains 51 assets. Full local suites, exact-commit CI
+and public DEV remain required.
+
+Compatibility comparisons pass all 216 configured initial prescriptions, every
+default block plan and 25 calendars whose weekly maximum is not binding against
+f9bebd8. Updated calendars also tolerate an older engine module during worker
+startup; a focused module-boundary check verifies the same capped forecast.
+
+Final local verification passed all 55 Node JS suites, six correction tests and
+all twenty-two browser suites, including the 295-session populated-history replay.
+Focused phone acceptance passed at 320/390px, including explicit discard of its
+synthetic unfinished draft without adding history. Both source audits, syntax,
+suite registration and 51-asset offline integrity passed. Exact-commit CI and
+public DEV verification remain required before reporting deployment.

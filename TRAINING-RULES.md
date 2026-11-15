@@ -339,3 +339,24 @@ and undo drive only the new comparison. Fixed-dose row history stays independent
 Full #609 and #89 source text was checked for this repair. Existing EMOM span,
 baseline fractions, row volume cap, rests, exposure gates and rolling timing stay
 unchanged. No required maximum test or automatic retest schedule is introduced.
+
+
+## Rolling training-day capacity in forecasts
+
+Actual planning and provisional opportunities share the existing weekly capacity:
+requested days, the saved maximum training days and the existing four-day strength
+style ceiling. These are app scheduling choices. No new source frequency or
+universal rest rule is inferred. The calendar also retains its three-day default
+when no requested frequency exists. A lower maximum never rewrites the request.
+
+Count distinct physical dates and proposed opportunity dates within each rolling
+seven-day window. Partial physical work spends a training day; duplicate sessions
+on that date do not spend extra days. A forecast remains provisional, never
+creates physical evidence or progression, and cannot use future actuals early.
+Changing a limit moves opportunities rather than erasing past work. Manual moves
+remain lower bounds under recovery/capacity rules and do not consume the queue.
+
+Outside activity, pauses, specific demand spacing and active draft immutability
+still apply. The retention fallback uses configured capacity before sufficient
+observed cadence exists; it cannot assume seven feasible days under a lower cap.
+Observed cadence remains feedback from actual work rather than invented dates.

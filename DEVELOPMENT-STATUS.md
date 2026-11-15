@@ -277,3 +277,13 @@ and a three-year 430-workout mixed history with annual explicit baseline reviews
 Inventory: 54 Node JS suites, six correction tests and twenty-one browser suites;
 rc53-baseline-cycles retains 51 offline assets. Instructional counts remain
 54 movements / 38 reviewed outlines / 16 partial lessons.
+
+
+Weekly-capacity consistency batch: calendar forecasts now share the engine's
+rolling training-day limit. A request for seven days with a maximum of three
+produces at most three opportunities per rolling week and retains the seven-day
+request for later preference changes. Partial actual days, same-day duplicates,
+manual moves and outside recovery remain coherent. Sparse-history retention uses
+feasible capacity. Verification inventory is 55 Node JS suites, six correction
+tests and twenty-two browser suites; rc54-weekly-limits retains 51 assets.
+Instructional coverage remains 54 movements / 38 reviewed / 16 partial.
