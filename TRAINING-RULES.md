@@ -411,3 +411,15 @@ Pending status is derived at the evidence date. Future delivery cannot clear a
 current return; correcting dates/actuals or undoing a correction recalculates it.
 Original prescriptions and active drafts remain snapshots. Movement status and
 next-dose explanations reflect the unfinished return consistently.
+
+
+## Light practice at a changed station
+
+Clean performed light work preserves a progression streak only at the written
+station setup. A changed bar height/leg position or step height/pattern interrupts
+the streak, matching the existing prerequisite-evidence rule. These clean geometry
+edits do not create technique failures or erase an earned stage. The actual
+physical work and original targets remain visible; history corrections/undo replay
+the comparison. Matching-station light practice stays neutral and never adds an
+ordinary advancement exposure. This is comparison reliability, not a new exercise
+method or numerical prescription.

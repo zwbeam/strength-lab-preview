@@ -12,9 +12,9 @@ retention. Inspect the actual latest GitHub commit and checks before continuing.
 Do not assume a later checkpoint passed just because this file exists.
 
 Run all non-browser tests/*.js, the history-corrections.test.cjs suite, and the
-twenty-five browser suites: browser-smoke.js, browser-curriculum.cjs,
+twenty-six browser suites: browser-smoke.js, browser-curriculum.cjs,
 browser-integration.cjs, browser-continuity.cjs, browser-foundations.cjs,
-browser-step-ups.cjs, browser-double-hinge.cjs, browser-paired-swing-reps.cjs, browser-endpoint-reviews.cjs, browser-prerequisite-evidence.cjs, browser-wave-replay.cjs, browser-deload-cadence.cjs, browser-recovery-dose.cjs, browser-load-setup.cjs, browser-baseline-cycles.cjs, browser-weekly-limits.cjs, browser-reduced-evidence.cjs, browser-return-continuity.cjs, browser-emphasis-evidence.cjs, browser-hand-changes.cjs
+browser-step-ups.cjs, browser-double-hinge.cjs, browser-paired-swing-reps.cjs, browser-endpoint-reviews.cjs, browser-prerequisite-evidence.cjs, browser-wave-replay.cjs, browser-deload-cadence.cjs, browser-recovery-dose.cjs, browser-load-setup.cjs, browser-baseline-cycles.cjs, browser-weekly-limits.cjs, browser-reduced-evidence.cjs, browser-return-continuity.cjs, browser-emphasis-evidence.cjs, browser-station-light.cjs, browser-hand-changes.cjs
 browser-single-arm-swing.cjs, browser-dated-evidence.cjs, browser-row-wave.cjs, browser-settings-sync.cjs and browser-demo-history.js (generate its synthetic backup
 first). Serve at 127.0.0.1:8765. Installed Chromium may be selected locally with
 PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium. Actions uses its own bundle.
@@ -343,3 +343,15 @@ Run tests/emphasis-evidence.js and browser-emphasis-evidence.cjs with every suit
 58 Node JS suites, six correction tests and twenty-five browser suites.
 rc57-emphasis-evidence retains the same 51 runtime assets. Instructional counts
 remain 54 movements / 38 reviewed outlines / 16 partial lessons.
+
+
+Light-station comparison: a performed light entry is neutral for progression only
+when clean and at its written station geometry/pattern. Changed row height/leg
+position or step height/pattern interrupts the clean streak without adding a
+technique failure. Physical actuals remain recorded; light work stays non-advancing.
+Keep correction/undo replay, prior earned stage, source doses and immutable written
+targets intact. Clean matching-station light work remains neutral. Run
+tests/station-light-evidence.js and browser-station-light.cjs with all suites:
+59 Node JS suites, six correction tests and twenty-six browser suites.
+rc58-station-light retains 51 assets. Source instructional counts remain
+54 movements / 38 reviewed outlines / 16 partial lessons.

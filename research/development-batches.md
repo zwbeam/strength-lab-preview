@@ -1362,3 +1362,49 @@ quota rollback and 295-session populated-history replay. Both source audits,
 syntax, CI suite registration and 51-asset offline integrity passed. Production
 and storage namespaces remain unchanged; current-commit remote checks still
 must pass before this batch is reported as a verified DEV deployment.
+
+
+## Light-station progression evidence
+
+Incoming verified checkpoint: b1dcec0. Fetched origin/preview and confirmed a clean
+synchronized tree and all six existing CI checks. Production main remains
+4cb58d8a4d30796246a83db752b8e420c8bc05c2. Source and integration audits remain
+54 movements / 38 reviewed outlines / 16 partial lessons.
+
+A changed-setup light row was being treated as neutral progression evidence solely
+because its physical target was performed. One normal exposure, a light exposure
+at another bar height, then a normal exposure advanced the stage, despite existing
+prerequisite evidence rejecting the changed geometry. The generic replay now
+requires clean matching-setup light practice for neutrality. Changed setup follows
+the existing comparison branch: interrupt the streak, retain earned stage and
+physical actuals, and do not add a technique failure. Light work never receives
+ordinary cycle credit. Row-wave already had the stricter neutral check.
+
+New Node coverage checks six height/row-leg/step-pattern cases across rows and both
+step-up variants, clean matching-light preservation, correction/undo restoration,
+immutable written targets, backups, dated evidence and read-only forecasts. It
+reproduces the incoming bug. A genuine engine-generated consecutive-day light row
+exercises the actual scheduling route. A three-year stress fixture generates 671
+actual workouts with 317 changed-station light entries and thirteen backup/forecast
+checks, using the supported six-exposure setting to exercise repeated comparisons.
+This synthetic stress schedule is QA evidence, not a source-authored program.
+
+New touch acceptance at 320/390px executes an actual generated light row at changed
+height, confirms that a later normal target remains at the current stage, then
+corrects/restores geometry and verifies progression replay. Original history,
+station preferences and written prescriptions remain unchanged. A new unfinished
+workout survives offline reload with unchecked actuals. Baseline comparison keeps
+216 initial movement prescriptions, 96 initial block plans and 84 clean same-
+station normal/light trajectory states identical to b1dcec0.
+
+CI registers both new suites: 59 Node JS suites, six correction tests and twenty-
+six browser suites; coverage counts 61 Node/setup files. Worker/query revision
+rc58-station-light retains 51 runtime assets. No storage/schema migration, source
+dose rewrite, production change, main merge or Git history rewrite. Full local
+suites, exact-commit CI and public DEV verification remain required.
+
+Final local verification passed all 59 Node JS suites, six correction tests and
+all twenty-six browser suites, including new touch station-light acceptance and
+the 295-session populated-history replay. Both source audits, changed-file syntax,
+CI suite registration, diff checks and 51-asset offline integrity passed. Remote
+CI and public DEV still require exact-commit verification before reporting success.

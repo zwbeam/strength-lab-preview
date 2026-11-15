@@ -322,3 +322,16 @@ emphasis histories and bidirectional Train/Settings mobile acceptance with guard
 drafts, actual logging and offline reload. Inventory is 58 Node JS suites, six
 correction tests and twenty-five browser suites; rc57-emphasis-evidence retains
 51 assets. Source instructional counts are unchanged.
+
+
+Light-station evidence batch: changed bar/step geometry in light work no longer
+bridges two normal exposures into false advancement. Progression now agrees with
+prerequisite evidence: clean matching-station light work is neutral; changed setup
+interrupts the streak without inventing failure or erasing earned stages. Tests
+cover all three station movements, row leg and step-pattern edits, correction/undo,
+dated evidence, immutable actuals/targets and backups. A three-year stress fixture
+uses 671 actual generated workouts, including 317 changed-station light entries.
+Mobile acceptance covers genuine generated light rows, normal retry, bidirectional
+corrections and offline drafts. Inventory: 59 Node JS suites, six correction tests,
+twenty-six browser suites; rc58-station-light retains 51 assets. No source counts
+or numeric prescriptions changed.

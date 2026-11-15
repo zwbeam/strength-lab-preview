@@ -263,7 +263,7 @@ function replay(s,id,policy,track='base',opts={}){
  for(const x of h){
   if(!MOVES[id].bodyweight&&Number(x.weight)>0&&Number(x.weight)!==weight){weight=Number(x.weight);stage=0;stagePhase='volume';ready=false;streak=0;fail=0;}
   if(x.pain||x.quality==='pain'){streak=0;fail++;continue;}
-  if(x.performed&&x.mode==='light')continue;
+  if(x.performed&&x.mode==='light'&&x.quality==='clean'&&!x.setupChanged)continue;
   if(['rebuild','reentry','recovery','deload'].includes(x.mode)){streak=0;if(deliveredReduced(x))fail=0;continue;}
   if(MOVES[id].station&&x.setupChanged&&x.quality==='clean'&&!x.pain){streak=0;continue;}
   if(x.quality!=='clean'||x.completed===false){streak=0;if(x.actualSets>0||['hard','breakdown'].includes(x.quality))fail++;continue;}
