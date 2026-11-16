@@ -455,3 +455,25 @@ configuration change. Revised cycles retain original history and targets; no
 ordinary single-load cycle, source dose or heavy-below-light work cap changes.
 Pain/review/return requirements and dated evidence remain independent. This is
 app comparison accounting, not an automatic periodic reset or new source program.
+
+
+## Optional timed two-hand hip drops
+
+Source #84 describes a 30-second alternating hip-drop example. The separate
+hipDropTimed method uses one whole 30-second bout across both sides per set; it
+does not double the time per side. Actual seconds, positive actual touches on
+both sides, alternating balance (difference at most one), clean technique and
+confirmed work determine delivery. Either side may lead. Source speed/count
+examples are context, not quotas or automatic advancement targets.
+
+Two to four bouts, 60-second rests, clean-exposure gates and recovery reductions
+are Strength Lab app choices. Reduced multi-bout practice reduces bout count
+before shortening the fixed source example; it never earns ordinary credit.
+Timers cannot fill actual counts or check sets. Existing readiness, pain/review,
+absence, correction and qualification gates still apply.
+
+The default rep method and its policy identity are unchanged. Timed and rep work
+retain separate comparison identities. Qualified two-hand practice can support
+the existing single-hand prerequisite; it does not advance that child's cycle
+or introduce a single-hand timed prescription. This is a bounded source example,
+not a full bodyweight 101 timing system.

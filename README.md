@@ -19,6 +19,12 @@ Before changing deployment origin, domain, browser profile, or device:
 
 Local storage is scoped to an origin; deploying the same code to a different domain does not automatically transfer stored history. Keep the storage keys `sl-dev-preview-data-v33`, `sl-dev-preview-draft-v33`, and `sl-dev-preview-transaction-v33` stable unless a tested migration is provided.
 
+## Engine and knowledge integration
+
+See [the engine and transcript integration map](ENGINE-KNOWLEDGE-STATUS.md) for
+how reviewed knowledge becomes actual training, implemented methods, prerequisite
+pathways and the remaining limits. Archive coverage is not full engine integration.
+
 ## Verification
 
 Run **Research coverage audit** from GitHub Actions on the `preview` branch. Both the `audit` and `browser-smoke` jobs must finish successfully for the **current commit** before promotion. Earlier passing runs do not verify later commits.

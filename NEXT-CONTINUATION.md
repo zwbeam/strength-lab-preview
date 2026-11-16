@@ -12,9 +12,9 @@ retention. Inspect the actual latest GitHub commit and checks before continuing.
 Do not assume a later checkpoint passed just because this file exists.
 
 Run all non-browser tests/*.js, the history-corrections.test.cjs suite, and the
-twenty-eight browser suites: browser-smoke.js, browser-curriculum.cjs,
+twenty-nine browser suites: browser-smoke.js, browser-curriculum.cjs,
 browser-integration.cjs, browser-continuity.cjs, browser-foundations.cjs,
-browser-step-ups.cjs, browser-double-hinge.cjs, browser-paired-swing-reps.cjs, browser-endpoint-reviews.cjs, browser-prerequisite-evidence.cjs, browser-wave-replay.cjs, browser-deload-cadence.cjs, browser-recovery-dose.cjs, browser-load-setup.cjs, browser-baseline-cycles.cjs, browser-weekly-limits.cjs, browser-reduced-evidence.cjs, browser-return-continuity.cjs, browser-emphasis-evidence.cjs, browser-station-light.cjs, browser-review-return.cjs, browser-wave-cycles.cjs, browser-hand-changes.cjs
+browser-step-ups.cjs, browser-double-hinge.cjs, browser-paired-swing-reps.cjs, browser-endpoint-reviews.cjs, browser-prerequisite-evidence.cjs, browser-wave-replay.cjs, browser-deload-cadence.cjs, browser-recovery-dose.cjs, browser-load-setup.cjs, browser-baseline-cycles.cjs, browser-weekly-limits.cjs, browser-reduced-evidence.cjs, browser-return-continuity.cjs, browser-emphasis-evidence.cjs, browser-station-light.cjs, browser-review-return.cjs, browser-wave-cycles.cjs, browser-hip-timed.cjs, browser-hand-changes.cjs
 browser-single-arm-swing.cjs, browser-dated-evidence.cjs, browser-row-wave.cjs, browser-settings-sync.cjs and browser-demo-history.js (generate its synthetic backup
 first). Serve at 127.0.0.1:8765. Installed Chromium may be selected locally with
 PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium. Actions uses its own bundle.
@@ -386,3 +386,24 @@ pain/review/return gates remain independent; old history and written drafts stay
 readable. Keep tests/wave-cycle-identity.js and browser-wave-cycles.cjs in all
 verification: 61 Node JS suites, six correction tests, twenty-eight browser suites.
 rc60-wave-cycles retains 51 runtime assets; no V33 migration or source-count change.
+
+
+Engine organization and programming-depth priority: read ENGINE-KNOWLEDGE-STATUS.md.
+The user wants transcript knowledge organized into a coherent working engine,
+not merely more library entries or reliability-only batches. Continue source-
+reviewed method depth and sustainable mixed curricula. Do not claim all 719 usable
+archive records are integrated or infer a compulsory universal movement ladder.
+
+Source #84 now has an opt-in hipDropTimed method on hipDropTwoHand: 30 seconds
+total per alternating bout, not per side. Record real seconds and touches on both
+sides; either side can lead and counts may differ by at most one. There is no
+speed/minimum-touch quota beyond positive alternating participation. Sets 2–4,
+rest 60 and exposure/recovery rules are app adaptations. Keep default rep keys
+and history unchanged; no automatic single-hand timed method or component credit.
+Timed selection hides inapplicable rep controls without changing saved state
+until Save. Timers still never log physical work. Multi-bout recovery reduces
+bout count; existing one-set get-up time reductions remain unchanged.
+
+Keep tests/hip-drop-timed.js and browser-hip-timed.cjs in full validation: 62 Node
+JS suites, six correction tests, twenty-nine browser suites. Source quotes/hash
+are in research/hip-drop-timed-evidence.json. rc61-hip-timed retains 51 assets.

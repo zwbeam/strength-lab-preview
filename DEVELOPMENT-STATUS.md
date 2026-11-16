@@ -361,3 +361,22 @@ backup boundaries, overflow guards, a three-year 430-workout history with two
 configuration-review round trips and phone/offline acceptance. Inventory: 61 Node
 JS suites, six correction tests and twenty-eight browser suites. rc60-wave-cycles
 retains 51 assets; source instructional counts remain 54 / 38 / 16.
+
+
+Source #84 timed hip-drop integration: the existing two-hand movement now offers
+a separate opt-in 30-second alternating whole-bout method. Actual seconds plus
+balanced positive touch counts on both sides determine delivery; either side can
+lead. Descriptive 8–12/30-touch examples are not quotas. Two to four bouts,
+60-second rests and exposure/recovery gates remain explicit app choices. Default
+rep programming and historical keys stay unchanged; single-hand practice retains
+its separate dose/credit. Existing timer, qualification, recovery, review,
+correction/undo, time-budget and offline paths apply.
+
+The new ENGINE-KNOWLEDGE-STATUS.md organizes the source-to-engine pipeline, working
+method families, actual prerequisite edges and remaining curriculum limits. This
+batch expands programming depth, not the catalog count: still 54 movements,
+38 reviewed outlines and 16 partial lessons. A three-year mixed test records
+430 generated workouts, 153 timed hip entries, nine reduced timed entries and
+80 single-hand entries after explicit confirmation. Inventory: 62 Node JS suites,
+six correction tests and twenty-nine browser suites. rc61-hip-timed retains
+51 runtime assets and existing V33 storage keys.

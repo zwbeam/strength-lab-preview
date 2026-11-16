@@ -1507,3 +1507,62 @@ registration, diff checks and 51-asset offline integrity passed. Baseline compar
 kept 216 initial prescriptions, 96 initial block plans and 140 unchanged-wave
 trajectory states identical to 3d0891e. Exact-commit CI and public DEV checks remain
 required before reporting deployment success.
+
+
+## Organized engine knowledge and source #84 timed hip practice
+
+Incoming verified checkpoint: 7af7664. Fetched origin/preview and confirmed a clean
+synchronized tree and six passing existing CI checks; production main remains
+4cb58d8a4d30796246a83db752b8e420c8bc05c2. Read the release/data, development, training,
+coverage and continuation handoffs. Preserve source accounting boundaries.
+
+The user requested continuing engine work with an update on knowledge organization.
+ENGINE-KNOWLEDGE-STATUS.md now describes the source → admission → coordination →
+prescription → actuals → replay → recovery → persistence pipeline, working method
+families, actual prerequisite edges and remaining limits. It distinguishes the
+720-record inventory/719 usable records from 54 operational movement paths and
+38 reviewed/16 partial instruction outlines. Recent reliability fixes improve
+integration but do not close broader curriculum or source-programming gaps.
+
+Reviewed #84's archived technique and timed-example text. The existing rep-based
+hip method was an app alternative; a separate opt-in hipDropTimed method now
+implements its whole 30-second alternating example. Both actual seconds and
+actual positive balanced hip-touch counts are required. Either side can lead;
+8–12/30-touch descriptions are not quotas. Two to four bouts, 60-second rests,
+clean-exposure gates and recovery/continuity choices remain app adaptations.
+Source quotes, normalized hash, facts/decisions and boundaries are recorded in
+research/hip-drop-timed-evidence.json. No source timestamp is invented.
+
+The method uses existing ground/ABC routes, familiarity, actual-result replay,
+pain/review/absence, dependent-movement gates, correction/undo, owned-zero-load
+validation, time budgeting and offline persistence. Timers supply pacing only.
+Multiple total-time bouts reduce their set count during recovery; existing
+single-set get-up time reduction is unchanged. Default rep keys/behavior stay
+unchanged, and single-hand practice gains no automatic timed target or credit.
+Rep-only settings fields hide for timed selection; no new setup questionnaire.
+
+Node acceptance checks the source hash/quotes, whole-bout time, either leading
+side, no speed quota, incomplete/missing/unequal actuals, load/quality/pain gates,
+all pacing modes without completion credit, separate methods, prerequisite
+qualification without child progression, reduced work, corrections, future dates,
+backups and forecasts. A three-year mixed actual-generator history saves 430
+workouts, 153 timed entries, nine reduced timed entries, 80 single-hand entries
+after explicit familiarity confirmation and seven backup/forecast checks. These
+are synthetic integration evidence, not physical or clinical outcomes.
+
+Touch acceptance at 320/390px selects the new method, runs a genuine 30-second
+work interval without recording physical work, logs incomplete then full actuals,
+replays historical time corrections, retains independent old rep progress and
+reloads untouched timed drafts offline. CI registers both suites: 62 Node JS
+suites, six correction tests, twenty-nine browser suites (64 Node/setup files).
+Cache/query rc61-hip-timed retains 51 runtime assets and V33 namespaces.
+Instructional counts are unchanged; this adds supported programming depth.
+
+Final local verification passed all 62 Node JS suites, six correction tests and
+all twenty-nine browser suites, including new timed-method touch acceptance and
+the 295-session populated-history replay. Both source audits, provenance and
+instruction safeguards, syntax, suite registration, diff checks and 51-asset
+offline integrity passed. Compatibility comparison preserved 216 existing
+initial prescriptions, 96 default plans and 56 existing rep/get-up normal,
+recovery and return targets. Exact-commit CI and public DEV still require
+verification before this batch is reported deployed successfully.

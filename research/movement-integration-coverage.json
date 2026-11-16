@@ -742,7 +742,8 @@
       ],
       "profile": "ground",
       "availableProfiles": [
-        "ground"
+        "ground",
+        "hipDropTimed"
       ],
       "sourceIds": [
         84

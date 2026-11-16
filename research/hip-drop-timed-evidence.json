@@ -1,0 +1,30 @@
+{
+  "source": {
+    "id": 84,
+    "title": "Body Weight training - the 2 hand Hip Drop - fundamental getup movement for martial artists",
+    "url": "https://www.youtube.com/watch?v=ugp8XuBIbRE",
+    "sha256": "7f07d0cb01ddb36cd81ab07043adb931990228f01eae6ecf93cf22daec77b87c",
+    "quotes": [
+      "think about this as a time under tension exercise usually what we do is we set up a timer let's say 30 seconds and you would see how many reps you can do in that amount of time",
+      "your numbers are going to be low like 8 to 12",
+      "the breath pattern is exhale every time the hip bone touches the ground"
+    ],
+    "timestamps": null
+  },
+  "sourceFacts": [
+    "A 30-second timed alternating hip-drop example is described; it is one whole bout, not 30 seconds on each side.",
+    "8–12 early repetitions and 30 touches in 30 seconds are descriptive examples, not mandatory progression targets.",
+    "Quiet step-step transitions, hip/thigh contact and exhale on each hip touch remain the reviewed instruction."
+  ],
+  "appDecisions": [
+    "Separate opt-in hipDropTimed profile; default rep-based ground profile and historical policy keys remain unchanged.",
+    "Two to four whole 30-second bouts, 60-second rests and the existing configurable clean-exposure gate are app volume/progression choices.",
+    "Record actual activity seconds and positive actual touches on both sides; balanced alternating counts may differ by at most one, with either side leading.",
+    "No touch-speed quota, automatic timer credit, added load or automatic timed upgrade of the single-hand variation.",
+    "Use existing readiness, recovery, re-entry, pain, correction/undo, time-budget and offline-draft contracts."
+  ],
+  "qualifications": [
+    "This integrates the bounded 30-second example, not a complete bodyweight 101 program or a universal timing ladder.",
+    "Source timing and app-selected sets/rest/progression remain separately identified."
+  ]
+}

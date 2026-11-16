@@ -79,3 +79,12 @@ legacy keys. The Train generator reads the new comparison; written active drafts
 and historical actuals remain unchanged. Node wave-cycle-identity and mobile
 browser-wave-cycles cover Settings round trips, actual fresh targets, profile
 switching, reload and offline persistence. No new controls or questions are added.
+
+
+Timed hip-drop opt-in: the two-hand movement's existing profile selector now
+offers the source #84 whole 30-second alternating example. Unused rep-only fields
+hide for that method, including while the form choice is unsaved. Save commits
+the method; Train and new drafts use its actual 30-second whole-bout targets.
+Actual touch counts are required separately, and timers do not log work. Switching
+back retains readable independent rep history. browser-hip-timed tests selection,
+real pacing, partial/full actuals, corrections and offline drafts at both widths.
