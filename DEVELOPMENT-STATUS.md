@@ -1,4 +1,4 @@
-# Development status — November 15, 2026
+# Development status — November 16, 2026
 
 Working repository: zwbeam/strength-lab-preview, preview branch. Production is
 unchanged. README data and promotion boundaries remain authoritative.
@@ -335,3 +335,16 @@ Mobile acceptance covers genuine generated light rows, normal retry, bidirection
 corrections and offline drafts. Inventory: 59 Node JS suites, six correction tests,
 twenty-six browser suites; rc58-station-light retains 51 assets. No source counts
 or numeric prescriptions changed.
+
+
+New-review return evidence: an old recovery workout can no longer satisfy a new
+explicit pain review. New reviews retain prior return-entry keys in optional
+review metadata; only new clean full reduced work can acknowledge that decision.
+Repeated review without new pain is idempotent, and legacy metadata retains its
+existing interpretation. Pending reviews block prerequisite qualification and
+descendant maintenance as well as the movement's own normal prescription.
+Coverage includes seven programming contexts, corrections/date/future boundaries,
+optional backup validation, a three-year 430-workout/14-review history and touch
+review/retry/correction/offline acceptance. Inventory: 60 Node JS suites, six
+correction tests and twenty-seven browser suites. rc59-review-return retains
+51 runtime assets; no source doses, instructional counts or storage keys changed.

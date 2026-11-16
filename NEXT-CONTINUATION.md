@@ -12,9 +12,9 @@ retention. Inspect the actual latest GitHub commit and checks before continuing.
 Do not assume a later checkpoint passed just because this file exists.
 
 Run all non-browser tests/*.js, the history-corrections.test.cjs suite, and the
-twenty-six browser suites: browser-smoke.js, browser-curriculum.cjs,
+twenty-seven browser suites: browser-smoke.js, browser-curriculum.cjs,
 browser-integration.cjs, browser-continuity.cjs, browser-foundations.cjs,
-browser-step-ups.cjs, browser-double-hinge.cjs, browser-paired-swing-reps.cjs, browser-endpoint-reviews.cjs, browser-prerequisite-evidence.cjs, browser-wave-replay.cjs, browser-deload-cadence.cjs, browser-recovery-dose.cjs, browser-load-setup.cjs, browser-baseline-cycles.cjs, browser-weekly-limits.cjs, browser-reduced-evidence.cjs, browser-return-continuity.cjs, browser-emphasis-evidence.cjs, browser-station-light.cjs, browser-hand-changes.cjs
+browser-step-ups.cjs, browser-double-hinge.cjs, browser-paired-swing-reps.cjs, browser-endpoint-reviews.cjs, browser-prerequisite-evidence.cjs, browser-wave-replay.cjs, browser-deload-cadence.cjs, browser-recovery-dose.cjs, browser-load-setup.cjs, browser-baseline-cycles.cjs, browser-weekly-limits.cjs, browser-reduced-evidence.cjs, browser-return-continuity.cjs, browser-emphasis-evidence.cjs, browser-station-light.cjs, browser-review-return.cjs, browser-hand-changes.cjs
 browser-single-arm-swing.cjs, browser-dated-evidence.cjs, browser-row-wave.cjs, browser-settings-sync.cjs and browser-demo-history.js (generate its synthetic backup
 first). Serve at 127.0.0.1:8765. Installed Chromium may be selected locally with
 PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium. Actions uses its own bundle.
@@ -355,3 +355,19 @@ tests/station-light-evidence.js and browser-station-light.cjs with all suites:
 59 Node JS suites, six correction tests and twenty-six browser suites.
 rc58-station-light retains 51 assets. Source instructional counts remain
 54 movements / 38 reviewed outlines / 16 partial lessons.
+
+
+New review, new return: resolvePain snapshots pre-existing reentry/recovery record
+keys into optional painResolutions[id].priorReturnKeys only when new unresolved
+pain is reviewed. Excluded entries remain excluded after correction/date edits;
+a new clean full reduced entry can clear the pending review. Repeating the same
+review preserves the snapshot instead of restarting a completed return. Old
+backups without the field keep their prior interpretation; malformed optional
+metadata is rejected. Do not add a required migration or alter V33 keys.
+
+Pending review blocks direct normal work, prerequisite qualification and the use
+of a reviewed descendant to maintain prerequisite recency. Actual exposures and
+earned stage remain; normal progression still requires normal qualifying work.
+Run tests/review-return-evidence.js and browser-review-return.cjs with all suites:
+60 Node JS suites, six correction tests, twenty-seven browser suites.
+rc59-review-return retains 51 assets and existing source counts (54/38/16).

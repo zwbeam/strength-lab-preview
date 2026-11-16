@@ -423,3 +423,20 @@ physical work and original targets remain visible; history corrections/undo repl
 the comparison. Matching-station light practice stays neutral and never adds an
 ordinary advancement exposure. This is comparison reliability, not a new exercise
 method or numerical prescription.
+
+
+## New return work after explicit review
+
+A new pain review records which reduced-return entries already existed. Those
+entries cannot acknowledge the new decision, including after historical correction
+or date changes. A new clean full re-entry/recovery target is required. Incomplete,
+wrong-load/setup or invalid-paced work remains insufficient; no reduced entry earns
+ordinary cycle credit. Repeating review without newly unresolved pain preserves
+the existing decision and completed return.
+
+Pending review also blocks prerequisite qualification and descendant maintenance,
+so an eligible-looking old clean sequence cannot bypass the return through a harder
+movement. Exposure counts, earned stages and original history stay distinct from
+current eligibility. Optional priorReturnKeys metadata is validated in backups;
+legacy reviews without it retain their existing interpretation. This records an
+app review decision, not a new transcript dose or medical qualification.

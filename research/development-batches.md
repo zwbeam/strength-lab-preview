@@ -1408,3 +1408,52 @@ all twenty-six browser suites, including new touch station-light acceptance and
 the 295-session populated-history replay. Both source audits, changed-file syntax,
 CI suite registration, diff checks and 51-asset offline integrity passed. Remote
 CI and public DEV still require exact-commit verification before reporting success.
+
+
+## New review requires new return evidence — November 16, 2026
+
+Incoming verified checkpoint: 5c13f55. Fetched and confirmed origin/preview and a
+clean working tree. Preserved all newer history since c7dcfdc. Production main
+remains 4cb58d8a4d30796246a83db752b8e420c8bc05c2. Required release/data/training
+and coverage handoffs remain authoritative.
+
+Reproduced a real history-correction path: record normal work and a later clean
+recovery entry, then correct the older entry to report pain and explicitly review
+it. The old recovery previously cleared the new review immediately, allowing a
+normal target despite the user's decision to resume with reduced work. New reviews
+now snapshot existing reentry/recovery keys in optional priorReturnKeys metadata.
+Existing entries cannot acknowledge a new decision, including when corrected or
+redated. New clean full return work can. Repeating a review with no new unresolved
+pain preserves the decision instead of restarting it. Legacy review metadata keeps
+its existing interpretation; no storage version or mandatory migration changes.
+
+A linked gap allowed old clean prerequisite work to qualify a dependent movement
+while the parent still required its reviewed return. Prerequisite readiness now
+honors reviewRecovery, and reviewed descendants cannot maintain older supporting
+practice until their own return is delivered. Registry edges, skill confirmations,
+source doses, actual exposure counts and earned stages remain unchanged.
+
+New Node coverage reproduces both gaps across seven generic/timed/continuous/row-
+wave/configured-wave contexts. It checks old partials later corrected to complete,
+new partial/full return work, repeated reviews, future imports, date cutoffs,
+correction/undo, immutable written history, idempotence and optional/legacy backup
+validation. A three-year actual-generator history saves 430 workouts, fourteen
+retrospective reviews and fourteen new completed returns with seven backup/forecast
+checks. These are synthetic app tests, not physiological outcome claims.
+
+New 320/390px touch acceptance performs the actual review/resume decision after
+older recovery, confirms incomplete new return stays pending, reloads an untouched
+return draft offline, records its genuine completion, and corrects/restores that
+evidence. Earlier history, station preferences and written targets remain intact.
+CI registers both suites: 60 Node JS suites, six correction tests and twenty-seven
+browser suites (62 Node/setup files). Cache/query rc59-review-return retains
+51 runtime assets. Source coverage stays 54 movements / 38 reviewed / 16 partial.
+Full local suites, exact-commit CI and public DEV verification remain required.
+
+Final local verification passed all 60 Node JS suites, six correction tests and
+all twenty-seven browser suites, including four-width smoke, quota rollback,
+295-session populated history and the new mobile review/return workflow. Both
+source audits, syntax, suite registration, diff checks and 51-asset offline
+integrity passed. Baseline comparison preserved 216 initial prescriptions and
+96 initial block plans. Exact-commit remote checks and public DEV verification
+remain required before reporting deployment success.

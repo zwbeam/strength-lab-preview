@@ -315,16 +315,23 @@ function replayWave(s,id,policy,opts){
 }
 function stateFor(s,id,opts={}){
  const policy=policyFor(id,s),all=records(s,id),through=evidenceDay(opts),h=through===Infinity?all:all.filter(x=>calendarDay(x.date)<=through),resolvedKeys=s.painResolutions?.[id]?.painKeys||[];
- const reviewedIndex=h.reduce((last,x,index)=>resolvedKeys.includes(x._key)?index:last,-1);
+ const reviewedIndex=h.reduce((last,x,index)=>resolvedKeys.includes(x._key)?index:last,-1),priorReturnKeys=s.painResolutions?.[id]?.priorReturnKeys,priorReturns=new Set(priorReturnKeys||[]);
  // Known unresolved pain remains a hold even if its record date is in the future.
  const hold=all.some(x=>(x.pain||x.quality==='pain')&&!resolvedKeys.includes(x._key))?'Pain reported: stop and review this movement.':'';
- const reviewRecovery=(reviewedIndex>=0||resolvedKeys.some(key=>!all.some(x=>x._key===key)))&&!h.slice(reviewedIndex+1).some(x=>x.performed&&['reentry','recovery'].includes(x.mode)&&deliveredReduced(x));
+ // A new review requires new return work; retain legacy interpretation when its snapshot is absent.
+ const reviewRecovery=(priorReturnKeys!==undefined||reviewedIndex>=0||resolvedKeys.some(key=>!all.some(x=>x._key===key)))&&!h.slice(reviewedIndex+1).some(x=>!priorReturns.has(x._key)&&x.performed&&['reentry','recovery'].includes(x.mode)&&deliveredReduced(x));
  // A physical touch does not finish a prescribed return; later valid ordinary work remains valid.
  let reentryPending=false;for(const x of h){if(x.mode==='reentry'&&!setupOnly(x))reentryPending=!deliveredReduced(x);else if(reentryPending&&(deliveredReduced(x)||successful(x)&&x.actualSets>0&&!x.setupChanged))reentryPending=false;}
  let result=policy.profile==='wave'?replayWave(s,id,policy,opts):replay(s,id,policy,'base',opts),track=result.track||'base';
  return{...result,hold,reviewRecovery,reentryPending,policy,track,allExposures:h.length};
 }
-function resolvePain(s,id){if(!MOVES[id])throw Error('Unknown movement');return {...s,painResolutions:{...s.painResolutions,[id]:{painKeys:records(s,id).filter(x=>x.pain||x.quality==='pain').map(x=>x._key)}}};}
+function resolvePain(s,id){
+ if(!MOVES[id])throw Error('Unknown movement');
+ const h=records(s,id),previous=s.painResolutions?.[id],painKeys=h.filter(x=>x.pain||x.quality==='pain').map(x=>x._key);
+ const newlyReviewed=painKeys.some(key=>!previous?.painKeys?.includes(key));
+ const priorReturnKeys=newlyReviewed?h.filter(x=>['reentry','recovery'].includes(x.mode)).map(x=>x._key):previous?.priorReturnKeys;
+ return{...s,painResolutions:{...s.painResolutions,[id]:{painKeys,...(priorReturnKeys!==undefined?{priorReturnKeys}:{})}}};
+}
 function readinessFor(s,now=new Date()){const date=typeof now==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(now)?now:new Date(now).toLocaleDateString('sv-SE');return s.todayReadiness?.date===date&&['normal','low','great'].includes(s.todayReadiness.value)?s.todayReadiness.value:'normal';}
 function movementGap(s,id,now=new Date(),evidenceThrough){const last=records(s,id,{now,evidenceThrough}).filter(x=>x.actualSets>0).at(-1);if(!last)return 0;return Math.max(0,Math.floor(calendarDay(now)-calendarDay(last.date)));}
 // App continuity rule: only registry-gated descendants may maintain a previously
@@ -357,10 +364,10 @@ function practiceEvidence(s,id,opts={}){
  if(!recent&&maintenanceFor&&gatedDescendant(maintenanceFor,id)){
   const child=stateFor(s,maintenanceFor,opts),childComparison=comparablePractice(s,maintenanceFor,child,opts),h=childComparison.history;
   const lastBad=h.findLastIndex(x=>!successful(x)&&!neutralLight(x));
-  maintained=h.slice(lastBad+1).filter(successful).length>=required&&childComparison.recent&&!child.hold&&(MOVES[maintenanceFor].requires||[]).every(key=>s.skills?.[key]===true);
+  maintained=h.slice(lastBad+1).filter(successful).length>=required&&childComparison.recent&&!child.hold&&!child.reviewRecovery&&(MOVES[maintenanceFor].requires||[]).every(key=>s.skills?.[key]===true);
  }
  const upstreamReady=prerequisites(s,id,{...opts,maintenanceFor:maintained?maintenanceFor:opts.maintenanceFor}).length===0;
- return{count,required,ready:count>=required&&(recent||maintained)&&!st.hold&&upstreamReady,recent,maintained,held:!!st.hold};
+ return{count,required,ready:count>=required&&(recent||maintained)&&!st.hold&&!st.reviewRecovery&&upstreamReady,recent,maintained,held:!!st.hold};
 }
 function supportingMoves(s,ids,opts={}){
  const result=[],seen=new Set();
@@ -1078,7 +1085,7 @@ function validateBackup(input){
  if(input.deferredIds!==undefined&&(!Array.isArray(input.deferredIds)||input.deferredIds.some(id=>!Object.hasOwn(MOVES,id))))throw Error('Invalid deferred movements');
  if(input.painResolutions!==undefined){
   if(!object(input.painResolutions))throw Error('Invalid movement reviews');
-  for(const [id,review] of Object.entries(input.painResolutions))if(!Object.hasOwn(MOVES,id)||!object(review)||!Array.isArray(review.painKeys)||review.painKeys.some(key=>typeof key!=='string'))throw Error('Invalid movement review');
+  for(const [id,review] of Object.entries(input.painResolutions))if(!Object.hasOwn(MOVES,id)||!object(review)||!Array.isArray(review.painKeys)||review.painKeys.some(key=>typeof key!=='string')||review.priorReturnKeys!==undefined&&(!Array.isArray(review.priorReturnKeys)||review.priorReturnKeys.some(key=>typeof key!=='string')))throw Error('Invalid movement review');
  }
  validateProgramming(input);
  const workoutDraft=validateDraft(input.workoutDraft,input);
