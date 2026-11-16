@@ -1566,3 +1566,57 @@ offline integrity passed. Compatibility comparison preserved 216 existing
 initial prescriptions, 96 default plans and 56 existing rep/get-up normal,
 recovery and return targets. Exact-commit CI and public DEV still require
 verification before this batch is reported deployed successfully.
+
+
+## Capacity-aware mixed-program day feedback
+
+Incoming verified checkpoint: 4b5e600. Fetched origin/preview and confirmed a clean
+synchronized tree. The user prioritizes curriculum coherence and source knowledge
+that actually works with the training engine. Release, data, training, coverage
+and continuation boundaries remain authoritative; production/main is untouched.
+
+Existing feedback estimated the interval between block visits, ignoring days
+inside a block. With A/B/C plus two one-day programs at three days/week, each
+block can recur weekly while an individual A/B/C day recurs every 21 days. New
+composition.cadence.rotation records a simple ready-program round-robin estimate
+using actual program-day counts, shared effective weekly limits, and no faster
+than recent recorded pace when four training days exist. It excludes currently
+blocked candidates and preserves saved selections. The older block-visit estimate
+remains distinct and now counts ready blocks. Existing observed movement warnings
+retain priority over this structural estimate.
+
+Feedback appears through the existing “Why this workout?” explanation, with the
+effective rate and currently ready program count. It is a planning estimate, not
+a source prescription, health rule, movement-specific prediction or complete
+capacity solver. Internal pattern rotation, future qualification and exact
+movement fit remain separate. No program selection, prescription, dose, credit,
+recovery threshold or historical record is changed by the feedback.
+
+Integer counts are multiplied before division so an exact 35-day boundary
+cannot become 36 days through floating-point rounding.
+
+Node verification covers thirty frequency/cap/style combinations, narrower
+rotations, blocked/paused candidates, sparse observed pace, future isolation,
+backups and read-only forecasts. Eighteen actual unprioritized workouts reproduce
+the 21-day A/B/C recurrence. A three-year actual mixed history saves 335 workouts
+through station removal, changed weekly caps, short days, low readiness, partial
+work and six forecast/backup checks. 426 opportunities carry an explanatory note;
+these counts are synthetic QA, not user outcome claims.
+
+Touch acceptance at 320/390px removes/restores a program, changes shared requested
+frequency, changes the maximum, and checks matching three/seven opportunities per
+week. It verifies untouched offline drafts, saved capacity snapshots and genuine
+work logging. CI registers both new suites: 63 Node JS suites, six correction
+tests and thirty browser suites (65 Node/setup files). Cache/query revision
+rc62-rotation-capacity retains 51 runtime assets. Source inventory remains
+54 operational movements / 38 reviewed outlines / 16 partial lessons.
+
+Final local verification passed all 63 Node JS suites, six correction tests and
+all thirty browser suites, including the new capacity-control scenario and the
+295-session populated-history replay. The focused Node/mobile suites were rerun
+after tightening whole-week arithmetic and clarifying shared-movement coverage.
+Both source audits, syntax, suite registration, diff checks and 51-asset offline
+integrity passed. Compatibility comparison preserved 216 prescriptions, 96
+single-block plans and 72 composed selections/targets excluding advisory metadata.
+Exact-commit CI and public DEV verification remain required before deployment
+success is reported.

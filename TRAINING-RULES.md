@@ -477,3 +477,20 @@ retain separate comparison identities. Qualified two-hand practice can support
 the existing single-hand prerequisite; it does not advance that child's cycle
 or introduce a single-hand timed prescription. This is a bounded source example,
 not a full bodyweight 101 timing system.
+
+
+## Program-day rotation estimate
+
+A block visit is not necessarily a repeat of its particular program day. The
+composition feedback estimates a simple round robin of currently ready blocks:
+ready blocks × days in that block × planning interval. The interval is no faster
+than either effective requested/capped capacity or the observed interval across
+at least four distinct recent training days. Rest duplicates and future records
+do not fabricate observed attendance.
+
+The estimate is advisory, compared with the existing configured return window.
+Observed movement-level problems take precedence in the explanation. Unready
+blocks do not inflate the current ready-program estimate, but their selections
+are retained. Priorities, unfinished work, changing eligibility, internal pattern
+rotation and actual session fit can change actual movement recurrence. No extra
+work, automatic pruning, relaxed qualification or new source schedule is inferred.

@@ -126,6 +126,7 @@ jobs:
           node tests/review-return-evidence.js
           node tests/wave-cycle-identity.js
           node tests/hip-drop-timed.js
+          node tests/rotation-capacity.js
           node tests/row-wave.js
           node tests/dated-evidence.js
           node tests/interval-start.js
@@ -303,6 +304,7 @@ jobs:
           node tests/browser-review-return.cjs
           node tests/browser-wave-cycles.cjs
           node tests/browser-hip-timed.cjs
+          node tests/browser-rotation-capacity.cjs
           node tests/browser-step-ups.cjs
           node tests/browser-foundations.cjs
           node tests/browser-continuity.cjs

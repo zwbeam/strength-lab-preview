@@ -104,5 +104,11 @@ lessons or establish that every source program has been implemented.
    replace the missing source ledger or verified engine-level integration evidence.
 
 Next work should increase supported programming depth and curriculum coherence,
-while retaining the verified default behavior and user data. Automation uses
+while retaining the verified default behavior and user data. The current
+coordinator now reports program-day recurrence under a simple ready-program
+rotation, effective weekly capacity and observed pace. This can expose an A/B/C
+day returning every 21 days despite weekly block visits. It is early planning
+feedback, not automatic curriculum curation or an exercise-level feasibility
+guarantee; internal pattern rotation and future eligibility still need work.
+Automation uses
 synthetic histories and browser emulation; it does not certify physical technique.

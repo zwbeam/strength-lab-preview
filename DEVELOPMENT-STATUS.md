@@ -380,3 +380,15 @@ batch expands programming depth, not the catalog count: still 54 movements,
 80 single-hand entries after explicit confirmation. Inventory: 62 Node JS suites,
 six correction tests and twenty-nine browser suites. rc61-hip-timed retains
 51 runtime assets and existing V33 storage keys.
+
+
+Mixed-program capacity feedback: the engine now distinguishes revisiting a block
+from revisiting a day inside that block. A three-program mix with A/B/C at three
+days/week can recur every 21 days per A/B/C day, despite weekly block visits.
+The existing explanation now reports a simple-rotation estimate using currently
+ready programs, their program-day counts, effective weekly limits and recent
+recorded pace. Blocked candidates do not inflate that current estimate; observed
+movement problems retain priority. This is advisory, not automatic curriculum
+pruning or an exercise-by-exercise forecast. Source doses, selection and gates
+remain unchanged. Inventory: 63 Node JS suites, six correction tests, thirty
+browser suites; rc62-rotation-capacity retains 51 assets. Source counts stay 54/38/16.

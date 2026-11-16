@@ -88,3 +88,11 @@ the method; Train and new drafts use its actual 30-second whole-bout targets.
 Actual touch counts are required separately, and timers do not log work. Switching
 back retains readable independent rep history. browser-hip-timed tests selection,
 real pacing, partial/full actuals, corrections and offline drafts at both widths.
+
+
+Mixed-program capacity note: the existing workout explanation now uses ready
+program-day counts, shared requested/maximum frequency and observed pace. Changing
+selected programs or the cap updates the estimate; raising requested days alone
+cannot bypass a lower cap. No selection is silently removed or target changed.
+browser-rotation-capacity checks those controls, matching calendar opportunities,
+immutable offline draft metadata and actual saved work at 320/390px.

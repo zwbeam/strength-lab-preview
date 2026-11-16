@@ -826,6 +826,14 @@ function movementCadence(s,ids,now,absenceDays,evidenceThrough){
  }
  return rows.sort((a,b)=>Number(b.repeatedReentry)-Number(a.repeatedReentry)||b.reentries-a.reentries||a.id.localeCompare(b.id));
 }
+// Advisory round-robin program-day recurrence, not movement qualification or a promised schedule.
+function rotationCapacity(s,candidates,trainingDays){
+ const effectiveDaysPerWeek=Math.min(s.trainingPreferences?.daysPerWeek||3,weeklyTrainingLimit(s));
+ const ready=candidates.filter(x=>x.p.items.length),observedSpan=trainingDays.length>=4?trainingDays.at(-1)-trainingDays[0]:null;
+ // Multiply integer day/visit counts before dividing, avoiding a spurious extra day at whole-week boundaries.
+ const programs=ready.map(x=>{const programDays=BLOCKS[x.block].days.length,visits=ready.length*programDays;return{block:x.block,programDays,estimatedReturnDays:Math.ceil(Math.max(7*visits/effectiveDaysPerWeek,observedSpan===null?0:observedSpan*visits/(trainingDays.length-1)))}});
+ return{basis:observedSpan===null?'configured-capacity':'capacity-and-observed-pace',effectiveDaysPerWeek,readyBlocks:ready.length,blockedBlocks:candidates.length-ready.length,programs,longestReturnDays:programs.length?Math.max(...programs.map(x=>x.estimatedReturnDays)):null};
+}
 function continuityCandidate(s,candidates,history,opts){
  if(opts.projection||s.programComposition?.continuity===false)return null;
  const physical=history.filter(x=>(x.items||[]).some(y=>y.actualSets>0)),latest=physical.at(-1);
@@ -889,13 +897,15 @@ function plan(s,opts={}){
  const pending=pendingThrough(s,p.block,opts.evidenceThrough??opts.now);
  // Observed cadence is planning feedback, never a progression or medical rule.
  const trainingDays=[...new Set(history.filter(x=>day-calendarDay(x.date)<56&&(x.items||[]).some(y=>y.actualSets>0)).map(x=>calendarDay(x.date)))].sort((a,b)=>a-b);
- const estimatedReturnDays=trainingDays.length>=4?Math.ceil((trainingDays.at(-1)-trainingDays[0])/(trainingDays.length-1)*c.blocks.length):null;
+ const rotation=rotationCapacity(s,candidates,trainingDays),estimatedReturnDays=trainingDays.length>=4&&rotation.readyBlocks?Math.ceil((trainingDays.at(-1)-trainingDays[0])/(trainingDays.length-1)*rotation.readyBlocks):null;
  const absenceDays=s.trainingDefaults?.reentryDays??14;
  const activeIds=[...new Set(candidates.flatMap(x=>[...BLOCKS[x.block].days.flatMap(d=>d.ids),...x.p.items.map(rx=>rx.id)]))].filter(id=>movementEnabled(s,id));
  const movementRows=opts.projection?[]:movementCadence(s,activeIds,opts.now,absenceDays,opts.evidenceThrough);
  const repeated=movementRows.filter(x=>x.repeatedReentry),risk=movementRows.filter(x=>x.atRisk);
  const movementWarning=repeated.length?'Repeated reduced returns: '+repeated.slice(0,3).map(x=>x.name).join(', ')+(repeated.length>3?' and '+(repeated.length-3)+' more':'')+'. Consider fewer active patterns; missed work has not earned progression credit.':risk.length?'Some movements are recurring less often than the configured return window: '+risk.slice(0,3).map(x=>x.name).join(', ')+'. Review the rotation rather than adding catch-up work.':null;
- const cadence={movements:movementRows.filter(x=>x.repeatedReentry||x.atRisk).slice(0,3),movementSummary:{observed:movementRows.length,repeatedReentry:repeated.length,atRisk:risk.length},retention:retention?{id:retention.id,block:chosen.block}:null,continuity:continuity?{id:continuity.id,block:chosen.block}:null,sampleDays:trainingDays.length,estimatedReturnDays,absenceDays,warning:movementWarning||(estimatedReturnDays!==null&&estimatedReturnDays>absenceDays?'At your recent training frequency, revisiting every selected block may take longer than the absence window. Consider fewer active blocks; do not add catch-up work.':null)};
+ const slowest=rotation.programs.reduce((last,x)=>!last||x.estimatedReturnDays>last.estimatedReturnDays?x:last,null);
+ const rotationWarning=slowest&&slowest.estimatedReturnDays>absenceDays?'In a simple rotation across '+rotation.readyBlocks+' currently ready programs at '+rotation.effectiveDaysPerWeek+' days/week capacity'+(rotation.basis==='capacity-and-observed-pace'?' and your recorded pace':'')+', '+BLOCKS[slowest.block].name+' has '+slowest.programDays+' program day'+(slowest.programDays===1?'':'s')+' recurring about every '+slowest.estimatedReturnDays+' days. For movements not practiced elsewhere, that can exceed your '+absenceDays+'-day return window. Consider fewer simultaneous programs; movement overlap and priority scheduling can change this estimate.':null;
+ const cadence={rotation,movements:movementRows.filter(x=>x.repeatedReentry||x.atRisk).slice(0,3),movementSummary:{observed:movementRows.length,repeatedReentry:repeated.length,atRisk:risk.length},retention:retention?{id:retention.id,block:chosen.block}:null,continuity:continuity?{id:continuity.id,block:chosen.block}:null,sampleDays:trainingDays.length,estimatedReturnDays,absenceDays,warning:movementWarning||rotationWarning||(estimatedReturnDays!==null&&estimatedReturnDays>absenceDays?'At your recent training frequency, revisiting every selected block may take longer than the absence window. Consider fewer active blocks; do not add catch-up work.':null)};
  const reason=!p.items.length?'All selected blocks are currently blocked or do not fit. Review the reasons below.':
   (unfinished?'Continue the last unfinished workout before later blocks.':retention?'Revisit '+MOVES[retention.id].name+' before its configured return window is exceeded, based on your recorded training frequency.':continuity?continuity.reason+' for '+MOVES[continuity.id].name+'. Existing progression and recovery requirements still apply.':chosen.last<0?'This selected block has not yet been practiced.':'This is the least recently practiced selected block that is ready and fits today.')+
   (pending.length?' Unfinished movements are considered first within this block.':'')+

@@ -12,9 +12,9 @@ retention. Inspect the actual latest GitHub commit and checks before continuing.
 Do not assume a later checkpoint passed just because this file exists.
 
 Run all non-browser tests/*.js, the history-corrections.test.cjs suite, and the
-twenty-nine browser suites: browser-smoke.js, browser-curriculum.cjs,
+thirty browser suites: browser-smoke.js, browser-curriculum.cjs,
 browser-integration.cjs, browser-continuity.cjs, browser-foundations.cjs,
-browser-step-ups.cjs, browser-double-hinge.cjs, browser-paired-swing-reps.cjs, browser-endpoint-reviews.cjs, browser-prerequisite-evidence.cjs, browser-wave-replay.cjs, browser-deload-cadence.cjs, browser-recovery-dose.cjs, browser-load-setup.cjs, browser-baseline-cycles.cjs, browser-weekly-limits.cjs, browser-reduced-evidence.cjs, browser-return-continuity.cjs, browser-emphasis-evidence.cjs, browser-station-light.cjs, browser-review-return.cjs, browser-wave-cycles.cjs, browser-hip-timed.cjs, browser-hand-changes.cjs
+browser-step-ups.cjs, browser-double-hinge.cjs, browser-paired-swing-reps.cjs, browser-endpoint-reviews.cjs, browser-prerequisite-evidence.cjs, browser-wave-replay.cjs, browser-deload-cadence.cjs, browser-recovery-dose.cjs, browser-load-setup.cjs, browser-baseline-cycles.cjs, browser-weekly-limits.cjs, browser-reduced-evidence.cjs, browser-return-continuity.cjs, browser-emphasis-evidence.cjs, browser-station-light.cjs, browser-review-return.cjs, browser-wave-cycles.cjs, browser-hip-timed.cjs, browser-rotation-capacity.cjs, browser-hand-changes.cjs
 browser-single-arm-swing.cjs, browser-dated-evidence.cjs, browser-row-wave.cjs, browser-settings-sync.cjs and browser-demo-history.js (generate its synthetic backup
 first). Serve at 127.0.0.1:8765. Installed Chromium may be selected locally with
 PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium. Actions uses its own bundle.
@@ -407,3 +407,23 @@ bout count; existing one-set get-up time reductions remain unchanged.
 Keep tests/hip-drop-timed.js and browser-hip-timed.cjs in full validation: 62 Node
 JS suites, six correction tests, twenty-nine browser suites. Source quotes/hash
 are in research/hip-drop-timed-evidence.json. rc61-hip-timed retains 51 assets.
+
+
+Program-day capacity guidance: composition.cadence.rotation now estimates formal
+program-day recurrence for currently ready candidates. Use min(requested/default
+three-day frequency, shared weekly cap), and never assume a faster pace than the
+last 56-day observed interval when at least four distinct days exist. A simple
+round robin needs readyBlockCount × programDayCount visits to repeat a day.
+Existing block-level estimatedReturnDays remains distinct, now using ready count.
+
+This is advisory feedback in the existing workout explanation, not an alteration
+to program selection, source doses, readiness, qualification or return thresholds.
+Do not describe it as a complete curriculum-capacity solver: it does not model
+internal movement rotation within a day, all future eligibility or exact time
+coverage. Current blocked programs are excluded only from this ready-now estimate;
+the user's selections stay saved. Movement-level observed warnings retain priority.
+Next: coherent curriculum curation still needs further engine/source work.
+
+Run tests/rotation-capacity.js and browser-rotation-capacity.cjs with all suites:
+63 Node JS suites, six correction tests, thirty browser suites.
+rc62-rotation-capacity retains 51 runtime assets and all V33 keys.
