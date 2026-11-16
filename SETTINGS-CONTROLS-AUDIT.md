@@ -70,3 +70,12 @@ work and reload offline. The Node suite checks retained lifetime history and
 movement progression, backup/date isolation and 142 actual generated workouts
 across three years of preference changes. Relative shares do not promise
 exact workout percentages; source methods, pending work and recovery still apply.
+
+
+Configured-wave follow-up: changing and restoring saved light/heavy loads, heavy
+reps, exposure counts or stall strategy starts a fresh comparison instead of
+reviving earlier progress. Equivalent saves preserve the existing cycle and
+legacy keys. The Train generator reads the new comparison; written active drafts
+and historical actuals remain unchanged. Node wave-cycle-identity and mobile
+browser-wave-cycles cover Settings round trips, actual fresh targets, profile
+switching, reload and offline persistence. No new controls or questions are added.

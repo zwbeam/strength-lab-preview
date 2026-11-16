@@ -1457,3 +1457,53 @@ source audits, syntax, suite registration, diff checks and 51-asset offline
 integrity passed. Baseline comparison preserved 216 initial prescriptions and
 96 initial block plans. Exact-commit remote checks and public DEV verification
 remain required before reporting deployment success.
+
+
+## Configured-wave cycle comparison identity
+
+Incoming verified checkpoint: 3d0891e; fetched origin/preview and confirmed the
+clean synchronized tree. Preserved newer work after c7dcfdc and production/main
+boundaries. Read the release/data, engine, coverage and continuation handoffs.
+
+Reproduced progress revival: four actual wave exposures earn stage one; change
+the configured load pair, then restore the old pair. The incoming engine restored
+stage one and its larger next target despite the intervening saved comparison.
+Wave settings now use safe comparison revisions, aligned with the earlier
+push-up/row-wave baseline fixes. Effective changes to light/heavy weights, heavy
+reps, exposure count or stall strategy create a newer comparison. Effective no-op
+saves preserve evidence and canonical defaults; legacy/first-use zero-revision
+keys remain unchanged. Positive revisions wrap the original key explicitly.
+
+Re-entry from another profile scans retained legacy/custom and revised wave keys
+and begins after their highest revision. This works for older records without a
+profile field. Active-wave revisions cannot regress or overflow; comparisons remain local to
+the movement. Old actuals, corrections and written targets remain intact. Source
+#228/#403 relationships, heavy-work caps, normal single-load programming and global
+pain/review/return decisions remain independent. No invented source prescription
+or mandatory periodic review is introduced.
+
+New Node coverage exercises twenty-five setting round trips across swing, squat,
+press, row and clean; equivalent saves, profile re-entry, legacy/custom keys,
+revisions, backups, old-cycle correction/undo and new-cycle date correction.
+Configuration changes cannot bypass a pain hold or pending reviewed return. A
+three-year actual-generator history saves 430 workouts, 66 heavy exposures and
+two explicit annual configuration-review round trips, with seven read-only
+forecast/backup checks. Those timing choices are synthetic QA, not app defaults.
+
+New 320/390px touch acceptance edits/restores actual wave settings, saves unchanged
+values without resetting, starts the genuinely fresh three-set light target,
+reloads its unchecked draft offline, completes it, switches away/back and confirms
+a fresh wave after the retained recorded revision. Earlier history and equipment
+remain unchanged. CI registers both new suites: 61 Node JS suites, six correction
+tests, twenty-eight browser suites (63 Node/setup files). Cache/query revision
+rc60-wave-cycles retains the same 51 runtime assets. Source counts remain
+54 movements / 38 reviewed outlines / 16 partial lessons. Full local suites,
+exact-commit CI and public DEV verification remain required.
+
+Final local verification passed all 61 Node JS suites, six correction tests and
+all twenty-eight browser suites, including new wave-cycle touch acceptance and
+the 295-session populated-history replay. Both source audits, syntax, suite
+registration, diff checks and 51-asset offline integrity passed. Baseline comparison
+kept 216 initial prescriptions, 96 initial block plans and 140 unchanged-wave
+trajectory states identical to 3d0891e. Exact-commit CI and public DEV checks remain
+required before reporting deployment success.

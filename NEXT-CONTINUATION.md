@@ -12,9 +12,9 @@ retention. Inspect the actual latest GitHub commit and checks before continuing.
 Do not assume a later checkpoint passed just because this file exists.
 
 Run all non-browser tests/*.js, the history-corrections.test.cjs suite, and the
-twenty-seven browser suites: browser-smoke.js, browser-curriculum.cjs,
+twenty-eight browser suites: browser-smoke.js, browser-curriculum.cjs,
 browser-integration.cjs, browser-continuity.cjs, browser-foundations.cjs,
-browser-step-ups.cjs, browser-double-hinge.cjs, browser-paired-swing-reps.cjs, browser-endpoint-reviews.cjs, browser-prerequisite-evidence.cjs, browser-wave-replay.cjs, browser-deload-cadence.cjs, browser-recovery-dose.cjs, browser-load-setup.cjs, browser-baseline-cycles.cjs, browser-weekly-limits.cjs, browser-reduced-evidence.cjs, browser-return-continuity.cjs, browser-emphasis-evidence.cjs, browser-station-light.cjs, browser-review-return.cjs, browser-hand-changes.cjs
+browser-step-ups.cjs, browser-double-hinge.cjs, browser-paired-swing-reps.cjs, browser-endpoint-reviews.cjs, browser-prerequisite-evidence.cjs, browser-wave-replay.cjs, browser-deload-cadence.cjs, browser-recovery-dose.cjs, browser-load-setup.cjs, browser-baseline-cycles.cjs, browser-weekly-limits.cjs, browser-reduced-evidence.cjs, browser-return-continuity.cjs, browser-emphasis-evidence.cjs, browser-station-light.cjs, browser-review-return.cjs, browser-wave-cycles.cjs, browser-hand-changes.cjs
 browser-single-arm-swing.cjs, browser-dated-evidence.cjs, browser-row-wave.cjs, browser-settings-sync.cjs and browser-demo-history.js (generate its synthetic backup
 first). Serve at 127.0.0.1:8765. Installed Chromium may be selected locally with
 PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium. Actions uses its own bundle.
@@ -371,3 +371,18 @@ earned stage remain; normal progression still requires normal qualifying work.
 Run tests/review-return-evidence.js and browser-review-return.cjs with all suites:
 60 Node JS suites, six correction tests, twenty-seven browser suites.
 rc59-review-return retains 51 assets and existing source counts (54/38/16).
+
+
+Configured-wave cycle identity: preserve old policy keys at absent/zero revision.
+New effective wave configuration changes increment cycleRevision; no-op saves
+(including explicit defaults) retain the existing revision and evidence. Restoring
+old numeric settings must not revive an old cycle. On re-entry from another
+profile, scan both legacy/custom and revised wave record keys and begin after the
+highest retained revision. Active-wave revisions cannot regress/overflow. App saves omit
+the internal revision, so configureMovement must preserve it itself.
+
+No source wave dose/weight/volume rule or legacy single-load cycle changes. Global
+pain/review/return gates remain independent; old history and written drafts stay
+readable. Keep tests/wave-cycle-identity.js and browser-wave-cycles.cjs in all
+verification: 61 Node JS suites, six correction tests, twenty-eight browser suites.
+rc60-wave-cycles retains 51 runtime assets; no V33 migration or source-count change.

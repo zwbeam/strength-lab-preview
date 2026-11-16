@@ -348,3 +348,16 @@ optional backup validation, a three-year 430-workout/14-review history and touch
 review/retry/correction/offline acceptance. Inventory: 60 Node JS suites, six
 correction tests and twenty-seven browser suites. rc59-review-return retains
 51 runtime assets; no source doses, instructional counts or storage keys changed.
+
+
+Configured-wave comparison identity: changing/restoring light/heavy loads, heavy
+reps, exposures or stall strategy no longer revives old wave progress. Effective
+no-op saves retain the current key; first-use and unchanged legacy wave keys stay
+compatible. Explicit configuration changes advance a safe comparison revision, and
+re-entering the profile starts after stored wave revisions. History and source
+doses remain intact; pain/return gates remain independent. Coverage includes
+25 round trips across five KB movements, legacy/custom keys, correction/date/
+backup boundaries, overflow guards, a three-year 430-workout history with two
+configuration-review round trips and phone/offline acceptance. Inventory: 61 Node
+JS suites, six correction tests and twenty-eight browser suites. rc60-wave-cycles
+retains 51 assets; source instructional counts remain 54 / 38 / 16.

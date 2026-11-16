@@ -124,6 +124,7 @@ jobs:
           node tests/emphasis-evidence.js
           node tests/station-light-evidence.js
           node tests/review-return-evidence.js
+          node tests/wave-cycle-identity.js
           node tests/row-wave.js
           node tests/dated-evidence.js
           node tests/interval-start.js
@@ -299,6 +300,7 @@ jobs:
           node tests/browser-emphasis-evidence.cjs
           node tests/browser-station-light.cjs
           node tests/browser-review-return.cjs
+          node tests/browser-wave-cycles.cjs
           node tests/browser-step-ups.cjs
           node tests/browser-foundations.cjs
           node tests/browser-continuity.cjs

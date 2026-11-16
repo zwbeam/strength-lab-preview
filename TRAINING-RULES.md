@@ -440,3 +440,18 @@ movement. Exposure counts, earned stages and original history stay distinct from
 current eligibility. Optional priorReturnKeys metadata is validated in backups;
 legacy reviews without it retain their existing interpretation. This records an
 app review decision, not a new transcript dose or medical qualification.
+
+
+## Configured-wave comparison revisions
+
+A saved effective change to a wave's light/heavy load, heavy reps, exposure gate
+or stall strategy starts a new comparison cycle. Restoring earlier numeric values
+does not revive their old progression. Re-entering the wave profile starts after
+its retained historical wave revisions. Equivalent saves preserve evidence,
+including absent versus explicitly saved defaults.
+
+Existing absent/zero-revision wave keys remain compatible until a deliberate
+configuration change. Revised cycles retain original history and targets; no
+ordinary single-load cycle, source dose or heavy-below-light work cap changes.
+Pain/review/return requirements and dated evidence remain independent. This is
+app comparison accounting, not an automatic periodic reset or new source program.
