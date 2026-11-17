@@ -87,7 +87,9 @@ test('two difficult snatch sessions trigger rebuild without advancing',()=>{
  const st=E.stateFor(b,'snatch');
  assert.equal(st.stage,0);
  assert.ok(st.fail>=2,'two difficult sessions must register repeated failure');
- const next=E.prescription(b,'snatch');
+ // Evaluate immediately after the second difficult session; otherwise a real-time
+ // absence rule correctly supersedes rebuild and makes this test calendar-dependent.
+ const next=E.prescription(b,'snatch',{now:'2026-11-03'});
  assert.equal(next.mode,'rebuild');
  assert.ok(next.sets<first.sets,'rebuild must reduce prescribed sets');
 });
