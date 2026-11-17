@@ -929,12 +929,14 @@ function plan(s,opts={}){
  const feasiblePrograms=slowest?Math.max(0,Math.floor((absenceDays*planningDaysPerWeek)/(7*slowest.programDays))):0;
  // Preview a single-block reduction without changing the saved program or
  // overriding the athlete's selected curriculum. This is only a capacity estimate.
+ const coreBlock=s.programComposition?.coreBlock;
+ const coreIsReady=typeof coreBlock==='string'&&rotation.programs.some(x=>x.block===coreBlock);
  const removalOptions=rotation.programs.length>1?rotation.programs.map(removed=>{
   const remaining=rotation.programs.filter(x=>x.block!==removed.block);
   const longest=Math.max(...remaining.map(x=>Math.ceil(7*remaining.length*x.programDays/planningDaysPerWeek)));
-  return{remove:removed.block,remainingLongestReturnDays:longest,withinReturnWindow:longest<=absenceDays};
- }).sort((a,b)=>a.remainingLongestReturnDays-b.remainingLongestReturnDays||a.remove.localeCompare(b.remove)):[];
- const rotationAdjustment=slowest&&slowest.estimatedReturnDays>absenceDays?{currentLongestReturnDays:rotation.longestReturnDays,returnWindowDays:absenceDays,removalOptions,fastestScenario:removalOptions[0]||null}:null;
+  return{remove:removed.block,remainingLongestReturnDays:longest,withinReturnWindow:longest<=absenceDays,removesProtectedCore:coreIsReady&&removed.block===coreBlock};
+ }).sort((a,b)=>Number(a.removesProtectedCore)-Number(b.removesProtectedCore)||a.remainingLongestReturnDays-b.remainingLongestReturnDays||a.remove.localeCompare(b.remove)):[];
+ const rotationAdjustment=slowest&&slowest.estimatedReturnDays>absenceDays?{currentLongestReturnDays:rotation.longestReturnDays,returnWindowDays:absenceDays,removalOptions,preferredScenario:removalOptions[0]||null,fastestScenario:[...removalOptions].sort((a,b)=>a.remainingLongestReturnDays-b.remainingLongestReturnDays||a.remove.localeCompare(b.remove))[0]||null}:null;
  const rotationWarning=slowest&&slowest.estimatedReturnDays>absenceDays?'In a simple rotation across '+rotation.readyBlocks+' currently ready programs at '+rotation.effectiveDaysPerWeek+' days/week capacity'+(rotation.basis==='capacity-and-observed-pace'?' and your recorded pace':'')+', '+BLOCKS[slowest.block].name+' has '+slowest.programDays+' program day'+(slowest.programDays===1?'':'s')+' recurring about every '+slowest.estimatedReturnDays+' days. For movements not practiced elsewhere, that can exceed your '+absenceDays+'-day return window. '+' At this pace, approximately '+feasiblePrograms+' program'+(feasiblePrograms===1?'':'s')+' of this length fit the return window; reduce simultaneous programs or choose shorter blocks. This is planning guidance, not an automatic change. Movement overlap and priority scheduling can change this estimate.':null;
  const cadence={rotation,rotationAdjustment,movements:movementRows.filter(x=>x.repeatedReentry||x.atRisk).slice(0,3),movementSummary:{observed:movementRows.length,repeatedReentry:repeated.length,atRisk:risk.length},retention:retention?{id:retention.id,block:chosen.block}:null,continuity:continuity?{id:continuity.id,block:chosen.block}:null,sampleDays:trainingDays.length,estimatedReturnDays,absenceDays,warning:movementWarning||rotationWarning||(estimatedReturnDays!==null&&estimatedReturnDays>absenceDays?'At your recent training frequency, revisiting every selected block may take longer than the absence window. Consider fewer active blocks; do not add catch-up work.':null)};
  const reason=!p.items.length?'All selected blocks are currently blocked or do not fit. Review the reasons below.':
@@ -946,6 +948,7 @@ function plan(s,opts={}){
 }
 function validateComposition(c){
  if(c?.continuity!==undefined&&typeof c.continuity!=='boolean')throw Error('Invalid continuity preference');
+ if(c?.coreBlock!==undefined&&(!Array.isArray(c.blocks)||!c.blocks.includes(c.coreBlock)))throw Error('Protected core must be a selected training block');
  if(!c||typeof c!=='object'||Array.isArray(c)||typeof c.enabled!=='boolean'||!Array.isArray(c.blocks)||!c.blocks.length||c.blocks.length>Object.keys(BLOCKS).length||new Set(c.blocks).size!==c.blocks.length||c.blocks.some(id=>!Object.hasOwn(BLOCKS,id)))throw Error('Select unique known training blocks');
  for(const key of ['minGapDays','hardGapDays'])if(c[key]!==undefined&&(!Number.isInteger(c[key])||c[key]<0||c[key]>7))throw Error('Composition spacing must be 0–7 days');
 }
