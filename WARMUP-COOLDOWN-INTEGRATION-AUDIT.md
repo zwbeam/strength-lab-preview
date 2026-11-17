@@ -49,3 +49,15 @@ The current source-index.json identifies #1, "10 min of nonstop exercise - fast 
 
 ## Implementation regression
 At commit ddb04ea1, tests/preparation-routing.js includes active-call-site checks and direct render assertions for hinge, club, squat and overhead scenarios, eight-minute station count, and ten-minute cooldown sum. Test code has been committed, but successful execution and browser acceptance remain unverified.
+
+## Cross-check against source-based research manual — November 17, 2026
+
+The Strength Lab Wildman Manual, section 14, explicitly treats halos, around-the-world patterns, hip and spinal mobility and cooldown exercises as a menu of techniques, not proof that every session requires a fixed 10+10 minute routine. Its earlier draft describes a 10+30+10 example as exceeding the user session limit, and calls for a duration-aware builder. The example is not the current app budget and should not be misrepresented as a current defect.
+
+The editorial source register independently checks source #550 (YouTube HbFuRSv_gD0) for four warmup families and two rounds of four exercises totaling eight minutes. The live warmup presentation now uses four one-minute stations repeated twice, matching that checked source structure. Movement substitutions remain Strength Lab adaptations, not direct quotes.
+
+**Critical test distinction:** The engine currently treats a 30-minute target as a flexible 25–40-minute band, so it can allocate up to 22 main-work minutes with 8+10 preparation/recovery. A true 30-minute hard stop leaves 12 main-work minutes. These are different contracts. Do not quietly treat a 40-minute prescription as a 30-minute workout. Explicitly label planned total and extension in the interface, and validate completion against actual work. Existing user-approved flexibility must not be silently removed.
+
+Source-index leads still requiring full transcript review: #1 ten-minute nonstop exercise, #279 "Is 10 min of Kettlebelling enough - Part II", #280 "Is 10 minutes of kettlebell enough to be in good shape?", #670 warmup design considerations, and cooldown #126–139. Source-index previews are discovery aids, not full-source proof.
+
+**Policy:** Keep current 8+10 allocation and 25–40 flexibility unchanged pending source review and engine scenario testing. Do not imply a universal Wildman 10-minute cooldown; do not auto-switch to editorial 5/20/5.
