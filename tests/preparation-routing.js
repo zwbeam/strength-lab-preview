@@ -108,6 +108,26 @@ assert.match(mobilityRecovery,/24\*60\*60\*1000/);
 assert.match(mobilityRecovery,/routine\.length!==9/);
 assert.match(mobilityRecovery,/recoverMobilityCheckpoint\(\);/);
 
+{
+ const checkpointSource=between('let mobilityStartedAt=0,mobilityClock=null,mobilityActiveRoutine=null;','function mobilityRoutine(){');
+ const storage=new Map(),key='sl-dev-preview-mobility-active-v1',now=1_000_000;
+ const browserStorage={getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v),removeItem:k=>storage.delete(k)};
+ const run=draft=>{const intervals=[];const result=Function('sessionStorage','Date','setInterval','updateMobilityClock','draft',checkpointSource+';return {startedAt:mobilityStartedAt,routine:mobilityActiveRoutine};')(browserStorage,{now:()=>now},fn=>{intervals.push(fn);return intervals.length;},()=>{},draft);return {...result,intervals:intervals.length};};
+ assert.equal(run(null).startedAt,0,'No checkpoint means no active mobility');
+ const routine=Array.from({length:9},(_,i)=>({min:i===4?4:2,title:'Stage '+i,detail:'Gentle movement'}));
+ storage.set(key,JSON.stringify({version:1,startedAt:now-300000,routine}));
+ const recovered=run(null);
+ assert.equal(recovered.startedAt,now-300000,'Recover original elapsed time');
+ assert.equal(recovered.routine.length,9,'Recover frozen routine');
+ assert.equal(recovered.intervals,1,'Restart mobility clock');
+ assert.equal(run({id:'strength-draft'}).startedAt,0,'Never overlap saved strength');
+ assert.equal(storage.has(key),false,'Remove conflicting checkpoint');
+ storage.set(key,JSON.stringify({version:1,startedAt:now-25*60*60*1000,routine}));
+ assert.equal(run(null).startedAt,0,'Reject expired checkpoint');
+ assert.equal(storage.has(key),false,'Remove expired checkpoint');
+}
+
+
 assert.match(mobilityRecovery,/if\(draft\)\{sessionStorage\.removeItem\(MOBILITY_SESSION\);return;\}/);
 assert.match(app,/document\.querySelectorAll\('\[data-tab\]'\)\.forEach\(x=>x\.classList\.toggle\('active',x\.dataset\.tab===tab\)\);updateTimer\(\);if\(mobilityStartedAt\)updateMobilityClock\(\);/);
 
