@@ -78,6 +78,8 @@ jobs:
           node --check sw.js
           for file in tests/*.js; do node --check "$file"; done
           for file in tests/*.cjs; do [ -f "$file" ] && node --check "$file"; done
+      - name: Validate Wildman engine release-gate tracking
+        run: node scripts/check-wildman-gate.cjs
       - name: Ensure every Node and browser regression suite is executed
         run: node scripts/check-suite-coverage.cjs
       - name: Run additional history correction regression tests
