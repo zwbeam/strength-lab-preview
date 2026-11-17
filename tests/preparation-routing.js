@@ -96,6 +96,13 @@ assert.match(app,/current strength prescription remains unfinished\. No lifting 
 assert.match(app,/type:'mobility',duration:Math\.min\(1440,elapsed\)/);
 assert.match(app,/replacesStrength:true/);
 
+const resetHandler=between("if(b.id==='reset-confirm'){","document.addEventListener('change',e=>{if(e.target?.id==='reset-backup-confirmed')");
+assert.match(resetHandler,/persistTraining\(next,null\)/);
+assert.match(resetHandler,/mobilityStartedAt=0;mobilityActiveRoutine=null;saveMobilityCheckpoint\(\)/);
+assert.match(resetHandler,/window\.speechSynthesis\?\.cancel\(\)/);
+assert.match(resetHandler,/clearInterval\(mobilityClock\)/);
+
+
 assert.match(app,/function start\(\)\{timerPanelOpen=false;if\(!checkWriter\(\)\)return;if\(draft\)return;if\(mobilityStartedAt\)/);
 assert.match(app,/if\(b\.id==='start-mobility'\)\{if\(!checkWriter\(\)\)return;if\(mobilityStartedAt\)return;if\(draft\)/);
 
