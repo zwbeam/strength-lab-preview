@@ -14,10 +14,10 @@ This is the durable handoff entry point. Read PROJECT-MASTER-PLAN.md and AGENT-H
 **P0: durable coordination and evidence-based research inventory.** Do not add speculative numerical training methods. Canonical queue: DEVELOPMENT-QUEUE.md.
 
 ## Current batch
-Project-control infrastructure completed: master plan, state, queue, decisions, handoff, research ledger contract. Documentation-only; no runtime engine changes or local regression tests in this batch.
+Project-control infrastructure completed. New batch: scripts/build-source-ledger.cjs committed at a3cb02e; it deterministically constructs source-to-operational-movement declared links and checks 720/719/#441 accounting. The script has NOT been executed in this environment, and the generated JSON has NOT been committed. No runtime engine changes.
 
 ## Next executable batch
-Implement a deterministic, read-only source/concept audit that reads the existing transcript shards and coverage artifacts, produces a reviewable ledger of 719 usable sources, and reports mapped versus unmapped source evidence. Never automatically label a transcript as fully integrated based on title matches.
+Execute node scripts/build-source-ledger.cjs in a Node checkout; inspect summary and generated research/source-concept-ledger.generated.json, fix any failures, commit generated ledger; add regression/CI check using --check. Then begin passage-anchored concept extraction. Never automatically label a transcript fully integrated from title/declared source matches.
 
 ## Known blockers
 - External master 505-source ledger and anchored review evidence unavailable in current repo.
