@@ -14,6 +14,13 @@ assert.match(duration,/planned>target/);
 assert.match(duration,/target extended to/);
 assert.match(app,/durationDisclosure\(p\)/);
 assert.equal((app.match(/durationDisclosure\(p\)/g)||[]).length,2,'Both preview and active workout must disclose extension');
+
+const durationContext={};require('node:vm').createContext(durationContext);
+require('node:vm').runInContext(duration+';this.formatDuration=durationDisclosure;',durationContext);
+assert.equal(durationContext.formatDuration({budget:{total:30},total:30}),' · ~30 min');
+assert.equal(durationContext.formatDuration({budget:{total:30},total:40}),' · 30-min target extended to ~40 min');
+assert.equal(durationContext.formatDuration({budget:{total:45},total:49}),' · 45-min target extended to ~49 min');
+
 const prepPanel=between('function prepSection(plan,kind,','function compactPrescription(');
 assert.match(prepPanel,/Wildman Program Design 8/);
 assert.match(prepPanel,/Clean & Press: 8–10 minutes/);
