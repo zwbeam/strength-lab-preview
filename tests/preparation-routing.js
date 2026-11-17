@@ -96,6 +96,11 @@ assert.match(app,/current strength prescription remains unfinished\. No lifting 
 assert.match(app,/type:'mobility',duration:Math\.min\(1440,elapsed\)/);
 assert.match(app,/replacesStrength:true/);
 
+const storageStartup=between('function initializeStorage(){','// An unfinished journal is rolled back');
+assert.match(storageStartup,/loadTrainingSnapshot\(\);recoverMobilityCheckpoint\(\);storageReady=true;render\(\)/);
+assert.doesNotMatch(app,/\}\s*recoverMobilityCheckpoint\(\);\s*function mobilityRoutine\(/);
+
+
 const mobilityClockSource=between('function updateMobilityClock(){','function unavailableLoadActions(');
 assert.match(mobilityClockSource,/mobilityLastRemaining===null\?remaining:mobilityLastRemaining/);
 assert.doesNotMatch(mobilityClockSource,/mobilityLastRemaining===null\?remaining\+1/);
