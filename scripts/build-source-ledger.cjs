@@ -14,10 +14,11 @@ const concepts=operational.rows.map(m=>({concept_id:'movement:'+m.id,kind:'movem
 const instructionMap=new Map(),policyMap=new Map();
 for(const c of concepts){for(const id of c.direct_instruction_source_ids){if(!instructionMap.has(id))instructionMap.set(id,[]);instructionMap.get(id).push(c.concept_id);}if(c.programming_example_source_id!=null){const id=c.programming_example_source_id;if(!policyMap.has(id))policyMap.set(id,[]);policyMap.get(id).push(c.concept_id);}}
 const journal=new Map(manifest.independent_reviews.map(r=>[r.source_key,r]));
+const curriculumSources=new Map(curriculum.sources.map(r=>[r.id,r]));
 const rows=archive.map(r=>{let key=null;try{key=new URL(r.url).searchParams.get('v');}catch{issues.push('Invalid URL source '+r.id);}
 if(byId.has(r.id))issues.push('Duplicate ID '+r.id);else byId.set(r.id,r);
 if(key&&byKey.has(key))issues.push('Duplicate video key '+key);else if(key)byKey.set(key,r);
-const source=curriculum.sources.find(x=>x.id===r.id);
+const source=curriculumSources.get(r.id);
 const instruction=instructionMap.get(r.id)||[],programming=policyMap.get(r.id)||[];
 return {source_id:r.id,video_key:key,shard:r.shard,title:r.title,usable:key!==excluded,raw_text_sha256:sha(r.text),review_state:journal.has(key)?'independent_journal_claim_unreconciled':'master_ledger_unavailable',candidate_categories:source?.candidate_categories||[],linked_instruction_concepts:instruction,linked_programming_example_concepts:programming,link_status:instruction.length||programming.length?'declared_in_existing_coverage_not_full_text_verified':'unmapped_in_operational_movement_coverage',unresolved:['No complete anchored concept extraction has been performed']};});
 rows.sort((a,b)=>a.source_id-b.source_id);
