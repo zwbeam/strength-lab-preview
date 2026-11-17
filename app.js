@@ -33,7 +33,7 @@ function checkWriter(){
 }
 function rememberStorage(){storageExpected={state:localStorage.getItem(KEY),draft:localStorage.getItem(DRAFT)};}
 async function initializeStorage(){
- const ready=()=>{loadTrainingSnapshot();storageReady=true;render();};
+ const ready=()=>{loadTrainingSnapshot();recoverMobilityCheckpoint();storageReady=true;render();};
  if(!navigator.locks?.request){storageLockUnavailable=true;ready();return;}
  try{await navigator.locks.request('sl-dev-preview-v33-writer',{mode:'exclusive',ifAvailable:true},async lock=>{
   if(!lock){
@@ -310,7 +310,6 @@ function recoverMobilityCheckpoint(){
   mobilityClock=setInterval(updateMobilityClock,1000);
  }catch{mobilityStartedAt=0;mobilityActiveRoutine=null;try{sessionStorage.removeItem(MOBILITY_SESSION);}catch{}}
 }
-recoverMobilityCheckpoint();
 function mobilityRoutine(){
  const current=E.plan(state,{now:today(),minutes:todayMinutes,readiness});
  const currentIds=(current.items||[]).map(x=>x.id);
