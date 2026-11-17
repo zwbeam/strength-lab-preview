@@ -7,6 +7,30 @@ const base=()=>({version:33,defaultMinutes:30,programBlock:'abc',sessions:[],wei
 let passed=0;
 function test(name,fn){try{fn();passed++;console.log('PASS',name)}catch(e){console.error('FAIL',name,e.message);process.exitCode=1}}
 test('valid backup',()=>assert.ok(E.validateBackup(base())));
+
+test('Wildman-informed strength time budgets reserve preparation and recovery',()=>{
+ for(const minutes of [30,45,60]){
+  const budget=E.timeBudget(minutes);
+  assert.equal(budget.total,minutes);
+  assert.equal(budget.warmup,8);
+  assert.equal(budget.cooldown,10);
+  assert.equal(budget.main,minutes-18);
+  assert.ok(budget.main>0);
+ }
+});
+test('mobility-only mode does not prescribe strength sets or require progression',()=>{
+ for(const minutes of [30,45,60]){
+  const b=base();b.defaultMinutes=minutes;b.trainingPreferences={...b.trainingPreferences,mobilityOnly:true};
+  const plan=E.plan(b,{now:'2026-11-17',minutes});
+  assert.equal(plan.mobilityOnly,true);
+  assert.equal(plan.mobilityMinutes,minutes);
+  assert.deepEqual(plan.items,[]);
+  assert.deepEqual(plan.scheduled,[]);
+  assert.equal(plan.budget.main,0);
+  assert.equal(b.sessions.length,0);
+ }
+});
+
 test('all equipment disabled rejected',()=>assert.throws(()=>E.validateBackup({...base(),trainingPreferences:{...base().trainingPreferences,useKb:false,useClub:false,useBodyweight:false}})));
 test('strength plan nonempty',()=>assert.ok(E.plan(base(),{now:'2026-11-09'}).items.length));
 test('strength cap 4 rolling days',()=>{const b=base();b.trainingPreferences.daysPerWeek=7;b.sessions=Array.from({length:4},(_,i)=>({id:'s'+i,title:'t',date:'2026-11-'+String(5+i).padStart(2,'0'),block:'abc',slot:i%3,items:[{id:'squat',actualSets:1,performed:true}]}));assert.equal(E.plan(b,{now:'2026-11-09'}).restDay,true)});
