@@ -88,6 +88,12 @@ assert.match(app,/if\(b\.id==='cancel-mobility'\)\{mobilityStartedAt=0;mobilityA
 assert.match(app,/if\(elapsed<\(mobilityActiveRoutine\|\|mobilityRoutine\(\)\)\.reduce/);
 assert.match(app,/state=next;mobilityStartedAt=0;mobilityActiveRoutine=null;/);
 
+assert.match(app,/Partial guided mobility session/);
+assert.match(app,/current strength prescription remains unfinished\. No lifting credit/);
+assert.match(app,/type:'mobility',duration:Math\.min\(1440,elapsed\)/);
+assert.match(app,/replacesStrength:true/);
+
+
 const mobilityRoutineSource=between('function mobilityRoutine(){','function mobilityPanel(');
 assert.match(mobilityRoutineSource,/const stages=/);
 assert.match(mobilityRoutineSource,/return stages\.map/);
