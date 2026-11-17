@@ -380,7 +380,7 @@ function updateMobilityClock(){
  const length=routine[index].min*60,midpoint=Math.floor(length/2);
  // Use crossed thresholds, not exact-second equality: delayed browser callbacks
  // otherwise silently miss midpoint or countdown cues.
- const previous=mobilityLastRemaining===null?remaining+1:mobilityLastRemaining;
+ const previous=mobilityLastRemaining===null?remaining:mobilityLastRemaining;
  if(previous>midpoint&&remaining<=midpoint&&remaining>3)mobilitySound('mid');
  if(remaining>=1&&remaining<=3&&previous>remaining)mobilitySound('count');
  mobilityLastRemaining=remaining;
