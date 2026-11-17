@@ -10,7 +10,14 @@ let cases=0;for(const days of [1,2,3,4,7])for(const maximum of [1,3,7])for(const
 const s=fresh(),p=E.plan(s,{now:date});assert.equal(p.composition.cadence.rotation.longestReturnDays,21);assert.match(p.composition.cadence.warning,/3 program days.*21 days.*14-day return window/);assert.match(p.composition.cadence.warning,/simple rotation.*currently ready/);
 assert.match(p.composition.cadence.warning,/approximately 2 programs of this length fit the return window/);
 assert.match(p.composition.cadence.warning,/planning guidance, not an automatic change/);
+const adjustment=p.composition.cadence.rotationAdjustment;
+assert.equal(adjustment.currentLongestReturnDays,21);
+assert.equal(adjustment.returnWindowDays,14);
+assert.equal(adjustment.removalOptions.length,3);
+assert.ok(adjustment.removalOptions.every(x=>x.remainingLongestReturnDays===14&&x.withinReturnWindow));
+assert.equal(p.composition.candidates.length,3,'Advice must not silently remove a selected program');
 const narrower=fresh();narrower.programComposition.blocks=['abc','hingePractice'];const narrow=E.plan(narrower,{now:date});assert.equal(narrow.composition.cadence.rotation.longestReturnDays,14);assert.equal(narrow.composition.cadence.warning,null);
+assert.equal(narrow.composition.cadence.rotationAdjustment,null);
 const five=fresh();five.programComposition.blocks.push('bodyweightFoundations','groundPractice');five.trainingDefaults={reentryDays:35};const exact=E.plan(five,{now:date});assert.equal(exact.composition.cadence.rotation.longestReturnDays,35,'Whole-week boundaries must not round floating-point noise up to 36 days');assert.equal(exact.composition.cadence.warning,null);
 const station=fresh();station.equipment.rowBar.available=false;const unavailable=E.plan(station,{now:date});assert.equal(unavailable.composition.cadence.rotation.readyBlocks,2);assert.equal(unavailable.composition.cadence.rotation.blockedBlocks,1);assert.equal(unavailable.composition.cadence.rotation.longestReturnDays,14);assert.equal(unavailable.composition.cadence.warning,null,'Blocked station must not inflate the currently ready rotation');
 const pause=fresh();pause.paused=true;const empty=E.plan(pause,{now:date}).composition.cadence.rotation;assert.equal(empty.readyBlocks,0);assert.equal(empty.longestReturnDays,null);
