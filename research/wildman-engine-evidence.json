@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "note": "Unresolved means no complete source-to-engine-to-test proof has been accepted. Do not equate existing tests or archive inventory with closure.",
+  "areas": {
+    "Sustainable program rotation": {
+      "status": "unresolved"
+    },
+    "Movement-specific progression": {
+      "status": "unresolved"
+    },
+    "Warmup philosophy": {
+      "status": "unresolved"
+    },
+    "Cooldown philosophy": {
+      "status": "unresolved"
+    },
+    "Prerequisites and skill gates": {
+      "status": "unresolved"
+    },
+    "Recovery and continuity": {
+      "status": "unresolved"
+    },
+    "Equipment and real-world constraints": {
+      "status": "unresolved"
+    },
+    "Source-specific methods": {
+      "status": "unresolved"
+    },
+    "Movement instruction": {
+      "status": "unresolved"
+    },
+    "Full research accounting": {
+      "status": "unresolved"
+    }
+  }
+}
