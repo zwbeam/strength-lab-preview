@@ -93,6 +93,17 @@ assert.match(app,/current strength prescription remains unfinished\. No lifting 
 assert.match(app,/type:'mobility',duration:Math\.min\(1440,elapsed\)/);
 assert.match(app,/replacesStrength:true/);
 
+const mobilityRecovery=between("const MOBILITY_SESSION='sl-dev-preview-mobility-active-v1';",'function mobilityRoutine(){');
+assert.match(mobilityRecovery,/sessionStorage\.setItem\(MOBILITY_SESSION/);
+assert.match(mobilityRecovery,/sessionStorage\.removeItem\(MOBILITY_SESSION/);
+assert.match(mobilityRecovery,/saved\.startedAt>Date\.now\(\)/);
+assert.match(mobilityRecovery,/24\*60\*60\*1000/);
+assert.match(mobilityRecovery,/routine\.length!==9/);
+assert.match(mobilityRecovery,/recoverMobilityCheckpoint\(\);/);
+assert.match(app,/mobilityStartedAt=Date\.now\(\);saveMobilityCheckpoint\(\)/);
+assert.match(app,/state=next;mobilityStartedAt=0;mobilityActiveRoutine=null;saveMobilityCheckpoint\(\)/);
+
+
 assert.match(app,/document\.addEventListener\('visibilitychange',\(\)=>\{if\(!document\.hidden\)\{if\(draft\)updateTimer\(\);if\(mobilityStartedAt\)updateMobilityClock\(\);\}\}\)/);
 assert.match(app,/window\.addEventListener\('pageshow',\(\)=>\{if\(draft\)updateTimer\(\);if\(mobilityStartedAt\)updateMobilityClock\(\);\}\)/);
 assert.match(app,/updateTimer\(\);if\(mobilityStartedAt\)updateMobilityClock\(\);\},250\)/);
