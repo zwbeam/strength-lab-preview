@@ -35,6 +35,14 @@ assert.match(squat,/Supported squat-range exploration/);
 assert.notEqual(swing,club,'Different training families need distinct preparation');
 assert.equal((swing.match(/<li><strong>Minute /g)||[]).length,4,'Eight-minute warmup needs four one-minute stations repeated twice');
 assert.match(swing,/Two easy rounds/);
+
+assert.match(swing,/Minute 1 and 5/);
+assert.match(swing,/Minute 2 and 6/);
+assert.match(swing,/Minute 3 and 7/);
+assert.match(swing,/Minute 4 and 8/);
+assert.match(swing,/data-open-source="550"/);
+assert.match(swing,/not presented as a universal mandatory sequence/);
+
 assert.match(swing,/Minute 4 and 8/);
 const pressCool=context.renderCooldown(plan('overheadPress'));
 const swingCool=context.renderCooldown(plan('singleArmSwing'));
@@ -48,6 +56,11 @@ for(const id of ['singleArmSwing','clubCircle','overheadPress','bodyweightSquat'
  }
 }
 assert.doesNotMatch(pressCool,/advance|progression credit/i);
+assert.match(pressCool,/not a universal Wildman prescription/);
+assert.match(pressCool,/data-open-source="130"/);
+assert.match(pressCool,/data-open-source="139"/);
+assert.match(swingCool,/data-open-source="135"/);
+
 console.log('Source-aware warmup and cooldown behavior checks passed');
 
 console.log('Active preparation routing checks passed');
