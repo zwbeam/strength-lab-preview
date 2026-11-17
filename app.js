@@ -334,7 +334,7 @@ function mobilityRoutine(){
 }
 function mobilityPanel(timeBlocked=false){
  const routine=mobilityRoutine(),running=mobilityStartedAt>0,duration=routine.reduce((n,x)=>n+x.min,0);
- return `<details class="list-item" id="mobility-session" ${running||timeBlocked?'open':''}><summary>Mobility & Movement · ${duration} minutes</summary><h2>Mobility & Movement</h2><p class="small muted">Active joint preparation → light movement skills → relaxed cooldown. The next eligible strength prescription guides the movement focus, with recent sessions as a fallback. This is a complete session, not a shortened strength workout.</p><ol>${routine.map(r=>`<li><strong>${r.min} min · ${esc(r.title)}</strong> — ${esc(r.detail)}</li>`).join('')}</ol><p class="small muted">Stay within comfortable, pain-free ranges; modify or stop any movement that causes pain.</p>${running?'<p role="timer" id="mobility-clock">00:00 / ${formatTime(duration*60)}</p><button class="button full" id="finish-mobility">Record Mobility Session</button><button class="button secondary" id="cancel-mobility">Cancel</button>':'<button class="button full mobility-start-button" id="start-mobility">Start Mobility Workout</button>'}</details>`;
+ return `<details class="list-item" id="mobility-session" ${running||timeBlocked?'open':''}><summary>Mobility & Movement · ${duration} minutes</summary><h2>Mobility & Movement</h2><p class="small muted">Active joint preparation → light movement skills → relaxed cooldown. The next eligible strength prescription guides the movement focus, with recent sessions as a fallback. This is a complete session, not a shortened strength workout.</p><ol>${routine.map(r=>`<li><strong>${r.min} min · ${esc(r.title)}</strong> — ${esc(r.detail)}</li>`).join('')}</ol><p class="small muted">Stay within comfortable, pain-free ranges; modify or stop any movement that causes pain.</p>${running?`<p role="timer" id="mobility-clock">00:00 / ${formatTime(duration*60)}</p><button class="button full" id="finish-mobility">Record Mobility Session</button><button class="button secondary" id="cancel-mobility">Cancel</button>`:'<button class="button full mobility-start-button" id="start-mobility">Start Mobility Workout</button>'}</details>`;
 }
 let mobilitySignalKey='',mobilityStageIndex=-1,mobilityLastRemaining=null;
 function mobilitySound(kind){
@@ -350,11 +350,11 @@ function mobilitySpeak(message){
 }
 function updateMobilityClock(){
  if(!mobilityStartedAt)return;
- const elapsed=Math.floor((Date.now()-mobilityStartedAt)/1000),routine=mobilityRoutine();
+ const elapsed=Math.floor((Date.now()-mobilityStartedAt)/1000),routine=mobilityRoutine(),totalSeconds=routine.reduce((n,x)=>n+x.min*60,0);
  let begin=0,index=routine.length,remaining=0;
  for(let i=0;i<routine.length;i++){const end=begin+routine[i].min*60;if(elapsed<end){index=i;remaining=end-elapsed;break;}begin=end;}
  const el=$('#mobility-clock');
- if(el)el.textContent=formatTime(Math.min(elapsed,1200))+' / 20:00 · '+(index<routine.length?routine[index].title+' · '+formatTime(remaining):'Complete');
+ if(el)el.textContent=formatTime(Math.min(elapsed,totalSeconds))+' / '+formatTime(totalSeconds)+' · '+(index<routine.length?routine[index].title+' · '+formatTime(remaining):'Complete');
  if(index!==mobilityStageIndex){
   const previousStage=mobilityStageIndex;
   mobilityStageIndex=index;mobilitySignalKey='';mobilityLastRemaining=null;
