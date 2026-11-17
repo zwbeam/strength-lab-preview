@@ -301,6 +301,7 @@ jobs:
           node tests/browser-reduced-evidence.cjs
           node tests/browser-return-continuity.cjs
           node tests/browser-reentry-load-review.cjs
+          node tests/browser-reentry-load-selection.cjs
           node tests/browser-emphasis-evidence.cjs
           node tests/browser-station-light.cjs
           node tests/browser-review-return.cjs
