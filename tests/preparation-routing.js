@@ -96,6 +96,10 @@ assert.match(app,/current strength prescription remains unfinished\. No lifting 
 assert.match(app,/type:'mobility',duration:Math\.min\(1440,elapsed\)/);
 assert.match(app,/replacesStrength:true/);
 
+assert.match(app,/function start\(\)\{timerPanelOpen=false;if\(!checkWriter\(\)\)return;if\(draft\)return;if\(mobilityStartedAt\)/);
+assert.match(app,/if\(b\.id==='start-mobility'\)\{if\(!checkWriter\(\)\)return;if\(mobilityStartedAt\)return;if\(draft\)/);
+
+
 const mobilityRecovery=between("const MOBILITY_SESSION='sl-dev-preview-mobility-active-v1';",'function mobilityRoutine(){');
 assert.match(mobilityRecovery,/sessionStorage\.setItem\(MOBILITY_SESSION/);
 assert.match(mobilityRecovery,/sessionStorage\.removeItem\(MOBILITY_SESSION/);
