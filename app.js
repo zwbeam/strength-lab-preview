@@ -284,29 +284,9 @@ function programDecision(p){return `<details class="card" id="program-decision">
 
 function movementLink(id){return `<button class="movement-link" data-instruction="${id}">${esc(E.MOVES[id].name)}</button>`;}
 function preparation(plan,kind){
- const total=plan.budget[kind];
- const isWarm=kind==='warmup';
- const sections=isWarm?[
-  ['Light movement rehearsal',(plan.items||[]).some(rx=>/club|cast|circles|front/i.test(rx.id))?
-   'Practice the planned club pattern unloaded or with a familiar light club; use controlled range':
-   (plan.items||[]).some(rx=>/snatch|clean|swing|deadlift|hinge/i.test(rx.id))?
-   'Rehearse the hinge and planned kettlebell path unloaded, then with a familiar light bell':
-   (plan.items||[]).some(rx=>/squat|getup|press|pushup/i.test(rx.id))?
-   'Rehearse the planned squat, press or ground transition unloaded in a comfortable range':
-   'Move through the planned first exercise unloaded at an easy pace'],
-  ['Shoulders and neck','Controlled shoulder circles, scapular movement and comfortable neck ranges'],
-  ['Spine','Gentle spinal rocks or supported spinal articulation without impact'],
-  ['Hips','Shin-box switches, supported hip rotations and comfortable squat range']
- ]:[
-  ['Spinal extension','Gentle Sphinx position or comfortable supported extension'],
-  ['Spinal flexion','Supported forward fold without forcing the range'],
-  ['Spinal rotation','Comfortable seated or supported twist'],
-  ['Hip mobility',(plan.items||[]).some(rx=>/squat|lunge|bearSquat|getup/i.test(rx.id))?
-   'Gentle shin-box switches and supported hip rotations after squat or ground work':
-   'Supported shin-box position or gentle hip-flexor stretch']
- ];
- const allocations=isWarm?[2,2,2,2]:Array.from({length:4},(_,i)=>Math.floor(total/4)+(i<total%4?1:0));
- return '<div class="prep-exercises">'+sections.map((entry,i)=>allocations[i]?'<div class="prep-exercise"><div class="prep-name">'+esc(entry[0])+'</div><p class="rx"><strong>'+allocations[i]+' min</strong> · '+esc(entry[1])+'</p></div>':'').join('')+'</div>';
+ // The active Train and draft panels share the source-linked, pattern-aware
+ // routines. Keep the reserved time budget unchanged and do not award work.
+ return kind==='warmup'?warmup(plan):cooldown(plan);
 }
 function prepSection(plan,kind,open=false){return `<details class="preparation" data-panel="${kind}" ${(panelState.has(kind)?panelState.get(kind):open)?'open':''}><summary>${kind==='warmup'?'Warm-up':'Cooldown'} · ${plan.budget[kind]} min · view movements</summary>${preparation(plan,kind)}</details>`;}
 function compactPrescription(rx){const structure=N.structure(rx);const rest=structure.match(/(\d+)s rest between sets/i);const extra=structure.replace(/\d+s rest between sets/i,'').replace(/straight (?:rep|timed|time) sets/ig,'').replace(/^[\s·;,-]+|[\s·;,-]+$/g,'').trim();const detail=extra&&!/^[·;,-]+$/.test(extra)?` <span class="small muted">· ${esc(extra)}</span>`:'';return `<strong>${loadText(rx)} - ${dose(rx)}${rest?' - '+rest[1]+'s Rest between sets':structure&&extra?' - '+esc(extra):''}</strong>${rest?detail:''}${rx.setupDescription?` <span class="small muted">· ${esc(rx.setupDescription)}</span>`:''}${rx.sequenceDescription?` <span class="small muted">· ${esc(rx.sequenceDescription)}</span>`:''}${!rx.continuous&&rx.betweenExercises?` <span class="small muted">· ${rx.betweenExercises}s transition</span>`:''}${rx.returnLoadReview?` <span class="small warning" role="status">· Return after time away: review your working weight before starting; fewer sets do not guarantee the previous load is appropriate.</span>`:''}`;}
