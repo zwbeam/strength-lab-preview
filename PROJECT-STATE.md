@@ -11,10 +11,10 @@ This is the durable handoff entry point. Read PROJECT-MASTER-PLAN.md and AGENT-H
 - The external 505-source master ledger and anchored independent completion notes are not reconciled in this repository. The 214-row independent journal accounting does not certify matching source text.
 
 ## Current priority
-**P0: durable coordination and evidence-based research inventory.** Do not add speculative numerical training methods. Start with DEVELOPEMENT-QUEUE.md? No: canonical filename is DEVELOPMENT-QUEUE.md.
+**P0: durable coordination and evidence-based research inventory.** Do not add speculative numerical training methods. Canonical queue: DEVELOPMENT-QUEUE.md.
 
 ## Current batch
-Project-control infrastructure: master plan, state, queue, decisions, handoff, research ledger schema. Documentation-only; no runtime engine changes in this batch.
+Project-control infrastructure completed: master plan, state, queue, decisions, handoff, research ledger contract. Documentation-only; no runtime engine changes or local regression tests in this batch.
 
 ## Next executable batch
 Implement a deterministic, read-only source/concept audit that reads the existing transcript shards and coverage artifacts, produces a reviewable ledger of 719 usable sources, and reports mapped versus unmapped source evidence. Never automatically label a transcript as fully integrated based on title matches.
