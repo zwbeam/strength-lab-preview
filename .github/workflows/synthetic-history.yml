@@ -7,6 +7,8 @@ on:
       - training-settings.js
       - engine.js
       - app.js
+      - tests/long-break-regression.js
+      - tests/return-continuity.js
       - tests/generate-demo-backup.cjs
       - tests/browser-demo-history.js
       - .github/workflows/synthetic-history.yml
@@ -22,9 +24,15 @@ jobs:
       - name: Check JavaScript syntax
         run: |
           node --check engine.js
+          node --check tests/long-break-regression.js
+          node --check tests/return-continuity.js
           node --check app.js
           node --check tests/generate-demo-backup.cjs
           node --check tests/browser-demo-history.js
+      - name: Verify re-entry progression and return continuity
+        run: |
+          node tests/long-break-regression.js
+          node tests/return-continuity.js
       - name: Generate and validate two-year history
         run: node tests/generate-demo-backup.cjs
       - name: Install browser test dependency
