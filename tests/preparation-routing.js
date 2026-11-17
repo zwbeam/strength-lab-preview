@@ -113,6 +113,8 @@ const todayRender=between('function renderToday(){','function render(');
 assert.match(todayRender,/\$\{programDecision\(p\)\}\$\{d\.today&&!p\.mobilityOnly\?mobilityPanel\(\):''\}/);
 assert.match(todayRender,/p\.mobilityOnly\?mobilityPanel\(\)/);
 assert.match(todayRender,/d\.today\?mobilityPanel\(/);
+assert.match(todayRender,/mobilityStartedAt\?'<p class="small muted" role="status">Mobility workout in progress/);
+assert.match(todayRender,/<button class="button full" id="start" disabled>Start Workout<\/button>/);
 
 
 const resetHandler=between("if(b.id==='reset-confirm'){","document.addEventListener('change',e=>{if(e.target?.id==='reset-backup-confirmed')");
