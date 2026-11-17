@@ -4,8 +4,9 @@ The queue is an ordered plan, not a claim that tasks have been completed. Status
 ## P0 — Project continuity
 - [x] P0.1 Record durable product vision and UX guardrails in PROJECT-MASTER-PLAN.md.
 - [x] P0.2 Create state, decision log, handoff and research-ledger specification.
-- [ ] P0.3 Implement machine-generated source-to-concept audit from 24 transcript shards; stable IDs, no destructive rewrites, honest evidence statuses.
+- [x] P0.3 Implement machine-generated source-to-concept audit from 24 transcript shards; stable IDs, no destructive rewrites, honest evidence statuses. GitHub Actions run 43992431475 passed; generated artifact retained for 30 days. Passage-level concept extraction is not yet done.
   - Acceptance: 720 inventoried; #441 excluded; 719 usable; every source gets an accounting row; duplicate candidates retain separate source identities; report unmapped concepts and coverage counts; reproducible command and regression.
+- [ ] P0.3b Persist validated generated ledger in repository and extend audit to passage-anchored concepts, duplicate candidates and unmapped teaching reports.
 - [ ] P0.4 Reconcile master 505-ledger and 214 journal against archived source keys if actual evidence becomes available; never infer textual identity from counts.
 
 ## P1 — Research and knowledge integration
