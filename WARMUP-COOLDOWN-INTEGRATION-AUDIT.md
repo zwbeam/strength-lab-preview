@@ -33,3 +33,13 @@ Status: **evidence and implementation inspection incomplete**. This document del
 Do not claim full 719-source integration, verified Wildman warmup philosophy, or production readiness until source evidence, engine behavior, and tests substantiate those claims.
 
 Related: issues #2 and #3.
+
+## 30-minute source review — November 17, 2026
+
+The consolidated Strength Lab Book I, §9.13, describes a **5-minute preparation / 20-minute main work / 5-minute lower-intensity movement and notes** allocation as *one workable example*. This is an editorial synthesis of reviewed material, **not an authenticated universal Wildman numerical rule**. The same section emphasizes shifting time toward technical rehearsal on learning days, retaining the primary skill and reducing accessory work under time pressure, and recording partial work honestly. §10 notes an example of a brief morning club routine without treating it as a universal session template.
+
+Current engine timeBudget() reserves 8 warmup + 10 cooldown minutes for **every** 25–120-minute session, leaving only 12 minutes of main work at 30 minutes. Source #550 is cited for the eight-minute warmup format; the 10-minute cooldown is explicitly an app decision. Do not assert that Wildman prescribes 8/10 or 5/5 for all sessions.
+
+**Design decision pending evidence and tests:** Preserve 8/10 as the existing user-preferred, recovery-oriented default; evaluate a separate **explicitly chosen** compact 30-minute strategy that protects meaningful preparation and downshift time while providing adequate primary-skill practice. Do not silently switch, dilute a source-defined dose, or convert partial work into progression credit. Assess 5/20/5 only as a candidate app adaptation and verify source-specific programs first.
+
+**Acceptance scenarios:** 30-minute familiar single-club practice, technique-learning session, full-volume cycle too large for 12 minutes, recovery-only day, and a return after 3 weeks. Report main-work fit, any deferrals, preserved written dose, warmup/cooldown selections, and advancement eligibility. Compare 8/12/10 to candidate 5/20/5 under identical state; avoid claiming one allocation is universally superior.
