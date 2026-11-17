@@ -37,6 +37,10 @@ Do not mark a principle verified solely because a movement has a lesson, a sourc
 4. Update this matrix with commit, test, and evidence. Do not mark verified without all three.
 5. Defer interface cleanup until the engine gate is satisfied, except when necessary to test or protect data.
 
+## Rotation work in progress (not closed)
+
+The coordinator now estimates return intervals, compares non-destructive single-block reduction scenarios, and supports an optional `programComposition.coreBlock` guard that keeps a selected core program out of preferred removal advice. This is **not** an automatic core curriculum, does not alter selected blocks, and does not yet prove that foundational patterns receive sufficient practice. The next requirement is a tested, source-bounded policy for choosing and maintaining core patterns across realistic 30/45/60-minute training histories. Do not close the rotation row based only on advisory improvements.
+
 ## Final UI phase, after the gate
 
 Review Train, Workout, Log, Learn and Settings as actual user journeys; simplify setup, remove duplicated controls, ensure understandable decisions and preserve backups. Run current-commit CI and Android acceptance before release.
