@@ -80,6 +80,14 @@ const mobilityClockSource=between('function updateMobilityClock(){','function un
 assert.match(mobilityClockSource,/totalSeconds=routine\.reduce/);
 assert.match(mobilityClockSource,/formatTime\(totalSeconds\)/);
 assert.doesNotMatch(mobilityClockSource,/1200|20:00/,'Mobility clock must not hardcode 20 minutes');
+
+assert.match(mobilityClockSource,/mobilityActiveRoutine\|\|mobilityRoutine\(\)/);
+assert.match(mobilityPanelSource,/mobilityActiveRoutine\?mobilityActiveRoutine:mobilityRoutine\(\)/);
+assert.match(app,/mobilityActiveRoutine=mobilityRoutine\(\);mobilityStartedAt=Date\.now\(\)/);
+assert.match(app,/if\(b\.id==='cancel-mobility'\)\{mobilityStartedAt=0;mobilityActiveRoutine=null;/);
+assert.match(app,/if\(elapsed<\(mobilityActiveRoutine\|\|mobilityRoutine\(\)\)\.reduce/);
+assert.match(app,/state=next;mobilityStartedAt=0;mobilityActiveRoutine=null;/);
+
 const mobilityRoutineSource=between('function mobilityRoutine(){','function mobilityPanel(');
 assert.match(mobilityRoutineSource,/const stages=/);
 assert.match(mobilityRoutineSource,/return stages\.map/);
