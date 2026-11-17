@@ -1,0 +1,31 @@
+name: Source concept ledger audit
+on:
+  push:
+    branches: [preview]
+    paths:
+      - 'scripts/build-source-ledger.cjs'
+      - 'sources-*.json'
+      - 'research/supplied-review-manifest.json'
+      - 'research/movement-integration-coverage.json'
+      - 'research/curriculum-coverage-current.json'
+      - '.github/workflows/source-concept-ledger.yml'
+  workflow_dispatch:
+jobs:
+  generate-ledger:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generate and validate source ledger
+        run: |
+          node scripts/build-source-ledger.cjs
+          node scripts/build-source-ledger.cjs --check
+      - name: Upload ledger artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-concept-ledger
+          path: research/source-concept-ledger.generated.json
+          retention-days: 30
