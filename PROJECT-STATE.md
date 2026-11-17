@@ -27,3 +27,10 @@ Passage candidate discovery script committed at b08a3b61 and CI expanded at 8540
 
 ## Rules
 Every future batch updates this file with: branch/head, completed work, test command and result, unresolved blockers, and exact next task. Do not assert test success unless executed or verified in Actions for the relevant commit. No production promotion or user-data reset without approval.
+
+
+## 2026-11-16 — re-entry load advisory checkpoint
+- `engine.js` now exposes `returnLoadReview` and adds a clear working-weight review message on extended weighted-movement re-entry; this is advisory, not an automatic deload, and does not alter stored load/history. Commit `b3966a99`.
+- `tests/long-break-regression.js` now checks advisory, original weight, and no false short-gap advisory. Commit `9c867d9e`.
+- `.github/workflows/synthetic-history.yml` now runs long-break and return-continuity tests before browser history checks. Commit `f73d9e5a`.
+- CI run `44012894485` was queued when checked. **Do not claim passing until checked.** Next: verify CI; trace UI visibility of `reason`, assess stronger load-selection gate and weak-side enforcement.
