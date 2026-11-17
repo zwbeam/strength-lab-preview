@@ -41,3 +41,9 @@ Every future batch updates this file with: branch/head, completed work, test com
 - Research coverage run `44012885331` failed in the pre-existing snatch rebuild test because it used wall-clock time and accidentally triggered re-entry. Test now pins `now:'2026-11-03'` immediately after two November 1–2 hard sessions, commit `578ff8fb`.
 - `app.js` compact workout prescription now visibly renders the `returnLoadReview` advisory, commit `6b9f8d9f`; this is a warning, **not** a load-selection gate. Current CI runs `44014721386` and `44014721364` pending when checked.
 - Next: verify both CI runs, inspect actual browser screenshot/readout of return warning, add a focused browser assertion, and determine appropriate explicit user-confirmed conservative load selection. Do not silently change owned weights or historical progression.
+
+
+## 2026-11-16 — mobile browser verification coverage
+- Synthetic history run `44014721364` passed after `app.js` warning integration; Pages run `44014742365` succeeded.
+- Added `tests/browser-reentry-load-review.cjs` to assert visible warning at 320/390px, preserved weight, and no warning on recent practice (commit `dd5492fb`). Registered in `.github/workflows/research-coverage.yml` (commit `0cc7771a`).
+- Research coverage run `44014918567` was queued at last check. Test not yet verified green. Next: inspect browser test outcome and fix fixture/visibility issues, then evaluate a deliberate conservative-load selection flow without changing historical progression.
