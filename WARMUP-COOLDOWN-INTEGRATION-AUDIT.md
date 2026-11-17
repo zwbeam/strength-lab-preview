@@ -73,3 +73,19 @@ Source-index leads still requiring full transcript review: #1 ten-minute nonstop
 6. Defer any new hard-stop mode or per-session allocation selector until actual user review shows it is needed; avoid expanding Settings prematurely.
 
 **Verification still required before release:** Execute GitHub CI for latest preview commit, verify movement-aware warmup/cooldown browser presentation and source-link clickthrough, and confirm accurate displayed total duration when the engine extends a 30-minute target. The detailed #1/#279/#280/#670 transcript-level questions remain research follow-ups, not blockers to retaining this conservative existing policy.
+
+## Resolved with Wildman's published program specifications — November 17, 2026
+
+**Primary official sources (not merely editorial inference):**
+- Wildman Athletica Clean & Press program: https://www.wildmanathletica.com/cp — follow-along training rounds 10–30 minutes; warmups and cooldowns **8–10 minutes each**.
+- Wildman Athletica Snatch program: https://programs.wildmanathletica.com/snatch — warmups **6–8 minutes**, main sessions **about 32–40 minutes**, cooldowns **roughly 10 minutes**, complete sessions **about 40–60 minutes**.
+- Wildman Athletica Swings program: https://www.wildmanathletica.com/swings — **10–30 minutes total including warmup and cooldown**; short complete sessions are a supported design goal.
+- Wildman Athletica Clean & Press Reloaded: https://programs.wildmanathletica.com/cp-reloaded — **5–25 minutes including warmup and cooldown**.
+- Wildman Athletica Turkish Get-Up master-class program guide: https://s3.amazonaws.com/kajabi-storefronts-production/sites/2147529643/themes/2151832023/downloads/xlOFB2RgSg2I2ZXpR9y9_ProgramGuide_TGU_v01.pdf — precise training-block scheduling and comfortable stops rather than training to failure.
+- Book I editorial source register, source #550: https://www.youtube.com/watch?v=HbFuRSv_gD0 — four one-minute stations repeated twice for an eight-minute warmup.
+
+**Conclusion:** The app's existing 8-minute warmup and 10-minute cooldown are **directly consistent with official Wildman program prescriptions**, especially Clean & Press and Snatch. They are **not** a universal rule for all Wildman programs: short complete Swings and Clean & Press Reloaded sessions show program-dependent duration. Do not claim all Wildman workouts must reserve 18 minutes, nor that 5/20/5 is Wildman's universal formula.
+
+**Implemented:** The workout preparation panels now disclose the eight-minute source example and the ten-minute app allocation, citing the published 8–10-minute Clean & Press and ~10-minute Snatch cooldown ranges. The existing 30-minute target, 40-minute flexible upper limit, and 8/10 allocation remain unchanged; no hidden auto-switching. CI test checks the disclosure and source-aware warmup/cooldown routing.
+
+**Remaining QA (separate from resolved research question):** run browser and Node suites and check the 30-minute total-duration presentation against engine output. Do not reopen the 8/10 evidence debate without new conflicting primary evidence.
