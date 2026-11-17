@@ -16,6 +16,13 @@ const assert=require('node:assert/strict'),{chromium}=require('playwright'),E=re
    await page.waitForFunction(()=>storageReady);
    const rx=await page.evaluate(()=>E.prescription(state,'squat',{now:today()}));
    assert.equal(rx.mode,'reentry');assert.equal(rx.returnLoadReview,true);assert.equal(rx.weight,16);
+   // Exercise the actual Train screen, not only the formatter in isolation.
+   const planned=await page.evaluate(()=>E.plan(state,{now:today()}).items.map(x=>x.id));
+   assert.ok(planned.includes('squat'),'Fixture must schedule the returning movement');
+   await page.locator('[data-tab="today"]').tap();
+   assert.match(await page.locator('#app').innerText(),/review your working weight/i);
+   await page.locator('#start').tap();
+   assert.match(await page.locator('.notebook-exercise').first().innerText(),/review your working weight/i);
    const visible=await page.evaluate(()=>{const rx=E.prescription(state,'squat',{now:today()}),holder=document.createElement('div');holder.innerHTML=compactPrescription(rx);document.body.appendChild(holder);const text=holder.innerText,warning=holder.querySelector('[role="status"]');holder.remove();return{text,warning:!!warning};});
    assert.equal(visible.warning,true);assert.match(visible.text,/review your working weight/i);
    assert.match(visible.text,/fewer sets do not guarantee/i);
