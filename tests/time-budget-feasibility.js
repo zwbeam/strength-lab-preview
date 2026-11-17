@@ -4,6 +4,15 @@ const assert=require('node:assert/strict');
 const E=require('../engine.js');
 const budget30=E.timeBudget(30);
 assert.equal(budget30.main,12);
+
+assert.equal(budget30.warmup+budget30.main+budget30.cooldown,30,
+ 'Hard 30-minute session must reserve 8+10 and leave 12 main minutes');
+const flexible30Main=40-budget30.warmup-budget30.cooldown;
+assert.equal(flexible30Main,22,
+ 'A flexible 30-minute target may use 22 main minutes only by extending to 40 total');
+assert.notEqual(flexible30Main,budget30.main,
+ 'Never label the extended 40-minute allocation as a hard 30-minute session');
+
 // Preparation and cooldown allocations must remain fixed and never consume
 // more than the selected session, even at the minimum 25-minute budget.
 for(const duration of [25,30,40,45,50,55,60,65,75,90,120]){
