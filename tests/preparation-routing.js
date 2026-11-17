@@ -72,6 +72,20 @@ assert.match(pressCool,/data-open-source="130"/);
 assert.match(pressCool,/data-open-source="139"/);
 assert.match(swingCool,/data-open-source="135"/);
 
+
+const mobilityPanelSource=between('function mobilityPanel(timeBlocked=false){','let mobilitySignalKey=');
+assert.match(mobilityPanelSource,/formatTime\(duration\*60\)/);
+assert.doesNotMatch(mobilityPanelSource,/'<p role="timer"/,'Live mobility timer must use an interpolated template literal');
+const mobilityClockSource=between('function updateMobilityClock(){','function unavailableLoadActions(');
+assert.match(mobilityClockSource,/totalSeconds=routine\.reduce/);
+assert.match(mobilityClockSource,/formatTime\(totalSeconds\)/);
+assert.doesNotMatch(mobilityClockSource,/1200|20:00/,'Mobility clock must not hardcode 20 minutes');
+const mobilityRoutineSource=between('function mobilityRoutine(){','function mobilityPanel(');
+assert.match(mobilityRoutineSource,/const stages=/);
+assert.match(mobilityRoutineSource,/return stages\.map/);
+const mobilityStageMinutes=[2,2,2,2,4,2,2,2,2];
+assert.equal(mobilityStageMinutes.reduce((sum,n)=>sum+n,0),20);
+
 console.log('Source-aware warmup and cooldown behavior checks passed');
 
 console.log('Active preparation routing checks passed');
