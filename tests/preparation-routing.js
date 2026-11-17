@@ -96,6 +96,15 @@ assert.match(app,/current strength prescription remains unfinished\. No lifting 
 assert.match(app,/type:'mobility',duration:Math\.min\(1440,elapsed\)/);
 assert.match(app,/replacesStrength:true/);
 
+const mobilityClockSource=between('function updateMobilityClock(){','function unavailableLoadActions(');
+assert.match(mobilityClockSource,/mobilityLastRemaining===null\?remaining:mobilityLastRemaining/);
+assert.doesNotMatch(mobilityClockSource,/mobilityLastRemaining===null\?remaining\+1/);
+for(const remaining of [1,2,3,30,60]){
+ const previous=remaining;
+ assert.equal(previous>remaining,false,'First tick must not invent a crossed countdown threshold');
+}
+
+
 assert.match(app,/if\(b\.id==='cancel-mobility'\)\{if\(mobilityStartedAt&&Date\.now\(\)-mobilityStartedAt>=60000&&!confirm\('Discard this mobility workout without recording it\?'\)\)return;/);
 for(const [elapsedMs,shouldConfirm] of [[0,false],[59999,false],[60000,true],[300000,true]])assert.equal(elapsedMs>=60000,shouldConfirm,'Mobility cancellation confirmation threshold');
 
