@@ -23,6 +23,8 @@ Local storage is scoped to an origin; deploying the same code to a different dom
 
 **Release gate:** [Wildman-to-engine evidence matrix](WILDMAN-ENGINE-GATE.md). Research fidelity and behavior tests take priority over cosmetic UI work. Do not promote preview while gate rows remain unresolved.
 
+Run `node scripts/check-wildman-gate.cjs` to validate audit tracking, and `node scripts/check-wildman-gate.cjs --release` to require closure before promotion. The normal CI check does not certify the engine: unresolved rows are deliberately permitted during development.
+
 See [the engine and transcript integration map](ENGINE-KNOWLEDGE-STATUS.md) for
 how reviewed knowledge becomes actual training, implemented methods, prerequisite
 pathways and the remaining limits. Archive coverage is not full engine integration.
