@@ -93,6 +93,11 @@ assert.match(app,/current strength prescription remains unfinished\. No lifting 
 assert.match(app,/type:'mobility',duration:Math\.min\(1440,elapsed\)/);
 assert.match(app,/replacesStrength:true/);
 
+assert.match(app,/document\.addEventListener\('visibilitychange',\(\)=>\{if\(!document\.hidden\)\{if\(draft\)updateTimer\(\);if\(mobilityStartedAt\)updateMobilityClock\(\);\}\}\)/);
+assert.match(app,/window\.addEventListener\('pageshow',\(\)=>\{if\(draft\)updateTimer\(\);if\(mobilityStartedAt\)updateMobilityClock\(\);\}\)/);
+assert.match(app,/updateTimer\(\);if\(mobilityStartedAt\)updateMobilityClock\(\);\},250\)/);
+
+
 
 const mobilityRoutineSource=between('function mobilityRoutine(){','function mobilityPanel(');
 assert.match(mobilityRoutineSource,/const stages=/);
