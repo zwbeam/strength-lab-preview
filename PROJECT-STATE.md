@@ -47,3 +47,10 @@ Every future batch updates this file with: branch/head, completed work, test com
 - Synthetic history run `44014721364` passed after `app.js` warning integration; Pages run `44014742365` succeeded.
 - Added `tests/browser-reentry-load-review.cjs` to assert visible warning at 320/390px, preserved weight, and no warning on recent practice (commit `dd5492fb`). Registered in `.github/workflows/research-coverage.yml` (commit `0cc7771a`).
 - Research coverage run `44014918567` was queued at last check. Test not yet verified green. Next: inspect browser test outcome and fix fixture/visibility issues, then evaluate a deliberate conservative-load selection flow without changing historical progression.
+
+
+## 2026-11-17 — return-load selection implementation and browser gate
+- Engine `chooseReentryLoad` committed `4fa1b111`; separate app-authored return-load action accepts only a lighter configured working load during eligible re-entry, preserves historical records, and establishes load-reset boundary. Test `tests/reentry-load-selection.js` committed `27e1bdba` and CI wired `3bc1e177`.
+- Train UI `Review return weight` prompt and persistence committed `7aa3f1a6`. Pages run `44084008160` and synthetic history run `44084007491` passed at this UI commit; full research audit was in progress at last check.
+- Added mobile end-to-end `tests/browser-reentry-load-selection.cjs` commit `5a389f96` and registered it in research coverage workflow commit `b9ceade5`. Run `44084255482` queued at last check. Do not claim this new test passed yet.
+- Next: verify the new test and research audit; address any failures; then improve Keep Weight confirmation and accessibility. Remaining broader priorities: curriculum fidelity, Settings redesign, Learn completion, Training Log polish, Android manual acceptance.
