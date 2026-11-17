@@ -85,7 +85,10 @@ assert.match(mobilityClockSource,/mobilityActiveRoutine\|\|mobilityRoutine\(\)/)
 assert.match(mobilityPanelSource,/mobilityActiveRoutine\?mobilityActiveRoutine:mobilityRoutine\(\)/);
 assert.match(app,/mobilityActiveRoutine=mobilityRoutine\(\);mobilityStartedAt=Date\.now\(\)/);
 assert.match(app,/if\(b\.id==='cancel-mobility'\)\{mobilityStartedAt=0;mobilityActiveRoutine=null;/);
-assert.match(app,/if\(elapsed<\(mobilityActiveRoutine\|\|mobilityRoutine\(\)\)\.reduce/);
+assert.match(app,/elapsedSeconds=Math\.max\(0,Math\.floor\(\(Date\.now\(\)-mobilityStartedAt\)\/1000\)\)/);
+assert.match(app,/partial=elapsedSeconds<targetSeconds/);
+assert.match(app,/notes:\(partial\?'Partial guided mobility session/);
+for(const [elapsedSeconds,targetSeconds,expected] of [[1190,1200,true],[1199,1200,true],[1200,1200,false],[1201,1200,false],[1799,1800,true],[1800,1800,false]])assert.equal(elapsedSeconds<targetSeconds,expected,'Second-accurate mobility completion boundary');
 assert.match(app,/state=next;mobilityStartedAt=0;mobilityActiveRoutine=null;/);
 
 assert.match(app,/Partial guided mobility session/);
