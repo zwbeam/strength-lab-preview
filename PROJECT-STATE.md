@@ -34,3 +34,10 @@ Every future batch updates this file with: branch/head, completed work, test com
 - `tests/long-break-regression.js` now checks advisory, original weight, and no false short-gap advisory. Commit `9c867d9e`.
 - `.github/workflows/synthetic-history.yml` now runs long-break and return-continuity tests before browser history checks. Commit `f73d9e5a`.
 - CI run `44012894485` was queued when checked. **Do not claim passing until checked.** Next: verify CI; trace UI visibility of `reason`, assess stronger load-selection gate and weak-side enforcement.
+
+
+## 2026-11-16 — regression triage and warning UI
+- Synthetic history run `44012894485` **passed**, including the new long-break and return-continuity checks; Pages run `44012908994` passed.
+- Research coverage run `44012885331` failed in the pre-existing snatch rebuild test because it used wall-clock time and accidentally triggered re-entry. Test now pins `now:'2026-11-03'` immediately after two November 1–2 hard sessions, commit `578ff8fb`.
+- `app.js` compact workout prescription now visibly renders the `returnLoadReview` advisory, commit `6b9f8d9f`; this is a warning, **not** a load-selection gate. Current CI runs `44014721386` and `44014721364` pending when checked.
+- Next: verify both CI runs, inspect actual browser screenshot/readout of return warning, add a focused browser assertion, and determine appropriate explicit user-confirmed conservative load selection. Do not silently change owned weights or historical progression.
