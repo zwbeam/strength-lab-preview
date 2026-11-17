@@ -14,10 +14,10 @@ This is the durable handoff entry point. Read PROJECT-MASTER-PLAN.md and AGENT-H
 **P0: durable coordination and evidence-based research inventory.** Do not add speculative numerical training methods. Canonical queue: DEVELOPMENT-QUEUE.md.
 
 ## Current batch
-Project-control infrastructure completed. New batch: scripts/build-source-ledger.cjs committed at a3cb02e; it deterministically constructs source-to-operational-movement declared links and checks 720/719/#441 accounting. The script has NOT been executed in this environment, and the generated JSON has NOT been committed. No runtime engine changes.
+Project-control infrastructure completed. New batch: scripts/build-source-ledger.cjs committed at a3cb02e; it deterministically constructs source-to-operational-movement declared links and checks 720/719/#441 accounting. The script is now run by .github/workflows/source-concept-ledger.yml (commit 1253d6f3), which runs generation and --check and uploads a 30-day artifact. At checkpoint the workflow was in progress (run 43992431475), not yet verified passing. Generated JSON has NOT been committed. No runtime engine changes.
 
 ## Next executable batch
-Execute node scripts/build-source-ledger.cjs in a Node checkout; inspect summary and generated research/source-concept-ledger.generated.json, fix any failures, commit generated ledger; add regression/CI check using --check. Then begin passage-anchored concept extraction. Never automatically label a transcript fully integrated from title/declared source matches.
+Check run 43992431475 result and logs; inspect its source-concept-ledger artifact, fix failures, and commit generated ledger if validated. Then begin passage-anchored concept extraction. Do not equate declared links with source fidelity. Never automatically label a transcript fully integrated from title/declared source matches.
 
 ## Known blockers
 - External master 505-source ledger and anchored review evidence unavailable in current repo.
