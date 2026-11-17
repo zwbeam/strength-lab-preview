@@ -4,6 +4,7 @@ on:
     branches: [preview]
     paths:
       - 'scripts/build-source-ledger.cjs'
+      - 'scripts/extract-passage-candidates.cjs'
       - 'sources-*.json'
       - 'research/supplied-review-manifest.json'
       - 'research/movement-integration-coverage.json'
@@ -23,9 +24,13 @@ jobs:
         run: |
           node scripts/build-source-ledger.cjs
           node scripts/build-source-ledger.cjs --check
+          node scripts/extract-passage-candidates.cjs
+          node scripts/extract-passage-candidates.cjs --check
       - name: Upload ledger artifact
         uses: actions/upload-artifact@v4
         with:
           name: source-concept-ledger
-          path: research/source-concept-ledger.generated.json
+          path: |
+            research/source-concept-ledger.generated.json
+            research/passage-candidates.generated.json
           retention-days: 30
