@@ -61,3 +61,15 @@ The editorial source register independently checks source #550 (YouTube HbFuRSv_
 Source-index leads still requiring full transcript review: #1 ten-minute nonstop exercise, #279 "Is 10 min of Kettlebelling enough - Part II", #280 "Is 10 minutes of kettlebell enough to be in good shape?", #670 warmup design considerations, and cooldown #126–139. Source-index previews are discovery aids, not full-source proof.
 
 **Policy:** Keep current 8+10 allocation and 25–40 flexibility unchanged pending source review and engine scenario testing. Do not imply a universal Wildman 10-minute cooldown; do not auto-switch to editorial 5/20/5.
+
+## Decision record: close duration-policy research; proceed to broader engine QA
+
+**Approved implementation baseline (no additional duration control required now):**
+1. Retain the source-checked #550 eight-minute warmup, presented as four one-minute stations repeated twice. Movement substitutions are clearly labeled app adaptations.
+2. Retain the user-selected ten-minute cooldown as a recovery-oriented Strength Lab allocation, **not** a universal Wildman numeric prescription.
+3. Retain the existing 30-minute target's approved 25–40-minute flexibility. A full 40-minute plan is **not** a hard 30-minute session. Main-work capacity is 12 minutes at a hard 30 minutes and at most 22 minutes at the flexible 40-minute ceiling.
+4. Preserve full programming protocols and honest completion evidence; never mark an unperformed endpoint complete or silently compress timed progression steps.
+5. No automatic 5/20/5 switch. Book I §9.13 presents that allocation as one workable editorial example, not a verified universal Wildman rule.
+6. Defer any new hard-stop mode or per-session allocation selector until actual user review shows it is needed; avoid expanding Settings prematurely.
+
+**Verification still required before release:** Execute GitHub CI for latest preview commit, verify movement-aware warmup/cooldown browser presentation and source-link clickthrough, and confirm accurate displayed total duration when the engine extends a 30-minute target. The detailed #1/#279/#280/#670 transcript-level questions remain research follow-ups, not blockers to retaining this conservative existing policy.
