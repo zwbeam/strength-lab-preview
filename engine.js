@@ -540,6 +540,20 @@ function setInitialLoad(s,id,weight){
  return {...s,weights:{...s.weights,[id]:weight},nextWeights:{...s.nextWeights,[id]:weight}};
 }
 function replaceUnavailableLoad(s,id,weight,opts={}){const m=MOVES[id];if(!m||m.bodyweight)throw Error('A loaded movement is required');if(policyFor(id,s).profile==='wave')throw Error('Change configured wave weights instead');if(!availableWorkingLoads(s,id).includes(weight))throw Error('Replacement weight must be currently available');const current=stateFor(s,id,opts);if(availableWorkingLoads(s,id).includes(current.weight))throw Error('Current working weight is still available; use normal progression controls');return{...s,nextWeights:{...s.nextWeights,[id]:weight},loadResetAfter:{...s.loadResetAfter,[id]:records(s,id,opts).at(-1)?._key||'__start__'}};}
+// Explicit return-load reduction starts a new progression cycle without deleting old evidence.
+// This is an application safeguard, not a source-prescribed percentage or reset rule.
+function chooseReentryLoad(s,id,weight,opts={}){
+ const m=MOVES[id];if(!m||m.bodyweight)throw Error('Choose a loaded movement for return-load review');
+ if(policyFor(id,s).profile==='wave')throw Error('Review heavy/light wave loads in movement configuration');
+ const now=opts.now??new Date(),st=stateFor(s,id,{...opts,now});
+ if(st.hold)throw Error('Resolve the pain review before changing a return load');
+ const rx=prescription(s,id,{...opts,now});
+ if(rx.mode!=='reentry'||!rx.returnLoadReview)throw Error('A dated extended absence is required for return-load selection');
+ const current=st.weight,owned=availableWorkingLoads(s,id);
+ if(!owned.includes(weight)||!Number.isFinite(weight)||weight<=0||weight>=current)throw Error('Select an owned, lighter load for this movement');
+ const history=records(s,id,{...opts,now});
+ return{...s,nextWeights:{...s.nextWeights,[id]:weight},loadResetAfter:{...s.loadResetAfter,[id]:history.at(-1)?._key||'__start__'}};
+}
 function selectLoad(s,id,weight,opts={}){if(!loadOptions(s,id,opts).includes(weight))throw Error('Load must be an available, permitted increment after a clean cycle. Adjust the configurable jump limit deliberately if needed.');if(stateFor(s,id,opts).policy.profile==='wave')throw Error('Configure a new heavy/light pair in Settings instead.');return{...s,nextWeights:{...s.nextWeights,[id]:weight},loadResetAfter:{...s.loadResetAfter,[id]:records(s,id,opts).at(-1)?._key||'__start__'}};}
 function minutesFor(p){const m=MOVES[p.id];return(p.sets*(p.roundSeconds||((p.secondsPerSet??m.sec)+Math.max(0,p.rest)))/60)+.55;}
 function timeBudget(minutes){
@@ -1124,5 +1138,5 @@ function validateBackup(input){
  const workoutDraft=validateDraft(input.workoutDraft,input);
  return JSON.parse(JSON.stringify({...input,workoutDraft,nextWeights:input.nextWeights||{},defaultMinutes:input.defaultMinutes??45,deferredIds:input.deferredIds||[]}));
 }
-return{weeklyTrainingLimit,deloadStatus,advancementReview,readinessFor,retestRowWave,trainingEmphasis,validateTrainingEmphasis,emphasisDistribution,mobilityOnlyPlan,COMPLEX_PATHWAYS,complexityOptions,repairMissingLoadAnchor,setInitialLoad,replaceUnavailableLoad,availableWorkingLoads,trainingPaused,activityRecovery,validateActivity,movementCadence,MOVES,SKILLS,DAYS,BLOCKS,LOADS,PROFILE_NAMES,describeProgression,policyFor,availableProfiles,configureMovement,practiceEvidence,supportingMoves,requirementLabel,prerequisites,chooseCycle,loadOptions,selectLoad,retestPushup,validWorkingWeight,validateProgramming,validateDraft,validateBackup,records,successful,stateFor,prescription,minutesFor,timeBudget,plan,completeRecord,nextRest,deferredAfter,resolvePain,movementGap,movementDemands};
+return{weeklyTrainingLimit,deloadStatus,advancementReview,readinessFor,retestRowWave,trainingEmphasis,validateTrainingEmphasis,emphasisDistribution,mobilityOnlyPlan,COMPLEX_PATHWAYS,complexityOptions,repairMissingLoadAnchor,setInitialLoad,replaceUnavailableLoad,chooseReentryLoad,availableWorkingLoads,trainingPaused,activityRecovery,validateActivity,movementCadence,MOVES,SKILLS,DAYS,BLOCKS,LOADS,PROFILE_NAMES,describeProgression,policyFor,availableProfiles,configureMovement,practiceEvidence,supportingMoves,requirementLabel,prerequisites,chooseCycle,loadOptions,selectLoad,retestPushup,validWorkingWeight,validateProgramming,validateDraft,validateBackup,records,successful,stateFor,prescription,minutesFor,timeBudget,plan,completeRecord,nextRest,deferredAfter,resolvePain,movementGap,movementDemands};
 });
