@@ -15,4 +15,33 @@ assert.match(warm,/data-open-source="550"/);
 assert.match(warm,/const hinge=/);
 assert.match(cool,/data-open-source="130"/);
 assert.match(cool,/plan\.budget\?\.cooldown/);
+
+const vm=require('node:vm');
+const source=between('function warmup(plan){','function emptyPlanMessage(');
+const context={E:{MOVES:{singleArmSwing:{name:'Single-arm swing'},clubCircle:{name:'Club circle'},overheadPress:{name:'Overhead press'},bodyweightSquat:{name:'Bodyweight squat'}}},esc:x=>String(x)};
+vm.createContext(context);
+vm.runInContext(source+';this.renderWarmup=warmup;this.renderCooldown=cooldown;',context);
+const plan=(id,cooldown=10)=>({items:[{id,name:context.E.MOVES[id].name}],budget:{warmup:8,cooldown}});
+const swing=context.renderWarmup(plan('singleArmSwing'));
+const club=context.renderWarmup(plan('clubCircle'));
+const squat=context.renderWarmup(plan('bodyweightSquat'));
+assert.match(swing,/hip-hinge patterning/);
+assert.match(club,/light club circle/);
+assert.match(squat,/Supported squat-range exploration/);
+assert.notEqual(swing,club,'Different training families need distinct preparation');
+assert.equal((swing.match(/Minutes [0-9]/g)||[]).length,4,'Eight-minute warmup needs four two-minute stations');
+const pressCool=context.renderCooldown(plan('overheadPress'));
+const swingCool=context.renderCooldown(plan('singleArmSwing'));
+assert.match(pressCool,/upper back and shoulders/);
+assert.match(swingCool,/posterior chain and hips/);
+for(const id of ['singleArmSwing','clubCircle','overheadPress','bodyweightSquat']){
+ for(const duration of [30,45,60]){
+  const html=context.renderCooldown(plan(id,10));
+  const minutes=[...html.matchAll(/<li>(\d+) min:/g)].reduce((sum,x)=>sum+Number(x[1]),0);
+  assert.equal(minutes,10,'Cooldown minutes must sum to reserved budget for '+id+' / '+duration);
+ }
+}
+assert.doesNotMatch(pressCool,/advance|progression credit/i);
+console.log('Source-aware warmup and cooldown behavior checks passed');
+
 console.log('Active preparation routing checks passed');
