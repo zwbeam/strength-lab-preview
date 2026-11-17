@@ -170,6 +170,7 @@ jobs:
           node tests/engine-regression.js
           node tests/instruction-coverage-regression.js
           node tests/long-break-regression.js
+          node tests/reentry-load-selection.js
           node tests/provenance-regression.js
           node tests/recovery-regression.js
           node tests/skill-gates-regression.js
