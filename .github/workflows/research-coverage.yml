@@ -180,6 +180,7 @@ jobs:
           node tests/timer-tick-integrity.js
           node tests/year-simulation.js
           node tests/time-budget-feasibility.js
+          node tests/preparation-routing.js
       # Browser smoke is a separate job. A transient Ubuntu apt outage must not
       # conceal whether the engine, research, and packaging checks passed.
       - name: Package isolated review build
