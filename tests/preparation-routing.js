@@ -84,7 +84,7 @@ assert.doesNotMatch(mobilityClockSource,/1200|20:00/,'Mobility clock must not ha
 assert.match(mobilityClockSource,/mobilityActiveRoutine\|\|mobilityRoutine\(\)/);
 assert.match(mobilityPanelSource,/mobilityActiveRoutine\?mobilityActiveRoutine:mobilityRoutine\(\)/);
 assert.match(app,/mobilityActiveRoutine=mobilityRoutine\(\);mobilityStartedAt=Date\.now\(\)/);
-assert.match(app,/if\(b\.id==='cancel-mobility'\)\{mobilityStartedAt=0;mobilityActiveRoutine=null;/);
+assert.match(app,/if\(b\.id==='cancel-mobility'\)\{if\(mobilityStartedAt&&Date\.now\(\)-mobilityStartedAt>=60000&&!confirm\('Discard this mobility workout without recording it\?'\)\)return;mobilityStartedAt=0;mobilityActiveRoutine=null;/);
 assert.match(app,/elapsedSeconds=Math\.max\(0,Math\.floor\(\(Date\.now\(\)-mobilityStartedAt\)\/1000\)\)/);
 assert.match(app,/partial=elapsedSeconds<targetSeconds/);
 assert.match(app,/notes:\(partial\?'Partial guided mobility session/);
