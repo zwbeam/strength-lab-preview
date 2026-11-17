@@ -21,6 +21,8 @@ Local storage is scoped to an origin; deploying the same code to a different dom
 
 ## Engine and knowledge integration
 
+**Release gate:** [Wildman-to-engine evidence matrix](WILDMAN-ENGINE-GATE.md). Research fidelity and behavior tests take priority over cosmetic UI work. Do not promote preview while gate rows remain unresolved.
+
 See [the engine and transcript integration map](ENGINE-KNOWLEDGE-STATUS.md) for
 how reviewed knowledge becomes actual training, implemented methods, prerequisite
 pathways and the remaining limits. Archive coverage is not full engine integration.
