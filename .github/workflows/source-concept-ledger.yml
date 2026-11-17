@@ -5,6 +5,7 @@ on:
     paths:
       - 'scripts/build-source-ledger.cjs'
       - 'scripts/extract-passage-candidates.cjs'
+      - 'scripts/build-passage-review-queue.cjs'
       - 'sources-*.json'
       - 'research/supplied-review-manifest.json'
       - 'research/movement-integration-coverage.json'
@@ -26,6 +27,8 @@ jobs:
           node scripts/build-source-ledger.cjs --check
           node scripts/extract-passage-candidates.cjs
           node scripts/extract-passage-candidates.cjs --check
+          node scripts/build-passage-review-queue.cjs
+          node scripts/build-passage-review-queue.cjs --check
       - name: Upload ledger artifact
         uses: actions/upload-artifact@v4
         with:
@@ -33,4 +36,5 @@ jobs:
           path: |
             research/source-concept-ledger.generated.json
             research/passage-candidates.generated.json
+            research/passage-review-queue.generated.json
           retention-days: 30
