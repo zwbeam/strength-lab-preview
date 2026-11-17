@@ -107,6 +107,10 @@ assert.match(mobilityRecovery,/saved\.startedAt>Date\.now\(\)/);
 assert.match(mobilityRecovery,/24\*60\*60\*1000/);
 assert.match(mobilityRecovery,/routine\.length!==9/);
 assert.match(mobilityRecovery,/recoverMobilityCheckpoint\(\);/);
+
+assert.match(mobilityRecovery,/if\(draft\)\{sessionStorage\.removeItem\(MOBILITY_SESSION\);return;\}/);
+assert.match(app,/document\.querySelectorAll\('\[data-tab\]'\)\.forEach\(x=>x\.classList\.toggle\('active',x\.dataset\.tab===tab\)\);updateTimer\(\);if\(mobilityStartedAt\)updateMobilityClock\(\);/);
+
 assert.match(app,/mobilityStartedAt=Date\.now\(\);saveMobilityCheckpoint\(\)/);
 assert.match(app,/state=next;mobilityStartedAt=0;mobilityActiveRoutine=null;saveMobilityCheckpoint\(\)/);
 
