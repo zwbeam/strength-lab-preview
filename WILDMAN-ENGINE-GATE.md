@@ -12,6 +12,8 @@ Each entry must record (1) verified source IDs and bounded claim, (2) engine fun
 
 Do not mark a principle verified solely because a movement has a lesson, a source link, or an engine route. Unknown or visually ambiguous details stay unresolved.
 
+**Machine-checked closure evidence:** Update `research/wildman-engine-evidence.json` in the same change as any status change here. For each closed row supply numeric `sourceIds`, a bounded `claim`, checked-in `enginePaths` and `tests`, an `adaptation` explanation, and the supporting commit SHA. The CI checker rejects status mismatches, missing files, and empty closure evidence. Passing the checker does not itself prove the cited behavior; review the test assertions and source claims before approving closure.
+
 ## Priority audit matrix
 
 | Area | Current evidence | Acceptance test needed | Status |
