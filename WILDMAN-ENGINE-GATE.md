@@ -58,6 +58,7 @@ remain selected. Admission/maintenance of a manageable developing pathway, stric
 budgets for legacy unprotected programs, broader source-method checks and physical
 Android acceptance remain open. Do not close the rotation row on this batch.
 
+The tested implementation checkpoint is c1f11baf1add6059b82445be43a4bc6230a9ee68.
 The latest partial audit of all ten areas is in research/wildman-engine-evidence.json.
 Each row remains unresolved. The normal checker accepts documented status casing;
 release mode still blocks all ten open areas, and closed evidence may not cite

@@ -34,7 +34,9 @@
           "No automatic source-complete foundational curriculum has been established.",
           "Oversized core/development selections still show reduced returns in longitudinal diagnostics.",
           "Movement-specific admission, maintenance frequency and a manageable developing-path queue still need work."
-        ]
+        ],
+        "commit": "c1f11baf1add6059b82445be43a4bc6230a9ee68",
+        "verification": "Relevant local behavior suites passed in the complete 68 Node JS / 6 correction / 33 browser suite run. Partial audit only; remaining questions are not closed."
       }
     },
     "Movement-specific progression": {
@@ -66,7 +68,9 @@
         ],
         "remaining": [
           "Protocol-level source fidelity and default-method boundaries are not fully audited."
-        ]
+        ],
+        "commit": "c1f11baf1add6059b82445be43a4bc6230a9ee68",
+        "verification": "Relevant local behavior suites passed in the complete 68 Node JS / 6 correction / 33 browser suite run. Partial audit only; remaining questions are not closed."
       }
     },
     "Warmup philosophy": {
@@ -95,7 +99,9 @@
         "remaining": [
           "The source two-minute transition and individualized longer preparation need full time-allocation evaluation.",
           "Movement-aware selection remains in app.js rather than a separately testable preparation engine."
-        ]
+        ],
+        "commit": "c1f11baf1add6059b82445be43a4bc6230a9ee68",
+        "verification": "Relevant local behavior suites passed in the complete 68 Node JS / 6 correction / 33 browser suite run. Partial audit only; remaining questions are not closed."
       }
     },
     "Cooldown philosophy": {
@@ -124,7 +130,9 @@
         ],
         "remaining": [
           "General direction references do not close physical technique or individual adaptation review."
-        ]
+        ],
+        "commit": "c1f11baf1add6059b82445be43a4bc6230a9ee68",
+        "verification": "Relevant local behavior suites passed in the complete 68 Node JS / 6 correction / 33 browser suite run. Partial audit only; remaining questions are not closed."
       }
     },
     "Prerequisites and skill gates": {
@@ -153,7 +161,9 @@
         ],
         "remaining": [
           "Teaching sequences and actual registry dependencies require further source-by-source comparison."
-        ]
+        ],
+        "commit": "c1f11baf1add6059b82445be43a4bc6230a9ee68",
+        "verification": "Relevant local behavior suites passed in the complete 68 Node JS / 6 correction / 33 browser suite run. Partial audit only; remaining questions are not closed."
       }
     },
     "Recovery and continuity": {
@@ -182,7 +192,9 @@
         ],
         "remaining": [
           "Return thresholds and capacity fractions remain app heuristics; individualized recovery is not certified."
-        ]
+        ],
+        "commit": "c1f11baf1add6059b82445be43a4bc6230a9ee68",
+        "verification": "Relevant local behavior suites passed in the complete 68 Node JS / 6 correction / 33 browser suite run. Partial audit only; remaining questions are not closed."
       }
     },
     "Equipment and real-world constraints": {
@@ -213,7 +225,9 @@
         "remaining": [
           "The legacy unprotected flexible duration still needs a compatibility strategy for strict global budgets.",
           "Physical clearance, real devices and technique cannot be established by browser tests."
-        ]
+        ],
+        "commit": "c1f11baf1add6059b82445be43a4bc6230a9ee68",
+        "verification": "Relevant local behavior suites passed in the complete 68 Node JS / 6 correction / 33 browser suite run. Partial audit only; remaining questions are not closed."
       }
     },
     "Source-specific methods": {
@@ -246,7 +260,9 @@
         ],
         "remaining": [
           "Broader paired, club, bodyweight and timing-series systems remain incomplete."
-        ]
+        ],
+        "commit": "c1f11baf1add6059b82445be43a4bc6230a9ee68",
+        "verification": "Relevant local behavior suites passed in the complete 68 Node JS / 6 correction / 33 browser suite run. Partial audit only; remaining questions are not closed."
       }
     },
     "Movement instruction": {
@@ -273,7 +289,9 @@
         ],
         "remaining": [
           "Sixteen instructional/visual gaps and physical Android technique review remain open."
-        ]
+        ],
+        "commit": "c1f11baf1add6059b82445be43a4bc6230a9ee68",
+        "verification": "Relevant local behavior suites passed in the complete 68 Node JS / 6 correction / 33 browser suite run. Partial audit only; remaining questions are not closed."
       }
     },
     "Full research accounting": {
@@ -306,7 +324,9 @@
         ],
         "remaining": [
           "Master ledger/anchored review reconciliation and complete engine-relevant concept extraction remain unfinished."
-        ]
+        ],
+        "commit": "c1f11baf1add6059b82445be43a4bc6230a9ee68",
+        "verification": "Relevant local behavior suites passed in the complete 68 Node JS / 6 correction / 33 browser suite run. Partial audit only; remaining questions are not closed."
       }
     }
   }
