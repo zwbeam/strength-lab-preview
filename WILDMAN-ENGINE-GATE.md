@@ -108,6 +108,8 @@ remain open. Regression inventory is 70 Node JS suites, six correction tests and
 35 browser suites. Runtime/query rc65-developing-continuity keeps 51 assets and
 all existing V33 storage namespaces. No user-data migration is introduced.
 
+Developing-continuity implementation checkpoint: dc2c92130a89f1ee3a95f9f9f456dc46138fcdc1.
+
 ## Final UI phase, after the gate
 
 Review Train, Workout, Log, Learn and Settings as actual user journeys; simplify setup, remove duplicated controls, ensure understandable decisions and preserve backups. Run current-commit CI and Android acceptance before release.

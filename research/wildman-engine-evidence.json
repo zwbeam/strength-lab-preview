@@ -92,7 +92,9 @@
           "No complete automatic curriculum or movement-specific maintenance policy is established.",
           "One additional 60-minute return and delayed 45-minute squat qualification remain documented tradeoffs.",
           "Synthetic diagnostics are not physical technique or real Android acceptance."
-        ]
+        ],
+        "commit": "dc2c92130a89f1ee3a95f9f9f456dc46138fcdc1",
+        "verification": "All 70 Node JS, six correction and 35 browser suites passed locally; final focused current-method regression passed. All ten audit areas remain unresolved."
       }
     },
     "Movement-specific progression": {
@@ -156,7 +158,9 @@
           "No complete automatic curriculum or movement-specific maintenance policy is established.",
           "One additional 60-minute return and delayed 45-minute squat qualification remain documented tradeoffs.",
           "Synthetic diagnostics are not physical technique or real Android acceptance."
-        ]
+        ],
+        "commit": "dc2c92130a89f1ee3a95f9f9f456dc46138fcdc1",
+        "verification": "All 70 Node JS, six correction and 35 browser suites passed locally; final focused current-method regression passed. All ten audit areas remain unresolved."
       }
     },
     "Warmup philosophy": {
@@ -336,7 +340,9 @@
           "No complete automatic curriculum or movement-specific maintenance policy is established.",
           "One additional 60-minute return and delayed 45-minute squat qualification remain documented tradeoffs.",
           "Synthetic diagnostics are not physical technique or real Android acceptance."
-        ]
+        ],
+        "commit": "dc2c92130a89f1ee3a95f9f9f456dc46138fcdc1",
+        "verification": "All 70 Node JS, six correction and 35 browser suites passed locally; final focused current-method regression passed. All ten audit areas remain unresolved."
       }
     },
     "Equipment and real-world constraints": {
