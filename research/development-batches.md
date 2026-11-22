@@ -1712,3 +1712,77 @@ suite registration, diff checks and 51-asset offline integrity passed. Release
 mode deliberately remains blocked by all ten unresolved areas. Exact-commit
 remote CI and public DEV verification still must complete before deployment is
 reported verified.
+
+
+## Admit optional practice without manufacturing debt — November 22
+
+Incoming verified checkpoint: c05c3d3. Environment access recovered, fetched
+origin/preview, confirmed the isolated /workspace/strength-lab-engine worktree
+was clean and synchronized, and verified all six incoming checks. The interrupted
+cat-crawl work in the original checkout remains preserved. No production/main
+operation, storage migration or history rewrite is part of this batch.
+
+A new failing test reproduced automatic hip practice displacing the declared
+press/row work in a protected thirty-minute core. Automatic additions could enter
+the unfinished-work queue without ever having been assigned as a prescription.
+Their incidental recurrence also inflated observed core sweep size and reduced
+capacity for other selected programs.
+
+Protected coordination now orders automatic supplemental/variety candidates
+after declared program work, prerequisite support and real pending work. Choices
+that cannot be admitted become optionalStandby metadata, never assigned physical
+debt or credit. Explicit saved Major family priorities are not silently demoted.
+Existing/unknown pending IDs remain mandatory; actual partial or unperformed
+written accessories retain their established continuation behavior. Observed core
+sweeps use declared patterns and supporting practice rather than incidental
+optional entries. No old history, queue or saved program is removed.
+
+A second failing test reproduced a complete press prescription not fitting
+because planning reserved a following rest after the final movement. Protected
+fitting now omits that final following rest, restoring the preceding transition
+when another movement is added. Complete rounds, all per-movement targets, rests,
+policy identities and conservative setup allowance remain unchanged. Existing
+unprotected fitting is untouched. New interval checks cover every block at
+30/45/60 minutes against the actual queue. Self-paced duration is still an app
+estimate; timers never record physical work.
+
+The existing workout explanation shows why extra skill practice is waiting.
+A further regression reproduced a developing choice incorrectly described as
+the oldest ready selected program while an older core was eligible. Reserved
+capacity choices now use the actual allocation explanation. No new settings or
+frontend restructuring was added.
+
+Research facts, exact archive quotes and hashes from #404/#548/#550/#606 remain
+separate from app admission/cost rules in research/optional-admission-evidence.json.
+No new instructional scope or source completion count is claimed. Runtime
+coverage remains 54 movements / 38 reviewed outlines / 16 partial lessons.
+
+Controlled before/after runs used the exact c05c3d3 engine blob
+50a8380dd879e59bd48fa9f9e361cb40f52608b0, identical inventories, skills, doses and
+120 genuine generated workouts at three days/week. Thirty-minute developing
+workouts rose from 12 to 29, with reentry entries 57 to 55. At 45 minutes they
+rose from 49 to 56, with reentry 51 to 45; the 60-minute case stayed 60/60 with
+zero reentry. These are synthetic app diagnostics, not physical outcomes.
+
+The existing 27 two-year matrix was also rerun: all 8,820 workouts remain inside
+protected time budgets. Developing workouts rise from 5,093 to 5,452 and reentry
+entries fall from 2,436 to 2,070. Results are retained in
+research/optional-admission-results.json alongside clear limitations. The release
+gate remains unresolved; oversized cores and developing-block admission still
+need work. This batch does not certify sustainable curriculum coverage.
+
+New mobile acceptance at 320/390px exercises shared Train/Settings durations,
+automatic admission at 45 minutes versus standby at 30, the complete squat/press
+plan without phantom final rest, genuine logged bilateral actuals, no optional
+debt or credit and immutable untouched drafts offline. New Node cases cover
+explicit pending work, partial written accessories, Major priorities, observed
+optional gaps, real allocation explanations, date-safe forecasts and backups.
+
+Compatibility comparison preserves 108 default normal/reduced prescriptions
+and all 96 legacy block/duration plans exactly. Final local verification passes
+all 69 Node JS suites, six correction tests and all 34 browser suites. Both
+source audits, source quote/hash checks, syntax, suite registration, diff checks
+and 51-asset offline integrity pass. Cache/query rc64-optional-admission keeps all
+V33 namespaces. All ten Wildman gate rows remain unresolved; development checking
+passes and release checking remains intentionally blocked. Exact-commit CI and
+public DEV verification remain required before reporting a verified deployment.

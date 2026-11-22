@@ -1,0 +1,331 @@
+{
+  "baseCommit": "c05c3d36f68d5b6339ac31ebf59e028ef8d1c334",
+  "scope": "Controlled synthetic 40-week comparison; 120 actual generated workouts per case, three days/week, no interruptions, full clean actuals and unchanged inventories/skills/doses.",
+  "cases": [
+    {
+      "minutes": 30,
+      "before": {
+        "core": 108,
+        "developing": 12,
+        "reentryEntries": 57
+      },
+      "after": {
+        "core": 91,
+        "developing": 29,
+        "reentryEntries": 55
+      }
+    },
+    {
+      "minutes": 45,
+      "before": {
+        "core": 71,
+        "developing": 49,
+        "reentryEntries": 51
+      },
+      "after": {
+        "core": 64,
+        "developing": 56,
+        "reentryEntries": 45
+      }
+    },
+    {
+      "minutes": 60,
+      "before": {
+        "core": 60,
+        "developing": 60,
+        "reentryEntries": 0
+      },
+      "after": {
+        "core": 60,
+        "developing": 60,
+        "reentryEntries": 0
+      }
+    }
+  ],
+  "interpretation": "Developing opportunities improve in the constrained examples, with all written doses unchanged and inside protected time budgets. Reentry is not eliminated; no sustainable-curriculum certification is claimed.",
+  "extendedDiagnostics": {
+    "scope": "The existing 27 two-year actual-generator matrix, rerun under the new engine; this is a safety/time/replay diagnostic, not a no-reentry certification.",
+    "before": {
+      "savedWorkouts": 8820,
+      "developingWorkouts": 5093,
+      "reentryEntries": 2436
+    },
+    "after": {
+      "savedWorkouts": 8820,
+      "developingWorkouts": 5452,
+      "reentryEntries": 2070
+    },
+    "results": [
+      {
+        "minutes": 30,
+        "frequency": 2,
+        "gear": "kb",
+        "saved": 196,
+        "core": 183,
+        "development": 13,
+        "reentry": 190,
+        "checks": 2
+      },
+      {
+        "minutes": 30,
+        "frequency": 2,
+        "gear": "club",
+        "saved": 196,
+        "core": 132,
+        "development": 64,
+        "reentry": 68,
+        "checks": 2
+      },
+      {
+        "minutes": 30,
+        "frequency": 2,
+        "gear": "bodyweight",
+        "saved": 196,
+        "core": 53,
+        "development": 143,
+        "reentry": 31,
+        "checks": 2
+      },
+      {
+        "minutes": 30,
+        "frequency": 3,
+        "gear": "kb",
+        "saved": 294,
+        "core": 277,
+        "development": 17,
+        "reentry": 167,
+        "checks": 3
+      },
+      {
+        "minutes": 30,
+        "frequency": 3,
+        "gear": "club",
+        "saved": 294,
+        "core": 140,
+        "development": 154,
+        "reentry": 73,
+        "checks": 3
+      },
+      {
+        "minutes": 30,
+        "frequency": 3,
+        "gear": "bodyweight",
+        "saved": 294,
+        "core": 62,
+        "development": 232,
+        "reentry": 21,
+        "checks": 3
+      },
+      {
+        "minutes": 30,
+        "frequency": 5,
+        "gear": "kb",
+        "saved": 490,
+        "core": 229,
+        "development": 261,
+        "reentry": 106,
+        "checks": 6
+      },
+      {
+        "minutes": 30,
+        "frequency": 5,
+        "gear": "club",
+        "saved": 490,
+        "core": 85,
+        "development": 405,
+        "reentry": 27,
+        "checks": 6
+      },
+      {
+        "minutes": 30,
+        "frequency": 5,
+        "gear": "bodyweight",
+        "saved": 490,
+        "core": 64,
+        "development": 426,
+        "reentry": 19,
+        "checks": 6
+      },
+      {
+        "minutes": 45,
+        "frequency": 2,
+        "gear": "kb",
+        "saved": 196,
+        "core": 174,
+        "development": 22,
+        "reentry": 198,
+        "checks": 2
+      },
+      {
+        "minutes": 45,
+        "frequency": 2,
+        "gear": "club",
+        "saved": 196,
+        "core": 114,
+        "development": 82,
+        "reentry": 67,
+        "checks": 2
+      },
+      {
+        "minutes": 45,
+        "frequency": 2,
+        "gear": "bodyweight",
+        "saved": 196,
+        "core": 53,
+        "development": 143,
+        "reentry": 31,
+        "checks": 2
+      },
+      {
+        "minutes": 45,
+        "frequency": 3,
+        "gear": "kb",
+        "saved": 294,
+        "core": 221,
+        "development": 73,
+        "reentry": 167,
+        "checks": 3
+      },
+      {
+        "minutes": 45,
+        "frequency": 3,
+        "gear": "club",
+        "saved": 294,
+        "core": 120,
+        "development": 174,
+        "reentry": 45,
+        "checks": 3
+      },
+      {
+        "minutes": 45,
+        "frequency": 3,
+        "gear": "bodyweight",
+        "saved": 294,
+        "core": 62,
+        "development": 232,
+        "reentry": 21,
+        "checks": 3
+      },
+      {
+        "minutes": 45,
+        "frequency": 5,
+        "gear": "kb",
+        "saved": 490,
+        "core": 194,
+        "development": 296,
+        "reentry": 121,
+        "checks": 6
+      },
+      {
+        "minutes": 45,
+        "frequency": 5,
+        "gear": "club",
+        "saved": 490,
+        "core": 86,
+        "development": 404,
+        "reentry": 27,
+        "checks": 6
+      },
+      {
+        "minutes": 45,
+        "frequency": 5,
+        "gear": "bodyweight",
+        "saved": 490,
+        "core": 64,
+        "development": 426,
+        "reentry": 19,
+        "checks": 6
+      },
+      {
+        "minutes": 60,
+        "frequency": 2,
+        "gear": "kb",
+        "saved": 196,
+        "core": 173,
+        "development": 23,
+        "reentry": 181,
+        "checks": 2
+      },
+      {
+        "minutes": 60,
+        "frequency": 2,
+        "gear": "club",
+        "saved": 196,
+        "core": 95,
+        "development": 101,
+        "reentry": 37,
+        "checks": 2
+      },
+      {
+        "minutes": 60,
+        "frequency": 2,
+        "gear": "bodyweight",
+        "saved": 196,
+        "core": 53,
+        "development": 143,
+        "reentry": 31,
+        "checks": 2
+      },
+      {
+        "minutes": 60,
+        "frequency": 3,
+        "gear": "kb",
+        "saved": 294,
+        "core": 226,
+        "development": 68,
+        "reentry": 189,
+        "checks": 3
+      },
+      {
+        "minutes": 60,
+        "frequency": 3,
+        "gear": "club",
+        "saved": 294,
+        "core": 102,
+        "development": 192,
+        "reentry": 45,
+        "checks": 3
+      },
+      {
+        "minutes": 60,
+        "frequency": 3,
+        "gear": "bodyweight",
+        "saved": 294,
+        "core": 62,
+        "development": 232,
+        "reentry": 21,
+        "checks": 3
+      },
+      {
+        "minutes": 60,
+        "frequency": 5,
+        "gear": "kb",
+        "saved": 490,
+        "core": 194,
+        "development": 296,
+        "reentry": 122,
+        "checks": 6
+      },
+      {
+        "minutes": 60,
+        "frequency": 5,
+        "gear": "club",
+        "saved": 490,
+        "core": 86,
+        "development": 404,
+        "reentry": 27,
+        "checks": 6
+      },
+      {
+        "minutes": 60,
+        "frequency": 5,
+        "gear": "bodyweight",
+        "saved": 490,
+        "core": 64,
+        "development": 426,
+        "reentry": 19,
+        "checks": 6
+      }
+    ]
+  }
+}

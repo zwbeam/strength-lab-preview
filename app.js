@@ -276,6 +276,7 @@ function trainingExplanation(plan){
  ].filter(Boolean)});
  if(items.length)entries.push({title:'What you are building',points:items.slice(0,5).map(x=>`${x.name}: ${movementStage(x.id).toLowerCase()}`).concat(items.length>5?[`And ${items.length-5} more movements in today’s plan`]:[])});
  if(p.requirements?.length)entries.push({title:'Skills to learn next',points:[`Prerequisites affect which advanced movements the engine can prescribe: ${p.requirements.slice(0,4).map(x=>E.MOVES[x.id]?.name||x.id).join(', ')}${p.requirements.length>4?' and others':''}`]});
+ if(p.optionalStandby?.length)entries.push({title:'Additional practice',points:['Automatic skill additions are waiting for room after the selected program work. Unfinished written work stays queued.']});
  if(p.composition?.cadence?.warning)entries.push({title:'Rotation note',points:[p.composition.cadence.warning]});
  return {entries,days,practiced,items};
 }

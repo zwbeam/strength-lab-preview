@@ -115,3 +115,14 @@ feedback, not automatic curriculum curation or an exercise-level feasibility
 guarantee; internal pattern rotation and future eligibility still need work.
 Automation uses
 synthetic histories and browser emulation; it does not certify physical technique.
+
+
+Protected coordination now admits automatic additions after declared work and
+retains unadmitted choices as standby metadata rather than physical debt. Actual
+partial/explicit pending work stays queued. Incidental optional practice no longer
+defines core sweep frequency; protected fitting matches actual transitions and
+omits a final following rest. The rerun 27 two-year diagnostic matrix delivers
+359 more developing workouts and 366 fewer reentry entries across 8,820 sessions.
+This is measurable coordination improvement, not complete curriculum integration.
+Oversized cores, developing-block admission and legacy strict time compatibility
+remain open. See research/optional-admission-results.json.

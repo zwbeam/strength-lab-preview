@@ -37,6 +37,30 @@
         ],
         "commit": "c1f11baf1add6059b82445be43a4bc6230a9ee68",
         "verification": "Relevant local behavior suites passed in the complete 68 Node JS / 6 correction / 33 browser suite run. Partial audit only; remaining questions are not closed."
+      },
+      "optionalAdmissionFollowUp": {
+        "date": "2026-11-22",
+        "baseCommit": "c05c3d36f68d5b6339ac31ebf59e028ef8d1c334",
+        "sourceIds": [
+          404,
+          548,
+          550,
+          606
+        ],
+        "enginePaths": [
+          "engine.js",
+          "app.js"
+        ],
+        "tests": [
+          "tests/optional-admission.js",
+          "tests/browser-optional-admission.cjs",
+          "tests/core-composition.js"
+        ],
+        "evidence": "research/optional-admission-evidence.json",
+        "results": "research/optional-admission-results.json",
+        "claim": "Automatic additions wait for program capacity, incidental optional gaps do not define the core sweep, and protected time estimates match actual transitions without truncating rounds.",
+        "adaptation": "Admission/standby classification, reservation scope and cost calculations are Strength Lab rules, not source-authored numerical programming. Explicit pending and Major priorities remain honored.",
+        "remaining": "Developing-block admission/maintenance and sustainable oversized curricula remain unresolved; diagnostic reentry entries remain."
       }
     },
     "Movement-specific progression": {
@@ -195,6 +219,30 @@
         ],
         "commit": "c1f11baf1add6059b82445be43a4bc6230a9ee68",
         "verification": "Relevant local behavior suites passed in the complete 68 Node JS / 6 correction / 33 browser suite run. Partial audit only; remaining questions are not closed."
+      },
+      "optionalAdmissionFollowUp": {
+        "date": "2026-11-22",
+        "baseCommit": "c05c3d36f68d5b6339ac31ebf59e028ef8d1c334",
+        "sourceIds": [
+          404,
+          548,
+          550,
+          606
+        ],
+        "enginePaths": [
+          "engine.js",
+          "app.js"
+        ],
+        "tests": [
+          "tests/optional-admission.js",
+          "tests/browser-optional-admission.cjs",
+          "tests/core-composition.js"
+        ],
+        "evidence": "research/optional-admission-evidence.json",
+        "results": "research/optional-admission-results.json",
+        "claim": "Automatic additions wait for program capacity, incidental optional gaps do not define the core sweep, and protected time estimates match actual transitions without truncating rounds.",
+        "adaptation": "Admission/standby classification, reservation scope and cost calculations are Strength Lab rules, not source-authored numerical programming. Explicit pending and Major priorities remain honored.",
+        "remaining": "Developing-block admission/maintenance and sustainable oversized curricula remain unresolved; diagnostic reentry entries remain."
       }
     },
     "Equipment and real-world constraints": {
@@ -228,6 +276,30 @@
         ],
         "commit": "c1f11baf1add6059b82445be43a4bc6230a9ee68",
         "verification": "Relevant local behavior suites passed in the complete 68 Node JS / 6 correction / 33 browser suite run. Partial audit only; remaining questions are not closed."
+      },
+      "optionalAdmissionFollowUp": {
+        "date": "2026-11-22",
+        "baseCommit": "c05c3d36f68d5b6339ac31ebf59e028ef8d1c334",
+        "sourceIds": [
+          404,
+          548,
+          550,
+          606
+        ],
+        "enginePaths": [
+          "engine.js",
+          "app.js"
+        ],
+        "tests": [
+          "tests/optional-admission.js",
+          "tests/browser-optional-admission.cjs",
+          "tests/core-composition.js"
+        ],
+        "evidence": "research/optional-admission-evidence.json",
+        "results": "research/optional-admission-results.json",
+        "claim": "Automatic additions wait for program capacity, incidental optional gaps do not define the core sweep, and protected time estimates match actual transitions without truncating rounds.",
+        "adaptation": "Admission/standby classification, reservation scope and cost calculations are Strength Lab rules, not source-authored numerical programming. Explicit pending and Major priorities remain honored.",
+        "remaining": "Developing-block admission/maintenance and sustainable oversized curricula remain unresolved; diagnostic reentry entries remain."
       }
     },
     "Source-specific methods": {

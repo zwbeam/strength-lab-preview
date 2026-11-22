@@ -647,7 +647,8 @@ function blockPlan(s,opts={}){
  // 30-minute target has a 25–40-minute flexible window. Extension is reserved for a full priority prescription.
  // The same target window applies in Settings and Today's Adjustments.
  // 30-minute sessions have a 25–40 minute band; other targets allow ±5.
- const flexMax=s.programComposition?.enabled&&s.programComposition.coreBlock?budget.total:budget.total===30?40:Math.min(120,budget.total+5);
+ const protectedRotation=!!(s.programComposition?.enabled&&s.programComposition.coreBlock);
+ const flexMax=protectedRotation?budget.total:budget.total===30?40:Math.min(120,budget.total+5);
  const maxMain=flexMax-budget.warmup-budget.cooldown;
  const pref=s.trainingPreferences||{};
  const emphasis=pref.emphasis?trainingEmphasis(s).levels:null;
@@ -689,6 +690,10 @@ function blockPlan(s,opts={}){
  // Keep fundamentals if the complex cannot actually be prescribed at a configured load.
  const replaced=new Set(complexChoice?.requires||[]);
  const candidateIds=[...new Set([...support,...pending.filter(id=>allowed.has(id)),...(continuing?[]:day.ids.filter(id=>!replaced.has(id))),...complexIds,...supplemental.filter(id=>!complexChoice||!MOVES[id].clubPair)])].filter(enabled);
+ // Automatically suggested additions have not yet been assigned as physical work.
+ // Preserve explicit/legacy pending IDs and prerequisite support as mandatory.
+ const explicitMajor=id=>pref.emphasis?.[MOVES[id].complex?'complex':MOVES[id].bodyweight?'bodyweight':MOVES[id].gear]==='major';
+ const optional=new Set(protectedRotation?supplemental.filter(id=>!explicitMajor(id)&&!pending.includes(id)&&!support.includes(id)&&!day.ids.includes(id)):[]);
  const focus=pref.focus||'balanced',variety=pref.variety||'moderate';
  const scored=id=>{const m=MOVES[id];if(!m)return 0;const family=m.family||'';return focus==='strength'?(['squat','press','pull','hinge'].includes(family)?2:0):focus==='capacity'?(['hinge','carry'].includes(family)?2:0):focus==='skill'?((m.practicePrereqs||[]).length?2:0):0;};
  // Prioritize eligible deferred work before accessories; never override recovery or prerequisites.
@@ -719,6 +724,7 @@ function blockPlan(s,opts={}){
   return (total+1)*priority[family]/Math.max(1,weightTotal)-familyExposure[family];
  };
  const ids=[...candidateIds].sort((a,b)=>{
+  if(optional.has(a)!==optional.has(b))return optional.has(a)?1:-1;
   const ap=pendingOrder.has(a),bp=pendingOrder.has(b);
   if(ap!==bp)return ap?-1:1;
   if(ap&&bp)return pendingOrder.get(a)-pendingOrder.get(b);
@@ -736,11 +742,12 @@ function blockPlan(s,opts={}){
   const rotation=Math.floor(completedCount/(variety==='high'?1:3));
   for(let n=0;n<pool.length;n++){
    const id=pool[(rotation+n)%pool.length];
-   if(enabled(id)&&!ids.includes(id)&&!ids.some(x=>MOVES[x]?.family===MOVES[id]?.family)){ids.push(id);break;}
+   if(enabled(id)&&!ids.includes(id)&&!ids.some(x=>MOVES[x]?.family===MOVES[id]?.family)){ids.push(id);if(protectedRotation&&!explicitMajor(id))optional.add(id);break;}
   }
  }
 
- const items=[],deferred=[],held=[],unavailable=[],prerequisite=[],requirements=[],scheduled=[],timeBlocked=[];let used=0,hard=0;
+ const items=[],deferred=[],held=[],unavailable=[],prerequisite=[],requirements=[],scheduled=[],timeBlocked=[],optionalStandby=[];let used=0,hard=0;
+ const defer=id=>optional.has(id)?optionalStandby.push({id,reason:'Additional skill practice waits for room after the selected program work.'}):deferred.push(id);
  const today=calendarDay(opts.now),history=timeline.filter(x=>calendarDay(x.date)<=today);
  const trainingDays=new Set(history.filter(x=>today-calendarDay(x.date)<7&&(x.items||[]).some(y=>y.actualSets>0)).map(x=>x.date));
  const alreadyToday=history.some(x=>calendarDay(x.date)===today&&(x.items||[]).some(y=>y.actualSets>0));
@@ -755,12 +762,13 @@ function blockPlan(s,opts={}){
 
  for(const id of ids){
   if(!MOVES[id])continue;
-  if(block==='abc'&&MOVES[id].bodyweight&&day.ids.some(x=>!MOVES[x].bodyweight)&&items.some(x=>x.bodyweight)){deferred.push(id);continue;}
+  if(optional.has(id)&&(continuing||deferred.length)){defer(id);continue;}
+  if(block==='abc'&&MOVES[id].bodyweight&&day.ids.some(x=>!MOVES[x].bodyweight)&&items.some(x=>x.bodyweight)){defer(id);continue;}
   // App workload cap: one paired-club pattern per session; rotate deferred patterns.
-  if((MOVES[id].clubPair&&items.some(x=>MOVES[x.id].clubPair||MOVES[x.id].complex))||(MOVES[id].complex&&items.some(x=>MOVES[x.id].clubPair))){deferred.push(id);continue;}
-  if(trainingPaused(s,opts.now)){deferred.push(id);continue;}
+  if((MOVES[id].clubPair&&items.some(x=>MOVES[x.id].clubPair||MOVES[x.id].complex))||(MOVES[id].complex&&items.some(x=>MOVES[x.id].clubPair))){defer(id);continue;}
+  if(trainingPaused(s,opts.now)){defer(id);continue;}
   
-  if(stateFor(s,id,opts).hold){held.push(id);deferred.push(id);continue;}
+  if(stateFor(s,id,opts).hold){held.push(id);defer(id);continue;}
   const lastTraining=history.filter(x=>(x.items||[]).some(y=>y.actualSets>0)).sort((a,b)=>a.date.localeCompare(b.date)).at(-1);
   const pauseReturn=!!s.pauseStarted&&lastTraining&&lastTraining.date<=s.pauseStarted&&today-calendarDay(lastTraining.date)>(defaults.reentryDays??14);
   let rx=prescription(s,id,{...opts,reentry:opts.reentry||pauseReturn});
@@ -775,7 +783,7 @@ function blockPlan(s,opts={}){
    }
   }
   if(opts.omitUnstartedLoads&&!MOVES[id].bodyweight&&rx.sets>0&&!validWorkingWeight(id,rx.weight)){unavailable.push(id);requirements.push({id,reason:'Choose an owned familiar starting load in Settings → Advanced & Data → Movement Programming. Unstarted load setup is not unfinished physical work.'});continue;}
-  if(rx.mode==='prerequisite'){prerequisite.push(id);requirements.push({id,reason:rx.reason});deferred.push(id);continue;}
+  if(rx.mode==='prerequisite'){prerequisite.push(id);requirements.push({id,reason:rx.reason});defer(id);continue;}
   const demands=movementDemands(id);
   const recent=history.some(x=>today-calendarDay(x.date)<(defaults.minGapDays??0)&&(x.items||[]).some(y=>y.actualSets>0&&MOVES[y.id]&&movementDemands(y.id).some(d=>demands.includes(d))));
   const isHard=rx.track==='heavy'||rx.profile==='grind'||rx.mode==='density';
@@ -787,16 +795,22 @@ function blockPlan(s,opts={}){
   }
   const outside=(s.activities||[]).some(a=>a.status==='completed'&&calendarDay(a.date)<=today&&(today-calendarDay(a.date)<activityRecovery(a)||a.replacesStrength!==false&&today===calendarDay(a.date)));
   const repeat=s.trainingPreferences?.beginnerSpacing&&history.some(x=>today-calendarDay(x.date)<2&&(x.items||[]).some(y=>y.id===id&&y.actualSets>0));
-  if(outside||repeat||restDay||recent||(isHard&&opts.avoidHard)||(isHard&&hard>=(defaults.maxHardMovements??3))){scheduled.push(id);deferred.push(id);continue;}
-  const cost=minutesFor(rx)+(items.length?(items.at(-1).betweenExercises||0)/60:0);
+  if(outside||repeat||restDay||recent||(isHard&&opts.avoidHard)||(isHard&&hard>=(defaults.maxHardMovements??3))){scheduled.push(id);defer(id);continue;}
+  // The final movement has no following rest. Restore the preceding transition
+  // when another movement is added; genuine round intervals remain intact.
+  const finalRest=protectedRotation&&!rx.roundSeconds&&!rx.continuous?(rx.rest||0)/60:0;
+  const aloneCost=minutesFor(rx)-finalRest,previous=items.at(-1);
+  const transition=previous?(previous.betweenExercises||(protectedRotation&&!previous.roundSeconds&&!previous.continuous?previous.rest:0)||0)/60:0;
+  const cost=aloneCost+transition;
   // The first movement that can actually be scheduled owns the flexible window.
   // Held, recovering, or prerequisite-blocked candidates must not consume priority.
   const priority=items.length===0;
   const limit=priority?maxMain:Math.max(budget.main,used);
-  if(used+cost>limit+1e-8){deferred.push(id);timeBlocked.push({id,requiredMainMinutes:Math.ceil(cost),minimumTotalMinutes:Math.ceil(cost+budget.warmup+budget.cooldown),cannotFitAlone:cost>maxMain+1e-8,reason:cost>maxMain+1e-8?'Full progression exceeds the flexible session ceiling; no advancement credit is possible until the time allocation changes.':'Full prescription did not fit the priority-protected session; it remains deferred.'});continue;}
+  if(used+cost>limit+1e-8){defer(id);if(optional.has(id))continue;timeBlocked.push({id,requiredMainMinutes:Math.ceil(protectedRotation?aloneCost:cost),minimumTotalMinutes:Math.ceil((protectedRotation?aloneCost:cost)+budget.warmup+budget.cooldown),cannotFitAlone:(protectedRotation?aloneCost:cost)>maxMain+1e-8,reason:(protectedRotation?aloneCost:cost)>maxMain+1e-8?(protectedRotation?'Full progression exceeds the selected session ceiling; no advancement credit is possible until the time allocation changes.':'Full progression exceeds the flexible session ceiling; no advancement credit is possible until the time allocation changes.'):'Full prescription did not fit the priority-protected session; it remains deferred.'});continue;}
   items.push(rx);used+=cost;if(isHard)hard++;
  }
- return{block,slot,day:continuing?{...day,name:day.name+' · remaining work'}:day,support,items,deferred,timeBlocked,held,unavailable,prerequisite,requirements,scheduled,restDay,spacingRecommended,spacingReason:spacingRecommended?'A rest or easier activity day is recommended after yesterday’s workout; you may train if recovered.':'',paused:trainingPaused(s,opts.now),estimated:Math.ceil(used),total:Math.ceil(used)+budget.warmup+budget.cooldown,reentry:items.some(x=>x.mode==='reentry'),cap:maxMain,budget:{...budget,targetMain:budget.main,flexMax,main:maxMain},extended:used>budget.main+1e-8};
+ const estimated=protectedRotation?Math.max(0,Math.ceil(used-1e-8)):Math.ceil(used);
+ return{block,slot,...(optional.size?{optionalStandby}:{}),day:continuing?{...day,name:day.name+' · remaining work'}:day,support,items,deferred,timeBlocked,held,unavailable,prerequisite,requirements,scheduled,restDay,spacingRecommended,spacingReason:spacingRecommended?'A rest or easier activity day is recommended after yesterday’s workout; you may train if recovered.':'',paused:trainingPaused(s,opts.now),estimated,total:estimated+budget.warmup+budget.cooldown,reentry:items.some(x=>x.mode==='reentry'),cap:maxMain,budget:{...budget,targetMain:budget.main,flexMax,main:maxMain},extended:used>budget.main+1e-8};
 }
 // Coordinate independent blocks across workouts; never blend their numeric protocols.
 // Training Emphasis is a temporary scheduling preference, independent of equipment inventory.
@@ -903,7 +917,8 @@ function coreAllocation(s,candidates,history,opts){
  // Deferred work may need more core opportunities than the formal day count.
  // Measure actual recurrence in core visits, never fabricate component credit.
  const coreHistory=physical.filter(x=>(x.block||'abc')===coreBlock),lastSeen=new Map(),returns=new Map();
- for(let i=0;i<coreHistory.length;i++)for(const item of coreHistory[i].items||[])if(item.actualSets>0&&item.performed){if(lastSeen.has(item.id))returns.set(item.id,i-lastSeen.get(item.id));lastSeen.set(item.id,i);}
+ const corePatterns=new Set([...BLOCKS[coreBlock].days.flatMap(x=>x.ids),...(core?.p.day.ids||[]),...(core?.p.support||[]),...coreHistory.flatMap(x=>[...(x.plan?.day?.ids||[]),...(x.plan?.support||[])])]);
+ for(let i=0;i<coreHistory.length;i++)for(const item of coreHistory[i].items||[])if(corePatterns.has(item.id)&&movementEnabled(s,item.id)&&item.actualSets>0&&item.performed){if(lastSeen.has(item.id))returns.set(item.id,i-lastSeen.get(item.id));lastSeen.set(item.id,i);}
  const requiredCoreVisits=Math.max(programDays,...returns.values());
  const share=Math.min(1,7*requiredCoreVisits/(pace*returnDays));
  const actual=physical.filter(x=>s.programComposition.blocks.includes(x.block||'abc')).map(x=>x.block||'abc');
@@ -965,7 +980,7 @@ function plan(s,opts={}){
  const rotationWarning=slowest&&slowest.estimatedReturnDays>absenceDays?'In a simple rotation across '+rotation.readyBlocks+' currently ready programs at '+rotation.effectiveDaysPerWeek+' days/week capacity'+(rotation.basis==='capacity-and-observed-pace'?' and your recorded pace':'')+', '+BLOCKS[slowest.block].name+' has '+slowest.programDays+' program day'+(slowest.programDays===1?'':'s')+' recurring about every '+slowest.estimatedReturnDays+' days. For movements not practiced elsewhere, that can exceed your '+absenceDays+'-day return window. '+' At this pace, approximately '+feasiblePrograms+' program'+(feasiblePrograms===1?'':'s')+' of this length fit the return window; reduce simultaneous programs or choose shorter blocks. This is planning guidance, not an automatic change. Movement overlap and priority scheduling can change this estimate.':null;
  const cadence={rotation,rotationAdjustment,movements:movementRows.filter(x=>x.repeatedReentry||x.atRisk).slice(0,3),movementSummary:{observed:movementRows.length,repeatedReentry:repeated.length,atRisk:risk.length},retention:retention?{id:retention.id,block:chosen.block}:null,continuity:continuity?{id:continuity.id,block:chosen.block}:null,sampleDays:trainingDays.length,estimatedReturnDays,absenceDays,warning:movementWarning||rotationWarning||(estimatedReturnDays!==null&&estimatedReturnDays>absenceDays?'At your recent training frequency, revisiting every selected block may take longer than the absence window. Consider fewer active blocks; do not add catch-up work.':null)};
  const reason=!p.items.length?'All selected blocks are currently blocked or do not fit. Review the reasons below.':
-  (unfinished?'Continue the last unfinished workout before later blocks.':allocation?.candidate?allocation.details.reason:retention?'Revisit '+MOVES[retention.id].name+' before its configured return window is exceeded, based on your recorded training frequency.':continuity?continuity.reason+' for '+MOVES[continuity.id].name+'. Existing progression and recovery requirements still apply.':chosen.last<0?'This selected block has not yet been practiced.':'This is the least recently practiced selected block that is ready and fits today.')+
+  (unfinished?'Continue the last unfinished workout before later blocks.':allocation?.candidate?allocation.details.reason:retention?'Revisit '+MOVES[retention.id].name+' before its configured return window is exceeded, based on your recorded training frequency.':continuity?continuity.reason+' for '+MOVES[continuity.id].name+'. Existing progression and recovery requirements still apply.':allocation?.other===chosen?allocation.details.reason:chosen.last<0?'This selected block has not yet been practiced.':'This is the least recently practiced selected block that is ready and fits today.')+
   (pending.length?' Unfinished movements are considered first within this block.':'')+
   (p.support.length?' Supporting foundation practice is included to regain eligibility.':'');
  const status=x=>x.p.items.length?'Ready':x.p.paused?'Paused':x.p.held.length?'Pain review':x.p.scheduled.length?'Recovery schedule':x.p.prerequisite.length?'Prerequisites':x.p.unavailable.length?'Equipment':'Needs more time';

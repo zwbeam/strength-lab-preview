@@ -518,3 +518,32 @@ Primary program in Settings provides core selection when it belongs to the
 coordinated selection. Existing explicit cores survive unchanged saves.
 The 27 two-year matrices are safety/time/replay diagnostics with reported reduced
 returns, not proof of a complete sustainable curriculum. Keep the release gate open.
+
+
+## Admit automatic additions after program work — November 22, 2026
+
+In protected coordinated plans, automatically selected supplemental/variety work
+follows the declared program, prerequisite support and existing pending work.
+If that work is deferred or the addition cannot fit, record optionalStandby
+metadata rather than an assigned prescription or unfinished-work debt. Explicit
+legacy pending IDs remain mandatory. Once an optional movement has actually been
+written into a draft, missing/partial delivery keeps the established pending and
+replay behavior. No old history or queue is rewritten.
+
+Observed core recurrence now considers declared program patterns and actual
+prerequisite support, not incidental optional practice. A long gap between two
+optional hip-drop entries cannot reserve the entire core capacity. Qualification,
+actuals and movement progression remain independent of admission.
+
+Protected-plan estimates omit a following rest after the final movement and
+restore the preceding transition when another movement is added, matching the
+workout queue. Genuine full round intervals, prescribed doses and conservative
+setup allowance remain intact. Self-paced time is still an estimate, not forced
+cadence or training credit. Legacy unprotected fitting is unchanged.
+
+Source scope, hashes and app decisions: research/optional-admission-evidence.json.
+Controlled and longitudinal results: research/optional-admission-results.json.
+The sustainable curriculum gate remains open; reduced returns are not eliminated.
+
+Explicit saved Major family priorities are not silently demoted to optional
+standby by this admission policy; existing priority and pending-work rules apply.

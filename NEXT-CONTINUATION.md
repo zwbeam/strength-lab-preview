@@ -448,3 +448,25 @@ foundations. Run tests/core-composition.js, tests/wildman-gate.js,
 tests/preparation-education.js and browser-core-composition.cjs with every suite.
 Inventory is 68 Node JS suites, six correction tests and 33 browser suites.
 Worker/query rc63-core-reservation retains 51 assets and existing V33 namespaces.
+
+
+Optional admission follow-up: automatic supplemental/variety candidates in
+protected coordination follow declared program work, prerequisites and existing
+pending IDs. Unadmitted candidates become optionalStandby, never assigned debt or
+credit. Do not strip old/explicit pending work or partially performed written
+accessories. Core sweep observations exclude incidental optional activity but
+retain declared patterns and supporting practice. Protected time fitting omits
+a final following rest and restores transitions when another movement is added;
+keep genuine round intervals and full targets unchanged. Legacy unprotected
+fitting stays compatible and still needs separate work.
+
+Run tests/optional-admission.js and browser-optional-admission.cjs with all suites:
+69 Node JS suites, six correction tests and 34 browser suites. The 27 two-year
+diagnostics retain 8,820 saved workouts; developing workouts improve from 5,093
+to 5,452 and reentry entries from 2,436 to 2,070. Do not close the release gate.
+Source facts versus app choices and results are in research/optional-admission-
+evidence.json and research/optional-admission-results.json. Cache/query
+rc64-optional-admission retains 51 runtime assets and existing V33 keys.
+
+Explicit saved Major family priorities are not silently demoted to optional
+standby by this admission policy; existing priority and pending-work rules apply.

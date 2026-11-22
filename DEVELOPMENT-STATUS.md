@@ -411,3 +411,24 @@ remaining questions in research/wildman-engine-evidence.json. Longitudinal safet
 diagnostics are not sustainable curriculum certification. Manageable developing
 path admission, oversized-core coverage, legacy duration fitting, instructional
 visual gaps and real Android acceptance remain open.
+
+
+Optional-admission follow-up: selected program work now precedes automatic
+supplemental/variety candidates in protected coordination. Unadmitted additions
+do not enter unfinished-work queues; explicit or partly delivered written work
+remains protected. Incidental optional practice no longer inflates core sweep
+reservations. Protected fitting now omits the final following rest while retaining
+preceding transitions, full rounds, all doses and conservative setup allowance.
+
+The controlled 120-workout thirty-minute example delivers 29 developing workouts
+instead of 12. In the rerun 27 two-year diagnostics, 8,820 workouts deliver
+5,452 developing sessions versus 5,093 before, and 2,070 reentry entries versus
+2,436. These are synthetic coordination results, not physical or complete
+sustainable-curriculum evidence. All ten Wildman gate rows remain unresolved.
+New touch acceptance checks linked Train/Settings durations, complete squat/press
+within the protected thirty-minute estimate, standby explanations, preserved
+actuals and untouched offline drafts. Inventory: 69 Node JS suites, six correction
+tests and 34 browser suites. Runtime rc64-optional-admission retains 51 assets.
+
+Explicit saved Major family priorities are not silently demoted to optional
+standby by this admission policy; existing priority and pending-work rules apply.

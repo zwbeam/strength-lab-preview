@@ -1,0 +1,64 @@
+{
+  "date": "2026-11-22",
+  "baseCommit": "c05c3d36f68d5b6339ac31ebf59e028ef8d1c334",
+  "sources": [
+    {
+      "id": 404,
+      "title": "Kettlebell Program Design for Beginners - Tetris of Training Part 1",
+      "url": "https://www.youtube.com/watch?v=sAcBo4H__hE",
+      "sha256": "0d099957e23306ec84dbcdef69940c869c35b26d50ad8117fa6b5e84204a11b4",
+      "quotes": [
+        "you want to spend the majority of your time developing your fundamentals",
+        "the goal is to try to not repeat two of the exact same things two days in a row in the beginning of training"
+      ],
+      "timestamps": null
+    },
+    {
+      "id": 548,
+      "title": "Program Design 4 - Basic Kettlebell, 2 Hand Heavy Club, Single arm Club - Training Tetris",
+      "url": "https://www.youtube.com/watch?v=XYuiOsBAvXI",
+      "sha256": "0cdb4d3f1e34f4c8076a90aa4af3133e4b9b693650bff28c68f6b871c2a7dbb2",
+      "quotes": [
+        "we are going to keep these as fundamental programs",
+        "we tend to push people into kettlebells first"
+      ],
+      "timestamps": null
+    },
+    {
+      "id": 606,
+      "title": "Tetris Training Program Design - Kettlebell and 2 Hand Club - most effective basic program design",
+      "url": "https://www.youtube.com/watch?v=-DoSWaLHDGc",
+      "sha256": "a7d43f3fb2c4fdb95a0f7deeab2fc4c46bc17810b9dc8748dda01c1fea9a2eb9",
+      "quotes": [
+        "if you have an infinite amount of time you can do whatever you want",
+        "we would pick our kettlebell days based on what we wanted to accomplish"
+      ],
+      "timestamps": null
+    },
+    {
+      "id": 550,
+      "title": "Program Design 8 - Basic Warmup",
+      "url": "https://www.youtube.com/watch?v=HbFuRSv_gD0",
+      "sha256": "392cb065c3a2d72ed057141a36ceeef635ee3bc92282c658c9401a506777335b",
+      "quotes": [
+        "when they say five minutes in my job they mean five minutes",
+        "figure out how to continue to warm up workout and cool down within the parameters that you're given"
+      ],
+      "timestamps": null
+    }
+  ],
+  "sourceClaim": "Retain foundational programs, select complementary work around finite time and recovery, and control the planned session duration. These sources do not prescribe the numerical admission algorithm.",
+  "appDecisions": [
+    "Within protected coordinated plans, automatic supplemental/variety choices follow declared program work and prerequisite support. Explicit or legacy pending IDs remain mandatory.",
+    "Unadmitted automatic additions are optionalStandby metadata, not physical prescriptions, debt, completion or credit. An admitted written prescription that is skipped or partly performed retains normal unfinished-work meaning.",
+    "Only declared program patterns and actual prerequisite support inform observed core sweep size; incidental optional activity does not establish a mandatory core cadence.",
+    "Protected-plan fitting omits the final following rest and restores the preceding transition when another movement is added. Genuine round intervals, set/rep/rest targets and conservative per-movement setup allowance remain unchanged.",
+    "Explicit saved Major family priorities are not silently demoted into optional standby. Admission does not remove saved priorities or genuine pending work."
+  ],
+  "limits": [
+    "This does not curate a complete core or developing-program queue, establish biological minimum frequency or close the rotation release gate.",
+    "Oversized core selections still cause reduced returns; recorded diagnostic improvements are not physical outcome claims.",
+    "Legacy unprotected fitting and default behavior remain unchanged.",
+    "Self-paced work duration remains a planning estimate; timers do not prove actual physical completion."
+  ]
+}

@@ -59,6 +59,14 @@ budgets for legacy unprotected programs, broader source-method checks and physic
 Android acceptance remain open. Do not close the rotation row on this batch.
 
 The tested implementation checkpoint is c1f11baf1add6059b82445be43a4bc6230a9ee68.
+Automatic additions now wait until the declared program fits; unadmitted
+choices do not become physical debt. Explicit/partial written work is retained.
+Protected fitting omits a final following rest while retaining transitions and
+full rounds. In the same 27 two-year diagnostics, developing workouts rose from
+5,093 to 5,452 and reentry entries fell from 2,436 to 2,070. These are synthetic
+app results, not gate closure or physical outcome evidence. See
+research/optional-admission-evidence.json and research/optional-admission-results.json.
+
 The latest partial audit of all ten areas is in research/wildman-engine-evidence.json.
 Each row remains unresolved. The normal checker accepts documented status casing;
 release mode still blocks all ten open areas, and closed evidence may not cite
