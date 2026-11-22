@@ -60,7 +60,9 @@
         "results": "research/optional-admission-results.json",
         "claim": "Automatic additions wait for program capacity, incidental optional gaps do not define the core sweep, and protected time estimates match actual transitions without truncating rounds.",
         "adaptation": "Admission/standby classification, reservation scope and cost calculations are Strength Lab rules, not source-authored numerical programming. Explicit pending and Major priorities remain honored.",
-        "remaining": "Developing-block admission/maintenance and sustainable oversized curricula remain unresolved; diagnostic reentry entries remain."
+        "remaining": "Developing-block admission/maintenance and sustainable oversized curricula remain unresolved; diagnostic reentry entries remain.",
+        "commit": "07b7a6c98f4172c6be1f9372ba0045df86163223",
+        "verification": "Local 69 Node JS suites, six correction tests and 34 browser suites passed; the 27 two-year diagnostic scenarios preserve 8,820 workouts. Gate closure is not claimed."
       }
     },
     "Movement-specific progression": {
@@ -242,7 +244,9 @@
         "results": "research/optional-admission-results.json",
         "claim": "Automatic additions wait for program capacity, incidental optional gaps do not define the core sweep, and protected time estimates match actual transitions without truncating rounds.",
         "adaptation": "Admission/standby classification, reservation scope and cost calculations are Strength Lab rules, not source-authored numerical programming. Explicit pending and Major priorities remain honored.",
-        "remaining": "Developing-block admission/maintenance and sustainable oversized curricula remain unresolved; diagnostic reentry entries remain."
+        "remaining": "Developing-block admission/maintenance and sustainable oversized curricula remain unresolved; diagnostic reentry entries remain.",
+        "commit": "07b7a6c98f4172c6be1f9372ba0045df86163223",
+        "verification": "Local 69 Node JS suites, six correction tests and 34 browser suites passed; the 27 two-year diagnostic scenarios preserve 8,820 workouts. Gate closure is not claimed."
       }
     },
     "Equipment and real-world constraints": {
@@ -299,7 +303,9 @@
         "results": "research/optional-admission-results.json",
         "claim": "Automatic additions wait for program capacity, incidental optional gaps do not define the core sweep, and protected time estimates match actual transitions without truncating rounds.",
         "adaptation": "Admission/standby classification, reservation scope and cost calculations are Strength Lab rules, not source-authored numerical programming. Explicit pending and Major priorities remain honored.",
-        "remaining": "Developing-block admission/maintenance and sustainable oversized curricula remain unresolved; diagnostic reentry entries remain."
+        "remaining": "Developing-block admission/maintenance and sustainable oversized curricula remain unresolved; diagnostic reentry entries remain.",
+        "commit": "07b7a6c98f4172c6be1f9372ba0045df86163223",
+        "verification": "Local 69 Node JS suites, six correction tests and 34 browser suites passed; the 27 two-year diagnostic scenarios preserve 8,820 workouts. Gate closure is not claimed."
       }
     },
     "Source-specific methods": {

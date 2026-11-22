@@ -59,6 +59,7 @@ budgets for legacy unprotected programs, broader source-method checks and physic
 Android acceptance remain open. Do not close the rotation row on this batch.
 
 The tested implementation checkpoint is c1f11baf1add6059b82445be43a4bc6230a9ee68.
+Optional-admission implementation checkpoint: 07b7a6c98f4172c6be1f9372ba0045df86163223.
 Automatic additions now wait until the declared program fits; unadmitted
 choices do not become physical debt. Explicit/partial written work is retained.
 Protected fitting omits a final following rest while retaining transitions and
