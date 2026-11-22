@@ -101,7 +101,7 @@ assert.match(storageStartup,/loadTrainingSnapshot\(\);recoverMobilityCheckpoint\
 assert.doesNotMatch(app,/\}\s*recoverMobilityCheckpoint\(\);\s*function mobilityRoutine\(/);
 
 
-const mobilityClockSource=between('function updateMobilityClock(){','function unavailableLoadActions(');
+
 assert.match(mobilityClockSource,/mobilityLastRemaining===null\?remaining:mobilityLastRemaining/);
 assert.doesNotMatch(mobilityClockSource,/mobilityLastRemaining===null\?remaining\+1/);
 for(const remaining of [1,2,3,30,60]){
@@ -115,8 +115,8 @@ for(const [elapsedMs,shouldConfirm] of [[0,false],[59999,false],[60000,true],[30
 
 
 const todayRender=between('function renderToday(){','function render(');
-assert.match(todayRender,/\$\{programDecision\(p\)\}\$\{d\.today&&!p\.mobilityOnly\?mobilityPanel\(\):''\}/);
-assert.match(todayRender,/p\.mobilityOnly\?mobilityPanel\(\)/);
+assert.equal((todayRender.match(/mobilityPanel\(/g)||[]).length,1,'Train must render one shared mobility panel');
+assert.doesNotMatch(todayRender,/p\.mobilityOnly\?mobilityPanel\(\)/);
 assert.match(todayRender,/d\.today\?mobilityPanel\(/);
 assert.match(todayRender,/mobilityStartedAt\?'<p class="small muted" role="status">Mobility workout in progress/);
 assert.match(todayRender,/<button class="button full" id="start" disabled>Start Workout<\/button>/);
@@ -139,13 +139,13 @@ assert.match(mobilityRecovery,/sessionStorage\.removeItem\(MOBILITY_SESSION/);
 assert.match(mobilityRecovery,/saved\.startedAt>Date\.now\(\)/);
 assert.match(mobilityRecovery,/24\*60\*60\*1000/);
 assert.match(mobilityRecovery,/routine\.length!==9/);
-assert.match(mobilityRecovery,/recoverMobilityCheckpoint\(\);/);
+assert.doesNotMatch(mobilityRecovery,/recoverMobilityCheckpoint\(\);/,'Recovery must run after authoritative draft loading, not at declaration');
 
 {
  const checkpointSource=between('let mobilityStartedAt=0,mobilityClock=null,mobilityActiveRoutine=null;','function mobilityRoutine(){');
  const storage=new Map(),key='sl-dev-preview-mobility-active-v1',now=1_000_000;
  const browserStorage={getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v),removeItem:k=>storage.delete(k)};
- const run=draft=>{const intervals=[];const result=Function('sessionStorage','Date','setInterval','updateMobilityClock','draft',checkpointSource+';return {startedAt:mobilityStartedAt,routine:mobilityActiveRoutine};')(browserStorage,{now:()=>now},fn=>{intervals.push(fn);return intervals.length;},()=>{},draft);return {...result,intervals:intervals.length};};
+ const run=draft=>{const intervals=[];const result=Function('sessionStorage','Date','setInterval','updateMobilityClock','draft',checkpointSource+';recoverMobilityCheckpoint();return {startedAt:mobilityStartedAt,routine:mobilityActiveRoutine};')(browserStorage,{now:()=>now},fn=>{intervals.push(fn);return intervals.length;},()=>{},draft);return {...result,intervals:intervals.length};};
  assert.equal(run(null).startedAt,0,'No checkpoint means no active mobility');
  const routine=Array.from({length:9},(_,i)=>({min:i===4?4:2,title:'Stage '+i,detail:'Gentle movement'}));
  storage.set(key,JSON.stringify({version:1,startedAt:now-300000,routine}));

@@ -22,7 +22,12 @@ function project(s,now,end=add(now,83),opts={}){
   if(events.some(a=>a.replacesStrength!==false)||recent)continue;
   if(s.sessions.some(x=>x.date===cursor&&(x.items||[]).some(y=>y.actualSets>0)))continue;
   const allDays=[...new Set([...history.map(x=>x.date),...planned.map(x=>x.date)])];if(allDays.filter(d=>diff(cursor,d)>=0&&diff(cursor,d)<7).length>=days)continue;
-  const p=E.plan(virtual,{now:cursor,evidenceThrough:now,projection:i>0,minutes:cursor===now&&i===0?opts.minutes??s.defaultMinutes??45:s.defaultMinutes||45,readiness:cursor===now&&i===0?opts.readiness:'normal'});if(!p.items.length)continue;
+  const planOptions={now:cursor,evidenceThrough:now,projection:i>0,projectedBlocks:s.programComposition?.coreBlock?planned.map(x=>x.plan.block):undefined,minutes:cursor===now&&i===0?opts.minutes??s.defaultMinutes??45:s.defaultMinutes||45,readiness:cursor===now&&i===0?opts.readiness:'normal'};
+  let p=E.plan(virtual,planOptions);
+  // A temporarily blocked remainder must not freeze every ready program.
+  // Restore the saved selection for ordering only; no physical work is invented.
+  if(!p.items.length&&virtual.programComposition?.enabled&&remaining.length<s.programComposition.blocks.length){remaining=s.programComposition.blocks.slice();virtual.programComposition.blocks=remaining.slice();p=E.plan(virtual,planOptions);}
+  if(!p.items.length)continue;
   const spacing=Math.max(s.trainingDefaults?.minGapDays||0,s.programComposition?.enabled?s.programComposition.minGapDays??1:0);
   if(planned.some(x=>diff(cursor,x.date)<spacing&&x.plan.items.some(a=>p.items.some(b=>E.movementDemands(a.id).some(k=>E.movementDemands(b.id).includes(k))))))continue;
   if(s.trainingPreferences?.beginnerSpacing&&planned.some(x=>diff(cursor,x.date)<2&&x.plan.items.some(a=>p.items.some(b=>a.id===b.id))))continue;
@@ -30,7 +35,7 @@ function project(s,now,end=add(now,83),opts={}){
   if(s.programComposition?.enabled&&p.items.some(hard)&&planned.some(x=>diff(cursor,x.date)<(s.programComposition.hardGapDays??2)&&x.plan.items.some(hard)))continue;
   const row={date:cursor,key:key(s,i,now),index:i,plan:p,provisional:i>0||cursor!==now,reason:move?'Manually moved; recovery and order still apply.':i===0?'Next unfinished workout; missed dates never consume it.':'Flexible target; shifts with actual training and recovery.'};entries.push(row);planned.push(row);
   virtual.sessions.push({id:'calendar-projection-'+i,slot:p.slot,block:p.block,date:'9999-12-31',items:[]});
-  if(virtual.programComposition?.enabled){remaining=remaining.filter(b=>b!==p.block);if(!remaining.length)remaining=s.programComposition.blocks.slice();virtual.programComposition.blocks=remaining.slice();}
+  if(virtual.programComposition?.enabled&&!s.programComposition.coreBlock){remaining=remaining.filter(b=>b!==p.block);if(!remaining.length)remaining=s.programComposition.blocks.slice();virtual.programComposition.blocks=remaining.slice();}
   i++;cursor=add(cursor,Math.max(0,Math.floor(7/days)-1));
  }
  return entries;

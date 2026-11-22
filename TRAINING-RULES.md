@@ -494,3 +494,27 @@ blocks do not inflate the current ready-program estimate, but their selections
 are retained. Priorities, unfinished work, changing eligibility, internal pattern
 rotation and actual session fit can change actual movement recurrence. No extra
 work, automatic pruning, relaxed qualification or new source schedule is inferred.
+
+
+## Protected-core capacity reservation — November 22, 2026
+
+For programComposition.coreBlock, reserve a share of real opportunities using
+formal program days and observed movement recurrence measured in core visits.
+Use the greater requirement and no faster than current capacity or recorded
+attendance, within the existing configured return window. This is app scheduling
+math, not a Wildman numerical frequency rule. Ordinary reservations remain bounded
+to three consecutive core sessions when another block is ready, except when the
+core alone consumes the full capacity. Genuine unfinished work keeps priority.
+
+Core and developing blocks retain their own targets, earned progression, explicit
+skills, owned equipment and recovery decisions. There is no component credit,
+automatic load increase, catch-up dose or removal of saved programs. Protected-core
+plans fit the selected total duration including the eight-minute warmup and
+ten-minute cooldown. Legacy unprotected flexible fitting is still a separate open
+compatibility question. Forecast markers affect sequence only, never physical
+evidence; blocked optional remainders cannot freeze an otherwise ready calendar.
+
+Primary program in Settings provides core selection when it belongs to the
+coordinated selection. Existing explicit cores survive unchanged saves.
+The 27 two-year matrices are safety/time/replay diagnostics with reported reduced
+returns, not proof of a complete sustainable curriculum. Keep the release gate open.

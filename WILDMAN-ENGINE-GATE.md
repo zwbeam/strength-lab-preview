@@ -18,7 +18,7 @@ Do not mark a principle verified solely because a movement has a lesson, a sourc
 
 | Area | Current evidence | Acceptance test needed | Status |
 | --- | --- | --- | --- |
-| Sustainable program rotation | Rolling A/B/C and composition; recurrence feedback | Longitudinal 30/45/60 minute, 2–5 days/week feasibility without perpetual re-entry | Unresolved |
+| Sustainable program rotation | Rolling A/B/C; protected-core opportunity reservation, observed coverage and strict protected-core time ceiling | Longitudinal 30/45/60 minute, 2–5 days/week feasibility without perpetual re-entry | Unresolved |
 | Movement-specific progression | Separate volume, density, timed and wave methods | Clean completion, miss, partial, load changes, baseline reset and independent method identities | Unresolved |
 | Warmup philosophy | Eight-minute two-round four-station allocation, source #550 | Movement-aware preparation, time constraints, clear safety and technique options | Unresolved |
 | Cooldown philosophy | Ten-minute app allocation, not attributed as a Wildman mandate | Pattern-aware recovery, realistic duration and source-vs-app labeling | Unresolved |
@@ -39,7 +39,29 @@ Do not mark a principle verified solely because a movement has a lesson, a sourc
 
 ## Rotation work in progress (not closed)
 
-The coordinator now estimates return intervals, compares non-destructive single-block reduction scenarios, and supports an optional `programComposition.coreBlock` guard that keeps a selected core program out of preferred removal advice. This is **not** an automatic core curriculum, does not alter selected blocks, and does not yet prove that foundational patterns receive sufficient practice. The next requirement is a tested, source-bounded policy for choosing and maintaining core patterns across realistic 30/45/60-minute training histories. Do not close the rotation row based only on advisory improvements.
+The coordinator now reserves actual opportunities for an explicitly selected core,
+using effective/observed attendance, the configured return window, formal program
+days and observed movement recurrence measured in core visits. Deferred work can
+therefore increase the reservation. Primary program in existing Settings supplies
+the core when selected for coordination; no additional setup question is added.
+The engine retains unfinished-work priority, skills, inventory and recovery gates.
+Other selected programs use available opportunities; no saved program is removed.
+Protected-core plans include warmup/cooldown inside a hard selected-duration ceiling.
+
+This is an app adaptation, bounded by research/core-composition-evidence.json, not
+a source-authored frequency formula. It does not establish automatic curriculum
+curation or movement-specific minimum frequency. The 27 two-year diagnostic
+matrices deliberately retain/report reduced returns; passing their safety, time
+and replay checks does not certify sustainable coverage. Oversized A/B/C cores at
+short durations can still consume nearly all capacity while additional skills
+remain selected. Admission/maintenance of a manageable developing pathway, strict
+budgets for legacy unprotected programs, broader source-method checks and physical
+Android acceptance remain open. Do not close the rotation row on this batch.
+
+The latest partial audit of all ten areas is in research/wildman-engine-evidence.json.
+Each row remains unresolved. The normal checker accepts documented status casing;
+release mode still blocks all ten open areas, and closed evidence may not cite
+unknown archive IDs or excluded source #441.
 
 ## Final UI phase, after the gate
 

@@ -8,7 +8,7 @@ const assert=require('node:assert/strict'),{chromium}=require('playwright'),E=re
   const prior=E.prescription(seed,'squat',{now:old});
   seed.sessions.push({id:'prior-squat',date:old,block:'abc',items:[E.completeRecord(prior,Array.from({length:prior.sets},()=>({done:true,weight:16,reps:prior.reps,leftReps:prior.reps,rightReps:prior.reps,bothSides:true,timingValid:true,continuous:true})),'clean',false)]});
   const context=await browser.newContext({viewport:{width,height:844},hasTouch:true,isMobile:true,timezoneId:'UTC'});
-  await context.addInitScript(s=>localStorage.setItem('sl-dev-preview-data-v33',JSON.stringify(s)),seed);
+  await context.addInitScript(s=>{if(!localStorage.getItem('sl-dev-preview-data-v33'))localStorage.setItem('sl-dev-preview-data-v33',JSON.stringify(s));},seed);
   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
   page.on('dialog',async dialog=>{if(dialog.type()==='prompt'){assert.match(dialog.message(),/Previous working weight: 16/);await dialog.accept('12');}else await dialog.dismiss();});
   await page.clock.install({time:now});await page.clock.pauseAt(now);

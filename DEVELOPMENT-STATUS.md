@@ -392,3 +392,22 @@ movement problems retain priority. This is advisory, not automatic curriculum
 pruning or an exercise-by-exercise forecast. Source doses, selection and gates
 remain unchanged. Inventory: 63 Node JS suites, six correction tests, thirty
 browser suites; rc62-rotation-capacity retains 51 assets. Source counts stay 54/38/16.
+
+
+November 22: actual protected-core opportunity reservation replaces advisory-only
+protection when a core is explicitly selected. It uses attendance capacity and
+observed movement recurrence, keeps independent doses/gates and fits protected-
+core plans inside the selected total duration. Existing Primary program connects
+the feature without adding a questionnaire. Settings preserves valid core choices;
+calendar/notebook forecasts retain the core, and blocked optional remainders no
+longer freeze ready calendar work. Duplicate mobility controls were removed.
+
+The release checker now accepts the gate's documented status casing and rejects
+unknown/excluded closure sources. Preparation education matches actual eight/ten
+minute allocations and records #550's transition limitation. Incoming test defects
+were repaired without loosening engine gates or completion requirements.
+All ten audit rows remain unresolved, with partial source/code/test traces and
+remaining questions in research/wildman-engine-evidence.json. Longitudinal safety
+diagnostics are not sustainable curriculum certification. Manageable developing
+path admission, oversized-core coverage, legacy duration fitting, instructional
+visual gaps and real Android acceptance remain open.

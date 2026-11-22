@@ -1620,3 +1620,95 @@ integrity passed. Compatibility comparison preserved 216 prescriptions, 96
 single-block plans and 72 composed selections/targets excluding advisory metadata.
 Exact-commit CI and public DEV verification remain required before deployment
 success is reported.
+
+
+## Actual protected-core capacity and conservative Wildman audit — November 22
+
+Fetched and inspected actual origin/preview at d8a8e95, including the Wildman gate,
+evidence checker and protected-core advisory commits. The original checkout still
+contained an interrupted cat-crawl batch. Preserved it unchanged and created an
+isolated worktree at /workspace/strength-lab-engine from the latest remote.
+Production main remains 4cb58d8a4d30796246a83db752b8e420c8bc05c2.
+
+Reproduced two baseline failures: gate statuses were capitalized in Markdown but
+the checker only accepted lowercase; and calendar/notebook projections removed
+a protected core from their temporary block list while retaining its required
+coreBlock. Settings also rebuilt composition without retaining the core. New
+behavior tests first reproduced the invalid forecast. These paths are repaired.
+A blocked optional remainder now also restores the saved selection for ordering
+instead of permanently freezing an otherwise ready legacy calendar.
+
+Actual selection now reserves opportunities for an explicitly selected core. The
+app capacity fraction uses effective weekly capacity, no faster than observed
+attendance, the configured return window and the greater of formal program days
+or observed movement recurrence measured in core visits. Deferred work therefore
+cannot be assumed to fit one visit per formal day. Existing unfinished work,
+readiness, prerequisites, pain, spacing and equipment checks remain mandatory.
+Ordinary consecutive reservations are bounded when another block is ready, except
+when the core alone consumes the available capacity. No additional sessions,
+catch-up dose, component credit or load advancement are invented.
+
+The existing Primary program control supplies a core when selected for coordinated
+training; valid saved cores survive unchanged saves. No new setup question is
+added. Protected-core plans use the chosen total duration as a hard ceiling,
+including eight-minute preparation and ten-minute cooldown. Unprotected legacy
+plans retain their old flexible fitting and remain an explicit open issue.
+
+Full #404/#548/#606 text supports retaining foundations and complementary program
+tradeoffs, not this numerical reservation rule. Facts, hashes, exact quotes, app
+adaptations and limits are in research/core-composition-evidence.json. The initial
+45-minute, three-day/week scenario returns A/B/C within fourteen days while
+serving both developing blocks. This does not prove every core is sustainable.
+
+Final 27 two-year actual-generator diagnostics cover 30/45/60 minutes, 2/3/5 days,
+single kettlebells, clubs and bodyweight, missing equipment, partials, reduced
+readiness, a month-long absence and later thirty-minute constraints. They save
+8,820 workouts and perform 99 read-only forecast/backup checks. A separate real
+paired-core case uses prior actual supporting and paired practice and only owned
+matched loads. Results are in research/core-composition-results.json.
+The diagnostic matrices retain 2,436 reentry entries: these are reported findings,
+not passing sustainable-curriculum acceptance. Broad short-session cores can use
+nearly all capacity and leave very little developing work. No claim of automatic
+source-complete curriculum curation or solved perpetual re-entry is made.
+
+New 320/390px acceptance covers imported core startup, calendar/notebook forecasts,
+Settings preservation, primary-to-core connection, strict thirty-minute real
+prescriptions, genuine actuals and immutable untouched drafts offline.
+The full browser run exposed duplicate Mobility controls; rendering now has one
+shared panel. Existing cancellation confirmation is exercised for both decline
+and accept, without weakening the safeguard.
+
+The broader baseline contained test defects: duplicate preparation constants,
+assertions expecting both obsolete and current mobility-startup behavior, a
+return-load fixture that overwrote its saved choice on reload, and a return-load
+Node backup fixture missing required title/frequency metadata. These fixtures and
+assertions now verify the existing current contracts. No backup validator, pain,
+completion or load-selection guard was loosened.
+
+Education incorrectly claimed current short-session cooldowns were below ten
+minutes. It now matches the actual allocation, links source #550's warmup format
+and explicitly distinguishes that source's separate transition and longer
+preparation examples. New tests cover every 25–120-minute preparation budget.
+
+All ten release-gate areas remain unresolved. Their ledger now records partial
+source/code/test traces, concrete findings and remaining questions. Normal gate
+validation accepts documented casing; release mode still rejects open rows.
+Closure evidence must reference actual usable archive IDs and cannot cite #441.
+Generated source ledger, passage candidates and review queue reproduce with
+720 unique / 719 usable records and 214 matched independent-journal keys. The
+662 usable sources unmapped in operational coverage are not treated as reviewed
+or integrated. Generated artifacts were retained under /tmp/strength-lab-core-audit.
+
+CI registers 68 Node JS suites, six correction tests and 33 browser suites
+(70 Node/setup files). Runtime rc63-core-reservation retains 51 cache assets and
+all V33 storage keys. Full local suite completion, exact-commit GitHub checks and
+public DEV acceptance are required before reporting a verified deployment.
+
+Final local verification passed all 68 Node JS suites, all six correction tests
+and all 33 browser suites, including the current source final core diagnostics,
+paired-core eligible dates, mobile primary/core selection and offline snapshots.
+Both coverage audits, all six source-accounting generation/check commands, syntax,
+suite registration, diff checks and 51-asset offline integrity passed. Release
+mode deliberately remains blocked by all ten unresolved areas. Exact-commit
+remote CI and public DEV verification still must complete before deployment is
+reported verified.

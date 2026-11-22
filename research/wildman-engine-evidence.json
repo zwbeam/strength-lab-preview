@@ -3,34 +3,311 @@
   "note": "Unresolved means no complete source-to-engine-to-test proof has been accepted. Do not equate existing tests or archive inventory with closure.",
   "areas": {
     "Sustainable program rotation": {
-      "status": "unresolved"
+      "status": "unresolved",
+      "latestAudit": {
+        "date": "2026-11-22",
+        "baseCommit": "d8a8e95cea279b11179bdc3437628b4810e0c343",
+        "scope": "Partial source-to-code review; no area closure",
+        "sourceIds": [
+          404,
+          548,
+          606
+        ],
+        "enginePaths": [
+          "engine.js",
+          "rolling-calendar.js",
+          "notebook.js",
+          "training-settings.js",
+          "app.js"
+        ],
+        "behaviorTests": [
+          "tests/core-composition.js",
+          "tests/browser-core-composition.cjs",
+          "tests/rotation-capacity.js"
+        ],
+        "findings": [
+          "Explicit core reserves actual opportunities; observed movement recurrence can increase the reservation beyond formal program-day counts.",
+          "Protected-core plans use a hard selected-duration ceiling; legacy unprotected plans still have their documented flexible window.",
+          "Primary program connects the existing configuration to the actual planner without a new setup question."
+        ],
+        "remaining": [
+          "No automatic source-complete foundational curriculum has been established.",
+          "Oversized core/development selections still show reduced returns in longitudinal diagnostics.",
+          "Movement-specific admission, maintenance frequency and a manageable developing-path queue still need work."
+        ]
+      }
     },
     "Movement-specific progression": {
-      "status": "unresolved"
+      "status": "unresolved",
+      "latestAudit": {
+        "date": "2026-11-22",
+        "baseCommit": "d8a8e95cea279b11179bdc3437628b4810e0c343",
+        "scope": "Partial source-to-code review; no area closure",
+        "sourceIds": [
+          89,
+          142,
+          228,
+          403,
+          609
+        ],
+        "enginePaths": [
+          "engine.js",
+          "notebook.js"
+        ],
+        "behaviorTests": [
+          "tests/progression-history.js",
+          "tests/baseline-cycles.js",
+          "tests/wave-cycle-identity.js",
+          "tests/row-wave.js",
+          "tests/paired-swing-reps.js"
+        ],
+        "findings": [
+          "Existing methods and keys remain independent; the coordinator does not change dose or award component credit."
+        ],
+        "remaining": [
+          "Protocol-level source fidelity and default-method boundaries are not fully audited."
+        ]
+      }
     },
     "Warmup philosophy": {
-      "status": "unresolved"
+      "status": "unresolved",
+      "latestAudit": {
+        "date": "2026-11-22",
+        "baseCommit": "d8a8e95cea279b11179bdc3437628b4810e0c343",
+        "scope": "Partial source-to-code review; no area closure",
+        "sourceIds": [
+          550,
+          404
+        ],
+        "enginePaths": [
+          "engine.js",
+          "app.js",
+          "programming-education.js"
+        ],
+        "behaviorTests": [
+          "tests/preparation-education.js",
+          "tests/preparation-routing.js",
+          "tests/browser-smoke.js"
+        ],
+        "findings": [
+          "Eight-minute preparation and movement-aware substitutions are traceable; #550 metadata and transition limitations are now in education."
+        ],
+        "remaining": [
+          "The source two-minute transition and individualized longer preparation need full time-allocation evaluation.",
+          "Movement-aware selection remains in app.js rather than a separately testable preparation engine."
+        ]
+      }
     },
     "Cooldown philosophy": {
-      "status": "unresolved"
+      "status": "unresolved",
+      "latestAudit": {
+        "date": "2026-11-22",
+        "baseCommit": "d8a8e95cea279b11179bdc3437628b4810e0c343",
+        "scope": "Partial source-to-code review; no area closure",
+        "sourceIds": [
+          404,
+          130,
+          136
+        ],
+        "enginePaths": [
+          "engine.js",
+          "app.js",
+          "programming-education.js"
+        ],
+        "behaviorTests": [
+          "tests/preparation-education.js",
+          "tests/preparation-routing.js",
+          "tests/browser-smoke.js"
+        ],
+        "findings": [
+          "Stale claims of a shorter current cooldown were corrected; all supported budgets allocate ten minutes."
+        ],
+        "remaining": [
+          "General direction references do not close physical technique or individual adaptation review."
+        ]
+      }
     },
     "Prerequisites and skill gates": {
-      "status": "unresolved"
+      "status": "unresolved",
+      "latestAudit": {
+        "date": "2026-11-22",
+        "baseCommit": "d8a8e95cea279b11179bdc3437628b4810e0c343",
+        "scope": "Partial source-to-code review; no area closure",
+        "sourceIds": [
+          142,
+          185,
+          288
+        ],
+        "enginePaths": [
+          "engine.js",
+          "movement-instruction.js"
+        ],
+        "behaviorTests": [
+          "tests/prerequisite-contract.js",
+          "tests/prerequisite-evidence.js",
+          "tests/prerequisite-maintenance.js",
+          "tests/double-hinge.js"
+        ],
+        "findings": [
+          "Core reservations still consume only eligible candidates and preserve all existing gates."
+        ],
+        "remaining": [
+          "Teaching sequences and actual registry dependencies require further source-by-source comparison."
+        ]
+      }
     },
     "Recovery and continuity": {
-      "status": "unresolved"
+      "status": "unresolved",
+      "latestAudit": {
+        "date": "2026-11-22",
+        "baseCommit": "d8a8e95cea279b11179bdc3437628b4810e0c343",
+        "scope": "Partial source-to-code review; no area closure",
+        "sourceIds": [
+          404,
+          496
+        ],
+        "enginePaths": [
+          "engine.js",
+          "rolling-calendar.js",
+          "app.js"
+        ],
+        "behaviorTests": [
+          "tests/reentry-load-selection.js",
+          "tests/review-return-evidence.js",
+          "tests/recovery-dose.js",
+          "tests/browser-reentry-load-selection.cjs"
+        ],
+        "findings": [
+          "Explicit return-load choice retains the older load in history; its browser fixture now tests real persistence instead of reseeding over it."
+        ],
+        "remaining": [
+          "Return thresholds and capacity fractions remain app heuristics; individualized recovery is not certified."
+        ]
+      }
     },
     "Equipment and real-world constraints": {
-      "status": "unresolved"
+      "status": "unresolved",
+      "latestAudit": {
+        "date": "2026-11-22",
+        "baseCommit": "d8a8e95cea279b11179bdc3437628b4810e0c343",
+        "scope": "Partial source-to-code review; no area closure",
+        "sourceIds": [
+          142,
+          496,
+          550
+        ],
+        "enginePaths": [
+          "engine.js",
+          "training-settings.js",
+          "app.js"
+        ],
+        "behaviorTests": [
+          "tests/configuration-matrix.js",
+          "tests/bodyweight-row.js",
+          "tests/step-ups.js",
+          "tests/core-composition.js"
+        ],
+        "findings": [
+          "Current owned-load, matched-pair, station and space contracts remain; new protected-core plans obey the requested time ceiling."
+        ],
+        "remaining": [
+          "The legacy unprotected flexible duration still needs a compatibility strategy for strict global budgets.",
+          "Physical clearance, real devices and technique cannot be established by browser tests."
+        ]
+      }
     },
     "Source-specific methods": {
-      "status": "unresolved"
+      "status": "unresolved",
+      "latestAudit": {
+        "date": "2026-11-22",
+        "baseCommit": "d8a8e95cea279b11179bdc3437628b4810e0c343",
+        "scope": "Partial source-to-code review; no area closure",
+        "sourceIds": [
+          84,
+          89,
+          142,
+          228,
+          403
+        ],
+        "enginePaths": [
+          "engine.js",
+          "research/hip-drop-timed-evidence.json",
+          "research/row-wave-evidence.json",
+          "research/paired-swing-reps-evidence.json"
+        ],
+        "behaviorTests": [
+          "tests/hip-drop-timed.js",
+          "tests/row-wave.js",
+          "tests/paired-swing-reps.js",
+          "tests/provenance-regression.js"
+        ],
+        "findings": [
+          "Existing evidence files separate source examples from app-selected doses and advancement rules."
+        ],
+        "remaining": [
+          "Broader paired, club, bodyweight and timing-series systems remain incomplete."
+        ]
+      }
     },
     "Movement instruction": {
-      "status": "unresolved"
+      "status": "unresolved",
+      "latestAudit": {
+        "date": "2026-11-22",
+        "baseCommit": "d8a8e95cea279b11179bdc3437628b4810e0c343",
+        "scope": "Partial source-to-code review; no area closure",
+        "sourceIds": [
+          288
+        ],
+        "enginePaths": [
+          "movement-instruction.js",
+          "learning.js",
+          "MOVEMENT-INTEGRATION-COVERAGE.md"
+        ],
+        "behaviorTests": [
+          "tests/instruction-coverage-regression.js",
+          "tests/research-coverage.js",
+          "tests/browser-curriculum.cjs"
+        ],
+        "findings": [
+          "Inventory remains 54 operational paths, 38 reviewed outlines and 16 partial lessons."
+        ],
+        "remaining": [
+          "Sixteen instructional/visual gaps and physical Android technique review remain open."
+        ]
+      }
     },
     "Full research accounting": {
-      "status": "unresolved"
+      "status": "unresolved",
+      "latestAudit": {
+        "date": "2026-11-22",
+        "baseCommit": "d8a8e95cea279b11179bdc3437628b4810e0c343",
+        "scope": "Partial source-to-code review; no area closure",
+        "sourceIds": [
+          404,
+          548,
+          550,
+          606
+        ],
+        "enginePaths": [
+          "scripts/build-source-ledger.cjs",
+          "scripts/extract-passage-candidates.cjs",
+          "scripts/build-passage-review-queue.cjs",
+          "research/supplied-review-manifest.json"
+        ],
+        "behaviorTests": [
+          "scripts/audit-curriculum.cjs",
+          "scripts/audit-integration.cjs",
+          "tests/wildman-gate.js"
+        ],
+        "findings": [
+          "Generated ledger and passage/review queues reproduce successfully: 720 unique records, 719 usable, #441 excluded, 214 independent journal keys matched.",
+          "The generated accounting reports 662 usable sources unmapped in operational movement coverage; this is not a completion claim.",
+          "Release checker now normalizes documented status casing while rejecting unknown or excluded source IDs in closure evidence."
+        ],
+        "remaining": [
+          "Master ledger/anchored review reconciliation and complete engine-relevant concept extraction remain unfinished."
+        ]
+      }
     }
   }
 }

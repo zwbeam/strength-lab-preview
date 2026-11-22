@@ -427,3 +427,24 @@ Next: coherent curriculum curation still needs further engine/source work.
 Run tests/rotation-capacity.js and browser-rotation-capacity.cjs with all suites:
 63 Node JS suites, six correction tests, thirty browser suites.
 rc62-rotation-capacity retains 51 runtime assets and all V33 keys.
+
+
+November 22 engine continuation: use the actual latest origin/preview, retaining
+the separate unfinished cat-crawl work in /workspace/strength-lab-preview. This
+batch was isolated in /workspace/strength-lab-engine to preserve that dirty tree.
+Protected-core reservation now affects actual selection, accounts for observed
+movement recurrence in core visits and uses a strict selected-duration ceiling.
+Primary program connects to core selection on a coordinated Settings save; valid
+older cores remain preserved. Forecasts retain cores and do not freeze on a
+blocked optional remainder. All policies, actuals and storage keys remain separate.
+
+Keep all ten Wildman gate rows unresolved. The ledger now records partial traces
+and remaining questions for every area. The 27 two-year diagnostic matrices
+include substantial reduced-return counts; do not describe them as sustainability
+certification. Next priority: manageable developing-path admission/maintenance and
+source-bounded core curation, followed by strict legacy time-budget compatibility.
+Do not solve these by lowering qualification, inventing source rules or dropping
+foundations. Run tests/core-composition.js, tests/wildman-gate.js,
+tests/preparation-education.js and browser-core-composition.cjs with every suite.
+Inventory is 68 Node JS suites, six correction tests and 33 browser suites.
+Worker/query rc63-core-reservation retains 51 assets and existing V33 namespaces.

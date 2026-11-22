@@ -409,7 +409,7 @@ const expectedCache=JSON.parse(swText.match(/const PREFIX=("[^"]+")/)[1])+JSON.p
 
    await page.locator('[data-tab="today"]').click();
    const mobility=page.locator('#mobility-session');
-   if(!await mobility.count())throw Error('Mobility session missing');
+   if(await mobility.count()!==1)throw Error('Exactly one mobility session must be rendered');
    await mobility.evaluate(el=>{el.open=true;});
    if(await mobility.locator('li').count()!==9)throw Error('Mobility plan should contain nine stages');
    // The mobility content must respond to the CURRENT prescription, not
@@ -532,8 +532,12 @@ const expectedCache=JSON.parse(swText.match(/const PREFIX=("[^"]+")/)[1])+JSON.p
    if(audioChecks.sounds.filter(x=>x==='whistle').length!==1||audioChecks.spoken.length!==2)throw Error('Stage transitions must whistle and announce movement: '+JSON.stringify(audioChecks));
    if(!audioChecks.clock.includes('Light club skill'))throw Error('Mobility stage did not advance');
 
+   page.once('dialog',dialog=>dialog.dismiss());
    await mobility.locator('#cancel-mobility').click();
-   if(!await mobility.locator('#start-mobility').count())throw Error('Mobility cancel failed');
+   if(!await mobility.locator('#mobility-clock').count())throw Error('Declining discard must retain the active mobility workout');
+   page.once('dialog',dialog=>dialog.accept());
+   await mobility.locator('#cancel-mobility').click();
+   if(!await mobility.locator('#start-mobility').count())throw Error('Confirmed mobility cancel failed');
    console.log('Guided mobility start, clock and cancel passed at '+viewport.width+'px');
    await mobility.evaluate(el=>{el.open=true;});
    const beforeMobilityQueue=await page.evaluate(()=>{

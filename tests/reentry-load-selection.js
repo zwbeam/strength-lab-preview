@@ -1,8 +1,8 @@
 'use strict';
 const assert=require('node:assert/strict'),E=require('../engine');
 const old='2026-09-01',now='2026-11-17';
-function fresh(){return{version:33,defaultMinutes:45,programBlock:'abc',sessions:[],weights:{squat:16},nextWeights:{},equipment:{kb:[12,16,18],club:[],pairs:[]},skills:{},trainingPreferences:{}};}
-function seed(){const s=fresh(),rx=E.prescription(s,'squat',{now:old});s.sessions.push({id:'old-squat',date:old,items:[E.completeRecord(rx,Array.from({length:rx.sets},()=>({done:true,weight:16,reps:rx.reps,leftReps:rx.reps,rightReps:rx.reps,bothSides:true,timingValid:true,continuous:true})),'clean',false)]});return s;}
+function fresh(){return{version:33,defaultMinutes:45,programBlock:'abc',sessions:[],weights:{squat:16},nextWeights:{},equipment:{kb:[12,16,18],club:[],pairs:[]},skills:{},trainingPreferences:{daysPerWeek:3}};}
+function seed(){const s=fresh(),rx=E.prescription(s,'squat',{now:old});s.sessions.push({id:'old-squat',title:'Prior actual squat',date:old,items:[E.completeRecord(rx,Array.from({length:rx.sets},()=>({done:true,weight:16,reps:rx.reps,leftReps:rx.reps,rightReps:rx.reps,bothSides:true,timingValid:true,continuous:true})),'clean',false)]});return s;}
 const s=seed(),before=JSON.stringify(s),prior=E.stateFor(s,'squat',{now});
 assert.equal(E.prescription(s,'squat',{now}).returnLoadReview,true);
 const lowered=E.chooseReentryLoad(s,'squat',12,{now});
