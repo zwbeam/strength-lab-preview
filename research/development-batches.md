@@ -1786,3 +1786,47 @@ and 51-asset offline integrity pass. Cache/query rc64-optional-admission keeps a
 V33 namespaces. All ten Wildman gate rows remain unresolved; development checking
 passes and release checking remains intentionally blocked. Exact-commit CI and
 public DEV verification remain required before reporting a verified deployment.
+
+
+Developing-continuity follow-up (November 22): protected coordination now carries
+actual developing practice across intervening reserved core workouts. A first
+clean exposure gets a bounded follow-up when current core work is time-blocked;
+a genuine reduced-return sequence may also retain its follow-up. Evidence must
+match the current method and comparison load (wave methods retain their existing
+comparison rules). Core reservations, actual unfinished work, readiness, skills,
+equipment, independent progression and the continuity opt-out retain priority.
+After three consecutive developing visits, another ready developing peer gets a
+turn. Two recorded developing retention priorities yield to a never-practiced
+ready peer; this does not weaken core retention or force every movement to the
+same frequency. Forecasts and elapsed timer time never award learning credit.
+
+This is a Strength Lab scheduling adaptation, not a Wildman numeric protocol.
+Sources #85/#288/#404/#548 support the bounded fundamentals/learning rationale;
+verified quotes and limits are in research/developing-continuity-evidence.json.
+Controlled results in research/developing-continuity-results.json compare the
+exact da8b481 baseline: over 120 workouts at three days/week, the thirty-minute
+case records 21 normal developing entries versus 10, and six reentry entries
+versus twelve. All four tracked developing foundations qualify through actuals.
+The 45/60-minute cases retain all seven tracked ready cycle endpoints. Tradeoffs
+remain: one additional reentry at sixty minutes and a later bodyweight-squat
+qualification at forty-five. These are synthetic results, not physical outcomes
+or a universal recurrence guarantee. Three additional two-year stress histories
+save 858 actual workouts with missed sessions, absences, equipment/policy/time
+changes, reduced work and immutable forecasts/backups.
+
+All ten Wildman gate areas remain unresolved. Automatic curriculum curation,
+movement-specific maintenance frequency, oversized cores, legacy unprotected
+strict time fitting, instructional verification and real Android acceptance
+remain open. Regression inventory is 70 Node JS suites, six correction tests and
+35 browser suites. Runtime/query rc65-developing-continuity keeps 51 assets and
+all existing V33 storage namespaces. No user-data migration is introduced.
+
+Final local verification: all 70 Node JS suites, six correction tests and all
+35 browser suites pass. The existing core-composition mobile save timeout did
+not reproduce on its full two-width rerun; diagnostic logging remains and no
+assertion was weakened. The final focused suite also verifies that an old-method
+return cannot grant current-method follow-up without time pressure. Both source
+audits, gate checker, syntax, suite registration, diff checks and all 51 offline
+assets pass. Compared with the exact da8b481 engine, 108 default normal/reduced
+prescriptions and 72 legacy block/duration plans remain identical. Current-commit
+CI and public DEV checks are required separately after push.

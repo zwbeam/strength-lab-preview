@@ -868,23 +868,28 @@ function rotationCapacity(s,candidates,trainingDays){
 }
 function continuityCandidate(s,candidates,history,opts){
  if(opts.projection||s.programComposition?.continuity===false)return null;
- const physical=history.filter(x=>(x.items||[]).some(y=>y.actualSets>0)),latest=physical.at(-1);
- if(!latest)return null;
- const block=latest.block||'abc',candidate=candidates.find(x=>x.block===block&&x.p.items.length);
- if(!candidate)return null;
- // At most two follow-ups (three consecutive sessions total); never consume a
- // blocked opportunity or silently keep every other selected block waiting.
- let run=0;for(let i=physical.length-1;i>=0&&(physical[i].block||'abc')===block;i--)run++;
- if(run>=3&&candidates.some(x=>x.block!==block&&x.p.items.length))return null;
- const ids=(latest.items||[]).filter(x=>x.performed&&x.quality==='clean'&&!x.pain).filter(x=>candidate.p.items.some(rx=>rx.id===x.id&&!['review','prerequisite','reentry'].includes(rx.mode)));
- for(const item of ids){
-  const evidence=practiceEvidence(s,item.id,opts);
-  const returning=item.mode==='reentry';
-  const recentReturn=physical.slice(-run).some(x=>(x.items||[]).some(y=>y.id===item.id&&y.mode==='reentry'&&y.performed&&y.quality==='clean'&&!y.pain));
-  const learning=recentReturn&&evidence.recent&&evidence.count>0&&evidence.count<evidence.required;
-  if(returning||learning)return{candidate,id:item.id,reason:returning?'Follow up recent reduced return practice':'Build on recent clean supporting practice'};
+ const physical=history.filter(x=>(x.items||[]).some(y=>y.actualSets>0)),core=s.programComposition?.coreBlock;
+ const pressured=!!core&&candidates.some(x=>x.block===core&&x.p.timeBlocked.length>0);
+ function followUp(visits,developing=false){
+  const latest=visits.at(-1);if(!latest)return null;
+  const block=latest.block||'abc',candidate=candidates.find(x=>x.block===block&&x.p.items.length);if(!candidate)return null;
+  // At most two extra opportunities before another ready peer gets its turn.
+  // Reserved core visits do not consume or reset the developing follow-up count.
+  let run=0;for(let i=visits.length-1;i>=0&&(visits[i].block||'abc')===block;i--)run++;
+  if(run>=3&&candidates.some(x=>x.block!==block&&(!developing||x.block!==core)&&x.p.items.length))return null;
+  const ids=(latest.items||[]).filter(x=>x.performed&&x.quality==='clean'&&!x.pain).filter(x=>candidate.p.items.some(rx=>rx.id===x.id&&!['review','prerequisite','reentry'].includes(rx.mode)));
+  for(const item of ids){
+   const rx=candidate.p.items.find(x=>x.id===item.id);
+   if(core&&(item.policyKey!==rx.policyKey||item.profile!=='wave'&&item.weight!==rx.weight))continue;
+   const evidence=practiceEvidence(s,item.id,opts),returning=item.mode==='reentry';
+   const recentReturn=visits.slice(-run).some(x=>(x.items||[]).some(y=>y.id===item.id&&y.mode==='reentry'&&y.performed&&y.quality==='clean'&&!y.pain&&(!core||y.policyKey===rx.policyKey&&(y.profile==='wave'||y.weight===rx.weight))));
+   const learning=(recentReturn||developing&&pressured)&&evidence.recent&&evidence.count>0&&evidence.count<evidence.required;
+   if(returning||learning)return{candidate,id:item.id,...(developing?{developing:true}:{}),reason:(returning?'Follow up recent reduced return practice':'Build on recent clean supporting practice')+(developing?' in this developing program':'')};
+  }
+  return null;
  }
- return null;
+ const direct=followUp(physical);if(direct||!core)return direct;
+ return followUp(physical.filter(x=>(x.block||'abc')!==core&&s.programComposition.blocks.includes(x.block||'abc')),true);
 }
 function retentionCandidate(s,candidates,history,opts){
  if(opts.projection||s.programComposition?.continuity===false)return null;
@@ -893,8 +898,13 @@ function retentionCandidate(s,candidates,history,opts){
  const physical=history.filter(x=>(x.items||[]).some(y=>y.actualSets>0));
  const absence=s.trainingDefaults?.reentryDays??14,latest=physical.at(-1),block=latest?.block||'abc';
  let run=0;for(let i=physical.length-1;i>=0&&(physical[i].block||'abc')===block;i--)run++;
+ const core=s.programComposition?.coreBlock;
+ const developing=core?physical.filter(x=>(x.block||'abc')!==core&&s.programComposition.blocks.includes(x.block||'abc')):[];
+ let retained=0;for(let i=developing.length-1;i>=0;i--){const x=developing[i];if(x.plan?.composition?.cadence?.retention?.block!==(x.block||'abc'))break;retained++;}
  const due=[];
  for(const candidate of candidates){
+  // Core interleaving must not reset the bound on maintenance-only priorities.
+  if(core&&candidate.block!==core&&retained>=2&&candidates.some(x=>x.block!==core&&x.block!==candidate.block&&x.last<0&&x.p.items.length))continue;
   if(run>=3&&candidate.block===block&&candidates.some(x=>x.block!==block&&x.p.items.length))continue;
   for(const rx of candidate.p.items){
    if(!['volume','light','density','milestone'].includes(rx.mode))continue;
@@ -978,7 +988,7 @@ function plan(s,opts={}){
  }).sort((a,b)=>Number(a.removesProtectedCore)-Number(b.removesProtectedCore)||a.remainingLongestReturnDays-b.remainingLongestReturnDays||a.remove.localeCompare(b.remove)):[];
  const rotationAdjustment=slowest&&slowest.estimatedReturnDays>absenceDays?{currentLongestReturnDays:rotation.longestReturnDays,returnWindowDays:absenceDays,removalOptions,preferredScenario:removalOptions[0]||null,fastestScenario:[...removalOptions].sort((a,b)=>a.remainingLongestReturnDays-b.remainingLongestReturnDays||a.remove.localeCompare(b.remove))[0]||null}:null;
  const rotationWarning=slowest&&slowest.estimatedReturnDays>absenceDays?'In a simple rotation across '+rotation.readyBlocks+' currently ready programs at '+rotation.effectiveDaysPerWeek+' days/week capacity'+(rotation.basis==='capacity-and-observed-pace'?' and your recorded pace':'')+', '+BLOCKS[slowest.block].name+' has '+slowest.programDays+' program day'+(slowest.programDays===1?'':'s')+' recurring about every '+slowest.estimatedReturnDays+' days. For movements not practiced elsewhere, that can exceed your '+absenceDays+'-day return window. '+' At this pace, approximately '+feasiblePrograms+' program'+(feasiblePrograms===1?'':'s')+' of this length fit the return window; reduce simultaneous programs or choose shorter blocks. This is planning guidance, not an automatic change. Movement overlap and priority scheduling can change this estimate.':null;
- const cadence={rotation,rotationAdjustment,movements:movementRows.filter(x=>x.repeatedReentry||x.atRisk).slice(0,3),movementSummary:{observed:movementRows.length,repeatedReentry:repeated.length,atRisk:risk.length},retention:retention?{id:retention.id,block:chosen.block}:null,continuity:continuity?{id:continuity.id,block:chosen.block}:null,sampleDays:trainingDays.length,estimatedReturnDays,absenceDays,warning:movementWarning||rotationWarning||(estimatedReturnDays!==null&&estimatedReturnDays>absenceDays?'At your recent training frequency, revisiting every selected block may take longer than the absence window. Consider fewer active blocks; do not add catch-up work.':null)};
+ const cadence={rotation,rotationAdjustment,movements:movementRows.filter(x=>x.repeatedReentry||x.atRisk).slice(0,3),movementSummary:{observed:movementRows.length,repeatedReentry:repeated.length,atRisk:risk.length},retention:retention?{id:retention.id,block:chosen.block}:null,continuity:continuity?{id:continuity.id,block:chosen.block,...(continuity.developing?{developing:true}:{})}:null,sampleDays:trainingDays.length,estimatedReturnDays,absenceDays,warning:movementWarning||rotationWarning||(estimatedReturnDays!==null&&estimatedReturnDays>absenceDays?'At your recent training frequency, revisiting every selected block may take longer than the absence window. Consider fewer active blocks; do not add catch-up work.':null)};
  const reason=!p.items.length?'All selected blocks are currently blocked or do not fit. Review the reasons below.':
   (unfinished?'Continue the last unfinished workout before later blocks.':allocation?.candidate?allocation.details.reason:retention?'Revisit '+MOVES[retention.id].name+' before its configured return window is exceeded, based on your recorded training frequency.':continuity?continuity.reason+' for '+MOVES[continuity.id].name+'. Existing progression and recovery requirements still apply.':allocation?.other===chosen?allocation.details.reason:chosen.last<0?'This selected block has not yet been practiced.':'This is the least recently practiced selected block that is ready and fits today.')+
   (pending.length?' Unfinished movements are considered first within this block.':'')+

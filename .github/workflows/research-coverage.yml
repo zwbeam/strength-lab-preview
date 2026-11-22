@@ -128,6 +128,7 @@ jobs:
           node tests/review-return-evidence.js
           node tests/wave-cycle-identity.js
           node tests/hip-drop-timed.js
+          node tests/developing-continuity.js
           node tests/optional-admission.js
           node tests/core-composition.js
           node tests/wildman-gate.js
@@ -314,6 +315,7 @@ jobs:
           node tests/browser-review-return.cjs
           node tests/browser-wave-cycles.cjs
           node tests/browser-hip-timed.cjs
+          node tests/browser-developing-continuity.cjs
           node tests/browser-optional-admission.cjs
           node tests/browser-core-composition.cjs
           node tests/browser-rotation-capacity.cjs

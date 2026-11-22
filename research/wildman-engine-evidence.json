@@ -63,6 +63,36 @@
         "remaining": "Developing-block admission/maintenance and sustainable oversized curricula remain unresolved; diagnostic reentry entries remain.",
         "commit": "07b7a6c98f4172c6be1f9372ba0045df86163223",
         "verification": "Local 69 Node JS suites, six correction tests and 34 browser suites passed; the 27 two-year diagnostic scenarios preserve 8,820 workouts. Gate closure is not claimed."
+      },
+      "developingContinuityFollowUp": {
+        "date": "2026-11-22",
+        "baseCommit": "da8b481c45ed1d4ba69451d0b6be2407453e506d",
+        "scope": "Partial bounded scheduling adaptation; no area closure",
+        "sourceIds": [
+          85,
+          288,
+          404,
+          548
+        ],
+        "enginePaths": [
+          "engine.js"
+        ],
+        "behaviorTests": [
+          "tests/developing-continuity.js",
+          "tests/browser-developing-continuity.cjs"
+        ],
+        "evidence": "research/developing-continuity-evidence.json",
+        "results": "research/developing-continuity-results.json",
+        "findings": [
+          "Actual current-method developing practice can bridge reserved core visits; first-clean extension requires current core time pressure.",
+          "Bounded peer opportunities preserve core reservation and independent earned progression; forecasts award no credit.",
+          "Controlled 30-minute normal developing entries 10 to 21; reentry 12 to 6. All tracked 45/60-minute cycle endpoints retained."
+        ],
+        "remaining": [
+          "No complete automatic curriculum or movement-specific maintenance policy is established.",
+          "One additional 60-minute return and delayed 45-minute squat qualification remain documented tradeoffs.",
+          "Synthetic diagnostics are not physical technique or real Android acceptance."
+        ]
       }
     },
     "Movement-specific progression": {
@@ -97,6 +127,36 @@
         ],
         "commit": "c1f11baf1add6059b82445be43a4bc6230a9ee68",
         "verification": "Relevant local behavior suites passed in the complete 68 Node JS / 6 correction / 33 browser suite run. Partial audit only; remaining questions are not closed."
+      },
+      "developingContinuityFollowUp": {
+        "date": "2026-11-22",
+        "baseCommit": "da8b481c45ed1d4ba69451d0b6be2407453e506d",
+        "scope": "Partial bounded scheduling adaptation; no area closure",
+        "sourceIds": [
+          85,
+          288,
+          404,
+          548
+        ],
+        "enginePaths": [
+          "engine.js"
+        ],
+        "behaviorTests": [
+          "tests/developing-continuity.js",
+          "tests/browser-developing-continuity.cjs"
+        ],
+        "evidence": "research/developing-continuity-evidence.json",
+        "results": "research/developing-continuity-results.json",
+        "findings": [
+          "Actual current-method developing practice can bridge reserved core visits; first-clean extension requires current core time pressure.",
+          "Bounded peer opportunities preserve core reservation and independent earned progression; forecasts award no credit.",
+          "Controlled 30-minute normal developing entries 10 to 21; reentry 12 to 6. All tracked 45/60-minute cycle endpoints retained."
+        ],
+        "remaining": [
+          "No complete automatic curriculum or movement-specific maintenance policy is established.",
+          "One additional 60-minute return and delayed 45-minute squat qualification remain documented tradeoffs.",
+          "Synthetic diagnostics are not physical technique or real Android acceptance."
+        ]
       }
     },
     "Warmup philosophy": {
@@ -247,6 +307,36 @@
         "remaining": "Developing-block admission/maintenance and sustainable oversized curricula remain unresolved; diagnostic reentry entries remain.",
         "commit": "07b7a6c98f4172c6be1f9372ba0045df86163223",
         "verification": "Local 69 Node JS suites, six correction tests and 34 browser suites passed; the 27 two-year diagnostic scenarios preserve 8,820 workouts. Gate closure is not claimed."
+      },
+      "developingContinuityFollowUp": {
+        "date": "2026-11-22",
+        "baseCommit": "da8b481c45ed1d4ba69451d0b6be2407453e506d",
+        "scope": "Partial bounded scheduling adaptation; no area closure",
+        "sourceIds": [
+          85,
+          288,
+          404,
+          548
+        ],
+        "enginePaths": [
+          "engine.js"
+        ],
+        "behaviorTests": [
+          "tests/developing-continuity.js",
+          "tests/browser-developing-continuity.cjs"
+        ],
+        "evidence": "research/developing-continuity-evidence.json",
+        "results": "research/developing-continuity-results.json",
+        "findings": [
+          "Actual current-method developing practice can bridge reserved core visits; first-clean extension requires current core time pressure.",
+          "Bounded peer opportunities preserve core reservation and independent earned progression; forecasts award no credit.",
+          "Controlled 30-minute normal developing entries 10 to 21; reentry 12 to 6. All tracked 45/60-minute cycle endpoints retained."
+        ],
+        "remaining": [
+          "No complete automatic curriculum or movement-specific maintenance policy is established.",
+          "One additional 60-minute return and delayed 45-minute squat qualification remain documented tradeoffs.",
+          "Synthetic diagnostics are not physical technique or real Android acceptance."
+        ]
       }
     },
     "Equipment and real-world constraints": {

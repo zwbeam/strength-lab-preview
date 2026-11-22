@@ -1,0 +1,64 @@
+{
+  "date": "2026-11-22",
+  "baseCommit": "da8b481c45ed1d4ba69451d0b6be2407453e506d",
+  "sources": [
+    {
+      "id": 404,
+      "title": "Kettlebell Program Design for Beginners - Tetris of Training Part 1",
+      "url": "https://www.youtube.com/watch?v=sAcBo4H__hE",
+      "sha256": "0d099957e23306ec84dbcdef69940c869c35b26d50ad8117fa6b5e84204a11b4",
+      "quotes": [
+        "you want to spend the majority of your time developing your fundamentals",
+        "the goal is to try to not repeat two of the exact same things two days in a row in the beginning of training"
+      ],
+      "timestamps": null
+    },
+    {
+      "id": 548,
+      "title": "Program Design 4 - Basic Kettlebell, 2 Hand Heavy Club, Single arm Club - Training Tetris",
+      "url": "https://www.youtube.com/watch?v=XYuiOsBAvXI",
+      "sha256": "0cdb4d3f1e34f4c8076a90aa4af3133e4b9b693650bff28c68f6b871c2a7dbb2",
+      "quotes": [
+        "we are going to keep these as fundamental programs",
+        "we tend to push people into kettlebells first"
+      ],
+      "timestamps": null
+    },
+    {
+      "id": 85,
+      "title": "Body weight 101 program integration with swing and strong and fit mill squat program - design talk",
+      "url": "https://www.youtube.com/watch?v=Sb0byJSPDoE",
+      "sha256": "c346045f067510b8f03798fd56b593cb90dc9ad733f8c8fb8b796bc90045c767",
+      "quotes": [
+        "they just shift over like tetris",
+        "each piece of the tetris program can be totally different but they can integrate and interlock in different ways"
+      ],
+      "timestamps": null
+    },
+    {
+      "id": 288,
+      "title": "Kettlebell -the order of operation of learning",
+      "url": "https://www.youtube.com/watch?v=LH5Na78H1pk",
+      "sha256": "16645fd95114060d7c337a674bd007519fd6b8d0029f8de5c1968c988ecb4713",
+      "quotes": [
+        "normally you're adding steps most people do not skip steps",
+        "we have to go back and shore up a weakness"
+      ],
+      "timestamps": null
+    }
+  ],
+  "sourceClaim": "Keep foundational programs while fitting complementary practice around changing schedules; progressive learning does not automatically certify later technical skills.",
+  "appDecisions": [
+    "Use the existing continuity opt-in/default and actual completed practice, with no new settings or saved active-path state.",
+    "Reserved core work and genuine unfinished work keep priority. Recent developing return practice can receive a follow-up across intervening core sessions.",
+    "First clean learning practice receives cross-core follow-up only when the current core has actual time-blocked work, and only while the existing supporting-practice requirement remains unmet.",
+    "At most two additional developing opportunities before another ready developing peer receives its turn. Two successive actual developing retention priorities yield when a never-practiced ready peer is waiting; the core remains protected.",
+    "Current method/load, skills, pain, recovery, time and actual-qualification rules remain mandatory; forecasts never assume future completion."
+  ],
+  "limits": [
+    "The follow-up count, skill-exposure gate and retention bound are application choices, not Wildman numerical prescriptions.",
+    "This does not establish a complete active/developing/maintenance curriculum, a universal movement frequency or complete transcript integration.",
+    "Controlled scheduling tradeoffs are reported, including delayed milestones and any additional reduced return in a longer-duration case.",
+    "No automatic technical confirmation, component credit, source-dose modification or data migration is introduced."
+  ]
+}
