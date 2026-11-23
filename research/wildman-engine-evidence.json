@@ -120,7 +120,9 @@
         ],
         "remaining": [
           "Automatic curriculum curation and movement-specific maintenance remain unresolved."
-        ]
+        ],
+        "commit": "2c4cf7c0d5901a64b5facf7dbc2087dee4876326",
+        "verification": "All 70 Node JS suites, six correction tests and 35 browser suites passed locally; focused actual correction/undo and offline mobile peer fairness passed. All ten areas remain unresolved."
       }
     },
     "Movement-specific progression": {
@@ -394,7 +396,9 @@
         ],
         "remaining": [
           "Automatic curriculum curation and movement-specific maintenance remain unresolved."
-        ]
+        ],
+        "commit": "2c4cf7c0d5901a64b5facf7dbc2087dee4876326",
+        "verification": "All 70 Node JS suites, six correction tests and 35 browser suites passed locally; focused actual correction/undo and offline mobile peer fairness passed. All ten areas remain unresolved."
       }
     },
     "Equipment and real-world constraints": {

@@ -133,6 +133,8 @@ automatic curriculum curation and movement-specific maintenance still need work.
 Runtime rc66-peer-bound retains 51 assets and existing V33 keys. Regression suite
 inventory stays 70 Node JS, six correction tests and 35 browser suites.
 
+Latest-return peer-bound implementation checkpoint: 2c4cf7c0d5901a64b5facf7dbc2087dee4876326.
+
 ## Final UI phase, after the gate
 
 Review Train, Workout, Log, Learn and Settings as actual user journeys; simplify setup, remove duplicated controls, ensure understandable decisions and preserve backups. Run current-commit CI and Android acceptance before release.
