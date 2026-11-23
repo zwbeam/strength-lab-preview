@@ -876,7 +876,10 @@ function continuityCandidate(s,candidates,history,opts){
   // At most two extra opportunities before another ready peer gets its turn.
   // Reserved core visits do not consume or reset the developing follow-up count.
   let run=0;for(let i=visits.length-1;i>=0&&(visits[i].block||'abc')===block;i--)run++;
-  if(run>=3&&candidates.some(x=>x.block!==block&&(!developing||x.block!==core)&&x.p.items.length))return null;
+  const protectedDeveloping=!!core&&block!==core;
+  const peerVisits=protectedDeveloping?physical.filter(x=>(x.block||'abc')!==core&&s.programComposition.blocks.includes(x.block||'abc')):visits;
+  let peerRun=0;for(let i=peerVisits.length-1;i>=0&&(peerVisits[i].block||'abc')===block;i--)peerRun++;
+  if(peerRun>=3&&candidates.some(x=>x.block!==block&&(!protectedDeveloping||x.block!==core)&&x.p.items.length))return null;
   const ids=(latest.items||[]).filter(x=>x.performed&&x.quality==='clean'&&!x.pain).filter(x=>candidate.p.items.some(rx=>rx.id===x.id&&!['review','prerequisite','reentry'].includes(rx.mode)));
   for(const item of ids){
    const rx=candidate.p.items.find(x=>x.id===item.id);

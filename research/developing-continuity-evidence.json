@@ -60,5 +60,21 @@
     "This does not establish a complete active/developing/maintenance curriculum, a universal movement frequency or complete transcript integration.",
     "Controlled scheduling tradeoffs are reported, including delayed milestones and any additional reduced return in a longer-duration case.",
     "No automatic technical confirmation, component credit, source-dose modification or data migration is introduced."
-  ]
+  ],
+  "peerBoundCorrection": {
+    "date": "2026-11-23",
+    "baseCommit": "603f404393722bbb849be9a26646bfb17d8217f1",
+    "scope": "Repair latest-return bypass of the existing application fairness bound; no new source attribution",
+    "problem": "Latest-session physical history reset its peer run at core visits, unlike the developing-history path. A latest reduced return could obtain a fourth developing opportunity.",
+    "behavior": "Count selected noncore actual visits for peer fairness in both paths; yield only to a ready noncore peer. Keep original physical run for existing return-evidence lookup.",
+    "fixture": "Actual engine-generated user-selected receipts, including explicitly reduced return practice, surplus core work and interleaved developing turns; not an automatically generated coordinated history.",
+    "tests": [
+      "tests/developing-continuity.js",
+      "tests/browser-developing-continuity.cjs"
+    ],
+    "limits": [
+      "Existing source facts are unchanged; the numeric fairness bound remains a Strength Lab adaptation.",
+      "No claim of complete curriculum management, maintenance frequency or gate closure."
+    ]
+  }
 }

@@ -95,6 +95,32 @@
         ],
         "commit": "dc2c92130a89f1ee3a95f9f9f456dc46138fcdc1",
         "verification": "All 70 Node JS, six correction and 35 browser suites passed locally; final focused current-method regression passed. All ten audit areas remain unresolved."
+      },
+      "peerBoundCorrection": {
+        "date": "2026-11-23",
+        "baseCommit": "603f404393722bbb849be9a26646bfb17d8217f1",
+        "scope": "Existing app-bound correctness repair; partial audit only",
+        "sourceIds": [
+          85,
+          288,
+          404,
+          548
+        ],
+        "evidence": "research/developing-continuity-evidence.json",
+        "enginePaths": [
+          "engine.js"
+        ],
+        "behaviorTests": [
+          "tests/developing-continuity.js",
+          "tests/browser-developing-continuity.cjs"
+        ],
+        "findings": [
+          "Latest-session reduced return no longer bypasses cross-core developing peer fairness.",
+          "Only ready selected developing peers receive a turn; no fabricated qualification or physical work."
+        ],
+        "remaining": [
+          "Automatic curriculum curation and movement-specific maintenance remain unresolved."
+        ]
       }
     },
     "Movement-specific progression": {
@@ -343,6 +369,32 @@
         ],
         "commit": "dc2c92130a89f1ee3a95f9f9f456dc46138fcdc1",
         "verification": "All 70 Node JS, six correction and 35 browser suites passed locally; final focused current-method regression passed. All ten audit areas remain unresolved."
+      },
+      "peerBoundCorrection": {
+        "date": "2026-11-23",
+        "baseCommit": "603f404393722bbb849be9a26646bfb17d8217f1",
+        "scope": "Existing app-bound correctness repair; partial audit only",
+        "sourceIds": [
+          85,
+          288,
+          404,
+          548
+        ],
+        "evidence": "research/developing-continuity-evidence.json",
+        "enginePaths": [
+          "engine.js"
+        ],
+        "behaviorTests": [
+          "tests/developing-continuity.js",
+          "tests/browser-developing-continuity.cjs"
+        ],
+        "findings": [
+          "Latest-session reduced return no longer bypasses cross-core developing peer fairness.",
+          "Only ready selected developing peers receive a turn; no fabricated qualification or physical work."
+        ],
+        "remaining": [
+          "Automatic curriculum curation and movement-specific maintenance remain unresolved."
+        ]
       }
     },
     "Equipment and real-world constraints": {

@@ -11,7 +11,9 @@ const assert=require('node:assert/strict'),{chromium}=require('playwright'),E=re
    const ctx=await browser.newContext({viewport:{width,height:844},hasTouch:true,isMobile:true,timezoneId:'UTC'});
    await ctx.addInitScript(seed=>{localStorage.setItem('sl-dev-preview-data-v33',JSON.stringify(seed));},stateSeed);
    const page=await ctx.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('dialog',async d=>{errors.push(d.message());await d.dismiss();});
-   await page.clock.install({time:now});await page.clock.pauseAt(now);
+   // This test needs a stable training date, not paused timers. Avoid racing
+   // pauseAt against the already advancing installed clock.
+   await page.clock.setFixedTime(now);
    await page.goto(process.env.STRENGTH_LAB_TEST_URL||'http://127.0.0.1:8765/');
    await page.waitForFunction(()=>storageReady);
    const rx=await page.evaluate(()=>E.prescription(state,'squat',{now:today()}));

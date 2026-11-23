@@ -1830,3 +1830,43 @@ audits, gate checker, syntax, suite registration, diff checks and all 51 offline
 assets pass. Compared with the exact da8b481 engine, 108 default normal/reduced
 prescriptions and 72 legacy block/duration plans remain identical. Current-commit
 CI and public DEV checks are required separately after push.
+
+
+November 23 peer-bound correction: the latest-session return path now counts the
+same selected developing history as the cross-core follow-up path. Previously,
+three developing turns separated by core workouts could receive a fourth turn
+when the latest receipt was a reduced return and surplus core capacity existed.
+Both paths now yield to another ready developing peer after the existing three
+turns. Absent/blocked peers do not force empty workouts; core reservation and
+unprotected-program continuity remain unchanged. No qualification, dose, load,
+method, saved selection or storage namespace changes.
+
+The regression uses actual engine-generated, user-selected workout receipts,
+including explicitly reduced practice; it is not a claim that the automatic
+scheduler generated that historical selection. The same fixture fails before
+the correction and passes afterward, with immutable backup replay and no return
+credit. Mobile tests verify the peer choice and untouched offline draft at
+320/390px. Existing 30/45/60-minute controlled and two-year stress diagnostics
+retain their prior counts and endpoints. This enforces the existing app fairness
+bound, not a newly sourced Wildman numerical rule. All ten gate rows remain open;
+automatic curriculum curation and movement-specific maintenance still need work.
+Runtime rc66-peer-bound retains 51 assets and existing V33 keys. Regression suite
+inventory stays 70 Node JS, six correction tests and 35 browser suites.
+
+
+Regression-harness repair: browser-reentry-load-review.cjs exposed a race between
+installing an advancing fake clock and pausing at the same instant ("Cannot
+fast-forward to the past"). This date-only test now uses setFixedTime; app load,
+re-entry warning, unchanged owned weight and no-warning-for-recent-work assertions
+are retained. This is a test-clock fix, not an app save/progression fix.
+
+
+Final local peer-bound verification: all 70 Node JS suites, six correction tests
+and 35 browser suites pass. The initial browser clock-setup failure was repaired
+as described above; both affected mobile widths and the final remaining suite
+were rerun successfully, with original assertions retained. Focused correction/
+undo, absent/blocked peer, unprotected compatibility, genuine reduced receipts,
+backup replay and offline draft checks pass. Exact-baseline compatibility retains
+108 prescriptions and 72 legacy block/duration plans. Source audits, gate check,
+syntax, suite registration, diff checks and 51 cached assets pass. Public DEV and
+exact-commit CI remain separate post-push verification requirements.
