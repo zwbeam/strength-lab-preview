@@ -150,7 +150,9 @@
         "remaining": [
           "No complete automatic curriculum curation or movement-specific maintenance policy is established.",
           "Physical and Android acceptance remain separate requirements."
-        ]
+        ],
+        "commit": "454d0cdb85b856be1d766cc59e8685d0a87a128e",
+        "verification": "All 71 Node JS suites, six correction tests and 36 browser suites passed locally. Nine resumed-training histories, actual correction/undo and offline mobile core returns passed. All ten areas remain unresolved."
       }
     },
     "Movement-specific progression": {
@@ -454,7 +456,9 @@
         "remaining": [
           "No complete automatic curriculum curation or movement-specific maintenance policy is established.",
           "Physical and Android acceptance remain separate requirements."
-        ]
+        ],
+        "commit": "454d0cdb85b856be1d766cc59e8685d0a87a128e",
+        "verification": "All 71 Node JS suites, six correction tests and 36 browser suites passed locally. Nine resumed-training histories, actual correction/undo and offline mobile core returns passed. All ten areas remain unresolved."
       }
     },
     "Equipment and real-world constraints": {

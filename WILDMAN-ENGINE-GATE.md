@@ -167,6 +167,8 @@ instructional verification and real Android acceptance remain open. Inventory:
 71 Node JS suites, six correction tests and 36 browser suites. Runtime/query
 rc67-core-window retains 51 runtime assets and all existing V33 namespaces.
 
+Core-attendance accounting implementation checkpoint: 454d0cdb85b856be1d766cc59e8685d0a87a128e.
+
 ## Final UI phase, after the gate
 
 Review Train, Workout, Log, Learn and Settings as actual user journeys; simplify setup, remove duplicated controls, ensure understandable decisions and preserve backups. Run current-commit CI and Android acceptance before release.
