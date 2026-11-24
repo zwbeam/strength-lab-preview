@@ -934,12 +934,18 @@ function coreAllocation(s,candidates,history,opts){
  for(let i=0;i<coreHistory.length;i++)for(const item of coreHistory[i].items||[])if(corePatterns.has(item.id)&&movementEnabled(s,item.id)&&item.actualSets>0&&item.performed){if(lastSeen.has(item.id))returns.set(item.id,i-lastSeen.get(item.id));lastSeen.set(item.id,i);}
  const requiredCoreVisits=Math.max(programDays,...returns.values());
  const share=Math.min(1,7*requiredCoreVisits/(pace*returnDays));
- const actual=physical.filter(x=>s.programComposition.blocks.includes(x.block||'abc')).map(x=>x.block||'abc');
+ // Reservation credit/debt belongs to the current period of core attendance.
+ // A core absence resets scheduling credit, never earned movement progression.
+ const coreDates=history.filter(x=>(x.block||'abc')===coreBlock&&(x.items||[]).some(y=>y.actualSets>0)).map(x=>calendarDay(x.date));
+ let reservationStart=coreDates[0]??day-returnDays+1;
+ for(let i=1;i<coreDates.length;i++)if(coreDates[i]-coreDates[i-1]>returnDays)reservationStart=coreDates[i];
+ if(!coreDates.length||day-coreDates.at(-1)>returnDays)reservationStart=day-returnDays+1;
+ const actual=physical.filter(x=>calendarDay(x.date)>=reservationStart&&s.programComposition.blocks.includes(x.block||'abc')).map(x=>x.block||'abc');
  const visits=[...actual,...(opts.projectedBlocks||[])],coreVisits=visits.filter(x=>x===coreBlock).length;
  let run=0;for(let i=visits.length-1;i>=0&&visits[i]===coreBlock;i--)run++;
  const other=candidates.find(x=>x.block!==coreBlock&&x.p.items.length);
  const owed=core?.p.items.length>0&&(share===1||run<3||!other)&&coreVisits+1e-8<Math.ceil((visits.length+1)*share-1e-8);
- return{candidate:owed?core:null,other,details:{coreBlock,programDays,requiredCoreVisits,effectiveDaysPerWeek:pace,targetShare:share,ready:!!core?.p.items.length,capacityLimited:share===1,reason:owed?'Reserve this opportunity for the selected core before adding more rotation gaps.'+(share===1?' At the current pace and observed core coverage, this core uses the full return-window capacity. Other programs remain selected; review available time and program scope.':''):!core?.p.items.length?'The selected core is currently blocked; its gates remain in force.':'Core capacity is reserved; an eligible developing program can use this opportunity.'}};
+ return{candidate:owed?core:null,other,details:{coreBlock,programDays,requiredCoreVisits,reservationResetDays:returnDays,reservationStart:new Date(reservationStart*86400000).toISOString().slice(0,10),actualOpportunities:actual.length,actualCoreVisits:actual.filter(x=>x===coreBlock).length,reserved:owed,effectiveDaysPerWeek:pace,targetShare:share,ready:!!core?.p.items.length,capacityLimited:share===1,reason:owed?(coreDates.length&&day-coreDates.at(-1)>returnDays?'Resume the selected core after its training gap before adding developing work.':'Reserve this opportunity for the selected core before adding more rotation gaps.')+(share===1?' At the current pace and observed core coverage, this core uses the full return-window capacity. Other programs remain selected; review available time and program scope.':''):!core?.p.items.length?'The selected core is currently blocked; its gates remain in force.':'Core capacity is reserved; an eligible developing program can use this opportunity.'}};
 }
 function plan(s,opts={}){
  opts={...opts,now:opts.now??new Date()};opts.readiness??=readinessFor(s,opts.now);

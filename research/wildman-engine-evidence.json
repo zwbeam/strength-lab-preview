@@ -123,6 +123,34 @@
         ],
         "commit": "2c4cf7c0d5901a64b5facf7dbc2087dee4876326",
         "verification": "All 70 Node JS suites, six correction tests and 35 browser suites passed locally; focused actual correction/undo and offline mobile peer fairness passed. All ten areas remain unresolved."
+      },
+      "coreAttendanceFollowUp": {
+        "date": "2026-11-24",
+        "baseCommit": "c4b9bd27000b7fdce5a6f58fe817205e88a40498",
+        "scope": "Partial scheduling credit/debt correction, no area closure",
+        "sourceIds": [
+          404,
+          548,
+          606
+        ],
+        "enginePaths": [
+          "engine.js"
+        ],
+        "behaviorTests": [
+          "tests/core-window.js",
+          "tests/browser-core-window.cjs"
+        ],
+        "evidence": "research/core-window-evidence.json",
+        "results": "research/core-window-results.json",
+        "findings": [
+          "Old core surplus cannot delay an overdue return; prior developing debt cannot force catch-up reservations.",
+          "Accounting restarts after actual core attendance lapses; earned movement progression does not reset.",
+          "Existing controlled and two-year developing trajectories retain baseline outcomes."
+        ],
+        "remaining": [
+          "No complete automatic curriculum curation or movement-specific maintenance policy is established.",
+          "Physical and Android acceptance remain separate requirements."
+        ]
       }
     },
     "Movement-specific progression": {
@@ -399,6 +427,34 @@
         ],
         "commit": "2c4cf7c0d5901a64b5facf7dbc2087dee4876326",
         "verification": "All 70 Node JS suites, six correction tests and 35 browser suites passed locally; focused actual correction/undo and offline mobile peer fairness passed. All ten areas remain unresolved."
+      },
+      "coreAttendanceFollowUp": {
+        "date": "2026-11-24",
+        "baseCommit": "c4b9bd27000b7fdce5a6f58fe817205e88a40498",
+        "scope": "Partial scheduling credit/debt correction, no area closure",
+        "sourceIds": [
+          404,
+          548,
+          606
+        ],
+        "enginePaths": [
+          "engine.js"
+        ],
+        "behaviorTests": [
+          "tests/core-window.js",
+          "tests/browser-core-window.cjs"
+        ],
+        "evidence": "research/core-window-evidence.json",
+        "results": "research/core-window-results.json",
+        "findings": [
+          "Old core surplus cannot delay an overdue return; prior developing debt cannot force catch-up reservations.",
+          "Accounting restarts after actual core attendance lapses; earned movement progression does not reset.",
+          "Existing controlled and two-year developing trajectories retain baseline outcomes."
+        ],
+        "remaining": [
+          "No complete automatic curriculum curation or movement-specific maintenance policy is established.",
+          "Physical and Android acceptance remain separate requirements."
+        ]
       }
     },
     "Equipment and real-world constraints": {

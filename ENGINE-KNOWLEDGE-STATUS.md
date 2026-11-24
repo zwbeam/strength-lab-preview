@@ -182,3 +182,34 @@ bound, not a newly sourced Wildman numerical rule. All ten gate rows remain open
 automatic curriculum curation and movement-specific maintenance still need work.
 Runtime rc66-peer-bound retains 51 assets and existing V33 keys. Regression suite
 inventory stays 70 Node JS, six correction tests and 35 browser suites.
+
+
+November 24 core-attendance accounting: old core work can no longer bank
+reservation credit across a lapse longer than the configured return interval.
+Scheduling accounting begins at the first actual core visit, restarts at an
+actual core return after such a lapse, and ignores old credit/debt while the
+core is currently overdue. During continuous core attendance the prior balancing
+policy stays in force. The 56-day attendance/recurrence observation, reserved
+core, actual unfinished work, peer bounds, equipment, prerequisite and recovery
+rules remain intact. Earned movement history and progression never reset here.
+No new setting, stored phase, program deletion, load change or migration exists.
+
+The failing baseline fixture has 18 genuine user-selected workout receipts: old
+foundational work followed by developing-only training. Old scheduling chooses
+another developing block despite the core being 19 days absent; current scheduling
+reserves its reduced return without advancement. Old pre-core developing debt
+also does not force catch-up reservations. See research/core-window-evidence.json
+for verified source facts versus this app adaptation, and core-window-results.json
+for exact c4b9bd2 comparisons. All three 120-workout controlled histories and three
+286-workout stress histories retain baseline counts, qualifications and endpoints.
+A broader continuously rolling quota was rejected after it lost club qualification
+in constrained testing. This narrower correction preserves developing learning.
+
+Tests cover actual correction/undo, backup replay, future isolation, custom return
+intervals, no-core compatibility, disabled families, selected-duration Settings/
+Train agreement, immutable offline drafts and genuinely logged nonadvancing
+returns. All ten gate rows remain unresolved. Automatic curriculum curation,
+movement-specific maintenance, oversized cores, strict legacy duration fitting,
+instructional verification and real Android acceptance remain open. Inventory:
+71 Node JS suites, six correction tests and 36 browser suites. Runtime/query
+rc67-core-window retains 51 runtime assets and all existing V33 namespaces.

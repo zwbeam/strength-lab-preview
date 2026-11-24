@@ -1,0 +1,527 @@
+{
+  "date": "2026-11-24",
+  "baseCommit": "c4b9bd27000b7fdce5a6f58fe817205e88a40498",
+  "baselineEngineBlob": "fbd98f739d4efd3117806e581a994303eb57699c",
+  "scope": "Controlled actual synthetic histories, unchanged methods, equipment, explicit skills and doses. No physical outcome claims.",
+  "bugReproduction": {
+    "oldNextBlock": "bodyweightPull",
+    "newNextBlock": "abc",
+    "coreGapDays": 19,
+    "historyWorkouts": 18,
+    "nextReturn": "Reduced actual practice, no ordinary advancement"
+  },
+  "controlled40Week": [
+    {
+      "minutes": 30,
+      "label": "before",
+      "core": 101,
+      "developingWorkouts": 19,
+      "normalDevelopingEntries": 21,
+      "reentryDevelopingEntries": 6,
+      "firstReady": "2026-01-12",
+      "milestones": {
+        "hingePractice": "2026-01-12",
+        "bodyweightSquat": "2026-02-13",
+        "bodyweightRow": "2026-03-27",
+        "hipDropTwoHand": "2026-06-05"
+      },
+      "progress": {
+        "hingePractice": {
+          "stage": 1,
+          "cycles": 1,
+          "ready": true,
+          "completed": 6
+        },
+        "bodyweightRow": {
+          "stage": 1,
+          "cycles": 0,
+          "ready": false,
+          "completed": 3
+        },
+        "bodyweightSquat": {
+          "stage": 1,
+          "cycles": 0,
+          "ready": false,
+          "completed": 3
+        },
+        "stepBackLunge": {
+          "stage": 1,
+          "cycles": 0,
+          "ready": false,
+          "completed": 3
+        },
+        "hipDropTwoHand": {
+          "stage": 1,
+          "cycles": 0,
+          "ready": false,
+          "completed": 3
+        },
+        "hipDropSingleHand": {
+          "stage": 0,
+          "cycles": 0,
+          "ready": false,
+          "completed": 0
+        },
+        "bearSquat": {
+          "stage": 1,
+          "cycles": 0,
+          "ready": false,
+          "completed": 3
+        }
+      }
+    },
+    {
+      "minutes": 30,
+      "label": "after",
+      "core": 101,
+      "developingWorkouts": 19,
+      "normalDevelopingEntries": 21,
+      "reentryDevelopingEntries": 6,
+      "firstReady": "2026-01-12",
+      "milestones": {
+        "hingePractice": "2026-01-12",
+        "bodyweightSquat": "2026-02-13",
+        "bodyweightRow": "2026-03-27",
+        "hipDropTwoHand": "2026-06-05"
+      },
+      "progress": {
+        "hingePractice": {
+          "stage": 1,
+          "cycles": 1,
+          "ready": true,
+          "completed": 6
+        },
+        "bodyweightRow": {
+          "stage": 1,
+          "cycles": 0,
+          "ready": false,
+          "completed": 3
+        },
+        "bodyweightSquat": {
+          "stage": 1,
+          "cycles": 0,
+          "ready": false,
+          "completed": 3
+        },
+        "stepBackLunge": {
+          "stage": 1,
+          "cycles": 0,
+          "ready": false,
+          "completed": 3
+        },
+        "hipDropTwoHand": {
+          "stage": 1,
+          "cycles": 0,
+          "ready": false,
+          "completed": 3
+        },
+        "hipDropSingleHand": {
+          "stage": 0,
+          "cycles": 0,
+          "ready": false,
+          "completed": 0
+        },
+        "bearSquat": {
+          "stage": 1,
+          "cycles": 0,
+          "ready": false,
+          "completed": 3
+        }
+      }
+    },
+    {
+      "minutes": 45,
+      "label": "before",
+      "core": 72,
+      "developingWorkouts": 48,
+      "normalDevelopingEntries": 70,
+      "reentryDevelopingEntries": 7,
+      "firstReady": "2026-01-14",
+      "milestones": {
+        "hipDropTwoHand": "2026-01-14",
+        "hingePractice": "2026-01-21",
+        "bodyweightRow": "2026-01-26",
+        "bodyweightSquat": "2026-02-06"
+      },
+      "progress": {
+        "hingePractice": {
+          "stage": 1,
+          "cycles": 1,
+          "ready": true,
+          "completed": 8
+        },
+        "bodyweightRow": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true,
+          "completed": 16
+        },
+        "bodyweightSquat": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true,
+          "completed": 16
+        },
+        "stepBackLunge": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true,
+          "completed": 10
+        },
+        "hipDropTwoHand": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true,
+          "completed": 13
+        },
+        "hipDropSingleHand": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true,
+          "completed": 7
+        },
+        "bearSquat": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true,
+          "completed": 10
+        }
+      }
+    },
+    {
+      "minutes": 45,
+      "label": "after",
+      "core": 72,
+      "developingWorkouts": 48,
+      "normalDevelopingEntries": 70,
+      "reentryDevelopingEntries": 7,
+      "firstReady": "2026-01-14",
+      "milestones": {
+        "hipDropTwoHand": "2026-01-14",
+        "hingePractice": "2026-01-21",
+        "bodyweightRow": "2026-01-26",
+        "bodyweightSquat": "2026-02-06"
+      },
+      "progress": {
+        "hingePractice": {
+          "stage": 1,
+          "cycles": 1,
+          "ready": true,
+          "completed": 8
+        },
+        "bodyweightRow": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true,
+          "completed": 16
+        },
+        "bodyweightSquat": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true,
+          "completed": 16
+        },
+        "stepBackLunge": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true,
+          "completed": 10
+        },
+        "hipDropTwoHand": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true,
+          "completed": 13
+        },
+        "hipDropSingleHand": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true,
+          "completed": 7
+        },
+        "bearSquat": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true,
+          "completed": 10
+        }
+      }
+    },
+    {
+      "minutes": 60,
+      "label": "before",
+      "core": 60,
+      "developingWorkouts": 60,
+      "normalDevelopingEntries": 114,
+      "reentryDevelopingEntries": 1,
+      "firstReady": "2026-01-14",
+      "milestones": {
+        "hipDropTwoHand": "2026-01-14",
+        "hingePractice": "2026-01-21",
+        "bodyweightRow": "2026-01-26",
+        "bodyweightSquat": "2026-02-06"
+      },
+      "progress": {
+        "hingePractice": {
+          "stage": 1,
+          "cycles": 1,
+          "ready": true,
+          "completed": 4
+        },
+        "bodyweightRow": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true,
+          "completed": 20
+        },
+        "bodyweightSquat": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true,
+          "completed": 33
+        },
+        "stepBackLunge": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true,
+          "completed": 16
+        },
+        "hipDropTwoHand": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true,
+          "completed": 55
+        },
+        "hipDropSingleHand": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true,
+          "completed": 19
+        },
+        "bearSquat": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true,
+          "completed": 20
+        }
+      }
+    },
+    {
+      "minutes": 60,
+      "label": "after",
+      "core": 60,
+      "developingWorkouts": 60,
+      "normalDevelopingEntries": 114,
+      "reentryDevelopingEntries": 1,
+      "firstReady": "2026-01-14",
+      "milestones": {
+        "hipDropTwoHand": "2026-01-14",
+        "hingePractice": "2026-01-21",
+        "bodyweightRow": "2026-01-26",
+        "bodyweightSquat": "2026-02-06"
+      },
+      "progress": {
+        "hingePractice": {
+          "stage": 1,
+          "cycles": 1,
+          "ready": true,
+          "completed": 4
+        },
+        "bodyweightRow": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true,
+          "completed": 20
+        },
+        "bodyweightSquat": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true,
+          "completed": 33
+        },
+        "stepBackLunge": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true,
+          "completed": 16
+        },
+        "hipDropTwoHand": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true,
+          "completed": 55
+        },
+        "hipDropSingleHand": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true,
+          "completed": 19
+        },
+        "bearSquat": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true,
+          "completed": 20
+        }
+      }
+    }
+  ],
+  "twoYearStress": [
+    {
+      "minutes": 30,
+      "label": "before",
+      "saved": 286,
+      "core": 274,
+      "normal": 14,
+      "reentry": 2,
+      "followUps": 4,
+      "qualified": [
+        "hingePractice",
+        "bodyweightRow",
+        "bodyweightSquat",
+        "hipDropTwoHand"
+      ]
+    },
+    {
+      "minutes": 30,
+      "label": "after",
+      "saved": 286,
+      "core": 274,
+      "normal": 14,
+      "reentry": 2,
+      "followUps": 4,
+      "qualified": [
+        "hingePractice",
+        "bodyweightRow",
+        "bodyweightSquat",
+        "hipDropTwoHand"
+      ]
+    },
+    {
+      "minutes": 45,
+      "label": "before",
+      "saved": 286,
+      "core": 228,
+      "normal": 74,
+      "reentry": 22,
+      "followUps": 6,
+      "qualified": [
+        "hipDropTwoHand",
+        "hingePractice",
+        "bodyweightSquat",
+        "bodyweightRow"
+      ]
+    },
+    {
+      "minutes": 45,
+      "label": "after",
+      "saved": 286,
+      "core": 228,
+      "normal": 74,
+      "reentry": 22,
+      "followUps": 6,
+      "qualified": [
+        "hipDropTwoHand",
+        "hingePractice",
+        "bodyweightSquat",
+        "bodyweightRow"
+      ]
+    },
+    {
+      "minutes": 60,
+      "label": "before",
+      "saved": 286,
+      "core": 220,
+      "normal": 104,
+      "reentry": 17,
+      "followUps": 3,
+      "qualified": [
+        "hipDropTwoHand",
+        "hingePractice",
+        "bodyweightSquat",
+        "bodyweightRow"
+      ]
+    },
+    {
+      "minutes": 60,
+      "label": "after",
+      "saved": 286,
+      "core": 220,
+      "normal": 104,
+      "reentry": 17,
+      "followUps": 3,
+      "qualified": [
+        "hipDropTwoHand",
+        "hingePractice",
+        "bodyweightSquat",
+        "bodyweightRow"
+      ]
+    }
+  ],
+  "findings": [
+    "All three 120-workout controlled trajectories retain the exact baseline counts, qualification dates and tracked endpoints.",
+    "All three 286-workout stress histories retain baseline core/normal/reentry/follow-up counts and all four tracked foundation qualifications.",
+    "A broader continuously rolling quota was rejected because it removed a club qualification in constrained stress testing; the shipped change only restarts accounting after a lapse in actual core attendance.",
+    "Nine additional resumed-curriculum histories log 324 actual workouts and 18 expected core returns across 2/3/5-day schedules, missing weeks and shortened sessions, preserving old records and nonadvancing reduced work."
+  ],
+  "limits": [
+    "This repairs stale scheduling credit/debt after changed curriculum or core absence; it does not establish complete automatic curriculum curation.",
+    "All ten Wildman gate areas remain unresolved."
+  ],
+  "resumedCurricula": [
+    {
+      "minutes": 30,
+      "frequency": 2,
+      "saved": 36,
+      "returned": 2
+    },
+    {
+      "minutes": 30,
+      "frequency": 3,
+      "saved": 36,
+      "returned": 2
+    },
+    {
+      "minutes": 30,
+      "frequency": 5,
+      "saved": 36,
+      "returned": 2
+    },
+    {
+      "minutes": 45,
+      "frequency": 2,
+      "saved": 36,
+      "returned": 2
+    },
+    {
+      "minutes": 45,
+      "frequency": 3,
+      "saved": 36,
+      "returned": 2
+    },
+    {
+      "minutes": 45,
+      "frequency": 5,
+      "saved": 36,
+      "returned": 2
+    },
+    {
+      "minutes": 60,
+      "frequency": 2,
+      "saved": 36,
+      "returned": 2
+    },
+    {
+      "minutes": 60,
+      "frequency": 3,
+      "saved": 36,
+      "returned": 2
+    },
+    {
+      "minutes": 60,
+      "frequency": 5,
+      "saved": 36,
+      "returned": 2
+    }
+  ]
+}

@@ -1870,3 +1870,51 @@ backup replay and offline draft checks pass. Exact-baseline compatibility retain
 108 prescriptions and 72 legacy block/duration plans. Source audits, gate check,
 syntax, suite registration, diff checks and 51 cached assets pass. Public DEV and
 exact-commit CI remain separate post-push verification requirements.
+
+
+November 24 core-attendance accounting: old core work can no longer bank
+reservation credit across a lapse longer than the configured return interval.
+Scheduling accounting begins at the first actual core visit, restarts at an
+actual core return after such a lapse, and ignores old credit/debt while the
+core is currently overdue. During continuous core attendance the prior balancing
+policy stays in force. The 56-day attendance/recurrence observation, reserved
+core, actual unfinished work, peer bounds, equipment, prerequisite and recovery
+rules remain intact. Earned movement history and progression never reset here.
+No new setting, stored phase, program deletion, load change or migration exists.
+
+The failing baseline fixture has 18 genuine user-selected workout receipts: old
+foundational work followed by developing-only training. Old scheduling chooses
+another developing block despite the core being 19 days absent; current scheduling
+reserves its reduced return without advancement. Old pre-core developing debt
+also does not force catch-up reservations. See research/core-window-evidence.json
+for verified source facts versus this app adaptation, and core-window-results.json
+for exact c4b9bd2 comparisons. All three 120-workout controlled histories and three
+286-workout stress histories retain baseline counts, qualifications and endpoints.
+A broader continuously rolling quota was rejected after it lost club qualification
+in constrained testing. This narrower correction preserves developing learning.
+
+Tests cover actual correction/undo, backup replay, future isolation, custom return
+intervals, no-core compatibility, disabled families, selected-duration Settings/
+Train agreement, immutable offline drafts and genuinely logged nonadvancing
+returns. All ten gate rows remain unresolved. Automatic curriculum curation,
+movement-specific maintenance, oversized cores, strict legacy duration fitting,
+instructional verification and real Android acceptance remain open. Inventory:
+71 Node JS suites, six correction tests and 36 browser suites. Runtime/query
+rc67-core-window retains 51 runtime assets and all existing V33 namespaces.
+
+Nine additional resumed-curriculum cases (30/45/60 minutes × 2/3/5-day schedules)
+log 324 actual workouts and 18 expected foundation returns, including a three-week
+absence and a later reduction to thirty minutes. Forecasts and backups stay
+read-only, original receipts remain unchanged and reduced work never advances.
+The workout explanation now names the selected core's training gap as the reason
+for resuming it. No setting or user-data migration was added.
+
+Final local verification: all 71 Node JS suites, six correction tests and all
+36 browser suites pass. The final focused mobile and Node runs include the core
+resume explanation, exact return-interval boundary, source quote/hash checks and
+nine resumed-training scenarios. Existing developing-continuity assertions were
+preserved after rejecting the broader policy. Compatibility retains all 108
+default prescriptions and 72 legacy block/duration plans. Source audits, release-
+gate tracking, syntax, suite registration, diff checks and 51-asset offline
+integrity pass. All ten gate areas remain unresolved. Exact-commit CI and public
+DEV verification are required separately after push.

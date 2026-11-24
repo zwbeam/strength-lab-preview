@@ -1,0 +1,56 @@
+{
+  "date": "2026-11-24",
+  "baseCommit": "c4b9bd27000b7fdce5a6f58fe817205e88a40498",
+  "sources": [
+    {
+      "id": 404,
+      "title": "Kettlebell Program Design for Beginners - Tetris of Training Part 1",
+      "url": "https://www.youtube.com/watch?v=sAcBo4H__hE",
+      "sha256": "0d099957e23306ec84dbcdef69940c869c35b26d50ad8117fa6b5e84204a11b4",
+      "quotes": [
+        "you want to spend the majority of your time developing your fundamentals",
+        "the goal is to try to not repeat two of the exact same things two days in a row in the beginning of training"
+      ],
+      "timestamps": null
+    },
+    {
+      "id": 548,
+      "title": "Program Design 4 - Basic Kettlebell, 2 Hand Heavy Club, Single arm Club - Training Tetris",
+      "url": "https://www.youtube.com/watch?v=XYuiOsBAvXI",
+      "sha256": "0cdb4d3f1e34f4c8076a90aa4af3133e4b9b693650bff28c68f6b871c2a7dbb2",
+      "quotes": [
+        "we are going to keep these as fundamental programs",
+        "we tend to push people into kettlebells first"
+      ],
+      "timestamps": null
+    },
+    {
+      "id": 606,
+      "title": "Tetris Training Program Design - Kettlebell and 2 Hand Club - most effective basic program design",
+      "url": "https://www.youtube.com/watch?v=-DoSWaLHDGc",
+      "sha256": "a7d43f3fb2c4fdb95a0f7deeab2fc4c46bc17810b9dc8748dda01c1fea9a2eb9",
+      "quotes": [
+        "if you have an infinite amount of time you can do whatever you want",
+        "we would pick our kettlebell days based on what we wanted to accomplish"
+      ],
+      "timestamps": null
+    }
+  ],
+  "sourceClaim": "Keep foundational programs and choose complementary training around time, recovery and purpose. No transcript supplies an attendance-reset algorithm.",
+  "adaptation": "Derive reservation credit/debt from the current period of actual core attendance. Begin at the first physical core visit; start a new period at an actual core return following a gap longer than the configured reentry interval. While the core is absent beyond that interval, use only recent selected physical opportunities. Retain existing 56-day observation for attendance/recurrence, caps, partial-work priority and all progression rules.",
+  "enginePaths": [
+    "engine.js"
+  ],
+  "tests": [
+    "tests/core-window.js",
+    "tests/browser-core-window.cjs"
+  ],
+  "fixture": "18 actual engine-generated user-selected block receipts: foundation block first, then developing-only work. This reproduces changed goals/imported history, not a claim the automatic scheduler generated the old selection.",
+  "limits": [
+    "This is a scheduling adaptation, not a Wildman frequency formula or a reset of earned training progression.",
+    "Continued core attendance keeps the previous balancing policy; no universal movement-maintenance frequency is established.",
+    "No load/skill advancement, source-dose change, saved program deletion, setting, storage key or user-data migration is introduced.",
+    "Synthetic and headless mobile tests do not certify physical technique or real Android acceptance.",
+    "Reservation attendance is based on the selected core block; cross-block movement-specific maintenance equivalence still requires a separate audit."
+  ]
+}

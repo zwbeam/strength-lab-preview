@@ -130,6 +130,7 @@ jobs:
           node tests/hip-drop-timed.js
           node tests/developing-continuity.js
           node tests/optional-admission.js
+          node tests/core-window.js
           node tests/core-composition.js
           node tests/wildman-gate.js
           node tests/preparation-education.js
@@ -317,6 +318,7 @@ jobs:
           node tests/browser-hip-timed.cjs
           node tests/browser-developing-continuity.cjs
           node tests/browser-optional-admission.cjs
+          node tests/browser-core-window.cjs
           node tests/browser-core-composition.cjs
           node tests/browser-rotation-capacity.cjs
           node tests/browser-step-ups.cjs
