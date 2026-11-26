@@ -207,7 +207,8 @@
         ],
         "claim": "All new strength plans respect selected duration including preparation/recovery, preserve complete intervals, and defer unaffordable targets; existing flexible drafts/history remain valid.",
         "adaptation": "Consistent application of the existing protected-path estimate under the explicit user time ceiling. Ten-minute cooldown and cost estimates remain app decisions. No area closure.",
-        "verification": "All 72 Node JS suites and six correction tests passed across the broad run and corrected follow-ups; all 37 browser suites passed, including the isolated step-up rerun at both widths. Original lifecycle re-entry bounds remain intact. Exact-head CI and live DEV acceptance follow push."
+        "verification": "All 72 Node JS suites and six correction tests passed across the broad run and corrected follow-ups; all 37 browser suites passed, including the isolated step-up rerun at both widths. Original lifecycle re-entry bounds remain intact. Exact-head CI and live DEV acceptance follow push.",
+        "implementationCommit": "f39f6137d195f3a0c5e0a6a294d825c92f8e609d"
       }
     },
     "Movement-specific progression": {
@@ -359,7 +360,8 @@
         ],
         "claim": "All new strength plans respect selected duration including preparation/recovery, preserve complete intervals, and defer unaffordable targets; existing flexible drafts/history remain valid.",
         "adaptation": "Consistent application of the existing protected-path estimate under the explicit user time ceiling. Ten-minute cooldown and cost estimates remain app decisions. No area closure.",
-        "verification": "All 72 Node JS suites and six correction tests passed across the broad run and corrected follow-ups; all 37 browser suites passed, including the isolated step-up rerun at both widths. Original lifecycle re-entry bounds remain intact. Exact-head CI and live DEV acceptance follow push."
+        "verification": "All 72 Node JS suites and six correction tests passed across the broad run and corrected follow-ups; all 37 browser suites passed, including the isolated step-up rerun at both widths. Original lifecycle re-entry bounds remain intact. Exact-head CI and live DEV acceptance follow push.",
+        "implementationCommit": "f39f6137d195f3a0c5e0a6a294d825c92f8e609d"
       }
     },
     "Cooldown philosophy": {
@@ -407,7 +409,8 @@
         ],
         "claim": "All new strength plans respect selected duration including preparation/recovery, preserve complete intervals, and defer unaffordable targets; existing flexible drafts/history remain valid.",
         "adaptation": "Consistent application of the existing protected-path estimate under the explicit user time ceiling. Ten-minute cooldown and cost estimates remain app decisions. No area closure.",
-        "verification": "All 72 Node JS suites and six correction tests passed across the broad run and corrected follow-ups; all 37 browser suites passed, including the isolated step-up rerun at both widths. Original lifecycle re-entry bounds remain intact. Exact-head CI and live DEV acceptance follow push."
+        "verification": "All 72 Node JS suites and six correction tests passed across the broad run and corrected follow-ups; all 37 browser suites passed, including the isolated step-up rerun at both widths. Original lifecycle re-entry bounds remain intact. Exact-head CI and live DEV acceptance follow push.",
+        "implementationCommit": "f39f6137d195f3a0c5e0a6a294d825c92f8e609d"
       }
     },
     "Prerequisites and skill gates": {
@@ -772,7 +775,8 @@
         ],
         "claim": "All new strength plans respect selected duration including preparation/recovery, preserve complete intervals, and defer unaffordable targets; existing flexible drafts/history remain valid.",
         "adaptation": "Consistent application of the existing protected-path estimate under the explicit user time ceiling. Ten-minute cooldown and cost estimates remain app decisions. No area closure.",
-        "verification": "All 72 Node JS suites and six correction tests passed across the broad run and corrected follow-ups; all 37 browser suites passed, including the isolated step-up rerun at both widths. Original lifecycle re-entry bounds remain intact. Exact-head CI and live DEV acceptance follow push."
+        "verification": "All 72 Node JS suites and six correction tests passed across the broad run and corrected follow-ups; all 37 browser suites passed, including the isolated step-up rerun at both widths. Original lifecycle re-entry bounds remain intact. Exact-head CI and live DEV acceptance follow push.",
+        "implementationCommit": "f39f6137d195f3a0c5e0a6a294d825c92f8e609d"
       }
     },
     "Movement instruction": {
