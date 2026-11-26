@@ -173,7 +173,10 @@ function records(s,id,opts={}){
  }
  return rows.sort((a,b)=>String(a.date).localeCompare(String(b.date))||a._sessionOrder-b._sessionOrder||a._itemOrder-b._itemOrder);
 }
-function successful(x){const validLoad=x&&(MOVES[x.id]?.bodyweight?x.bodyweight===true&&Number(x.weight)===0:Number(x.weight)>0);return !!(x&&x.quality==='clean'&&!x.pain&&x.completed===true&&x.actualSets>=x.targetSets&&x.actualReps>=x.targetReps&&validLoad);}
+const NON_ADVANCING_MODES=new Set(['baseline','light','recovery','reentry','time-fit','review','rebuild','deload','prerequisite']);
+function successful(x){const validLoad=x&&(MOVES[x.id]?.bodyweight?x.bodyweight===true&&Number(x.weight)===0:Number(x.weight)>0);return !!(x&&x.quality==='clean'&&!x.pain&&x.completed===true&&x.actualSets>0&&x.targetSets>0&&x.targetReps>0&&x.actualSets>=x.targetSets&&x.actualReps>=x.targetReps&&validLoad);}
+// Physical record completion and ordinary progression credit are distinct.
+function progressionCredit(x){return successful(x)&&x.performed!==false&&!x.setupChanged&&!NON_ADVANCING_MODES.has(x.mode);}
 // Each profile states exactly which parameters are examples from a transcript.
 // Promotion, recovery and scheduling thresholds remain configurable app decisions.
 const PROFILE_NAMES={hipDropTimed:'Hip-drop 30-second alternating example',pairedSwingReps:'Paired swing 6–20 rep-building example',rowWave:'Row 60% / 80% volume example',swingSkill:'Alternating-hand swing practice',doubleHinge:'Paired-kettlebell hinge practice',bodyweightPractice:'Bodyweight fixed-setup volume practice',crawl:'Crawl 30/30 practice',doubleClub:'Double-club controlled rep practice',legacy:'Existing volume defaults',wave:'Heavy / light volume wave',snatch:'Snatch EMOM example',grind:'Double-kettlebell strength example',club:'Two-hand club timed practice',getup:'Get-up alternating time-under-load goal',singleClub:'Single-arm club continuous volume',getupDrill:'Get-up breakdown rep practice',clubIntermediate:'Single-arm club intermediate practice',deadliftPractice:'Loaded hinge foundation',ground:'Foundational ground practice',hingePractice:'Unloaded hinge preparation',pushup:'Push-up baseline EMOM volume'};
@@ -264,11 +267,11 @@ function replayRowWave(s,id,policy,opts){
  let stage=0,track='lower',counts={lower:0,higher:0},fail=0,ready=false,lastEligibleKey=null;
  const shape=()=>track==='higher'?policy.higherStages[stage]:policy.stages[stage];
  for(const x of h){
-  if(x.performed&&x.mode==='light'&&x.quality==='clean'&&!x.pain&&!x.setupChanged)continue;
+  if(deliveredLight(x))continue;
   if(['reentry','recovery','rebuild','deload'].includes(x.mode)) {counts={lower:0,higher:0};track='lower';if(deliveredReduced(x))fail=0;continue;}
   if(x.setupChanged&&x.quality==='clean'&&!x.pain){counts={lower:0,higher:0};track='lower';continue;}
   const target=shape();
-  if(successful(x)&&x.track===track&&x.targetSets===target.sets&&x.targetReps===target.reps&&Math.abs(Number(x.rest)-target.rest)<1){
+  if(progressionCredit(x)&&x.track===track&&x.targetSets===target.sets&&x.targetReps===target.reps&&Math.abs(Number(x.rest)-target.rest)<1){
    fail=0;if(!ready){counts[track]++;if(counts.lower>=policy.exposures&&counts.higher>=policy.exposures){lastEligibleKey=x._key;if(stage<policy.stages.length-1){stage++;counts={lower:0,higher:0};}else ready=true;}}
    track=track==='lower'?'higher':'lower';
   }else{counts={lower:0,higher:0};track='lower';if(x.actualSets>0||['hard','breakdown','pain'].includes(x.quality)||x.pain)fail++;}
@@ -284,30 +287,33 @@ function recordsAfterLoadReset(s,id,opts={}){
 }
 function replay(s,id,policy,track='base',opts={}){
  if(policy.profile==='rowWave')return replayRowWave(s,id,policy,opts);
- const {history,futureBoundary}=recordsAfterLoadReset(s,id,opts);const h=history.filter(x=>(x.policyKey||'legacy-v1')===policy.key&&(x.track||'base')===track);
- let stage=0,stagePhase='volume',ready=false,streak=0,fail=0,cycles=0,weight=MOVES[id].bodyweight?0:policy.profile==='wave'?(track==='heavy'?policy.config.heavyWeight:policy.config.lightWeight):(Number(s.weights?.[id])||0),lastEligibleKey=null;
+ const {history,futureBoundary}=recordsAfterLoadReset(s,id,opts);let h=history.filter(x=>(x.policyKey||'legacy-v1')===policy.key&&(x.track||'base')===track);
+ const approved=!MOVES[id].bodyweight&&policy.profile!=='wave'&&!futureBoundary&&Number(s.nextWeights?.[id])>0?Number(s.nextWeights[id]):0;
+ // Older choices have no stored anchor: keep the last genuinely different-load
+ // boundary so returning to a former load cannot revive an old earned cycle.
+ if(approved&&!s.loadResetAfter?.[id]){const boundary=h.findLastIndex(x=>Number(x.weight)!==approved&&deliveredLoad(x));if(boundary>=0)h=h.slice(boundary+1);}
+ let stage=0,stagePhase='volume',ready=false,streak=0,fail=0,cycles=0,weight=MOVES[id].bodyweight?0:policy.profile==='wave'?(track==='heavy'?policy.config.heavyWeight:policy.config.lightWeight):(approved||Number(s.weights?.[id])||0),lastEligibleKey=null;
  const shape=()=>stagePhase==='density'?{...policy.density[stage],rest:0}:policy.stages[stage];
  for(const x of h){
-  if(!MOVES[id].bodyweight&&Number(x.weight)>0&&Number(x.weight)!==weight){weight=Number(x.weight);stage=0;stagePhase='volume';ready=false;streak=0;fail=0;}
+  if(approved&&Number(x.prescription?.weight??x.weight)!==approved){streak=0;continue;}
+  if(!MOVES[id].bodyweight&&!approved&&Number(x.weight)>0&&Number(x.weight)!==weight&&deliveredLoad(x)){weight=Number(x.weight);stage=0;stagePhase='volume';ready=false;streak=0;fail=0;}
   if(x.pain||x.quality==='pain'){streak=0;fail++;continue;}
-  if(x.performed&&x.mode==='light'&&x.quality==='clean'&&!x.setupChanged)continue;
-  if(['rebuild','reentry','recovery','deload'].includes(x.mode)){streak=0;if(deliveredReduced(x))fail=0;continue;}
+  if(deliveredLight(x)&&Number(x.weight)===weight)continue;
+  if(['rebuild','reentry','recovery','deload'].includes(x.mode)){streak=0;if(deliveredReduced(x)&&Number(x.weight)===weight)fail=0;continue;}
   if(MOVES[id].station&&x.setupChanged&&x.quality==='clean'&&!x.pain){streak=0;continue;}
   if(x.quality!=='clean'||x.completed===false){streak=0;if(x.actualSets>0||['hard','breakdown'].includes(x.quality))fail++;continue;}
   const target=shape();
   if(ready){
-   if(successful(x)&&x.targetSets===target.sets&&x.targetReps===target.reps&&Math.abs(Number(x.rest)-target.rest)<1){fail=0;lastEligibleKey=x._key;if(stagePhase==='volume'&&policy.density&&s.cycleChoices?.[id]?.at===x._key){stagePhase='density';stage=0;ready=false;streak=0;}}
+   if(progressionCredit(x)&&Number(x.weight)===weight&&x.targetSets===target.sets&&x.targetReps===target.reps&&Math.abs(Number(x.rest)-target.rest)<1){fail=0;lastEligibleKey=x._key;if(stagePhase==='volume'&&policy.density&&s.cycleChoices?.[id]?.at===x._key){stagePhase='density';stage=0;ready=false;streak=0;}}
    continue;
   }
-  if(successful(x)&&x.targetSets===target.sets&&x.targetReps===target.reps&&Math.abs(Number(x.rest)-target.rest)<1){
+  if(progressionCredit(x)&&Number(x.weight)===weight&&x.targetSets===target.sets&&x.targetReps===target.reps&&Math.abs(Number(x.rest)-target.rest)<1){
    fail=0;streak++;
    if(streak>=policy.exposures){streak=0;lastEligibleKey=x._key;const steps=stagePhase==='density'?policy.density:policy.stages;
     if(stage<steps.length-1)stage++;else{ready=true;cycles++;if(stagePhase==='volume'&&policy.density&&s.cycleChoices?.[id]?.at===x._key){stagePhase='density';stage=0;ready=false;}}
    }
   }else streak=0;
  }
- const override=futureBoundary?0:Number(s.nextWeights?.[id]);
- if(!MOVES[id].bodyweight&&policy.profile!=='wave'&&override>0&&override!==weight){weight=override;stage=0;stagePhase='volume';ready=false;streak=0;fail=0;}
  return{...shape(),phase:ready?'ready':stagePhase,stagePhase,stage,weight,streak,fail,cycles,lastEligibleKey,last:h.at(-1)||null,exposures:h.length};
 }
 // #228 lower heavy work; configured weights, light progression and qualification are app rules.
@@ -327,10 +333,10 @@ function replayWave(s,id,policy,opts){
  for(const x of h){
   const actualTrack=x.track==='light'||x.track==='heavy'?x.track:track,weight=actualTrack==='light'?policy.config.lightWeight:policy.config.heavyWeight;
   if(x.pain||x.quality==='pain'){failures[actualTrack]++;if(actualTrack==='light')streak=0;continue;}
-  if(x.performed&&x.mode==='light'&&x.quality==='clean'&&Number(x.weight)===weight)continue;
+  if(deliveredLight(x)&&Number(x.weight)===weight)continue;
   if(['rebuild','reentry','recovery','deload'].includes(x.mode)){if(actualTrack==='light')streak=0;if(deliveredReduced(x)&&Number(x.weight)===weight&&actualTrack===track)failures[actualTrack]=0;continue;}
   const target=shape(),matches=x.track===track&&Number(x.weight)===(track==='light'?policy.config.lightWeight:policy.config.heavyWeight)&&x.targetSets===target.sets&&x.targetReps===target.reps&&Math.abs(Number(x.rest)-target.rest)<1;
-  if(successful(x)&&matches&&!['baseline','review','prerequisite','time-fit'].includes(x.mode)){
+  if(progressionCredit(x)&&matches&&!['baseline','review','prerequisite','time-fit'].includes(x.mode)){
    failures[track]=0;
    if(track==='light'){
     lastLight=x;if(ready)eligible.light=x._key;else if(++streak>=policy.exposures){streak=0;eligible.light=x._key;if(stage<policy.stages.length-1)stage++;else ready=true;}
@@ -348,7 +354,7 @@ function stateFor(s,id,opts={}){
  // A new review requires new return work; retain legacy interpretation when its snapshot is absent.
  const reviewRecovery=(priorReturnKeys!==undefined||reviewedIndex>=0||resolvedKeys.some(key=>!all.some(x=>x._key===key)))&&!h.slice(reviewedIndex+1).some(x=>!priorReturns.has(x._key)&&x.performed&&['reentry','recovery'].includes(x.mode)&&deliveredReduced(x));
  // A physical touch does not finish a prescribed return; later valid ordinary work remains valid.
- let reentryPending=false;for(const x of h){if(x.mode==='reentry'&&!setupOnly(x))reentryPending=!deliveredReduced(x);else if(reentryPending&&(deliveredReduced(x)||successful(x)&&x.actualSets>0&&!x.setupChanged))reentryPending=false;}
+ let reentryPending=false;for(const x of h){if(x.mode==='reentry'&&!setupOnly(x))reentryPending=!deliveredReduced(x);else if(reentryPending&&(deliveredReduced(x)||progressionCredit(x)&&x.actualSets>0&&!x.setupChanged))reentryPending=false;}
  let result=policy.profile==='wave'?replayWave(s,id,policy,opts):replay(s,id,policy,'base',opts),track=result.track||'base';
  return{...result,hold,reviewRecovery,reentryPending,policy,track,allExposures:h.length};
 }
@@ -383,15 +389,15 @@ function comparablePractice(s,id,st,opts){
 function practiceEvidence(s,id,opts={}){
  opts={...opts,now:opts.now??new Date()};
  const st=stateFor(s,id,opts),comparison=comparablePractice(s,id,st,opts),history=comparison.history;
- const neutralLight=x=>x.performed&&x.mode==='light'&&x.quality==='clean'&&!x.pain&&!x.setupChanged;
- const bad=history.findLastIndex(x=>!neutralLight(x)&&(!successful(x)||['rebuild','reentry','recovery','deload'].includes(x.mode)));
- const count=history.slice(bad+1).filter(successful).length,required=s.trainingDefaults?.skillExposures??2;
+ const neutralLight=deliveredLight;
+ const bad=history.findLastIndex(x=>!neutralLight(x)&&(!progressionCredit(x)||['rebuild','reentry','recovery','deload'].includes(x.mode)));
+ const count=history.slice(bad+1).filter(progressionCredit).length,required=s.trainingDefaults?.skillExposures??2;
  let recent=comparison.recent,maintained=false;
  const maintenanceFor=opts.maintenanceFor||opts.forMovement;
  if(!recent&&maintenanceFor&&gatedDescendant(maintenanceFor,id)){
   const child=stateFor(s,maintenanceFor,opts),childComparison=comparablePractice(s,maintenanceFor,child,opts),h=childComparison.history;
-  const lastBad=h.findLastIndex(x=>!successful(x)&&!neutralLight(x));
-  maintained=h.slice(lastBad+1).filter(successful).length>=required&&childComparison.recent&&!child.hold&&!child.reviewRecovery&&(MOVES[maintenanceFor].requires||[]).every(key=>s.skills?.[key]===true);
+  const lastBad=h.findLastIndex(x=>!progressionCredit(x)&&!neutralLight(x));
+  maintained=h.slice(lastBad+1).filter(progressionCredit).length>=required&&childComparison.recent&&!child.hold&&!child.reviewRecovery&&(MOVES[maintenanceFor].requires||[]).every(key=>s.skills?.[key]===true);
  }
  const upstreamReady=prerequisites(s,id,{...opts,maintenanceFor:maintained?maintenanceFor:opts.maintenanceFor}).length===0;
  return{count,required,ready:count>=required&&(recent||maintained)&&!st.hold&&!st.reviewRecovery&&upstreamReady,recent,maintained,held:!!st.hold};
@@ -428,14 +434,17 @@ function complexityOptions(s,opts={}){
  });
 }
 // Acknowledging reduced work requires its full clean written target, never ordinary cycle credit.
-function deliveredReduced(x){
- if(!['rebuild','reentry','recovery','deload'].includes(x.mode)||x.quality!=='clean'||x.pain||x.setupChanged||x.performed===false||!(x.targetSets>0&&x.targetReps>0&&x.actualSets>=x.targetSets&&x.actualReps>=x.targetReps))return false;
+function deliveredTarget(x){
+ if(x.quality!=='clean'||x.pain||x.setupChanged||x.performed===false||!(x.targetSets>0&&x.targetReps>0&&x.actualSets>=x.targetSets&&x.actualReps>=x.targetReps))return false;
  if(x.prescription){
   const rx=x.prescription;if(rx.mode!==x.mode||rx.policyKey!==undefined&&rx.policyKey!==x.policyKey||rx.track!==undefined&&rx.track!==x.track||rx.sets!==x.targetSets||rx.reps!==x.targetReps||Number(x.weight)!==Number(rx.weight))return false;
   if(Array.isArray(x.sets)){const actual=completeRecord(rx,x.sets,x.quality,x.pain);return actual.performed&&!actual.setupChanged&&actual.weight===Number(rx.weight);}
  }
  return validWorkingWeight(x.id,x.weight);
 }
+function deliveredReduced(x){return ['rebuild','reentry','recovery','deload'].includes(x.mode)&&deliveredTarget(x);}
+function deliveredLight(x){return x.mode==='light'&&x.performed===true&&deliveredTarget(x);}
+function deliveredLoad(x){return x.actualSets>0&&(progressionCredit(x)||deliveredReduced(x)||deliveredLight(x));}
 function deliveredDeload(x){return x.mode==='deload'&&deliveredReduced(x);}
 function deloadCadence(s,id,opts,st){
  const interval=s.trainingDefaults?.deloadEvery??0;
@@ -443,7 +452,7 @@ function deloadCadence(s,id,opts,st){
  if(!interval)return{interval,qualifyingSinceDeload:0,lastDeloadKey:null,due:false};
  const h=comparisonRecords(s,id,st,opts,true),last=h.findLastIndex(deliveredDeload);
  const reduced=['baseline','light','recovery','reentry','time-fit','review','rebuild','deload','prerequisite'];
- const count=h.slice(last+1).filter(x=>successful(x)&&!reduced.includes(x.mode)&&(!x.prescription||Number(x.weight)===Number(x.prescription.weight))).length;
+ const count=h.slice(last+1).filter(x=>progressionCredit(x)&&!reduced.includes(x.mode)&&(!x.prescription||Number(x.weight)===Number(x.prescription.weight))).length;
  return{interval,qualifyingSinceDeload:count,lastDeloadKey:last>=0?h[last]._key:null,due:count>=interval};
 }
 function deloadStatus(s,id,opts={}){opts={...opts,now:opts.now??new Date()};return deloadCadence(s,id,opts,stateFor(s,id,opts));}
@@ -518,8 +527,8 @@ function advancementReview(s,id,opts={}){
  if(st.reviewRecovery)return{eligible:false,reason:'Record the reduced return after pain review before considering progression.'};
  if(opts.now!==undefined||opts.evidenceThrough!==undefined){const rx=prescription(s,id,{...opts,now:opts.now??opts.evidenceThrough});if(rx.sets<1||rx.mode!=='milestone')return{eligible:false,reason:rx.reason};}
  const sameCycle=x=>(x.policyKey||'legacy-v1')===st.policy.key&&Number(x.weight)===st.weight&&(x.track||'base')===st.track;
- const last=records(s,id,opts).filter(x=>!(sameCycle(x)&&x.performed&&x.mode==='light'&&!x.earnedMaintenance&&x.quality==='clean'&&!x.pain&&!x.setupChanged)).at(-1);
- if(!last||!sameCycle(last)||!successful(last)||['recovery','reentry','rebuild','deload','time-fit','light'].includes(last.mode)||last.setupChanged||last.targetSets!==st.sets||last.targetReps!==st.reps||!(Math.abs(Number(last.rest)-st.rest)<1))return{eligible:false,reason:'The cycle remains complete. Record clean full endpoint work after reduced, incomplete or changed-target practice before choosing a heavier load or density cycle.'};
+ const last=records(s,id,opts).filter(x=>!(sameCycle(x)&&deliveredLight(x)&&!x.earnedMaintenance)).at(-1);
+ if(!last||!sameCycle(last)||!progressionCredit(last)||['recovery','reentry','rebuild','deload','time-fit','light'].includes(last.mode)||last.setupChanged||last.targetSets!==st.sets||last.targetReps!==st.reps||!(Math.abs(Number(last.rest)-st.rest)<1))return{eligible:false,reason:'The cycle remains complete. Record clean full endpoint work after reduced, incomplete or changed-target practice before choosing a heavier load or density cycle.'};
  return{eligible:true,reason:'Current clean endpoint work is eligible for explicit progression review.'};
 }
 function chooseCycle(s,id,choice,opts={}){
@@ -571,6 +580,24 @@ function chooseReentryLoad(s,id,weight,opts={}){
  return{...s,nextWeights:{...s.nextWeights,[id]:weight},loadResetAfter:{...s.loadResetAfter,[id]:history.at(-1)?._key||'__start__'}};
 }
 function selectLoad(s,id,weight,opts={}){if(!loadOptions(s,id,opts).includes(weight))throw Error('Load must be an available, permitted increment after a clean cycle. Adjust the configurable jump limit deliberately if needed.');if(stateFor(s,id,opts).policy.profile==='wave')throw Error('Configure a new heavy/light pair in Settings instead.');return{...s,nextWeights:{...s.nextWeights,[id]:weight},loadResetAfter:{...s.loadResetAfter,[id]:records(s,id,opts).at(-1)?._key||'__start__'}};}
+// A saved receipt consumes an approved load only inside its dated comparison,
+// and only when replay keeps that load without the pending override. Older or
+// future work must not erase a newer explicit choice. Wave loads remain separate.
+function consumeLoadSelections(s,sessionId,opts={}){
+ opts={...opts,now:opts.now??new Date()};
+ const receipt=(s.sessions||[]).find(x=>x.id===sessionId);if(!receipt)return s;
+ let result=s;
+ for(const [index,item] of (receipt.items||[]).entries()){
+  const selected=Number(result.nextWeights?.[item.id]);
+  if(!progressionCredit(item)||!(selected>0)||selected!==Number(item.weight)||MOVES[item.id]?.bodyweight)continue;
+  const policy=policyFor(item.id,result);if(policy.profile==='wave'||(item.policyKey||'legacy-v1')!==policy.key)continue;
+  const comparison=recordsAfterLoadReset(result,item.id,opts);
+  if(comparison.futureBoundary||!comparison.history.some(x=>x._key===receipt.id+':'+index))continue;
+  const without={...result,nextWeights:{...result.nextWeights}};delete without.nextWeights[item.id];
+  if(stateFor(without,item.id,opts).weight===selected)result=without;
+ }
+ return result;
+}
 function minutesFor(p){const m=MOVES[p.id];return(p.sets*(p.roundSeconds||((p.secondsPerSet??m.sec)+Math.max(0,p.rest)))/60)+.55;}
 function timeBudget(minutes){
  const total=minutes===undefined||minutes===null?45:typeof minutes==='number'?minutes:NaN;
@@ -1428,5 +1455,5 @@ function validateBackup(input){
  const workoutDraft=validateDraft(input.workoutDraft,input);
  return JSON.parse(JSON.stringify({...input,workoutDraft,nextWeights:input.nextWeights||{},defaultMinutes:input.defaultMinutes??45,deferredIds:input.deferredIds||[]}));
 }
-return{preparationFor,deferredBlocksAfter,primaryRecords,weeklyTrainingLimit,deloadStatus,advancementReview,readinessFor,retestRowWave,trainingEmphasis,validateTrainingEmphasis,emphasisDistribution,mobilityOnlyPlan,COMPLEX_PATHWAYS,complexityOptions,repairMissingLoadAnchor,setInitialLoad,replaceUnavailableLoad,chooseReentryLoad,availableWorkingLoads,trainingPaused,activityRecovery,validateActivity,movementCadence,MOVES,SKILLS,DAYS,BLOCKS,LOADS,PROFILE_NAMES,describeProgression,policyFor,availableProfiles,configureMovement,practiceEvidence,supportingMoves,requirementLabel,prerequisites,chooseCycle,loadOptions,selectLoad,retestPushup,validWorkingWeight,validateProgramming,validateDraft,validateBackup,records,successful,stateFor,prescription,minutesFor,timeBudget,plan,completeRecord,nextRest,deferredAfter,resolvePain,movementGap,movementDemands};
+return{consumeLoadSelections,preparationFor,deferredBlocksAfter,primaryRecords,weeklyTrainingLimit,deloadStatus,advancementReview,readinessFor,retestRowWave,trainingEmphasis,validateTrainingEmphasis,emphasisDistribution,mobilityOnlyPlan,COMPLEX_PATHWAYS,complexityOptions,repairMissingLoadAnchor,setInitialLoad,replaceUnavailableLoad,chooseReentryLoad,availableWorkingLoads,trainingPaused,activityRecovery,validateActivity,movementCadence,MOVES,SKILLS,DAYS,BLOCKS,LOADS,PROFILE_NAMES,describeProgression,policyFor,availableProfiles,configureMovement,practiceEvidence,supportingMoves,requirementLabel,prerequisites,chooseCycle,loadOptions,selectLoad,retestPushup,validWorkingWeight,validateProgramming,validateDraft,validateBackup,records,successful,progressionCredit,stateFor,prescription,minutesFor,timeBudget,plan,completeRecord,nextRest,deferredAfter,resolvePain,movementGap,movementDemands};
 });

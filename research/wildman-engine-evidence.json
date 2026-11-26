@@ -330,6 +330,27 @@
         "adaptation": "App persistence/validation reliability for existing source-specific methods. No new source numerical protocol, source quotation or gate closure.",
         "verification": "All 72 Node JS suites, six correction tests and 38 browser suites passed across the broad run and final focused/diagnostic follow-ups. Source audits, suite registration, syntax, 51 cache assets and gate validation pass. Exact-head CI/live DEV verification follow push. All ten areas remain unresolved.",
         "implementationCommit": "6c7d31f30d27f3efc1696775dab35153745dc4b0"
+      },
+      "loadEvidenceFollowUp": {
+        "date": "2026-11-26",
+        "status": "partial",
+        "sourceIds": [
+          228,
+          496
+        ],
+        "evidence": "research/load-evidence-audit.json",
+        "enginePaths": [
+          "engine.js",
+          "app.js"
+        ],
+        "tests": [
+          "tests/load-evidence.js",
+          "tests/draft-save-regression.js",
+          "tests/browser-load-evidence.cjs"
+        ],
+        "claim": "Load inference, ordinary progress, reduced/light acknowledgement and pending-choice consumption require appropriate completed work in the current dated comparison; physical record success and all original actuals remain separate.",
+        "adaptation": "Application evidence/replay safeguards. No new source percentage, cycle method, physical attestation or gate closure.",
+        "verification": "All 74 Node suites, six correction tests and 40 browser suites passed across the broad run and final focused/compatibility follow-ups. Original physical-success and unfinished-return assertions remain covered. Both source audits, suite registration, syntax, 51 offline assets and gate checks pass. Exact-head CI/live DEV verification follow push. All ten areas remain unresolved."
       }
     },
     "Warmup philosophy": {
@@ -528,6 +549,27 @@
         "adaptation": "Source format/order is distinguished from app movement substitutions, numerical half-load filter, existing familiarity checks and ten-minute cooldown allocation. No universal percentage, forced hold, rehabilitation protocol or gate closure.",
         "verification": "All 73 Node JS suites, six correction tests and 39 browser suites passed across the broad run and focused/disclosure follow-ups. The source text/hash checks, 5,184 movement/duration cases, 108 baseline prescriptions and 432 baseline strength-plan comparisons pass. Exact-head CI and live DEV verification follow push. All ten areas remain unresolved.",
         "implementationCommit": "54b359cab3c0f8ffdafcd375040ba49a5882ed72"
+      },
+      "loadEvidenceFollowUp": {
+        "date": "2026-11-26",
+        "status": "partial",
+        "sourceIds": [
+          228,
+          496
+        ],
+        "evidence": "research/load-evidence-audit.json",
+        "enginePaths": [
+          "engine.js",
+          "app.js"
+        ],
+        "tests": [
+          "tests/load-evidence.js",
+          "tests/draft-save-regression.js",
+          "tests/browser-load-evidence.cjs"
+        ],
+        "claim": "Load inference, ordinary progress, reduced/light acknowledgement and pending-choice consumption require appropriate completed work in the current dated comparison; physical record success and all original actuals remain separate.",
+        "adaptation": "Application evidence/replay safeguards. No new source percentage, cycle method, physical attestation or gate closure.",
+        "verification": "All 74 Node suites, six correction tests and 40 browser suites passed across the broad run and final focused/compatibility follow-ups. Original physical-success and unfinished-return assertions remain covered. Both source audits, suite registration, syntax, 51 offline assets and gate checks pass. Exact-head CI/live DEV verification follow push. All ten areas remain unresolved."
       }
     },
     "Recovery and continuity": {
@@ -730,6 +772,27 @@
         "adaptation": "App persistence/validation reliability for existing source-specific methods. No new source numerical protocol, source quotation or gate closure.",
         "verification": "All 72 Node JS suites, six correction tests and 38 browser suites passed across the broad run and final focused/diagnostic follow-ups. Source audits, suite registration, syntax, 51 cache assets and gate validation pass. Exact-head CI/live DEV verification follow push. All ten areas remain unresolved.",
         "implementationCommit": "6c7d31f30d27f3efc1696775dab35153745dc4b0"
+      },
+      "loadEvidenceFollowUp": {
+        "date": "2026-11-26",
+        "status": "partial",
+        "sourceIds": [
+          228,
+          496
+        ],
+        "evidence": "research/load-evidence-audit.json",
+        "enginePaths": [
+          "engine.js",
+          "app.js"
+        ],
+        "tests": [
+          "tests/load-evidence.js",
+          "tests/draft-save-regression.js",
+          "tests/browser-load-evidence.cjs"
+        ],
+        "claim": "Load inference, ordinary progress, reduced/light acknowledgement and pending-choice consumption require appropriate completed work in the current dated comparison; physical record success and all original actuals remain separate.",
+        "adaptation": "Application evidence/replay safeguards. No new source percentage, cycle method, physical attestation or gate closure.",
+        "verification": "All 74 Node suites, six correction tests and 40 browser suites passed across the broad run and final focused/compatibility follow-ups. Original physical-success and unfinished-return assertions remain covered. Both source audits, suite registration, syntax, 51 offline assets and gate checks pass. Exact-head CI/live DEV verification follow push. All ten areas remain unresolved."
       }
     },
     "Equipment and real-world constraints": {
@@ -867,6 +930,27 @@
         "adaptation": "Source format/order is distinguished from app movement substitutions, numerical half-load filter, existing familiarity checks and ten-minute cooldown allocation. No universal percentage, forced hold, rehabilitation protocol or gate closure.",
         "verification": "All 73 Node JS suites, six correction tests and 39 browser suites passed across the broad run and focused/disclosure follow-ups. The source text/hash checks, 5,184 movement/duration cases, 108 baseline prescriptions and 432 baseline strength-plan comparisons pass. Exact-head CI and live DEV verification follow push. All ten areas remain unresolved.",
         "implementationCommit": "54b359cab3c0f8ffdafcd375040ba49a5882ed72"
+      },
+      "loadEvidenceFollowUp": {
+        "date": "2026-11-26",
+        "status": "partial",
+        "sourceIds": [
+          228,
+          496
+        ],
+        "evidence": "research/load-evidence-audit.json",
+        "enginePaths": [
+          "engine.js",
+          "app.js"
+        ],
+        "tests": [
+          "tests/load-evidence.js",
+          "tests/draft-save-regression.js",
+          "tests/browser-load-evidence.cjs"
+        ],
+        "claim": "Load inference, ordinary progress, reduced/light acknowledgement and pending-choice consumption require appropriate completed work in the current dated comparison; physical record success and all original actuals remain separate.",
+        "adaptation": "Application evidence/replay safeguards. No new source percentage, cycle method, physical attestation or gate closure.",
+        "verification": "All 74 Node suites, six correction tests and 40 browser suites passed across the broad run and final focused/compatibility follow-ups. Original physical-success and unfinished-return assertions remain covered. Both source audits, suite registration, syntax, 51 offline assets and gate checks pass. Exact-head CI/live DEV verification follow push. All ten areas remain unresolved."
       }
     },
     "Source-specific methods": {
@@ -960,6 +1044,27 @@
         "adaptation": "Source format/order is distinguished from app movement substitutions, numerical half-load filter, existing familiarity checks and ten-minute cooldown allocation. No universal percentage, forced hold, rehabilitation protocol or gate closure.",
         "verification": "All 73 Node JS suites, six correction tests and 39 browser suites passed across the broad run and focused/disclosure follow-ups. The source text/hash checks, 5,184 movement/duration cases, 108 baseline prescriptions and 432 baseline strength-plan comparisons pass. Exact-head CI and live DEV verification follow push. All ten areas remain unresolved.",
         "implementationCommit": "54b359cab3c0f8ffdafcd375040ba49a5882ed72"
+      },
+      "loadEvidenceFollowUp": {
+        "date": "2026-11-26",
+        "status": "partial",
+        "sourceIds": [
+          228,
+          496
+        ],
+        "evidence": "research/load-evidence-audit.json",
+        "enginePaths": [
+          "engine.js",
+          "app.js"
+        ],
+        "tests": [
+          "tests/load-evidence.js",
+          "tests/draft-save-regression.js",
+          "tests/browser-load-evidence.cjs"
+        ],
+        "claim": "Load inference, ordinary progress, reduced/light acknowledgement and pending-choice consumption require appropriate completed work in the current dated comparison; physical record success and all original actuals remain separate.",
+        "adaptation": "Application evidence/replay safeguards. No new source percentage, cycle method, physical attestation or gate closure.",
+        "verification": "All 74 Node suites, six correction tests and 40 browser suites passed across the broad run and final focused/compatibility follow-ups. Original physical-success and unfinished-return assertions remain covered. Both source audits, suite registration, syntax, 51 offline assets and gate checks pass. Exact-head CI/live DEV verification follow push. All ten areas remain unresolved."
       }
     },
     "Movement instruction": {

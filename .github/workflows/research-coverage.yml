@@ -191,6 +191,7 @@ jobs:
           node tests/time-budget-feasibility.js
           node tests/preparation-routing.js
           node tests/preparation-engine.js
+          node tests/load-evidence.js
       # Browser smoke is a separate job. A transient Ubuntu apt outage must not
       # conceal whether the engine, research, and packaging checks passed.
       - name: Package isolated review build
@@ -323,6 +324,7 @@ jobs:
           node tests/browser-curriculum-strategy.cjs
           node tests/browser-draft-policy.cjs
           node tests/browser-preparation-engine.cjs
+          node tests/browser-load-evidence.cjs
           node tests/browser-core-window.cjs
           node tests/browser-core-composition.cjs
           node tests/browser-rotation-capacity.cjs

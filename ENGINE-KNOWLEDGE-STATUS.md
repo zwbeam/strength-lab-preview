@@ -278,3 +278,22 @@ See research/preparation-engine-evidence.json. Exact 85571a6 comparison preserve
 51 cached assets; inventory is 73 Node JS, six correction tests and 39 browser
 suites. All ten gate rows remain unresolved; fuller source-protocol, maintenance,
 technique and real-device acceptance remain separate work.
+
+
+Load-evidence follow-up (November 26): generic working loads now change only from
+delivered written normal/light/reduced work, or an explicit approved selection.
+Skipped, mismatched-load or incomplete receipts cannot invent a baseline or erase
+an earned cycle/difficulty. Explicit pending loads begin their dated comparison
+before the first attempt, preserving partial-attempt difficulty and legacy
+pending-choice behavior. Physical record success remains separate from ordinary
+progressionCredit; all nine nonadvancing roles are excluded even when legacy
+completed flags are true. Shared delivered-target proof protects light neutrality
+and reduced-work acknowledgements. A saved receipt consumes an approved load only
+inside its current dated method/reset comparison and when replay retains that
+load without the pending override. Older/future receipts cannot erase a newer
+choice. Actuals, historical flags, snapshots, V33 keys and source numerical
+methods remain; there is no user-data migration or new setting. See
+research/load-evidence-audit.json. Runtime rc72-load-evidence keeps 51 cached
+assets; suite inventory is 74 Node JS, six correction tests and 40 browser suites.
+All ten gate areas remain unresolved. Continue source-protocol and sustainable
+maintenance/recovery verification; preserve the separate unfinished cat-crawl tree.

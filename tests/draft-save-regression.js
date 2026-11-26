@@ -79,3 +79,12 @@ const historicalSession=methodSaved.sessions.at(-1),correction=N.historyDraft(hi
 const correctedMethod=N.correct(methodSaved,historicalSession.id,correction);assert.equal(E.stateFor(correctedMethod,'press',{now:methodDate}).streak,0);assert.equal(E.stateFor(correctedMethod,'press',{now:methodDate}).stage,0);
 const undoneMethod=N.undo(correctedMethod,historicalSession.id);assert.equal(E.stateFor(undoneMethod,'press',{now:methodDate}).streak,0);assert.equal(JSON.stringify(undoneMethod.sessions.at(-1).plan),JSON.stringify(oldPlan));E.validateBackup(undoneMethod);
 console.log('PASS correction and undo of original-method actuals retain the immutable plan and cannot advance the current method');
+// An older same-method receipt at the selected numeric load is still outside a
+// later approved comparison boundary. It cannot consume that newer decision.
+let dated=fresh(60);dated.programComposition.enabled=false;dated.trainingPreferences.focus='skill';dated.trainingPreferences.useBodyweight=false;dated.trainingPreferences.useClub=false;dated.equipment.kb.push(13);
+const old13=E.prescription({...dated,weights:{...dated.weights,press:13}},'press',{now:'2026-01-01'}),oldRow=E.prescription(dated,'row',{now:'2026-01-01'}),oldDatedPlan={...E.plan(dated,{now:'2026-01-01'}),items:[old13,oldRow]};assert.equal(old13.weight,13);
+const datedDraft={id:'older-same-method-load',date:'2026-01-01',started:'2026-01-01T12:00:00Z',stage:'work',notebookVersion:1,plan:oldDatedPlan,items:actual(oldDatedPlan)};let laterDate;
+for(let i=0;i<30;i++){laterDate=C.add('2026-01-05',i*2);const rx=E.prescription(dated,'press',{now:laterDate}),p={items:[rx]};dated.sessions.push({id:'dated-cycle-'+i,title:'Actual twelve-kilogram cycle',date:laterDate,items:N.records(p,actual(p))});if(E.stateFor(dated,'press',{now:laterDate}).phase==='ready')break;}
+dated=E.selectLoad(dated,'press',13,{now:laterDate});assert.equal(dated.nextWeights.press,13);
+const datedSaved=runSave(dated,datedDraft,E,N,()=>true,()=>null,()=> 'old-dated-save',()=>true,()=>{},0,()=>{},message=>{throw Error(message);});assert.equal(datedSaved.nextWeights.press,13,'A receipt older than the approved comparison cannot consume its new load choice');assert.equal(E.stateFor(datedSaved,'press',{now:laterDate}).weight,13);assert.equal(E.stateFor(datedSaved,'press',{now:laterDate}).streak,0);E.validateBackup(datedSaved);
+console.log('PASS same-method older actuals preserve a later approved load choice and cannot earn current comparison credit');

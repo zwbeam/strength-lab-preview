@@ -2095,3 +2095,42 @@ passes preview, active workout and offline reload for step-ups, familiar light
 clubs and limited clubs at 320/390px, with unchanged plans and no fabricated work.
 Both source audits, 51 cache entries, syntax, suite registration, gate and diff
 checks pass. Exact-head CI and public DEV acceptance follow the preview push.
+
+
+Load-evidence follow-up (November 26): generic working loads now change only from
+delivered written normal/light/reduced work, or an explicit approved selection.
+Skipped, mismatched-load or incomplete receipts cannot invent a baseline or erase
+an earned cycle/difficulty. Explicit pending loads begin their dated comparison
+before the first attempt, preserving partial-attempt difficulty and legacy
+pending-choice behavior. Physical record success remains separate from ordinary
+progressionCredit; all nine nonadvancing roles are excluded even when legacy
+completed flags are true. Shared delivered-target proof protects light neutrality
+and reduced-work acknowledgements. A saved receipt consumes an approved load only
+inside its current dated method/reset comparison and when replay retains that
+load without the pending override. Older/future receipts cannot erase a newer
+choice. Actuals, historical flags, snapshots, V33 keys and source numerical
+methods remain; there is no user-data migration or new setting. See
+research/load-evidence-audit.json. Runtime rc72-load-evidence keeps 51 cached
+assets; suite inventory is 74 Node JS, six correction tests and 40 browser suites.
+All ten gate areas remain unresolved. Continue source-protocol and sustainable
+maintenance/recovery verification; preserve the separate unfinished cat-crawl tree.
+
+The exact a97c641 regression comparison confirms baseline/review/time-fit/
+prerequisite legacy roles could create a stage and two qualifying exposures;
+light legacy roles could create two qualifying exposures. Current replay keeps
+all at zero while physical record success remains true and original data remains
+unchanged. Existing four reduced-role nonadvancement remains intact. Tests cover
+56 modified-load cases, nine press legacy-role cases, 27 additional wave/EMOM/
+total-time bodyweight role comparisons, current-load difficulty, preserved cycles,
+ordinary legacy compatibility, dated choice consumption and correction/undo.
+
+The five-year suite required preserving successful as a physical-record predicate;
+its assertion stays unchanged and passes. A separate progressionCredit predicate
+now gates training decisions. Partial attempts at explicitly approved loads keep
+their difficulty; legacy selections cannot inherit earlier-load failures or revive
+an old completed cycle after genuine work at another load. A prior return test
+froze automatic actual-load adoption. It now verifies the written 8 kg baseline,
+the retained 10 kg actual, unchanged unfinished-return protection and a proper
+subsequent return; no progression or data-integrity assertion was removed.
+
+Local QA complete: all 74 Node suites, six correction tests and 40 browser suites pass across the broad run and final focused/compatibility follow-ups. Source audits, suite registration, syntax, all 51 offline assets, gate and diff checks pass. Exact-head CI and public DEV acceptance follow push.

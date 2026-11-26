@@ -1,0 +1,178 @@
+{
+  "date": "2026-11-26",
+  "baseCommit": "a97c641f1ea428986b4f022ca1cb76dab3ef64d2",
+  "sources": [
+    {
+      "id": 228,
+      "file": "sources-07.json",
+      "url": "https://www.youtube.com/watch?v=Sc4ROQ-l7ZU",
+      "sha256": "cdb91b9f24133f5455d1c1955f513dbf56dccd9b8ffa456c23e1cd3f016dbb3f",
+      "hashBasis": "raw source.text UTF-8",
+      "quotes": [
+        "we need to do one whole rep for it to count"
+      ],
+      "timestamps": null,
+      "scope": "Existing whole-work counting context"
+    },
+    {
+      "id": 496,
+      "file": "sources-16.json",
+      "url": "https://www.youtube.com/watch?v=Jut85_e-xAk",
+      "sha256": "7eeb5ae40bd3ae3c9eb5586c37ad84f4387ebac04951865c836cafb6897d6030",
+      "hashBasis": "raw source.text UTF-8",
+      "quotes": [
+        "is there math to that absolutely not",
+        "you don't have to repeat the whole cycle most likely"
+      ],
+      "timestamps": null,
+      "scope": "Only the return-from-break passage around characters 22500\u201325300 is claimed reviewed here; the multi-topic Q&A is not certified as a whole."
+    }
+  ],
+  "sourceClaim": "#228 discusses whole work in its heavy/light example; #496 distinguishes retained skill and subjective return-load decisions, explicitly rejecting a universal formula. Neither source specifies the application persistence or legacy-record rules implemented here.",
+  "appDecisions": [
+    "Physical record success retains its existing meaning, including legitimately completed reduced work. A separate progressionCredit predicate requires positive actual and written targets, clean complete work and an ordinary advancement mode. Known nonadvancing roles cannot gain ordinary credit from a legacy completed flag. Original stored fields are retained. Explicit unperformed or changed-setup markers also prevent ordinary credit despite conflicting completion flags.",
+    "An unapproved inferred working load changes only after genuinely delivered normal, light or reduced written work. Zero-work targets, mismatched actual loads and incomplete/poor-quality attempts cannot replace the established baseline or erase its earned cycle/difficulty.",
+    "An explicitly approved pending load is the active dated comparison baseline from the start. Its partial attempts retain difficulty; receipts written at another load cannot import or clear that comparison difficulty. Legacy pending choices without an anchor keep fresh-comparison behavior. For legacy choices without stored anchors, the last genuinely delivered different-load boundary prevents resurrection of an earlier cycle; this boundary is inferred without changing stored data.",
+    "Shared delivered-target checks retain genuine reduced/light acknowledgements, matching actual load, setup, timing and continuity. Reduced work can acknowledge recovery without ordinary credit; mismatched light cannot bridge a clean streak.",
+    "The engine consumes pending choices only from a saved receipt in the current dated method/load-reset comparison, and only when replay retains the selected load without the pending override. Older/future receipts cannot erase a newer choice at the same numeric weight. Wave-configured loads stay independent.",
+    "No session, actual weight, prescription snapshot, V33 key or backup schema is rewritten. Known unresolved pain still holds across comparisons. Explicit owned-load review controls and all source numerical method definitions remain unchanged."
+  ],
+  "regressions": [
+    "A real mixed receipt with an unperformed written 16 kg target used to replace the 12 kg baseline. It now retains 12 kg while preserving the skipped target and other actual work.",
+    "Legacy baseline/review/time-fit/prerequisite flags could reach generic progression; legacy light flags could count toward qualification. A central advancement predicate now excludes all nine nonadvancing modes while preserving physical record success and stored fields.",
+    "An older genuine 13 kg receipt could consume a newer approved 13 kg choice despite falling before its comparison anchor. The choice now remains pending, without current comparison credit."
+  ],
+  "tests": [
+    "tests/load-evidence.js",
+    "tests/draft-save-regression.js",
+    "tests/browser-load-evidence.cjs",
+    "tests/reduced-evidence.js",
+    "tests/reentry-load-selection.js",
+    "tests/progression-history.js"
+  ],
+  "scope": [
+    "56 modified-load cases across eight loaded generic/timed/continuous/paired profiles, nine legacy-role cases and 27 additional wave/EMOM/total-time bodyweight legacy comparisons.",
+    "Proper normal/reduced load evidence, retained cycles, genuine current-load difficulty, date scope, approved choices, correction/undo and valid ordinary legacy compatibility.",
+    "Mobile real actual editing, legacy JSON import, original snapshots, older approved-choice drafts, offline saves/reloads and current load/progression checks at 320/390px."
+  ],
+  "limits": [
+    "No new numerical source method, universal recovery percentage, physical technique or real Android certification.",
+    "Legacy normal aggregate actuals remain user-reported evidence; this is not physical attestation or a reason to delete historical records.",
+    "Computed baselines may return to the earlier configured or genuinely established load if later records never delivered a new written target. Genuine later full/light/reduced written work remains valid evidence.",
+    "All ten Wildman release-gate areas remain unresolved."
+  ],
+  "verificationNotes": [
+    "The existing five-year success-as-a-physical-record assertion remains unchanged and passes. The correction separates that API from advancement rather than rewriting its historical meaning.",
+    "An additional approved-load partial-attempt test required starting replay at the explicit approved baseline so its difficulty is retained. Prior-load failure receipts do not pollute that new comparison."
+  ],
+  "legacyRoleComparison": [
+    {
+      "mode": "baseline",
+      "before": {
+        "stage": 1,
+        "qualification": 2
+      },
+      "after": {
+        "stage": 0,
+        "qualification": 0
+      },
+      "recordSuccess": true
+    },
+    {
+      "mode": "light",
+      "before": {
+        "stage": 0,
+        "qualification": 2
+      },
+      "after": {
+        "stage": 0,
+        "qualification": 0
+      },
+      "recordSuccess": true
+    },
+    {
+      "mode": "recovery",
+      "before": {
+        "stage": 0,
+        "qualification": 0
+      },
+      "after": {
+        "stage": 0,
+        "qualification": 0
+      },
+      "recordSuccess": true
+    },
+    {
+      "mode": "reentry",
+      "before": {
+        "stage": 0,
+        "qualification": 0
+      },
+      "after": {
+        "stage": 0,
+        "qualification": 0
+      },
+      "recordSuccess": true
+    },
+    {
+      "mode": "time-fit",
+      "before": {
+        "stage": 1,
+        "qualification": 2
+      },
+      "after": {
+        "stage": 0,
+        "qualification": 0
+      },
+      "recordSuccess": true
+    },
+    {
+      "mode": "review",
+      "before": {
+        "stage": 1,
+        "qualification": 2
+      },
+      "after": {
+        "stage": 0,
+        "qualification": 0
+      },
+      "recordSuccess": true
+    },
+    {
+      "mode": "rebuild",
+      "before": {
+        "stage": 0,
+        "qualification": 0
+      },
+      "after": {
+        "stage": 0,
+        "qualification": 0
+      },
+      "recordSuccess": true
+    },
+    {
+      "mode": "deload",
+      "before": {
+        "stage": 0,
+        "qualification": 0
+      },
+      "after": {
+        "stage": 0,
+        "qualification": 0
+      },
+      "recordSuccess": true
+    },
+    {
+      "mode": "prerequisite",
+      "before": {
+        "stage": 1,
+        "qualification": 2
+      },
+      "after": {
+        "stage": 0,
+        "qualification": 0
+      },
+      "recordSuccess": true
+    }
+  ]
+}
