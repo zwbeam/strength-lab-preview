@@ -223,3 +223,5 @@ New tests/browser-draft-policy.cjs covers real import, offline save and reload a
 six correction tests and 38 browser suites. All ten gate areas remain unresolved;
 source-specific progression/preparation/recovery and physical instruction still
 need their complete evidence audit. Preserve the unfinished cat-crawl tree.
+
+Written-method reliability implementation checkpoint: `6c7d31f30d27f3efc1696775dab35153745dc4b0`. Local QA passed 72 Node suites, six correction tests and 38 browser suites across the broad run and final focused/diagnostic follow-ups. All ten gate rows remain unresolved.

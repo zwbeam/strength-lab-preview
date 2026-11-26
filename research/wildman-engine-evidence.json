@@ -328,7 +328,8 @@
         ],
         "claim": "Original canonical method/setup snapshots remain loggable after current configuration changes without transferring method credit or consuming another method load choice.",
         "adaptation": "App persistence/validation reliability for existing source-specific methods. No new source numerical protocol, source quotation or gate closure.",
-        "verification": "All 72 Node JS suites, six correction tests and 38 browser suites passed across the broad run and final focused/diagnostic follow-ups. Source audits, suite registration, syntax, 51 cache assets and gate validation pass. Exact-head CI/live DEV verification follow push. All ten areas remain unresolved."
+        "verification": "All 72 Node JS suites, six correction tests and 38 browser suites passed across the broad run and final focused/diagnostic follow-ups. Source audits, suite registration, syntax, 51 cache assets and gate validation pass. Exact-head CI/live DEV verification follow push. All ten areas remain unresolved.",
+        "implementationCommit": "6c7d31f30d27f3efc1696775dab35153745dc4b0"
       }
     },
     "Warmup philosophy": {
@@ -658,7 +659,8 @@
         ],
         "claim": "Original canonical method/setup snapshots remain loggable after current configuration changes without transferring method credit or consuming another method load choice.",
         "adaptation": "App persistence/validation reliability for existing source-specific methods. No new source numerical protocol, source quotation or gate closure.",
-        "verification": "All 72 Node JS suites, six correction tests and 38 browser suites passed across the broad run and final focused/diagnostic follow-ups. Source audits, suite registration, syntax, 51 cache assets and gate validation pass. Exact-head CI/live DEV verification follow push. All ten areas remain unresolved."
+        "verification": "All 72 Node JS suites, six correction tests and 38 browser suites passed across the broad run and final focused/diagnostic follow-ups. Source audits, suite registration, syntax, 51 cache assets and gate validation pass. Exact-head CI/live DEV verification follow push. All ten areas remain unresolved.",
+        "implementationCommit": "6c7d31f30d27f3efc1696775dab35153745dc4b0"
       }
     },
     "Equipment and real-world constraints": {
@@ -771,7 +773,8 @@
         ],
         "claim": "Original canonical method/setup snapshots remain loggable after current configuration changes without transferring method credit or consuming another method load choice.",
         "adaptation": "App persistence/validation reliability for existing source-specific methods. No new source numerical protocol, source quotation or gate closure.",
-        "verification": "All 72 Node JS suites, six correction tests and 38 browser suites passed across the broad run and final focused/diagnostic follow-ups. Source audits, suite registration, syntax, 51 cache assets and gate validation pass. Exact-head CI/live DEV verification follow push. All ten areas remain unresolved."
+        "verification": "All 72 Node JS suites, six correction tests and 38 browser suites passed across the broad run and final focused/diagnostic follow-ups. Source audits, suite registration, syntax, 51 cache assets and gate validation pass. Exact-head CI/live DEV verification follow push. All ten areas remain unresolved.",
+        "implementationCommit": "6c7d31f30d27f3efc1696775dab35153745dc4b0"
       }
     },
     "Source-specific methods": {
@@ -840,7 +843,8 @@
         ],
         "claim": "Original canonical method/setup snapshots remain loggable after current configuration changes without transferring method credit or consuming another method load choice.",
         "adaptation": "App persistence/validation reliability for existing source-specific methods. No new source numerical protocol, source quotation or gate closure.",
-        "verification": "All 72 Node JS suites, six correction tests and 38 browser suites passed across the broad run and final focused/diagnostic follow-ups. Source audits, suite registration, syntax, 51 cache assets and gate validation pass. Exact-head CI/live DEV verification follow push. All ten areas remain unresolved."
+        "verification": "All 72 Node JS suites, six correction tests and 38 browser suites passed across the broad run and final focused/diagnostic follow-ups. Source audits, suite registration, syntax, 51 cache assets and gate validation pass. Exact-head CI/live DEV verification follow push. All ten areas remain unresolved.",
+        "implementationCommit": "6c7d31f30d27f3efc1696775dab35153745dc4b0"
       }
     },
     "Movement instruction": {
