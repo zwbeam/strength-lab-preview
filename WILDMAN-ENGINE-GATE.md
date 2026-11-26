@@ -187,3 +187,5 @@ JS suites, six correction tests and 37 browser suites.
 ## Final UI phase, after the gate
 
 Review Train, Workout, Log, Learn and Settings as actual user journeys; simplify setup, remove duplicated controls, ensure understandable decisions and preserve backups. Run current-commit CI and Android acceptance before release.
+
+Implementation checkpoint: `41e5aee67ac57b7ab1832ce7489fe3af1d647fca` contains the focused curriculum strategy and regression coverage. Local verification passed 72 Node suites, six correction tests and 37 browser suites, with final focused checks after the last changes. All ten audit areas remain unresolved.

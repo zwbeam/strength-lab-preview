@@ -188,7 +188,9 @@
           "Movement-specific physiological maintenance frequencies are not established by this app adaptation.",
           "Thirty-minute capacity, broader source-method audit, instructional verification and real Android acceptance remain open."
         ],
-        "results": "research/curriculum-strategy-results.json"
+        "results": "research/curriculum-strategy-results.json",
+        "implementationCommit": "41e5aee67ac57b7ab1832ce7489fe3af1d647fca",
+        "verification": "All 72 Node JS suites, six correction tests and 37 browser suites passed locally. Final focused tests cover later draft-save, ownership, source and beginner assertions. Exact-head CI and public DEV verification follow push. All ten audit areas remain unresolved."
       }
     },
     "Movement-specific progression": {
@@ -290,7 +292,9 @@
           "Movement-specific physiological maintenance frequencies are not established by this app adaptation.",
           "Thirty-minute capacity, broader source-method audit, instructional verification and real Android acceptance remain open."
         ],
-        "results": "research/curriculum-strategy-results.json"
+        "results": "research/curriculum-strategy-results.json",
+        "implementationCommit": "41e5aee67ac57b7ab1832ce7489fe3af1d647fca",
+        "verification": "All 72 Node JS suites, six correction tests and 37 browser suites passed locally. Final focused tests cover later draft-save, ownership, source and beginner assertions. Exact-head CI and public DEV verification follow push. All ten audit areas remain unresolved."
       }
     },
     "Warmup philosophy": {
@@ -566,7 +570,9 @@
           "Movement-specific physiological maintenance frequencies are not established by this app adaptation.",
           "Thirty-minute capacity, broader source-method audit, instructional verification and real Android acceptance remain open."
         ],
-        "results": "research/curriculum-strategy-results.json"
+        "results": "research/curriculum-strategy-results.json",
+        "implementationCommit": "41e5aee67ac57b7ab1832ce7489fe3af1d647fca",
+        "verification": "All 72 Node JS suites, six correction tests and 37 browser suites passed locally. Final focused tests cover later draft-save, ownership, source and beginner assertions. Exact-head CI and public DEV verification follow push. All ten audit areas remain unresolved."
       }
     },
     "Equipment and real-world constraints": {
@@ -661,7 +667,9 @@
           "Movement-specific physiological maintenance frequencies are not established by this app adaptation.",
           "Thirty-minute capacity, broader source-method audit, instructional verification and real Android acceptance remain open."
         ],
-        "results": "research/curriculum-strategy-results.json"
+        "results": "research/curriculum-strategy-results.json",
+        "implementationCommit": "41e5aee67ac57b7ab1832ce7489fe3af1d647fca",
+        "verification": "All 72 Node JS suites, six correction tests and 37 browser suites passed locally. Final focused tests cover later draft-save, ownership, source and beginner assertions. Exact-head CI and public DEV verification follow push. All ten audit areas remain unresolved."
       }
     },
     "Source-specific methods": {
