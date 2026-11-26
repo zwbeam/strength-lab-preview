@@ -320,6 +320,7 @@ jobs:
           node tests/browser-developing-continuity.cjs
           node tests/browser-optional-admission.cjs
           node tests/browser-curriculum-strategy.cjs
+          node tests/browser-draft-policy.cjs
           node tests/browser-core-window.cjs
           node tests/browser-core-composition.cjs
           node tests/browser-rotation-capacity.cjs

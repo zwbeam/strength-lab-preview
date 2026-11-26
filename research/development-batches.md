@@ -2019,3 +2019,43 @@ its isolated complete rerun passed at 320/390px. Exact-head CI must pass before
 this batch is reported as deployed and verified. All ten audit rows remain open.
 
 Local verification completed: all 72 Node suites, six correction tests and 37 browser suites pass across the broad run and corrected follow-ups. Both source audits, suite registration, syntax, gate validation, 51 cache assets and diff checks pass. Exact-head CI and public DEV verification follow the preview push.
+
+
+Written-method reliability follow-up (November 25): active workouts now validate
+against their original canonical policy/setup identity instead of mutable current
+settings. Original method or apparatus changes no longer prevent actual work from
+being saved/restored. Supported keys are decoded and re-encoded through policyFor;
+unknown/noncanonical identities and inconsistent timing/scope metadata fail closed.
+New workout admission keeps current skills, owned pairs, stations and recovery gates.
+Old-method work cannot advance another method or consume its pending load choice,
+even at the same numeric weight. Existing snapshots, V33 keys and history remain
+unchanged; no programming-context field or user-data migration is introduced.
+See research/written-policy-evidence.json and tests/draft-save-regression.js.
+New tests/browser-draft-policy.cjs covers real import, offline save and reload at
+320/390px. Runtime rc70-written-policy retains 51 assets; inventory is 72 Node JS,
+six correction tests and 38 browser suites. All ten gate areas remain unresolved;
+source-specific progression/preparation/recovery and physical instruction still
+need their complete evidence audit. Preserve the unfinished cat-crawl tree.
+
+Baseline regressions were reproduced before correction: a legacy press draft
+cannot save after selecting a wave method; an old legacy-club receipt consumes a
+legitimately earned new-method load choice at the same numeric weight. Current
+save-path tests preserve both actuals and the choice. All 65 supported profile
+identities validate against original and changed/default current configuration;
+unknown identities and incompatible timing/scope/get-up-side metadata fail closed.
+Schema-only identity cases are never logged as physical work. Genuine old actuals
+also retain their original comparison after correction/undo and backup round-trip.
+
+Two historical tests assumed current apparatus inventory must validate earlier
+work. They now assert the required separation: unchanged snapshots are restorable,
+unavailable platforms/pairs still prevent new training, mismatched actual load
+cannot earn a written load, and malformed zero loads fail validation. No admission
+or prerequisite gate is removed. The first smoke attempt mixed cache revisions
+because the revision was bumped during QA; the complete smoke suite was rerun
+successfully on the final cache. A paired-swing save timed out once; explicit
+validation/dialog diagnostics were added and the complete isolated rerun passed
+both widths. A recovery-review fixture read draft.plan immediately after Start;
+it now waits for the rendered draft, retains error diagnostics and passes both
+widths. No automatic retry or weakened source/progression assertion was added.
+
+Local QA complete: all 72 Node suites, six correction tests and 38 browser suites pass across the broad run and final focused/diagnostic follow-ups. Both source audits, syntax, all 51 offline assets, suite registration, gate and diff checks pass. Exact-head CI and live DEV acceptance follow push.

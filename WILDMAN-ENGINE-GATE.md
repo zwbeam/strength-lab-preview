@@ -206,3 +206,20 @@ correction tests and 37 browser suites. Continue with the source-specific method
 preparation and recovery audit; preserve the separate unfinished cat-crawl tree.
 
 Selected-session ceiling implementation checkpoint: `f39f6137d195f3a0c5e0a6a294d825c92f8e609d`. All 72 Node suites, six correction tests and 37 browser suites passed locally across the broad run and corrected follow-ups. All ten audit areas remain unresolved.
+
+
+Written-method reliability follow-up (November 25): active workouts now validate
+against their original canonical policy/setup identity instead of mutable current
+settings. Original method or apparatus changes no longer prevent actual work from
+being saved/restored. Supported keys are decoded and re-encoded through policyFor;
+unknown/noncanonical identities and inconsistent timing/scope metadata fail closed.
+New workout admission keeps current skills, owned pairs, stations and recovery gates.
+Old-method work cannot advance another method or consume its pending load choice,
+even at the same numeric weight. Existing snapshots, V33 keys and history remain
+unchanged; no programming-context field or user-data migration is introduced.
+See research/written-policy-evidence.json and tests/draft-save-regression.js.
+New tests/browser-draft-policy.cjs covers real import, offline save and reload at
+320/390px. Runtime rc70-written-policy retains 51 assets; inventory is 72 Node JS,
+six correction tests and 38 browser suites. All ten gate areas remain unresolved;
+source-specific progression/preparation/recovery and physical instruction still
+need their complete evidence audit. Preserve the unfinished cat-crawl tree.

@@ -1218,6 +1218,50 @@ function validateProgramming(s){
  if(s.equipment?.pairs!==undefined&&(!Array.isArray(s.equipment.pairs)||s.equipment.pairs.some(w=>!Number.isFinite(w)||w<=0||!s.equipment.kb.includes(w))))throw Error('Matched pairs must be owned kettlebell weights');
  return s;
 }
+// Decode existing canonical identities rather than comparing a written workout
+// with mutable current settings. Re-encoding through policyFor validates every
+// supported source method; unknown/noncanonical identities fail closed.
+function writtenPolicy(rx,s){
+ if(rx.policyKey===undefined)return policyFor(rx.id,s);
+ const key=rx.policyKey,id=rx.id;
+ if(key==='legacy-v1'){const policy=policyFor(id,{});if(policy.key!==key)throw Error('Invalid written legacy policy');return policy;}
+ if(typeof key!=='string'||key.length>4096)throw Error('Invalid written programming identity');
+ let station;
+ const decode=(text,depth=0)=>{
+  if(depth>6||typeof text!=='string')throw Error('Invalid written programming identity');
+  const k=JSON.parse(text);if(!Array.isArray(k))throw Error('Invalid written programming identity');
+  if(k[0]==='wave-cycle-v1'){if(k[1]!==id)throw Error('Wrong written movement');return{...decode(k[3],depth+1),cycleRevision:k[2]};}
+  if(k[0]==='paired-swing-reps-v1'){if(k[1]!==id)throw Error('Wrong written movement');return{profile:'pairedSwingReps',exposures:k[2],stallStrategy:k[3],cycleRevision:k[4]};}
+  if(k[0]==='row-practice-v1'){
+   station={rowBar:{available:true,heightCm:k[7]}};
+   return{profile:k[1],repCount:k[2],startSets:k[3],endSets:k[4],exposures:k[5],stallStrategy:k[6],...(k[1]==='rowWave'?{cleanBaseline:k[9],cycleRevision:k[11],baselineHeightCm:k[12]}:{})};
+  }
+  if(k[0]==='step-practice-v1'){
+   if(k[1]!==id)throw Error('Wrong written movement');station={stepPlatform:{available:true,heightCm:k[8]}};
+   return{profile:k[2],repCount:k[3],startSets:k[4],endSets:k[5],exposures:k[6],stallStrategy:k[7]};
+  }
+  if(k[0]==='rules-20261105-1'){
+   if(k[1]!==id)throw Error('Wrong written movement');
+   const c={profile:k[2],exposures:k[5],lightWeight:k[6],heavyWeight:k[7],stallStrategy:k[8]};
+   if(['snatch','singleClub','pushup'].includes(c.profile))c.step=k[4];
+   if(c.profile==='getup')c.stepSeconds=k[4];
+   if(c.profile==='grind')c.reps=k[3];
+   if(c.profile==='club')c.seconds=k[3];
+   if(['clubIntermediate','ground','deadliftPractice','doubleClub','bodyweightPractice','doubleHinge','swingSkill'].includes(c.profile))c.repCount=k[3];
+   return c;
+  }
+  const c=decode(k[0],depth+1);
+  if(k[1]&&typeof k[1]==='object'&&!Array.isArray(k[1])){
+   const x=k[1];if(x.start!==undefined)c.startSets=x.start;if(x.end!==undefined)c.endSets=x.end;if(x.rest!==undefined)c.restSeconds=x.rest;if(x.heavyReps!==undefined)c.heavyReps=x.heavyReps;
+  }else if(c.profile==='pushup'){c.cleanBaseline=k[1];c.fraction=k[2];c.cycleRevision=k[3];}
+  else if(c.profile==='getup')c.weakSide=k[1];
+  else throw Error('Unsupported written programming identity');
+  return c;
+ };
+ const config=decode(key),policy=policyFor(id,{programming:{[id]:config},equipment:station||{}});
+ if(policy.key!==key)throw Error('Noncanonical written programming identity');
+ return policy;
+}
 function validateDraft(d,s){
  if(d===undefined||d===null)return null;
  const object=x=>x&&typeof x==='object'&&!Array.isArray(x),number=x=>typeof x==='number'&&Number.isFinite(x)&&x>=0;
@@ -1236,11 +1280,11 @@ function validateDraft(d,s){
  for(let i=0;i<d.items.length;i++){
   const rx=d.plan.items[i],item=d.items[i],m=MOVES[rx?.id];
   if(!object(rx)||!Object.hasOwn(MOVES,rx.id)||rx.name!==m.name||rx.unit!==m.unit||rx.side!==m.side||!Number.isInteger(rx.sets)||rx.sets<1||rx.sets>200||!Number.isInteger(rx.reps)||rx.reps<1||!number(rx.weight)||!number(rx.rest)||!object(item)||item.id!==rx.id||!['clean','minor','hard','breakdown','pain'].includes(item.quality)||typeof item.pain!=='boolean'||!Array.isArray(item.sets)||(d.notebookVersion===1?item.sets.length>200:item.sets.length!==rx.sets))throw Error('Invalid draft prescription');
-  validateStation(rx);if(m.station==='stepPlatform'&&(rx.station.heightCm!==s.equipment?.stepPlatform?.heightCm||!s.equipment?.stepPlatform?.available))throw Error('Step-up draft does not match available configured platform');if(m.station==='rowBar'&&rx.station.heightCm!==s.equipment?.rowBar?.heightCm)throw Error('Row draft does not match configured bar height');
-  if(m.defaultProfile==='doubleHinge'&&!availableWorkingLoads(s,rx.id).includes(rx.weight))throw Error('Paired hinge draft requires its configured owned matched load');
+  validateStation(rx);
+  if(m.defaultProfile==='doubleHinge'&&!validWorkingWeight(rx.id,rx.weight))throw Error('Invalid written paired hinge load');
   if(m.bodyweight&&rx.weight!==0)throw Error('Invalid bodyweight draft');
   if(rx.profile!==undefined&&!availableProfiles(rx.id).includes(rx.profile))throw Error('Invalid draft profile');
-  if(rx.profile!==undefined){const policy=policyFor(rx.id,s);if(rx.profile!==policy.profile||rx.policyKey!==undefined&&rx.policyKey!==policy.key||!!rx.bodyweight!==!!m.bodyweight||!!rx.continuous!==policy.continuous||(rx.durationScope||null)!==policy.durationScope||(rx.roundSeconds||null)!==policy.roundSeconds)throw Error('Draft does not match its programming');}
+  if(rx.profile!==undefined){const policy=writtenPolicy(rx,s);if(rx.profile!==policy.profile||rx.policyKey!==undefined&&rx.policyKey!==policy.key||rx.timed!==undefined&&rx.timed!==policy.timed||policy.profile==='getup'&&rx.weakSide!==undefined&&rx.weakSide!==policy.weakSide||!!rx.bodyweight!==!!m.bodyweight||!!rx.continuous!==policy.continuous||(rx.durationScope||null)!==policy.durationScope||(rx.roundSeconds||null)!==policy.roundSeconds)throw Error('Draft does not match its programming');}
   if(rx.sourceIds!==undefined&&(!Array.isArray(rx.sourceIds)||rx.sourceIds.some(id=>!Number.isInteger(id)||id<0||id>719)))throw Error('Invalid draft sources');
   for(const set of item.sets){
    validateStationActual(set,rx);

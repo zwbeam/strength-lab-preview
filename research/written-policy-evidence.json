@@ -1,0 +1,73 @@
+{
+  "date": "2026-11-25",
+  "baseCommit": "c36d8e7cf91ec31917cf511e107e3680318251e5",
+  "scope": "Reliability audit of existing source-specific method and setup identities. No new numerical training rule or transcript-integration completion claim.",
+  "existingSourceContexts": [
+    {
+      "sourceIds": [
+        89
+      ],
+      "evidence": "research/row-wave-evidence.json",
+      "boundary": "The fixed-geometry row method remains separate from a newly reviewed height/baseline."
+    },
+    {
+      "sourceIds": [
+        97
+      ],
+      "evidence": "research/step-up-evidence.json",
+      "boundary": "Original unloaded stepping actuals retain their written height and pattern; new training still requires an available configured platform."
+    },
+    {
+      "sourceIds": [
+        142
+      ],
+      "evidence": "research/double-hinge-evidence.json",
+      "boundary": "Recording previously written paired work does not bypass matched-pair or prerequisite admission for new workouts."
+    },
+    {
+      "sourceIds": [
+        228,
+        403
+      ],
+      "evidence": "research/wave-replay-evidence.json",
+      "boundary": "Original records retain their original method identity; they do not become evidence in a newly selected wave comparison."
+    }
+  ],
+  "appDecisions": [
+    "Validate original canonical policy identities by bounded decoding and re-encoding through the existing policyFor implementation. Unknown, malformed, noncanonical, wrong-movement and incompatible prescription identities fail closed.",
+    "Retain original row/platform setup and paired-load actuals even after current apparatus or method changes. New planning retains all current inventory, skill, station and recovery restrictions.",
+    "Do not store a new programming context, rewrite old snapshots, migrate user data or change V33 namespaces. Existing policy keys already encode the supported identity.",
+    "Consume a pending load decision only when actual completed work matches both its weight and current method identity. Different-method work at the same numeric weight cannot consume it.",
+    "Check supported profile, timing, continuous work, total/per-side scope and optional weak-side metadata against the original method, rather than current settings."
+  ],
+  "regressions": [
+    {
+      "before": "An unchanged legacy press draft cannot validate after selecting wave programming: Draft does not match its programming.",
+      "after": "Original actuals save/import/reload under their original policy; the new wave state remains at stage zero with zero streak."
+    },
+    {
+      "before": "After a genuinely earned new club-method load choice, saving an earlier legacy draft at the same numeric weight clears the pending choice.",
+      "after": "The approved choice remains pending; old-method actuals remain in history without new-method credit."
+    }
+  ],
+  "tests": [
+    "tests/draft-save-regression.js",
+    "tests/browser-draft-policy.cjs",
+    "tests/bodyweight-row.js",
+    "tests/step-ups.js",
+    "tests/double-hinge.js",
+    "tests/programming-profile-contract.js"
+  ],
+  "verificationScope": [
+    "65 supported movement/profile combinations include custom club/wave nesting and row, paired, pushup and get-up revisions/options. Schema-only cases are never logged as physical work.",
+    "Actual save-path tests cover different-method work, legitimately earned pending loads, changed row geometry, unavailable platforms, removed pairs, unchanged snapshots and backup compatibility.",
+    "Touch browser tests at 320/390px import real JSON backups containing changed current settings and original active drafts, reload offline, save original actuals and verify independent current progression.",
+    "Existing double-hinge and step-up tests now separately assert historical snapshot compatibility versus current planning eligibility. Original malformed-data, actual-load, apparatus and source gates remain."
+  ],
+  "limits": [
+    "No physical technique, real Android or complete source-method audit certification.",
+    "Original method identity determines historical comparison; current skills and equipment remain user configuration, not historical snapshots.",
+    "All ten Wildman release-gate areas remain unresolved.",
+    "Legacy drafts without a stored method key retain the prior current-policy fallback; no missing historical identity is invented. Weak-side comparison is restricted to the get-up key that actually captures it; unrelated legacy configuration fields are not retroactively inferred."
+  ]
+}
