@@ -16,3 +16,18 @@ for(const failed of [false,true]){
 }
 assert.ok(src.includes("if(!saveDraft()){draft=null;return;}render();"),'failed initial draft save is not presented as started');checks++;
 console.log('PASS '+checks+' draft-persistence invariants');
+// Execute the real save path with an immutable old-load draft and a legitimate
+// newer load selection. The completed old target cannot consume that selection.
+const E=require('../engine'),N=require('../notebook'),C=require('../rolling-calendar'),{fresh,actual}=require('./fixtures/core-window.cjs');
+let state=fresh(60);state.programComposition.enabled=false;state.trainingPreferences.useBodyweight=false;state.trainingPreferences.useClub=false;state.equipment.kb.push(13);
+let date;for(let i=0;i<40;i++){date=C.add('2026-01-05',Math.floor(i/3)*7+[0,2,4][i%3]);const rx=E.prescription(state,'press',{now:date}),plan={items:[rx]};state.sessions.push({id:'press-'+i,title:rx.name,date,block:'abc',items:N.records(plan,actual(plan))});if(E.stateFor(state,'press',{now:date}).phase==='ready')break;}
+const workDate=C.add(date,3),plan=E.plan(state,{now:workDate}),written=JSON.stringify(plan),draft={id:'old-load-draft',date:workDate,started:workDate+'T12:00:00Z',stage:'work',calendarVersion:1,notebookVersion:1,plan,items:actual(plan),notes:''};
+state=E.selectLoad(state,'press',13,{now:workDate});assert.equal(state.nextWeights.press,13);
+const saveSource=src.slice(src.indexOf('function saveWorkout(){'),src.indexOf('\nfunction timeText(',src.indexOf('function saveWorkout(){')));
+const runSave=new Function('state','draft','E','N','checkWriter','$','newIdentity','persistTraining','clearInterval','timerInterval','render','alert',"let historyView,correctionNotice,finishPanel,selectedWorkout,cyclePage,todayMinutes,readiness,tab;"+saveSource+';saveWorkout();return state;');
+const saved=runSave(state,draft,E,N,()=>true,()=>null,()=> 'new-load-test',()=>true,()=>{},0,()=>{},message=>{throw Error(message);});
+assert.equal(saved.nextWeights.press,13);assert.equal(saved.sessions.at(-1).items.find(x=>x.id==='press').weight,12);assert.equal(JSON.stringify(saved.sessions.at(-1).plan),written);assert.equal(E.stateFor(saved,'press',{now:workDate}).weight,13);assert.equal(E.stateFor(saved,'press',{now:workDate}).stage,0);E.validateBackup(saved);
+console.log('PASS immutable old-load draft save preserves a newer earned load selection without awarding progress at that load');
+const nextDate=C.add(workDate,3);saved.trainingPreferences.focus='skill';saved.deferredByBlock.abc=['press'];const nextPlan=E.plan(saved,{now:nextDate}),newDraft={id:'new-load-draft',date:nextDate,started:nextDate+'T12:00:00Z',stage:'work',calendarVersion:1,notebookVersion:1,plan:nextPlan,items:actual(nextPlan),notes:''};assert.equal(nextPlan.items.find(x=>x.id==='press').weight,13);
+const consumed=runSave(saved,newDraft,E,N,()=>true,()=>null,()=> 'consumed-load-test',()=>true,()=>{},0,()=>{},message=>{throw Error(message);});assert.equal(consumed.nextWeights.press,undefined);assert.equal(E.stateFor(consumed,'press',{now:nextDate}).weight,13);assert.equal(E.stateFor(consumed,'press',{now:nextDate}).stage,0);assert.equal(E.stateFor(consumed,'press',{now:nextDate}).streak,1);
+console.log('PASS a pending load is consumed only by genuine completed work at that selected load');

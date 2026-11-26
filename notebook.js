@@ -50,8 +50,11 @@ function reconcile(s,affected){
  // All progression/eligibility is replayed from history by E; no cached credits exist.
  // Rebuild unfinished queues chronologically, and withdraw pending load selections
  // for corrected movements so an obsolete milestone cannot silently raise a load.
- s.deferredByBlock={};s.deferredIds=[];
- for(const session of [...s.sessions].sort((a,b)=>a.date.localeCompare(b.date))){const block=session.block||'abc',plan=session.plan||{deferred:[]};const pending=s.deferredByBlock[block]||[];s.deferredByBlock[block]=E.deferredAfter({...plan,deferred:[...new Set([...pending,...(plan.deferred||[])])]},session.items);}
+ const mentioned=new Map(),remember=(block,ids)=>{if(!mentioned.has(block))mentioned.set(block,new Set());ids.forEach(id=>mentioned.get(block).add(id));};
+ for(const session of s.sessions){remember(session.block||'abc',[...E.primaryRecords(session).map(x=>x.id),...(session.plan?.deferred||[])]);for(const part of session.plan?.composition?.curriculum?.maintenance||[])remember(part.block,[part.id]);}
+ const prior={...s.deferredByBlock,abc:s.deferredByBlock?.abc||s.deferredIds||[]};
+ s.deferredByBlock=Object.fromEntries(Object.entries(prior).map(([block,ids])=>[block,ids.filter(id=>!mentioned.get(block)?.has(id))]));s.deferredIds=[];
+ for(const session of [...s.sessions].sort((a,b)=>a.date.localeCompare(b.date)))s.deferredByBlock=E.deferredBlocksAfter(s.deferredByBlock,{...(session.plan||{deferred:[]}),block:session.block||session.plan?.block||'abc'},session.items);
  s.deferredIds=s.deferredByBlock.abc||[];
  for(const id of affected)if(s.nextWeights)delete s.nextWeights[id];
  return s;

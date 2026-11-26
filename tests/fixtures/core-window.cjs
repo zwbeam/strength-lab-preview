@@ -6,7 +6,7 @@ function receipt(state,block,date,{selected=true,...opts}={}){
  const input=structuredClone(state);if(selected){input.programComposition.enabled=false;input.programBlock=block;}
  const plan=E.plan(input,{now:date,...opts});if(!plan.items.length)throw Error('Fixture has no real work: '+date);
  const items=N.records(plan,actual(plan));state.sessions.push({id:'window-'+state.sessions.length,title:plan.day.name,date,block:plan.block,slot:plan.slot,calendarVersion:1,plan,items});
- state.deferredByBlock={...state.deferredByBlock,[plan.block]:E.deferredAfter(plan,items)};return plan;
+ state.deferredByBlock=E.deferredBlocksAfter(state.deferredByBlock||{},plan,items);return plan;
 }
 // Genuine user-selected block receipts, not a claim that coordination produced
 // this history. Useful for imported history and changed goals/program choices.

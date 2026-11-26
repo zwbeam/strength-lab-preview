@@ -153,6 +153,42 @@
         ],
         "commit": "454d0cdb85b856be1d766cc59e8685d0a87a128e",
         "verification": "All 71 Node JS suites, six correction tests and 36 browser suites passed locally. Nine resumed-training histories, actual correction/undo and offline mobile core returns passed. All ten areas remain unresolved."
+      },
+      "curriculumStrategyFollowUp": {
+        "date": "2026-11-25",
+        "baseCommit": "b1077917138393f45287ee29ea55a3168e74dc97",
+        "scope": "Coherent app curriculum strategy; partial source audit only",
+        "sourceIds": [
+          85,
+          123,
+          404,
+          548,
+          606
+        ],
+        "enginePaths": [
+          "engine.js",
+          "notebook.js",
+          "app.js"
+        ],
+        "behaviorTests": [
+          "tests/curriculum-strategy.js",
+          "tests/browser-curriculum-strategy.cjs",
+          "tests/developing-continuity.js",
+          "tests/draft-save-regression.js"
+        ],
+        "evidence": "research/curriculum-strategy-evidence.json",
+        "strategy": "CURRICULUM-STRATEGY.md",
+        "findings": [
+          "Overloaded selections use a focused developing lane, earned maintenance and queued choices; user core and safe methods remain protected.",
+          "Earned light maintenance is nonadvancing and requires a new full review before load/density progression.",
+          "Written primary day and maintenance actual/pending ownership are independent, including correction and undo.",
+          "Saving an immutable older-load draft does not consume a newer pending load selection; only actual completed work at that selected load consumes it."
+        ],
+        "remaining": [
+          "Movement-specific physiological maintenance frequencies are not established by this app adaptation.",
+          "Thirty-minute capacity, broader source-method audit, instructional verification and real Android acceptance remain open."
+        ],
+        "results": "research/curriculum-strategy-results.json"
       }
     },
     "Movement-specific progression": {
@@ -219,6 +255,42 @@
         ],
         "commit": "dc2c92130a89f1ee3a95f9f9f456dc46138fcdc1",
         "verification": "All 70 Node JS, six correction and 35 browser suites passed locally; final focused current-method regression passed. All ten audit areas remain unresolved."
+      },
+      "curriculumStrategyFollowUp": {
+        "date": "2026-11-25",
+        "baseCommit": "b1077917138393f45287ee29ea55a3168e74dc97",
+        "scope": "Coherent app curriculum strategy; partial source audit only",
+        "sourceIds": [
+          85,
+          123,
+          404,
+          548,
+          606
+        ],
+        "enginePaths": [
+          "engine.js",
+          "notebook.js",
+          "app.js"
+        ],
+        "behaviorTests": [
+          "tests/curriculum-strategy.js",
+          "tests/browser-curriculum-strategy.cjs",
+          "tests/developing-continuity.js",
+          "tests/draft-save-regression.js"
+        ],
+        "evidence": "research/curriculum-strategy-evidence.json",
+        "strategy": "CURRICULUM-STRATEGY.md",
+        "findings": [
+          "Overloaded selections use a focused developing lane, earned maintenance and queued choices; user core and safe methods remain protected.",
+          "Earned light maintenance is nonadvancing and requires a new full review before load/density progression.",
+          "Written primary day and maintenance actual/pending ownership are independent, including correction and undo.",
+          "Saving an immutable older-load draft does not consume a newer pending load selection; only actual completed work at that selected load consumes it."
+        ],
+        "remaining": [
+          "Movement-specific physiological maintenance frequencies are not established by this app adaptation.",
+          "Thirty-minute capacity, broader source-method audit, instructional verification and real Android acceptance remain open."
+        ],
+        "results": "research/curriculum-strategy-results.json"
       }
     },
     "Warmup philosophy": {
@@ -459,6 +531,42 @@
         ],
         "commit": "454d0cdb85b856be1d766cc59e8685d0a87a128e",
         "verification": "All 71 Node JS suites, six correction tests and 36 browser suites passed locally. Nine resumed-training histories, actual correction/undo and offline mobile core returns passed. All ten areas remain unresolved."
+      },
+      "curriculumStrategyFollowUp": {
+        "date": "2026-11-25",
+        "baseCommit": "b1077917138393f45287ee29ea55a3168e74dc97",
+        "scope": "Coherent app curriculum strategy; partial source audit only",
+        "sourceIds": [
+          85,
+          123,
+          404,
+          548,
+          606
+        ],
+        "enginePaths": [
+          "engine.js",
+          "notebook.js",
+          "app.js"
+        ],
+        "behaviorTests": [
+          "tests/curriculum-strategy.js",
+          "tests/browser-curriculum-strategy.cjs",
+          "tests/developing-continuity.js",
+          "tests/draft-save-regression.js"
+        ],
+        "evidence": "research/curriculum-strategy-evidence.json",
+        "strategy": "CURRICULUM-STRATEGY.md",
+        "findings": [
+          "Overloaded selections use a focused developing lane, earned maintenance and queued choices; user core and safe methods remain protected.",
+          "Earned light maintenance is nonadvancing and requires a new full review before load/density progression.",
+          "Written primary day and maintenance actual/pending ownership are independent, including correction and undo.",
+          "Saving an immutable older-load draft does not consume a newer pending load selection; only actual completed work at that selected load consumes it."
+        ],
+        "remaining": [
+          "Movement-specific physiological maintenance frequencies are not established by this app adaptation.",
+          "Thirty-minute capacity, broader source-method audit, instructional verification and real Android acceptance remain open."
+        ],
+        "results": "research/curriculum-strategy-results.json"
       }
     },
     "Equipment and real-world constraints": {
@@ -518,6 +626,42 @@
         "remaining": "Developing-block admission/maintenance and sustainable oversized curricula remain unresolved; diagnostic reentry entries remain.",
         "commit": "07b7a6c98f4172c6be1f9372ba0045df86163223",
         "verification": "Local 69 Node JS suites, six correction tests and 34 browser suites passed; the 27 two-year diagnostic scenarios preserve 8,820 workouts. Gate closure is not claimed."
+      },
+      "curriculumStrategyFollowUp": {
+        "date": "2026-11-25",
+        "baseCommit": "b1077917138393f45287ee29ea55a3168e74dc97",
+        "scope": "Coherent app curriculum strategy; partial source audit only",
+        "sourceIds": [
+          85,
+          123,
+          404,
+          548,
+          606
+        ],
+        "enginePaths": [
+          "engine.js",
+          "notebook.js",
+          "app.js"
+        ],
+        "behaviorTests": [
+          "tests/curriculum-strategy.js",
+          "tests/browser-curriculum-strategy.cjs",
+          "tests/developing-continuity.js",
+          "tests/draft-save-regression.js"
+        ],
+        "evidence": "research/curriculum-strategy-evidence.json",
+        "strategy": "CURRICULUM-STRATEGY.md",
+        "findings": [
+          "Overloaded selections use a focused developing lane, earned maintenance and queued choices; user core and safe methods remain protected.",
+          "Earned light maintenance is nonadvancing and requires a new full review before load/density progression.",
+          "Written primary day and maintenance actual/pending ownership are independent, including correction and undo.",
+          "Saving an immutable older-load draft does not consume a newer pending load selection; only actual completed work at that selected load consumes it."
+        ],
+        "remaining": [
+          "Movement-specific physiological maintenance frequencies are not established by this app adaptation.",
+          "Thirty-minute capacity, broader source-method audit, instructional verification and real Android acceptance remain open."
+        ],
+        "results": "research/curriculum-strategy-results.json"
       }
     },
     "Source-specific methods": {

@@ -1,0 +1,815 @@
+{
+  "date": "2026-11-25",
+  "baseCommit": "b1077917138393f45287ee29ea55a3168e74dc97",
+  "baselineEngineBlob": "bf7d76d7ca0170a695a871b71c034b1cd27d4703",
+  "reproduce": "See CURRICULUM-STRATEGY.md and scripts/compare-curriculum.cjs; export the exact baseline engine with git show.",
+  "scope": "Synthetic actual histories at three training days/week with ABC core and four developing programs. No physical outcome claims.",
+  "controlledWorkoutsPerCase": 120,
+  "stressWorkoutsPerCase": 286,
+  "results": [
+    {
+      "scenario": "forty-week-controlled",
+      "label": "before",
+      "minutes": 30,
+      "counts": {
+        "workouts": 120,
+        "core": 101,
+        "developingReturns": 6,
+        "earnedReturns": 0,
+        "progressingWork": 20,
+        "maintenance": 0,
+        "maintenanceAlongside": 0
+      },
+      "milestones": {
+        "hingePractice": "2026-04-24"
+      },
+      "progress": {
+        "hingePractice": {
+          "stage": 1,
+          "cycles": 1,
+          "ready": true
+        },
+        "bodyweightRow": {
+          "stage": 1,
+          "cycles": 0,
+          "ready": false
+        },
+        "bodyweightSquat": {
+          "stage": 1,
+          "cycles": 0,
+          "ready": false
+        },
+        "stepBackLunge": {
+          "stage": 1,
+          "cycles": 0,
+          "ready": false
+        },
+        "hipDropTwoHand": {
+          "stage": 1,
+          "cycles": 0,
+          "ready": false
+        },
+        "hipDropSingleHand": {
+          "stage": 0,
+          "cycles": 0,
+          "ready": false
+        },
+        "bearSquat": {
+          "stage": 1,
+          "cycles": 0,
+          "ready": false
+        }
+      }
+    },
+    {
+      "scenario": "forty-week-controlled",
+      "label": "after",
+      "minutes": 30,
+      "counts": {
+        "workouts": 120,
+        "core": 96,
+        "developingReturns": 4,
+        "earnedReturns": 8,
+        "progressingWork": 16,
+        "maintenance": 6,
+        "maintenanceAlongside": 17
+      },
+      "milestones": {
+        "hingePractice": "2026-01-26",
+        "bodyweightRow": "2026-05-18"
+      },
+      "progress": {
+        "hingePractice": {
+          "stage": 1,
+          "cycles": 1,
+          "ready": true
+        },
+        "bodyweightRow": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "bodyweightSquat": {
+          "stage": 1,
+          "cycles": 0,
+          "ready": false
+        },
+        "stepBackLunge": {
+          "stage": 1,
+          "cycles": 0,
+          "ready": false
+        },
+        "hipDropTwoHand": {
+          "stage": 0,
+          "cycles": 0,
+          "ready": false
+        },
+        "hipDropSingleHand": {
+          "stage": 0,
+          "cycles": 0,
+          "ready": false
+        },
+        "bearSquat": {
+          "stage": 0,
+          "cycles": 0,
+          "ready": false
+        }
+      },
+      "nextScheduling": {
+        "mode": "focused",
+        "activeBlock": "bodyweightFoundations",
+        "capacity": {
+          "returnDays": 14,
+          "effectiveDaysPerWeek": 3,
+          "availableVisits": 1,
+          "maintenanceVisits": 0,
+          "learningVisits": 1,
+          "demandVisits": 4
+        },
+        "queued": [
+          "groundPractice"
+        ]
+      }
+    },
+    {
+      "scenario": "forty-week-controlled",
+      "label": "before",
+      "minutes": 45,
+      "counts": {
+        "workouts": 120,
+        "core": 72,
+        "developingReturns": 2,
+        "earnedReturns": 6,
+        "progressingWork": 42,
+        "maintenance": 0,
+        "maintenanceAlongside": 0
+      },
+      "milestones": {
+        "hingePractice": "2026-02-18",
+        "hipDropTwoHand": "2026-02-25",
+        "bodyweightSquat": "2026-03-20",
+        "bodyweightRow": "2026-03-23",
+        "bearSquat": "2026-03-27",
+        "hipDropSingleHand": "2026-04-10",
+        "stepBackLunge": "2026-09-07"
+      },
+      "progress": {
+        "hingePractice": {
+          "stage": 1,
+          "cycles": 1,
+          "ready": true
+        },
+        "bodyweightRow": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "bodyweightSquat": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "stepBackLunge": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "hipDropTwoHand": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "hipDropSingleHand": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "bearSquat": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        }
+      }
+    },
+    {
+      "scenario": "forty-week-controlled",
+      "label": "after",
+      "minutes": 45,
+      "counts": {
+        "workouts": 120,
+        "core": 70,
+        "developingReturns": 0,
+        "earnedReturns": 26,
+        "progressingWork": 40,
+        "maintenance": 50,
+        "maintenanceAlongside": 78
+      },
+      "milestones": {
+        "hingePractice": "2026-01-23",
+        "bodyweightRow": "2026-02-20",
+        "bodyweightSquat": "2026-03-20",
+        "stepBackLunge": "2026-03-23",
+        "hipDropTwoHand": "2026-04-17",
+        "bearSquat": "2026-04-22",
+        "hipDropSingleHand": "2026-04-24"
+      },
+      "progress": {
+        "hingePractice": {
+          "stage": 1,
+          "cycles": 1,
+          "ready": true
+        },
+        "bodyweightRow": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "bodyweightSquat": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "stepBackLunge": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "hipDropTwoHand": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "hipDropSingleHand": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "bearSquat": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        }
+      },
+      "nextScheduling": {
+        "mode": "maintenance",
+        "activeBlock": null,
+        "capacity": {
+          "returnDays": 14,
+          "effectiveDaysPerWeek": 3,
+          "availableVisits": 2,
+          "maintenanceVisits": 4,
+          "learningVisits": 0,
+          "demandVisits": 4
+        },
+        "queued": []
+      }
+    },
+    {
+      "scenario": "forty-week-controlled",
+      "label": "before",
+      "minutes": 60,
+      "counts": {
+        "workouts": 120,
+        "core": 60,
+        "developingReturns": 1,
+        "earnedReturns": 0,
+        "progressingWork": 41,
+        "maintenance": 0,
+        "maintenanceAlongside": 0
+      },
+      "milestones": {
+        "hingePractice": "2026-02-18",
+        "hipDropTwoHand": "2026-02-25",
+        "bodyweightSquat": "2026-03-20",
+        "bodyweightRow": "2026-03-23",
+        "bearSquat": "2026-03-27",
+        "hipDropSingleHand": "2026-04-10",
+        "stepBackLunge": "2026-05-29"
+      },
+      "progress": {
+        "hingePractice": {
+          "stage": 1,
+          "cycles": 1,
+          "ready": true
+        },
+        "bodyweightRow": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "bodyweightSquat": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "stepBackLunge": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "hipDropTwoHand": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "hipDropSingleHand": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "bearSquat": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        }
+      }
+    },
+    {
+      "scenario": "forty-week-controlled",
+      "label": "after",
+      "minutes": 60,
+      "counts": {
+        "workouts": 120,
+        "core": 64,
+        "developingReturns": 0,
+        "earnedReturns": 27,
+        "progressingWork": 40,
+        "maintenance": 67,
+        "maintenanceAlongside": 67
+      },
+      "milestones": {
+        "hingePractice": "2026-01-23",
+        "bodyweightRow": "2026-02-20",
+        "bodyweightSquat": "2026-03-20",
+        "stepBackLunge": "2026-03-23",
+        "hipDropTwoHand": "2026-04-10",
+        "bearSquat": "2026-04-17",
+        "hipDropSingleHand": "2026-04-24"
+      },
+      "progress": {
+        "hingePractice": {
+          "stage": 1,
+          "cycles": 1,
+          "ready": true
+        },
+        "bodyweightRow": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "bodyweightSquat": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "stepBackLunge": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "hipDropTwoHand": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "hipDropSingleHand": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "bearSquat": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        }
+      },
+      "nextScheduling": {
+        "mode": "maintenance",
+        "activeBlock": null,
+        "capacity": {
+          "returnDays": 14,
+          "effectiveDaysPerWeek": 3,
+          "availableVisits": 3,
+          "maintenanceVisits": 3,
+          "learningVisits": 0,
+          "demandVisits": 4
+        },
+        "queued": []
+      }
+    },
+    {
+      "scenario": "two-year-constraints",
+      "label": "before",
+      "minutes": 30,
+      "counts": {
+        "workouts": 286,
+        "core": 274,
+        "developingReturns": 2,
+        "earnedReturns": 0,
+        "progressingWork": 14,
+        "maintenance": 0,
+        "maintenanceAlongside": 0
+      },
+      "milestones": {},
+      "progress": {
+        "hingePractice": {
+          "stage": 0,
+          "cycles": 0,
+          "ready": false
+        },
+        "bodyweightRow": {
+          "stage": 1,
+          "cycles": 0,
+          "ready": false
+        },
+        "bodyweightSquat": {
+          "stage": 1,
+          "cycles": 0,
+          "ready": false
+        },
+        "stepBackLunge": {
+          "stage": 1,
+          "cycles": 0,
+          "ready": false
+        },
+        "hipDropTwoHand": {
+          "stage": 1,
+          "cycles": 0,
+          "ready": false
+        },
+        "hipDropSingleHand": {
+          "stage": 0,
+          "cycles": 0,
+          "ready": false
+        },
+        "bearSquat": {
+          "stage": 1,
+          "cycles": 0,
+          "ready": false
+        }
+      }
+    },
+    {
+      "scenario": "two-year-constraints",
+      "label": "after",
+      "minutes": 30,
+      "counts": {
+        "workouts": 286,
+        "core": 266,
+        "developingReturns": 5,
+        "earnedReturns": 13,
+        "progressingWork": 13,
+        "maintenance": 2,
+        "maintenanceAlongside": 15
+      },
+      "milestones": {
+        "hingePractice": "2026-01-23",
+        "bodyweightRow": "2027-08-20"
+      },
+      "progress": {
+        "hingePractice": {
+          "stage": 0,
+          "cycles": 0,
+          "ready": false
+        },
+        "bodyweightRow": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "bodyweightSquat": {
+          "stage": 0,
+          "cycles": 0,
+          "ready": false
+        },
+        "stepBackLunge": {
+          "stage": 0,
+          "cycles": 0,
+          "ready": false
+        },
+        "hipDropTwoHand": {
+          "stage": 0,
+          "cycles": 0,
+          "ready": false
+        },
+        "hipDropSingleHand": {
+          "stage": 0,
+          "cycles": 0,
+          "ready": false
+        },
+        "bearSquat": {
+          "stage": 0,
+          "cycles": 0,
+          "ready": false
+        }
+      },
+      "nextScheduling": {
+        "mode": "capacity",
+        "activeBlock": null,
+        "capacity": {
+          "returnDays": 14,
+          "effectiveDaysPerWeek": 3,
+          "availableVisits": 0,
+          "maintenanceVisits": 0,
+          "learningVisits": 0,
+          "demandVisits": 4
+        },
+        "queued": [
+          "bodyweightFoundations",
+          "groundPractice",
+          "hingePractice"
+        ]
+      }
+    },
+    {
+      "scenario": "two-year-constraints",
+      "label": "before",
+      "minutes": 45,
+      "counts": {
+        "workouts": 286,
+        "core": 228,
+        "developingReturns": 9,
+        "earnedReturns": 15,
+        "progressingWork": 43,
+        "maintenance": 0,
+        "maintenanceAlongside": 0
+      },
+      "milestones": {
+        "hingePractice": "2026-02-18",
+        "hipDropTwoHand": "2026-02-27",
+        "bodyweightSquat": "2026-03-20",
+        "stepBackLunge": "2026-04-03",
+        "bearSquat": "2026-05-11",
+        "hipDropSingleHand": "2026-07-17",
+        "bodyweightRow": "2026-11-25"
+      },
+      "progress": {
+        "hingePractice": {
+          "stage": 0,
+          "cycles": 0,
+          "ready": false
+        },
+        "bodyweightRow": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "bodyweightSquat": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "stepBackLunge": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "hipDropTwoHand": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "hipDropSingleHand": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "bearSquat": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        }
+      }
+    },
+    {
+      "scenario": "two-year-constraints",
+      "label": "after",
+      "minutes": 45,
+      "counts": {
+        "workouts": 286,
+        "core": 221,
+        "developingReturns": 1,
+        "earnedReturns": 48,
+        "progressingWork": 47,
+        "maintenance": 47,
+        "maintenanceAlongside": 105
+      },
+      "milestones": {
+        "hingePractice": "2026-01-23",
+        "bodyweightRow": "2026-02-20",
+        "bodyweightSquat": "2026-03-20",
+        "stepBackLunge": "2026-03-27",
+        "hipDropTwoHand": "2026-04-20",
+        "bearSquat": "2026-05-18",
+        "hipDropSingleHand": "2026-06-12"
+      },
+      "progress": {
+        "hingePractice": {
+          "stage": 1,
+          "cycles": 1,
+          "ready": true
+        },
+        "bodyweightRow": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "bodyweightSquat": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "stepBackLunge": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "hipDropTwoHand": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "hipDropSingleHand": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "bearSquat": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        }
+      },
+      "nextScheduling": {
+        "mode": "maintenance",
+        "activeBlock": null,
+        "capacity": {
+          "returnDays": 14,
+          "effectiveDaysPerWeek": 3,
+          "availableVisits": 1,
+          "maintenanceVisits": 4,
+          "learningVisits": 0,
+          "demandVisits": 4
+        },
+        "queued": []
+      }
+    },
+    {
+      "scenario": "two-year-constraints",
+      "label": "before",
+      "minutes": 60,
+      "counts": {
+        "workouts": 286,
+        "core": 220,
+        "developingReturns": 6,
+        "earnedReturns": 11,
+        "progressingWork": 44,
+        "maintenance": 0,
+        "maintenanceAlongside": 0
+      },
+      "milestones": {
+        "hingePractice": "2026-02-18",
+        "hipDropTwoHand": "2026-02-27",
+        "bodyweightSquat": "2026-03-20",
+        "stepBackLunge": "2026-04-03",
+        "bearSquat": "2026-05-04",
+        "hipDropSingleHand": "2026-05-15",
+        "bodyweightRow": "2026-09-07"
+      },
+      "progress": {
+        "hingePractice": {
+          "stage": 0,
+          "cycles": 0,
+          "ready": false
+        },
+        "bodyweightRow": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "bodyweightSquat": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "stepBackLunge": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "hipDropTwoHand": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "hipDropSingleHand": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "bearSquat": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        }
+      }
+    },
+    {
+      "scenario": "two-year-constraints",
+      "label": "after",
+      "minutes": 60,
+      "counts": {
+        "workouts": 286,
+        "core": 215,
+        "developingReturns": 0,
+        "earnedReturns": 50,
+        "progressingWork": 46,
+        "maintenance": 79,
+        "maintenanceAlongside": 104
+      },
+      "milestones": {
+        "hingePractice": "2026-01-23",
+        "bodyweightRow": "2026-02-20",
+        "bodyweightSquat": "2026-03-20",
+        "stepBackLunge": "2026-03-27",
+        "hipDropTwoHand": "2026-04-20",
+        "bearSquat": "2026-04-24",
+        "hipDropSingleHand": "2026-05-01"
+      },
+      "progress": {
+        "hingePractice": {
+          "stage": 1,
+          "cycles": 1,
+          "ready": true
+        },
+        "bodyweightRow": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "bodyweightSquat": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "stepBackLunge": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "hipDropTwoHand": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "hipDropSingleHand": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        },
+        "bearSquat": {
+          "stage": 2,
+          "cycles": 1,
+          "ready": true
+        }
+      },
+      "nextScheduling": {
+        "mode": "maintenance",
+        "activeBlock": null,
+        "capacity": {
+          "returnDays": 14,
+          "effectiveDaysPerWeek": 3,
+          "availableVisits": 0,
+          "maintenanceVisits": 4,
+          "learningVisits": 0,
+          "demandVisits": 4
+        },
+        "queued": []
+      }
+    }
+  ],
+  "historyLookup": {
+    "scenario": "history-lookup",
+    "sessions": 3000,
+    "movementsPerSession": 10,
+    "iterations": 5,
+    "identical": true,
+    "baselineMs": 21.05,
+    "currentMs": 11.22,
+    "limit": "Synthetic local lookup timing, not a real-device latency guarantee"
+  },
+  "findings": [
+    "Controlled 30-minute unfinished-development returns fall from six to four; complete tracked cycles rise from one to two. Later introductory qualifications are deliberately queued.",
+    "Controlled 45/60-minute unfinished-development returns fall to zero, with all seven tracked current cycles earned.",
+    "Two-year 45/60-minute constraint histories retain all seven current cycles after a method change; the baseline retains six.",
+    "Returns to already-earned work can increase, particularly after the later reduction to thirty minutes. Those returns retain existing dose/load-review rules and do not add earned progress.",
+    "The 240-workout changing-capacity regression earns all seven tracked cycles after moving from thirty to forty-five minutes."
+  ],
+  "limits": [
+    "Queueing delays introductory exposure; fixed thirty-minute capacity does not promise all selected programs fit.",
+    "Some earned maintenance returns remain reduced under tight capacity; full refresh is still required for a new progression review.",
+    "Formal program-day and packing estimates are not physiological movement-specific minimum frequencies.",
+    "Synthetic lookup timing is local evidence, not an Android performance guarantee.",
+    "All ten release-gate areas remain unresolved."
+  ]
+}

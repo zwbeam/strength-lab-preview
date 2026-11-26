@@ -162,7 +162,17 @@ const DAYS=[{name:'A · Squat / Press / Pull',focus:'Kettlebell strength',ids:['
 const LOADS={kb:[4,6,8,10,12,14,16,18,20,22,24,28,32,36,40,44,48],club:[2,3,4,5,7,10,12,15,17,20,25,30,35]};
 const clamp=(n,a,b)=>Math.min(b,Math.max(a,n));
 function evidenceDay(opts){return Math.min(opts.now===undefined?Infinity:calendarDay(opts.now),opts.evidenceThrough===undefined?Infinity:calendarDay(opts.evidenceThrough));}
-function records(s,id,opts={}){const through=evidenceDay(opts);return(s.sessions||[]).flatMap((x,sessionIndex)=>(x.items||[]).map((y,itemIndex)=>({...y,date:x.date,_key:`${x.id||x.date+':'+sessionIndex}:${itemIndex}`,_sessionOrder:sessionIndex,_itemOrder:itemIndex})).filter(y=>y.id===id&&(through===Infinity||calendarDay(y.date)<=through))).sort((a,b)=>String(a.date).localeCompare(String(b.date))||a._sessionOrder-b._sessionOrder||a._itemOrder-b._itemOrder);}
+function records(s,id,opts={}){
+ const through=evidenceDay(opts),rows=[];
+ for(let sessionIndex=0;sessionIndex<(s.sessions||[]).length;sessionIndex++){
+  const session=s.sessions[sessionIndex],items=session.items||[];
+  for(let itemIndex=0;itemIndex<items.length;itemIndex++){
+   const item=items[itemIndex];if(item?.id!==id||through!==Infinity&&!(calendarDay(session.date)<=through))continue;
+   rows.push({...item,date:session.date,_key:`${session.id||session.date+':'+sessionIndex}:${itemIndex}`,_sessionOrder:sessionIndex,_itemOrder:itemIndex});
+  }
+ }
+ return rows.sort((a,b)=>String(a.date).localeCompare(String(b.date))||a._sessionOrder-b._sessionOrder||a._itemOrder-b._itemOrder);
+}
 function successful(x){const validLoad=x&&(MOVES[x.id]?.bodyweight?x.bodyweight===true&&Number(x.weight)===0:Number(x.weight)>0);return !!(x&&x.quality==='clean'&&!x.pain&&x.completed===true&&x.actualSets>=x.targetSets&&x.actualReps>=x.targetReps&&validLoad);}
 // Each profile states exactly which parameters are examples from a transcript.
 // Promotion, recovery and scheduling thresholds remain configurable app decisions.
@@ -448,6 +458,13 @@ function reducedDoseNote(sets,reps,before,fraction){
  if(sets*reps<before)return '';
  return fraction===1?' Configured full-dose fraction; this practice still grants no advancement credit.':' Minimum whole-unit practice: this prescription cannot be reduced further; no advancement credit.';
 }
+function targetSeconds(id,reps,policy){const m=MOVES[id],sequence=m.complex?(m.sequence||[]).reduce((n,key)=>{const part=MOVES[key];return n+(part.repSeconds||part.sec/part.reps);},0):0;return m.complex?Math.max(m.sec,reps*m.side*sequence):policy.timed?reps*(policy.durationScope==='total'?1:m.side):m.repSeconds?reps*m.side*m.repSeconds:m.sec;}
+function earnedMaintenancePrescription(s,rx,opts){
+ if(rx.mode!=='milestone'||['wave','rowWave'].includes(rx.profile)||!advancementReview(s,rx.id,opts).eligible)return rx;
+ const policy=policyFor(rx.id,s),dose=reducedDose(rx.sets,rx.reps,policy,.5);
+ if((opts.minutes??s.defaultMinutes??45)<=30&&rx.sets>1)dose.sets=1;
+ return{...rx,...dose,mode:'light',earnedMaintenance:true,sourceParameters:null,secondsPerSet:targetSeconds(rx.id,dose.reps,policy),provenanceNote:(rx.provenanceNote||'')+' Earned maintenance is an app adaptation inspired by the shorter submaximal work discussed in #123 in a conventional-lifting context. Half-volume rounding, or one familiar set in short sessions, is not a source numerical protocol.',reason:'Maintain the earned cycle with lighter work at the established load. Complete a new full endpoint before considering a heavier load or new cycle; this practice grants no advancement credit.'+reducedDoseNote(dose.sets,dose.reps,rx.sets*rx.reps,.5)};
+}
 function prescription(s,id,opts={}){
  opts={...opts,now:opts.now??new Date()};opts.readiness??=readinessFor(s,opts.now);
  const m=MOVES[id],st=stateFor(s,id,opts),policy=st.policy,defaults=s.trainingDefaults||{};
@@ -487,8 +504,7 @@ function prescription(s,id,opts={}){
  const adapted=['baseline','recovery','reentry','rebuild','deload','review','prerequisite'].includes(mode);
  const sourceParameters=adapted?null:policy.exactParametersSource===411&&st.stagePhase==='density'?410:policy.exactParametersSource;
  const roundSeconds=policy.roundSeconds;
- const sequenceSeconds=m.complex?(m.sequence||[]).reduce((n,id)=>{const part=MOVES[id];return n+(part.repSeconds||part.sec/part.reps);},0):0;
- const secondsPerSet=m.complex?Math.max(m.sec,reps*m.side*sequenceSeconds):policy.timed?reps*(policy.durationScope==='total'?1:m.side):m.repSeconds?reps*m.side*m.repSeconds:m.sec;
+ const secondsPerSet=targetSeconds(id,reps,policy);
  const station=m.station==='rowBar'?{kind:'rowBar',heightCm:s.equipment?.rowBar?.heightCm??null,legPosition:'bent'}:m.station==='stepPlatform'?{kind:'stepPlatform',heightCm:s.equipment?.stepPlatform?.heightCm??null,stepPattern:m.stepPattern}:undefined;
  return{id,name:m.name,unit:m.unit,...(station?{station,setupDescription:station.kind==='rowBar'?'Bar '+station.heightCm+' cm · bent knees; keep setup constant':'Platform '+station.heightCm+' cm · '+(station.stepPattern==='static'?'static foot':'alternate lead')+'; keep height constant'}:{}),weight,sets,reps,rest,bodyweight:!!m.bodyweight,sequenceDescription:policy.profile==='rowWave'?`${st.track==='higher'?'80% higher-rep / lower-volume':'60% lower-rep'} exposure at the reviewed bar setup. ${st.sets} sets of ${st.reps}; both tracks require ${policy.exposures} clean exposures before the next step.`:m.sequenceDescription||null,provenanceNote:policy.parameterNotes,continuous:policy.continuous,betweenExercises:policy.betweenExercises,durationScope:policy.durationScope,returnLoadReview,weakSide:policy.weakSide,side:m.side,timed:policy.timed,mode,reason,phase:st.phase,streak:st.streak,cycle:st.cycles,policyKey:policy.key,profile:policy.profile,track:st.track,roundSeconds,secondsPerSet,sourceIds:policy.principleSources,sourceParameters,exposureTarget:policy.exposures};
 }
@@ -502,7 +518,7 @@ function advancementReview(s,id,opts={}){
  if(st.reviewRecovery)return{eligible:false,reason:'Record the reduced return after pain review before considering progression.'};
  if(opts.now!==undefined||opts.evidenceThrough!==undefined){const rx=prescription(s,id,{...opts,now:opts.now??opts.evidenceThrough});if(rx.sets<1||rx.mode!=='milestone')return{eligible:false,reason:rx.reason};}
  const sameCycle=x=>(x.policyKey||'legacy-v1')===st.policy.key&&Number(x.weight)===st.weight&&(x.track||'base')===st.track;
- const last=records(s,id,opts).filter(x=>!(sameCycle(x)&&x.performed&&x.mode==='light'&&x.quality==='clean'&&!x.pain&&!x.setupChanged)).at(-1);
+ const last=records(s,id,opts).filter(x=>!(sameCycle(x)&&x.performed&&x.mode==='light'&&!x.earnedMaintenance&&x.quality==='clean'&&!x.pain&&!x.setupChanged)).at(-1);
  if(!last||!sameCycle(last)||!successful(last)||['recovery','reentry','rebuild','deload','time-fit','light'].includes(last.mode)||last.setupChanged||last.targetSets!==st.sets||last.targetReps!==st.reps||!(Math.abs(Number(last.rest)-st.rest)<1))return{eligible:false,reason:'The cycle remains complete. Record clean full endpoint work after reduced, incomplete or changed-target practice before choosing a heavier load or density cycle.'};
  return{eligible:true,reason:'Current clean endpoint work is eligible for explicit progression review.'};
 }
@@ -616,14 +632,26 @@ function movementEnabled(s,id){const pref=s.trainingPreferences||{},emphasis=pre
 function sessionsThrough(s,now,projection=false){return(s.sessions||[]).filter(x=>calendarDay(x.date)<=calendarDay(now)||projection&&!(x.items||[]).length&&/^(calendar-projection-|preview-only-)/.test(x.id||''));}
 // Setup placeholders are not owed physical work, including older mislabelled recovery.
 function setupOnly(x){return !!x&&(x.mode==='baseline'||!!MOVES[x.id]&&!MOVES[x.id].bodyweight&&x.actualSets===0&&(x.prescription?.weight??x.weight)===0);}
+// New curriculum sessions may include one independently earned maintenance
+// movement. It is physical work, never a second program-day or component credit.
+function maintenanceParts(plan){return Array.isArray(plan?.composition?.curriculum?.maintenance)?plan.composition.curriculum.maintenance:[];}
+function primaryRecords(session){const ids=session.plan?.composition?.curriculum?.primaryIds;return Array.isArray(ids)&&maintenanceParts(session.plan).length?(session.items||[]).filter(x=>ids.includes(x.id)):session.items||[];}
+function physicalBlock(session){if(primaryRecords(session).some(x=>x.actualSets>0))return session.block||'abc';return maintenanceParts(session.plan).find(x=>(session.items||[]).some(y=>y.id===x.id&&y.actualSets>0))?.block||session.block||'abc';}
+function programRecords(session,block){const main=(session.block||'abc')===block?primaryRecords(session):[];const extraIds=maintenanceParts(session.plan).filter(x=>x.block===block).map(x=>x.id);return [...main,...(session.items||[]).filter(x=>extraIds.includes(x.id)&&!main.includes(x))];}
+function deferredBlocksAfter(previous,plan,actual){
+ const result={...previous},block=plan.block||'abc',session={block,plan,items:actual};
+ result[block]=deferredAfter({...plan,deferred:[...new Set([...(previous?.[block]||[]),...(plan.deferred||[])])]},primaryRecords(session));
+ for(const part of maintenanceParts(plan))result[part.block]=deferredAfter({deferred:result[part.block]||[]},actual.filter(x=>x.id===part.id));
+ return result;
+}
 function pendingThrough(s,block,now){
  const saved=s.deferredByBlock?.[block]||(block==='abc'?s.deferredIds:[])||[];
- const current=saved.length?(()=>{const last=new Map();for(const session of sessionsThrough(s,now).filter(x=>(x.block||'abc')===block).sort((a,b)=>calendarDay(a.date)-calendarDay(b.date)))for(const x of session.items||[])last.set(x.id,x);return saved.filter(id=>!setupOnly(last.get(id)));})():saved;
- const future=(s.sessions||[]).filter(x=>(x.block||'abc')===block&&calendarDay(x.date)>calendarDay(now)&&(x.items||[]).length);
+ const current=saved.length?(()=>{const last=new Map();for(const session of sessionsThrough(s,now).filter(x=>programRecords(x,block).length).sort((a,b)=>calendarDay(a.date)-calendarDay(b.date)))for(const x of programRecords(session,block))last.set(x.id,x);return saved.filter(id=>!setupOnly(last.get(id)));})():saved;
+ const future=(s.sessions||[]).filter(x=>programRecords(x,block).length&&calendarDay(x.date)>calendarDay(now)&&(x.items||[]).length);
  if(!future.length)return current;
- let pending=[];for(const session of sessionsThrough(s,now).filter(x=>(x.block||'abc')===block).sort((a,b)=>calendarDay(a.date)-calendarDay(b.date)))pending=deferredAfter({deferred:[...new Set([...pending,...(session.plan?.deferred||[])])]},session.items||[]);
+ let pending=[];for(const session of sessionsThrough(s,now).filter(x=>programRecords(x,block).length).sort((a,b)=>calendarDay(a.date)-calendarDay(b.date)))pending=deferredAfter({deferred:[...new Set([...pending,...((session.block||'abc')===block?session.plan?.deferred||[]:[])])]},programRecords(session,block));
  // Retain explicit/legacy debt that was not introduced by future unfinished work.
- const futureDebt=new Set(future.flatMap(x=>[...(x.plan?.deferred||[]),...(x.items||[]).filter(y=>!y.performed&&!setupOnly(y)).map(y=>y.id)]));
+ const futureDebt=new Set(future.flatMap(x=>[...((x.block||'abc')===block?x.plan?.deferred||[]:[]),...programRecords(x,block).filter(y=>!y.performed&&!setupOnly(y)).map(y=>y.id)]));
  return [...new Set([...pending,...current.filter(id=>!futureDebt.has(id))])];
 }
 // One rolling seven-day capacity rule for actual planning and provisional opportunities.
@@ -641,7 +669,7 @@ function blockPlan(s,opts={}){
   if(preferences.skillSessions===false)return {name:'C · Strength practice',focus:'Repeat established fundamentals',ids:['clean','front','squat']};
   return d;
  }):originalDays;
- const days=abcDays,slot=timeline.filter(x=>x.slot!==undefined&&(x.block||'abc')===block&&(x.notebookVersion!==1||(x.items||[]).some(y=>y.actualSets>0))&&(x.calendarVersion!==1||(x.items||[]).every(y=>y.performed===true))).length%days.length;
+ const days=abcDays,slot=timeline.filter(x=>x.slot!==undefined&&(x.block||'abc')===block&&(x.notebookVersion!==1||primaryRecords(x).some(y=>y.actualSets>0))&&(x.calendarVersion!==1||primaryRecords(x).every(y=>y.performed===true))).length%days.length;
  let day=days[slot];
  const budget=timeBudget(opts.minutes??s.defaultMinutes??45),defaults=s.trainingDefaults||{};
  // 30-minute target has a 25–40-minute flexible window. Extension is reserved for a full priority prescription.
@@ -674,7 +702,7 @@ function blockPlan(s,opts={}){
  const blockIds=block==='abc'?[...new Set([...days.flatMap(x=>x.ids),...day.ids,...Object.values(SUPPORT_POOLS).flat()])]:days.flatMap(x=>x.ids),support=supportingMoves(s,day.ids,opts);
  const allowed=new Set([...blockIds,...support,...COMPLEX_PATHWAYS.map(x=>x.id)]),pending=pendingThrough(s,block,through);
  const latest=timeline.filter(x=>(x.block||'abc')===block&&calendarDay(x.date)<=calendarDay(opts.now)).sort((a,b)=>calendarDay(a.date)-calendarDay(b.date)).at(-1);
- const continuing=latest?.calendarVersion===1&&latest.items.some(x=>x.actualSets>0)&&latest.items.some(x=>!x.performed&&!setupOnly(x))&&pending.length>0;
+ const continuing=latest?.calendarVersion===1&&primaryRecords(latest).some(x=>x.actualSets>0)&&primaryRecords(latest).some(x=>!x.performed&&!setupOnly(x))&&pending.length>0;
  // On the third ABC day, substitute one eligible complex for overlapping basics.
  // Keep the existing day unchanged unless prerequisite evidence is current.
  const complexChoices=block==='abc'&&slot===2&&pref.useKb!==false&&pref.useComplexes!==false&&(!emphasis||emphasis.complex!=='off')&&!continuing
@@ -772,6 +800,7 @@ function blockPlan(s,opts={}){
   const lastTraining=history.filter(x=>(x.items||[]).some(y=>y.actualSets>0)).sort((a,b)=>a.date.localeCompare(b.date)).at(-1);
   const pauseReturn=!!s.pauseStarted&&lastTraining&&lastTraining.date<=s.pauseStarted&&today-calendarDay(lastTraining.date)>(defaults.reentryDays??14);
   let rx=prescription(s,id,{...opts,reentry:opts.reentry||pauseReturn});
+  if(opts.earnedMaintenance)rx=earnedMaintenancePrescription(s,rx,opts);
   // Heavy/light here means alternating normal and reduced-volume exposures, NOT
   // changing to an unverified heavier bell. Light exposures are non-advancing.
   if(block==='abc'&&pref.focus!=='skill'&&rx.mode==='volume'&&rx.sets>=2&&rx.profile!=='wave'){
@@ -810,7 +839,7 @@ function blockPlan(s,opts={}){
   items.push(rx);used+=cost;if(isHard)hard++;
  }
  const estimated=protectedRotation?Math.max(0,Math.ceil(used-1e-8)):Math.ceil(used);
- return{block,slot,...(optional.size?{optionalStandby}:{}),day:continuing?{...day,name:day.name+' · remaining work'}:day,support,items,deferred,timeBlocked,held,unavailable,prerequisite,requirements,scheduled,restDay,spacingRecommended,spacingReason:spacingRecommended?'A rest or easier activity day is recommended after yesterday’s workout; you may train if recovered.':'',paused:trainingPaused(s,opts.now),estimated,total:estimated+budget.warmup+budget.cooldown,reentry:items.some(x=>x.mode==='reentry'),cap:maxMain,budget:{...budget,targetMain:budget.main,flexMax,main:maxMain},extended:used>budget.main+1e-8};
+ return{block,slot,...(optional.size?{optionalStandby,optionalCandidates:[...optional]}:{}),day:continuing?{...day,name:day.name+' · remaining work'}:day,support,items,deferred,timeBlocked,held,unavailable,prerequisite,requirements,scheduled,restDay,spacingRecommended,spacingReason:spacingRecommended?'A rest or easier activity day is recommended after yesterday’s workout; you may train if recovered.':'',paused:trainingPaused(s,opts.now),estimated,total:estimated+budget.warmup+budget.cooldown,reentry:items.some(x=>x.mode==='reentry'),cap:maxMain,budget:{...budget,targetMain:budget.main,flexMax,main:maxMain},extended:used>budget.main+1e-8};
 }
 // Coordinate independent blocks across workouts; never blend their numeric protocols.
 // Training Emphasis is a temporary scheduling preference, independent of equipment inventory.
@@ -929,23 +958,113 @@ function coreAllocation(s,candidates,history,opts){
  const pace=Math.min(capacity,observed),returnDays=s.trainingDefaults?.reentryDays??14,programDays=BLOCKS[coreBlock].days.length;
  // Deferred work may need more core opportunities than the formal day count.
  // Measure actual recurrence in core visits, never fabricate component credit.
- const coreHistory=physical.filter(x=>(x.block||'abc')===coreBlock),lastSeen=new Map(),returns=new Map();
+ const coreHistory=physical.filter(x=>physicalBlock(x)===coreBlock),lastSeen=new Map(),returns=new Map();
  const corePatterns=new Set([...BLOCKS[coreBlock].days.flatMap(x=>x.ids),...(core?.p.day.ids||[]),...(core?.p.support||[]),...coreHistory.flatMap(x=>[...(x.plan?.day?.ids||[]),...(x.plan?.support||[])])]);
  for(let i=0;i<coreHistory.length;i++)for(const item of coreHistory[i].items||[])if(corePatterns.has(item.id)&&movementEnabled(s,item.id)&&item.actualSets>0&&item.performed){if(lastSeen.has(item.id))returns.set(item.id,i-lastSeen.get(item.id));lastSeen.set(item.id,i);}
  const requiredCoreVisits=Math.max(programDays,...returns.values());
  const share=Math.min(1,7*requiredCoreVisits/(pace*returnDays));
  // Reservation credit/debt belongs to the current period of core attendance.
  // A core absence resets scheduling credit, never earned movement progression.
- const coreDates=history.filter(x=>(x.block||'abc')===coreBlock&&(x.items||[]).some(y=>y.actualSets>0)).map(x=>calendarDay(x.date));
+ const coreDates=history.filter(x=>physicalBlock(x)===coreBlock&&primaryRecords(x).some(y=>y.actualSets>0)).map(x=>calendarDay(x.date));
  let reservationStart=coreDates[0]??day-returnDays+1;
  for(let i=1;i<coreDates.length;i++)if(coreDates[i]-coreDates[i-1]>returnDays)reservationStart=coreDates[i];
  if(!coreDates.length||day-coreDates.at(-1)>returnDays)reservationStart=day-returnDays+1;
- const actual=physical.filter(x=>calendarDay(x.date)>=reservationStart&&s.programComposition.blocks.includes(x.block||'abc')).map(x=>x.block||'abc');
+ const actual=physical.filter(x=>calendarDay(x.date)>=reservationStart&&s.programComposition.blocks.includes(physicalBlock(x))).map(physicalBlock);
  const visits=[...actual,...(opts.projectedBlocks||[])],coreVisits=visits.filter(x=>x===coreBlock).length;
  let run=0;for(let i=visits.length-1;i>=0&&visits[i]===coreBlock;i--)run++;
  const other=candidates.find(x=>x.block!==coreBlock&&x.p.items.length);
  const owed=core?.p.items.length>0&&(share===1||run<3||!other)&&coreVisits+1e-8<Math.ceil((visits.length+1)*share-1e-8);
  return{candidate:owed?core:null,other,details:{coreBlock,programDays,requiredCoreVisits,reservationResetDays:returnDays,reservationStart:new Date(reservationStart*86400000).toISOString().slice(0,10),actualOpportunities:actual.length,actualCoreVisits:actual.filter(x=>x===coreBlock).length,reserved:owed,effectiveDaysPerWeek:pace,targetShare:share,ready:!!core?.p.items.length,capacityLimited:share===1,reason:owed?(coreDates.length&&day-coreDates.at(-1)>returnDays?'Resume the selected core after its training gap before adding developing work.':'Reserve this opportunity for the selected core before adding more rotation gaps.')+(share===1?' At the current pace and observed core coverage, this core uses the full return-window capacity. Other programs remain selected; review available time and program scope.':''):!core?.p.items.length?'The selected core is currently blocked; its gates remain in force.':'Core capacity is reserved; an eligible developing program can use this opportunity.'}};
+}
+function protectedMinutes(items){let used=0,previous=null;for(const rx of items){const finalRest=!rx.roundSeconds&&!rx.continuous?(rx.rest||0)/60:0;const transition=previous?(previous.betweenExercises||(!previous.roundSeconds&&!previous.continuous?previous.rest:0)||0)/60:0;used+=minutesFor(rx)-finalRest+transition;previous=rx;}return used;}
+function curatedPlan(plan,allowed){
+ const omitted=plan.items.filter(x=>(plan.optionalCandidates||[]).includes(x.id)&&!allowed.has(x.id));
+ if(!omitted.length)return plan;
+ const items=plan.items.filter(x=>!omitted.includes(x)),estimated=Math.ceil(Math.max(0,protectedMinutes(items))-1e-8);
+ return{...plan,items,estimated,total:estimated+plan.budget.warmup+plan.budget.cooldown,optionalStandby:[...(plan.optionalStandby||[]),...omitted.map(x=>({id:x.id,reason:'This saved program waits while the current developing cycle is completed.'}))]};
+}
+function fitsMaintenance(plan,rx,s){
+ if(!rx||rx.sets<1||plan.items.some(x=>x.id===rx.id)||plan.items.length>=4)return false;
+ if((MOVES[rx.id].clubPair&&plan.items.some(x=>MOVES[x.id].clubPair||MOVES[x.id].complex))||(MOVES[rx.id].complex&&plan.items.some(x=>MOVES[x.id].clubPair)))return false;
+ const hard=x=>x.track==='heavy'||x.profile==='grind'||x.mode==='density';
+ if(hard(rx)&&plan.items.filter(hard).length>=(s.trainingDefaults?.maxHardMovements??3))return false;
+ return protectedMinutes([...plan.items,rx])<=plan.budget.main+1e-8;
+}
+function coversMaintenance(plan,option,s){return plan.items.some(x=>x.id===option.id)||fitsMaintenance(plan,option.rx,s);}
+function maintenanceOptions(s,rows,opts){
+ const output=[],seen=new Set();
+ for(const row of rows)for(const id of row.earnedIds){
+  if(seen.has(id))continue;seen.add(id);
+  const input={...s,programBlock:row.block,deferredByBlock:{...s.deferredByBlock,[row.block]:[id]}};
+  const rx=blockPlan(input,{...opts,omitUnstartedLoads:true,earnedMaintenance:true}).items.find(x=>x.id===id);
+  if(rx)output.push({block:row.block,id,rx,gap:movementGap(s,id,opts.now,opts.evidenceThrough),refresh:rx.mode==='milestone'&&!['wave','rowWave'].includes(rx.profile)&&!advancementReview(s,id,opts).eligible});
+ }
+ return output.sort((a,b)=>Number(b.refresh)-Number(a.refresh)||b.gap-a.gap||a.block.localeCompare(b.block)||a.id.localeCompare(b.id));
+}
+function appendMaintenance(s,plan,curriculum,opts){
+ if(!curriculum?.managed||!plan.items.length)return plan;
+ const days=s.trainingDefaults?.reentryDays??14,interval=Math.ceil(7/Math.min(s.trainingPreferences?.daysPerWeek||3,weeklyTrainingLimit(s)));
+ const primaryIds=plan.items.map(x=>x.id),parts=[];
+ for(const option of curriculum.options){
+  if(parts.length>=2)break;
+  if(option.block===plan.block)continue;
+  if(!option.refresh&&option.gap+interval<=days||!fitsMaintenance(plan,option.rx,s))continue;
+  parts.push({block:option.block,id:option.id});
+  const items=[...plan.items,option.rx],estimated=Math.ceil(protectedMinutes(items)-1e-8);
+  plan={...plan,items,estimated,total:estimated+plan.budget.warmup+plan.budget.cooldown};
+ }
+ if(parts.length){curriculum.details.primaryIds=primaryIds;curriculum.details.maintenance=parts;}
+ return plan;
+}
+// Capacity curation is an app scheduling policy. It never modifies a movement's
+// prescription or treats forecast work as physical evidence.
+function curriculumPlan(s,candidates,history,allocation,opts){
+ const core=s.programComposition?.coreBlock;
+ if(!core||s.programComposition.continuity===false)return null;
+ const cache=new Map(),state=id=>{if(!cache.has(id))cache.set(id,stateFor(s,id,opts));return cache.get(id);};
+ const physical=history.filter(x=>(x.items||[]).some(y=>y.actualSets>0));
+ const rows=candidates.map(candidate=>{
+  const ids=[...new Set(BLOCKS[candidate.block].days.flatMap(x=>x.ids))].filter(id=>movementEnabled(s,id));
+  const known=ids.filter(id=>(MOVES[id].requires||[]).every(key=>s.skills?.[key]===true));
+  const support=(candidate.p.support||[]).filter(id=>candidate.p.items.some(x=>x.id===id&&x.sets>0));
+  const scope=[...new Set([...known,...support])],developing=scope.filter(id=>state(id).phase!=='ready');
+  const ready=candidate.p.items.some(x=>x.sets>0);
+  const role=candidate.block===core?'core':developing.length?'developing':known.length?'maintenance':'awaiting';
+  return{candidate,ready,block:candidate.block,role,programDays:BLOCKS[candidate.block].days.length,earnedIds:known.filter(id=>state(id).phase==='ready'),developingIds:developing,awaitingIds:ids.filter(id=>!known.includes(id))};
+ });
+ const other=rows.filter(x=>x.block!==core&&x.candidate.p.items.some(y=>y.sets>0));
+ const maintenance=other.filter(x=>x.role==='maintenance'),developing=other.filter(x=>x.role==='developing');
+ const days=s.trainingDefaults?.reentryDays??14,pace=allocation.details.effectiveDaysPerWeek;
+ const available=Math.max(0,pace*days/7-allocation.details.requiredCoreVisits);
+ const demand=other.filter(x=>['developing','maintenance'].includes(x.role)).reduce((n,x)=>n+x.programDays,0);
+ const options=maintenanceOptions(s,maintenance,opts);
+ const establishedIds=new Set(maintenance.flatMap(x=>x.earnedIds));
+ const bases=[...developing.map(x=>x.candidate.p),...candidates.filter(x=>x.block===core).map(x=>curatedPlan(x.p,establishedIds))];
+ const maintenanceVisits=maintenance.filter(x=>!options.filter(y=>y.block===x.block).some(y=>bases.some(p=>coversMaintenance(p,y,s)))).reduce((n,x)=>n+x.programDays,0),learningVisits=Math.max(0,available-maintenanceVisits);
+ const recorded=physical.findLast(x=>x.plan?.composition?.curriculum)?.plan.composition.curriculum;
+ const hinted=rows.find(x=>x.role==='developing'&&x.block===(recorded?.activeBlock||recorded?.pausedBlock));
+ const managed=demand>available+1e-8||!!(recorded?.activeBlock||recorded?.pausedBlock)&&recorded?.mode!=='balanced'&&developing.length>0;
+ const details={mode:managed?'focused':'balanced',sourceIds:[85,123,404,548,606],coreBlock:core,activeBlock:null,pausedBlock:null,capacity:{returnDays:days,effectiveDaysPerWeek:pace,availableVisits:available,maintenanceVisits,learningVisits,demandVisits:demand},blocks:[],provenance:'Strength Lab capacity adaptation; source methods, actual qualification and technical reviews remain independent.'};
+ if(!managed){details.blocks=rows.map(x=>({block:x.block,role:x.role,ready:x.ready,earnedIds:x.earnedIds,developingIds:x.developingIds,awaitingIds:x.awaitingIds}));return{managed:false,details,options};}
+ const fits=x=>x.ready&&x.programDays<=learningVisits+1e-8;
+ const begun=developing.filter(x=>x.candidate.last>=0).sort((a,b)=>b.candidate.last-a.candidate.last);
+ const active=hinted&&fits(hinted)?hinted:begun.find(fits)||developing.find(fits);
+ details.activeBlock=active?.block||null;details.pausedBlock=!active?hinted?.block||null:null;
+ if(!active)details.mode=rows.some(x=>x.block!==core&&x.role==='developing')?'capacity':'maintenance';
+ details.blocks=rows.map(x=>({block:x.block,role:x.role==='developing'?(x===active?'developing':'queued'):x.role,ready:x.ready,earnedIds:x.earnedIds,developingIds:x.developingIds,awaitingIds:x.awaitingIds}));
+ const trainingDays=[...new Set(physical.map(x=>calendarDay(x.date)))].slice(-8);
+ const interval=trainingDays.length>=3?Math.max(1,Math.ceil((trainingDays.at(-1)-trainingDays[0])/(trainingDays.length-1))):Math.ceil(7/Math.min(s.trainingPreferences?.daysPerWeek||3,weeklyTrainingLimit(s)));
+ const developingVisits=physical.filter(x=>(x.block||'abc')!==core&&s.programComposition.blocks.includes(x.block||'abc'));
+ let maintained=0;for(let i=developingVisits.length-1;i>=0;i--){const x=developingVisits[i];if(x.plan?.composition?.curriculum?.selection!=='maintenance')break;maintained++;}
+ const dedicatedDue=options.filter(x=>(x.refresh||x.gap+interval>days)&&!bases.some(p=>coversMaintenance(p,x,s))).map(x=>({...maintenance.find(y=>y.block===x.block),gap:x.gap,priorityId:x.id}));
+ const maintenanceChoice=dedicatedDue.length&&(!active||maintained<2)?dedicatedDue[0]:null;
+ const fallback=!active&&options.length?{...maintenance.find(x=>x.block===options[0].block),priorityId:options[0].id}:null;
+ const selectedMaintenance=maintenanceChoice||fallback;
+ let maintenanceCandidate=selectedMaintenance?.candidate;
+ if(selectedMaintenance){const input={...s,programBlock:selectedMaintenance.block,deferredByBlock:{...s.deferredByBlock,[selectedMaintenance.block]:[selectedMaintenance.priorityId]}};maintenanceCandidate={...maintenanceCandidate,p:blockPlan(input,{...opts,omitUnstartedLoads:true,earnedMaintenance:true})};}
+ const candidate=maintenanceCandidate||active?.candidate||(allocation.details.ready?candidates.find(x=>x.block===core&&x.p.items.length):null)||other[0]?.candidate||null;
+ details.reason=!allocation.details.ready?'The selected core is currently blocked; this eligible alternative keeps its own targets and prerequisites.':selectedMaintenance?'Maintain earned work in '+BLOCKS[selectedMaintenance.block].name+' before continuing the developing program.':active?'Focus developing work on '+BLOCKS[active.block].name+' until its current eligible movement cycles are earned. Other selected programs wait for capacity.':'The protected core and earned maintenance use the estimated return-window capacity. Additional developing programs remain selected and queued; no catch-up work or progression credit is added.';
+ return{managed:true,candidate,details,options,allowedIds:new Set([...(active?BLOCKS[active.block].days.flatMap(x=>x.ids):[]),...maintenance.flatMap(x=>x.earnedIds)]),maintenanceBlock:maintenanceChoice?.block||null};
 }
 function plan(s,opts={}){
  opts={...opts,now:opts.now??new Date()};opts.readiness??=readinessFor(s,opts.now);
@@ -962,11 +1081,20 @@ function plan(s,opts={}){
   const projected=opts.projectedBlocks?.lastIndexOf(block)??-1;
   return {block,order,last:projected>=0?history.length+projected:last,p};
  }).sort((a,b)=>a.last-b.last||a.order-b.order);
- const latest=history.at(-1),unfinished=latest?.calendarVersion===1&&latest.items.some(x=>x.actualSets>0)&&latest.items.some(x=>!x.performed&&!setupOnly(x))?candidates.find(x=>x.block===(latest.block||'abc')&&x.p.items.length):null;
- const allocation=coreAllocation(s,candidates,history,opts);
- const retention=unfinished||allocation?.candidate?null:retentionCandidate(s,candidates,history,opts);
- const continuity=unfinished||allocation?.candidate||retention?null:continuityCandidate(s,candidates,history,opts);
- const chosen=unfinished||allocation?.candidate||retention?.candidate||continuity?.candidate||allocation?.other||candidates.find(x=>x.p.items.length)||candidates[0],p=chosen.p;
+ const latest=history.at(-1),unfinishedId=latest?.calendarVersion===1&&latest.items.some(x=>x.actualSets>0)?latest.items.find(x=>!x.performed&&!setupOnly(x))?.id:null;
+ const unfinishedBlock=unfinishedId?(maintenanceParts(latest.plan).find(x=>x.id===unfinishedId)?.block||latest.block||'abc'):null;
+ const unfinished=unfinishedBlock?candidates.find(x=>x.block===unfinishedBlock&&x.p.items.length):null;
+ let allocation=coreAllocation(s,candidates,history,opts);
+ let curriculum=curriculumPlan({...s,trainingDefaults:defaults},candidates,history,allocation,{...opts,avoidHard:hardRecent});
+ if(curriculum?.managed){for(const candidate of candidates)candidate.p=blockPlan({...s,programBlock:candidate.block,trainingDefaults:defaults},{...opts,avoidHard:hardRecent,omitUnstartedLoads:true,earnedMaintenance:true});allocation=coreAllocation(s,candidates,history,opts);curriculum=curriculumPlan({...s,trainingDefaults:defaults},candidates,history,allocation,{...opts,avoidHard:hardRecent});}
+ if(curriculum?.managed&&allocation?.candidate&&!curatedPlan(allocation.candidate.p,curriculum.allowedIds).items.length){allocation.candidate=null;allocation.details.ready=false;allocation.details.reserved=false;curriculum=curriculumPlan({...s,trainingDefaults:defaults},candidates,history,allocation,{...opts,avoidHard:hardRecent});}
+ const oldRetention=unfinished||allocation?.candidate?null:retentionCandidate(s,candidates,history,opts);
+ const retention=oldRetention&&(!curriculum?.managed||oldRetention.candidate.block===c.coreBlock)?oldRetention:null;
+ const continuity=unfinished||allocation?.candidate||retention||curriculum?.managed?null:continuityCandidate(s,candidates,history,opts);
+ const chosen=unfinished||allocation?.candidate||retention?.candidate||(curriculum?.managed?curriculum.candidate:null)||continuity?.candidate||allocation?.other||candidates.find(x=>x.p.items.length)||candidates[0];
+ const primary=curriculum?.managed?curatedPlan(chosen.p,curriculum.allowedIds):chosen.p;
+ const p=appendMaintenance(s,primary,curriculum,opts);
+ if(curriculum)curriculum.details.selection=unfinished?'unfinished':chosen.block===c.coreBlock?'core':chosen.block===curriculum.details.activeBlock?'developing':curriculum.details.blocks.some(x=>x.block===chosen.block&&x.role==='maintenance')?'maintenance':'temporary';
  const recovery=p.items.some(x=>['recovery','reentry','rebuild','deload'].includes(x.mode));
  const skill=p.support.length>0||['getupPractice','clubIntermediate','groundPractice','hingePractice','hingePathway'].includes(p.block);
  const intensity=p.items.some(x=>x.track==='heavy'||x.profile==='grind'||x.mode==='density');
@@ -999,11 +1127,11 @@ function plan(s,opts={}){
  const rotationWarning=slowest&&slowest.estimatedReturnDays>absenceDays?'In a simple rotation across '+rotation.readyBlocks+' currently ready programs at '+rotation.effectiveDaysPerWeek+' days/week capacity'+(rotation.basis==='capacity-and-observed-pace'?' and your recorded pace':'')+', '+BLOCKS[slowest.block].name+' has '+slowest.programDays+' program day'+(slowest.programDays===1?'':'s')+' recurring about every '+slowest.estimatedReturnDays+' days. For movements not practiced elsewhere, that can exceed your '+absenceDays+'-day return window. '+' At this pace, approximately '+feasiblePrograms+' program'+(feasiblePrograms===1?'':'s')+' of this length fit the return window; reduce simultaneous programs or choose shorter blocks. This is planning guidance, not an automatic change. Movement overlap and priority scheduling can change this estimate.':null;
  const cadence={rotation,rotationAdjustment,movements:movementRows.filter(x=>x.repeatedReentry||x.atRisk).slice(0,3),movementSummary:{observed:movementRows.length,repeatedReentry:repeated.length,atRisk:risk.length},retention:retention?{id:retention.id,block:chosen.block}:null,continuity:continuity?{id:continuity.id,block:chosen.block,...(continuity.developing?{developing:true}:{})}:null,sampleDays:trainingDays.length,estimatedReturnDays,absenceDays,warning:movementWarning||rotationWarning||(estimatedReturnDays!==null&&estimatedReturnDays>absenceDays?'At your recent training frequency, revisiting every selected block may take longer than the absence window. Consider fewer active blocks; do not add catch-up work.':null)};
  const reason=!p.items.length?'All selected blocks are currently blocked or do not fit. Review the reasons below.':
-  (unfinished?'Continue the last unfinished workout before later blocks.':allocation?.candidate?allocation.details.reason:retention?'Revisit '+MOVES[retention.id].name+' before its configured return window is exceeded, based on your recorded training frequency.':continuity?continuity.reason+' for '+MOVES[continuity.id].name+'. Existing progression and recovery requirements still apply.':allocation?.other===chosen?allocation.details.reason:chosen.last<0?'This selected block has not yet been practiced.':'This is the least recently practiced selected block that is ready and fits today.')+
+  (unfinished?'Continue the last unfinished workout before later blocks.':allocation?.candidate?allocation.details.reason:retention?'Revisit '+MOVES[retention.id].name+' before its configured return window is exceeded, based on your recorded training frequency.':curriculum?.managed?curriculum.details.reason:continuity?continuity.reason+' for '+MOVES[continuity.id].name+'. Existing progression and recovery requirements still apply.':allocation?.other===chosen?allocation.details.reason:chosen.last<0?'This selected block has not yet been practiced.':'This is the least recently practiced selected block that is ready and fits today.')+
   (pending.length?' Unfinished movements are considered first within this block.':'')+
   (p.support.length?' Supporting foundation practice is included to regain eligibility.':'');
  const status=x=>x.p.items.length?'Ready':x.p.paused?'Paused':x.p.held.length?'Pain review':x.p.scheduled.length?'Recovery schedule':x.p.prerequisite.length?'Prerequisites':x.p.unavailable.length?'Equipment':'Needs more time';
- return {...p,composition:{emphasis,reason,hardRecent,cadence,...(allocation?{coreAllocation:allocation.details}:{}),candidates:candidates.map(x=>({block:x.block,status:status(x)})),sourceIds:[548,578,...(p.items.some(x=>x.bodyweight)?[85]:[])],provenance:'Block selection, spacing and priority are configurable Strength Lab defaults; source methods remain independent.'}};
+ return {...p,composition:{emphasis,reason,hardRecent,cadence,...(curriculum?{curriculum:curriculum.details}:{}),...(allocation?{coreAllocation:allocation.details}:{}),candidates:candidates.map(x=>({block:x.block,status:status(x)})),sourceIds:[548,578,...(p.items.some(x=>x.bodyweight)?[85]:[])],provenance:'Block selection, spacing and priority are configurable Strength Lab defaults; source methods remain independent.'}};
 }
 function validateComposition(c){
  if(c?.continuity!==undefined&&typeof c.continuity!=='boolean')throw Error('Invalid continuity preference');
@@ -1011,7 +1139,7 @@ function validateComposition(c){
  if(!c||typeof c!=='object'||Array.isArray(c)||typeof c.enabled!=='boolean'||!Array.isArray(c.blocks)||!c.blocks.length||c.blocks.length>Object.keys(BLOCKS).length||new Set(c.blocks).size!==c.blocks.length||c.blocks.some(id=>!Object.hasOwn(BLOCKS,id)))throw Error('Select unique known training blocks');
  for(const key of ['minGapDays','hardGapDays'])if(c[key]!==undefined&&(!Number.isInteger(c[key])||c[key]<0||c[key]>7))throw Error('Composition spacing must be 0–7 days');
 }
-function deferredAfter(plan,records){const pending=new Set(plan.deferred||[]);for(const record of records){if(setupOnly(record)){pending.delete(record.id);continue;}if(!(record.performed??record.completed))pending.add(record.id);else pending.delete(record.id);}return [...pending];}
+function deferredAfter(plan,records){records=primaryRecords({plan,items:records});const pending=new Set(plan.deferred||[]);for(const record of records){if(setupOnly(record)){pending.delete(record.id);continue;}if(!(record.performed??record.completed))pending.add(record.id);else pending.delete(record.id);}return [...pending];}
 function completeRecord(rx,actual,quality,pain){
  const sets=(actual||[]).filter(x=>x.done&&!x.skipped),totalTime=rx.durationScope==='total';
  const valid=x=>validWorkingWeight(rx.id,x.weight)&&Number.isInteger(Number(x.reps))&&Number(x.reps)>0&&(rx.side!==2||(x.bothSides===true&&Number.isInteger(Number(x.leftReps))&&Number(x.leftReps)>0&&Number.isInteger(Number(x.rightReps))&&Number(x.rightReps)>0));
@@ -1031,7 +1159,7 @@ function completeRecord(rx,actual,quality,pain){
  const cadence=(!rx.roundSeconds||sets.every(x=>x.timingValid===true))&&sets.every(x=>(x.restSeconds===undefined||x.restSeconds===rx.rest)&&(x.roundSeconds===undefined||x.roundSeconds===(rx.roundSeconds||0))); 
  const continuous=!rx.continuous||sets.every(x=>x.continuous===true);
  const performed=!rx.legacyTargetUnverified&&cadence&&continuous&&!['review','prerequisite'].includes(rx.mode)&&sets.length>0&&sets.length>=rx.sets&&sets.every(valid)&&reps>=rx.reps&&sameLoad&&bilateral&&!['hard','breakdown','pain'].includes(quality)&&!pain;
- return{id:rx.id,name:rx.name,weight,...(rx.station?{setupChanged:sets.length>0&&!sameStation}:{}),bodyweight:!!MOVES[rx.id]?.bodyweight,unit:rx.unit,actualSets:sets.length,actualReps:reps,targetSets:rx.sets,targetReps:rx.reps,rest:rx.rest,quality,pain:!!pain,mode:rx.mode,policyKey:rx.policyKey||'legacy-v1',profile:rx.profile||'legacy',track:rx.track||'base',roundSeconds:rx.roundSeconds||null,continuous:!!rx.continuous,durationScope:rx.durationScope||null,weakSide:rx.weakSide||null,sourceIds:rx.sourceIds||[],sourceParameters:rx.sourceParameters??null,exposureTarget:rx.exposureTarget??2,performed,completed:performed&&quality==='clean'&&sameStation&&exactIntensity&&weight===Number(rx.weight)&&!['baseline','light','recovery','reentry','time-fit','review','rebuild','deload','prerequisite'].includes(rx.mode),sets:actual};
+ return{id:rx.id,name:rx.name,weight,...(rx.earnedMaintenance?{earnedMaintenance:true}:{}),...(rx.station?{setupChanged:sets.length>0&&!sameStation}:{}),bodyweight:!!MOVES[rx.id]?.bodyweight,unit:rx.unit,actualSets:sets.length,actualReps:reps,targetSets:rx.sets,targetReps:rx.reps,rest:rx.rest,quality,pain:!!pain,mode:rx.mode,policyKey:rx.policyKey||'legacy-v1',profile:rx.profile||'legacy',track:rx.track||'base',roundSeconds:rx.roundSeconds||null,continuous:!!rx.continuous,durationScope:rx.durationScope||null,weakSide:rx.weakSide||null,sourceIds:rx.sourceIds||[],sourceParameters:rx.sourceParameters??null,exposureTarget:rx.exposureTarget??2,performed,completed:performed&&quality==='clean'&&sameStation&&exactIntensity&&weight===Number(rx.weight)&&!['baseline','light','recovery','reentry','time-fit','review','rebuild','deload','prerequisite'].includes(rx.mode),sets:actual};
 }
 function nextRest(plan,items,index){
  const rx=plan.items[index];if(!items.some(item=>item.sets.some(set=>!set.done)))return null;
@@ -1099,6 +1227,7 @@ function validateDraft(d,s){
  const object=x=>x&&typeof x==='object'&&!Array.isArray(x),number=x=>typeof x==='number'&&Number.isFinite(x)&&x>=0;
  if(d.notebookVersion!==undefined&&d.notebookVersion!==1)throw Error('Unsupported notebook draft');
  if(!object(d)||!['warmup','work','cooldown'].includes(d.stage)||typeof d.date!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(d.date)||typeof d.started!=='string'||!Number.isFinite(Date.parse(d.started))||!object(d.plan)||!object(d.plan.day)||typeof d.plan.day.name!=='string'||!object(d.plan.budget)||!number(d.plan.cap)||!Array.isArray(d.plan.items)||!d.plan.items.length||!Array.isArray(d.items)||d.items.length!==d.plan.items.length)throw Error('Invalid workout draft');
+ validateCurriculumParts(d.plan);
  timeBudget(d.plan.budget.total);
  for(const key of ['warmup','cooldown','main'])if(!number(d.plan.budget[key]))throw Error('Invalid draft budget');
  if(d.id!==undefined&&typeof d.id!=='string')throw Error('Invalid draft identity');
@@ -1140,9 +1269,17 @@ function validateDraft(d,s){
  }
  return d;
 }
+function validateCurriculumParts(p){
+ const c=p.composition?.curriculum;if(c?.maintenance===undefined&&c?.primaryIds===undefined)return;
+ if(!Array.isArray(c.maintenance)||(c.maintenance.length<1||c.maintenance.length>2)||!Array.isArray(c.primaryIds)||!c.primaryIds.length)throw Error('Invalid curriculum work ownership');
+ const ids=[...c.primaryIds,...c.maintenance.map(x=>x?.id)];
+ if(new Set(ids).size!==ids.length||ids.length!==p.items.length||ids.some(id=>!p.items.some(x=>x.id===id)))throw Error('Invalid curriculum work ownership');
+ for(const part of c.maintenance)if(!part||!Object.hasOwn(BLOCKS,part.block)||part.block===p.block||!BLOCKS[part.block].days.some(x=>x.ids.includes(part.id)))throw Error('Invalid maintenance source program');
+}
 function validatePlanMetadata(p){
  const object=x=>x&&typeof x==='object'&&!Array.isArray(x),num=x=>typeof x==='number'&&Number.isFinite(x)&&x>=0;
  if(!object(p)||!object(p.day)||typeof p.day.name!=='string'||typeof p.day.focus!=='string'||!object(p.budget)||!Array.isArray(p.items)||p.items.length>Object.keys(MOVES).length||!num(p.cap))throw Error('Invalid recorded plan');
+ validateCurriculumParts(p);
  timeBudget(p.budget.total);for(const key of ['warmup','cooldown','main'])if(!num(p.budget[key]))throw Error('Invalid recorded budget');
  const ids=new Set();for(const rx of p.items){const m=MOVES[rx?.id];if(!m||ids.has(rx.id)||rx.name!==m.name||rx.unit!==m.unit||rx.side!==m.side||!Number.isInteger(rx.sets)||rx.sets<1||rx.sets>200||!Number.isInteger(rx.reps)||rx.reps<1||!num(rx.weight)||!num(rx.rest)||m.bodyweight&&rx.weight!==0)throw Error('Invalid written prescription');ids.add(rx.id);validateStation(rx);}
 }
@@ -1159,7 +1296,7 @@ function validateNotebookRecord(item){
   for(const k of ['restSeconds','roundSeconds','transitionSeconds'])if(set[k]!==undefined&&!num(set[k]))throw Error('Invalid recorded timing');
  }
  const derived=completeRecord(rx,item.sets,item.quality,item.pain);if(rx.station&&item.setupChanged!==derived.setupChanged)throw Error('Recorded setup comparison disagrees with actuals');
- for(const k of ['actualSets','actualReps','weight','targetSets','targetReps','rest','performed','completed'])if(item[k]!==derived[k])throw Error('Recorded actuals disagree with progression evidence');
+ for(const k of ['actualSets','actualReps','weight','targetSets','targetReps','rest','performed','completed','earnedMaintenance'])if(item[k]!==derived[k])throw Error('Recorded actuals disagree with progression evidence');
  if(item.note!==undefined&&typeof item.note!=='string')throw Error('Invalid movement note');
 }
 function validateBackup(input){
@@ -1213,5 +1350,5 @@ function validateBackup(input){
  const workoutDraft=validateDraft(input.workoutDraft,input);
  return JSON.parse(JSON.stringify({...input,workoutDraft,nextWeights:input.nextWeights||{},defaultMinutes:input.defaultMinutes??45,deferredIds:input.deferredIds||[]}));
 }
-return{weeklyTrainingLimit,deloadStatus,advancementReview,readinessFor,retestRowWave,trainingEmphasis,validateTrainingEmphasis,emphasisDistribution,mobilityOnlyPlan,COMPLEX_PATHWAYS,complexityOptions,repairMissingLoadAnchor,setInitialLoad,replaceUnavailableLoad,chooseReentryLoad,availableWorkingLoads,trainingPaused,activityRecovery,validateActivity,movementCadence,MOVES,SKILLS,DAYS,BLOCKS,LOADS,PROFILE_NAMES,describeProgression,policyFor,availableProfiles,configureMovement,practiceEvidence,supportingMoves,requirementLabel,prerequisites,chooseCycle,loadOptions,selectLoad,retestPushup,validWorkingWeight,validateProgramming,validateDraft,validateBackup,records,successful,stateFor,prescription,minutesFor,timeBudget,plan,completeRecord,nextRest,deferredAfter,resolvePain,movementGap,movementDemands};
+return{deferredBlocksAfter,primaryRecords,weeklyTrainingLimit,deloadStatus,advancementReview,readinessFor,retestRowWave,trainingEmphasis,validateTrainingEmphasis,emphasisDistribution,mobilityOnlyPlan,COMPLEX_PATHWAYS,complexityOptions,repairMissingLoadAnchor,setInitialLoad,replaceUnavailableLoad,chooseReentryLoad,availableWorkingLoads,trainingPaused,activityRecovery,validateActivity,movementCadence,MOVES,SKILLS,DAYS,BLOCKS,LOADS,PROFILE_NAMES,describeProgression,policyFor,availableProfiles,configureMovement,practiceEvidence,supportingMoves,requirementLabel,prerequisites,chooseCycle,loadOptions,selectLoad,retestPushup,validWorkingWeight,validateProgramming,validateDraft,validateBackup,records,successful,stateFor,prescription,minutesFor,timeBudget,plan,completeRecord,nextRest,deferredAfter,resolvePain,movementGap,movementDemands};
 });

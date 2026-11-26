@@ -1918,3 +1918,69 @@ default prescriptions and 72 legacy block/duration plans. Source audits, release
 gate tracking, syntax, suite registration, diff checks and 51-asset offline
 integrity pass. All ten gate areas remain unresolved. Exact-commit CI and public
 DEV verification are required separately after push.
+
+
+Capacity-aware curriculum strategy (November 25): see CURRICULUM-STRATEGY.md for
+foundation reservation, one developing lane under overload, earned maintenance,
+queued saved choices and independent actual/pending ownership. Old balanced
+coordination and the continuity opt-out remain. New reduced maintenance requires
+a completed current cycle and a usable full review, grants no advancement, and
+requires new full endpoint work before another progression review. Wave methods
+keep their own doses. No new setting, storage key or data migration is introduced.
+Source #123's conventional-lifting context and all app numerical adaptations are
+explicit in research/curriculum-strategy-evidence.json. All ten audit areas remain
+open; this is not full transcript or physical-technique certification. Runtime
+rc68-curriculum retains 51 cached assets and V33 keys. Suite inventory is 72 Node
+JS suites, six correction tests and 37 browser suites.
+
+
+Curriculum strategy batch: the implemented policy is described in
+CURRICULUM-STRATEGY.md, with exact source quotes/context, current-method actuals,
+independent written ownership and explicit numerical-app choices. The old
+slot-only experiment was rejected after it crowded out later learning. Earned
+maintenance can instead share genuine spare time; it does not become a program
+day, shorten an unearned target or authorize a new load. Reduced earned work
+requires new full endpoint actuals before another progression review.
+
+The former overloaded legacy-tag fairness fixture now checks actual unfinished
+cycle focus rather than treating a recorded retention label as earned mastery.
+Balanced three-program peer bounds still run unchanged. The thirty-minute
+controlled assertion now checks completed cycles plus honest queueing, rather
+than requiring every saved skill to receive an introduction. Simulated returns
+during development and returns to already-earned work are reported separately.
+Neither maintenance count nor elapsed time is treated as progression evidence.
+
+Exact b107791 comparisons are reproducible with scripts/compare-curriculum.cjs
+and recorded in research/curriculum-strategy-results.json. In the three
+120-workout controlled cases, unfinished-development returns are 6→4, 2→0 and
+1→0 for 30/45/60 minutes. Thirty-minute completed tracked cycles rise from one to
+two; all seven tracked cycles remain earned at 45/60. Later introductions are
+queued, and some earned returns increase under constrained time. Three two-year
+constraint cases save 286 actual workouts each; 45/60-minute starters retain all
+seven current cycles after a method change versus six at baseline. The separate
+240-workout capacity-change case earns all seven after moving 30→45 minutes.
+No physical strength-retention or technique verification is inferred.
+
+Movement lookup now filters before copying unrelated rows, preserving stable
+record keys, session/item order and date scoping. The reproducible 3,000-session,
+ten-movement lookup produces identical records; measured local timing is in the
+results JSON. This does not promise real-device latency. Backup/correction replay
+preserves unassigned legacy requests and new maintenance-source ownership.
+
+The actual app save path also preserves a newer pending load selection when an
+older immutable draft is completed. Only completed work at the selected load
+consumes that pending choice. Regression tests execute the real save function:
+the old-load target stays recorded, the newer load remains at its own unearned
+baseline, and genuine full work at the new load consumes the choice and supplies
+only its actual exposure. No weights are raised by a setting save.
+
+Final local verification: all 72 Node JS suites, six correction tests and 37
+browser suites pass. The final focused runs include source hashes/quotes, 36
+limited-equipment beginner workouts, earned row-wave/KB-wave independence,
+240 capacity-changing actual workouts, two separate maintenance sources, future
+ownership isolation and the real app save path for old/new pending loads. All
+108 default prescriptions and 72 legacy block/duration plans remain identical.
+Source audits, gate tracking, syntax, suite registration, diff checks and all
+51 cached assets pass. Existing V33 keys/data and the separate unfinished worktree
+remain preserved. Exact-commit CI and live DEV verification are still required
+separately after push; no production promotion is authorized.

@@ -213,3 +213,17 @@ movement-specific maintenance, oversized cores, strict legacy duration fitting,
 instructional verification and real Android acceptance remain open. Inventory:
 71 Node JS suites, six correction tests and 36 browser suites. Runtime/query
 rc67-core-window retains 51 runtime assets and all existing V33 namespaces.
+
+
+Capacity-aware curriculum strategy (November 25): see CURRICULUM-STRATEGY.md for
+foundation reservation, one developing lane under overload, earned maintenance,
+queued saved choices and independent actual/pending ownership. Old balanced
+coordination and the continuity opt-out remain. New reduced maintenance requires
+a completed current cycle and a usable full review, grants no advancement, and
+requires new full endpoint work before another progression review. Wave methods
+keep their own doses. No new setting, storage key or data migration is introduced.
+Source #123's conventional-lifting context and all app numerical adaptations are
+explicit in research/curriculum-strategy-evidence.json. All ten audit areas remain
+open; this is not full transcript or physical-technique certification. Runtime
+rc68-curriculum retains 51 cached assets and V33 keys. Suite inventory is 72 Node
+JS suites, six correction tests and 37 browser suites.

@@ -1,0 +1,77 @@
+{
+  "date": "2026-11-25",
+  "baseCommit": "b1077917138393f45287ee29ea55a3168e74dc97",
+  "sources": [
+    {
+      "id": 85,
+      "title": "Body weight 101 program integration with swing and strong and fit mill squat program - design talk",
+      "url": "https://www.youtube.com/watch?v=Sb0byJSPDoE",
+      "sha256": "c346045f067510b8f03798fd56b593cb90dc9ad733f8c8fb8b796bc90045c767",
+      "quotes": [
+        "each piece of the tetris program can be totally different but they can integrate and interlock in different ways",
+        "when you get to the end start the whole program over again and run it again and repeat the program"
+      ],
+      "timestamps": null
+    },
+    {
+      "id": 123,
+      "title": "Combining kettlebells and clubs with conventional lifting - overview",
+      "url": "https://www.youtube.com/watch?v=xAk3LQhMZDo",
+      "sha256": "caf185bf5eb5f9b8394e1547f0f88f74c73c19bd2ffd7f5f0a9dd0532ebaa9a4",
+      "quotes": [
+        "maintain your core six kettlebell movements",
+        "for just a much shorter period of time and at a lower weight"
+      ],
+      "timestamps": null
+    },
+    {
+      "id": 404,
+      "title": "Kettlebell Program Design for Beginners - Tetris of Training Part 1",
+      "url": "https://www.youtube.com/watch?v=sAcBo4H__hE",
+      "sha256": "0d099957e23306ec84dbcdef69940c869c35b26d50ad8117fa6b5e84204a11b4",
+      "quotes": [
+        "you want to spend the majority of your time developing your fundamentals"
+      ],
+      "timestamps": null
+    },
+    {
+      "id": 548,
+      "title": "Program Design 4 - Basic Kettlebell, 2 Hand Heavy Club, Single arm Club - Training Tetris",
+      "url": "https://www.youtube.com/watch?v=XYuiOsBAvXI",
+      "sha256": "0cdb4d3f1e34f4c8076a90aa4af3133e4b9b693650bff28c68f6b871c2a7dbb2",
+      "quotes": [
+        "we are going to keep these as fundamental programs"
+      ],
+      "timestamps": null
+    },
+    {
+      "id": 606,
+      "title": "Tetris Training Program Design - Kettlebell and 2 Hand Club - most effective basic program design",
+      "url": "https://www.youtube.com/watch?v=-DoSWaLHDGc",
+      "sha256": "a7d43f3fb2c4fdb95a0f7deeab2fc4c46bc17810b9dc8748dda01c1fea9a2eb9",
+      "quotes": [
+        "we would pick our kettlebell days based on what we wanted to accomplish"
+      ],
+      "timestamps": null
+    }
+  ],
+  "sourceClaims": [
+    "Foundational programs remain while complementary training is integrated around goals and constraints.",
+    "Source #85 describes meaningful repeated program learning, not random introductions to every movement.",
+    "Source #123 specifically discusses shorter lower-weight maintenance when adding conventional lifting; it does not prescribe this app algorithm."
+  ],
+  "appAdaptations": [
+    "Capacity-triggered focused development, earned maintenance and queued selections derive from actual current-method history. Actual plans retain scheduling intent; no new configuration field or mutable curriculum phase is added.",
+    "Half-volume whole-unit rounding, or one familiar set in short sessions, is a nonadvancing earned-maintenance choice. The familiar owned working load is retained; no lower weight is invented.",
+    "Wave/row-wave methods are excluded from the new reduction. All unearned targets, intervals and existing recovery/technical/equipment gates remain intact.",
+    "A new full endpoint is required after earned-maintenance light work before further progression review.",
+    "At most two earned maintenance additions, and at most four movements after additions, must fit the selected time ceiling.",
+    "Primary program days and maintenance pending queues use separate written ownership; no extra program-day, component or forecast credit is inferred."
+  ],
+  "limits": [
+    "No universal source maintenance frequency, numerical reservation formula or clinically validated minimum maintenance dose is claimed.",
+    "Thirty-minute capacity may queue later skills rather than introduce them all; queueing is an explicit breadth-versus-earned-cycle tradeoff.",
+    "Historical physical technique, real strength retention and Android acceptance still require separate verification.",
+    "All ten Wildman gate areas remain unresolved."
+  ]
+}
