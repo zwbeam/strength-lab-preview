@@ -2059,3 +2059,39 @@ it now waits for the rendered draft, retains error diagnostics and passes both
 widths. No automatic retry or weakened source/progression assertion was added.
 
 Local QA complete: all 72 Node suites, six correction tests and 38 browser suites pass across the broad run and final focused/diagnostic follow-ups. Both source audits, syntax, all 51 offline assets, suite registration, gate and diff checks pass. Exact-head CI and live DEV acceptance follow push.
+
+
+Engine preparation follow-up (November 25): preparationFor now selects warmup and
+cooldown advice in the pure engine from registered movement families/IDs and
+complex components, rather than display-name searches in the interface. Step-ups
+receive ankle/squat preparation; floor, pull, hinge and overhead work retain their
+own patterns. A light club is optional only for a simple movement already written,
+with current comparable familiarity, grip confirmation and owned single-club load
+at no more than half the lowest written per-club working load. Otherwise preparation
+stays unloaded. No kg/lb comparison, invented load, new movement admission or
+strength/component credit exists. Half-load selection is an app choice, not a
+universal Wildman percentage. Cooldown slots include both sides/substitutions and
+allow comfortable rest. Existing 8+10 allocations, strength targets, old snapshot
+allocations and V33 data remain. No new settings or data migration are introduced.
+See research/preparation-engine-evidence.json. Exact 85571a6 comparison preserves
+108 prescriptions and 432 strength plans. Runtime rc71-preparation-engine retains
+51 cached assets; inventory is 73 Node JS, six correction tests and 39 browser
+suites. All ten gate rows remain unresolved; fuller source-protocol, maintenance,
+technique and real-device acceptance remain separate work.
+
+The baseline step-up warmup regression fails because display-name matching misses
+its squat/ankle pattern. The pure engine corrects it and keeps unknown names from
+acting as programming evidence. Tests cover 5,184 movement/duration combinations,
+owned/familiar versus limited gear, missing grip, disabled clubs, changed methods,
+pain holds, future/stale evidence, compound patterns and zero strength credit.
+Alternative snapshot allocations, including fractional cooldown slots, stay exact.
+The actual 85571a6 comparison preserves 108 prescriptions and 432 strength plans.
+
+All 73 Node suites, six correction tests and 39 browser suites pass across the
+broad run and final follow-ups. The step-up browser history editor hit a hidden
+ancestor disclosure; the fixture now opens all ancestors before filling the field,
+with all assertions retained, and its complete rerun passes. The new mobile suite
+passes preview, active workout and offline reload for step-ups, familiar light
+clubs and limited clubs at 320/390px, with unchanged plans and no fabricated work.
+Both source audits, 51 cache entries, syntax, suite registration, gate and diff
+checks pass. Exact-head CI and public DEV acceptance follow the preview push.

@@ -422,7 +422,7 @@ const expectedCache=JSON.parse(swText.match(/const PREFIX=("[^"]+")/)[1])+JSON.p
        return {category,html};
      });
    });
-   const preparationPatterns={hinge:/hip.hinge patterning/i,squat:/ankle motion/i,overhead:/press.path rehearsal/i,ground:/floor transitions/i,club:/light club circle/i};
+   const preparationPatterns={hinge:/hip.hinge patterning/i,squat:/ankle motion/i,overhead:/press.path rehearsal/i,ground:/floor transitions/i,club:/No lighter familiar owned club/i};
    for(const check of preparationChecks){
      if((check.html.match(/<li>/g)||[]).length!==4||!preparationPatterns[check.category].test(check.html))
        throw Error('Warm-up stations not adapted for '+check.category);

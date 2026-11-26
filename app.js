@@ -192,52 +192,16 @@ function dose(rx){return `${rx.sets} × ${rx.reps}${rx.timed?' sec':''}${rx.dura
 function card(title,body){return `<section class="card"><h2>${title}</h2>${body}</section>`;}
 function readinessButtons(){return `<div class="choice" aria-label="Readiness"><button data-ready="normal" class="${readiness==='normal'?'active':''}">Ready</button><button data-ready="low" class="${readiness==='low'?'active':''}">Low energy / sore</button></div>`;}
 function warmup(plan){
- const items=plan.items||[],names=items.map(rx=>E.MOVES[rx.id]?.name||rx.name||rx.id||'').join(' ').toLowerCase();
- const complex=items.some(rx=>/getup|snatch|clean|cast|mill/i.test(rx.id));
- const hinge=/swing|deadlift|hinge|clean|snatch/.test(names);
- const squat=/squat|lunge/.test(names);
- const overhead=/press|snatch|jerk|overhead|cast|mill/.test(names);
- const ground=/get.up|ground|turkish/.test(names);
- const club=/club|cast|mill|circle|shield|gamma/.test(names);
- const station1=club?'Use a familiar light club circle or shield, changing sides halfway through. Stay well below working load.':
-  'Use unloaded halos and easy shoulder circles; use a familiar light club only if the movement is already comfortable.';
- const station2=overhead?'Gentle scapular movement, shoulder circles and easy unloaded press-path rehearsal; never force overhead range.':
-  club?'Easy shoulder circles, relaxed wrist rotation and gentle scapular motion.':
-  'Gentle shoulder circles, scapular movement and comfortable neck ranges; no forced end positions.';
- const station3=ground?'Slow supported floor transitions, spinal rocks and comfortable rotation; do not rush getting up.':
-  hinge?'Gentle spinal rocks and unloaded hip-hinge patterning with a comfortable neutral back.':
-  'Controlled spinal rocks or accessible supported shin-box transitions; avoid impact.';
- const station4=squat?'Supported squat-range exploration, gentle ankle motion and easy shin-box switches.':
-  hinge?'Supported hip rotations and unloaded hip-to-wall hinges, avoiding fatigue and hard end-range stretching.':
-  'Shin-box switches or supported hip rotations and comfortable squat-range exploration.';
- const movementNames=items.map(rx=>esc(rx.name||E.MOVES[rx.id]?.name||rx.id)).join(', ');
- return `<p class="small muted">Two easy rounds · four one-minute stations per round (8 minutes total). Repeat the same sequence once.</p><ol><li><strong>Minute 1 and 5 · Light movement.</strong> ${station1}</li><li><strong>Minute 2 and 6 · Shoulders and neck.</strong> ${station2}</li><li><strong>Minute 3 and 7 · Spine and pattern.</strong> ${station3}</li><li><strong>Minute 4 and 8 · Hips and ankles.</strong> ${station4}</li></ol><p class="muted small">Four-station eight-minute preparation adapted from <button class="source-open" data-open-source="550">Wildman's basic warm-up example</button>; the movements above are selected for this prescription, not presented as a universal mandatory sequence. Strength work: ${movementNames}.${complex?' Rehearse unfamiliar complex elements unloaded before loading.':''} Keep all movement easy and pain-free; do not skip preparation to gain lifting time.</p>`;
+ const prep=E.preparationFor(state,plan,{now:today()}),warm=prep.warmup;
+ const movementNames=(plan.items||[]).map(rx=>esc(rx.name||E.MOVES[rx.id]?.name||rx.id)).join(', ');
+ const rows=warm.stations.map((x,i)=>`<li><strong>${warm.minutes===8?'Minute '+(i+1)+' and '+(i+5):'Station '+(i+1)+' · '+x.seconds+' sec each round'} · ${esc(x.label)}.</strong> ${esc(x.text)}</li>`);
+ const intro=warm.minutes===8?'Two easy rounds · four one-minute stations per round (8 minutes total).':`Two easy rounds · four ${warm.stations[0].seconds}-second stations per round (${warm.minutes} minutes total).`;
+ return `<p class="small muted">${intro} Repeat the same sequence once.</p><ol>${rows.join('')}</ol><p class="muted small">Four-station preparation adapted from <button class="source-open" data-open-source="550">Wildman's basic warm-up example</button>; the movements above are selected for this prescription, not presented as a universal mandatory sequence. Strength work: ${movementNames}.${prep.patterns.complex?' Rehearse unfamiliar complex elements unloaded before loading.':''} Keep all movement easy and pain-free; do not skip preparation to gain lifting time. Optional loaded preparation uses a familiar owned club at no more than half the written club working load; that limit is a Strength Lab choice.</p>`;
 }
 function cooldown(plan){
- const items=plan.items||[];
- const names=items.map(rx=>E.MOVES[rx.id]?.name||rx.name||rx.id||'').join(' ').toLowerCase();
- const overhead=/press|snatch|jerk|overhead|cast|mill/.test(names);
- const hinge=/swing|deadlift|hinge|clean|snatch/.test(names);
- const squat=/squat|lunge/.test(names);
- const ground=/get.up|ground|turkish/.test(names);
- const grip=/club|cast|mill|carry|circle/.test(names);
- const available=Math.max(0,Math.floor(Number(plan.budget?.cooldown)||0));
- const directions=[
-  ['Spinal extension','Gentle Sphinx or another comfortable supported extension',130],
-  ['Spinal flexion','Relaxed supported forward fold; do not force end range',129],
-  ['Spinal rotation',ground?'Comfortable floor rotation or supported seated twist':'Gentle seated twist, both sides',137],
-  ['Hip mobility',squat?'Supported hip rotation and easy ankle motion':hinge?'Gentle hamstring movement and supported hip rotation':'Comfortable hip-flexor stretch or supported shin-box position',135]
- ];
- // Keep Wildman-inspired extension -> flexion -> rotation -> hips ordering.
- // The last stage carries the primary prescription-specific hip emphasis.
- const slots=Math.min(directions.length,available),mins=Array(slots).fill(slots?Math.floor(available/slots):0);
- for(let i=0;i<available%Math.max(1,slots);i++)mins[i]++;
- const rows=directions.slice(0,slots).map((d,i)=>`<li>${mins[i]} min: ${d[0]} — ${d[1]} (<button class="source-open" data-open-source="${d[2]}">source</button>).</li>`);
- // These are substitutions within the existing time allocation, not extra minutes.
- if(slots>=3&&overhead)rows[2]=`<li>${mins[2]} min: Spinal rotation and shoulders — Gentle upper-back rotation followed by a comfortable supported box puppy-dog position if tolerated (<button class="source-open" data-open-source="139">source</button>).</li>`;
- else if(slots>=3&&grip)rows[2]=`<li>${mins[2]} min: Spinal rotation and forearms — Gentle seated twist followed by easy wrist opening and forearm rotation, without loaded stretching (<button class="source-open" data-open-source="132">source</button>).</li>`;
- const focus=overhead?'upper back and shoulders':squat?'hips and ankles':hinge?'posterior chain and hips':grip?'forearms and shoulders':ground?'hips and floor transitions':'comfortable spinal and hip movement';
- return `<ol>${rows.join('')}</ol><p class="muted small">Focus: ${focus}. Wildman's general cooldown directions and order are documented in <button class="source-open" data-open-source="130">Cooldown 1</button> and <button class="source-open" data-open-source="136">Cooldown 4</button>. This ${available}-minute allocation is a Strength Lab scheduling adaptation, not a universal Wildman prescription. Use comfortable ranges and skip painful movements.</p>`;
+ const cool=E.preparationFor(state,plan,{now:today()}).cooldown;
+ const rows=cool.stages.map(d=>`<li>${d.minutes} min: ${esc(d.label)} — ${esc(d.text)} (<button class="source-open" data-open-source="${d.sourceId}">source</button>).</li>`);
+ return `<ol>${rows.join('')}</ol><p class="muted small">Focus: ${esc(cool.focus)}. Wildman's general cooldown directions and order are documented in <button class="source-open" data-open-source="130">Cooldown 1</button> and <button class="source-open" data-open-source="136">Cooldown 4</button>. This ${cool.minutes}-minute allocation is a Strength Lab scheduling adaptation, not a universal Wildman prescription. All listed times are whole slots, including both sides and any substitutions. Move or rest comfortably within each slot; use comfortable ranges and skip painful movements.</p>`;
 }
 function emptyPlanMessage(p){
  if(p.paused)return 'Training is paused. Resume training when you choose.';
@@ -301,7 +265,7 @@ function preparation(plan,kind){
  return kind==='warmup'?warmup(plan):cooldown(plan);
 }
 function durationDisclosure(plan){const target=Number(plan?.budget?.total),planned=Number(plan?.total);return Number.isFinite(target)&&Number.isFinite(planned)&&planned>target?` · ${target}-min target extended to ~${planned} min`:` · ~${planned} min`;}
-function prepSection(plan,kind,open=false){const isWarm=kind==='warmup';const context=isWarm?'Eight-minute two-round warmup based on Wildman Program Design 8.':'Ten-minute Strength Lab cooldown allocation; Wildman programs vary by program (Clean & Press: 8–10 minutes; Snatch: about 10 minutes).';return `<details class="preparation" data-panel="${kind}" ${(panelState.has(kind)?panelState.get(kind):open)?'open':''}><summary>${isWarm?'Warm-up':'Cooldown'} · ${plan.budget[kind]} min · view movements</summary><p class="muted small">${context}</p>${preparation(plan,kind)}</details>`;}
+function prepSection(plan,kind,open=false){const isWarm=kind==='warmup';const context=isWarm?'Two-round warmup based on Wildman Program Design 8’s eight-minute example.':'Ten-minute Strength Lab cooldown allocation; Wildman programs vary by program (Clean & Press: 8–10 minutes; Snatch: about 10 minutes).';return `<details class="preparation" data-panel="${kind}" ${(panelState.has(kind)?panelState.get(kind):open)?'open':''}><summary>${isWarm?'Warm-up':'Cooldown'} · ${plan.budget[kind]} min · view movements</summary><p class="muted small">${context}</p>${preparation(plan,kind)}</details>`;}
 function compactPrescription(rx){const structure=N.structure(rx);const rest=structure.match(/(\d+)s rest between sets/i);const extra=structure.replace(/\d+s rest between sets/i,'').replace(/straight (?:rep|timed|time) sets/ig,'').replace(/^[\s·;,-]+|[\s·;,-]+$/g,'').trim();const detail=extra&&!/^[·;,-]+$/.test(extra)?` <span class="small muted">· ${esc(extra)}</span>`:'';return `<strong>${loadText(rx)} - ${dose(rx)}${rest?' - '+rest[1]+'s Rest between sets':structure&&extra?' - '+esc(extra):''}</strong>${rest?detail:''}${rx.setupDescription?` <span class="small muted">· ${esc(rx.setupDescription)}</span>`:''}${rx.sequenceDescription?` <span class="small muted">· ${esc(rx.sequenceDescription)}</span>`:''}${!rx.continuous&&rx.betweenExercises?` <span class="small muted">· ${rx.betweenExercises}s transition</span>`:''}${rx.returnLoadReview?` <span class="small warning" role="status">· Return after time away: review your working weight before starting; fewer sets do not guarantee the previous load is appropriate.</span>`:''}`;}
 function pauseControls(){const paused=E.trainingPaused(state,today());return `<details id="pause-training"><summary>${paused?'Training paused'+(state.pauseUntil?' until '+state.pauseUntil:''):'Pause training'}</summary>${paused?'<p class="small">Your next unfinished workout is preserved. Activity logging remains available.</p><button class="button secondary" id="resume-training">Resume training</button>':`<label>Pause<select id="pause-kind"><option value="manual">Until I resume</option><option value="duration">For a number of days</option><option value="date">Until a date</option></select></label><div class="two"><label>Days<input id="pause-days" type="number" min="1" max="365" value="7"></label><label>Resume date<input id="pause-date" type="date" min="${today()}" value="${C.add(today(),7)}"></label></div><button class="button secondary" id="apply-pause">Pause training</button>`}</details>`;}
 function activityForm(){const a=activityEdit||{date:selectedDate,type:state.trainingPreferences?.activityTypes?.[0]||'mountain',duration:45,effort:'easy',status:selectedDate>today()?'planned':'completed',replacesStrength:true};return `<details id="activity-form" ${activityEdit?'open':''}><summary>${activityEdit?'Edit activity':'Plan or record an activity'}</summary><div class="two"><label>Activity<select id="activity-type">${Object.entries(C.TYPES).map(([id,name])=>`<option value="${id}" ${a.type===id?'selected':''}>${name}</option>`).join('')}</select></label><label>Date<input id="activity-date" type="date" value="${a.date}"></label><label>Duration (min)<input id="activity-duration" type="number" min="1" max="1440" value="${a.duration}"></label><label>Effort<select id="activity-effort">${['easy','moderate','hard'].map(v=>`<option ${a.effort===v?'selected':''}>${v}</option>`).join('')}</select></label></div><label>Status<select id="activity-status"><option value="planned" ${a.status==='planned'?'selected':''}>Planned</option><option value="completed" ${a.status==='completed'?'selected':''}>Completed</option></select></label><label class="row small">Replaces strength that day<input type="checkbox" id="activity-replaces" ${a.replacesStrength!==false?'checked':''}></label><details><summary>Optional details</summary><div class="two"><label>Distance (km)<input type="number" min="0" step="0.1" id="activity-distance" value="${a.distance??''}"></label><label>Elevation (m)<input type="number" min="0" id="activity-elevation" value="${a.elevation??''}"></label></div><label>Note<input id="activity-notes" value="${esc(a.notes||'')}"></label></details><p class="small muted">Activity never earns lifting credit. Recovery spacing is an app estimate from type, effort and duration; your next strength workout moves forward.</p><button class="button" id="save-activity">${activityEdit?'Save changes':'Save activity'}</button>${activityEdit?'<button class="button secondary" id="cancel-activity">Cancel</button>':''}${activityEdit?.versions?.length?'<button class="button secondary" id="restore-activity">Restore previous version</button>':''}</details>`;}

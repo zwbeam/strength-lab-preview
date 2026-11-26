@@ -1,0 +1,72 @@
+{
+  "date": "2026-11-25",
+  "baseCommit": "85571a61d99a39a12301593e03c35acdbb9249c9",
+  "sources": [
+    {
+      "id": 550,
+      "file": "sources-18.json",
+      "url": "https://www.youtube.com/watch?v=HbFuRSv_gD0",
+      "sha256": "392cb065c3a2d72ed057141a36ceeef635ee3bc92282c658c9401a506777335b",
+      "hashBasis": "raw source.text UTF-8",
+      "quotes": [
+        "this is not exactly the warm up this is the warm up format",
+        "if you repeat it twice it's exactly eight minutes on the clock",
+        "below 60 percent of what your working weight is"
+      ],
+      "timestamps": null
+    },
+    {
+      "id": 130,
+      "file": "sources-04.json",
+      "url": "https://www.youtube.com/watch?v=9tC6sVlnpqY",
+      "sha256": "9fac734dd2578a00c9665c856a5d944fd6e911d4472cbda1384f1754028fae62",
+      "hashBasis": "raw source.text UTF-8",
+      "quotes": [
+        "start with lower times in the beginning if you have to start with one minute start with one minute"
+      ],
+      "timestamps": null
+    },
+    {
+      "id": 136,
+      "file": "sources-04.json",
+      "url": "https://www.youtube.com/watch?v=bTGOsMbRvPI",
+      "sha256": "f82ff46baf100c8104e211025e6f4b177de39d31c20a5c12910e6db086fc8939",
+      "hashBasis": "raw source.text UTF-8",
+      "quotes": [
+        "we start with extending the spine flexing the spine then we probably rotate the spine then we do hips",
+        "do an equal amount of time on both sides of your body"
+      ],
+      "timestamps": null
+    }
+  ],
+  "sourceClaim": "#550 supplies an adaptable four-category, two-round eight-minute warmup example. #130 supports comfortable starting durations; #136 gives extension/flexion/rotation/hips ordering and equal sides. These sources do not supply the complete selection algorithm or a universal ten-minute cooldown.",
+  "appDecisions": [
+    "A pure engine preparationFor function selects patterns by movement registry families, known IDs and complex components. Display names cannot supply programming evidence. No component progression is awarded.",
+    "Step-ups and bear squats include squat/ankle preparation; floor/ground routes include gentle floor transitions, pulling includes unloaded row-path rehearsal, full get-ups and overhead components include gentle shoulder preparation. Those substitutions are app choices, not source-authored warmup protocols for every movement.",
+    "Optional club preparation uses only a simple club movement already in the written workout, current comparable familiarity, confirmed grip, enabled gear and an owned single club at no more than half the lowest written per-club working load. Otherwise use unloaded preparation. No pair, heavier working club, unowned lighter load or comparison between kg and lb is invented.",
+    "Half the written per-club load is a conservative app filter, not a Wildman numerical rule. #550 says below 60% but also gives a contextual ten/fifteen-pound example; no universal ratio is inferred from those informal examples.",
+    "Familiarity reuses the existing dated comparison/hold checks, not a new skill setting or certification. Future, changed-method, stale or held work cannot justify the optional loaded warmup.",
+    "The existing eight-minute warmup and ten-minute app cooldown stay inside selected workout ceilings. Earlier snapshot allocations are respected. Cooldown times are whole slots including both sides/substitutions; comfortable rest or skipped painful movement is allowed, without strength credit.",
+    "Existing UI layout, prescription methods, progression history, V33 keys and backup schema remain. Preparation is computed advice, never a strength receipt."
+  ],
+  "tests": [
+    "tests/preparation-engine.js",
+    "tests/preparation-routing.js",
+    "tests/preparation-education.js",
+    "tests/browser-preparation-engine.cjs",
+    "tests/browser-smoke.js"
+  ],
+  "regression": "The exact baseline warmup for Alternating-lead bodyweight step-up omits ankle motion because it searches the display name for squat/lunge. Engine registry-based selection corrects it. The old club template could suggest an unspecified lighter familiar club without checking owned inventory.",
+  "limits": [
+    "Source #550 contextual two-minute transition is not introduced as a hidden universal addition; existing main-work/setup estimates remain unchanged.",
+    "Ten-minute cooldown and specific movement substitutions/slots are app allocations. No universal continuous hold, rehabilitation prescription, injury-prevention or physiological outcome guarantee is added.",
+    "Technique is not verified by a log, and browser emulation is not physical Android acceptance. All ten gate rows remain unresolved."
+  ],
+  "strengthCompatibility": {
+    "baselineCommit": "85571a61d99a39a12301593e03c35acdbb9249c9",
+    "normalAndReducedPrescriptions": 108,
+    "generatedStrengthPlans": 432,
+    "result": "Identical to the baseline",
+    "reproduce": "git show 85571a6:engine.js > /tmp/strength-engine-before-preparation.js; STRENGTH_LAB_BASELINE_ENGINE=/tmp/strength-engine-before-preparation.js node tests/preparation-engine.js"
+  }
+}

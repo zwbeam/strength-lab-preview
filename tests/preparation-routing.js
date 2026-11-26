@@ -28,18 +28,20 @@ assert.match(prepPanel,/Snatch: about 10 minutes/);
 const warm=between('function warmup(plan){','function cooldown(plan){');
 const cool=between('function cooldown(plan){','function emptyPlanMessage(');
 assert.match(warm,/data-open-source="550"/);
-assert.match(warm,/const hinge=/);
+assert.match(warm,/E\.preparationFor\(state,plan/);
 assert.match(cool,/data-open-source="130"/);
-assert.match(cool,/plan\.budget\?\.cooldown/);
+assert.match(cool,/E\.preparationFor\(state,plan/);
 
 const vm=require('node:vm');
 const source=between('function warmup(plan){','function emptyPlanMessage(');
-const context={E:{MOVES:{singleArmSwing:{name:'Single-arm swing'},clubCircle:{name:'Club circle'},overheadPress:{name:'Overhead press'},bodyweightSquat:{name:'Bodyweight squat'}}},esc:x=>String(x)};
+const E=require('../engine'),N=require('../notebook'),{fresh,actual}=require('./fixtures/core-window.cjs'),state=fresh(60);state.weights.circles=10;state.equipment.club=[5,10];
+for(let i=0;i<2;i++){const rx=E.prescription(state,'circles',{now:'2026-01-05'}),p={items:[rx]};state.sessions.push({id:'prep-'+i,title:'Familiar practice',date:'2026-01-05',items:N.records(p,actual(p))});}
+const context={E,state,today:()=> '2026-01-05',esc:x=>String(x)};
 vm.createContext(context);
 vm.runInContext(source+';this.renderWarmup=warmup;this.renderCooldown=cooldown;',context);
-const plan=(id,cooldown=10)=>({items:[{id,name:context.E.MOVES[id].name}],budget:{warmup:8,cooldown}});
+const plan=(id,cooldown=10)=>({items:[{id,name:context.E.MOVES[id].name,weight:state.weights[id]||0}],budget:{warmup:8,cooldown}});
 const swing=context.renderWarmup(plan('singleArmSwing'));
-const club=context.renderWarmup(plan('clubCircle'));
+const club=context.renderWarmup(plan('circles'));
 const squat=context.renderWarmup(plan('bodyweightSquat'));
 assert.match(swing,/hip-hinge patterning/);
 assert.match(club,/light club circle/);
@@ -55,11 +57,11 @@ assert.match(swing,/Minute 4 and 8/);
 assert.match(swing,/data-open-source="550"/);
 assert.match(swing,/not presented as a universal mandatory sequence/);
 
-const pressCool=context.renderCooldown(plan('overheadPress'));
+const pressCool=context.renderCooldown(plan('press'));
 const swingCool=context.renderCooldown(plan('singleArmSwing'));
 assert.match(pressCool,/upper back and shoulders/);
 assert.match(swingCool,/posterior chain and hips/);
-for(const id of ['singleArmSwing','clubCircle','overheadPress','bodyweightSquat']){
+for(const id of ['singleArmSwing','circles','press','bodyweightSquat']){
  for(const duration of [30,45,60]){
   const html=context.renderCooldown(plan(id,10));
   const minutes=[...html.matchAll(/<li>(\d+) min:/g)].reduce((sum,x)=>sum+Number(x[1]),0);

@@ -225,3 +225,22 @@ source-specific progression/preparation/recovery and physical instruction still
 need their complete evidence audit. Preserve the unfinished cat-crawl tree.
 
 Written-method reliability implementation checkpoint: `6c7d31f30d27f3efc1696775dab35153745dc4b0`. Local QA passed 72 Node suites, six correction tests and 38 browser suites across the broad run and final focused/diagnostic follow-ups. All ten gate rows remain unresolved.
+
+
+Engine preparation follow-up (November 25): preparationFor now selects warmup and
+cooldown advice in the pure engine from registered movement families/IDs and
+complex components, rather than display-name searches in the interface. Step-ups
+receive ankle/squat preparation; floor, pull, hinge and overhead work retain their
+own patterns. A light club is optional only for a simple movement already written,
+with current comparable familiarity, grip confirmation and owned single-club load
+at no more than half the lowest written per-club working load. Otherwise preparation
+stays unloaded. No kg/lb comparison, invented load, new movement admission or
+strength/component credit exists. Half-load selection is an app choice, not a
+universal Wildman percentage. Cooldown slots include both sides/substitutions and
+allow comfortable rest. Existing 8+10 allocations, strength targets, old snapshot
+allocations and V33 data remain. No new settings or data migration are introduced.
+See research/preparation-engine-evidence.json. Exact 85571a6 comparison preserves
+108 prescriptions and 432 strength plans. Runtime rc71-preparation-engine retains
+51 cached assets; inventory is 73 Node JS, six correction tests and 39 browser
+suites. All ten gate rows remain unresolved; fuller source-protocol, maintenance,
+technique and real-device acceptance remain separate work.

@@ -379,6 +379,28 @@
         "adaptation": "Consistent application of the existing protected-path estimate under the explicit user time ceiling. Ten-minute cooldown and cost estimates remain app decisions. No area closure.",
         "verification": "All 72 Node JS suites and six correction tests passed across the broad run and corrected follow-ups; all 37 browser suites passed, including the isolated step-up rerun at both widths. Original lifecycle re-entry bounds remain intact. Exact-head CI and live DEV acceptance follow push.",
         "implementationCommit": "f39f6137d195f3a0c5e0a6a294d825c92f8e609d"
+      },
+      "preparationEngineFollowUp": {
+        "date": "2026-11-25",
+        "status": "partial",
+        "sourceIds": [
+          550,
+          130,
+          136
+        ],
+        "evidence": "research/preparation-engine-evidence.json",
+        "enginePaths": [
+          "engine.js",
+          "app.js"
+        ],
+        "tests": [
+          "tests/preparation-engine.js",
+          "tests/preparation-routing.js",
+          "tests/browser-preparation-engine.cjs"
+        ],
+        "claim": "Pure engine preparation uses registered patterns and current owned/familiar light-club eligibility; otherwise unload. Whole cooldown slots include both sides, with no strength credit or changed strength targets.",
+        "adaptation": "Source format/order is distinguished from app movement substitutions, numerical half-load filter, existing familiarity checks and ten-minute cooldown allocation. No universal percentage, forced hold, rehabilitation protocol or gate closure.",
+        "verification": "All 73 Node JS suites, six correction tests and 39 browser suites passed across the broad run and focused/disclosure follow-ups. The source text/hash checks, 5,184 movement/duration cases, 108 baseline prescriptions and 432 baseline strength-plan comparisons pass. Exact-head CI and live DEV verification follow push. All ten areas remain unresolved."
       }
     },
     "Cooldown philosophy": {
@@ -428,6 +450,28 @@
         "adaptation": "Consistent application of the existing protected-path estimate under the explicit user time ceiling. Ten-minute cooldown and cost estimates remain app decisions. No area closure.",
         "verification": "All 72 Node JS suites and six correction tests passed across the broad run and corrected follow-ups; all 37 browser suites passed, including the isolated step-up rerun at both widths. Original lifecycle re-entry bounds remain intact. Exact-head CI and live DEV acceptance follow push.",
         "implementationCommit": "f39f6137d195f3a0c5e0a6a294d825c92f8e609d"
+      },
+      "preparationEngineFollowUp": {
+        "date": "2026-11-25",
+        "status": "partial",
+        "sourceIds": [
+          550,
+          130,
+          136
+        ],
+        "evidence": "research/preparation-engine-evidence.json",
+        "enginePaths": [
+          "engine.js",
+          "app.js"
+        ],
+        "tests": [
+          "tests/preparation-engine.js",
+          "tests/preparation-routing.js",
+          "tests/browser-preparation-engine.cjs"
+        ],
+        "claim": "Pure engine preparation uses registered patterns and current owned/familiar light-club eligibility; otherwise unload. Whole cooldown slots include both sides, with no strength credit or changed strength targets.",
+        "adaptation": "Source format/order is distinguished from app movement substitutions, numerical half-load filter, existing familiarity checks and ten-minute cooldown allocation. No universal percentage, forced hold, rehabilitation protocol or gate closure.",
+        "verification": "All 73 Node JS suites, six correction tests and 39 browser suites passed across the broad run and focused/disclosure follow-ups. The source text/hash checks, 5,184 movement/duration cases, 108 baseline prescriptions and 432 baseline strength-plan comparisons pass. Exact-head CI and live DEV verification follow push. All ten areas remain unresolved."
       }
     },
     "Prerequisites and skill gates": {
@@ -459,6 +503,28 @@
         ],
         "commit": "c1f11baf1add6059b82445be43a4bc6230a9ee68",
         "verification": "Relevant local behavior suites passed in the complete 68 Node JS / 6 correction / 33 browser suite run. Partial audit only; remaining questions are not closed."
+      },
+      "preparationEngineFollowUp": {
+        "date": "2026-11-25",
+        "status": "partial",
+        "sourceIds": [
+          550,
+          130,
+          136
+        ],
+        "evidence": "research/preparation-engine-evidence.json",
+        "enginePaths": [
+          "engine.js",
+          "app.js"
+        ],
+        "tests": [
+          "tests/preparation-engine.js",
+          "tests/preparation-routing.js",
+          "tests/browser-preparation-engine.cjs"
+        ],
+        "claim": "Pure engine preparation uses registered patterns and current owned/familiar light-club eligibility; otherwise unload. Whole cooldown slots include both sides, with no strength credit or changed strength targets.",
+        "adaptation": "Source format/order is distinguished from app movement substitutions, numerical half-load filter, existing familiarity checks and ten-minute cooldown allocation. No universal percentage, forced hold, rehabilitation protocol or gate closure.",
+        "verification": "All 73 Node JS suites, six correction tests and 39 browser suites passed across the broad run and focused/disclosure follow-ups. The source text/hash checks, 5,184 movement/duration cases, 108 baseline prescriptions and 432 baseline strength-plan comparisons pass. Exact-head CI and live DEV verification follow push. All ten areas remain unresolved."
       }
     },
     "Recovery and continuity": {
@@ -775,6 +841,28 @@
         "adaptation": "App persistence/validation reliability for existing source-specific methods. No new source numerical protocol, source quotation or gate closure.",
         "verification": "All 72 Node JS suites, six correction tests and 38 browser suites passed across the broad run and final focused/diagnostic follow-ups. Source audits, suite registration, syntax, 51 cache assets and gate validation pass. Exact-head CI/live DEV verification follow push. All ten areas remain unresolved.",
         "implementationCommit": "6c7d31f30d27f3efc1696775dab35153745dc4b0"
+      },
+      "preparationEngineFollowUp": {
+        "date": "2026-11-25",
+        "status": "partial",
+        "sourceIds": [
+          550,
+          130,
+          136
+        ],
+        "evidence": "research/preparation-engine-evidence.json",
+        "enginePaths": [
+          "engine.js",
+          "app.js"
+        ],
+        "tests": [
+          "tests/preparation-engine.js",
+          "tests/preparation-routing.js",
+          "tests/browser-preparation-engine.cjs"
+        ],
+        "claim": "Pure engine preparation uses registered patterns and current owned/familiar light-club eligibility; otherwise unload. Whole cooldown slots include both sides, with no strength credit or changed strength targets.",
+        "adaptation": "Source format/order is distinguished from app movement substitutions, numerical half-load filter, existing familiarity checks and ten-minute cooldown allocation. No universal percentage, forced hold, rehabilitation protocol or gate closure.",
+        "verification": "All 73 Node JS suites, six correction tests and 39 browser suites passed across the broad run and focused/disclosure follow-ups. The source text/hash checks, 5,184 movement/duration cases, 108 baseline prescriptions and 432 baseline strength-plan comparisons pass. Exact-head CI and live DEV verification follow push. All ten areas remain unresolved."
       }
     },
     "Source-specific methods": {
@@ -845,6 +933,28 @@
         "adaptation": "App persistence/validation reliability for existing source-specific methods. No new source numerical protocol, source quotation or gate closure.",
         "verification": "All 72 Node JS suites, six correction tests and 38 browser suites passed across the broad run and final focused/diagnostic follow-ups. Source audits, suite registration, syntax, 51 cache assets and gate validation pass. Exact-head CI/live DEV verification follow push. All ten areas remain unresolved.",
         "implementationCommit": "6c7d31f30d27f3efc1696775dab35153745dc4b0"
+      },
+      "preparationEngineFollowUp": {
+        "date": "2026-11-25",
+        "status": "partial",
+        "sourceIds": [
+          550,
+          130,
+          136
+        ],
+        "evidence": "research/preparation-engine-evidence.json",
+        "enginePaths": [
+          "engine.js",
+          "app.js"
+        ],
+        "tests": [
+          "tests/preparation-engine.js",
+          "tests/preparation-routing.js",
+          "tests/browser-preparation-engine.cjs"
+        ],
+        "claim": "Pure engine preparation uses registered patterns and current owned/familiar light-club eligibility; otherwise unload. Whole cooldown slots include both sides, with no strength credit or changed strength targets.",
+        "adaptation": "Source format/order is distinguished from app movement substitutions, numerical half-load filter, existing familiarity checks and ten-minute cooldown allocation. No universal percentage, forced hold, rehabilitation protocol or gate closure.",
+        "verification": "All 73 Node JS suites, six correction tests and 39 browser suites passed across the broad run and focused/disclosure follow-ups. The source text/hash checks, 5,184 movement/duration cases, 108 baseline prescriptions and 432 baseline strength-plan comparisons pass. Exact-head CI and live DEV verification follow push. All ten areas remain unresolved."
       }
     },
     "Movement instruction": {

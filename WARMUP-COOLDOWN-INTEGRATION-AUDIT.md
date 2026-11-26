@@ -1,3 +1,10 @@
+> Engine integration update — November 25, 2026: preparation selection now lives
+> in engine.preparationFor, with movement metadata, owned/familiar light-club
+> filtering and unloaded fallback. Existing 8+10 allocations stay unchanged.
+> Numerical half-load filtering and specific substitutions are app adaptations;
+> the #550/#130/#136 bounded evidence is in research/preparation-engine-evidence.json.
+> No whole gate area or physical technique certification is closed by this batch.
+
 > Current policy update — November 25, 2026: the explicit user requirement that
 > selected time be a real ceiling supersedes the historical flexibility decisions
 > below. All new strength plans use that ceiling. Eight-minute preparation,

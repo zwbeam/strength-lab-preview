@@ -611,6 +611,44 @@ const BLOCKS={
 const SUPPORT_POOLS={bodyweight:['bodyweightSquat','stepBackLunge','hipDropTwoHand','bearCrawl','catCrawl','bearSquat','pushup','kneeSlidingPlank','bodyweightRow','boxStepUp'],club:['doubleClubSwingClean','doubleClubPullover','doubleClubTechnicalSwipe']};
 const DEMANDS={ground:['lower','shoulder'],getup:['lower','shoulder','grip'],hinge:['lower','grip'],squat:['lower'],press:['shoulder','grip'],pull:['shoulder','grip'],carry:['grip'],rotation:['shoulder','grip'],complex:['lower','shoulder','grip']};
 function movementDemands(id){if(MOVES[id]?.clubPair)return ['lower','shoulder','grip'];return [...(DEMANDS[MOVES[id]?.family]||[])];}
+// Preparation is advisory, never a strength prescription or progression receipt.
+// #550 supplies the four-category/two-round format; selection and load limits
+// below are app adaptations. Names are presentation, not programming evidence.
+function preparationFor(s,plan,opts={}){
+ const items=plan.items||[],ids=new Set(),visit=id=>{if(!Object.hasOwn(MOVES,id)||ids.has(id))return;const m=MOVES[id];ids.add(id);for(const part of m.sequence||[])visit(part);};items.forEach(x=>visit(x.id));
+ const has=predicate=>[...ids].some(id=>predicate(MOVES[id],id));
+ const overheadIds=new Set(['press','doublePress','snatch','getup','cast','clubShield','clubFrontPullover','clubOutsidePullover','clubInsidePullover','doubleClubPullover','doubleClubTechnicalSwipe']);
+ const patterns={hinge:has((m,id)=>m.family==='hinge'||id==='row'||id==='doublePress'),squat:has((m,id)=>m.family==='squat'||id==='bearSquat'),overhead:has((m,id)=>overheadIds.has(id)),ground:has(m=>m.family==='ground'||m.family==='getup'),club:has(m=>m.gear==='club'),pull:has(m=>m.family==='pull'),grip:has((m,id)=>movementDemands(id).includes('grip')||['pushup','bearCrawl','catCrawl','kneeSlidingPlank','hoverSlidingPlank'].includes(id)),complex:has(m=>!!m.complex)};
+ const finiteMinutes=value=>Number.isFinite(Number(value))?Math.max(0,Number(value)):0;
+ const warmMinutes=finiteMinutes(plan.budget?.warmup??8),coolMinutes=finiteMinutes(plan.budget?.cooldown??0);
+ // Use only an already-written simple club movement with current comparable
+ // familiarity, an owned single club and no unresolved hold. Otherwise unload.
+ const clubs=items.filter(x=>MOVES[x.id]?.gear==='club'),working=clubs.length&&clubs.every(x=>Number.isFinite(x.weight)&&x.weight>0)?Math.min(...clubs.map(x=>x.weight)):0;
+ let light=null;
+ if(patterns.club&&s.trainingPreferences?.useClub!==false&&s.skills?.clubGrip===true&&working>0){
+  for(const id of ['circles','cast','clubInside','clubOutside','clubShield']){
+   if(!clubs.some(x=>x.id===id))continue;
+   const loads=availableWorkingLoads(s,id).filter(w=>w<=working*.5).sort((a,b)=>a-b);
+   if(loads.length&&practiceEvidence(s,id,opts).ready){light={id,weight:loads[0],unit:MOVES[id].unit};break;}
+  }
+ }
+ const station1=light?`Use a familiar light club circle or shield pattern: ${MOVES[light.id].name}, ${light.weight} ${light.unit}. Change sides or direction halfway through each station. Stay easy and below working effort.`:'Use easy unloaded shoulder circles or a comfortable unloaded halo path.'+(patterns.club?' No lighter familiar owned club is selected; do not substitute a working-weight club.':'');
+ const station2=patterns.overhead?'Gentle scapular movement, shoulder circles and easy unloaded press-path rehearsal; never force overhead range.':patterns.pull?'Gentle scapular movement and unloaded row-path rehearsal; keep shoulders relaxed.':patterns.club?'Easy shoulder circles, relaxed wrist rotation and gentle scapular motion.':'Gentle shoulder circles, scapular movement and comfortable neck ranges; no forced end positions.';
+ const station3=patterns.ground?'Slow supported floor transitions, spinal rocks and comfortable rotation; do not rush getting up.':patterns.hinge?'Gentle spinal rocks and unloaded hip-hinge patterning with a comfortable neutral back.':'Controlled spinal rocks or accessible supported shin-box transitions; avoid impact.';
+ const station4=patterns.squat?'Supported squat-range exploration, gentle ankle motion and easy shin-box switches.':patterns.hinge?'Supported hip rotations and unloaded hip-to-wall hinges, avoiding fatigue and hard end-range stretching.':'Shin-box switches or supported hip rotations and comfortable squat-range exploration.';
+ const stations=['Light movement','Shoulders and neck','Spine and pattern','Hips and ankles'].map((label,i)=>({label,text:[station1,station2,station3,station4][i],seconds:warmMinutes*60/8}));
+ const directions=[
+  {label:'Spinal extension',text:'Gentle Sphinx or another comfortable supported extension',sourceId:130},
+  {label:'Spinal flexion',text:'Relaxed supported forward fold; do not force end range',sourceId:129},
+  {label:'Spinal rotation',text:patterns.ground?'Comfortable floor rotation or supported seated twist':'Gentle seated twist, both sides',sourceId:137},
+  {label:'Hip mobility',text:patterns.squat?'Supported hip rotation and easy ankle motion':patterns.hinge?'Gentle hamstring movement and supported hip rotation':'Comfortable hip-flexor stretch or supported shin-box position',sourceId:135}
+ ];
+ if(patterns.overhead)directions[2]={label:'Spinal rotation and shoulders',text:(patterns.ground?'Comfortable floor rotation':'Gentle upper-back rotation')+' followed by comfortable unloaded shoulder-range work; use a supported box puppy-dog position only if stable support is available and tolerated',sourceId:139};
+ else if(patterns.grip)directions[2]={label:'Spinal rotation and forearms',text:(patterns.ground?'Comfortable floor rotation':'Gentle seated twist')+' followed by easy wrist opening and forearm rotation, without loaded stretching',sourceId:132};
+ const slots=Math.min(directions.length,Math.ceil(coolMinutes)),whole=Math.floor(coolMinutes),stages=directions.slice(0,slots).map((d,i)=>({...d,minutes:Math.floor(whole/slots)+(i<whole%slots?1:0)+(i===slots-1?coolMinutes-whole:0)}));
+ const focus=patterns.overhead?'upper back and shoulders':patterns.squat?'hips and ankles':patterns.hinge?'posterior chain and hips':patterns.grip?'forearms and shoulders':patterns.ground?'hips and floor transitions':'comfortable spinal and hip movement';
+ return{patterns,warmup:{minutes:warmMinutes,rounds:2,stations,light},cooldown:{minutes:coolMinutes,stages,focus},adaptation:'Movement selection, optional owned load at no more than half the written club working load, comparable familiarity and cooldown slot allocation are Strength Lab decisions. Preparation grants no strength, skill or progression credit.'};
+}
 function calendarDay(value){const text=typeof value==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(value)?value:new Date(value??Date.now()).toLocaleDateString('sv-SE');return Date.parse(text+'T12:00:00Z')/86400000;}
 function trainingPaused(s,now){const day=typeof now==='string'?now:new Date(now??Date.now()).toLocaleDateString('sv-SE');return !!s.paused&&(!s.pauseStarted||day>=s.pauseStarted)&&(!s.pauseUntil||day<s.pauseUntil);}
 function activityRecovery(a){
@@ -1390,5 +1428,5 @@ function validateBackup(input){
  const workoutDraft=validateDraft(input.workoutDraft,input);
  return JSON.parse(JSON.stringify({...input,workoutDraft,nextWeights:input.nextWeights||{},defaultMinutes:input.defaultMinutes??45,deferredIds:input.deferredIds||[]}));
 }
-return{deferredBlocksAfter,primaryRecords,weeklyTrainingLimit,deloadStatus,advancementReview,readinessFor,retestRowWave,trainingEmphasis,validateTrainingEmphasis,emphasisDistribution,mobilityOnlyPlan,COMPLEX_PATHWAYS,complexityOptions,repairMissingLoadAnchor,setInitialLoad,replaceUnavailableLoad,chooseReentryLoad,availableWorkingLoads,trainingPaused,activityRecovery,validateActivity,movementCadence,MOVES,SKILLS,DAYS,BLOCKS,LOADS,PROFILE_NAMES,describeProgression,policyFor,availableProfiles,configureMovement,practiceEvidence,supportingMoves,requirementLabel,prerequisites,chooseCycle,loadOptions,selectLoad,retestPushup,validWorkingWeight,validateProgramming,validateDraft,validateBackup,records,successful,stateFor,prescription,minutesFor,timeBudget,plan,completeRecord,nextRest,deferredAfter,resolvePain,movementGap,movementDemands};
+return{preparationFor,deferredBlocksAfter,primaryRecords,weeklyTrainingLimit,deloadStatus,advancementReview,readinessFor,retestRowWave,trainingEmphasis,validateTrainingEmphasis,emphasisDistribution,mobilityOnlyPlan,COMPLEX_PATHWAYS,complexityOptions,repairMissingLoadAnchor,setInitialLoad,replaceUnavailableLoad,chooseReentryLoad,availableWorkingLoads,trainingPaused,activityRecovery,validateActivity,movementCadence,MOVES,SKILLS,DAYS,BLOCKS,LOADS,PROFILE_NAMES,describeProgression,policyFor,availableProfiles,configureMovement,practiceEvidence,supportingMoves,requirementLabel,prerequisites,chooseCycle,loadOptions,selectLoad,retestPushup,validWorkingWeight,validateProgramming,validateDraft,validateBackup,records,successful,stateFor,prescription,minutesFor,timeBudget,plan,completeRecord,nextRest,deferredAfter,resolvePain,movementGap,movementDemands};
 });
