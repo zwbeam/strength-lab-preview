@@ -1,0 +1,63 @@
+{
+  "date": "2026-11-25",
+  "baseCommit": "0986545a5c10fdde2367ef5671fb9aee66d6d33c",
+  "sources": [
+    {
+      "id": 550,
+      "title": "Program Design 8 - Basic Warmup",
+      "url": "https://www.youtube.com/watch?v=HbFuRSv_gD0",
+      "sha256": "392cb065c3a2d72ed057141a36ceeef635ee3bc92282c658c9401a506777335b",
+      "quotes": [
+        "when they say five minutes in my job they mean five minutes",
+        "figure out how to continue to warm up workout and cool down within the parameters that you're given"
+      ],
+      "timestamps": null
+    }
+  ],
+  "sourceClaim": "Source #550 explicitly controls warmup, workout and cooldown within the available time. The eight-minute example is two rounds of four one-minute categories; its additional two-minute transition is contextual and is not claimed as implemented here.",
+  "appDecisions": [
+    "The selected 25\u2013120 minute duration is the planning ceiling in single, coordinated and protected-core modes. This supersedes the older flexible-window policy under the current explicit user requirement.",
+    "Retain eight-minute preparation and ten-minute app cooldown allocations. Do not shrink source rounds or unearned progression prescriptions. Defer targets that do not fit and report the minimum total allocation.",
+    "Preserve existing path-specific rest/setup estimates. Protected coordination omits ordinary final rest and restores preceding transitions; legacy single/unprotected paths retain conservative final-rest allowance. Complete timed rounds remain intact in every path.",
+    "Retain all existing flexible workout drafts, recorded actuals, backup formats, storage keys and progression histories. Only new prescriptions use the consistent ceiling."
+  ],
+  "tests": [
+    "tests/time-budget-feasibility.js",
+    "tests/browser-smoke.js",
+    "tests/preparation-routing.js",
+    "tests/core-composition.js",
+    "tests/curriculum-strategy.js"
+  ],
+  "limits": [
+    "Estimated duration uses configured/observed pace and setup allowance, not a guarantee of real human elapsed time.",
+    "Some full progression endpoints cannot fit short workouts. Selecting more time does not award work or progression.",
+    "No universal Wildman cooldown length, minimum maintenance frequency or new numerical source method is asserted. All ten release gate rows remain open."
+  ],
+  "regressionObservation": {
+    "baselineCommit": "0986545a5c10fdde2367ef5671fb9aee66d6d33c",
+    "fixture": "Actual clean snatch receipts earn the existing twenty-round endpoint; plan seven days after last work with selected thirty minutes.",
+    "before": {
+      "selectedMinutes": 30,
+      "plannedMinutes": 39,
+      "rounds": 20,
+      "deferred": false
+    },
+    "after": {
+      "selectedMinutes": 30,
+      "admittedRounds": 0,
+      "deferred": true,
+      "minimumTotalMinutes": 39
+    },
+    "boundary": "Thirty-eight blocks; thirty-nine fits all twenty full EMOM rounds; forty-five also fits. No completed work or advancement is inferred from replanning.",
+    "cases": "864 block/duration/readiness/composition matrix cases plus endpoint and legacy-draft regressions in tests/time-budget-feasibility.js"
+  },
+  "rejectedExperiment": "Applying protected final-rest packing to every legacy plan admitted more movement patterns and increased the existing club/bodyweight three-year return count from 138 to 218. That packing change was rejected; the selected ceiling is corrected without that extra packing change.",
+  "finalContinuityDiagnostic": {
+    "scenario": "Existing three-year club-bodyweight actual-history fixture",
+    "baselineSaved": 426,
+    "baselineReentrySessions": 138,
+    "correctedSaved": 426,
+    "correctedReentrySessions": 138,
+    "safety": "All four scenarios in tests/lifelong-integration.js pass their original re-entry bounds, equipment, skill, pain, actual-work, pause and backup checks."
+  }
+}

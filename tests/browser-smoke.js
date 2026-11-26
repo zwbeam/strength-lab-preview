@@ -177,8 +177,8 @@ const expectedCache=JSON.parse(swText.match(/const PREFIX=("[^"]+")/)[1])+JSON.p
    }));
    if(shortDay.chosen!==30||shortDay.usual!==30||!shortDay.mobility)
      throw Error('Shared short target or mobility alternative was lost');
-   if(shortDay.plan.budget.flexMax!==40||shortDay.plan.total>40)
-     throw Error('Short-day plan violated 25–40 minute window');
+   if(shortDay.plan.budget.flexMax!==30||shortDay.plan.total>30)
+     throw Error('Short-day plan violated selected 30-minute ceiling');
    await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
    await page.locator('#today-minutes').selectOption(String(savedTarget));
    console.log('Short-day plan and mobility availability passed at '+viewport.width+'px');
@@ -208,7 +208,7 @@ const expectedCache=JSON.parse(swText.match(/const PREFIX=("[^"]+")/)[1])+JSON.p
        probe.strength!==combinedBaseline.strength||probe.sessions!==combinedBaseline.sessions||
        probe.activities!==combinedBaseline.activities||!probe.mobility)
        throw Error('Combined readiness and time adjustments mutated training state: '+JSON.stringify(probe));
-     if(probe.plan.budget.flexMax!==40||probe.plan.total>40)
+     if(probe.plan.budget.flexMax!==30||probe.plan.total>30)
        throw Error('Combined readiness/time plan exceeded 30-minute target window: '+JSON.stringify({level,total:probe.plan.total}));
    }
    await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
@@ -268,7 +268,7 @@ const expectedCache=JSON.parse(swText.match(/const PREFIX=("[^"]+")/)[1])+JSON.p
 
    // Every selectable daily target must use the same upper duration bound as
    // Settings, even with low readiness, while sharing the saved target.
-   for(const [target,maximum] of [[30,40],[45,50],[60,65],[75,80],[90,95],[120,120]]){
+   for(const [target,maximum] of [[30,30],[45,45],[60,60],[75,75],[90,90],[120,120]]){
      await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
      await page.locator('#today-minutes').selectOption(String(target));
      await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
@@ -291,7 +291,7 @@ const expectedCache=JSON.parse(swText.match(/const PREFIX=("[^"]+")/)[1])+JSON.p
 
    // High readiness must honor exactly the same duration ceiling. Feeling
    // great may alter programming, but cannot silently add fifteen minutes.
-   for(const [target,maximum] of [[30,40],[45,50],[60,65],[75,80],[90,95],[120,120]]){
+   for(const [target,maximum] of [[30,30],[45,45],[60,60],[75,75],[90,90],[120,120]]){
      await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
      await page.locator('#today-minutes').selectOption(String(target));
      await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
@@ -314,7 +314,7 @@ const expectedCache=JSON.parse(swText.match(/const PREFIX=("[^"]+")/)[1])+JSON.p
 
    // Normal readiness is the baseline. All six duration selections must use
    // the same ceilings as low and great readiness without modifying history.
-   for(const [target,maximum] of [[30,40],[45,50],[60,65],[75,80],[90,95],[120,120]]){
+   for(const [target,maximum] of [[30,30],[45,45],[60,60],[75,75],[90,90],[120,120]]){
      await page.locator('.today-adjustments').evaluate(el=>{el.open=true;});
      await page.locator('#today-minutes').selectOption(String(target));
      const result=await page.evaluate(()=>({

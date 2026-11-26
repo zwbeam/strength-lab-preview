@@ -672,11 +672,10 @@ function blockPlan(s,opts={}){
  const days=abcDays,slot=timeline.filter(x=>x.slot!==undefined&&(x.block||'abc')===block&&(x.notebookVersion!==1||primaryRecords(x).some(y=>y.actualSets>0))&&(x.calendarVersion!==1||primaryRecords(x).every(y=>y.performed===true))).length%days.length;
  let day=days[slot];
  const budget=timeBudget(opts.minutes??s.defaultMinutes??45),defaults=s.trainingDefaults||{};
- // 30-minute target has a 25–40-minute flexible window. Extension is reserved for a full priority prescription.
- // The same target window applies in Settings and Today's Adjustments.
- // 30-minute sessions have a 25–40 minute band; other targets allow ±5.
+ // A selected duration is the ceiling, including preparation and cooldown.
+ // Preserve complete prescriptions; work that cannot fit remains deferred.
  const protectedRotation=!!(s.programComposition?.enabled&&s.programComposition.coreBlock);
- const flexMax=protectedRotation?budget.total:budget.total===30?40:Math.min(120,budget.total+5);
+ const flexMax=budget.total;
  const maxMain=flexMax-budget.warmup-budget.cooldown;
  const pref=s.trainingPreferences||{};
  const emphasis=pref.emphasis?trainingEmphasis(s).levels:null;
@@ -825,20 +824,17 @@ function blockPlan(s,opts={}){
   const outside=(s.activities||[]).some(a=>a.status==='completed'&&calendarDay(a.date)<=today&&(today-calendarDay(a.date)<activityRecovery(a)||a.replacesStrength!==false&&today===calendarDay(a.date)));
   const repeat=s.trainingPreferences?.beginnerSpacing&&history.some(x=>today-calendarDay(x.date)<2&&(x.items||[]).some(y=>y.id===id&&y.actualSets>0));
   if(outside||repeat||restDay||recent||(isHard&&opts.avoidHard)||(isHard&&hard>=(defaults.maxHardMovements??3))){scheduled.push(id);defer(id);continue;}
-  // The final movement has no following rest. Restore the preceding transition
-  // when another movement is added; genuine round intervals remain intact.
+  // Preserve existing per-path rest/setup estimates. Protected coordination
+  // omits final rest and restores preceding transitions; full rounds stay intact.
   const finalRest=protectedRotation&&!rx.roundSeconds&&!rx.continuous?(rx.rest||0)/60:0;
   const aloneCost=minutesFor(rx)-finalRest,previous=items.at(-1);
   const transition=previous?(previous.betweenExercises||(protectedRotation&&!previous.roundSeconds&&!previous.continuous?previous.rest:0)||0)/60:0;
   const cost=aloneCost+transition;
-  // The first movement that can actually be scheduled owns the flexible window.
-  // Held, recovering, or prerequisite-blocked candidates must not consume priority.
-  const priority=items.length===0;
-  const limit=priority?maxMain:Math.max(budget.main,used);
-  if(used+cost>limit+1e-8){defer(id);if(optional.has(id))continue;timeBlocked.push({id,requiredMainMinutes:Math.ceil(protectedRotation?aloneCost:cost),minimumTotalMinutes:Math.ceil((protectedRotation?aloneCost:cost)+budget.warmup+budget.cooldown),cannotFitAlone:(protectedRotation?aloneCost:cost)>maxMain+1e-8,reason:(protectedRotation?aloneCost:cost)>maxMain+1e-8?(protectedRotation?'Full progression exceeds the selected session ceiling; no advancement credit is possible until the time allocation changes.':'Full progression exceeds the flexible session ceiling; no advancement credit is possible until the time allocation changes.'):'Full prescription did not fit the priority-protected session; it remains deferred.'});continue;}
+  const limit=maxMain;
+  if(used+cost>limit+1e-8){defer(id);if(optional.has(id))continue;timeBlocked.push({id,requiredMainMinutes:Math.ceil(aloneCost),minimumTotalMinutes:Math.ceil(aloneCost+budget.warmup+budget.cooldown),cannotFitAlone:aloneCost>maxMain+1e-8,reason:aloneCost>maxMain+1e-8?'Full progression exceeds the selected session ceiling; no advancement credit is possible until the time allocation changes.':'Full prescription did not fit the priority-protected session; it remains deferred.'});continue;}
   items.push(rx);used+=cost;if(isHard)hard++;
  }
- const estimated=protectedRotation?Math.max(0,Math.ceil(used-1e-8)):Math.ceil(used);
+ const estimated=Math.max(0,Math.ceil(used-1e-8));
  return{block,slot,...(optional.size?{optionalStandby,optionalCandidates:[...optional]}:{}),day:continuing?{...day,name:day.name+' · remaining work'}:day,support,items,deferred,timeBlocked,held,unavailable,prerequisite,requirements,scheduled,restDay,spacingRecommended,spacingReason:spacingRecommended?'A rest or easier activity day is recommended after yesterday’s workout; you may train if recovered.':'',paused:trainingPaused(s,opts.now),estimated,total:estimated+budget.warmup+budget.cooldown,reentry:items.some(x=>x.mode==='reentry'),cap:maxMain,budget:{...budget,targetMain:budget.main,flexMax,main:maxMain},extended:used>budget.main+1e-8};
 }
 // Coordinate independent blocks across workouts; never blend their numeric protocols.

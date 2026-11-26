@@ -510,10 +510,10 @@ core alone consumes the full capacity. Genuine unfinished work keeps priority.
 
 Core and developing blocks retain their own targets, earned progression, explicit
 skills, owned equipment and recovery decisions. There is no component credit,
-automatic load increase, catch-up dose or removal of saved programs. Protected-core
+automatic load increase, catch-up dose or removal of saved programs. All newly generated
 plans fit the selected total duration including the eight-minute warmup and
-ten-minute cooldown. Legacy unprotected flexible fitting is still a separate open
-compatibility question. Forecast markers affect sequence only, never physical
+ten-minute cooldown. Existing flexible drafts and history retain their original
+written prescriptions. Forecast markers affect sequence only, never physical
 evidence; blocked optional remainders cannot freeze an otherwise ready calendar.
 
 Primary program in Settings provides core selection when it belongs to the
@@ -650,3 +650,5 @@ explicit in research/curriculum-strategy-evidence.json. All ten audit areas rema
 open; this is not full transcript or physical-technique certification. Runtime
 rc68-curriculum retains 51 cached assets and V33 keys. Suite inventory is 72 Node
 JS suites, six correction tests and 37 browser suites.
+
+The selected session duration is a ceiling across all composition modes. Full targets that do not fit remain deferred; settings changes never certify their completion. See research/session-ceiling-evidence.json.

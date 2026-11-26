@@ -227,3 +227,18 @@ explicit in research/curriculum-strategy-evidence.json. All ten audit areas rema
 open; this is not full transcript or physical-technique certification. Runtime
 rc68-curriculum retains 51 cached assets and V33 keys. Suite inventory is 72 Node
 JS suites, six correction tests and 37 browser suites.
+
+
+Selected-session ceiling follow-up (November 25): all newly generated single,
+coordinated and protected-core strength plans now fit the selected total duration,
+including the existing eight-minute warmup and ten-minute app cooldown. The old
+30→40 and other +5-minute extensions are superseded by the explicit user ceiling
+requirement. Full prescriptions, rounds, transitions, prerequisites and recovery
+rules remain; targets that cannot fit stay deferred with minimum-time guidance.
+Existing flexible drafts and recorded plans remain loggable/backup-compatible.
+Source #550 and app decisions are bounded in research/session-ceiling-evidence.json.
+This corrects timing consistency, not all source-specific methods or sustainable
+maintenance frequencies. All ten gate areas remain unresolved. Runtime rc69-session-ceiling
+retains 51 cached assets and V33 keys; suite inventory remains 72 Node JS, six
+correction tests and 37 browser suites. Continue with the source-specific method,
+preparation and recovery audit; preserve the separate unfinished cat-crawl tree.

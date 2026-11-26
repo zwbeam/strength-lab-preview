@@ -189,3 +189,18 @@ JS suites, six correction tests and 37 browser suites.
 Review Train, Workout, Log, Learn and Settings as actual user journeys; simplify setup, remove duplicated controls, ensure understandable decisions and preserve backups. Run current-commit CI and Android acceptance before release.
 
 Implementation checkpoint: `41e5aee67ac57b7ab1832ce7489fe3af1d647fca` contains the focused curriculum strategy and regression coverage. Local verification passed 72 Node suites, six correction tests and 37 browser suites, with final focused checks after the last changes. All ten audit areas remain unresolved.
+
+
+Selected-session ceiling follow-up (November 25): all newly generated single,
+coordinated and protected-core strength plans now fit the selected total duration,
+including the existing eight-minute warmup and ten-minute app cooldown. The old
+30→40 and other +5-minute extensions are superseded by the explicit user ceiling
+requirement. Full prescriptions, rounds, transitions, prerequisites and recovery
+rules remain; targets that cannot fit stay deferred with minimum-time guidance.
+Existing flexible drafts and recorded plans remain loggable/backup-compatible.
+Source #550 and app decisions are bounded in research/session-ceiling-evidence.json.
+This corrects timing consistency, not all source-specific methods or sustainable
+maintenance frequencies. All ten gate areas remain unresolved. Runtime rc69-session-ceiling
+retains 51 cached assets and V33 keys; suite inventory remains 72 Node JS, six
+correction tests and 37 browser suites. Continue with the source-specific method,
+preparation and recovery audit; preserve the separate unfinished cat-crawl tree.

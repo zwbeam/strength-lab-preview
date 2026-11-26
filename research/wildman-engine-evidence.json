@@ -191,6 +191,23 @@
         "results": "research/curriculum-strategy-results.json",
         "implementationCommit": "41e5aee67ac57b7ab1832ce7489fe3af1d647fca",
         "verification": "All 72 Node JS suites, six correction tests and 37 browser suites passed locally. Final focused tests cover later draft-save, ownership, source and beginner assertions. Exact-head CI and public DEV verification follow push. All ten audit areas remain unresolved."
+      },
+      "sessionCeilingFollowUp": {
+        "date": "2026-11-25",
+        "status": "partial",
+        "evidence": "research/session-ceiling-evidence.json",
+        "enginePaths": [
+          "engine.js",
+          "app.js"
+        ],
+        "tests": [
+          "tests/time-budget-feasibility.js",
+          "tests/browser-smoke.js",
+          "tests/preparation-routing.js"
+        ],
+        "claim": "All new strength plans respect selected duration including preparation/recovery, preserve complete intervals, and defer unaffordable targets; existing flexible drafts/history remain valid.",
+        "adaptation": "Consistent application of the existing protected-path estimate under the explicit user time ceiling. Ten-minute cooldown and cost estimates remain app decisions. No area closure.",
+        "verification": "All 72 Node JS suites and six correction tests passed across the broad run and corrected follow-ups; all 37 browser suites passed, including the isolated step-up rerun at both widths. Original lifecycle re-entry bounds remain intact. Exact-head CI and live DEV acceptance follow push."
       }
     },
     "Movement-specific progression": {
@@ -326,6 +343,23 @@
         ],
         "commit": "c1f11baf1add6059b82445be43a4bc6230a9ee68",
         "verification": "Relevant local behavior suites passed in the complete 68 Node JS / 6 correction / 33 browser suite run. Partial audit only; remaining questions are not closed."
+      },
+      "sessionCeilingFollowUp": {
+        "date": "2026-11-25",
+        "status": "partial",
+        "evidence": "research/session-ceiling-evidence.json",
+        "enginePaths": [
+          "engine.js",
+          "app.js"
+        ],
+        "tests": [
+          "tests/time-budget-feasibility.js",
+          "tests/browser-smoke.js",
+          "tests/preparation-routing.js"
+        ],
+        "claim": "All new strength plans respect selected duration including preparation/recovery, preserve complete intervals, and defer unaffordable targets; existing flexible drafts/history remain valid.",
+        "adaptation": "Consistent application of the existing protected-path estimate under the explicit user time ceiling. Ten-minute cooldown and cost estimates remain app decisions. No area closure.",
+        "verification": "All 72 Node JS suites and six correction tests passed across the broad run and corrected follow-ups; all 37 browser suites passed, including the isolated step-up rerun at both widths. Original lifecycle re-entry bounds remain intact. Exact-head CI and live DEV acceptance follow push."
       }
     },
     "Cooldown philosophy": {
@@ -357,6 +391,23 @@
         ],
         "commit": "c1f11baf1add6059b82445be43a4bc6230a9ee68",
         "verification": "Relevant local behavior suites passed in the complete 68 Node JS / 6 correction / 33 browser suite run. Partial audit only; remaining questions are not closed."
+      },
+      "sessionCeilingFollowUp": {
+        "date": "2026-11-25",
+        "status": "partial",
+        "evidence": "research/session-ceiling-evidence.json",
+        "enginePaths": [
+          "engine.js",
+          "app.js"
+        ],
+        "tests": [
+          "tests/time-budget-feasibility.js",
+          "tests/browser-smoke.js",
+          "tests/preparation-routing.js"
+        ],
+        "claim": "All new strength plans respect selected duration including preparation/recovery, preserve complete intervals, and defer unaffordable targets; existing flexible drafts/history remain valid.",
+        "adaptation": "Consistent application of the existing protected-path estimate under the explicit user time ceiling. Ten-minute cooldown and cost estimates remain app decisions. No area closure.",
+        "verification": "All 72 Node JS suites and six correction tests passed across the broad run and corrected follow-ups; all 37 browser suites passed, including the isolated step-up rerun at both widths. Original lifecycle re-entry bounds remain intact. Exact-head CI and live DEV acceptance follow push."
       }
     },
     "Prerequisites and skill gates": {
@@ -705,6 +756,23 @@
         ],
         "commit": "c1f11baf1add6059b82445be43a4bc6230a9ee68",
         "verification": "Relevant local behavior suites passed in the complete 68 Node JS / 6 correction / 33 browser suite run. Partial audit only; remaining questions are not closed."
+      },
+      "sessionCeilingFollowUp": {
+        "date": "2026-11-25",
+        "status": "partial",
+        "evidence": "research/session-ceiling-evidence.json",
+        "enginePaths": [
+          "engine.js",
+          "app.js"
+        ],
+        "tests": [
+          "tests/time-budget-feasibility.js",
+          "tests/browser-smoke.js",
+          "tests/preparation-routing.js"
+        ],
+        "claim": "All new strength plans respect selected duration including preparation/recovery, preserve complete intervals, and defer unaffordable targets; existing flexible drafts/history remain valid.",
+        "adaptation": "Consistent application of the existing protected-path estimate under the explicit user time ceiling. Ten-minute cooldown and cost estimates remain app decisions. No area closure.",
+        "verification": "All 72 Node JS suites and six correction tests passed across the broad run and corrected follow-ups; all 37 browser suites passed, including the isolated step-up rerun at both widths. Original lifecycle re-entry bounds remain intact. Exact-head CI and live DEV acceptance follow push."
       }
     },
     "Movement instruction": {

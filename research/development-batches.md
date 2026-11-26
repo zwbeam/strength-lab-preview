@@ -1984,3 +1984,38 @@ Source audits, gate tracking, syntax, suite registration, diff checks and all
 51 cached assets pass. Existing V33 keys/data and the separate unfinished worktree
 remain preserved. Exact-commit CI and live DEV verification are still required
 separately after push; no production promotion is authorized.
+
+
+Selected-session ceiling follow-up (November 25): all newly generated single,
+coordinated and protected-core strength plans now fit the selected total duration,
+including the existing eight-minute warmup and ten-minute app cooldown. The old
+30→40 and other +5-minute extensions are superseded by the explicit user ceiling
+requirement. Full prescriptions, rounds, transitions, prerequisites and recovery
+rules remain; targets that cannot fit stay deferred with minimum-time guidance.
+Existing flexible drafts and recorded plans remain loggable/backup-compatible.
+Source #550 and app decisions are bounded in research/session-ceiling-evidence.json.
+This corrects timing consistency, not all source-specific methods or sustainable
+maintenance frequencies. All ten gate areas remain unresolved. Runtime rc69-session-ceiling
+retains 51 cached assets and V33 keys; suite inventory remains 72 Node JS, six
+correction tests and 37 browser suites. Continue with the source-specific method,
+preparation and recovery audit; preserve the separate unfinished cat-crawl tree.
+
+The exact 0986545 baseline admits twenty snatch rounds at a selected thirty
+minutes and reports thirty-nine total. The correction defers that same endpoint,
+reports a thirty-nine-minute minimum, blocks at thirty-eight and fits all twenty
+rounds at thirty-nine/forty-five. The 864-case matrix covers all 24 blocks, six
+durations, three composition modes and two readiness states. Legacy flexible
+drafts remain valid and unchanged. Archived #550 text/hash and bounded quotes are
+verified in the behavior suite. Row-wave recovery now explicitly tests a dose
+that must wait at forty-five and can fit at sixty without advancement credit.
+
+An attempted packing unification was rejected: omitting legacy terminal rest
+admitted more movement patterns and increased club/bodyweight re-entry sessions
+from 138 to 218 in the existing three-year diagnostic. Retaining legacy estimates
+restored 426 saved workouts and 138 returns. The original four-scenario bounds
+remain unchanged and pass. Browser startup initially found the old local server
+stopped; it was restarted. The step-up fixture also failed once during setup;
+its isolated complete rerun passed at 320/390px. Exact-head CI must pass before
+this batch is reported as deployed and verified. All ten audit rows remain open.
+
+Local verification completed: all 72 Node suites, six correction tests and 37 browser suites pass across the broad run and corrected follow-ups. Both source audits, suite registration, syntax, gate validation, 51 cache assets and diff checks pass. Exact-head CI and public DEV verification follow the preview push.

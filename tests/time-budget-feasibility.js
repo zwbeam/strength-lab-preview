@@ -7,12 +7,6 @@ assert.equal(budget30.main,12);
 
 assert.equal(budget30.warmup+budget30.main+budget30.cooldown,30,
  'Hard 30-minute session must reserve 8+10 and leave 12 main minutes');
-const flexible30Main=40-budget30.warmup-budget30.cooldown;
-assert.equal(flexible30Main,22,
- 'A flexible 30-minute target may use 22 main minutes only by extending to 40 total');
-assert.notEqual(flexible30Main,budget30.main,
- 'Never label the extended 40-minute allocation as a hard 30-minute session');
-
 // Preparation and cooldown allocations must remain fixed and never consume
 // more than the selected session, even at the minimum 25-minute budget.
 for(const duration of [25,30,40,45,50,55,60,65,75,90,120]){
@@ -56,16 +50,16 @@ console.log('TIME-BUDGET FINDING: club and get-up endpoints need movement-specif
 const state={version:33,programBlock:'snatch',defaultMinutes:30,sessions:[],weights:{snatch:12},equipment:{kb:[12,16],club:[],pairs:[]},skills:{swing:true,clean:true,overhead:true,rack:true},trainingPreferences:{useKb:true,conditioning:true}};
 const first=E.plan(state,{now:'2026-11-11',minutes:30});
 assert.equal(first.budget.total,30);
-assert.equal(first.budget.flexMax,40,'30-minute Settings and daily adjustments share the same window');
-assert.equal(first.cap,22);
+assert.equal(first.budget.flexMax,30,'30-minute Settings and daily adjustments share the same ceiling');
+assert.equal(first.cap,12);
 const flexible=E.plan({...state,defaultMinutes:45},{now:'2026-11-11',minutes:30});
-assert.equal(flexible.budget.flexMax,40,'30-minute adjustment under a 45-minute maximum retains milestone flexibility');
-assert.equal(flexible.cap,22);
-assert.ok(first.total<=40,'30-minute target must stay within its 40-minute upper limit');
-assert.ok(flexible.total<=40,'flexible session must never exceed 40 minutes');
+assert.equal(flexible.budget.flexMax,30,'30-minute adjustment under a 45-minute saved duration retains its selected ceiling');
+assert.equal(flexible.cap,12);
+assert.ok(first.total<=30,'30-minute target must stay within its 30-minute ceiling');
+assert.ok(flexible.total<=30,'flexible session must never exceed 30 minutes');
 assert.ok(Array.isArray(first.timeBlocked),'planner must expose time constraints');
 assert.ok(first.timeBlocked.every(x=>x.minimumTotalMinutes>=x.requiredMainMinutes+18));
-assert.ok(first.timeBlocked.every(x=>x.cannotFitAlone===true||x.minimumTotalMinutes<=40),'distinguish hard time barriers from optional pairing');
+assert.ok(first.timeBlocked.every(x=>x.cannotFitAlone===true||x.minimumTotalMinutes<=30),'distinguish hard time barriers from optional pairing');
 console.log('PASS planner time-blocked metadata');
 // Verify deferred work is actually considered before normal day movements.
 const deferredState={...state,programBlock:'abc',defaultMinutes:45,weights:{squat:12,press:12,row:12,deadlift:12},equipment:{kb:[12,16],club:[10],pairs:[]},deferredIds:['row'],trainingPreferences:{useKb:true,useClub:false,useBodyweight:false,skillSessions:false}};
@@ -133,7 +127,7 @@ for(const day of ['2026-11-11','2026-11-12','2026-11-13','2026-11-14','2026-11-1
   ...p.unavailable,...p.requirements].map(x=>x.id);
  assert.ok(accounted.includes('row'),'unfinished row disappeared on '+day);
  assert.ok(!p.items.some(x=>x.id==='squat'),'completed squat repeated on '+day);
- assert.ok(p.total<=40,'short-day ceiling exceeded on '+day);
+ assert.ok(p.total<=30,'short-day ceiling exceeded on '+day);
  assert.equal(JSON.stringify(partialState),partialSnapshot,'planning mutated partial history on '+day);
 }
 const recoveredAfterShortWeek=E.plan(partialState,{now:'2026-11-16',minutes:45,readiness:'normal'});
@@ -161,7 +155,7 @@ console.log('PASS deterministic return after five short days with no false progr
 
 
 
-console.log('PASS time-budget diagnostic (documents existing limitation, not a scheduling fix)');
+console.log('PASS full progression endpoint feasibility remains explicit');
 
  // Fairness regression: four completed exposures to a competing movement
  // make a skipped eligible movement overdue, without using mobility days.
@@ -222,12 +216,12 @@ assert.deepEqual(afterFuture.items.map(x=>x.id),beforeFuture.items.map(x=>x.id),
  'future unfinished block must not replace current-day candidate list');
 console.log('PASS future unfinished session cannot hijack current workout');
 
-for(const [target,upper] of [[30,40],[45,50],[60,65],[75,80],[90,95],[120,120]]){
+for(const [target,upper] of [[30,30],[45,45],[60,60],[75,75],[90,90],[120,120]]){
  const p=E.plan({...deferredState,defaultMinutes:target},{now:'2026-11-11',minutes:target});
- assert.equal(p.budget.flexMax,upper,'target '+target+' should use its own bounded window');
- assert.ok(p.total<=upper,'target '+target+' exceeded its window');
+ assert.equal(p.budget.flexMax,upper,'target '+target+' should use its selected ceiling');
+ assert.ok(p.total<=upper,'target '+target+' exceeded its ceiling');
 }
-console.log('PASS Settings and daily duration target windows');
+console.log('PASS Settings and daily duration ceilings');
 
 const Calendar=require('../rolling-calendar.js');
 // Mobility replaces the opportunity, never the strength progression record.
@@ -262,3 +256,59 @@ assert.deepEqual(E.plan(repeatedMobility,{now:'2026-11-16',minutes:45}).items.ma
  originalPlan.items.map(x=>x.id),'five consecutive mobility days must preserve the prescription');
 console.log('PASS five consecutive mobility substitutions preserve strength queue and credit');
 
+
+// The selected time is a hard planning ceiling in every composition mode.
+const {fresh,actual}=require('./fixtures/core-window.cjs'),N=require('../notebook');
+for(const minutes of [25,30,45,60,90,120])for(const mode of ['single','coordinated','protected']){
+ const s=fresh(minutes);s.programComposition.enabled=mode!=='single';if(mode==='coordinated')delete s.programComposition.coreBlock;
+ const before=JSON.stringify(s);
+ for(const block of Object.keys(E.BLOCKS))for(const readiness of ['normal','low']){
+  const configured={...s,programBlock:block,programComposition:{...s.programComposition,blocks:mode==='single'?s.programComposition.blocks:[block],...(mode==='protected'?{coreBlock:block}:{})}};
+  const p=E.plan(configured,{now:'2026-01-05',readiness});
+  assert.ok(p.total<=minutes,`${mode}/${block}/${minutes}/${readiness}: ${p.total} exceeds selected ceiling`);
+  assert.equal(p.budget.flexMax,minutes);assert.equal(p.extended,false);
+ }
+ assert.equal(JSON.stringify(s),before);
+}
+const endpointState={...state,sessions:[],defaultMinutes:45,trainingPreferences:{...state.trainingPreferences,daysPerWeek:3}};
+let lastDate='2026-01-05';
+for(let i=0;i<45;i++){
+ lastDate=Calendar.add('2026-01-05',i*2);
+ const rx=E.prescription(endpointState,'snatch',{now:lastDate});
+ const p={items:[rx]};endpointState.sessions.push({id:'ceiling-'+i,title:'Snatch',date:lastDate,block:'snatch',items:N.records(p,actual(p))});
+ if(E.stateFor(endpointState,'snatch',{now:lastDate}).phase==='ready')break;
+}
+assert.equal(E.stateFor(endpointState,'snatch',{now:lastDate}).phase,'ready');
+const reviewDate=Calendar.add(lastDate,7),snapshot=JSON.stringify(endpointState);
+const shortEndpoint=E.plan(endpointState,{now:reviewDate,minutes:30});
+assert.equal(shortEndpoint.items.length,0,'Do not shrink twenty full EMOM rounds for normal credit');
+assert.ok(shortEndpoint.timeBlocked.some(x=>x.id==='snatch'&&x.cannotFitAlone&&x.minimumTotalMinutes>30));
+assert.ok(shortEndpoint.deferred.includes('snatch'));
+const fittingEndpoint=E.plan(endpointState,{now:reviewDate,minutes:45});
+assert.equal(fittingEndpoint.items[0].sets,20);assert.equal(fittingEndpoint.items[0].roundSeconds,60);
+assert.equal(JSON.stringify(endpointState),snapshot,'Duration changes award no work or progression');
+console.log('PASS every block/mode/readiness honors selected duration; complete source intervals remain deferred at thirty minutes and fit at forty-five without fabricated credit');
+
+// Earlier flexible drafts remain valid written history; only new planning changes.
+const legacyPlan=structuredClone(fittingEndpoint);
+legacyPlan.budget={...legacyPlan.budget,total:30,targetMain:12,main:22,flexMax:40};
+legacyPlan.cap=22;legacyPlan.extended=true;
+const legacyDraft={id:'legacy-flexible-snapshot',date:reviewDate,started:reviewDate+'T12:00:00Z',stage:'work',notebookVersion:1,plan:legacyPlan,items:actual(legacyPlan)};
+const draftSnapshot=JSON.stringify(legacyDraft);
+E.validateDraft(legacyDraft,endpointState);E.validateBackup({...endpointState,workoutDraft:legacyDraft});
+assert.equal(JSON.stringify(legacyDraft),draftSnapshot);
+const legacyRows=N.records(legacyPlan,legacyDraft.items);
+assert.equal(legacyRows[0].actualSets,20);assert.equal(legacyRows[0].completed,true);
+console.log('PASS earlier flexible drafts remain loggable and backup-compatible with their full original actuals');
+const fs=require('node:fs'),crypto=require('node:crypto');
+const source=fs.readdirSync(require('node:path').join(__dirname,'..')).filter(x=>/^sources-.*\.json$/.test(x)).flatMap(x=>JSON.parse(fs.readFileSync(require('node:path').join(__dirname,'..',x),'utf8'))).find(x=>x.id===550);
+assert.equal(crypto.createHash('sha256').update(source.text).digest('hex'),'392cb065c3a2d72ed057141a36ceeef635ee3bc92282c658c9401a506777335b');
+for(const quote of ["when they say five minutes in my job they mean five minutes","figure out how to continue to warm up workout and cool down within the parameters that you're given"])assert.ok(source.text.includes(quote));
+console.log('PASS source #550 bounded finite-time claims match archived text and SHA-256; exact scheduling remains an app decision');
+
+const minimum=shortEndpoint.timeBlocked.find(x=>x.id==='snatch').minimumTotalMinutes;
+assert.equal(minimum,39,'Twenty full rounds plus setup and 8+10 prep/recovery require 39 whole minutes');
+assert.equal(E.plan(endpointState,{now:reviewDate,minutes:minimum-1}).items.length,0);
+const exactFit=E.plan(endpointState,{now:reviewDate,minutes:minimum});
+assert.equal(exactFit.items[0].sets,20);assert.equal(exactFit.items[0].roundSeconds,60);assert.equal(exactFit.total,minimum);
+console.log('PASS source interval boundary: 38 minutes blocks and 39 fits the same twenty complete EMOM rounds');

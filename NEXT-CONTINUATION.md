@@ -587,3 +587,18 @@ validation and the documented thirty-minute limits. Inspect original-draft metho
 and equipment changes during the remaining reliability audit; snapshots must stay
 loggable without supplying evidence to a newly selected method. Keep all ten gate
 rows unresolved until their required evidence is complete.
+
+
+Selected-session ceiling follow-up (November 25): all newly generated single,
+coordinated and protected-core strength plans now fit the selected total duration,
+including the existing eight-minute warmup and ten-minute app cooldown. The old
+30→40 and other +5-minute extensions are superseded by the explicit user ceiling
+requirement. Full prescriptions, rounds, transitions, prerequisites and recovery
+rules remain; targets that cannot fit stay deferred with minimum-time guidance.
+Existing flexible drafts and recorded plans remain loggable/backup-compatible.
+Source #550 and app decisions are bounded in research/session-ceiling-evidence.json.
+This corrects timing consistency, not all source-specific methods or sustainable
+maintenance frequencies. All ten gate areas remain unresolved. Runtime rc69-session-ceiling
+retains 51 cached assets and V33 keys; suite inventory remains 72 Node JS, six
+correction tests and 37 browser suites. Continue with the source-specific method,
+preparation and recovery audit; preserve the separate unfinished cat-crawl tree.

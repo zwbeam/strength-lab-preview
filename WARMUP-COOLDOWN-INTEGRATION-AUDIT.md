@@ -1,3 +1,10 @@
+> Current policy update — November 25, 2026: the explicit user requirement that
+> selected time be a real ceiling supersedes the historical flexibility decisions
+> below. All new strength plans use that ceiling. Eight-minute preparation,
+> ten-minute app cooldown, complete source intervals and existing flexible drafts
+> remain supported. See research/session-ceiling-evidence.json and the current
+> time-budget/browser regressions. This does not close the warmup/cooldown gate.
+
 # Warmup / cooldown source-to-engine audit — checkpoint 1
 
 Status: **evidence and implementation inspection incomplete**. This document deliberately separates verified repository descriptions from unverified behavior. Do not mark release-ready on the basis of this checkpoint.
