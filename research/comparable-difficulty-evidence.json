@@ -30,5 +30,6 @@
   "additionalProblem": "Full clean legacy time-fit work has no ordinary progression credit, but all three replay methods could interpret its completed=false flag as difficulty.",
   "timeFitChange": "Delivered clean time-fit targets interrupt ordinary qualification/streak comparison without advancing, adding difficulty or clearing existing difficulty. Actual hard/incomplete work still counts. Independent heavy/light and joint row track behavior remain intact.",
   "compatibility": "Exact cd179b8 comparison preserves 108 ordinary/reduced prescriptions and 432 generated strength plans.",
-  "verification": "Final-engine rerun passed all 75 Node suites and six correction tests. All 41 browser suites passed across the broad run and final ten-case focused acceptance. Source audits, suite registration, gate checks, syntax, diff checks and all 51 offline assets pass. Exact-head CI and live DEV verification follow push."
+  "verification": "Final-engine rerun passed all 75 Node suites and six correction tests. All 41 browser suites passed across the broad run and final ten-case focused acceptance. Source audits, suite registration, gate checks, syntax, diff checks and all 51 offline assets pass. Exact-head CI and live DEV verification follow push.",
+  "implementationCommit": "64c28c28ac223e228bd7e18805687ebdfff04255"
 }

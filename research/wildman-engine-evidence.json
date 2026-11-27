@@ -417,7 +417,9 @@
           "tests/load-evidence.js",
           "tests/browser-load-evidence.cjs"
         ],
-        "adaptation": "App accounting of comparable written loads and fulfilled nonadvancing time-fit work. Global pain holds, old difficulty, qualification and fresh-review requirements remain; no new source protocol or gate closure."
+        "adaptation": "App accounting of comparable written loads and fulfilled nonadvancing time-fit work. Global pain holds, old difficulty, qualification and fresh-review requirements remain; no new source protocol or gate closure.",
+        "implementationCommit": "64c28c28ac223e228bd7e18805687ebdfff04255",
+        "verification": "Final engine passes 75 Node suites and six correction tests; 41 browser suites pass across broad and final ten-case focused acceptance. Source audits, gate validation and all 51 offline assets pass. All ten areas remain unresolved."
       }
     },
     "Warmup philosophy": {
@@ -912,7 +914,9 @@
           "tests/load-evidence.js",
           "tests/browser-load-evidence.cjs"
         ],
-        "adaptation": "App accounting of comparable written loads and fulfilled nonadvancing time-fit work. Global pain holds, old difficulty, qualification and fresh-review requirements remain; no new source protocol or gate closure."
+        "adaptation": "App accounting of comparable written loads and fulfilled nonadvancing time-fit work. Global pain holds, old difficulty, qualification and fresh-review requirements remain; no new source protocol or gate closure.",
+        "implementationCommit": "64c28c28ac223e228bd7e18805687ebdfff04255",
+        "verification": "Final engine passes 75 Node suites and six correction tests; 41 browser suites pass across broad and final ten-case focused acceptance. Source audits, gate validation and all 51 offline assets pass. All ten areas remain unresolved."
       }
     },
     "Equipment and real-world constraints": {
@@ -1084,7 +1088,9 @@
           "tests/load-evidence.js",
           "tests/browser-load-evidence.cjs"
         ],
-        "adaptation": "App accounting of comparable written loads and fulfilled nonadvancing time-fit work. Global pain holds, old difficulty, qualification and fresh-review requirements remain; no new source protocol or gate closure."
+        "adaptation": "App accounting of comparable written loads and fulfilled nonadvancing time-fit work. Global pain holds, old difficulty, qualification and fresh-review requirements remain; no new source protocol or gate closure.",
+        "implementationCommit": "64c28c28ac223e228bd7e18805687ebdfff04255",
+        "verification": "Final engine passes 75 Node suites and six correction tests; 41 browser suites pass across broad and final ten-case focused acceptance. Source audits, gate validation and all 51 offline assets pass. All ten areas remain unresolved."
       }
     },
     "Source-specific methods": {
@@ -1250,7 +1256,9 @@
           "tests/load-evidence.js",
           "tests/browser-load-evidence.cjs"
         ],
-        "adaptation": "App accounting of comparable written loads and fulfilled nonadvancing time-fit work. Global pain holds, old difficulty, qualification and fresh-review requirements remain; no new source protocol or gate closure."
+        "adaptation": "App accounting of comparable written loads and fulfilled nonadvancing time-fit work. Global pain holds, old difficulty, qualification and fresh-review requirements remain; no new source protocol or gate closure.",
+        "implementationCommit": "64c28c28ac223e228bd7e18805687ebdfff04255",
+        "verification": "Final engine passes 75 Node suites and six correction tests; 41 browser suites pass across broad and final ten-case focused acceptance. Source audits, gate validation and all 51 offline assets pass. All ten areas remain unresolved."
       }
     },
     "Movement instruction": {

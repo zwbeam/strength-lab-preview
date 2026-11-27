@@ -737,3 +737,5 @@ plans are generated: the selected ceiling and full-dose deferral remain in force
 This preserves old written history without mistaking role credit for actual failure.
 
 Combined comparable-difficulty verification: the final engine passes all 75 Node suites and six correction tests; all 41 browser suites pass across the broad run and final ten-case focused acceptance. All ten gate areas remain unresolved.
+
+Comparable-difficulty implementation checkpoint: `64c28c28ac223e228bd7e18805687ebdfff04255`. Inferred written-load failure ownership and fulfilled time-fit neutrality are covered; full alternate recovery cycles and all ten gate closures remain open.
