@@ -290,7 +290,14 @@
           "tests/browser-core-follow-up.cjs"
         ],
         "evidence": "research/core-follow-up-evidence.json",
-        "adaptation": "Source context supports fundamentals and progressive learning; two-day spacing, the existing return-window gate, actual three-touch bound and ordering rules are Strength Lab decisions. All ten areas remain unresolved."
+        "adaptation": "Source context supports fundamentals and progressive learning; two-day spacing, the existing return-window gate, actual three-touch bound and ordering rules are Strength Lab decisions. All ten areas remain unresolved.",
+        "implementationCommit": "8170b636277ceafe33da5a9e41c2ee2732d0ef7f",
+        "verification": {
+          "nodeSuites": 78,
+          "historyCorrectionTests": 6,
+          "browserSuites": 43,
+          "mobileCases": 4
+        }
       }
     },
     "Movement-specific progression": {
@@ -553,7 +560,14 @@
           "tests/browser-core-follow-up.cjs"
         ],
         "evidence": "research/core-follow-up-evidence.json",
-        "adaptation": "Source context supports fundamentals and progressive learning; two-day spacing, the existing return-window gate, actual three-touch bound and ordering rules are Strength Lab decisions. All ten areas remain unresolved."
+        "adaptation": "Source context supports fundamentals and progressive learning; two-day spacing, the existing return-window gate, actual three-touch bound and ordering rules are Strength Lab decisions. All ten areas remain unresolved.",
+        "implementationCommit": "8170b636277ceafe33da5a9e41c2ee2732d0ef7f",
+        "verification": {
+          "nodeSuites": 78,
+          "historyCorrectionTests": 6,
+          "browserSuites": 43,
+          "mobileCases": 4
+        }
       }
     },
     "Warmup philosophy": {
@@ -1117,7 +1131,14 @@
           "tests/browser-core-follow-up.cjs"
         ],
         "evidence": "research/core-follow-up-evidence.json",
-        "adaptation": "Source context supports fundamentals and progressive learning; two-day spacing, the existing return-window gate, actual three-touch bound and ordering rules are Strength Lab decisions. All ten areas remain unresolved."
+        "adaptation": "Source context supports fundamentals and progressive learning; two-day spacing, the existing return-window gate, actual three-touch bound and ordering rules are Strength Lab decisions. All ten areas remain unresolved.",
+        "implementationCommit": "8170b636277ceafe33da5a9e41c2ee2732d0ef7f",
+        "verification": {
+          "nodeSuites": 78,
+          "historyCorrectionTests": 6,
+          "browserSuites": 43,
+          "mobileCases": 4
+        }
       }
     },
     "Equipment and real-world constraints": {
@@ -1358,7 +1379,14 @@
           "tests/browser-core-follow-up.cjs"
         ],
         "evidence": "research/core-follow-up-evidence.json",
-        "adaptation": "Source context supports fundamentals and progressive learning; two-day spacing, the existing return-window gate, actual three-touch bound and ordering rules are Strength Lab decisions. All ten areas remain unresolved."
+        "adaptation": "Source context supports fundamentals and progressive learning; two-day spacing, the existing return-window gate, actual three-touch bound and ordering rules are Strength Lab decisions. All ten areas remain unresolved.",
+        "implementationCommit": "8170b636277ceafe33da5a9e41c2ee2732d0ef7f",
+        "verification": {
+          "nodeSuites": 78,
+          "historyCorrectionTests": 6,
+          "browserSuites": 43,
+          "mobileCases": 4
+        }
       }
     },
     "Source-specific methods": {
@@ -1593,7 +1621,14 @@
           "tests/browser-core-follow-up.cjs"
         ],
         "evidence": "research/core-follow-up-evidence.json",
-        "adaptation": "Source context supports fundamentals and progressive learning; two-day spacing, the existing return-window gate, actual three-touch bound and ordering rules are Strength Lab decisions. All ten areas remain unresolved."
+        "adaptation": "Source context supports fundamentals and progressive learning; two-day spacing, the existing return-window gate, actual three-touch bound and ordering rules are Strength Lab decisions. All ten areas remain unresolved.",
+        "implementationCommit": "8170b636277ceafe33da5a9e41c2ee2732d0ef7f",
+        "verification": {
+          "nodeSuites": 78,
+          "historyCorrectionTests": 6,
+          "browserSuites": 43,
+          "mobileCases": 4
+        }
       }
     },
     "Movement instruction": {
