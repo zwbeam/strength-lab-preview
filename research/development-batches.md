@@ -2283,3 +2283,31 @@ Coordinator integration: an earned cycle undergoing alternate rebuilding stays i
 Local verification: 77 Node suites and six correction tests pass; all 42 browser suites pass after fixing observable-completion waits in Settings/Train acceptance. Final targeted alternate-cycle/coordinator, curriculum and ten mobile cases pass. Baseline comparison preserves 108 normal/reduced prescriptions and 432 ordinary plans; gate/suite/offline/source audits pass. No gate area is closed.
 
 Alternate-volume implementation checkpoint: `312eaff4f90f85f908dbd927c17d74a41bf2bc5e`. Actual-only independent rebuilding, initial-budget goal cap, original-cycle retention and coordinator development ownership are tested. Independent source-method recovery, low-capacity original recurrence, physical verification and all ten gate closures remain open.
+
+
+Bounded within-core follow-up: a sole selected protected core with actual
+time-blocked work can receive a
+comparable clean-return/exposure or alternate-cycle follow-up before deferred
+breadth consumes another return window. Genuine written unfinished work stays
+first. No fourth consecutive touch receives this priority. It is unavailable on
+consecutive days or later provisional forecasts; timed, continuous, complex and
+independent wave methods retain their existing behavior.
+A full follow-up retains its method target rather than generic ABC light-day
+substitution; recovery and all gates still apply. No setting, load, progression
+identity, skill or history is changed. Optional plan metadata is validated for
+historical plans and active drafts without changing V33 namespaces/root data.
+
+The 48-workout 30-minute/two-day diagnostic now earns original press stage two
+(previous stage zero), retaining all core foundations. Skill focus has one extra
+press return, so the tradeoff is explicit. Nine budget/frequency stress cases and
+multi-year actual histories test ceilings and replay; this is not proof of
+universal sustainable recurrence. #404/#548/#288 provide bounded fundamentals/
+learning context; spacing, return-window and priority bounds are app decisions.
+Read research/core-follow-up-evidence.json. All ten gate areas remain open.
+Runtime rc79-core-follow-up retains 51 offline assets. Inventory is 78 Node suites,
+six history correction tests and 43 browser suites, including four new mobile
+clean/partial/offline acceptance cases.
+
+Scope guard: the existing multi-program coordinator remains intact after a broader prototype delayed a developing lane. Physical touches in any program enforce the two-day follow-up spacing. Multi-program capacity admission remains unresolved.
+
+Verified locally: all 78 Node suites and six correction tests pass across the broad run and repaired developing/later suite rerun; all 43 browser suites pass. Final targeted tests, source/gate/suite audits, 51 offline assets and exact compatibility of 108 prescriptions/432 ordinary plans pass. Multi-program expectations were preserved. All ten gate areas remain unresolved.

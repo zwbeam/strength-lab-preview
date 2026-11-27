@@ -195,6 +195,7 @@ jobs:
           node tests/load-evidence.js
           node tests/stall-recovery.js
           node tests/alternate-volume-cycle.js
+          node tests/core-follow-up.js
       # Browser smoke is a separate job. A transient Ubuntu apt outage must not
       # conceal whether the engine, research, and packaging checks passed.
       - name: Package isolated review build
@@ -311,6 +312,7 @@ jobs:
           node tests/browser-deload-cadence.cjs
           node tests/browser-recovery-dose.cjs
           node tests/browser-stall-recovery.cjs
+          node tests/browser-core-follow-up.cjs
           node tests/browser-load-setup.cjs
           node tests/browser-baseline-cycles.cjs
           node tests/browser-weekly-limits.cjs

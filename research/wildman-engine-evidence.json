@@ -273,6 +273,24 @@
           "browserSuites": 42,
           "mobileCases": 10
         }
+      },
+      "coreFollowUpIntegration": {
+        "status": "partial",
+        "sourceIds": [
+          404,
+          548,
+          288
+        ],
+        "claim": "Actual pressure within a sole selected protected core can receive bounded comparable clean-exposure follow-ups without dropping foundations or awarding progress.",
+        "enginePaths": [
+          "engine.js"
+        ],
+        "tests": [
+          "tests/core-follow-up.js",
+          "tests/browser-core-follow-up.cjs"
+        ],
+        "evidence": "research/core-follow-up-evidence.json",
+        "adaptation": "Source context supports fundamentals and progressive learning; two-day spacing, the existing return-window gate, actual three-touch bound and ordering rules are Strength Lab decisions. All ten areas remain unresolved."
       }
     },
     "Movement-specific progression": {
@@ -518,6 +536,24 @@
           "browserSuites": 42,
           "mobileCases": 10
         }
+      },
+      "coreFollowUpIntegration": {
+        "status": "partial",
+        "sourceIds": [
+          404,
+          548,
+          288
+        ],
+        "claim": "Actual pressure within a sole selected protected core can receive bounded comparable clean-exposure follow-ups without dropping foundations or awarding progress.",
+        "enginePaths": [
+          "engine.js"
+        ],
+        "tests": [
+          "tests/core-follow-up.js",
+          "tests/browser-core-follow-up.cjs"
+        ],
+        "evidence": "research/core-follow-up-evidence.json",
+        "adaptation": "Source context supports fundamentals and progressive learning; two-day spacing, the existing return-window gate, actual three-touch bound and ordering rules are Strength Lab decisions. All ten areas remain unresolved."
       }
     },
     "Warmup philosophy": {
@@ -1064,6 +1100,24 @@
           "browserSuites": 42,
           "mobileCases": 10
         }
+      },
+      "coreFollowUpIntegration": {
+        "status": "partial",
+        "sourceIds": [
+          404,
+          548,
+          288
+        ],
+        "claim": "Actual pressure within a sole selected protected core can receive bounded comparable clean-exposure follow-ups without dropping foundations or awarding progress.",
+        "enginePaths": [
+          "engine.js"
+        ],
+        "tests": [
+          "tests/core-follow-up.js",
+          "tests/browser-core-follow-up.cjs"
+        ],
+        "evidence": "research/core-follow-up-evidence.json",
+        "adaptation": "Source context supports fundamentals and progressive learning; two-day spacing, the existing return-window gate, actual three-touch bound and ordering rules are Strength Lab decisions. All ten areas remain unresolved."
       }
     },
     "Equipment and real-world constraints": {
@@ -1287,6 +1341,24 @@
           "browserSuites": 42,
           "mobileCases": 10
         }
+      },
+      "coreFollowUpIntegration": {
+        "status": "partial",
+        "sourceIds": [
+          404,
+          548,
+          288
+        ],
+        "claim": "Actual pressure within a sole selected protected core can receive bounded comparable clean-exposure follow-ups without dropping foundations or awarding progress.",
+        "enginePaths": [
+          "engine.js"
+        ],
+        "tests": [
+          "tests/core-follow-up.js",
+          "tests/browser-core-follow-up.cjs"
+        ],
+        "evidence": "research/core-follow-up-evidence.json",
+        "adaptation": "Source context supports fundamentals and progressive learning; two-day spacing, the existing return-window gate, actual three-touch bound and ordering rules are Strength Lab decisions. All ten areas remain unresolved."
       }
     },
     "Source-specific methods": {
@@ -1504,6 +1576,24 @@
           "browserSuites": 42,
           "mobileCases": 10
         }
+      },
+      "coreFollowUpIntegration": {
+        "status": "partial",
+        "sourceIds": [
+          404,
+          548,
+          288
+        ],
+        "claim": "Actual pressure within a sole selected protected core can receive bounded comparable clean-exposure follow-ups without dropping foundations or awarding progress.",
+        "enginePaths": [
+          "engine.js"
+        ],
+        "tests": [
+          "tests/core-follow-up.js",
+          "tests/browser-core-follow-up.cjs"
+        ],
+        "evidence": "research/core-follow-up-evidence.json",
+        "adaptation": "Source context supports fundamentals and progressive learning; two-day spacing, the existing return-window gate, actual three-touch bound and ordering rules are Strength Lab decisions. All ten areas remain unresolved."
       }
     },
     "Movement instruction": {

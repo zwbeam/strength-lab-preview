@@ -381,3 +381,29 @@ remain open. See research/alternate-volume-cycle-evidence.json. Runtime rc78-
 alternate-volume retains 51 offline assets; inventory is 77 Node suites, six
 history-correction tests and 42 browser suites. Mobile stall acceptance expands
 to ten cases including resumed and 30-minute cycles.
+
+
+Bounded within-core follow-up: a sole selected protected core with actual
+time-blocked work can receive a
+comparable clean-return/exposure or alternate-cycle follow-up before deferred
+breadth consumes another return window. Genuine written unfinished work stays
+first. No fourth consecutive touch receives this priority. It is unavailable on
+consecutive days or later provisional forecasts; timed, continuous, complex and
+independent wave methods retain their existing behavior.
+A full follow-up retains its method target rather than generic ABC light-day
+substitution; recovery and all gates still apply. No setting, load, progression
+identity, skill or history is changed. Optional plan metadata is validated for
+historical plans and active drafts without changing V33 namespaces/root data.
+
+The 48-workout 30-minute/two-day diagnostic now earns original press stage two
+(previous stage zero), retaining all core foundations. Skill focus has one extra
+press return, so the tradeoff is explicit. Nine budget/frequency stress cases and
+multi-year actual histories test ceilings and replay; this is not proof of
+universal sustainable recurrence. #404/#548/#288 provide bounded fundamentals/
+learning context; spacing, return-window and priority bounds are app decisions.
+Read research/core-follow-up-evidence.json. All ten gate areas remain open.
+Runtime rc79-core-follow-up retains 51 offline assets. Inventory is 78 Node suites,
+six history correction tests and 43 browser suites, including four new mobile
+clean/partial/offline acceptance cases.
+
+Scope guard: the existing multi-program coordinator remains intact after a broader prototype delayed a developing lane. Physical touches in any program enforce the two-day follow-up spacing. Multi-program capacity admission remains unresolved.

@@ -1,0 +1,189 @@
+{
+  "date": "2026-11-27",
+  "baseCommit": "d10f413b0a94ad50c962d79601be10ff79c89331",
+  "status": "partial",
+  "sources": [
+    {
+      "id": 404,
+      "file": "sources-13.json",
+      "title": "Kettlebell Program Design for Beginners - Tetris of Training Part 1",
+      "url": "https://www.youtube.com/watch?v=sAcBo4H__hE",
+      "sha256": "0d099957e23306ec84dbcdef69940c869c35b26d50ad8117fa6b5e84204a11b4",
+      "quotes": [
+        "you want to spend the majority of your time developing your fundamentals",
+        "the goal is to try to not repeat two of the exact same things two days in a row in the beginning of training"
+      ],
+      "timestamps": null
+    },
+    {
+      "id": 548,
+      "file": "sources-18.json",
+      "title": "Program Design 4 - Basic Kettlebell, 2 Hand Heavy Club, Single arm Club - Training Tetris",
+      "url": "https://www.youtube.com/watch?v=XYuiOsBAvXI",
+      "sha256": "0cdb4d3f1e34f4c8076a90aa4af3133e4b9b693650bff28c68f6b871c2a7dbb2",
+      "quotes": [
+        "we are going to keep these as fundamental programs",
+        "we tend to push people into kettlebells first"
+      ],
+      "timestamps": null
+    },
+    {
+      "id": 288,
+      "file": "sources-09.json",
+      "title": "Kettlebell -the order of operation of learning",
+      "url": "https://www.youtube.com/watch?v=LH5Na78H1pk",
+      "sha256": "16645fd95114060d7c337a674bd007519fd6b8d0029f8de5c1968c988ecb4713",
+      "quotes": [
+        "normally you're adding steps most people do not skip steps",
+        "we have to go back and shore up a weakness"
+      ],
+      "timestamps": null
+    }
+  ],
+  "sourceClaim": "Maintain fundamentals, develop supported steps and address weaknesses. These sources do not prescribe a uniform maintenance frequency, the following scheduling window, or a three-touch rule.",
+  "appAdaptations": [
+    "A protected core selected on its own, with actual recorded time-blocked/deferred breadth can prioritize a clean return, unfinished clean-exposure gate or alternate-volume subcycle from the latest physical core visit. Only formal core movements, current comparable method/load and eligible fixed-rep methods participate.",
+    "Both the last core visit and the movement's last physical touch in any program must be at least two calendar days ago and still inside the existing user-configured return window. At most two extra opportunities are prioritized after an initial touch; a fourth consecutive actual touch cannot obtain this priority. These are app scheduling choices, not source numerical instructions.",
+    "Genuine written unfinished work retains priority. Recorded unassigned time-blocked work remains deferred while the follow-up receives a bounded turn. Saved programs, preferences and histories are retained.",
+    "A full-dose follow-up keeps its existing method target instead of the app generic ABC alternating-light substitution; actual completed work still determines each exposure. Readiness, pain, equipment, prerequisites, hard-work caps, owned loads and the full selected time ceiling remain mandatory.",
+    "Earned endpoints without an active rebuilding cycle do not receive return-only learning priority. No source method, progression identity, load, setting, skill confirmation or maintenance frequency is changed.",
+    "Planning metadata coreFollowUp is optional and validated in historical plans and active drafts. Scheduling uses actual receipts, not this marker as progression credit. The first actionable opportunity may use existing actual evidence; subsequent provisional opportunities do not infer completed learning or apply this priority. V33 data keys/root fields are unchanged.",
+    "An automatically selected complex keeps its existing component substitution; a follow-up does not reinsert a replaced basic movement. Explicit written pending work retains its existing ownership."
+  ],
+  "tests": [
+    "tests/core-follow-up.js",
+    "tests/browser-core-follow-up.cjs"
+  ],
+  "controlledResults": {
+    "baseline": {
+      "workouts": 48,
+      "minutes": 30,
+      "daysPerWeek": 2,
+      "normalPressReceipts": 3,
+      "returnPressReceipts": 4,
+      "originalPressStage": 0
+    },
+    "newSkillFocus": {
+      "workouts": 48,
+      "normalPressReceipts": 4,
+      "returnPressReceipts": 5,
+      "followUpPlans": 37,
+      "originalPressStage": 2
+    },
+    "newBalancedFocus": {
+      "workouts": 48,
+      "normalPressReceipts": 6,
+      "returnPressReceipts": 4,
+      "followUpPlans": 36,
+      "originalPressStage": 2
+    }
+  },
+  "limits": [
+    "An extra return in the skill-focus comparison is retained as a tradeoff; actual original progression improves, but this does not prove every movement has sustainable recurrence.",
+    "The three-touch bound and retained coverage tests prevent indefinite priority monopolies; they do not establish physiological maintenance frequencies.",
+    "Broader automatic curriculum admission, source-specific recovery, instructional verification, physical Android acceptance and all ten gate closures remain open.",
+    "A broader initial rule delayed an existing developing lane in regression testing. This repair is deliberately confined to a sole selected protected core; multi-program curriculum admission retains the existing coordinator and remains separate work."
+  ],
+  "stressMatrix": [
+    {
+      "minutes": 30,
+      "frequency": 2,
+      "normalPress": 7,
+      "returnPress": 13,
+      "followUps": 43,
+      "pressStage": 2,
+      "end": "2027-01-11"
+    },
+    {
+      "minutes": 30,
+      "frequency": 3,
+      "normalPress": 7,
+      "returnPress": 9,
+      "followUps": 39,
+      "pressStage": 2,
+      "end": "2026-09-23"
+    },
+    {
+      "minutes": 30,
+      "frequency": 5,
+      "normalPress": 2,
+      "returnPress": 1,
+      "followUps": 6,
+      "pressStage": 1,
+      "end": "2026-06-29"
+    },
+    {
+      "minutes": 45,
+      "frequency": 2,
+      "normalPress": 16,
+      "returnPress": 4,
+      "followUps": 11,
+      "pressStage": 2,
+      "end": "2027-01-11"
+    },
+    {
+      "minutes": 45,
+      "frequency": 3,
+      "normalPress": 18,
+      "returnPress": 2,
+      "followUps": 13,
+      "pressStage": 2,
+      "end": "2026-09-23"
+    },
+    {
+      "minutes": 45,
+      "frequency": 5,
+      "normalPress": 5,
+      "returnPress": 1,
+      "followUps": 0,
+      "pressStage": 2,
+      "end": "2026-06-29"
+    },
+    {
+      "minutes": 60,
+      "frequency": 2,
+      "normalPress": 17,
+      "returnPress": 2,
+      "followUps": 0,
+      "pressStage": 2,
+      "end": "2027-01-11"
+    },
+    {
+      "minutes": 60,
+      "frequency": 3,
+      "normalPress": 17,
+      "returnPress": 1,
+      "followUps": 0,
+      "pressStage": 2,
+      "end": "2026-09-23"
+    },
+    {
+      "minutes": 60,
+      "frequency": 5,
+      "normalPress": 5,
+      "returnPress": 1,
+      "followUps": 0,
+      "pressStage": 2,
+      "end": "2026-06-29"
+    }
+  ],
+  "longitudinalResult": {
+    "workouts": 220,
+    "end": "2028-03-30",
+    "pressStage": 2,
+    "normalPress": 7,
+    "returns": 37,
+    "followUps": 43
+  },
+  "verification": {
+    "nodeSuites": 78,
+    "historyCorrectionTests": 6,
+    "browserSuites": 43,
+    "newMobileCases": 4,
+    "unchangedBaselinePrescriptions": 108,
+    "unchangedBaselinePlans": 432,
+    "offlineAssets": 51,
+    "gateUnresolvedAreas": 10,
+    "notes": "Broad run plus repaired developing/later suites; final focused source, correction, draft, spacing and multi-program scope tests pass without weakening existing developing expectations."
+  }
+}
