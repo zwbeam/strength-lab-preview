@@ -265,7 +265,14 @@
           "tests/browser-stall-recovery.cjs"
         ],
         "evidence": "research/alternate-volume-cycle-evidence.json",
-        "adaptation": "Lower-rep/add-set principle from #259; eligibility, actual-completion branch, original-endpoint and initial-budget goal cap, one-set steps and exposure gates are app decisions. Independent source methods and all ten gate closures remain open."
+        "adaptation": "Lower-rep/add-set principle from #259; eligibility, actual-completion branch, original-endpoint and initial-budget goal cap, one-set steps and exposure gates are app decisions. Independent source methods and all ten gate closures remain open.",
+        "implementationCommit": "312eaff4f90f85f908dbd927c17d74a41bf2bc5e",
+        "verification": {
+          "nodeSuites": 77,
+          "historyCorrectionTests": 6,
+          "browserSuites": 42,
+          "mobileCases": 10
+        }
       }
     },
     "Movement-specific progression": {
@@ -503,7 +510,14 @@
           "tests/browser-stall-recovery.cjs"
         ],
         "evidence": "research/alternate-volume-cycle-evidence.json",
-        "adaptation": "Lower-rep/add-set principle from #259; eligibility, actual-completion branch, original-endpoint and initial-budget goal cap, one-set steps and exposure gates are app decisions. Independent source methods and all ten gate closures remain open."
+        "adaptation": "Lower-rep/add-set principle from #259; eligibility, actual-completion branch, original-endpoint and initial-budget goal cap, one-set steps and exposure gates are app decisions. Independent source methods and all ten gate closures remain open.",
+        "implementationCommit": "312eaff4f90f85f908dbd927c17d74a41bf2bc5e",
+        "verification": {
+          "nodeSuites": 77,
+          "historyCorrectionTests": 6,
+          "browserSuites": 42,
+          "mobileCases": 10
+        }
       }
     },
     "Warmup philosophy": {
@@ -1042,7 +1056,14 @@
           "tests/browser-stall-recovery.cjs"
         ],
         "evidence": "research/alternate-volume-cycle-evidence.json",
-        "adaptation": "Lower-rep/add-set principle from #259; eligibility, actual-completion branch, original-endpoint and initial-budget goal cap, one-set steps and exposure gates are app decisions. Independent source methods and all ten gate closures remain open."
+        "adaptation": "Lower-rep/add-set principle from #259; eligibility, actual-completion branch, original-endpoint and initial-budget goal cap, one-set steps and exposure gates are app decisions. Independent source methods and all ten gate closures remain open.",
+        "implementationCommit": "312eaff4f90f85f908dbd927c17d74a41bf2bc5e",
+        "verification": {
+          "nodeSuites": 77,
+          "historyCorrectionTests": 6,
+          "browserSuites": 42,
+          "mobileCases": 10
+        }
       }
     },
     "Equipment and real-world constraints": {
@@ -1258,7 +1279,14 @@
           "tests/browser-stall-recovery.cjs"
         ],
         "evidence": "research/alternate-volume-cycle-evidence.json",
-        "adaptation": "Lower-rep/add-set principle from #259; eligibility, actual-completion branch, original-endpoint and initial-budget goal cap, one-set steps and exposure gates are app decisions. Independent source methods and all ten gate closures remain open."
+        "adaptation": "Lower-rep/add-set principle from #259; eligibility, actual-completion branch, original-endpoint and initial-budget goal cap, one-set steps and exposure gates are app decisions. Independent source methods and all ten gate closures remain open.",
+        "implementationCommit": "312eaff4f90f85f908dbd927c17d74a41bf2bc5e",
+        "verification": {
+          "nodeSuites": 77,
+          "historyCorrectionTests": 6,
+          "browserSuites": 42,
+          "mobileCases": 10
+        }
       }
     },
     "Source-specific methods": {
@@ -1468,7 +1496,14 @@
           "tests/browser-stall-recovery.cjs"
         ],
         "evidence": "research/alternate-volume-cycle-evidence.json",
-        "adaptation": "Lower-rep/add-set principle from #259; eligibility, actual-completion branch, original-endpoint and initial-budget goal cap, one-set steps and exposure gates are app decisions. Independent source methods and all ten gate closures remain open."
+        "adaptation": "Lower-rep/add-set principle from #259; eligibility, actual-completion branch, original-endpoint and initial-budget goal cap, one-set steps and exposure gates are app decisions. Independent source methods and all ten gate closures remain open.",
+        "implementationCommit": "312eaff4f90f85f908dbd927c17d74a41bf2bc5e",
+        "verification": {
+          "nodeSuites": 77,
+          "historyCorrectionTests": 6,
+          "browserSuites": 42,
+          "mobileCases": 10
+        }
       }
     },
     "Movement instruction": {

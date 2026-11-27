@@ -2281,3 +2281,5 @@ to ten cases including resumed and 30-minute cycles.
 Coordinator integration: an earned cycle undergoing alternate rebuilding stays in the developing lane rather than graduating into maintenance. Its original achievement is retained. Written alternate targets cite #259 with sourceParameters null; all numerical adaptation boundaries remain explicit.
 
 Local verification: 77 Node suites and six correction tests pass; all 42 browser suites pass after fixing observable-completion waits in Settings/Train acceptance. Final targeted alternate-cycle/coordinator, curriculum and ten mobile cases pass. Baseline comparison preserves 108 normal/reduced prescriptions and 432 ordinary plans; gate/suite/offline/source audits pass. No gate area is closed.
+
+Alternate-volume implementation checkpoint: `312eaff4f90f85f908dbd927c17d74a41bf2bc5e`. Actual-only independent rebuilding, initial-budget goal cap, original-cycle retention and coordinator development ownership are tested. Independent source-method recovery, low-capacity original recurrence, physical verification and all ten gate closures remain open.
