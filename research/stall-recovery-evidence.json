@@ -41,5 +41,6 @@
     "Four real mobile import/offline-save flows at 320/390px retain original history and prescription snapshots.",
     "Exact d17d5f5 baseline comparison preserves 108 ordinary/reduced prescriptions and 432 generated strength plans without stall difficulty."
   ],
-  "verification": "75 Node suites, six correction tests and 41 browser suites passed across the broad run and final focused follow-ups. The final joint-track adjustment passes the complete row-wave suite and focused recovery regressions. Source audits, gate validation, suite registration, syntax, diff checks and all 51 offline assets pass. Exact-head CI/live DEV checks follow push."
+  "verification": "75 Node suites, six correction tests and 41 browser suites passed across the broad run and final focused follow-ups. The final joint-track adjustment passes the complete row-wave suite and focused recovery regressions. Source audits, gate validation, suite registration, syntax, diff checks and all 51 offline assets pass. Exact-head CI/live DEV checks follow push.",
+  "implementationCommit": "e18f2c91ebe5e343e1b886dbb7b5e4e8701c9ec1"
 }

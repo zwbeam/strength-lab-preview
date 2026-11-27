@@ -693,3 +693,5 @@ assets; inventory is 75 Node suites, six correction tests and 41 browser suites.
 Recovery branch selection also uses current method/load/track/reset-scoped actuals. Another method’s latest work cannot change that branch. Separate failing regressions and mobile imported mixed-method histories verify both directions.
 
 Final compatibility: row-wave retains joint paired-track failure evidence, while heavy/light waves retain independent track failures. All 75 Node suites, six correction tests and 41 browser suites passed across the broad run and final focused follow-ups. The last joint-track change passes the complete row-wave suite and focused recovery regressions.
+
+Stall-recovery implementation checkpoint: `e18f2c91ebe5e343e1b886dbb7b5e4e8701c9ec1`. Source #259 examples and current-method feedback isolation are covered; the full alternate volume subcycle and all ten gate closures remain open.

@@ -384,7 +384,9 @@
           "tests/paired-swing-reps.js",
           "tests/wave-replay.js"
         ],
-        "adaptation": "Source examples distinguish unfinished from completed difficult work; actual-completion mapping, trigger and rounding are app choices. Full alternate volume subcycle remains open."
+        "adaptation": "Source examples distinguish unfinished from completed difficult work; actual-completion mapping, trigger and rounding are app choices. Full alternate volume subcycle remains open.",
+        "implementationCommit": "e18f2c91ebe5e343e1b886dbb7b5e4e8701c9ec1",
+        "verification": "All 75 Node suites, six correction tests and 41 browser suites pass across broad and final focused runs; source audits, gate validation and offline packaging pass. All ten areas remain unresolved."
       }
     },
     "Warmup philosophy": {
@@ -846,7 +848,9 @@
           "tests/paired-swing-reps.js",
           "tests/wave-replay.js"
         ],
-        "adaptation": "Source examples distinguish unfinished from completed difficult work; actual-completion mapping, trigger and rounding are app choices. Full alternate volume subcycle remains open."
+        "adaptation": "Source examples distinguish unfinished from completed difficult work; actual-completion mapping, trigger and rounding are app choices. Full alternate volume subcycle remains open.",
+        "implementationCommit": "e18f2c91ebe5e343e1b886dbb7b5e4e8701c9ec1",
+        "verification": "All 75 Node suites, six correction tests and 41 browser suites pass across broad and final focused runs; source audits, gate validation and offline packaging pass. All ten areas remain unresolved."
       }
     },
     "Equipment and real-world constraints": {
@@ -1138,7 +1142,9 @@
           "tests/paired-swing-reps.js",
           "tests/wave-replay.js"
         ],
-        "adaptation": "Source examples distinguish unfinished from completed difficult work; actual-completion mapping, trigger and rounding are app choices. Full alternate volume subcycle remains open."
+        "adaptation": "Source examples distinguish unfinished from completed difficult work; actual-completion mapping, trigger and rounding are app choices. Full alternate volume subcycle remains open.",
+        "implementationCommit": "e18f2c91ebe5e343e1b886dbb7b5e4e8701c9ec1",
+        "verification": "All 75 Node suites, six correction tests and 41 browser suites pass across broad and final focused runs; source audits, gate validation and offline packaging pass. All ten areas remain unresolved."
       }
     },
     "Movement instruction": {
