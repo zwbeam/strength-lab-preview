@@ -405,6 +405,19 @@
         "adaptation": "App handling of existing explicit difficulty feedback, not a newly sourced zero-set prescription. Ordinary skips and empty targets remain distinct; no gate closure.",
         "implementationCommit": "78ec9c8efca2c8063de40fe41f8c0c104d28daa7",
         "verification": "All 75 Node suites, six correction tests and 41 browser suites passed locally. Source audits, suite registration, gate validation and 51 offline assets pass. All ten areas remain unresolved."
+      },
+      "comparableDifficultyFollowUp": {
+        "date": "2026-11-27",
+        "status": "partial",
+        "evidence": "research/comparable-difficulty-evidence.json",
+        "enginePaths": [
+          "engine.js"
+        ],
+        "tests": [
+          "tests/load-evidence.js",
+          "tests/browser-load-evidence.cjs"
+        ],
+        "adaptation": "App accounting of comparable written loads and fulfilled nonadvancing time-fit work. Global pain holds, old difficulty, qualification and fresh-review requirements remain; no new source protocol or gate closure."
       }
     },
     "Warmup philosophy": {
@@ -887,6 +900,19 @@
         "adaptation": "App handling of existing explicit difficulty feedback, not a newly sourced zero-set prescription. Ordinary skips and empty targets remain distinct; no gate closure.",
         "implementationCommit": "78ec9c8efca2c8063de40fe41f8c0c104d28daa7",
         "verification": "All 75 Node suites, six correction tests and 41 browser suites passed locally. Source audits, suite registration, gate validation and 51 offline assets pass. All ten areas remain unresolved."
+      },
+      "comparableDifficultyFollowUp": {
+        "date": "2026-11-27",
+        "status": "partial",
+        "evidence": "research/comparable-difficulty-evidence.json",
+        "enginePaths": [
+          "engine.js"
+        ],
+        "tests": [
+          "tests/load-evidence.js",
+          "tests/browser-load-evidence.cjs"
+        ],
+        "adaptation": "App accounting of comparable written loads and fulfilled nonadvancing time-fit work. Global pain holds, old difficulty, qualification and fresh-review requirements remain; no new source protocol or gate closure."
       }
     },
     "Equipment and real-world constraints": {
@@ -1046,6 +1072,19 @@
         "adaptation": "Application evidence/replay safeguards. No new source percentage, cycle method, physical attestation or gate closure.",
         "verification": "All 74 Node suites, six correction tests and 40 browser suites passed across the broad run and final focused/compatibility follow-ups. Original physical-success and unfinished-return assertions remain covered. Both source audits, suite registration, syntax, 51 offline assets and gate checks pass. Exact-head CI/live DEV verification follow push. All ten areas remain unresolved.",
         "implementationCommit": "beb8f065e3fcc0ea909ce7423f0783e35a7c69af"
+      },
+      "comparableDifficultyFollowUp": {
+        "date": "2026-11-27",
+        "status": "partial",
+        "evidence": "research/comparable-difficulty-evidence.json",
+        "enginePaths": [
+          "engine.js"
+        ],
+        "tests": [
+          "tests/load-evidence.js",
+          "tests/browser-load-evidence.cjs"
+        ],
+        "adaptation": "App accounting of comparable written loads and fulfilled nonadvancing time-fit work. Global pain holds, old difficulty, qualification and fresh-review requirements remain; no new source protocol or gate closure."
       }
     },
     "Source-specific methods": {
@@ -1199,6 +1238,19 @@
         "adaptation": "App handling of existing explicit difficulty feedback, not a newly sourced zero-set prescription. Ordinary skips and empty targets remain distinct; no gate closure.",
         "implementationCommit": "78ec9c8efca2c8063de40fe41f8c0c104d28daa7",
         "verification": "All 75 Node suites, six correction tests and 41 browser suites passed locally. Source audits, suite registration, gate validation and 51 offline assets pass. All ten areas remain unresolved."
+      },
+      "comparableDifficultyFollowUp": {
+        "date": "2026-11-27",
+        "status": "partial",
+        "evidence": "research/comparable-difficulty-evidence.json",
+        "enginePaths": [
+          "engine.js"
+        ],
+        "tests": [
+          "tests/load-evidence.js",
+          "tests/browser-load-evidence.cjs"
+        ],
+        "adaptation": "App accounting of comparable written loads and fulfilled nonadvancing time-fit work. Global pain holds, old difficulty, qualification and fresh-review requirements remain; no new source protocol or gate closure."
       }
     },
     "Movement instruction": {

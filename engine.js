@@ -268,6 +268,7 @@ function replayRowWave(s,id,policy,opts){
  const shape=()=>track==='higher'?policy.higherStages[stage]:policy.stages[stage];
  for(const x of h){
   if(deliveredLight(x))continue;
+  if(x.mode==='time-fit'&&deliveredTarget(x)){counts={lower:0,higher:0};track='lower';continue;}
   if(['reentry','recovery','rebuild','deload'].includes(x.mode)) {counts={lower:0,higher:0};track='lower';if(deliveredReduced(x))fail=0;continue;}
   if(x.setupChanged&&x.quality==='clean'&&!x.pain){counts={lower:0,higher:0};track='lower';continue;}
   const target=shape();
@@ -297,8 +298,12 @@ function replay(s,id,policy,track='base',opts={}){
  for(const x of h){
   if(approved&&Number(x.prescription?.weight??x.weight)!==approved){streak=0;continue;}
   if(!MOVES[id].bodyweight&&!approved&&Number(x.weight)>0&&Number(x.weight)!==weight&&deliveredLoad(x)){weight=Number(x.weight);stage=0;stagePhase='volume';ready=false;streak=0;fail=0;}
+  // Undelivered work written for another load is not difficulty in this comparison.
+  // Known unresolved pain still holds the whole movement in stateFor.
+  if(!MOVES[id].bodyweight&&Number(x.prescription?.weight??x.weight)!==weight){streak=0;continue;}
   if(x.pain||x.quality==='pain'){streak=0;fail++;continue;}
   if(deliveredLight(x)&&Number(x.weight)===weight)continue;
+  if(x.mode==='time-fit'&&deliveredTarget(x)&&Number(x.weight)===weight){streak=0;continue;}
   if(['rebuild','reentry','recovery','deload'].includes(x.mode)){streak=0;if(deliveredReduced(x)&&Number(x.weight)===weight)fail=0;continue;}
   if(MOVES[id].station&&x.setupChanged&&x.quality==='clean'&&!x.pain){streak=0;continue;}
   if(x.quality!=='clean'||x.completed===false){streak=0;if(x.actualSets>0||['hard','breakdown'].includes(x.quality))fail++;continue;}
@@ -334,6 +339,7 @@ function replayWave(s,id,policy,opts){
   const actualTrack=x.track==='light'||x.track==='heavy'?x.track:track,weight=actualTrack==='light'?policy.config.lightWeight:policy.config.heavyWeight;
   if(x.pain||x.quality==='pain'){failures[actualTrack]++;if(actualTrack==='light')streak=0;continue;}
   if(deliveredLight(x)&&Number(x.weight)===weight)continue;
+  if(x.mode==='time-fit'&&deliveredTarget(x)&&Number(x.weight)===weight){if(actualTrack==='light')streak=0;continue;}
   if(['rebuild','reentry','recovery','deload'].includes(x.mode)){if(actualTrack==='light')streak=0;if(deliveredReduced(x)&&Number(x.weight)===weight&&actualTrack===track)failures[actualTrack]=0;continue;}
   const target=shape(),matches=x.track===track&&Number(x.weight)===(track==='light'?policy.config.lightWeight:policy.config.heavyWeight)&&x.targetSets===target.sets&&x.targetReps===target.reps&&Math.abs(Number(x.rest)-target.rest)<1;
   if(progressionCredit(x)&&matches&&!['baseline','review','prerequisite','time-fit'].includes(x.mode)){

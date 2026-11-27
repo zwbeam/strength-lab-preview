@@ -1,0 +1,34 @@
+{
+  "date": "2026-11-27",
+  "baseCommit": "cd179b84f9b6c9df1b55fe8ffea199d90bfb0ff0",
+  "status": "partial",
+  "sourceEvidence": [
+    "research/load-evidence-audit.json",
+    "research/stall-recovery-evidence.json"
+  ],
+  "sourceScope": "Existing bounded whole-work and recovery context remains unchanged. Inferred written-load comparison ownership is a Strength Lab safeguard, not a new source numerical prescription.",
+  "problem": "Generic replay retained the configured/inferred 12 kg baseline after difficult undelivered 16 kg targets, yet counted those foreign written targets as difficulty at 12 kg. Two such records could force an unsupported 12 kg rebuild.",
+  "change": "After legitimate delivered-load inference, undelivered other-written-load records interrupt the streak but do not import difficulty into the current comparison. Current written-target failures remain valid; pain still holds the entire movement independently of load or date.",
+  "tests": [
+    "tests/load-evidence.js",
+    "tests/browser-load-evidence.cjs"
+  ],
+  "coverage": [
+    "Four difficult/unfinished foreign-load types; 16 ordinary, timed, continuous and paired profile comparisons.",
+    "Current-load difficulty retained; wrong actual weight against the current written target still counts as failure.",
+    "Real clean new-load correction and undo restore the corresponding inferred load; no history or prescription rewrite.",
+    "Cross-load work cannot reuse an old endpoint review or bridge a clean streak; fresh full own-load work remains required.",
+    "Known unresolved pain at another written load holds current planning even when future-dated.",
+    "Ten mobile import/offline-save/history flows at 320/390px, including foreign-load difficulty followed by a single real own-load exposure.",
+    "18 clean/hard/partial, retained-difficulty and later-track time-fit comparisons across loaded/bodyweight generic, row-wave and heavy/light replay."
+  ],
+  "limits": [
+    "Approved choices, method-specific dose/progression/track rules, recovery fractions and failure thresholds are unchanged.",
+    "No new setting, source percentage, user-data migration, storage key or automatic load selection.",
+    "All ten gate areas remain unresolved; full alternate recovery cycles and movement-specific maintenance still need work."
+  ],
+  "additionalProblem": "Full clean legacy time-fit work has no ordinary progression credit, but all three replay methods could interpret its completed=false flag as difficulty.",
+  "timeFitChange": "Delivered clean time-fit targets interrupt ordinary qualification/streak comparison without advancing, adding difficulty or clearing existing difficulty. Actual hard/incomplete work still counts. Independent heavy/light and joint row track behavior remain intact.",
+  "compatibility": "Exact cd179b8 comparison preserves 108 ordinary/reduced prescriptions and 432 generated strength plans.",
+  "verification": "Final-engine rerun passed all 75 Node suites and six correction tests. All 41 browser suites passed across the broad run and final ten-case focused acceptance. Source audits, suite registration, gate checks, syntax, diff checks and all 51 offline assets pass. Exact-head CI and live DEV verification follow push."
+}

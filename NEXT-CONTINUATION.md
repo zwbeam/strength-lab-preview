@@ -712,3 +712,28 @@ cached assets; inventory stays 75 Node suites, six correction tests and 41 brows
 suites. The focused mobile recovery suite now includes six cases at 320/390px.
 
 Zero-set feedback implementation checkpoint: `78ec9c8efca2c8063de40fe41f8c0c104d28daa7`. All 75 Node suites, six correction tests and 41 browser suites passed locally. Ordinary skips remain distinct from explicit difficulty; the full alternate volume subcycle and all ten gate areas remain open.
+
+
+Written-load difficulty follow-up: generic inferred-load replay now owns failure
+evidence by the written load, matching the existing approved-load and recovery
+lookup boundaries. Undelivered work written at another load cannot manufacture
+current-load difficulty or erase existing own-load difficulty. Genuine delivered
+new-load work can still establish its load; failures against the current written
+target still count even when actual weight differs. Cross-load interruptions
+still reset a clean streak and require fresh full endpoint evidence before load
+review. Known unresolved pain remains movement-wide, including future-dated
+reports. Stored history, snapshots, V33 keys and numerical methods are unchanged.
+This is an app comparison safeguard, not a new Wildman dose protocol. All ten
+gate areas and the full alternate recovery subcycle remain open. Read
+research/comparable-difficulty-evidence.json. Runtime rc76-comparable-difficulty
+keeps 51 cached assets; inventory stays 75 Node suites, six correction tests and
+41 browser suites. The focused load-evidence browser suite now has ten cases.
+
+Clean delivered legacy time-fit work is now nonadvancing without manufacturing
+difficulty in generic, heavy/light or row-wave replay. It does not clear existing
+difficulty, restore qualification or certify a new load review. Hard/unfinished
+work still counts, and the source-specific track rules remain. No new time-fit
+plans are generated: the selected ceiling and full-dose deferral remain in force.
+This preserves old written history without mistaking role credit for actual failure.
+
+Combined comparable-difficulty verification: the final engine passes all 75 Node suites and six correction tests; all 41 browser suites pass across the broad run and final ten-case focused acceptance. All ten gate areas remain unresolved.
