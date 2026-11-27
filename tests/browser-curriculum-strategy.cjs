@@ -1,5 +1,5 @@
 'use strict';
-const {chromium}=require('playwright'),assert=require('node:assert/strict'),{E,C,fresh,receipt}=require('./fixtures/core-window.cjs');
+const {chromium}=require('playwright'),assert=require('node:assert/strict'),{E,N,C,fresh,actual,receipt}=require('./fixtures/core-window.cjs');
 (async()=>{
  const browser=await chromium.launch({headless:true,...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH?{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH}:{})});
  try{for(const width of [320,390]){
@@ -29,6 +29,23 @@ const {chromium}=require('playwright'),assert=require('node:assert/strict'),{E,C
   assert.ok(await page.evaluate(id=>!state.deferredByBlock.hingePractice.includes(id),part.id));assert.equal(await page.evaluate(id=>state.sessions.at(-1).items.find(x=>x.id===id).completed,part.id),false);assert.equal(await page.evaluate(id=>E.advancementReview(state,id,{now:today()}).eligible,part.id),false);
   assert.equal(await page.evaluate(()=>JSON.stringify(state.sessions.at(-1).plan)),written);assert.equal(await page.evaluate(()=>JSON.stringify(state.sessions.slice(0,-1))),original);assert.ok(await page.evaluate(()=>E.validateBackup(JSON.parse(JSON.stringify(state))).sessions.length>0));
   await page.reload();await page.waitForFunction(()=>storageReady&&storageWritable);assert.ok(await page.evaluate(id=>!state.deferredByBlock.hingePractice.includes(id),part.id));assert.deepEqual(errors,[]);assert.deepEqual(dialogs,[]);assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+3));await context.close();
+  const rotated=fresh(60);rotated.programComposition.blocks.push('bodyweightFoundations','groundPractice');
+  for(const offset of [-25,-23,-21,-18])receipt(rotated,'hingePractice',C.add(date,offset));
+  const hostDate=C.add(date,-4),host=E.plan(rotated,{now:hostDate}),addition=host.composition.curriculum.maintenance[0],only=actual(host);
+  for(const item of only)if(item.id!==addition.id)for(const set of item.sets)set.done=false;
+  rotated.sessions.push({id:'maintenance-only',title:host.day.name,date:hostDate,block:host.block,slot:host.slot,calendarVersion:1,notebookVersion:1,plan:host,items:N.records(host,only)});
+  rotated.deferredByBlock=E.deferredBlocksAfter(rotated.deferredByBlock||{},host,rotated.sessions.at(-1).items);
+  receipt(rotated,'bodyweightPull',C.add(date,-2));delete rotated.programComposition.coreBlock;rotated.programComposition.continuity=false;E.validateBackup(rotated);
+  const nextContext=await browser.newContext({viewport:{width,height:844},hasTouch:true,isMobile:true,timezoneId:'UTC'}),nextPage=await nextContext.newPage(),nextErrors=[];
+  nextPage.on('pageerror',e=>nextErrors.push(e.message));nextPage.on('dialog',async d=>{if(d.type()==='confirm')await d.accept();else{nextErrors.push(d.message());await d.dismiss();}});await nextPage.clock.setFixedTime(now);
+  await nextPage.goto(process.env.STRENGTH_LAB_TEST_URL||'http://127.0.0.1:8765/');await nextPage.waitForFunction(()=>storageReady&&storageWritable);
+  await nextPage.locator('[data-tab="settings"]').tap();await nextPage.locator('#import').evaluate(el=>{for(let p=el.parentElement;p;p=p.parentElement)if(p.tagName==='DETAILS')p.open=true;});
+  await nextPage.locator('#import').setInputFiles({name:'maintenance-attendance.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(rotated))});await nextPage.waitForFunction(n=>state.sessions.length===n,rotated.sessions.length);
+  assert.equal(await nextPage.evaluate(()=>E.plan(state,{now:today()}).block),'abc');assert.equal(await nextPage.evaluate(()=>JSON.stringify(state.sessions)),JSON.stringify(rotated.sessions));
+  await nextPage.locator('[data-tab="today"]').tap();await nextPage.locator('#start').tap();assert.equal(await nextPage.evaluate(()=>draft.plan.block),'abc');const preserved=await nextPage.evaluate(()=>JSON.stringify(draft.plan));
+  await nextPage.evaluate(()=>navigator.serviceWorker.ready);await nextPage.reload();await nextPage.waitForFunction(()=>storageReady&&storageWritable&&draft&&navigator.serviceWorker.controller);await nextContext.setOffline(true);await nextPage.reload();await nextPage.waitForFunction(()=>storageReady&&storageWritable&&draft);
+  assert.equal(await nextPage.evaluate(()=>JSON.stringify(draft.plan)),preserved);assert.equal(await nextPage.evaluate(()=>JSON.stringify(state.sessions)),JSON.stringify(rotated.sessions));assert.deepEqual(nextErrors,[]);assert.ok(await nextPage.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+3));await nextContext.close();
+  console.log('PASS '+width+'px imported maintenance-only attendance retains untouched primary rotation and immutable offline draft');
   console.log('PASS '+width+'px focused curriculum explanation, shared settings/opt-out, immutable offline mixed draft, independent partial ownership, real correction and review gate');
  }}finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

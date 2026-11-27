@@ -209,6 +209,19 @@
         "adaptation": "Consistent application of the existing protected-path estimate under the explicit user time ceiling. Ten-minute cooldown and cost estimates remain app decisions. No area closure.",
         "verification": "All 72 Node JS suites and six correction tests passed across the broad run and corrected follow-ups; all 37 browser suites passed, including the isolated step-up rerun at both widths. Original lifecycle re-entry bounds remain intact. Exact-head CI and live DEV acceptance follow push.",
         "implementationCommit": "f39f6137d195f3a0c5e0a6a294d825c92f8e609d"
+      },
+      "primaryAttendanceFollowUp": {
+        "date": "2026-11-27",
+        "status": "partial",
+        "evidence": "research/primary-attendance-evidence.json",
+        "enginePaths": [
+          "engine.js"
+        ],
+        "tests": [
+          "tests/curriculum-strategy.js",
+          "tests/browser-curriculum-strategy.cjs"
+        ],
+        "adaptation": "Primary actual-work ownership determines rotation recency; no new source maintenance frequency or area closure."
       }
     },
     "Movement-specific progression": {

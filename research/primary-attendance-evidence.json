@@ -1,0 +1,34 @@
+{
+  "date": "2026-11-27",
+  "baseCommit": "80944442b0a84d04761ace0e618924f3ee5e7345",
+  "status": "partial",
+  "sourceEvidence": "research/curriculum-strategy-evidence.json",
+  "sourceScope": "Existing bounded #85/#123/#404/#548/#606 curriculum context remains unchanged. No new source quotations, physiological intervals or numerical method are introduced.",
+  "problem": "A mixed receipt containing only appended maintenance actuals was counted as recent attendance of the untouched host program when ordering rotation candidates. After a later completed selected workout and removal of core protection, this postponed the untrained host.",
+  "correction": "Candidate recency requires actual primary work. Genuine maintenance actuals, saved debt, primary-day counts, progression and immutable plans retain their independent ownership.",
+  "tests": [
+    "tests/curriculum-strategy.js",
+    "tests/browser-curriculum-strategy.cjs"
+  ],
+  "redEvidence": "The exact 8094444 engine selects bodyweightFoundations instead of the untouched abc host in the genuine maintenance-only fixture. The same assertion passes after correcting primary attendance.",
+  "coverage": [
+    "Genuine engine-generated mixed receipts followed by a completed selected pulling workout; no synthetic progression credit.",
+    "Primary actual correction changes rotation, undo restores it; backup replay and planning purity.",
+    "Real mobile JSON import, primary workout selection and offline immutable draft/history at 320/390 pixels.",
+    "Existing 240-workout changing-capacity and 36 limited-equipment 30/45/60-minute curriculum checks."
+  ],
+  "limits": [
+    "This is an app attendance-accounting correction, not a new Wildman scheduling prescription.",
+    "No additional program-day credit is inferred from maintenance additions.",
+    "No migration, history rewrite, new setting or source-method change.",
+    "All ten gate areas remain unresolved; physical technique and real Android acceptance remain separate."
+  ],
+  "testReliability": "Full browser coverage reproduced install/pause-at-the-same-time transport races in Settings and deload suites (Cannot fast-forward to the past). All matching install/pause fixtures now install one minute before their unchanged pause boundary. All timer, midnight, settings and reader assertions remain unchanged; runtime behavior is untouched.",
+  "verificationNotes": [
+    "All 74 Node JS suites and six history-correction CJS tests passed.",
+    "All 40 browser suites passed across the broad run and final focused follow-ups, including repaired clock fixtures.",
+    "The new imported maintenance-only browser fixture accepts the actual backup confirmation; the initial unhandled-confirmation timeout was a fixture bug, not data loss.",
+    "A transient paired-swing save timeout passed an independent unchanged rerun. The repeated endpoint start read was synchronized with actual draft creation. No behavior assertion was suppressed.",
+    "Both research generators, suite registration, gate validation, syntax, diff and all 51 offline assets pass. Exact-head CI and live DEV verification follow push."
+  ]
+}

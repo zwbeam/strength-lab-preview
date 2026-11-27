@@ -11,7 +11,7 @@ const assert=require('node:assert/strict'),{chromium}=require('playwright'),E=re
   await context.addInitScript(s=>{if(!localStorage.getItem('sl-dev-preview-data-v33'))localStorage.setItem('sl-dev-preview-data-v33',JSON.stringify(s));},seed);
   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
   page.on('dialog',async dialog=>{if(dialog.type()==='prompt'){assert.match(dialog.message(),/Previous working weight: 16/);await dialog.accept('12');}else await dialog.dismiss();});
-  await page.clock.install({time:now});await page.clock.pauseAt(now);
+  await page.clock.install({time:new Date(new Date(now).getTime()-60000)});await page.clock.pauseAt(now);
   await page.goto(process.env.STRENGTH_LAB_TEST_URL||'http://127.0.0.1:8765/');
   await page.waitForFunction(()=>storageReady);
   await page.locator('[data-tab="today"]').tap();

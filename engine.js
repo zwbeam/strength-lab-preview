@@ -1137,7 +1137,8 @@ function plan(s,opts={}){
  const hardRecent=history.some(x=>day-calendarDay(x.date)<(c.hardGapDays??2)&&(x.items||[]).some(y=>y.actualSets>0&&(y.track==='heavy'||y.profile==='grind'||y.mode==='density')));
  const defaults={...s.trainingDefaults,minGapDays:Math.max(s.trainingDefaults?.minGapDays??0,c.minGapDays??1)};
  const candidates=c.blocks.map((block,order)=>{
-  const last=history.findLastIndex(x=>(x.block||'abc')===block&&(x.items||[]).some(y=>y.actualSets>0));
+  // A maintenance addition cannot count as attendance for its untouched host.
+  const last=history.findLastIndex(x=>(x.block||'abc')===block&&primaryRecords(x).some(y=>y.actualSets>0));
   const p=blockPlan({...s,programBlock:block,trainingDefaults:defaults},{...opts,avoidHard:hardRecent,omitUnstartedLoads:true});
   const projected=opts.projectedBlocks?.lastIndexOf(block)??-1;
   return {block,order,last:projected>=0?history.length+projected:last,p};

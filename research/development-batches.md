@@ -2134,3 +2134,31 @@ the retained 10 kg actual, unchanged unfinished-return protection and a proper
 subsequent return; no progression or data-integrity assertion was removed.
 
 Local QA complete: all 74 Node suites, six correction tests and 40 browser suites pass across the broad run and final focused/compatibility follow-ups. Source audits, suite registration, syntax, all 51 offline assets, gate and diff checks pass. Exact-head CI and public DEV acceptance follow push.
+
+
+Primary-attendance follow-up (November 27): completing only an appended earned
+maintenance movement no longer marks its untouched primary program as recently
+trained in rotation ordering. A later completed selected workout previously hid
+the immediate unfinished-work priority and exposed this false attendance after
+changing away from a protected core. Candidate recency now uses primary actuals,
+consistent with existing primary-day and core-reservation ownership. Actual
+maintenance remains in history and retains its own progression/continuity evidence;
+it does not become a second program day. Correction of genuine primary work and
+undo replay the corresponding rotation choice. No settings, dose, history,
+load, storage namespace or backup schema changes. This is an app accounting
+safeguard, not a newly sourced Wildman frequency rule. All ten gate areas remain
+unresolved; automatic sustainable maintenance frequencies and source-specific
+methods still require evidence. Runtime rc73-primary-attendance keeps 51 cached
+assets. Suite inventory remains 74 Node JS, six correction tests and 40 browser
+suites. See research/primary-attendance-evidence.json.
+
+Full-browser reliability follow-up: Settings/Train and deload suites reproduced
+an install/pause-at-the-same-time transport race (Cannot fast-forward to the past).
+All matching browser fixtures now install one minute before their unchanged pause
+boundary. All pacing, date rollover, settings and reader assertions are retained.
+No runtime timer behavior changes.
+
+A repeated endpoint browser run also exposed an immediate post-tap read before
+draft creation. Its start helper now waits for the actual draft before reading
+the target. A paired-swing save timeout passed an independent unchanged rerun;
+no save assertion or runtime behavior was weakened.

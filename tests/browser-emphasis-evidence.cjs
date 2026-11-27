@@ -9,7 +9,7 @@ function record(s,date,ids){const p={...E.plan(s,{now:date}),items:ids.map(id=>E
  const originalHistory=JSON.stringify(s.sessions),originalEquipment=JSON.stringify(s.equipment);
  const context=await browser.newContext({viewport:{width,height:844},hasTouch:true,isMobile:true,timezoneId:'UTC'});
  await context.addInitScript(s=>{if(!localStorage.getItem('sl-dev-preview-data-v33'))localStorage.setItem('sl-dev-preview-data-v33',JSON.stringify(s));},s);
- const page=await context.newPage(),errors=[],dialogs=[];page.on('pageerror',e=>errors.push(e.message));page.on('dialog',async d=>{dialogs.push(d.message());await d.dismiss();});await page.clock.install({time:now});await page.clock.pauseAt(now);
+ const page=await context.newPage(),errors=[],dialogs=[];page.on('pageerror',e=>errors.push(e.message));page.on('dialog',async d=>{dialogs.push(d.message());await d.dismiss();});await page.clock.install({time:new Date(new Date(now).getTime()-60000)});await page.clock.pauseAt(now);
  await page.goto(process.env.STRENGTH_LAB_TEST_URL||'http://127.0.0.1:8765/');await page.waitForFunction(()=>storageReady);
  async function open(selector){await page.locator(selector).evaluate(el=>{for(let a=el.parentElement;a;a=a.parentElement)if(a.tagName==='DETAILS')a.open=true;});}
  async function plan(){return page.evaluate(()=>JSON.stringify(E.plan(state,{now:today()})));}

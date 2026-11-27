@@ -267,3 +267,20 @@ All ten gate areas remain unresolved. Continue source-protocol and sustainable
 maintenance/recovery verification; preserve the separate unfinished cat-crawl tree.
 
 Load-evidence implementation checkpoint: `beb8f065e3fcc0ea909ce7423f0783e35a7c69af`. Local QA passed 74 Node suites, six correction tests and 40 browser suites across the broad run and final compatibility/focused follow-ups. All ten audit areas remain unresolved.
+
+
+Primary-attendance follow-up (November 27): completing only an appended earned
+maintenance movement no longer marks its untouched primary program as recently
+trained in rotation ordering. A later completed selected workout previously hid
+the immediate unfinished-work priority and exposed this false attendance after
+changing away from a protected core. Candidate recency now uses primary actuals,
+consistent with existing primary-day and core-reservation ownership. Actual
+maintenance remains in history and retains its own progression/continuity evidence;
+it does not become a second program day. Correction of genuine primary work and
+undo replay the corresponding rotation choice. No settings, dose, history,
+load, storage namespace or backup schema changes. This is an app accounting
+safeguard, not a newly sourced Wildman frequency rule. All ten gate areas remain
+unresolved; automatic sustainable maintenance frequencies and source-specific
+methods still require evidence. Runtime rc73-primary-attendance keeps 51 cached
+assets. Suite inventory remains 74 Node JS, six correction tests and 40 browser
+suites. See research/primary-attendance-evidence.json.

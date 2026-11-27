@@ -41,6 +41,23 @@ for(const tamper of [c=>{c.primaryIds.pop();},c=>{c.maintenance[0].block='bodywe
 // Maintenance-only actuals cannot create a primary core visit or primary day.
 const maintenanceOnly=copy(mixed);maintenanceOnly.sessions.pop();const only=actual(written);only.forEach(x=>{if(x.id!==part.id)x.sets.forEach(y=>{y.done=false;});});maintenanceOnly.sessions.push({...session,id:'maintenance-only',items:N.records(written,only)});
 assert.equal(E.plan(maintenanceOnly,{now:C.add(mixedDate,2)}).composition.coreAllocation.actualCoreVisits,0);
+// Changing away from a protected core retains physical primary attendance.
+// An added maintenance receipt must not mark its untouched host as trained.
+const rotation=copy(maintenanceOnly);
+rotation.sessions.at(-1).notebookVersion=1;
+receipt(rotation,'bodyweightPull',C.add(mixedDate,2));
+delete rotation.programComposition.coreBlock;
+rotation.programComposition.continuity=false;
+const rotationBefore=JSON.stringify(rotation),rotationDate=C.add(mixedDate,4);
+assert.equal(E.plan(rotation,{now:rotationDate}).block,'abc','Maintenance-only actuals cannot postpone an untrained primary program');
+assert.equal(JSON.stringify(rotation),rotationBefore);
+assert.equal(E.plan(E.validateBackup(copy(rotation)),{now:rotationDate}).block,'abc');
+const primaryCorrection=N.historyDraft(rotation.sessions.find(x=>x.id==='maintenance-only'));
+for(const item of primaryCorrection.items)for(const set of item.sets){set.done=true;set.bothSides=true;set.leftReps=set.reps;set.rightReps=set.reps;}
+const rotationCorrected=N.correct(rotation,'maintenance-only',primaryCorrection);
+assert.equal(E.plan(rotationCorrected,{now:rotationDate}).block,'bodyweightFoundations','Genuine corrected primary work changes ordinary rotation');
+assert.equal(E.plan(N.undo(rotationCorrected,'maintenance-only'),{now:rotationDate}).block,'abc');
+console.log('PASS maintenance-only attendance, actual primary correction/undo and restored backup preserve ordinary rotation ownership');
 console.log('PASS earned maintenance dose, separate pending ownership, independent primary day, corrections/undo, malformed-backup rejection and no phantom core credit');
 function logMovement(state,id,date,rx=E.prescription(state,id,{now:date})){
  const single={items:[rx]},row=N.records(single,actual(single))[0];
