@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-27",
+  "baseCommit": "8b570b6cd3a9ced43d9c700e80bb2e7b7d914600",
+  "status": "partial",
+  "sourceEvidence": "research/stall-recovery-evidence.json",
+  "sourceScope": "Existing #259 distinction between failed/unfinished work and completed difficult work. No new source quotation or numeric prescription is introduced. Explicit zero-set feedback handling is an app safeguard.",
+  "problem": "The progression replay already retains difficulty from explicit Hard/Breakdown feedback, but the redistribution branch ignored such feedback with zero completed sets. It could select older completed evidence instead of the latest unfinished positive target.",
+  "change": "Within the existing method/load/track/reset/date comparison, positive written targets with explicit Hard/Breakdown feedback remain eligible unfinished evidence even with zero completed sets. Ordinary clean skips and empty legacy targets remain excluded.",
+  "tests": [
+    "tests/stall-recovery.js",
+    "tests/browser-stall-recovery.cjs"
+  ],
+  "coverage": [
+    "Genuine mixed records include positive actual work in another movement; no all-zero workout is manufactured or admitted.",
+    "Hard/Breakdown zero-set feedback versus ordinary clean skips; no progression, qualification or working-load increase.",
+    "Correction/undo, original snapshots/actuals, future isolation and backup replay.",
+    "Other method/load and empty legacy-target exclusions; existing joint row-wave and independent wave behavior.",
+    "Six mobile import/offline-save flows at 320/390px, including explicit zero-set feedback followed by a delivered nonadvancing rebuild."
+  ],
+  "limits": [
+    "The app does not infer a failed attempt from an ordinary skipped movement.",
+    "No new difficulty threshold, setting, source percentage, stored history rewrite or user-data migration.",
+    "The full #259 alternate volume subcycle and all ten gate areas remain unresolved."
+  ],
+  "scope": "Only the existing opt-in untimed rep-redistribution branch. Other recovery methods and failure counters are unchanged.",
+  "compatibility": "Exact 8b570b6 comparison preserves 108 ordinary/reduced prescriptions and 432 generated strength plans.",
+  "verification": "All 75 Node suites, six correction tests and 41 browser suites passed locally. Source audits, suite registration, gate checks, syntax, diff checks and all 51 offline assets pass. Exact-head CI and live DEV verification follow push."
+}

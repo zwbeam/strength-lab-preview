@@ -483,7 +483,9 @@ function prescription(s,id,opts={}){
  else if(st.fail>=2){
   mode='rebuild';
   if(policy.config.stallStrategy==='redistribute'&&!policy.timed&&!policy.roundSeconds&&!policy.continuous&&reps>=3){
-   const failed=recordsAfterLoadReset(s,id,opts).history.filter(x=>(x.policyKey||'legacy-v1')===policy.key&&(policy.profile==='rowWave'||(x.track||'base')===st.track)&&Number(x.prescription?.weight??x.weight)===st.weight&&x.actualSets>0).at(-1);
+   // Explicit difficulty on a positive written target remains unfinished evidence,
+   // even when this movement has no completed sets in an otherwise real workout.
+   const failed=recordsAfterLoadReset(s,id,opts).history.filter(x=>(x.policyKey||'legacy-v1')===policy.key&&(policy.profile==='rowWave'||(x.track||'base')===st.track)&&Number(x.prescription?.weight??x.weight)===st.weight&&(x.actualSets>0||x.targetSets>0&&x.targetReps>0&&['hard','breakdown'].includes(x.quality))).at(-1);
    const incomplete=failed&&(failed.actualSets<failed.targetSets||failed.actualReps<failed.targetReps);
    const factor=incomplete?.6:.8;
    reps=Math.max(1,Math.floor(st.reps*factor));sets=Math.ceil(st.sets*st.reps/reps);reason='Stall alternative: fewer reps per set, redistributed volume (#259). The 60% / 80% examples are source context; mapping actual completion to a branch and whole-unit rounding are app adaptations. Never rush the work.';

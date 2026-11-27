@@ -695,3 +695,18 @@ Recovery branch selection also uses current method/load/track/reset-scoped actua
 Final compatibility: row-wave retains joint paired-track failure evidence, while heavy/light waves retain independent track failures. All 75 Node suites, six correction tests and 41 browser suites passed across the broad run and final focused follow-ups. The last joint-track change passes the complete row-wave suite and focused recovery regressions.
 
 Stall-recovery implementation checkpoint: `e18f2c91ebe5e343e1b886dbb7b5e4e8701c9ec1`. Source #259 examples and current-method feedback isolation are covered; the full alternate volume subcycle and all ten gate closures remain open.
+
+
+Zero-set feedback reliability follow-up: recovery branch selection now retains
+explicit Hard/Breakdown feedback on a positive written target even when none of
+that movement's sets were completed in an otherwise real mixed workout. Such
+feedback was already difficulty evidence in replay, but the branch lookup skipped
+it and could reuse older completed work. Ordinary clean skips remain neutral;
+empty legacy targets and other method/load comparisons remain excluded. No
+progression/qualification, failure threshold, working load, stored actual, snapshot,
+V33 key, schema or setting changes. Source #259 remains contextual; interpreting
+zero-set feedback is an app safeguard, not a new Wildman dose protocol. The full
+alternate volume subcycle and all ten gate closures remain open. Read
+research/zero-set-feedback-evidence.json. Runtime rc75-zero-feedback retains 51
+cached assets; inventory stays 75 Node suites, six correction tests and 41 browser
+suites. The focused mobile recovery suite now includes six cases at 320/390px.

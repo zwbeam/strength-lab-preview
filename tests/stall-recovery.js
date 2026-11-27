@@ -32,6 +32,32 @@ const higher=E.prescription(pairedRow,'bodyweightRow',{now:date});assert.equal(h
 for(let n=0;n<2;n++){const a=actual({items:[higher]});a[0].quality='hard';a[0].sets[0].reps=higher.reps-1;pairedRow.sessions.push({id:'retained-higher-'+n,date,title:'Retained written higher-track target',items:N.records({items:[higher]},a)});}
 const rowState=E.stateFor(pairedRow,'bodyweightRow',{now:date});assert.equal(rowState.fail,2);assert.equal(rowState.track,'lower');assert.equal(E.prescription(pairedRow,'bodyweightRow',{now:date}).reps,Math.floor(rowState.reps*.6),'Row-wave recovery retains joint paired-track failure evidence');E.validateBackup(pairedRow);
 console.log('PASS row-wave joint-track recovery remains distinct from independent heavy/light wave failures');
+// A mixed workout can contain real work while this movement has zero finished sets.
+// Explicit difficulty remains unfinished evidence; an ordinary skip stays neutral.
+for(const quality of ['hard','breakdown','clean']){
+ const s=fixture('full'),rx=E.prescription(s,'press',{now:date}),support=E.prescription(s,'squat',{now:date}),p={items:[support,rx]},a=actual(p);
+ a[1].sets.forEach(set=>{set.done=false;});a[1].quality=quality;
+ const rows=N.records(p,a);assert.ok(rows[0].actualSets>0);assert.equal(rows[1].actualSets,0);
+ const session={id:'mixed-zero-feedback',date,title:'Real mixed work and unfinished press',items:rows};s.sessions.push(session);
+ const expected=quality==='clean'?4:3,snapshot=JSON.stringify(s);
+ assert.equal(E.stateFor(s,'press',{now:date}).fail,2);assert.equal(E.prescription(s,'press',{now:date}).reps,expected,'Zero-set '+quality+' feedback must not masquerade as completed work');assert.equal(JSON.stringify(s),snapshot);
+ assert.equal(E.prescription(E.validateBackup(copy(s)),'press',{now:date}).reps,expected);
+ const edit=N.historyDraft(session);edit.items[1].sets.forEach(set=>{set.done=true;});const corrected=N.correct(s,session.id,edit);assert.equal(E.prescription(corrected,'press',{now:date}).reps,quality==='clean'?5:4);assert.equal(E.prescription(N.undo(corrected,session.id),'press',{now:date}).reps,expected);
+ const future=copy(s);future.sessions.at(-1).date=C.add(date,7);assert.equal(E.prescription(future,'press',{now:date}).reps,4);assert.equal(E.prescription(future,'press',{now:C.add(date,7)}).reps,expected);E.validateBackup(future);
+}
+console.log('PASS explicit zero-set difficulty versus ordinary skips, genuine mixed work, correction/undo, future isolation and immutable backup replay');
+for(const quality of ['hard','breakdown','clean']){
+ let s=fresh(60);s.programComposition.enabled=false;s=E.configureMovement(s,'press',{profile:'legacy',stallStrategy:'redistribute'});
+ for(let n=0;n<2;n++){const when=C.add(date,-4+n*2),p={items:[E.prescription(s,'squat',{now:when}),E.prescription(s,'press',{now:when})]},a=actual(p);a[1].sets.forEach(set=>{set.done=false;});a[1].quality=quality;const rows=N.records(p,a);assert.ok(rows.some(x=>x.actualSets>0));s.sessions.push({id:'zero-only-'+n,date:when,title:'Mixed actual work, no completed press sets',items:rows});}
+ const st=E.stateFor(s,'press',{now:date}),rx=E.prescription(s,'press',{now:date});assert.equal(st.stage,0);assert.equal(st.cycles,0);assert.equal(E.practiceEvidence(s,'press',{now:date}).count,0);assert.equal(st.fail,quality==='clean'?0:2);assert.equal(rx.mode,quality==='clean'?'volume':'rebuild');assert.equal(rx.reps,quality==='clean'?5:3);assert.ok(E.records(s,'press').every(x=>x.actualSets===0));E.validateBackup(s);
+}
+console.log('PASS zero completed sets never earn progress or qualification; explicit difficulty uses unfinished recovery while clean skips do not invent a stall');
+for(const foreignKind of ['method','load','empty-target']){
+ const s=fixture('full'),other=foreignKind==='method'?E.configureMovement(s,'press',{profile:'legacy',stallStrategy:'redistribute',exposures:3}):copy(s);if(foreignKind==='load')other.weights.press=16;
+ let rx=E.prescription(other,'press',{now:date});if(foreignKind==='empty-target')rx={...rx,mode:'prerequisite',sets:0};const p={items:[E.prescription(s,'squat',{now:date}),rx]},a=actual(p);a[1].sets.forEach(set=>{set.done=false;});a[1].quality='hard';const rows=N.records(p,a);if(foreignKind==='empty-target'){delete rows[1].prescription;delete rows[1].sets;}s.sessions.push({id:'foreign-zero-'+foreignKind,date,title:'Mixed actual work with scoped zero-set feedback',items:rows});
+ assert.equal(E.prescription(s,'press',{now:date}).reps,4,foreignKind+' zero-set feedback must not replace current positive-target evidence');assert.equal(E.stateFor(s,'press',{now:date}).weight,12);E.validateBackup(s);
+}
+console.log('PASS method/load boundaries and empty-target exclusion also apply to explicit zero-set difficulty');
 let cases=0;
 for(const id of ['press','squat','row','swing','clean','bodyweightRow','bodyweightSquat'])for(const minutes of [30,45,60])for(const partial of [false,true]){
  let s=fresh(minutes);s.programComposition.enabled=false;s=E.configureMovement(s,id,{profile:E.policyFor(id,s).profile,stallStrategy:'redistribute'});

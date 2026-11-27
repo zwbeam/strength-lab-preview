@@ -387,6 +387,22 @@
         "adaptation": "Source examples distinguish unfinished from completed difficult work; actual-completion mapping, trigger and rounding are app choices. Full alternate volume subcycle remains open.",
         "implementationCommit": "e18f2c91ebe5e343e1b886dbb7b5e4e8701c9ec1",
         "verification": "All 75 Node suites, six correction tests and 41 browser suites pass across broad and final focused runs; source audits, gate validation and offline packaging pass. All ten areas remain unresolved."
+      },
+      "zeroSetFeedbackFollowUp": {
+        "date": "2026-11-27",
+        "status": "partial",
+        "evidence": "research/zero-set-feedback-evidence.json",
+        "sourceIds": [
+          259
+        ],
+        "enginePaths": [
+          "engine.js"
+        ],
+        "tests": [
+          "tests/stall-recovery.js",
+          "tests/browser-stall-recovery.cjs"
+        ],
+        "adaptation": "App handling of existing explicit difficulty feedback, not a newly sourced zero-set prescription. Ordinary skips and empty targets remain distinct; no gate closure."
       }
     },
     "Warmup philosophy": {
@@ -851,6 +867,22 @@
         "adaptation": "Source examples distinguish unfinished from completed difficult work; actual-completion mapping, trigger and rounding are app choices. Full alternate volume subcycle remains open.",
         "implementationCommit": "e18f2c91ebe5e343e1b886dbb7b5e4e8701c9ec1",
         "verification": "All 75 Node suites, six correction tests and 41 browser suites pass across broad and final focused runs; source audits, gate validation and offline packaging pass. All ten areas remain unresolved."
+      },
+      "zeroSetFeedbackFollowUp": {
+        "date": "2026-11-27",
+        "status": "partial",
+        "evidence": "research/zero-set-feedback-evidence.json",
+        "sourceIds": [
+          259
+        ],
+        "enginePaths": [
+          "engine.js"
+        ],
+        "tests": [
+          "tests/stall-recovery.js",
+          "tests/browser-stall-recovery.cjs"
+        ],
+        "adaptation": "App handling of existing explicit difficulty feedback, not a newly sourced zero-set prescription. Ordinary skips and empty targets remain distinct; no gate closure."
       }
     },
     "Equipment and real-world constraints": {
@@ -1145,6 +1177,22 @@
         "adaptation": "Source examples distinguish unfinished from completed difficult work; actual-completion mapping, trigger and rounding are app choices. Full alternate volume subcycle remains open.",
         "implementationCommit": "e18f2c91ebe5e343e1b886dbb7b5e4e8701c9ec1",
         "verification": "All 75 Node suites, six correction tests and 41 browser suites pass across broad and final focused runs; source audits, gate validation and offline packaging pass. All ten areas remain unresolved."
+      },
+      "zeroSetFeedbackFollowUp": {
+        "date": "2026-11-27",
+        "status": "partial",
+        "evidence": "research/zero-set-feedback-evidence.json",
+        "sourceIds": [
+          259
+        ],
+        "enginePaths": [
+          "engine.js"
+        ],
+        "tests": [
+          "tests/stall-recovery.js",
+          "tests/browser-stall-recovery.cjs"
+        ],
+        "adaptation": "App handling of existing explicit difficulty feedback, not a newly sourced zero-set prescription. Ordinary skips and empty targets remain distinct; no gate closure."
       }
     },
     "Movement instruction": {

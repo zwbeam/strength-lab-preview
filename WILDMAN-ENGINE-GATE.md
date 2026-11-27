@@ -297,3 +297,18 @@ in #259 is still not implemented; all ten gate rows remain unresolved. No workin
 load, setting, stored history, V33 key or schema changes. Read
 research/stall-recovery-evidence.json. Runtime rc74-stall-recovery keeps 51 cached
 assets; inventory is 75 Node suites, six correction tests and 41 browser suites.
+
+
+Zero-set feedback reliability follow-up: recovery branch selection now retains
+explicit Hard/Breakdown feedback on a positive written target even when none of
+that movement's sets were completed in an otherwise real mixed workout. Such
+feedback was already difficulty evidence in replay, but the branch lookup skipped
+it and could reuse older completed work. Ordinary clean skips remain neutral;
+empty legacy targets and other method/load comparisons remain excluded. No
+progression/qualification, failure threshold, working load, stored actual, snapshot,
+V33 key, schema or setting changes. Source #259 remains contextual; interpreting
+zero-set feedback is an app safeguard, not a new Wildman dose protocol. The full
+alternate volume subcycle and all ten gate closures remain open. Read
+research/zero-set-feedback-evidence.json. Runtime rc75-zero-feedback retains 51
+cached assets; inventory stays 75 Node suites, six correction tests and 41 browser
+suites. The focused mobile recovery suite now includes six cases at 320/390px.
