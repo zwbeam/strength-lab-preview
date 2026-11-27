@@ -42,7 +42,7 @@ for(const quality of ['hard','breakdown','clean']){
  const expected=quality==='clean'?4:3,snapshot=JSON.stringify(s);
  assert.equal(E.stateFor(s,'press',{now:date}).fail,2);assert.equal(E.prescription(s,'press',{now:date}).reps,expected,'Zero-set '+quality+' feedback must not masquerade as completed work');assert.equal(JSON.stringify(s),snapshot);
  assert.equal(E.prescription(E.validateBackup(copy(s)),'press',{now:date}).reps,expected);
- const edit=N.historyDraft(session);edit.items[1].sets.forEach(set=>{set.done=true;});const corrected=N.correct(s,session.id,edit);assert.equal(E.prescription(corrected,'press',{now:date}).reps,quality==='clean'?5:4);assert.equal(E.prescription(N.undo(corrected,session.id),'press',{now:date}).reps,expected);
+ const edit=N.historyDraft(session);edit.items[1].sets.forEach(set=>{set.done=true;});const corrected=N.correct(s,session.id,edit);assert.equal(E.prescription(corrected,'press',{now:date}).reps,4);assert.equal(E.prescription(N.undo(corrected,session.id),'press',{now:date}).reps,expected);
  const future=copy(s);future.sessions.at(-1).date=C.add(date,7);assert.equal(E.prescription(future,'press',{now:date}).reps,4);assert.equal(E.prescription(future,'press',{now:C.add(date,7)}).reps,expected);E.validateBackup(future);
 }
 console.log('PASS explicit zero-set difficulty versus ordinary skips, genuine mixed work, correction/undo, future isolation and immutable backup replay');

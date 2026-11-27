@@ -768,3 +768,30 @@ existing V33 namespaces. Inventory is 76 Node suites, six correction tests and
 Verified locally: all 76 Node suites, six history-correction tests and all 42 browser suites pass. Source/integration audits, gate checks, suite registration and 51-asset offline integrity pass. Compatibility confirms 108 prescriptions and 432 plans unchanged for existing data. Physical technique and real Android acceptance remain unverified.
 
 Lighter-load review implementation checkpoint: `ad45beb5706b3746bb44766cead4905ab4000cdf`. The tested explicit baseline reset preserves actual history and requires fresh completed work; full alternate recovery subcycles and all ten gate closures remain open.
+
+
+Alternate-volume follow-up (#259, partial): eligible opted-in legacy/
+bodyweightPractice methods now preserve a separate lower-rep, add-set subcycle.
+Its goal uses the existing volume endpoint capped to the starting session budget;
+one-set steps and configured clean exposures are app adaptations. Actual clean
+alternate work alone advances that subgoal. It then returns to the original
+stalled target without awarding original progress or increasing load. Readiness,
+return work, corrections and later settings cannot manufacture completed steps.
+Legacy unmarked receipts retain their interpretation; new optional prescription
+metadata is validated without changing V33 root data or storage namespaces.
+
+The 156-workout generated trajectory and 30/45/60-minute scheduled completion
+examples retain strict ceilings, independent original progression and backup
+replay. Time-budget changes after starting do not silently shrink the earned goal.
+Oversized saved curricula/low attendance, source-specific alternate methods,
+maintenance-frequency evidence, instructional verification and all ten gate areas
+remain open. See research/alternate-volume-cycle-evidence.json. Runtime rc78-
+alternate-volume retains 51 offline assets; inventory is 77 Node suites, six
+history-correction tests and 42 browser suites. Mobile stall acceptance expands
+to ten cases including resumed and 30-minute cycles.
+
+Next engine priority: automatic curriculum admission/recurrence when a broad saved ABC plus developing work exceeds low-frequency 30-minute capacity. A two-day diagnostic still repeated returns; retain this limitation rather than claiming universal alternate-cycle feasibility. Independent source-method recovery stays separate.
+
+Coordinator integration: an earned cycle undergoing alternate rebuilding stays in the developing lane rather than graduating into maintenance. Its original achievement is retained. Written alternate targets cite #259 with sourceParameters null; all numerical adaptation boundaries remain explicit.
+
+Local verification: 77 Node suites and six correction tests pass; all 42 browser suites pass after fixing observable-completion waits in Settings/Train acceptance. Final targeted alternate-cycle/coordinator, curriculum and ten mobile cases pass. Baseline comparison preserves 108 normal/reduced prescriptions and 432 ordinary plans; gate/suite/offline/source audits pass. No gate area is closed.

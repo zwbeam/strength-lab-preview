@@ -696,3 +696,24 @@ Full alternate recovery cycles, movement-specific maintenance and all ten audit
 closures remain open. Runtime rc77-rebuild-load keeps 51 cached assets and the
 existing V33 namespaces. Inventory is 76 Node suites, six correction tests and
 42 browser suites; the new mobile acceptance suite has four cases at 320/390px.
+
+
+Alternate-volume follow-up (#259, partial): eligible opted-in legacy/
+bodyweightPractice methods now preserve a separate lower-rep, add-set subcycle.
+Its goal uses the existing volume endpoint capped to the starting session budget;
+one-set steps and configured clean exposures are app adaptations. Actual clean
+alternate work alone advances that subgoal. It then returns to the original
+stalled target without awarding original progress or increasing load. Readiness,
+return work, corrections and later settings cannot manufacture completed steps.
+Legacy unmarked receipts retain their interpretation; new optional prescription
+metadata is validated without changing V33 root data or storage namespaces.
+
+The 156-workout generated trajectory and 30/45/60-minute scheduled completion
+examples retain strict ceilings, independent original progression and backup
+replay. Time-budget changes after starting do not silently shrink the earned goal.
+Oversized saved curricula/low attendance, source-specific alternate methods,
+maintenance-frequency evidence, instructional verification and all ten gate areas
+remain open. See research/alternate-volume-cycle-evidence.json. Runtime rc78-
+alternate-volume retains 51 offline assets; inventory is 77 Node suites, six
+history-correction tests and 42 browser suites. Mobile stall acceptance expands
+to ten cases including resumed and 30-minute cycles.

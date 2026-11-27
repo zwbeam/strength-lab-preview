@@ -1,0 +1,95 @@
+{
+  "date": "2026-11-27",
+  "baseCommit": "5ce23db5ed2d96fcfb6d99431e58611152b20632",
+  "status": "partial",
+  "source": {
+    "id": 259,
+    "file": "sources-08.json",
+    "title": "How to adjust when you are unable to progress beyond certain numbers in a program - Nerd Math",
+    "url": "https://www.youtube.com/watch?v=NMi4N3axtg4",
+    "sha256": "0fc000bc9aece7aa3ace499770bb3bb1e846c7554ecfc9167268bdb517759553",
+    "quotes": [
+      "then you would start a new volume cycle",
+      "we just made the volume cycle that existed longer we didn't throw it away",
+      "we went and we inserted either a sixty percent or an eighty percent strategy in the middle there and then we came back and picked it up again"
+    ],
+    "timestamps": null
+  },
+  "sourceScope": "The lower-rep alternate volume cycle and eventual return to the original plan follow #259. Its worked 4x5/5x4/10x4 examples do not prescribe universal goals or recovery doses.",
+  "appAdaptations": [
+    "Uses the existing explicitly selected redistribute stall strategy; no new setting, automatic load change or universal recovery protocol.",
+    "Only legacy and bodyweightPractice fixed-rep volume methods participate. Density, timed, EMOM, continuous, paired-rep, row-wave, heavy/light and complex methods retain their own behavior.",
+    "The original method/stage/weight remain intact. The alternate goal is the lesser of the original cycle endpoint volume (whole-set ceiling) and the sets fitting alone inside the starting selected time budget, including 8-minute preparation, 10-minute cooldown and existing planning pace/rest. One-set steps use the configured clean exposure gate.",
+    "Once clean alternate work begins, its goal and starting budget are replayed from written snapshots; later settings cannot manufacture completed steps or lower its goal. A later shorter budget can legitimately require a longer occasional session or explicit load review.",
+    "Readiness and return work do not clear an owed alternate strategy or advance its steps. Actual clean target work alone advances the alternate cycle. Completion returns to the stalled original target; it awards no original-cycle, load or prerequisite progress.",
+    "Legacy snapshots without the new marker keep the one-exposure rebuild interpretation. V33 root fields, namespaces and stored old work remain unchanged; optional prescription.alternateVolume metadata receives validation.",
+    "Unmanageable saved curricula and very low attendance can still create excessive return work. This bounded subcycle does not close sustainable rotation or establish movement-specific maintenance frequency.",
+    "Written alternate prescriptions cite #259 without claiming source numerical parameters. The coordinator keeps active/pending written alternate work in the developing lane and out of earned-maintenance classification, while preserving the original earned cycle in movement state."
+  ],
+  "tests": [
+    "tests/alternate-volume-cycle.js",
+    "tests/stall-recovery.js",
+    "tests/browser-stall-recovery.cjs"
+  ],
+  "results": {
+    "actualGeneratedLongitudinalWorkouts": 156,
+    "longitudinalEndDate": "2027-01-30",
+    "alternateReceipts": 6,
+    "originalPressReceipts": 28,
+    "returnReceipts": 10,
+    "scheduledCompletionExamples": [
+      {
+        "minutes": 30,
+        "daysPerWeek": 5,
+        "alternateReceipts": 4,
+        "workouts": 12
+      },
+      {
+        "minutes": 45,
+        "daysPerWeek": 3,
+        "alternateReceipts": 6,
+        "workouts": 18
+      },
+      {
+        "minutes": 60,
+        "daysPerWeek": 2,
+        "alternateReceipts": 6,
+        "workouts": 16
+      }
+    ],
+    "lowCapacityDiagnostic": {
+      "workouts": 48,
+      "minutes": 30,
+      "daysPerWeek": 2,
+      "alternatePressReceipts": 4,
+      "returnPressReceipts": 4,
+      "originalPressReceipts": 3,
+      "alternatePending": false,
+      "originalStage": 0,
+      "endingDate": "2026-06-22"
+    }
+  },
+  "limits": [
+    "App exposure gates, set steps, whole-unit branches and budget-capped goals are not Wildman numerical mandates.",
+    "Does not certify physical technique or Android acceptance.",
+    "Full alternate recovery across independent source methods and movement-specific maintenance remain open. All ten gate areas remain unresolved.",
+    "A 48-workout diagnostic of the broad saved ABC curriculum at 30 minutes and two days/week completed four alternate press receipts but also required four press returns and produced only three original press receipts; original stage remained zero. The alternate goal completed, but sustainable original progression is not established for that overloaded combination."
+  ],
+  "testingNote": "The Settings/Train mobile test now waits for observable preference values and workout creation after tap; immediate assertions had raced delayed synthesized clicks. All existing assertions remain.",
+  "verification": {
+    "nodeSuites": 77,
+    "historyCorrectionTests": 6,
+    "browserSuites": 42,
+    "focusedMobileCases": 10,
+    "unchangedBaselinePrescriptions": 108,
+    "unchangedBaselinePlans": 432,
+    "offlineAssets": 51,
+    "targetedFinalSuites": [
+      "alternate-volume-cycle",
+      "curriculum-strategy",
+      "preparation-engine",
+      "browser-stall-recovery"
+    ],
+    "releaseGateUnresolvedAreas": 10
+  }
+}

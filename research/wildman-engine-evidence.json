@@ -248,6 +248,24 @@
           "historyCorrectionTests": 6,
           "browserSuites": 42
         }
+      },
+      "alternateVolumeCycleFollowUp": {
+        "status": "partial",
+        "sourceIds": [
+          259
+        ],
+        "claim": "Eligible opted-in fixed-rep volume methods preserve an independent actual-only alternate cycle, bounded by starting session capacity, before returning to the original target.",
+        "enginePaths": [
+          "engine.js",
+          "app.js"
+        ],
+        "tests": [
+          "tests/alternate-volume-cycle.js",
+          "tests/stall-recovery.js",
+          "tests/browser-stall-recovery.cjs"
+        ],
+        "evidence": "research/alternate-volume-cycle-evidence.json",
+        "adaptation": "Lower-rep/add-set principle from #259; eligibility, actual-completion branch, original-endpoint and initial-budget goal cap, one-set steps and exposure gates are app decisions. Independent source methods and all ten gate closures remain open."
       }
     },
     "Movement-specific progression": {
@@ -468,6 +486,24 @@
           "historyCorrectionTests": 6,
           "browserSuites": 42
         }
+      },
+      "alternateVolumeCycleFollowUp": {
+        "status": "partial",
+        "sourceIds": [
+          259
+        ],
+        "claim": "Eligible opted-in fixed-rep volume methods preserve an independent actual-only alternate cycle, bounded by starting session capacity, before returning to the original target.",
+        "enginePaths": [
+          "engine.js",
+          "app.js"
+        ],
+        "tests": [
+          "tests/alternate-volume-cycle.js",
+          "tests/stall-recovery.js",
+          "tests/browser-stall-recovery.cjs"
+        ],
+        "evidence": "research/alternate-volume-cycle-evidence.json",
+        "adaptation": "Lower-rep/add-set principle from #259; eligibility, actual-completion branch, original-endpoint and initial-budget goal cap, one-set steps and exposure gates are app decisions. Independent source methods and all ten gate closures remain open."
       }
     },
     "Warmup philosophy": {
@@ -989,6 +1025,24 @@
           "historyCorrectionTests": 6,
           "browserSuites": 42
         }
+      },
+      "alternateVolumeCycleFollowUp": {
+        "status": "partial",
+        "sourceIds": [
+          259
+        ],
+        "claim": "Eligible opted-in fixed-rep volume methods preserve an independent actual-only alternate cycle, bounded by starting session capacity, before returning to the original target.",
+        "enginePaths": [
+          "engine.js",
+          "app.js"
+        ],
+        "tests": [
+          "tests/alternate-volume-cycle.js",
+          "tests/stall-recovery.js",
+          "tests/browser-stall-recovery.cjs"
+        ],
+        "evidence": "research/alternate-volume-cycle-evidence.json",
+        "adaptation": "Lower-rep/add-set principle from #259; eligibility, actual-completion branch, original-endpoint and initial-budget goal cap, one-set steps and exposure gates are app decisions. Independent source methods and all ten gate closures remain open."
       }
     },
     "Equipment and real-world constraints": {
@@ -1187,6 +1241,24 @@
           "historyCorrectionTests": 6,
           "browserSuites": 42
         }
+      },
+      "alternateVolumeCycleFollowUp": {
+        "status": "partial",
+        "sourceIds": [
+          259
+        ],
+        "claim": "Eligible opted-in fixed-rep volume methods preserve an independent actual-only alternate cycle, bounded by starting session capacity, before returning to the original target.",
+        "enginePaths": [
+          "engine.js",
+          "app.js"
+        ],
+        "tests": [
+          "tests/alternate-volume-cycle.js",
+          "tests/stall-recovery.js",
+          "tests/browser-stall-recovery.cjs"
+        ],
+        "evidence": "research/alternate-volume-cycle-evidence.json",
+        "adaptation": "Lower-rep/add-set principle from #259; eligibility, actual-completion branch, original-endpoint and initial-budget goal cap, one-set steps and exposure gates are app decisions. Independent source methods and all ten gate closures remain open."
       }
     },
     "Source-specific methods": {
@@ -1379,6 +1451,24 @@
           "historyCorrectionTests": 6,
           "browserSuites": 42
         }
+      },
+      "alternateVolumeCycleFollowUp": {
+        "status": "partial",
+        "sourceIds": [
+          259
+        ],
+        "claim": "Eligible opted-in fixed-rep volume methods preserve an independent actual-only alternate cycle, bounded by starting session capacity, before returning to the original target.",
+        "enginePaths": [
+          "engine.js",
+          "app.js"
+        ],
+        "tests": [
+          "tests/alternate-volume-cycle.js",
+          "tests/stall-recovery.js",
+          "tests/browser-stall-recovery.cjs"
+        ],
+        "evidence": "research/alternate-volume-cycle-evidence.json",
+        "adaptation": "Lower-rep/add-set principle from #259; eligibility, actual-completion branch, original-endpoint and initial-budget goal cap, one-set steps and exposure gates are app decisions. Independent source methods and all ten gate closures remain open."
       }
     },
     "Movement instruction": {
