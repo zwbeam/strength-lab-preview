@@ -402,7 +402,9 @@
           "tests/stall-recovery.js",
           "tests/browser-stall-recovery.cjs"
         ],
-        "adaptation": "App handling of existing explicit difficulty feedback, not a newly sourced zero-set prescription. Ordinary skips and empty targets remain distinct; no gate closure."
+        "adaptation": "App handling of existing explicit difficulty feedback, not a newly sourced zero-set prescription. Ordinary skips and empty targets remain distinct; no gate closure.",
+        "implementationCommit": "78ec9c8efca2c8063de40fe41f8c0c104d28daa7",
+        "verification": "All 75 Node suites, six correction tests and 41 browser suites passed locally. Source audits, suite registration, gate validation and 51 offline assets pass. All ten areas remain unresolved."
       }
     },
     "Warmup philosophy": {
@@ -882,7 +884,9 @@
           "tests/stall-recovery.js",
           "tests/browser-stall-recovery.cjs"
         ],
-        "adaptation": "App handling of existing explicit difficulty feedback, not a newly sourced zero-set prescription. Ordinary skips and empty targets remain distinct; no gate closure."
+        "adaptation": "App handling of existing explicit difficulty feedback, not a newly sourced zero-set prescription. Ordinary skips and empty targets remain distinct; no gate closure.",
+        "implementationCommit": "78ec9c8efca2c8063de40fe41f8c0c104d28daa7",
+        "verification": "All 75 Node suites, six correction tests and 41 browser suites passed locally. Source audits, suite registration, gate validation and 51 offline assets pass. All ten areas remain unresolved."
       }
     },
     "Equipment and real-world constraints": {
@@ -1192,7 +1196,9 @@
           "tests/stall-recovery.js",
           "tests/browser-stall-recovery.cjs"
         ],
-        "adaptation": "App handling of existing explicit difficulty feedback, not a newly sourced zero-set prescription. Ordinary skips and empty targets remain distinct; no gate closure."
+        "adaptation": "App handling of existing explicit difficulty feedback, not a newly sourced zero-set prescription. Ordinary skips and empty targets remain distinct; no gate closure.",
+        "implementationCommit": "78ec9c8efca2c8063de40fe41f8c0c104d28daa7",
+        "verification": "All 75 Node suites, six correction tests and 41 browser suites passed locally. Source audits, suite registration, gate validation and 51 offline assets pass. All ten areas remain unresolved."
       }
     },
     "Movement instruction": {

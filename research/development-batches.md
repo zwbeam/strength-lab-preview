@@ -2198,3 +2198,5 @@ alternate volume subcycle and all ten gate closures remain open. Read
 research/zero-set-feedback-evidence.json. Runtime rc75-zero-feedback retains 51
 cached assets; inventory stays 75 Node suites, six correction tests and 41 browser
 suites. The focused mobile recovery suite now includes six cases at 320/390px.
+
+Zero-set feedback implementation checkpoint: `78ec9c8efca2c8063de40fe41f8c0c104d28daa7`. All 75 Node suites, six correction tests and 41 browser suites passed locally. Ordinary skips remain distinct from explicit difficulty; the full alternate volume subcycle and all ten gate areas remain open.

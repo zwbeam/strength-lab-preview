@@ -24,5 +24,6 @@
   ],
   "scope": "Only the existing opt-in untimed rep-redistribution branch. Other recovery methods and failure counters are unchanged.",
   "compatibility": "Exact 8b570b6 comparison preserves 108 ordinary/reduced prescriptions and 432 generated strength plans.",
-  "verification": "All 75 Node suites, six correction tests and 41 browser suites passed locally. Source audits, suite registration, gate checks, syntax, diff checks and all 51 offline assets pass. Exact-head CI and live DEV verification follow push."
+  "verification": "All 75 Node suites, six correction tests and 41 browser suites passed locally. Source audits, suite registration, gate checks, syntax, diff checks and all 51 offline assets pass. Exact-head CI and live DEV verification follow push.",
+  "implementationCommit": "78ec9c8efca2c8063de40fe41f8c0c104d28daa7"
 }
