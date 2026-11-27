@@ -2164,3 +2164,20 @@ the target. A paired-swing save timeout passed an independent unchanged rerun;
 no save assertion or runtime behavior was weakened.
 
 Primary-attendance implementation checkpoint: `c6551a1042eb0fe2a00ac26a188ecfc152864e29`. Local verification passed 74 Node suites, six correction tests and 40 browser suites across the broad run and final focused follow-ups. All ten gate areas remain unresolved.
+
+
+Stall-recovery source follow-up: #259 distinguishes failed/unfinished work from
+completed difficult work in its 60% versus 80% rep examples. The existing opt-in
+redistribution strategy now uses actual set/rep completion for that branch; the
+Hard label alone no longer forces 60%. New tests retain whole-set volume rounding,
+independent method histories, wave heavy-work caps, correction/undo and zero
+advancement for rebuild. The two-attempt trigger, completion-to-feedback mapping
+and rounding remain app adaptations. The full temporary alternate volume subcycle
+in #259 is still not implemented; all ten gate rows remain unresolved. No working
+load, setting, stored history, V33 key or schema changes. Read
+research/stall-recovery-evidence.json. Runtime rc74-stall-recovery keeps 51 cached
+assets; inventory is 75 Node suites, six correction tests and 41 browser suites.
+
+Recovery branch selection also uses current method/load/track/reset-scoped actuals. Another method’s latest work cannot change that branch. Separate failing regressions and mobile imported mixed-method histories verify both directions.
+
+Final compatibility: row-wave retains joint paired-track failure evidence, while heavy/light waves retain independent track failures. All 75 Node suites, six correction tests and 41 browser suites passed across the broad run and final focused follow-ups. The last joint-track change passes the complete row-wave suite and focused recovery regressions.

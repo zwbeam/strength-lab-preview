@@ -620,3 +620,16 @@ unresolved; automatic sustainable maintenance frequencies and source-specific
 methods still require evidence. Runtime rc73-primary-attendance keeps 51 cached
 assets. Suite inventory remains 74 Node JS, six correction tests and 40 browser
 suites. See research/primary-attendance-evidence.json.
+
+
+Stall-recovery source follow-up: #259 distinguishes failed/unfinished work from
+completed difficult work in its 60% versus 80% rep examples. The existing opt-in
+redistribution strategy now uses actual set/rep completion for that branch; the
+Hard label alone no longer forces 60%. New tests retain whole-set volume rounding,
+independent method histories, wave heavy-work caps, correction/undo and zero
+advancement for rebuild. The two-attempt trigger, completion-to-feedback mapping
+and rounding remain app adaptations. The full temporary alternate volume subcycle
+in #259 is still not implemented; all ten gate rows remain unresolved. No working
+load, setting, stored history, V33 key or schema changes. Read
+research/stall-recovery-evidence.json. Runtime rc74-stall-recovery keeps 51 cached
+assets; inventory is 75 Node suites, six correction tests and 41 browser suites.

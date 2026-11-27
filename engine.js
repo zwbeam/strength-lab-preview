@@ -483,10 +483,10 @@ function prescription(s,id,opts={}){
  else if(st.fail>=2){
   mode='rebuild';
   if(policy.config.stallStrategy==='redistribute'&&!policy.timed&&!policy.roundSeconds&&!policy.continuous&&reps>=3){
-   const failed=records(s,id,opts).filter(x=>x.actualSets>0).at(-1);
-   const incomplete=failed&&(failed.actualSets<failed.targetSets||failed.actualReps<failed.targetReps||failed.quality==='hard');
+   const failed=recordsAfterLoadReset(s,id,opts).history.filter(x=>(x.policyKey||'legacy-v1')===policy.key&&(policy.profile==='rowWave'||(x.track||'base')===st.track)&&Number(x.prescription?.weight??x.weight)===st.weight&&x.actualSets>0).at(-1);
+   const incomplete=failed&&(failed.actualSets<failed.targetSets||failed.actualReps<failed.targetReps);
    const factor=incomplete?.6:.8;
-   reps=Math.max(1,Math.floor(st.reps*factor));sets=Math.ceil(st.sets*st.reps/reps);reason='Stall alternative: fewer reps per set, redistributed volume (#259). Fraction and rounding are app defaults; never rush the work.';
+   reps=Math.max(1,Math.floor(st.reps*factor));sets=Math.ceil(st.sets*st.reps/reps);reason='Stall alternative: fewer reps per set, redistributed volume (#259). The 60% / 80% examples are source context; mapping actual completion to a branch and whole-unit rounding are app adaptations. Never rush the work.';
   }else{if(sets<=1)reps=policy.durationScope==='total'?Math.max(30,Math.floor(reps*.7/30)*30):Math.max(1,Math.floor(reps*.7));sets=Math.max(1,sets-1);reason='Repeated difficulty: reduce work and rebuild clean technique (app default).';}
  }
  else if(mode==='milestone')reason='Cycle endpoint reached. Maintain, choose an available load, or select the supported next cycle explicitly.';

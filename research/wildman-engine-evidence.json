@@ -367,6 +367,24 @@
         "adaptation": "Application evidence/replay safeguards. No new source percentage, cycle method, physical attestation or gate closure.",
         "verification": "All 74 Node suites, six correction tests and 40 browser suites passed across the broad run and final focused/compatibility follow-ups. Original physical-success and unfinished-return assertions remain covered. Both source audits, suite registration, syntax, 51 offline assets and gate checks pass. Exact-head CI/live DEV verification follow push. All ten areas remain unresolved.",
         "implementationCommit": "beb8f065e3fcc0ea909ce7423f0783e35a7c69af"
+      },
+      "stallRecoveryFollowUp": {
+        "date": "2026-11-27",
+        "status": "partial",
+        "sourceIds": [
+          259
+        ],
+        "evidence": "research/stall-recovery-evidence.json",
+        "enginePaths": [
+          "engine.js"
+        ],
+        "tests": [
+          "tests/stall-recovery.js",
+          "tests/browser-stall-recovery.cjs",
+          "tests/paired-swing-reps.js",
+          "tests/wave-replay.js"
+        ],
+        "adaptation": "Source examples distinguish unfinished from completed difficult work; actual-completion mapping, trigger and rounding are app choices. Full alternate volume subcycle remains open."
       }
     },
     "Warmup philosophy": {
@@ -811,6 +829,24 @@
         "adaptation": "Application evidence/replay safeguards. No new source percentage, cycle method, physical attestation or gate closure.",
         "verification": "All 74 Node suites, six correction tests and 40 browser suites passed across the broad run and final focused/compatibility follow-ups. Original physical-success and unfinished-return assertions remain covered. Both source audits, suite registration, syntax, 51 offline assets and gate checks pass. Exact-head CI/live DEV verification follow push. All ten areas remain unresolved.",
         "implementationCommit": "beb8f065e3fcc0ea909ce7423f0783e35a7c69af"
+      },
+      "stallRecoveryFollowUp": {
+        "date": "2026-11-27",
+        "status": "partial",
+        "sourceIds": [
+          259
+        ],
+        "evidence": "research/stall-recovery-evidence.json",
+        "enginePaths": [
+          "engine.js"
+        ],
+        "tests": [
+          "tests/stall-recovery.js",
+          "tests/browser-stall-recovery.cjs",
+          "tests/paired-swing-reps.js",
+          "tests/wave-replay.js"
+        ],
+        "adaptation": "Source examples distinguish unfinished from completed difficult work; actual-completion mapping, trigger and rounding are app choices. Full alternate volume subcycle remains open."
       }
     },
     "Equipment and real-world constraints": {
@@ -1085,6 +1121,24 @@
         "adaptation": "Application evidence/replay safeguards. No new source percentage, cycle method, physical attestation or gate closure.",
         "verification": "All 74 Node suites, six correction tests and 40 browser suites passed across the broad run and final focused/compatibility follow-ups. Original physical-success and unfinished-return assertions remain covered. Both source audits, suite registration, syntax, 51 offline assets and gate checks pass. Exact-head CI/live DEV verification follow push. All ten areas remain unresolved.",
         "implementationCommit": "beb8f065e3fcc0ea909ce7423f0783e35a7c69af"
+      },
+      "stallRecoveryFollowUp": {
+        "date": "2026-11-27",
+        "status": "partial",
+        "sourceIds": [
+          259
+        ],
+        "evidence": "research/stall-recovery-evidence.json",
+        "enginePaths": [
+          "engine.js"
+        ],
+        "tests": [
+          "tests/stall-recovery.js",
+          "tests/browser-stall-recovery.cjs",
+          "tests/paired-swing-reps.js",
+          "tests/wave-replay.js"
+        ],
+        "adaptation": "Source examples distinguish unfinished from completed difficult work; actual-completion mapping, trigger and rounding are app choices. Full alternate volume subcycle remains open."
       }
     },
     "Movement instruction": {

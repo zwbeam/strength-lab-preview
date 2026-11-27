@@ -1,0 +1,45 @@
+{
+  "date": "2026-11-27",
+  "baseCommit": "d17d5f506057ea864bb66fd0e8f548a0f2990168",
+  "status": "partial",
+  "source": {
+    "id": 259,
+    "url": "https://www.youtube.com/watch?v=NMi4N3axtg4",
+    "sha256": "0fc000bc9aece7aa3ace499770bb3bb1e846c7554ecfc9167268bdb517759553",
+    "quotes": [
+      "if you actually did fail i would go to sets of three",
+      "if you finished it but it was ugly instead of failure then you probably go to the 80 percent"
+    ],
+    "timestamps": null
+  },
+  "sourceFacts": [
+    "The four-by-five example uses seven-by-three after failure and five-by-four after completed ugly work. A temporary alternate volume cycle may then return to the original goal."
+  ],
+  "appAdaptations": [
+    "Hard feedback does not by itself prove failed actual work. Under the existing opt-in redistribution strategy, unfinished actual sets/reps use the 60% branch and fully completed difficult work uses the 80% branch.",
+    "Two difficult exposures, whole-rep floor rounding, whole-set ceiling, unchanged load and no advancement for rebuild are app decisions.",
+    "The existing one-rebuild-then-return behavior is not the full source alternate volume subcycle. No universal numerical protocol or physical technique attestation is claimed.",
+    "The recovery-branch lookup uses the current method, written load, track and load-reset comparison; another method\u2019s latest actuals cannot override that evidence.",
+    "Row-wave keeps its joint paired-track failure evidence; heavy/light wave failures remain track-specific. Retained written-target history is tested without claiming the coordinator generated that sequence."
+  ],
+  "tests": [
+    "tests/stall-recovery.js",
+    "tests/browser-stall-recovery.cjs"
+  ],
+  "limits": [
+    "No new setting, history rewrite, storage migration or automatic load increase.",
+    "Timed/continuous/interval methods and independent wave caps retain their existing handling.",
+    "All ten gate areas remain unresolved."
+  ],
+  "regressions": [
+    "Completed Hard actuals previously selected 60% instead of the 80% example branch.",
+    "Newer actuals from a different method could select the recovery branch despite not belonging to its progression history."
+  ],
+  "coverage": [
+    "42 loaded/bodyweight cases at 30/45/60 minutes, actual partial/full work, immutable planning and backup replay.",
+    "Conflicting method histories in both directions; correction/undo and clean rebuild without progression.",
+    "Four real mobile import/offline-save flows at 320/390px retain original history and prescription snapshots.",
+    "Exact d17d5f5 baseline comparison preserves 108 ordinary/reduced prescriptions and 432 generated strength plans without stall difficulty."
+  ],
+  "verification": "75 Node suites, six correction tests and 41 browser suites passed across the broad run and final focused follow-ups. The final joint-track adjustment passes the complete row-wave suite and focused recovery regressions. Source audits, gate validation, suite registration, syntax, diff checks and all 51 offline assets pass. Exact-head CI/live DEV checks follow push."
+}
