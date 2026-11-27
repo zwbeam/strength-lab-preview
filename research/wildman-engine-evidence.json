@@ -241,7 +241,13 @@
           "tests/rebuild-load-selection.js",
           "tests/browser-rebuild-load-selection.cjs"
         ],
-        "adaptation": "Explicit user-owned lighter baseline after existing repeated-difficulty criteria, with a fresh comparison and stable receipt/day boundary. No new source percentage or gate closure."
+        "adaptation": "Explicit user-owned lighter baseline after existing repeated-difficulty criteria, with a fresh comparison and stable receipt/day boundary. No new source percentage or gate closure.",
+        "implementationCommit": "ad45beb5706b3746bb44766cead4905ab4000cdf",
+        "verification": {
+          "nodeSuites": 76,
+          "historyCorrectionTests": 6,
+          "browserSuites": 42
+        }
       }
     },
     "Movement-specific progression": {
@@ -455,7 +461,13 @@
           "tests/rebuild-load-selection.js",
           "tests/browser-rebuild-load-selection.cjs"
         ],
-        "adaptation": "Explicit user-owned lighter baseline after existing repeated-difficulty criteria, with a fresh comparison and stable receipt/day boundary. No new source percentage or gate closure."
+        "adaptation": "Explicit user-owned lighter baseline after existing repeated-difficulty criteria, with a fresh comparison and stable receipt/day boundary. No new source percentage or gate closure.",
+        "implementationCommit": "ad45beb5706b3746bb44766cead4905ab4000cdf",
+        "verification": {
+          "nodeSuites": 76,
+          "historyCorrectionTests": 6,
+          "browserSuites": 42
+        }
       }
     },
     "Warmup philosophy": {
@@ -970,7 +982,13 @@
           "tests/rebuild-load-selection.js",
           "tests/browser-rebuild-load-selection.cjs"
         ],
-        "adaptation": "Explicit user-owned lighter baseline after existing repeated-difficulty criteria, with a fresh comparison and stable receipt/day boundary. No new source percentage or gate closure."
+        "adaptation": "Explicit user-owned lighter baseline after existing repeated-difficulty criteria, with a fresh comparison and stable receipt/day boundary. No new source percentage or gate closure.",
+        "implementationCommit": "ad45beb5706b3746bb44766cead4905ab4000cdf",
+        "verification": {
+          "nodeSuites": 76,
+          "historyCorrectionTests": 6,
+          "browserSuites": 42
+        }
       }
     },
     "Equipment and real-world constraints": {
@@ -1162,7 +1180,13 @@
           "tests/rebuild-load-selection.js",
           "tests/browser-rebuild-load-selection.cjs"
         ],
-        "adaptation": "Explicit user-owned lighter baseline after existing repeated-difficulty criteria, with a fresh comparison and stable receipt/day boundary. No new source percentage or gate closure."
+        "adaptation": "Explicit user-owned lighter baseline after existing repeated-difficulty criteria, with a fresh comparison and stable receipt/day boundary. No new source percentage or gate closure.",
+        "implementationCommit": "ad45beb5706b3746bb44766cead4905ab4000cdf",
+        "verification": {
+          "nodeSuites": 76,
+          "historyCorrectionTests": 6,
+          "browserSuites": 42
+        }
       }
     },
     "Source-specific methods": {
@@ -1348,7 +1372,13 @@
           "tests/rebuild-load-selection.js",
           "tests/browser-rebuild-load-selection.cjs"
         ],
-        "adaptation": "Explicit user-owned lighter baseline after existing repeated-difficulty criteria, with a fresh comparison and stable receipt/day boundary. No new source percentage or gate closure."
+        "adaptation": "Explicit user-owned lighter baseline after existing repeated-difficulty criteria, with a fresh comparison and stable receipt/day boundary. No new source percentage or gate closure.",
+        "implementationCommit": "ad45beb5706b3746bb44766cead4905ab4000cdf",
+        "verification": {
+          "nodeSuites": 76,
+          "historyCorrectionTests": 6,
+          "browserSuites": 42
+        }
       }
     },
     "Movement instruction": {
