@@ -335,3 +335,28 @@ difficulty, restore qualification or certify a new load review. Hard/unfinished
 work still counts, and the source-specific track rules remain. No new time-fit
 plans are generated: the selected ceiling and full-dose deferral remain in force.
 This preserves old written history without mistaking role credit for actual failure.
+
+
+Lighter-load rebuilding review: repeated current-load difficulty now has an
+explicit owned-lighter-load action on Train and Log. It starts a fresh comparison
+without advancing, changing methods, enabling skills or rewriting old actuals.
+Current pain holds, active drafts, writer locks, matched-pair inventories and
+bodyweight/heavy-light exclusions remain. With no lighter owned load, advice
+explains the constraint. Settings reflects the same chosen baseline.
+
+The action writes an optional V33 loadComparisonStarts boundary (review day and
+known receipt identities) plus the existing load fields. This is not a migration:
+old data is untouched. The boundary prevents history-date edits, prior earned
+cycles and already-known future receipts from restoring an old heavier baseline
+or awarding fresh endpoint/return evidence. The existing transaction journal and
+backup validation protect the operation. Source #259 supplies general alternate-
+strategy context; lighter-load review and its guards are app adaptations, not a
+universal numerical prescription. Read research/rebuild-load-review-evidence.json.
+
+A synthetic 120-workout history changes between 30/45/60 minutes, includes an
+extended absence, earns three explicit promotions and makes one later explicit
+lighter-load review after actual difficulty. It preserves backups and old work.
+Full alternate recovery cycles, movement-specific maintenance and all ten audit
+closures remain open. Runtime rc77-rebuild-load keeps 51 cached assets and the
+existing V33 namespaces. Inventory is 76 Node suites, six correction tests and
+42 browser suites; the new mobile acceptance suite has four cases at 320/390px.

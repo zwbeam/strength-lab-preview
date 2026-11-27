@@ -180,6 +180,7 @@ jobs:
           node tests/instruction-coverage-regression.js
           node tests/long-break-regression.js
           node tests/reentry-load-selection.js
+          node tests/rebuild-load-selection.js
           node tests/provenance-regression.js
           node tests/recovery-regression.js
           node tests/skill-gates-regression.js
@@ -316,6 +317,7 @@ jobs:
           node tests/browser-return-continuity.cjs
           node tests/browser-reentry-load-review.cjs
           node tests/browser-reentry-load-selection.cjs
+          node tests/browser-rebuild-load-selection.cjs
           node tests/browser-emphasis-evidence.cjs
           node tests/browser-station-light.cjs
           node tests/browser-review-return.cjs

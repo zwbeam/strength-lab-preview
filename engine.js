@@ -281,10 +281,14 @@ function replayRowWave(s,id,policy,opts){
 }
 // One dated reset boundary for progression and prerequisite evidence; history stays intact.
 function recordsAfterLoadReset(s,id,opts={}){
- const all=records(s,id),resetAfter=s.loadResetAfter?.[id],boundary=resetAfter?all.findIndex(x=>x._key===resetAfter):-1;
+ const all=records(s,id),resetAfter=s.loadResetAfter?.[id],boundary=resetAfter?all.findIndex(x=>x._key===resetAfter):-1,start=s.loadComparisonStarts?.[id],through=evidenceDay(opts);
+ // A conservative rebuild choice excludes receipts already known at selection,
+ // even if a later correction moves their dates across the old record anchor.
+ const prior=start?new Set(start.priorKeys):null,startDay=start?calendarDay(start.from):null,eligible=x=>(!start||!prior.has(x._key)&&calendarDay(x.date)>=startDay)&&calendarDay(x.date)<=through;
+ if(start&&resetAfter===start.anchor)return{futureBoundary:false,history:all.filter(eligible)};
  if(resetAfter&&resetAfter!=='__start__'&&boundary<0)throw Error('Missing load reset anchor: restore or repair training history before progressing');
- const through=evidenceDay(opts),futureBoundary=boundary>=0&&calendarDay(all[boundary].date)>through;
- return{futureBoundary,history:(!futureBoundary&&boundary>=0?all.slice(boundary+1):all).filter(x=>calendarDay(x.date)<=through)};
+ const futureBoundary=boundary>=0&&calendarDay(all[boundary].date)>through;
+ return{futureBoundary,history:(!futureBoundary&&boundary>=0?all.slice(boundary+1):all).filter(eligible)};
 }
 function replay(s,id,policy,track='base',opts={}){
  if(policy.profile==='rowWave')return replayRowWave(s,id,policy,opts);
@@ -354,13 +358,14 @@ function replayWave(s,id,policy,opts){
 }
 function stateFor(s,id,opts={}){
  const policy=policyFor(id,s),all=records(s,id),through=evidenceDay(opts),h=through===Infinity?all:all.filter(x=>calendarDay(x.date)<=through),resolvedKeys=s.painResolutions?.[id]?.painKeys||[];
+ const start=s.loadComparisonStarts?.[id],priorKnown=start?new Set(start.priorKeys):null,startDay=start?calendarDay(start.from):null,mayAcknowledge=x=>!start||!priorKnown.has(x._key)||calendarDay(x.date)<=startDay;
  const reviewedIndex=h.reduce((last,x,index)=>resolvedKeys.includes(x._key)?index:last,-1),priorReturnKeys=s.painResolutions?.[id]?.priorReturnKeys,priorReturns=new Set(priorReturnKeys||[]);
  // Known unresolved pain remains a hold even if its record date is in the future.
  const hold=all.some(x=>(x.pain||x.quality==='pain')&&!resolvedKeys.includes(x._key))?'Pain reported: stop and review this movement.':'';
  // A new review requires new return work; retain legacy interpretation when its snapshot is absent.
- const reviewRecovery=(priorReturnKeys!==undefined||reviewedIndex>=0||resolvedKeys.some(key=>!all.some(x=>x._key===key)))&&!h.slice(reviewedIndex+1).some(x=>!priorReturns.has(x._key)&&x.performed&&['reentry','recovery'].includes(x.mode)&&deliveredReduced(x));
+ const reviewRecovery=(priorReturnKeys!==undefined||reviewedIndex>=0||resolvedKeys.some(key=>!all.some(x=>x._key===key)))&&!h.slice(reviewedIndex+1).some(x=>mayAcknowledge(x)&&!priorReturns.has(x._key)&&x.performed&&['reentry','recovery'].includes(x.mode)&&deliveredReduced(x));
  // A physical touch does not finish a prescribed return; later valid ordinary work remains valid.
- let reentryPending=false;for(const x of h){if(x.mode==='reentry'&&!setupOnly(x))reentryPending=!deliveredReduced(x);else if(reentryPending&&(deliveredReduced(x)||progressionCredit(x)&&x.actualSets>0&&!x.setupChanged))reentryPending=false;}
+ let reentryPending=false;for(const x of h){if(!mayAcknowledge(x))continue;if(x.mode==='reentry'&&!setupOnly(x))reentryPending=!deliveredReduced(x);else if(reentryPending&&(deliveredReduced(x)||progressionCredit(x)&&x.actualSets>0&&!x.setupChanged))reentryPending=false;}
  let result=policy.profile==='wave'?replayWave(s,id,policy,opts):replay(s,id,policy,'base',opts),track=result.track||'base';
  return{...result,hold,reviewRecovery,reentryPending,policy,track,allExposures:h.length};
 }
@@ -535,7 +540,8 @@ function advancementReview(s,id,opts={}){
  if(st.reviewRecovery)return{eligible:false,reason:'Record the reduced return after pain review before considering progression.'};
  if(opts.now!==undefined||opts.evidenceThrough!==undefined){const rx=prescription(s,id,{...opts,now:opts.now??opts.evidenceThrough});if(rx.sets<1||rx.mode!=='milestone')return{eligible:false,reason:rx.reason};}
  const sameCycle=x=>(x.policyKey||'legacy-v1')===st.policy.key&&Number(x.weight)===st.weight&&(x.track||'base')===st.track;
- const last=records(s,id,opts).filter(x=>!(sameCycle(x)&&deliveredLight(x)&&!x.earnedMaintenance)).at(-1);
+ const reviewHistory=s.loadComparisonStarts?.[id]?recordsAfterLoadReset(s,id,opts).history:records(s,id,opts);
+ const last=reviewHistory.filter(x=>!(sameCycle(x)&&deliveredLight(x)&&!x.earnedMaintenance)).at(-1);
  if(!last||!sameCycle(last)||!progressionCredit(last)||['recovery','reentry','rebuild','deload','time-fit','light'].includes(last.mode)||last.setupChanged||last.targetSets!==st.sets||last.targetReps!==st.reps||!(Math.abs(Number(last.rest)-st.rest)<1))return{eligible:false,reason:'The cycle remains complete. Record clean full endpoint work after reduced, incomplete or changed-target practice before choosing a heavier load or density cycle.'};
  return{eligible:true,reason:'Current clean endpoint work is eligible for explicit progression review.'};
 }
@@ -573,6 +579,30 @@ function setInitialLoad(s,id,weight){
  return {...s,weights:{...s.weights,[id]:weight},nextWeights:{...s.nextWeights,[id]:weight}};
 }
 function replaceUnavailableLoad(s,id,weight,opts={}){const m=MOVES[id];if(!m||m.bodyweight)throw Error('A loaded movement is required');if(policyFor(id,s).profile==='wave')throw Error('Change configured wave weights instead');if(!availableWorkingLoads(s,id).includes(weight))throw Error('Replacement weight must be currently available');const current=stateFor(s,id,opts);if(availableWorkingLoads(s,id).includes(current.weight))throw Error('Current working weight is still available; use normal progression controls');return{...s,nextWeights:{...s.nextWeights,[id]:weight},loadResetAfter:{...s.loadResetAfter,[id]:records(s,id,opts).at(-1)?._key||'__start__'}};}
+// A lighter owned load is an explicit rebuilding choice, never earned progression.
+// Use the same dated comparison boundary as other load reviews; keep old actuals.
+function rebuildLoadReview(s,id,opts={}){
+ const m=MOVES[id];if(!m)throw Error('Unknown movement');
+ const unavailable=reason=>({needed:false,eligible:false,currentWeight:null,options:[],reason});
+ if(m.bodyweight)return unavailable('A loaded movement is required for working-load review');
+ if(policyFor(id,s).profile==='wave')return unavailable('Review configured heavy/light wave weights in movement configuration');
+ const st=stateFor(s,id,{...opts,now:opts.now??new Date()});
+ if(st.hold)return unavailable('Resolve the pain review before changing a working load');
+ if(!(st.weight>0))return unavailable('Choose a familiar starting load before working-load review');
+ const owned=availableWorkingLoads(s,id);
+ if(!owned.includes(st.weight))return unavailable('The current working load is unavailable; use the equipment replacement review');
+ if(st.fail<2)return unavailable('Repeated current-load difficulty is required for lighter-load review');
+ const options=owned.filter(w=>w<st.weight);
+ return{needed:true,eligible:options.length>0,currentWeight:st.weight,options,reason:options.length?'Repeated difficulty: consider a lighter familiar owned load. Selecting it starts a fresh comparison without awarding progress.':'No lighter owned load is configured. Review technique or suitable equipment before repeating difficult work.'};
+}
+function chooseRebuildLoad(s,id,weight,opts={}){
+ if(s.workoutDraft)throw Error('Finish or discard the active workout before changing its working weight');
+ opts={...opts,now:opts.now??new Date()};const review=rebuildLoadReview(s,id,opts);
+ if(!review.eligible)throw Error(review.reason);
+ if(!review.options.includes(weight))throw Error('Select an owned, lighter working load for this movement');
+ const known=records(s,id),last=records(s,id,opts).at(-1)?._key,anchor=last&&last.length<=256?last:'__start__',from=new Date(calendarDay(opts.now)*86400000).toISOString().slice(0,10);
+ return{...s,weights:{...s.weights,[id]:weight},nextWeights:{...s.nextWeights,[id]:weight},loadResetAfter:{...s.loadResetAfter,[id]:anchor},loadComparisonStarts:{...s.loadComparisonStarts,[id]:{anchor,from,priorKeys:known.map(x=>x._key)}}};
+}
 // Explicit return-load reduction starts a new progression cycle without deleting old evidence.
 // This is an application safeguard, not a source-prescribed percentage or reset rule.
 function chooseReentryLoad(s,id,weight,opts={}){
@@ -1421,10 +1451,14 @@ function validateBackup(input){
   if(!object(map))throw Error('Invalid working weights');
   for(const [id,weight] of Object.entries(map))if(!Object.hasOwn(MOVES,id)||!Number.isFinite(weight)||weight<0)throw Error('Invalid working weights');
  }
+ if(input.loadComparisonStarts!==undefined){
+  if(!object(input.loadComparisonStarts))throw Error('Invalid load comparison starts');
+  for(const [id,start] of Object.entries(input.loadComparisonStarts))if(!Object.hasOwn(MOVES,id)||MOVES[id].bodyweight||!object(start)||typeof start.anchor!=='string'||!start.anchor||start.anchor.length>256||typeof start.from!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(start.from)||!Number.isFinite(Date.parse(start.from+'T12:00:00Z'))||new Date(start.from+'T12:00:00Z').toISOString().slice(0,10)!==start.from||!Array.isArray(start.priorKeys)||start.priorKeys.some(key=>typeof key!=='string'||!key)||new Set(start.priorKeys).size!==start.priorKeys.length||start.anchor!=='__start__'&&!start.priorKeys.includes(start.anchor))throw Error('Invalid load comparison start');
+ }
  if(input.loadResetAfter!==undefined){
   if(!object(input.loadResetAfter))throw Error('Invalid load reset boundaries');
   for(const [id,key] of Object.entries(input.loadResetAfter))
-   if(!Object.hasOwn(MOVES,id)||MOVES[id].bodyweight||typeof key!=='string'||!key||key.length>256||(key!=='__start__'&&!input.sessions.some((session,index)=>session.items.some((item,itemIndex)=>item.id===id&&`${session.id||session.date+':'+index}:${itemIndex}`===key))))
+   if(!Object.hasOwn(MOVES,id)||MOVES[id].bodyweight||typeof key!=='string'||!key||key.length>256||(key!=='__start__'&&!(input.loadComparisonStarts?.[id]?.anchor===key&&input.loadComparisonStarts[id].priorKeys.includes(key))&&!input.sessions.some((session,index)=>session.items.some((item,itemIndex)=>item.id===id&&`${session.id||session.date+':'+index}:${itemIndex}`===key))))
     throw Error('Invalid load reset boundary');
  }
  const sessionIds=new Set(),draftIds=new Set();
@@ -1464,5 +1498,5 @@ function validateBackup(input){
  const workoutDraft=validateDraft(input.workoutDraft,input);
  return JSON.parse(JSON.stringify({...input,workoutDraft,nextWeights:input.nextWeights||{},defaultMinutes:input.defaultMinutes??45,deferredIds:input.deferredIds||[]}));
 }
-return{consumeLoadSelections,preparationFor,deferredBlocksAfter,primaryRecords,weeklyTrainingLimit,deloadStatus,advancementReview,readinessFor,retestRowWave,trainingEmphasis,validateTrainingEmphasis,emphasisDistribution,mobilityOnlyPlan,COMPLEX_PATHWAYS,complexityOptions,repairMissingLoadAnchor,setInitialLoad,replaceUnavailableLoad,chooseReentryLoad,availableWorkingLoads,trainingPaused,activityRecovery,validateActivity,movementCadence,MOVES,SKILLS,DAYS,BLOCKS,LOADS,PROFILE_NAMES,describeProgression,policyFor,availableProfiles,configureMovement,practiceEvidence,supportingMoves,requirementLabel,prerequisites,chooseCycle,loadOptions,selectLoad,retestPushup,validWorkingWeight,validateProgramming,validateDraft,validateBackup,records,successful,progressionCredit,stateFor,prescription,minutesFor,timeBudget,plan,completeRecord,nextRest,deferredAfter,resolvePain,movementGap,movementDemands};
+return{rebuildLoadReview,chooseRebuildLoad,consumeLoadSelections,preparationFor,deferredBlocksAfter,primaryRecords,weeklyTrainingLimit,deloadStatus,advancementReview,readinessFor,retestRowWave,trainingEmphasis,validateTrainingEmphasis,emphasisDistribution,mobilityOnlyPlan,COMPLEX_PATHWAYS,complexityOptions,repairMissingLoadAnchor,setInitialLoad,replaceUnavailableLoad,chooseReentryLoad,availableWorkingLoads,trainingPaused,activityRecovery,validateActivity,movementCadence,MOVES,SKILLS,DAYS,BLOCKS,LOADS,PROFILE_NAMES,describeProgression,policyFor,availableProfiles,configureMovement,practiceEvidence,supportingMoves,requirementLabel,prerequisites,chooseCycle,loadOptions,selectLoad,retestPushup,validWorkingWeight,validateProgramming,validateDraft,validateBackup,records,successful,progressionCredit,stateFor,prescription,minutesFor,timeBudget,plan,completeRecord,nextRest,deferredAfter,resolvePain,movementGap,movementDemands};
 });

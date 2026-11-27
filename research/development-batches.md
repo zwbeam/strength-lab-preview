@@ -2227,3 +2227,30 @@ This preserves old written history without mistaking role credit for actual fail
 Combined comparable-difficulty verification: the final engine passes all 75 Node suites and six correction tests; all 41 browser suites pass across the broad run and final ten-case focused acceptance. All ten gate areas remain unresolved.
 
 Comparable-difficulty implementation checkpoint: `64c28c28ac223e228bd7e18805687ebdfff04255`. Inferred written-load failure ownership and fulfilled time-fit neutrality are covered; full alternate recovery cycles and all ten gate closures remain open.
+
+
+Lighter-load rebuilding review: repeated current-load difficulty now has an
+explicit owned-lighter-load action on Train and Log. It starts a fresh comparison
+without advancing, changing methods, enabling skills or rewriting old actuals.
+Current pain holds, active drafts, writer locks, matched-pair inventories and
+bodyweight/heavy-light exclusions remain. With no lighter owned load, advice
+explains the constraint. Settings reflects the same chosen baseline.
+
+The action writes an optional V33 loadComparisonStarts boundary (review day and
+known receipt identities) plus the existing load fields. This is not a migration:
+old data is untouched. The boundary prevents history-date edits, prior earned
+cycles and already-known future receipts from restoring an old heavier baseline
+or awarding fresh endpoint/return evidence. The existing transaction journal and
+backup validation protect the operation. Source #259 supplies general alternate-
+strategy context; lighter-load review and its guards are app adaptations, not a
+universal numerical prescription. Read research/rebuild-load-review-evidence.json.
+
+A synthetic 120-workout history changes between 30/45/60 minutes, includes an
+extended absence, earns three explicit promotions and makes one later explicit
+lighter-load review after actual difficulty. It preserves backups and old work.
+Full alternate recovery cycles, movement-specific maintenance and all ten audit
+closures remain open. Runtime rc77-rebuild-load keeps 51 cached assets and the
+existing V33 namespaces. Inventory is 76 Node suites, six correction tests and
+42 browser suites; the new mobile acceptance suite has four cases at 320/390px.
+
+Verified locally: all 76 Node suites, six history-correction tests and all 42 browser suites pass. Source/integration audits, gate checks, suite registration and 51-asset offline integrity pass. Compatibility confirms 108 prescriptions and 432 plans unchanged for existing data. Physical technique and real Android acceptance remain unverified.

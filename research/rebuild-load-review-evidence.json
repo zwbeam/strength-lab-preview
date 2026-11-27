@@ -1,0 +1,62 @@
+{
+  "date": "2026-11-27",
+  "baseCommit": "4d0d0adde3bcd5cc3ae5fce8ec91b344407c69a2",
+  "status": "partial",
+  "source": {
+    "id": 259,
+    "file": "sources-08.json",
+    "title": "How to adjust when you are unable to progress beyond certain numbers in a program - Nerd Math",
+    "url": "https://www.youtube.com/watch?v=NMi4N3axtg4",
+    "sha256": "0fc000bc9aece7aa3ace499770bb3bb1e846c7554ecfc9167268bdb517759553",
+    "quotes": [
+      "you could jump weight which is something that requires more equipment"
+    ],
+    "timestamps": null
+  },
+  "sourceScope": "The source discusses alternatives when stuck, including rep/set changes and load-based strategies. Explicit lighter-owned-load review, the existing two-difficulty trigger and the comparison reset below are Strength Lab safeguards, not a prescribed Wildman reduction algorithm.",
+  "behavior": [
+    "After repeated current-comparison difficulty, a supported loaded movement can offer an explicit familiar lighter owned load. The app never selects or invents a load automatically.",
+    "Same/heavier/unowned loads, bodyweight and independent heavy/light configuration are excluded. Matched pairs use the correct owned per-implement inventory. No lighter owned load yields advice rather than a fictitious option.",
+    "Pain holds remain movement-wide. Load selection cannot enable a disabled family, confirm technique or grant prerequisite/progression credit. Active drafts and non-writers are protected.",
+    "The declared baseline is lowered explicitly and a new comparison begins. Historical sessions and policy definitions remain intact; actual completed new work is needed for each new exposure/stage.",
+    "Known receipt identities and the review day bound the comparison so quality/date corrections, prior cycles and already-known future work cannot restore a heavier baseline or certify fresh review/return work. Later ordinary higher-load choices retain their own anchor semantics."
+  ],
+  "storageCompatibility": {
+    "version": 33,
+    "optionalField": "loadComparisonStarts[id] = {anchor, from, priorKeys}",
+    "notes": "Only an explicit rebuild-load selection writes this optional comparison metadata alongside existing weights/nextWeights/loadResetAfter fields. Existing V33 data needs no migration; storage namespaces and historical records are unchanged. Atomic persistence and backup validation cover the new boundary."
+  },
+  "tests": [
+    "tests/rebuild-load-selection.js",
+    "tests/browser-rebuild-load-selection.cjs"
+  ],
+  "longitudinalResult": {
+    "workouts": 120,
+    "budgets": [
+      30,
+      45,
+      60
+    ],
+    "explicitEarnedPromotions": 3,
+    "laterExplicitLighterReviews": 1,
+    "extendedAbsenceDays": 21,
+    "endingDate": "2026-12-09",
+    "scope": "Synthetic actual engine-generated work, declared user review choices and reported feedback; not evidence of physical outcomes or universal maintenance frequency."
+  },
+  "limits": [
+    "No automatic load decrease, new load percentage, maximum test or physical technique certification.",
+    "The full #259 temporary alternate volume subcycle remains separate work.",
+    "Movement-specific maintenance frequencies, instructional verification and physical Android acceptance remain open.",
+    "All ten gate areas remain unresolved."
+  ],
+  "verification": {
+    "nodeSuites": 76,
+    "historyCorrectionTests": 6,
+    "browserSuites": 42,
+    "focusedMobileCases": 4,
+    "baselinePrescriptionsUnchanged": 108,
+    "baselinePlansUnchanged": 432,
+    "offlineAssets": 51,
+    "releaseGateUnresolvedAreas": 10
+  }
+}

@@ -224,6 +224,24 @@
         "adaptation": "Primary actual-work ownership determines rotation recency; no new source maintenance frequency or area closure.",
         "implementationCommit": "c6551a1042eb0fe2a00ac26a188ecfc152864e29",
         "verification": "All 74 Node suites, six correction tests and 40 browser suites passed across the broad run and final focused follow-ups; research audits, suite registration, 51 offline assets and gate validation pass. All ten areas remain unresolved."
+      },
+      "rebuildLoadReviewFollowUp": {
+        "date": "2026-11-27",
+        "status": "partial",
+        "sourceIds": [
+          259
+        ],
+        "evidence": "research/rebuild-load-review-evidence.json",
+        "enginePaths": [
+          "engine.js",
+          "app.js",
+          "notebook.js"
+        ],
+        "tests": [
+          "tests/rebuild-load-selection.js",
+          "tests/browser-rebuild-load-selection.cjs"
+        ],
+        "adaptation": "Explicit user-owned lighter baseline after existing repeated-difficulty criteria, with a fresh comparison and stable receipt/day boundary. No new source percentage or gate closure."
       }
     },
     "Movement-specific progression": {
@@ -420,6 +438,24 @@
         "adaptation": "App accounting of comparable written loads and fulfilled nonadvancing time-fit work. Global pain holds, old difficulty, qualification and fresh-review requirements remain; no new source protocol or gate closure.",
         "implementationCommit": "64c28c28ac223e228bd7e18805687ebdfff04255",
         "verification": "Final engine passes 75 Node suites and six correction tests; 41 browser suites pass across broad and final ten-case focused acceptance. Source audits, gate validation and all 51 offline assets pass. All ten areas remain unresolved."
+      },
+      "rebuildLoadReviewFollowUp": {
+        "date": "2026-11-27",
+        "status": "partial",
+        "sourceIds": [
+          259
+        ],
+        "evidence": "research/rebuild-load-review-evidence.json",
+        "enginePaths": [
+          "engine.js",
+          "app.js",
+          "notebook.js"
+        ],
+        "tests": [
+          "tests/rebuild-load-selection.js",
+          "tests/browser-rebuild-load-selection.cjs"
+        ],
+        "adaptation": "Explicit user-owned lighter baseline after existing repeated-difficulty criteria, with a fresh comparison and stable receipt/day boundary. No new source percentage or gate closure."
       }
     },
     "Warmup philosophy": {
@@ -917,6 +953,24 @@
         "adaptation": "App accounting of comparable written loads and fulfilled nonadvancing time-fit work. Global pain holds, old difficulty, qualification and fresh-review requirements remain; no new source protocol or gate closure.",
         "implementationCommit": "64c28c28ac223e228bd7e18805687ebdfff04255",
         "verification": "Final engine passes 75 Node suites and six correction tests; 41 browser suites pass across broad and final ten-case focused acceptance. Source audits, gate validation and all 51 offline assets pass. All ten areas remain unresolved."
+      },
+      "rebuildLoadReviewFollowUp": {
+        "date": "2026-11-27",
+        "status": "partial",
+        "sourceIds": [
+          259
+        ],
+        "evidence": "research/rebuild-load-review-evidence.json",
+        "enginePaths": [
+          "engine.js",
+          "app.js",
+          "notebook.js"
+        ],
+        "tests": [
+          "tests/rebuild-load-selection.js",
+          "tests/browser-rebuild-load-selection.cjs"
+        ],
+        "adaptation": "Explicit user-owned lighter baseline after existing repeated-difficulty criteria, with a fresh comparison and stable receipt/day boundary. No new source percentage or gate closure."
       }
     },
     "Equipment and real-world constraints": {
@@ -1091,6 +1145,24 @@
         "adaptation": "App accounting of comparable written loads and fulfilled nonadvancing time-fit work. Global pain holds, old difficulty, qualification and fresh-review requirements remain; no new source protocol or gate closure.",
         "implementationCommit": "64c28c28ac223e228bd7e18805687ebdfff04255",
         "verification": "Final engine passes 75 Node suites and six correction tests; 41 browser suites pass across broad and final ten-case focused acceptance. Source audits, gate validation and all 51 offline assets pass. All ten areas remain unresolved."
+      },
+      "rebuildLoadReviewFollowUp": {
+        "date": "2026-11-27",
+        "status": "partial",
+        "sourceIds": [
+          259
+        ],
+        "evidence": "research/rebuild-load-review-evidence.json",
+        "enginePaths": [
+          "engine.js",
+          "app.js",
+          "notebook.js"
+        ],
+        "tests": [
+          "tests/rebuild-load-selection.js",
+          "tests/browser-rebuild-load-selection.cjs"
+        ],
+        "adaptation": "Explicit user-owned lighter baseline after existing repeated-difficulty criteria, with a fresh comparison and stable receipt/day boundary. No new source percentage or gate closure."
       }
     },
     "Source-specific methods": {
@@ -1259,6 +1331,24 @@
         "adaptation": "App accounting of comparable written loads and fulfilled nonadvancing time-fit work. Global pain holds, old difficulty, qualification and fresh-review requirements remain; no new source protocol or gate closure.",
         "implementationCommit": "64c28c28ac223e228bd7e18805687ebdfff04255",
         "verification": "Final engine passes 75 Node suites and six correction tests; 41 browser suites pass across broad and final ten-case focused acceptance. Source audits, gate validation and all 51 offline assets pass. All ten areas remain unresolved."
+      },
+      "rebuildLoadReviewFollowUp": {
+        "date": "2026-11-27",
+        "status": "partial",
+        "sourceIds": [
+          259
+        ],
+        "evidence": "research/rebuild-load-review-evidence.json",
+        "enginePaths": [
+          "engine.js",
+          "app.js",
+          "notebook.js"
+        ],
+        "tests": [
+          "tests/rebuild-load-selection.js",
+          "tests/browser-rebuild-load-selection.cjs"
+        ],
+        "adaptation": "Explicit user-owned lighter baseline after existing repeated-difficulty criteria, with a fresh comparison and stable receipt/day boundary. No new source percentage or gate closure."
       }
     },
     "Movement instruction": {
