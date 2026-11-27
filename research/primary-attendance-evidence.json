@@ -30,5 +30,6 @@
     "The new imported maintenance-only browser fixture accepts the actual backup confirmation; the initial unhandled-confirmation timeout was a fixture bug, not data loss.",
     "A transient paired-swing save timeout passed an independent unchanged rerun. The repeated endpoint start read was synchronized with actual draft creation. No behavior assertion was suppressed.",
     "Both research generators, suite registration, gate validation, syntax, diff and all 51 offline assets pass. Exact-head CI and live DEV verification follow push."
-  ]
+  ],
+  "implementationCommit": "c6551a1042eb0fe2a00ac26a188ecfc152864e29"
 }

@@ -221,7 +221,9 @@
           "tests/curriculum-strategy.js",
           "tests/browser-curriculum-strategy.cjs"
         ],
-        "adaptation": "Primary actual-work ownership determines rotation recency; no new source maintenance frequency or area closure."
+        "adaptation": "Primary actual-work ownership determines rotation recency; no new source maintenance frequency or area closure.",
+        "implementationCommit": "c6551a1042eb0fe2a00ac26a188ecfc152864e29",
+        "verification": "All 74 Node suites, six correction tests and 40 browser suites passed across the broad run and final focused follow-ups; research audits, suite registration, 51 offline assets and gate validation pass. All ten areas remain unresolved."
       }
     },
     "Movement-specific progression": {

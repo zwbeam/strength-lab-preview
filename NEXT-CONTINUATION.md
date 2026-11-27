@@ -674,3 +674,5 @@ unresolved; automatic sustainable maintenance frequencies and source-specific
 methods still require evidence. Runtime rc73-primary-attendance keeps 51 cached
 assets. Suite inventory remains 74 Node JS, six correction tests and 40 browser
 suites. See research/primary-attendance-evidence.json.
+
+Primary-attendance implementation checkpoint: `c6551a1042eb0fe2a00ac26a188ecfc152864e29`. Local verification passed 74 Node suites, six correction tests and 40 browser suites across the broad run and final focused follow-ups. All ten gate areas remain unresolved.

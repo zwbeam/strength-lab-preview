@@ -2162,3 +2162,5 @@ A repeated endpoint browser run also exposed an immediate post-tap read before
 draft creation. Its start helper now waits for the actual draft before reading
 the target. A paired-swing save timeout passed an independent unchanged rerun;
 no save assertion or runtime behavior was weakened.
+
+Primary-attendance implementation checkpoint: `c6551a1042eb0fe2a00ac26a188ecfc152864e29`. Local verification passed 74 Node suites, six correction tests and 40 browser suites across the broad run and final focused follow-ups. All ten gate areas remain unresolved.
