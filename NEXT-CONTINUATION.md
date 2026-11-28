@@ -834,3 +834,5 @@ Core-day capacity repair: four actual core training days recorded as 12 split re
 Local browser QA requires a running server at 127.0.0.1:8765; an environment restart can stop it. Verify/start the server before Chromium suites.
 
 Local verification: all 79 Node suites, six correction tests and 44 browser suites pass (browser group resumed after the repaired clock initialization race). Four new mobile cases, two-year grouped/split replay, source/gate/suite audits and 51 offline assets pass. Baseline compatibility preserves 108 prescriptions and 432 ordinary plans. All ten gate areas remain open.
+
+Core-day capacity implementation checkpoint: `a798f7848e2076385cbc3c9d267d749fcfa0c5f8`. Same-day record segmentation no longer invents core demand/attendance, while actual method progression and stored receipts are preserved. Genuine multi-program overload and all ten gate closures remain unresolved.

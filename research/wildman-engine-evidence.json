@@ -314,7 +314,14 @@
           "tests/browser-core-day-capacity.cjs"
         ],
         "evidence": "research/core-day-capacity-evidence.json",
-        "adaptation": "Calendar-day aggregation is an app accounting rule consistent with existing declared weekly training days; no source frequency or progression method is changed."
+        "adaptation": "Calendar-day aggregation is an app accounting rule consistent with existing declared weekly training days; no source frequency or progression method is changed.",
+        "implementationCommit": "a798f7848e2076385cbc3c9d267d749fcfa0c5f8",
+        "verification": {
+          "nodeSuites": 79,
+          "historyCorrectionTests": 6,
+          "browserSuites": 44,
+          "mobileCases": 4
+        }
       }
     },
     "Movement-specific progression": {
@@ -601,7 +608,14 @@
           "tests/browser-core-day-capacity.cjs"
         ],
         "evidence": "research/core-day-capacity-evidence.json",
-        "adaptation": "Calendar-day aggregation is an app accounting rule consistent with existing declared weekly training days; no source frequency or progression method is changed."
+        "adaptation": "Calendar-day aggregation is an app accounting rule consistent with existing declared weekly training days; no source frequency or progression method is changed.",
+        "implementationCommit": "a798f7848e2076385cbc3c9d267d749fcfa0c5f8",
+        "verification": {
+          "nodeSuites": 79,
+          "historyCorrectionTests": 6,
+          "browserSuites": 44,
+          "mobileCases": 4
+        }
       }
     },
     "Warmup philosophy": {
@@ -1189,7 +1203,14 @@
           "tests/browser-core-day-capacity.cjs"
         ],
         "evidence": "research/core-day-capacity-evidence.json",
-        "adaptation": "Calendar-day aggregation is an app accounting rule consistent with existing declared weekly training days; no source frequency or progression method is changed."
+        "adaptation": "Calendar-day aggregation is an app accounting rule consistent with existing declared weekly training days; no source frequency or progression method is changed.",
+        "implementationCommit": "a798f7848e2076385cbc3c9d267d749fcfa0c5f8",
+        "verification": {
+          "nodeSuites": 79,
+          "historyCorrectionTests": 6,
+          "browserSuites": 44,
+          "mobileCases": 4
+        }
       }
     },
     "Equipment and real-world constraints": {
