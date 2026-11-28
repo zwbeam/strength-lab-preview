@@ -861,3 +861,11 @@ no setting save earns progress. Dedicated source blocks retain their own scope.
 This repairs app accounting without prescribing a new frequency or changing a
 movement's load, dose, progression or return rules. See
 research/core-scope-evidence.json for verification and long-term tradeoffs.
+
+
+Focused maintenance hosting uses the actual curated core and admitted learner,
+not queued programs. New admission includes dedicated capacity for unhostable
+earned work; actual begun-lane continuity may preserve the learner while due
+maintenance takes a turn. Hints alone never establish actual work or override
+core, equipment, prerequisite, recovery, duration or progression rules. Read
+research/maintenance-host-evidence.json for source boundaries and diagnostics.

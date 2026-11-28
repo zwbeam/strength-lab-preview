@@ -374,6 +374,31 @@
           "note": "All local suites passed across broad runs and final targeted follow-ups. Normal source/gate/suite checks, generated audits, 51 assets and bounded compatibility comparisons pass. Exact-head CI and live DEV acceptance follow push. All ten areas remain unresolved."
         },
         "implementationCommit": "bd72084143ec0ac55ce74d58e17298f7c7cf897a"
+      },
+      "maintenanceHostRepair": {
+        "status": "partial",
+        "sourceIds": [
+          85,
+          123,
+          548
+        ],
+        "claim": "Queued programs do not provide fictitious maintenance space; actual admitted hosts and genuine begun-lane continuity govern focused composition.",
+        "enginePaths": [
+          "engine.js"
+        ],
+        "tests": [
+          "tests/maintenance-hosts.js",
+          "tests/browser-maintenance-hosts.cjs"
+        ],
+        "evidence": "research/maintenance-host-evidence.json",
+        "adaptation": "#85/#548 support interlocking programs and keeping fundamentals. #123 discusses shorter submaximal familiar work while combining with conventional lifting; it does not give a universal get-up maintenance dose or recurrence interval. Actual host-space accounting and admitted-learner continuity are Strength Lab adaptations. Existing movement doses, progression and return rules remain authoritative.",
+        "verification": {
+          "nodeSuites": 82,
+          "historyCorrectionTests": 6,
+          "browserSuites": 47,
+          "mobileCases": 2,
+          "note": "Full local coverage, focused actual-host/continuity regressions, source/gate/suite checks, reproducible audits and baseline compatibility pass. Exact-head CI and live DEV acceptance follow push. All ten areas remain unresolved."
+        }
       }
     },
     "Movement-specific progression": {

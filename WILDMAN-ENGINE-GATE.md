@@ -471,3 +471,27 @@ preference before navigating; no assertions or app validation were removed.
 
 Current-core scope implementation checkpoint: bd72084143ec0ac55ce74d58e17298f7c7cf897a.
 All ten areas remain unresolved.
+
+
+Actual maintenance-host repair (November 28): focused composition budgets and
+serves earned work against the admitted learner and actual curated core. Queued
+programs no longer supply fictitious spare time. An unhostable earned component
+requires dedicated program capacity; a genuinely begun lane can retain its place
+while due maintenance takes a turn. An untouched plan hint cannot bypass new
+admission. Core, unfinished-work, method, equipment, recovery and time rules
+remain intact. No settings, doses, loads, method identities or V33 data change.
+The controlled 30-minute case serves a get-up at gap thirteen instead of waiting
+for a queued hinge host; 45/60-minute cases use actual ground-workout space.
+Read research/maintenance-host-evidence.json for bounded #85/#123/#548 context
+and diagnostics. This is app accounting/continuity, not a source frequency rule.
+All ten areas remain open; genuinely crowded short curricula and wider
+source/physical verification still need work. Runtime rc83-maintenance-hosts
+retains 51 offline assets.
+
+Final diagnostics retain all ordinary qualification dates and end states. In the
+targeted 30-minute/119-workout history, first get-up work moves from gap 27 with
+reentry to gap 13 with earned maintenance; get-up returns fall four to two while
+107 core workouts and all five selected programs remain. The crowded case still
+earns no new ground/hinge cycles. Targeted 45/60-minute histories are unchanged.
+All raw counts and dates are retained in the evidence; this is not universal
+recurrence proof or release-gate closure.

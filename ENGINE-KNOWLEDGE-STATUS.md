@@ -488,3 +488,19 @@ all saved debt remain protected. Baseline comparison retains 108 prescriptions
 and 432 complete plans except six intentionally corrected inactive-circle core
 feedback lists. The existing mobile settings test now waits for the saved timer
 preference before navigating; no assertions or app validation were removed.
+
+
+Actual maintenance-host repair (November 28): focused composition budgets and
+serves earned work against the admitted learner and actual curated core. Queued
+programs no longer supply fictitious spare time. An unhostable earned component
+requires dedicated program capacity; a genuinely begun lane can retain its place
+while due maintenance takes a turn. An untouched plan hint cannot bypass new
+admission. Core, unfinished-work, method, equipment, recovery and time rules
+remain intact. No settings, doses, loads, method identities or V33 data change.
+The controlled 30-minute case serves a get-up at gap thirteen instead of waiting
+for a queued hinge host; 45/60-minute cases use actual ground-workout space.
+Read research/maintenance-host-evidence.json for bounded #85/#123/#548 context
+and diagnostics. This is app accounting/continuity, not a source frequency rule.
+All ten areas remain open; genuinely crowded short curricula and wider
+source/physical verification still need work. Runtime rc83-maintenance-hosts
+retains 51 offline assets.

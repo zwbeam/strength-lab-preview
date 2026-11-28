@@ -66,6 +66,14 @@ when their current prescriptions fit, with at most four movements after these
 additions. Full intervals, transitions, setup allowance and the selected total
 ceiling remain in the estimate. Nothing is inserted beyond the budget.
 
+Focused host-space estimates use only the admitted learner and protected core,
+curated like the workouts that would actually be written. Queued programs do not
+supply spare time. An earned component that cannot use those hosts requires
+dedicated program capacity. New admission pays that cost; a genuinely begun
+hinted lane can keep its place while due maintenance takes a turn. A plan hint
+without actual primary program work cannot bypass admission. Core, recovery and
+time gates still win; this does not guarantee coverage of an oversized curriculum.
+
 Each maintenance movement has its own identity, load, method and actuals. It does
 not count as another program day. A completed primary day advances independently
 of an unfinished maintenance movement. Written maintenance debt stays with its

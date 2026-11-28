@@ -1216,16 +1216,30 @@ function curriculumPlan(s,candidates,history,allocation,opts){
  const demand=other.filter(x=>['developing','maintenance'].includes(x.role)).reduce((n,x)=>n+x.programDays,0);
  const options=maintenanceOptions(s,maintenance,opts);
  const establishedIds=new Set(maintenance.flatMap(x=>x.earnedIds));
- const bases=[...developing.map(x=>x.candidate.p),...candidates.filter(x=>x.block===core).map(x=>curatedPlan(x.p,establishedIds))];
- const maintenanceVisits=maintenance.filter(x=>!options.filter(y=>y.block===x.block).some(y=>bases.some(p=>coversMaintenance(p,y,s)))).reduce((n,x)=>n+x.programDays,0),learningVisits=Math.max(0,available-maintenanceVisits);
+ const corePlans=candidates.filter(x=>x.block===core).map(x=>x.p);
+ const maintenanceCost=bases=>maintenance.filter(x=>{
+  const targets=options.filter(y=>y.block===x.block);
+  return !targets.length||targets.some(y=>!bases.some(p=>coversMaintenance(p,y,s)));
+ }).reduce((n,x)=>n+x.programDays,0);
+ const balancedBases=[...developing.map(x=>x.candidate.p),...corePlans.map(p=>curatedPlan(p,establishedIds))];
+ const initialMaintenanceVisits=maintenanceCost(balancedBases),initialLearningVisits=Math.max(0,available-initialMaintenanceVisits);
  const recorded=physical.findLast(x=>x.plan?.composition?.curriculum)?.plan.composition.curriculum;
  const hinted=rows.find(x=>x.role==='developing'&&x.block===(recorded?.activeBlock||recorded?.pausedBlock));
  const managed=demand>available+1e-8||!!(recorded?.activeBlock||recorded?.pausedBlock)&&recorded?.mode!=='balanced'&&developing.length>0;
- const details={mode:managed?'focused':'balanced',sourceIds:[85,123,404,548,606],coreBlock:core,activeBlock:null,pausedBlock:null,capacity:{returnDays:days,effectiveDaysPerWeek:pace,availableVisits:available,maintenanceVisits,learningVisits,demandVisits:demand},blocks:[],provenance:'Strength Lab capacity adaptation; source methods, actual qualification and technical reviews remain independent.'};
+ const details={mode:managed?'focused':'balanced',sourceIds:[85,123,404,548,606],coreBlock:core,activeBlock:null,pausedBlock:null,capacity:{returnDays:days,effectiveDaysPerWeek:pace,availableVisits:available,maintenanceVisits:initialMaintenanceVisits,learningVisits:initialLearningVisits,demandVisits:demand},blocks:[],provenance:'Strength Lab capacity adaptation; source methods, actual qualification and technical reviews remain independent.'};
  if(!managed){details.blocks=rows.map(x=>({block:x.block,role:x.role,ready:x.ready,earnedIds:x.earnedIds,developingIds:x.developingIds,awaitingIds:x.awaitingIds}));return{managed:false,details,options};}
- const fits=x=>x.ready&&x.programDays<=learningVisits+1e-8;
+ // Only the admitted learner and the protected core can supply host space.
+ // Use the same curated items that would actually be written into a workout.
+ const allowedFor=x=>new Set([...(x?BLOCKS[x.block].days.flatMap(d=>d.ids):[]),...establishedIds]);
+ const basesFor=x=>[...(x?[x.candidate.p]:[]),...corePlans].map(p=>curatedPlan(p,allowedFor(x)));
+ const fits=x=>x.ready&&x.programDays<=Math.max(0,available-maintenanceCost(basesFor(x)))+1e-8;
  const begun=developing.filter(x=>x.candidate.last>=0).sort((a,b)=>b.candidate.last-a.candidate.last);
- const active=hinted&&fits(hinted)?hinted:begun.find(fits)||developing.find(fits);
+ // Keep genuinely begun work in its lane when today's host space changes.
+ // This does not admit an untouched lane or spend a reserved core opportunity.
+ const continuing=hinted?.candidate.last>=0&&hinted.ready&&hinted.programDays<=available+1e-8;
+ const active=hinted&&(continuing||fits(hinted))?hinted:begun.find(fits)||developing.find(fits);
+ const bases=basesFor(active),maintenanceVisits=maintenanceCost(bases),learningVisits=Math.max(0,available-maintenanceVisits);
+ details.capacity.maintenanceVisits=maintenanceVisits;details.capacity.learningVisits=learningVisits;
  details.activeBlock=active?.block||null;details.pausedBlock=!active?hinted?.block||null:null;
  if(!active)details.mode=rows.some(x=>x.block!==core&&x.role==='developing')?'capacity':'maintenance';
  details.blocks=rows.map(x=>({block:x.block,role:x.role==='developing'?(x===active?'developing':'queued'):x.role,ready:x.ready,earnedIds:x.earnedIds,developingIds:x.developingIds,awaitingIds:x.awaitingIds}));
@@ -1240,8 +1254,8 @@ function curriculumPlan(s,candidates,history,allocation,opts){
  let maintenanceCandidate=selectedMaintenance?.candidate;
  if(selectedMaintenance){const input={...s,programBlock:selectedMaintenance.block,deferredByBlock:{...s.deferredByBlock,[selectedMaintenance.block]:[selectedMaintenance.priorityId]}};maintenanceCandidate={...maintenanceCandidate,p:blockPlan(input,{...opts,omitUnstartedLoads:true,earnedMaintenance:true})};}
  const candidate=maintenanceCandidate||active?.candidate||(allocation.details.ready?candidates.find(x=>x.block===core&&x.p.items.length):null)||other[0]?.candidate||null;
- details.reason=!allocation.details.ready?'The selected core is currently blocked; this eligible alternative keeps its own targets and prerequisites.':selectedMaintenance?'Maintain earned work in '+BLOCKS[selectedMaintenance.block].name+' before continuing the developing program.':active?'Focus developing work on '+BLOCKS[active.block].name+' until its current eligible movement cycles are earned. Other selected programs wait for capacity.':'The protected core and earned maintenance use the estimated return-window capacity. Additional developing programs remain selected and queued; no catch-up work or progression credit is added.';
- return{managed:true,candidate,details,options,allowedIds:new Set([...(active?BLOCKS[active.block].days.flatMap(x=>x.ids):[]),...maintenance.flatMap(x=>x.earnedIds)]),maintenanceBlock:maintenanceChoice?.block||null};
+ details.reason=!allocation.details.ready?'The selected core is currently blocked; this eligible alternative keeps its own targets and prerequisites.':selectedMaintenance?'Maintain earned work in '+BLOCKS[selectedMaintenance.block].name+' before continuing the developing program.':active?'Focus developing work on '+BLOCKS[active.block].name+' until its current eligible movement cycles are earned. Other selected programs wait for capacity.'+(continuing&&!fits(active)?' The begun learner keeps its place; due maintenance still takes its own turn. This estimate does not provide room to start another program.':''):'The protected core and earned maintenance use the estimated return-window capacity. Additional developing programs remain selected and queued; no catch-up work or progression credit is added.';
+ return{managed:true,candidate,details,options,allowedIds:allowedFor(active),maintenanceBlock:maintenanceChoice?.block||null};
 }
 function plan(s,opts={}){
  opts={...opts,now:opts.now??new Date()};opts.readiness??=readinessFor(s,opts.now);

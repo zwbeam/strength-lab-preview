@@ -1,0 +1,249 @@
+{
+  "date": "2026-11-28",
+  "baseCommit": "931b526091a5ede94441b2b272273989d167e5ef",
+  "status": "partial",
+  "sources": [
+    {
+      "id": 85,
+      "file": "sources-02.json",
+      "title": "Body weight 101 program integration with swing and strong and fit mill squat program - design talk",
+      "url": "https://www.youtube.com/watch?v=Sb0byJSPDoE",
+      "sha256": "c346045f067510b8f03798fd56b593cb90dc9ad733f8c8fb8b796bc90045c767",
+      "quotes": [
+        "each piece of the tetris program can be totally different but they can integrate and interlock in different ways"
+      ],
+      "timestamps": null
+    },
+    {
+      "id": 123,
+      "file": "sources-04.json",
+      "title": "Combining kettlebells and clubs with conventional lifting - overview",
+      "url": "https://www.youtube.com/watch?v=xAk3LQhMZDo",
+      "sha256": "caf185bf5eb5f9b8394e1547f0f88f74c73c19bd2ffd7f5f0a9dd0532ebaa9a4",
+      "quotes": [
+        "for just a much shorter period of time and at a lower weight"
+      ],
+      "timestamps": null
+    },
+    {
+      "id": 548,
+      "file": "sources-18.json",
+      "title": "Program Design 4 - Basic Kettlebell, 2 Hand Heavy Club, Single arm Club - Training Tetris",
+      "url": "https://www.youtube.com/watch?v=XYuiOsBAvXI",
+      "sha256": "0cdb4d3f1e34f4c8076a90aa4af3133e4b9b693650bff28c68f6b871c2a7dbb2",
+      "quotes": [
+        "we are going to keep these as fundamental programs"
+      ],
+      "timestamps": null
+    }
+  ],
+  "sourceScope": "#85/#548 support interlocking programs and keeping fundamentals. #123 discusses shorter submaximal familiar work while combining with conventional lifting; it does not give a universal get-up maintenance dose or recurrence interval. Actual host-space accounting and admitted-learner continuity are Strength Lab adaptations. Existing movement doses, progression and return rules remain authoritative.",
+  "behavior": [
+    "Focused maintenance capacity and due selection use only the protected core and admitted learner, curated exactly like actual written workouts. Queued programs do not provide imaginary host space.",
+    "Admission accounts for a dedicated program visit when an earned target cannot fit those hosts; one hostable component does not certify a whole maintenance program. Existing no-target fallback reservation remains conservative.",
+    "A genuinely begun hinted learner retains its place if its program-day opportunity remains available. Due maintenance can still take its own turn; this is continuation, not new admission or guaranteed simultaneous coverage.",
+    "An untouched planned hint cannot bypass admission. Current equipment, prerequisites, recovery, actual unfinished work, core reservations, time and movement ceilings retain priority.",
+    "At 30 minutes the due 13-day-old get-up receives actual earned maintenance rather than waiting for an unscheduled hinge program. At 45/60 minutes it can join the actual ground workout.",
+    "Completed light maintenance does not earn advancement or load review. Correcting it away restores the due target; undo and backups replay actuals. No setting, root storage format, target dose or method identity is changed."
+  ],
+  "enginePaths": [
+    "engine.js:curriculumPlan",
+    "engine.js:curatedPlan",
+    "engine.js:appendMaintenance"
+  ],
+  "tests": [
+    "tests/maintenance-hosts.js",
+    "tests/browser-maintenance-hosts.cjs"
+  ],
+  "results": {
+    "controlled": {
+      "minutes": 30,
+      "maintenanceGapDays": 13,
+      "priorNextBlock": "groundPractice",
+      "correctedNextBlock": "getup",
+      "activeLearner": "groundPractice",
+      "priorMaintenanceVisits": 0,
+      "correctedMaintenanceVisits": 1,
+      "allSelectedProgramsRetained": true,
+      "earnedProgressFromLightWork": false
+    },
+    "roomyMinutes": [
+      45,
+      60
+    ],
+    "capacityCases": 9,
+    "actualContinuityWorkouts": 120,
+    "rowQualificationNoLaterThan": "2026-05-18",
+    "mobileWidths": [
+      320,
+      390
+    ],
+    "targetedLongTerm": [
+      {
+        "minutes": 30,
+        "label": "before",
+        "counts": {
+          "workouts": 119,
+          "core": 107,
+          "getup": 6,
+          "getupReturns": 4,
+          "getupMaintenance": 0
+        },
+        "firstGetup": {
+          "date": "2026-06-15",
+          "gap": 27,
+          "mode": "reentry"
+        },
+        "milestones": {},
+        "selectedPrograms": 5,
+        "storedSessions": 157
+      },
+      {
+        "minutes": 30,
+        "label": "after",
+        "counts": {
+          "workouts": 119,
+          "core": 107,
+          "getup": 8,
+          "getupReturns": 2,
+          "getupMaintenance": 3
+        },
+        "firstGetup": {
+          "date": "2026-06-01",
+          "gap": 13,
+          "mode": "light"
+        },
+        "milestones": {},
+        "selectedPrograms": 5,
+        "storedSessions": 157
+      },
+      {
+        "minutes": 45,
+        "label": "before",
+        "counts": {
+          "workouts": 119,
+          "core": 68,
+          "getup": 26,
+          "getupReturns": 4,
+          "getupMaintenance": 9
+        },
+        "firstGetup": {
+          "date": "2026-06-01",
+          "gap": 13,
+          "mode": "light"
+        },
+        "milestones": {
+          "hipDropTwoHand": "2026-06-19",
+          "bearSquat": "2026-06-22",
+          "hipDropSingleHand": "2026-07-03",
+          "hingePractice": "2026-07-27",
+          "bodyweightSquat": "2026-08-24",
+          "stepBackLunge": "2026-08-24"
+        },
+        "selectedPrograms": 5,
+        "storedSessions": 157
+      },
+      {
+        "minutes": 45,
+        "label": "after",
+        "counts": {
+          "workouts": 119,
+          "core": 68,
+          "getup": 26,
+          "getupReturns": 4,
+          "getupMaintenance": 9
+        },
+        "firstGetup": {
+          "date": "2026-06-01",
+          "gap": 13,
+          "mode": "light"
+        },
+        "milestones": {
+          "hipDropTwoHand": "2026-06-19",
+          "bearSquat": "2026-06-22",
+          "hipDropSingleHand": "2026-07-03",
+          "hingePractice": "2026-07-27",
+          "bodyweightSquat": "2026-08-24",
+          "stepBackLunge": "2026-08-24"
+        },
+        "selectedPrograms": 5,
+        "storedSessions": 157
+      },
+      {
+        "minutes": 60,
+        "label": "before",
+        "counts": {
+          "workouts": 119,
+          "core": 63,
+          "getup": 28,
+          "getupReturns": 3,
+          "getupMaintenance": 11
+        },
+        "firstGetup": {
+          "date": "2026-06-01",
+          "gap": 13,
+          "mode": "light"
+        },
+        "milestones": {
+          "hipDropTwoHand": "2026-06-17",
+          "bearSquat": "2026-06-22",
+          "hipDropSingleHand": "2026-07-03",
+          "hingePractice": "2026-07-27",
+          "bodyweightSquat": "2026-08-17",
+          "stepBackLunge": "2026-08-24"
+        },
+        "selectedPrograms": 5,
+        "storedSessions": 157
+      },
+      {
+        "minutes": 60,
+        "label": "after",
+        "counts": {
+          "workouts": 119,
+          "core": 63,
+          "getup": 28,
+          "getupReturns": 3,
+          "getupMaintenance": 11
+        },
+        "firstGetup": {
+          "date": "2026-06-01",
+          "gap": 13,
+          "mode": "light"
+        },
+        "milestones": {
+          "hipDropTwoHand": "2026-06-17",
+          "bearSquat": "2026-06-22",
+          "hipDropSingleHand": "2026-07-03",
+          "hingePractice": "2026-07-27",
+          "bodyweightSquat": "2026-08-17",
+          "stepBackLunge": "2026-08-24"
+        },
+        "selectedPrograms": 5,
+        "storedSessions": 157
+      }
+    ],
+    "reproduceTargeted": "node scripts/compare-maintenance-hosts.cjs /tmp/baseline-engine.js (export baseCommit engine.js with git show first)",
+    "ordinaryComparisonFile": "research/maintenance-host-results.json",
+    "ordinaryComparison": "All three forty-week cases retain counts, qualification dates and final progression. Two-year 45/60 cases also retain those outcomes. At 30 minutes the two-year case records one fewer earned return, one fewer progressing-work receipt and one additional maintenance receipt, with the same qualification dates and final state.",
+    "targetedSummary": "In 119 actual workouts following the checkpoint, 30-minute first get-up exposure moves from gap 27/reentry to gap 13/earned light maintenance. Get-up returns fall four to two; core workouts remain 107 and all five programs stay selected. No ground/hinge foundation cycles qualify in that genuinely crowded case. 45/60-minute targeted histories are unchanged."
+  },
+  "limitations": [
+    "All ten gate areas remain unresolved. This prevents fictitious packing and learner churn; it does not make genuinely oversized selections feasible.",
+    "The fixture is explicitly selected/imported prior work, not claimed to have been automatically generated within a thirty-minute schedule.",
+    "Capacity remains an estimate. A begun lane may coexist with temporarily insufficient estimated maintenance space; due maintenance and core priority remain in force, and the engine does not promise every movement the same frequency.",
+    "The archive inventory, 54 movement routes, 38 reviewed outlines and 16 instructional/verification gaps are unchanged. Physical Android and technique acceptance remain separate.",
+    "The first stricter admission prototype repeatedly ejected the begun row learner and lost qualification; it was discarded. Actual begun-lane continuity is regression-tested without admitting an untouched hint."
+  ],
+  "verification": {
+    "nodeSuites": 82,
+    "historyCorrectionTests": 6,
+    "browserSuites": 47,
+    "mobileCases": 2,
+    "offlineAssets": 51,
+    "prescriptionCompatibilityCases": 108,
+    "ordinaryPlanCompatibilityCases": 432,
+    "sourceHashesAndQuotes": "passed",
+    "generatedAudits": "reproducible; 54 routes, 38 reviewed outlines and 16 gaps unchanged",
+    "note": "Complete local coverage passed, including isolated integration rerun and the remaining browser group after restoring the server following environment restart. No existing browser assertions were weakened. Exact-head CI and public DEV verification follow push."
+  }
+}
