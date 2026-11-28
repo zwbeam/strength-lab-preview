@@ -433,3 +433,6 @@ minutes. There are still fourteen earned returns, with one later return shifted
 onto rows; developing returns remain zero. Forty-five/sixty-minute histories are
 unchanged. Reproduce with scripts/compare-maintenance.cjs; see the evidence file
 for exact dates and limits. This does not close the sustainable-rotation gate.
+
+Maintenance-cadence implementation checkpoint: fedd1a3f7127de45a12b796cfb65421d491ecd6d.
+All ten areas remain unresolved.

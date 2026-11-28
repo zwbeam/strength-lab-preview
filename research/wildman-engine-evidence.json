@@ -346,7 +346,8 @@
           "browserSuites": 45,
           "mobileCases": 2,
           "note": "Complete local regression passed, plus the final expanded maintenance regression. Exact-head CI and live DEV verification follow push. All ten gate areas remain unresolved."
-        }
+        },
+        "implementationCommit": "fedd1a3f7127de45a12b796cfb65421d491ecd6d"
       }
     },
     "Movement-specific progression": {
