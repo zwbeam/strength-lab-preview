@@ -2313,3 +2313,8 @@ Scope guard: the existing multi-program coordinator remains intact after a broad
 Verified locally: all 78 Node suites and six correction tests pass across the broad run and repaired developing/later suite rerun; all 43 browser suites pass. Final targeted tests, source/gate/suite audits, 51 offline assets and exact compatibility of 108 prescriptions/432 ordinary plans pass. Multi-program expectations were preserved. All ten gate areas remain unresolved.
 
 Sole-core follow-up implementation checkpoint: `8170b636277ceafe33da5a9e41c2ee2732d0ef7f`. Original 30-minute/two-day progression improves without changing source methods or multi-program admission. Broader low-capacity curriculum design and all ten gate closures remain open.
+
+
+Core-day capacity repair: reproduced 12 same-day split receipts inflating four core days into nine required visits and a false full-capacity reservation. Aggregate only scheduling facts by day; preserve every receipt and earned exposure. Mixed-day programs, duplicate movement touches, empty/partial work, correction/undo, future isolation, nine duration/frequency cases and two-year grouped/split histories are covered. Four mobile cases exercise real import, developing selection, actual completion, offline reload and immutable old history. See research/core-day-capacity-evidence.json. No gate closure or production change.
+
+Local verification: all 79 Node suites, six correction tests and 44 browser suites pass (browser group resumed after the repaired clock initialization race). Four new mobile cases, two-year grouped/split replay, source/gate/suite audits and 51 offline assets pass. Baseline compatibility preserves 108 prescriptions and 432 ordinary plans. All ten gate areas remain open.

@@ -847,3 +847,6 @@ six history correction tests and 43 browser suites, including four new mobile
 clean/partial/offline acceptance cases.
 
 Scope guard: the existing multi-program coordinator remains intact after a broader prototype delayed a developing lane. Physical touches in any program enforce the two-day follow-up spacing. Multi-program capacity admission remains unresolved.
+
+
+Capacity opportunities and observed core recurrence use distinct physical training dates, consistent with days/week. Same-day core work counts once for reservation even if another program also occurs. Actual completed exposures remain separate for progression. Empty work gives no attendance; partial physical work retains existing attendance without advancement. Date edits/undo and forecasts never manufacture actual attendance. See research/core-day-capacity-evidence.json.

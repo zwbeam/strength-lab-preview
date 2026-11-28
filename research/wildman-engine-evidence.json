@@ -298,6 +298,23 @@
           "browserSuites": 43,
           "mobileCases": 4
         }
+      },
+      "coreDayCapacityRepair": {
+        "status": "partial",
+        "sourceIds": [
+          85,
+          548
+        ],
+        "claim": "Same-day split records cannot inflate core capacity demand or attendance; all actual earned work is retained independently.",
+        "enginePaths": [
+          "engine.js"
+        ],
+        "tests": [
+          "tests/core-day-capacity.js",
+          "tests/browser-core-day-capacity.cjs"
+        ],
+        "evidence": "research/core-day-capacity-evidence.json",
+        "adaptation": "Calendar-day aggregation is an app accounting rule consistent with existing declared weekly training days; no source frequency or progression method is changed."
       }
     },
     "Movement-specific progression": {
@@ -568,6 +585,23 @@
           "browserSuites": 43,
           "mobileCases": 4
         }
+      },
+      "coreDayCapacityRepair": {
+        "status": "partial",
+        "sourceIds": [
+          85,
+          548
+        ],
+        "claim": "Same-day split records cannot inflate core capacity demand or attendance; all actual earned work is retained independently.",
+        "enginePaths": [
+          "engine.js"
+        ],
+        "tests": [
+          "tests/core-day-capacity.js",
+          "tests/browser-core-day-capacity.cjs"
+        ],
+        "evidence": "research/core-day-capacity-evidence.json",
+        "adaptation": "Calendar-day aggregation is an app accounting rule consistent with existing declared weekly training days; no source frequency or progression method is changed."
       }
     },
     "Warmup philosophy": {
@@ -1139,6 +1173,23 @@
           "browserSuites": 43,
           "mobileCases": 4
         }
+      },
+      "coreDayCapacityRepair": {
+        "status": "partial",
+        "sourceIds": [
+          85,
+          548
+        ],
+        "claim": "Same-day split records cannot inflate core capacity demand or attendance; all actual earned work is retained independently.",
+        "enginePaths": [
+          "engine.js"
+        ],
+        "tests": [
+          "tests/core-day-capacity.js",
+          "tests/browser-core-day-capacity.cjs"
+        ],
+        "evidence": "research/core-day-capacity-evidence.json",
+        "adaptation": "Calendar-day aggregation is an app accounting rule consistent with existing declared weekly training days; no source frequency or progression method is changed."
       }
     },
     "Equipment and real-world constraints": {

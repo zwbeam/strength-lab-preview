@@ -1,0 +1,80 @@
+{
+  "date": "2026-11-28",
+  "baseCommit": "129f5f7f81fad7a5fa46981ae9cba55a245a7a3c",
+  "status": "partial",
+  "sources": [
+    {
+      "id": 85,
+      "file": "sources-02.json",
+      "title": "Body weight 101 program integration with swing and strong and fit mill squat program - design talk",
+      "url": "https://www.youtube.com/watch?v=Sb0byJSPDoE",
+      "sha256": "c346045f067510b8f03798fd56b593cb90dc9ad733f8c8fb8b796bc90045c767",
+      "quotes": [
+        "each piece of the tetris program can be totally different but they can integrate and interlock in different ways",
+        "when you get to the end start the whole program over again and run it again and repeat the program"
+      ],
+      "timestamps": null
+    },
+    {
+      "id": 548,
+      "file": "sources-18.json",
+      "title": "Program Design 4 - Basic Kettlebell, 2 Hand Heavy Club, Single arm Club - Training Tetris",
+      "url": "https://www.youtube.com/watch?v=XYuiOsBAvXI",
+      "sha256": "0cdb4d3f1e34f4c8076a90aa4af3133e4b9b693650bff28c68f6b871c2a7dbb2",
+      "quotes": [
+        "we are going to keep these as fundamental programs"
+      ],
+      "timestamps": null
+    }
+  ],
+  "sourceScope": "#548/#85 provide fundamentals and interlocking-program context. Counting calendar training days consistently with existing days-per-week capacity is a Strength Lab accounting repair, not a new Wildman frequency prescription.",
+  "behavior": [
+    "Core recurrence demand is measured between distinct physical core training days; duplicate same-day movement receipts cannot inflate visit distance or replace a real interval with zero.",
+    "Reservation attendance uses distinct selected training days. A day containing real core work receives one core attendance credit even when another selected program is also recorded that day; same-day record order cannot remove it.",
+    "All actual receipts, stable identities, sets, loads, method histories and earned progression remain intact. Two genuine completed same-day exposures still retain their existing progression meaning.",
+    "Partial actual work consumes its existing physical-day opportunity without earning progression. Empty/no-actual work does not create attendance. Date correction/undo and future evidence boundaries recompute capacity from actual history.",
+    "Projection bookkeeping retains one entry per future opportunity; no forecast is converted into actual attendance. No new state field, setting, migration or source numerical protocol is introduced."
+  ],
+  "tests": [
+    "tests/core-day-capacity.js",
+    "tests/browser-core-day-capacity.cjs"
+  ],
+  "results": {
+    "controlled": {
+      "actualCoreDays": 4,
+      "groupedReceipts": 4,
+      "splitReceipts": 12,
+      "priorSplitRequiredCoreVisits": 9,
+      "correctedRequiredCoreVisits": 3,
+      "priorSplitCapacityLimited": true,
+      "correctedCapacityLimited": false,
+      "nextBlock": "hingePractice"
+    },
+    "capacityMatrixCases": 9,
+    "longitudinal": {
+      "coreDays": 312,
+      "groupedReceipts": 353,
+      "splitReceipts": 977,
+      "recentTrainingDays": 23,
+      "recentCoreDays": 23,
+      "requiredCoreVisits": 3,
+      "scope": "Two years with a missed month, readiness reductions, partials, same-day extra work and developing practice; actual prescriptions recorded explicitly, not proof that the generator selected these historical sessions."
+    }
+  },
+  "limits": [
+    "This removes false overload caused by record segmentation; genuinely oversized curricula and movement-specific maintenance frequencies remain unresolved.",
+    "Other ordering heuristics may still distinguish separate workout records; only capacity and earned-work invariants are claimed.",
+    "No physical technique, retention outcome or Android hardware acceptance is certified. All ten gate areas remain unresolved."
+  ],
+  "testingNote": "The hand-change browser test installs its virtual clock before the pause target so transport latency cannot request a pause in the past; all original timer/progression assertions remain.",
+  "verification": {
+    "nodeSuites": 79,
+    "historyCorrectionTests": 6,
+    "browserSuites": 44,
+    "newMobileCases": 4,
+    "unchangedBaselinePrescriptions": 108,
+    "unchangedBaselinePlans": 432,
+    "offlineAssets": 51,
+    "unresolvedGateAreas": 10
+  }
+}

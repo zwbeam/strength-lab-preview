@@ -437,3 +437,6 @@ six history correction tests and 43 browser suites, including four new mobile
 clean/partial/offline acceptance cases.
 
 Scope guard: the existing multi-program coordinator remains intact after a broader prototype delayed a developing lane. Physical touches in any program enforce the two-day follow-up spacing. Multi-program capacity admission remains unresolved.
+
+
+Capacity accounting follow-up: #548/#85 provide fundamentals/interlocking context, while distinct-day counting is an app consistency repair. It preserves every actual exposure and source-method history. The source archive/instruction counts and ten unresolved areas are unchanged. Evidence: research/core-day-capacity-evidence.json.

@@ -743,3 +743,6 @@ six history correction tests and 43 browser suites, including four new mobile
 clean/partial/offline acceptance cases.
 
 Scope guard: the existing multi-program coordinator remains intact after a broader prototype delayed a developing lane. Physical touches in any program enforce the two-day follow-up spacing. Multi-program capacity admission remains unresolved.
+
+
+Core capacity now counts physical training days rather than save receipts. Same-day split records no longer inflate core demand or attendance and block developing work. Actual progression and history are unchanged; see research/core-day-capacity-evidence.json for tests, tradeoffs and remaining overload limits. All ten audit areas remain open.

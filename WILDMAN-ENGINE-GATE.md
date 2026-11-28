@@ -407,3 +407,6 @@ six history correction tests and 43 browser suites, including four new mobile
 clean/partial/offline acceptance cases.
 
 Scope guard: the existing multi-program coordinator remains intact after a broader prototype delayed a developing lane. Physical touches in any program enforce the two-day follow-up spacing. Multi-program capacity admission remains unresolved.
+
+
+Partial rotation/recovery accounting repair: distinct-day recurrence and reservation prevent split receipts from inventing overload or credit; actual movement progression remains separate. #548/#85 are context, not source support for a universal frequency formula. See research/core-day-capacity-evidence.json and its automated comparisons. All ten areas remain unresolved.

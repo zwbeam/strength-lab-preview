@@ -1104,16 +1104,21 @@ function coreAllocation(s,candidates,history,opts){
  // Measure actual recurrence in core visits, never fabricate component credit.
  const coreHistory=physical.filter(x=>physicalBlock(x)===coreBlock),lastSeen=new Map(),returns=new Map();
  const corePatterns=new Set([...BLOCKS[coreBlock].days.flatMap(x=>x.ids),...(core?.p.day.ids||[]),...(core?.p.support||[]),...coreHistory.flatMap(x=>[...(x.plan?.day?.ids||[]),...(x.plan?.support||[])])]);
- for(let i=0;i<coreHistory.length;i++)for(const item of coreHistory[i].items||[])if(corePatterns.has(item.id)&&movementEnabled(s,item.id)&&item.actualSets>0&&item.performed){if(lastSeen.has(item.id))returns.set(item.id,i-lastSeen.get(item.id));lastSeen.set(item.id,i);}
+ // Capacity uses distinct training days. Every actual completed exposure
+ // remains available to progression; only scheduling facts are grouped here.
+ const coreByDay=new Map();for(const session of coreHistory){const date=calendarDay(session.date);if(!coreByDay.has(date))coreByDay.set(date,new Set());for(const item of session.items||[])if(corePatterns.has(item.id)&&movementEnabled(s,item.id)&&item.actualSets>0&&item.performed)coreByDay.get(date).add(item.id);}
+ const coreDays=[...coreByDay.entries()].sort((a,b)=>a[0]-b[0]);
+ for(let i=0;i<coreDays.length;i++)for(const id of coreDays[i][1]){if(lastSeen.has(id))returns.set(id,i-lastSeen.get(id));lastSeen.set(id,i);}
  const requiredCoreVisits=Math.max(programDays,...returns.values());
  const share=Math.min(1,7*requiredCoreVisits/(pace*returnDays));
  // Reservation credit/debt belongs to the current period of core attendance.
  // A core absence resets scheduling credit, never earned movement progression.
- const coreDates=history.filter(x=>physicalBlock(x)===coreBlock&&primaryRecords(x).some(y=>y.actualSets>0)).map(x=>calendarDay(x.date));
+ const coreDates=[...new Set(history.filter(x=>physicalBlock(x)===coreBlock&&primaryRecords(x).some(y=>y.actualSets>0)).map(x=>calendarDay(x.date)))].sort((a,b)=>a-b);
  let reservationStart=coreDates[0]??day-returnDays+1;
  for(let i=1;i<coreDates.length;i++)if(coreDates[i]-coreDates[i-1]>returnDays)reservationStart=coreDates[i];
  if(!coreDates.length||day-coreDates.at(-1)>returnDays)reservationStart=day-returnDays+1;
- const actual=physical.filter(x=>calendarDay(x.date)>=reservationStart&&s.programComposition.blocks.includes(physicalBlock(x))).map(physicalBlock);
+ const actualByDay=new Map();for(const session of physical){const date=calendarDay(session.date),block=physicalBlock(session);if(date<reservationStart||!s.programComposition.blocks.includes(block))continue;actualByDay.set(date,actualByDay.get(date)===coreBlock||block===coreBlock?coreBlock:block);}
+ const actual=[...actualByDay.entries()].sort((a,b)=>a[0]-b[0]).map(x=>x[1]);
  const visits=[...actual,...(opts.projectedBlocks||[])],coreVisits=visits.filter(x=>x===coreBlock).length;
  let run=0;for(let i=visits.length-1;i>=0&&visits[i]===coreBlock;i--)run++;
  const other=candidates.find(x=>x.block!==coreBlock&&x.p.items.length);

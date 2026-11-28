@@ -827,3 +827,10 @@ Scope guard: the existing multi-program coordinator remains intact after a broad
 Verified locally: all 78 Node suites and six correction tests pass across the broad run and repaired developing/later suite rerun; all 43 browser suites pass. Final targeted tests, source/gate/suite audits, 51 offline assets and exact compatibility of 108 prescriptions/432 ordinary plans pass. Multi-program expectations were preserved. All ten gate areas remain unresolved.
 
 Sole-core follow-up implementation checkpoint: `8170b636277ceafe33da5a9e41c2ee2732d0ef7f`. Original 30-minute/two-day progression improves without changing source methods or multi-program admission. Broader low-capacity curriculum design and all ten gate closures remain open.
+
+
+Core-day capacity repair: four actual core training days recorded as 12 split receipts previously demanded nine core visits, falsely consuming all capacity. Distinct-day recurrence/attendance now demand three visits and admit hingePractice, matching grouped history. Real same-day completed work keeps its original progression credit; no records or storage formats change. Nine budget/frequency comparisons, corrections, mixed-day programs and a two-year 353/977-receipt comparison cover the repair. Genuine curriculum overload remains next. See research/core-day-capacity-evidence.json. Runtime rc80-core-days keeps 51 offline assets; inventory is 79 Node suites, six correction tests and 44 browser suites (four new mobile cases).
+
+Local browser QA requires a running server at 127.0.0.1:8765; an environment restart can stop it. Verify/start the server before Chromium suites.
+
+Local verification: all 79 Node suites, six correction tests and 44 browser suites pass (browser group resumed after the repaired clock initialization race). Four new mobile cases, two-year grouped/split replay, source/gate/suite audits and 51 offline assets pass. Baseline compatibility preserves 108 prescriptions and 432 ordinary plans. All ten gate areas remain open.
