@@ -245,5 +245,6 @@
     "sourceHashesAndQuotes": "passed",
     "generatedAudits": "reproducible; 54 routes, 38 reviewed outlines and 16 gaps unchanged",
     "note": "Complete local coverage passed, including isolated integration rerun and the remaining browser group after restoring the server following environment restart. No existing browser assertions were weakened. Exact-head CI and public DEV verification follow push."
-  }
+  },
+  "implementationCommit": "473fadbbdf010e8b6cef3ab65b2c022eba58c652"
 }

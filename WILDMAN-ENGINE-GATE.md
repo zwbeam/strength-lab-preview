@@ -495,3 +495,6 @@ reentry to gap 13 with earned maintenance; get-up returns fall four to two while
 earns no new ground/hinge cycles. Targeted 45/60-minute histories are unchanged.
 All raw counts and dates are retained in the evidence; this is not universal
 recurrence proof or release-gate closure.
+
+Maintenance-host implementation checkpoint: 473fadbbdf010e8b6cef3ab65b2c022eba58c652.
+All ten areas remain unresolved.

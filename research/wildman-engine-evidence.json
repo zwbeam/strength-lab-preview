@@ -398,7 +398,8 @@
           "browserSuites": 47,
           "mobileCases": 2,
           "note": "Full local coverage, focused actual-host/continuity regressions, source/gate/suite checks, reproducible audits and baseline compatibility pass. Exact-head CI and live DEV acceptance follow push. All ten areas remain unresolved."
-        }
+        },
+        "implementationCommit": "473fadbbdf010e8b6cef3ab65b2c022eba58c652"
       }
     },
     "Movement-specific progression": {
