@@ -348,6 +348,31 @@
           "note": "Complete local regression passed, plus the final expanded maintenance regression. Exact-head CI and live DEV verification follow push. All ten gate areas remain unresolved."
         },
         "implementationCommit": "fedd1a3f7127de45a12b796cfb65421d491ecd6d"
+      },
+      "currentCoreScopeRepair": {
+        "status": "partial",
+        "sourceIds": [
+          85,
+          548,
+          606
+        ],
+        "claim": "Current A/B/C settings determine capacity demand and core feedback without erasing history or earned progress from inactive variants.",
+        "enginePaths": [
+          "engine.js"
+        ],
+        "tests": [
+          "tests/core-scope.js",
+          "tests/browser-core-scope.cjs"
+        ],
+        "evidence": "research/core-scope-evidence.json",
+        "adaptation": "#85/#548/#606 describe interlocking programs, retaining fundamentals and choosing kettlebell days according to goals. Current-program scope, capacity accounting and the optional A/B/C switches are Strength Lab adaptations. No source-authored frequency or new minimum maintenance interval is asserted.",
+        "verification": {
+          "nodeSuites": 81,
+          "historyCorrectionTests": 6,
+          "browserSuites": 46,
+          "mobileCases": 2,
+          "note": "All local suites passed across broad runs and final targeted follow-ups. Normal source/gate/suite checks, generated audits, 51 assets and bounded compatibility comparisons pass. Exact-head CI and live DEV acceptance follow push. All ten areas remain unresolved."
+        }
       }
     },
     "Movement-specific progression": {

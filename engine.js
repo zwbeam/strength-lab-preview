@@ -781,20 +781,34 @@ function pendingThrough(s,block,now){
 }
 // One rolling seven-day capacity rule for actual planning and provisional opportunities.
 function weeklyTrainingLimit(s){return Math.min(s.trainingDefaults?.maxTrainingDays??7,s.trainingPreferences?.daysPerWeek??7,s.trainingPreferences?.focus==='strength'?4:7);}
+// Share the reachable A/B/C curriculum between prescriptions and capacity.
+function abcDaysFor(s,physicalCount){
+ const preferences=s.trainingPreferences||{};
+ return BLOCKS.abc.days.map((d,i)=>{
+  if(i!==2)return d;
+  if(preferences.useKb!==false&&preferences.useDoubleKb===true&&s.skills?.rack===true&&s.skills?.doublePress===true&&s.skills?.doubleSquat===true&&(physicalCount%6===2))return {name:'C · Double kettlebell strength',focus:'Matched-pair strength practice',ids:['doublePress','doubleSquat']};
+  if(preferences.conditioning!==false&&preferences.useKb!==false&&s.skills?.overhead===true&&s.skills?.swing===true&&s.skills?.clean===true&&(physicalCount%6===5))return {name:'C · Snatch EMOM',focus:'Optional conditioning and skill density',ids:['snatch']};
+  if(preferences.skillSessions===false)return {name:'C · Strength practice',focus:'Repeat established fundamentals',ids:['clean','front','squat']};
+  return d;
+ });
+}
+function abcFallbackFor(s,day,slot){
+ const pref=s.trainingPreferences||{},enabled=id=>movementEnabled(s,id);
+ const fallback=pref.useKb!==false?['squat','press','row']:pref.useClub!==false?(pref.useTwoHandClub!==false?['front','circles','cast']:['clubInside','clubOutside']):[['bodyweightSquat','stepBackLunge','hingePractice'],['hipDropTwoHand','bearCrawl','bearSquat','hingePractice'],['pushup','catCrawl','hipDropSingleHand','hingePractice']][slot];
+ if(!day.ids.some(enabled))return {name:pref.useKb!==false?'Strength fundamentals':pref.useClub!==false?'Club fundamentals':'Bodyweight fundamentals',focus:'Equipment-compatible foundation practice',ids:fallback.filter(enabled)};
+ return day;
+}
+function coreScopeIds(s,block){
+ if(block!=='abc')return [...new Set(BLOCKS[block].days.flatMap(d=>d.ids))];
+ const days=Array.from({length:6},(_,n)=>abcDaysFor(s,n).map((d,i)=>abcFallbackFor(s,d,i))).flat();
+ return [...new Set(days.flatMap(d=>d.ids))];
+}
 function blockPlan(s,opts={}){
  opts={...opts,now:opts.now??new Date()};opts.readiness??=readinessFor(s,opts.now);
  const through=opts.evidenceThrough??opts.now,timeline=sessionsThrough(s,through,opts.projection);
  const block=s.programBlock||'abc';if(!BLOCKS[block])throw Error('Unknown program block');
- const preferences=s.trainingPreferences||{};
- const originalDays=BLOCKS[block].days;
- const abcDays=block==='abc'?originalDays.map((d,i)=>{
-  if(i!==2)return d;
-  if(preferences.useKb!==false&&preferences.useDoubleKb===true&&s.skills?.rack===true&&s.skills?.doublePress===true&&s.skills?.doubleSquat===true&&(timeline.filter(x=>(x.items||[]).some(y=>y.actualSets>0)).length%6===2))return {name:'C · Double kettlebell strength',focus:'Matched-pair strength practice',ids:['doublePress','doubleSquat']};
-  if(preferences.conditioning!==false&&preferences.useKb!==false&&s.skills?.overhead===true&&s.skills?.swing===true&&s.skills?.clean===true&&(timeline.filter(x=>(x.items||[]).some(y=>y.actualSets>0)).length%6===5))return {name:'C · Snatch EMOM',focus:'Optional conditioning and skill density',ids:['snatch']};
-  if(preferences.skillSessions===false)return {name:'C · Strength practice',focus:'Repeat established fundamentals',ids:['clean','front','squat']};
-  return d;
- }):originalDays;
- const days=abcDays,slot=timeline.filter(x=>x.slot!==undefined&&(x.block||'abc')===block&&(x.notebookVersion!==1||primaryRecords(x).some(y=>y.actualSets>0))&&(x.calendarVersion!==1||primaryRecords(x).every(y=>y.performed===true))).length%days.length;
+ const days=block==='abc'?abcDaysFor(s,timeline.filter(x=>(x.items||[]).some(y=>y.actualSets>0)).length):BLOCKS[block].days;
+ const slot=timeline.filter(x=>x.slot!==undefined&&(x.block||'abc')===block&&(x.notebookVersion!==1||primaryRecords(x).some(y=>y.actualSets>0))&&(x.calendarVersion!==1||primaryRecords(x).every(y=>y.performed===true))).length%days.length;
  let day=days[slot];
  const budget=timeBudget(opts.minutes??s.defaultMinutes??45),defaults=s.trainingDefaults||{};
  // A selected duration is the ceiling, including preparation and cooldown.
@@ -805,10 +819,7 @@ function blockPlan(s,opts={}){
  const pref=s.trainingPreferences||{};
  const emphasis=pref.emphasis?trainingEmphasis(s).levels:null;
  const enabled=id=>movementEnabled(s,id);
- if(block==='abc'){
-  const fallback=pref.useKb!==false?['squat','press','row']:pref.useClub!==false?(pref.useTwoHandClub!==false?['front','circles','cast']:['clubInside','clubOutside']):[['bodyweightSquat','stepBackLunge','hingePractice'],['hipDropTwoHand','bearCrawl','bearSquat','hingePractice'],['pushup','catCrawl','hipDropSingleHand','hingePractice']][slot];
-  if(!day.ids.some(enabled))day={name:pref.useKb!==false?'Strength fundamentals':pref.useClub!==false?'Club fundamentals':'Bodyweight fundamentals',focus:'Equipment-compatible foundation practice',ids:fallback.filter(enabled)};
- }
+ if(block==='abc')day=abcFallbackFor(s,day,slot);
  // App composition: one eligible bodyweight support and one opt-in paired-club
  // pattern can join ABC; primary cycle targets remain independent.
  const supplemental=[];
@@ -1103,10 +1114,17 @@ function coreAllocation(s,candidates,history,opts){
  // Deferred work may need more core opportunities than the formal day count.
  // Measure actual recurrence in core visits, never fabricate component credit.
  const coreHistory=physical.filter(x=>physicalBlock(x)===coreBlock),lastSeen=new Map(),returns=new Map();
- const corePatterns=new Set([...BLOCKS[coreBlock].days.flatMap(x=>x.ids),...(core?.p.day.ids||[]),...(core?.p.support||[]),...coreHistory.flatMap(x=>[...(x.plan?.day?.ids||[]),...(x.plan?.support||[])])]);
+ // Old optional C-day variants are history, not current capacity demand.
+ // Enumerate the existing six-turn selectors, including equipment fallbacks;
+ // preserve the selected fundamentals and their currently needed prerequisites.
+ const currentIds=coreBlock==='abc'?coreScopeIds(s,coreBlock):null;
+ const corePatterns=new Set(currentIds?[...currentIds,...supportingMoves(s,currentIds,opts),...(core?.p.day.ids||[]),...(core?.p.support||[])]:[...BLOCKS[coreBlock].days.flatMap(x=>x.ids),...(core?.p.day.ids||[]),...(core?.p.support||[]),...coreHistory.flatMap(x=>[...(x.plan?.day?.ids||[]),...(x.plan?.support||[])])]);
+ const historicalDays=currentIds?new Set([...BLOCKS[coreBlock].days.flatMap(d=>d.ids),...coreHistory.flatMap(x=>x.plan?.day?.ids||[])]):new Set();
+ const retiredIds=new Set(currentIds?[...historicalDays].filter(id=>!currentIds.includes(id)||!movementEnabled(s,id)):[]);
+ const currentCoreHistory=retiredIds.size?coreHistory.filter(x=>(x.items||[]).some(y=>y.actualSets>0&&!retiredIds.has(y.id))):coreHistory;
  // Capacity uses distinct training days. Every actual completed exposure
  // remains available to progression; only scheduling facts are grouped here.
- const coreByDay=new Map();for(const session of coreHistory){const date=calendarDay(session.date);if(!coreByDay.has(date))coreByDay.set(date,new Set());for(const item of session.items||[])if(corePatterns.has(item.id)&&movementEnabled(s,item.id)&&item.actualSets>0&&item.performed)coreByDay.get(date).add(item.id);}
+ const coreByDay=new Map();for(const session of currentCoreHistory){const date=calendarDay(session.date);if(!coreByDay.has(date))coreByDay.set(date,new Set());for(const item of session.items||[])if(corePatterns.has(item.id)&&movementEnabled(s,item.id)&&item.actualSets>0&&item.performed)coreByDay.get(date).add(item.id);}
  const coreDays=[...coreByDay.entries()].sort((a,b)=>a[0]-b[0]);
  for(let i=0;i<coreDays.length;i++)for(const id of coreDays[i][1]){if(lastSeen.has(id))returns.set(id,i-lastSeen.get(id));lastSeen.set(id,i);}
  const requiredCoreVisits=Math.max(programDays,...returns.values());
@@ -1117,6 +1135,9 @@ function coreAllocation(s,candidates,history,opts){
  let reservationStart=coreDates[0]??day-returnDays+1;
  for(let i=1;i<coreDates.length;i++)if(coreDates[i]-coreDates[i-1]>returnDays)reservationStart=coreDates[i];
  if(!coreDates.length||day-coreDates.at(-1)>returnDays)reservationStart=day-returnDays+1;
+ // Attendance in a retired A/B/C day cannot bank weeks of credit for the
+ // current curriculum. Movement histories and earned progress remain intact.
+ for(const session of coreHistory)if((session.items||[]).some(x=>x.actualSets>0&&retiredIds.has(x.id)))reservationStart=Math.max(reservationStart,calendarDay(session.date)+1);
  const actualByDay=new Map();for(const session of physical){const date=calendarDay(session.date),block=physicalBlock(session);if(date<reservationStart||!s.programComposition.blocks.includes(block))continue;actualByDay.set(date,actualByDay.get(date)===coreBlock||block===coreBlock?coreBlock:block);}
  const actual=[...actualByDay.entries()].sort((a,b)=>a[0]-b[0]).map(x=>x[1]);
  const visits=[...actual,...(opts.projectedBlocks||[])],coreVisits=visits.filter(x=>x===coreBlock).length;
@@ -1179,7 +1200,7 @@ function curriculumPlan(s,candidates,history,allocation,opts){
  const cache=new Map(),state=id=>{if(!cache.has(id))cache.set(id,stateFor(s,id,opts));return cache.get(id);};
  const physical=history.filter(x=>(x.items||[]).some(y=>y.actualSets>0));
  const rows=candidates.map(candidate=>{
-  const ids=[...new Set(BLOCKS[candidate.block].days.flatMap(x=>x.ids))].filter(id=>movementEnabled(s,id));
+  const ids=(candidate.block===core?coreScopeIds(s,core):[...new Set(BLOCKS[candidate.block].days.flatMap(x=>x.ids))]).filter(id=>movementEnabled(s,id));
   const known=ids.filter(id=>(MOVES[id].requires||[]).every(key=>s.skills?.[key]===true));
   const support=(candidate.p.support||[]).filter(id=>candidate.p.items.some(x=>x.id===id&&x.sets>0));
   const rebuilding=id=>!!state(id).alternateVolume||candidate.p.items.some(rx=>rx.id===id&&rx.alternateVolume);
@@ -1261,7 +1282,7 @@ function plan(s,opts={}){
  const trainingDays=[...new Set(history.filter(x=>day-calendarDay(x.date)<56&&(x.items||[]).some(y=>y.actualSets>0)).map(x=>calendarDay(x.date)))].sort((a,b)=>a-b);
  const rotation=rotationCapacity(s,candidates,trainingDays),estimatedReturnDays=trainingDays.length>=4&&rotation.readyBlocks?Math.ceil((trainingDays.at(-1)-trainingDays[0])/(trainingDays.length-1)*rotation.readyBlocks):null;
  const absenceDays=s.trainingDefaults?.reentryDays??14;
- const activeIds=[...new Set(candidates.flatMap(x=>[...BLOCKS[x.block].days.flatMap(d=>d.ids),...x.p.items.map(rx=>rx.id)]))].filter(id=>movementEnabled(s,id));
+ const activeIds=[...new Set(candidates.flatMap(x=>[...(x.block===c.coreBlock?coreScopeIds(s,x.block):BLOCKS[x.block].days.flatMap(d=>d.ids)),...x.p.items.map(rx=>rx.id)]))].filter(id=>movementEnabled(s,id));
  const movementRows=opts.projection?[]:movementCadence(s,activeIds,opts.now,absenceDays,opts.evidenceThrough);
  const repeated=movementRows.filter(x=>x.repeatedReentry),risk=movementRows.filter(x=>x.atRisk);
  const movementWarning=repeated.length?'Repeated reduced returns: '+repeated.slice(0,3).map(x=>x.name).join(', ')+(repeated.length>3?' and '+(repeated.length-3)+' more':'')+'. Consider fewer active patterns; missed work has not earned progression credit.':risk.length?'Some movements are recurring less often than the configured return window: '+risk.slice(0,3).map(x=>x.name).join(', ')+'. Review the rotation rather than adding catch-up work.':null;

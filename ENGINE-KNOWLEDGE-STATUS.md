@@ -456,3 +456,35 @@ Sources #85/#123/#548 supply bounded context; timing/priority is an app adaptati
 See research/maintenance-cadence-evidence.json and its results. All ten gate areas
 remain unresolved; oversized curricula, broader admission and physical Android
 acceptance remain priorities. Runtime rc81-maintenance-review retains 51 assets.
+
+
+Current-core scope repair (November 28): A/B/C capacity now uses the same
+current C-day selectors and equipment fallbacks as actual prescriptions. Old
+optional variants no longer reserve capacity after being switched off. The
+controlled 30-minute case falls from six required core visits to three and
+starts the current core before reopening hinge practice after real completion;
+switching the option back on restores six from the same actual history. Selected pressing, future bodyweight fallback foundations and
+dedicated club scope retain their own demand. Current core curriculum/cadence
+feedback follows the same scope. Train and Settings remain bidirectional.
+No setting save earns progress or changes records, loads, V33 storage or source
+methods. #85/#548/#606 provide bounded program-design context; scope accounting
+is an app repair, not a Wildman frequency formula. See
+research/core-scope-evidence.json. All ten gate areas remain unresolved; genuinely
+oversized curricula and wider source-method/physical acceptance work remain.
+Runtime rc82-core-scope retains 51 offline assets.
+
+Attendance credit restarts after the latest actual day with a retired declared
+A/B/C pattern, including partial work. Otherwise weeks of old-program attendance
+can postpone current foundations. Records, pending work and movement progress
+remain intact. No rolling quota or new frequency is introduced. Six ordinary
+controlled/two-year trajectories retain counts, qualification dates and earned
+state. The separate changed-goal diagnostic starts developing work earlier but
+has more returns and some later core qualifications; inspect all counts/dates in
+research/core-scope-evidence.json. Genuine overload is still open.
+
+Retired-only days also stop inflating current recurrence distances (13 stored
+receipts remain 13; required visits fall six to three). Partial current work and
+all saved debt remain protected. Baseline comparison retains 108 prescriptions
+and 432 complete plans except six intentionally corrected inactive-circle core
+feedback lists. The existing mobile settings test now waits for the saved timer
+preference before navigating; no assertions or app validation were removed.

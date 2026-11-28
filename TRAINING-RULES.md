@@ -850,3 +850,14 @@ Scope guard: the existing multi-program coordinator remains intact after a broad
 
 
 Capacity opportunities and observed core recurrence use distinct physical training dates, consistent with days/week. Same-day core work counts once for reservation even if another program also occurs. Actual completed exposures remain separate for progression. Empty work gives no attendance; partial physical work retains existing attendance without advancement. Date edits/undo and forecasts never manufacture actual attendance. See research/core-day-capacity-evidence.json.
+
+
+Protected A/B/C capacity and core feedback follow current C-day options and
+equipment fallbacks. Retired-only days do not inflate current recurrence; the
+current attendance-credit period starts after the latest retired-pattern day,
+including partial physical work. All receipts, independent method progress and
+written debt remain intact. Re-enabling an option recomputes from actual history;
+no setting save earns progress. Dedicated source blocks retain their own scope.
+This repairs app accounting without prescribing a new frequency or changing a
+movement's load, dose, progression or return rules. See
+research/core-scope-evidence.json for verification and long-term tradeoffs.

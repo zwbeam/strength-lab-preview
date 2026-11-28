@@ -96,3 +96,13 @@ selected programs or the cap updates the estimate; raising requested days alone
 cannot bypass a lower cap. No selection is silently removed or target changed.
 browser-rotation-capacity checks those controls, matching calendar opportunities,
 immutable offline draft metadata and actual saved work at 320/390px.
+
+
+Current-core scope regression: tests/core-scope.js and
+tests/browser-core-scope.cjs verify the skill-day style option in both directions
+between Train and Settings. Disabling an old A/B/C variant recomputes current
+capacity and its attendance-credit period; re-enabling restores history-based
+demand. A real current-core workout precedes the newly available developing
+opportunity. Style saves preserve records and movement progress; later offline
+work records only actual completed sets. Dedicated club and fallback choices
+retain their independent scope.

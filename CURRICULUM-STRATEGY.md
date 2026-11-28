@@ -13,6 +13,16 @@ A thirty-minute protected workout includes preparation and cooldown within thirt
 minutes. No new curriculum questionnaire or preference is required. Actual workout plans
 remember scheduling intent; earned eligibility is always replayed from actual work.
 
+Protected A/B/C scope uses the same current C-day choices and equipment fallbacks
+as workout generation, including reachable later days. Retired declared patterns
+do not create current recurrence demand; days containing only retired patterns
+do not inflate the visit distance of current foundations. Attendance credit for
+the new curriculum starts after the latest retired-pattern day, including partial
+physical work. This prevents old-program surplus from postponing current work.
+All actual receipts, pending debt and independent movement progress remain saved.
+These are app accounting rules, not a new source frequency prescription. See
+`research/core-scope-evidence.json` for changed-goal tradeoffs and open limits.
+
 When the ready selections fit the current capacity estimate, ordinary balanced
 coordination continues. When they exceed it, the engine focuses eligible developing
 work on one program's current movement cycles. Other selected programs remain
