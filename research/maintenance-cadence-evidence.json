@@ -1,0 +1,248 @@
+{
+  "date": "2026-11-28",
+  "baseCommit": "a6d04497271206a567d2782cf3bf6117747c9653",
+  "status": "partial",
+  "sources": [
+    {
+      "id": 85,
+      "file": "sources-02.json",
+      "title": "Body weight 101 program integration with swing and strong and fit mill squat program - design talk",
+      "url": "https://www.youtube.com/watch?v=Sb0byJSPDoE",
+      "sha256": "c346045f067510b8f03798fd56b593cb90dc9ad733f8c8fb8b796bc90045c767",
+      "quotes": [
+        "each piece of the tetris program can be totally different but they can integrate and interlock in different ways"
+      ],
+      "timestamps": null
+    },
+    {
+      "id": 123,
+      "file": "sources-04.json",
+      "title": "Combining kettlebells and clubs with conventional lifting - overview",
+      "url": "https://www.youtube.com/watch?v=xAk3LQhMZDo",
+      "sha256": "caf185bf5eb5f9b8394e1547f0f88f74c73c19bd2ffd7f5f0a9dd0532ebaa9a4",
+      "quotes": [
+        "for just a much shorter period of time and at a lower weight"
+      ],
+      "timestamps": null
+    },
+    {
+      "id": 548,
+      "file": "sources-18.json",
+      "title": "Program Design 4 - Basic Kettlebell, 2 Hand Heavy Club, Single arm Club - Training Tetris",
+      "url": "https://www.youtube.com/watch?v=XYuiOsBAvXI",
+      "sha256": "0cdb4d3f1e34f4c8076a90aa4af3133e4b9b693650bff28c68f6b871c2a7dbb2",
+      "quotes": [
+        "we are going to keep these as fundamental programs"
+      ],
+      "timestamps": null
+    }
+  ],
+  "sourceScope": "#123 describes maintaining familiar kettlebell/club/mace work while shifting toward conventional lifting. It does not prescribe get-up review frequency or a universal maintenance dose. #85/#548 support interlocking programs and keeping fundamentals. The distinction between review eligibility and dedicated scheduling urgency is a Strength Lab adaptation, using the existing configured return window rather than inventing a Wildman numerical interval.",
+  "behavior": [
+    "A canonical, fully delivered earned-maintenance receipt at the current method, track and load can defer a dedicated full-review workout when a developing program has capacity and the existing next-visit return-window check is not due.",
+    "Full endpoint work remains required for load review; no lighter prescription, earned progress or automatic load increase is introduced.",
+    "Full reviews that fit alongside existing work retain their original priority. If no developing lane has capacity, maintenance-only behavior is unchanged.",
+    "Failed, incomplete, held, recovery, reentry, alternate-volume and unverified legacy evidence cannot grant this deferral. Existing core reservations, prerequisites, equipment and time ceilings remain in force.",
+    "The overdue check overrides the deferral. Forecasts, imports, history edits and undo use actual receipts; V33 data and settings are unchanged."
+  ],
+  "enginePaths": [
+    "engine.js:maintenanceReviewCanWait",
+    "engine.js:maintenanceOptions",
+    "engine.js:curriculumPlan"
+  ],
+  "tests": [
+    "tests/maintenance-cadence.js",
+    "tests/browser-maintenance-cadence.cjs"
+  ],
+  "results": {
+    "controlledDedicatedReview": {
+      "minutes": 30,
+      "recentMaintenanceGapDays": 2,
+      "beforeBlock": "getup",
+      "afterBlock": "bodyweightPull",
+      "eventualActualFullReviewGapDays": 13,
+      "reviewEligibleUntilFullActual": false,
+      "automaticLoadChange": false
+    },
+    "capacityStressCases": 12,
+    "comparison": "research/maintenance-cadence-results.json",
+    "ordinaryGeneratedTrajectories": "All six before/after comparisons retain identical counts, qualification dates, progress and next-curriculum output: 120 actual workouts each at 30/45/60 minutes, plus 286 each with two-year constraints. This fix targets dedicated displacement; it does not claim broad reentry improvement.",
+    "historyLookup": {
+      "scenario": "history-lookup",
+      "sessions": 3000,
+      "movementsPerSession": 10,
+      "iterations": 5,
+      "identical": true,
+      "baselineMs": 9.74,
+      "currentMs": 7.76,
+      "limit": "Synthetic local lookup timing, not a real-device latency guarantee"
+    },
+    "dedicatedLongTermActual": [
+      {
+        "minutes": 30,
+        "label": "before",
+        "counts": {
+          "workouts": 119,
+          "getup": 23,
+          "getupReturns": 3,
+          "row": 26,
+          "rowReturns": 0,
+          "maintenance": 71,
+          "developingReturns": 0,
+          "earnedReturns": 14
+        },
+        "milestones": {
+          "hingePractice": "2026-06-22",
+          "bodyweightRow": "2026-06-26",
+          "bodyweightSquat": "2026-07-17",
+          "stepBackLunge": "2026-07-17",
+          "hipDropTwoHand": "2026-08-12",
+          "bearSquat": "2026-08-26",
+          "hipDropSingleHand": "2026-08-31"
+        },
+        "rowCycles": 1
+      },
+      {
+        "minutes": 30,
+        "label": "after",
+        "counts": {
+          "workouts": 119,
+          "getup": 20,
+          "getupReturns": 3,
+          "row": 21,
+          "rowReturns": 1,
+          "maintenance": 72,
+          "developingReturns": 0,
+          "earnedReturns": 14
+        },
+        "milestones": {
+          "bodyweightRow": "2026-06-19",
+          "hingePractice": "2026-06-22",
+          "bodyweightSquat": "2026-07-13",
+          "stepBackLunge": "2026-07-13",
+          "hipDropTwoHand": "2026-08-07",
+          "bearSquat": "2026-08-14",
+          "hipDropSingleHand": "2026-08-26"
+        },
+        "rowCycles": 1
+      },
+      {
+        "minutes": 45,
+        "label": "before",
+        "counts": {
+          "workouts": 119,
+          "getup": 26,
+          "getupReturns": 1,
+          "row": 30,
+          "rowReturns": 0,
+          "maintenance": 75,
+          "developingReturns": 0,
+          "earnedReturns": 2
+        },
+        "milestones": {
+          "bodyweightRow": "2026-06-17",
+          "hingePractice": "2026-06-22",
+          "bodyweightSquat": "2026-07-03",
+          "stepBackLunge": "2026-07-03",
+          "hipDropTwoHand": "2026-07-22",
+          "bearSquat": "2026-07-22",
+          "hipDropSingleHand": "2026-07-29"
+        },
+        "rowCycles": 1
+      },
+      {
+        "minutes": 45,
+        "label": "after",
+        "counts": {
+          "workouts": 119,
+          "getup": 26,
+          "getupReturns": 1,
+          "row": 30,
+          "rowReturns": 0,
+          "maintenance": 75,
+          "developingReturns": 0,
+          "earnedReturns": 2
+        },
+        "milestones": {
+          "bodyweightRow": "2026-06-17",
+          "hingePractice": "2026-06-22",
+          "bodyweightSquat": "2026-07-03",
+          "stepBackLunge": "2026-07-03",
+          "hipDropTwoHand": "2026-07-22",
+          "bearSquat": "2026-07-22",
+          "hipDropSingleHand": "2026-07-29"
+        },
+        "rowCycles": 1
+      },
+      {
+        "minutes": 60,
+        "label": "before",
+        "counts": {
+          "workouts": 119,
+          "getup": 26,
+          "getupReturns": 1,
+          "row": 30,
+          "rowReturns": 0,
+          "maintenance": 75,
+          "developingReturns": 0,
+          "earnedReturns": 3
+        },
+        "milestones": {
+          "bodyweightRow": "2026-06-17",
+          "hingePractice": "2026-06-22",
+          "bodyweightSquat": "2026-07-03",
+          "stepBackLunge": "2026-07-03",
+          "hipDropTwoHand": "2026-07-22",
+          "bearSquat": "2026-07-22",
+          "hipDropSingleHand": "2026-07-29"
+        },
+        "rowCycles": 1
+      },
+      {
+        "minutes": 60,
+        "label": "after",
+        "counts": {
+          "workouts": 119,
+          "getup": 26,
+          "getupReturns": 1,
+          "row": 30,
+          "rowReturns": 0,
+          "maintenance": 75,
+          "developingReturns": 0,
+          "earnedReturns": 3
+        },
+        "milestones": {
+          "bodyweightRow": "2026-06-17",
+          "hingePractice": "2026-06-22",
+          "bodyweightSquat": "2026-07-03",
+          "stepBackLunge": "2026-07-03",
+          "hipDropTwoHand": "2026-07-22",
+          "bearSquat": "2026-07-22",
+          "hipDropSingleHand": "2026-07-29"
+        },
+        "rowCycles": 1
+      }
+    ],
+    "dedicatedLongTermScope": "120 scheduled opportunities / 119 actual workouts at three days per week. At 30 minutes: row qualification June 26 to June 19; squat/lunge July 17 to July 13; two-hand hip drop August 12 to August 7; bear squat August 26 to August 14; single-hand hip drop August 31 to August 26. Total earned returns remain 14 and developing returns zero. One later earned row return replaces a return elsewhere; get-up return count remains three. 45/60-minute histories are unchanged. These are synthetic outcomes, not physical guarantees.",
+    "reproduceDedicated": "node scripts/compare-maintenance.cjs /tmp/prior-engine.js (export baseCommit engine.js with git show first)"
+  },
+  "limitations": [
+    "All ten Wildman gate areas remain unresolved.",
+    "This explicitly selected actual history models an experienced get-up trainee adopting a broader curriculum; it is not claimed to have been produced by the automatic coordinator.",
+    "Large cores, low attendance and broader curriculum admission still limit developing opportunities. No universal movement minimum frequency has been established.",
+    "A broader prototype that also delayed full-review additions changed ordinary return outcomes unfavorably and was discarded. Existing additions and maintenance-only cadence are retained.",
+    "Browser mobile emulation is not physical Android or technique acceptance."
+  ],
+  "verification": {
+    "nodeSuites": 80,
+    "historyCorrectionTests": 6,
+    "browserSuites": 45,
+    "mobileCases": 2,
+    "ordinaryPrescriptionCompatibilityCases": 108,
+    "ordinaryPlanCompatibilityCases": 432,
+    "offlineAssets": 51,
+    "sourceHashesAndQuotes": "passed",
+    "generatedAudits": "reproducible; 54 routes, 38 reviewed outlines, 16 gaps",
+    "scope": "Complete local regression, with final expanded maintenance test rerun; exact-head remote checks and live DEV acceptance follow push."
+  }
+}

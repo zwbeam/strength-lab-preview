@@ -131,6 +131,7 @@ jobs:
           node tests/developing-continuity.js
           node tests/optional-admission.js
           node tests/curriculum-strategy.js
+          node tests/maintenance-cadence.js
           node tests/core-window.js
           node tests/core-composition.js
           node tests/wildman-gate.js
@@ -331,6 +332,7 @@ jobs:
           node tests/browser-developing-continuity.cjs
           node tests/browser-optional-admission.cjs
           node tests/browser-curriculum-strategy.cjs
+          node tests/browser-maintenance-cadence.cjs
           node tests/browser-draft-policy.cjs
           node tests/browser-preparation-engine.cjs
           node tests/browser-load-evidence.cjs

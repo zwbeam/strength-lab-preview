@@ -746,3 +746,25 @@ Scope guard: the existing multi-program coordinator remains intact after a broad
 
 
 Core capacity now counts physical training days rather than save receipts. Same-day split records no longer inflate core demand or attendance and block developing work. Actual progression and history are unchanged; see research/core-day-capacity-evidence.json for tests, tradeoffs and remaining overload limits. All ten audit areas remain open.
+
+
+Maintenance-cadence repair (November 28): a recent canonical, fully completed
+earned-maintenance exposure can defer a dedicated full-review workout that would
+displace an active developing program. The existing return-window urgency still
+wins. Full reviews that fit alongside other work, maintenance-only schedules,
+and incomplete/unverified/recovery evidence keep their existing priority. Load
+review still requires actual full endpoint work; no progression, load, setting
+or V33 history change is introduced. A 30-minute get-up case now retains the
+developing row opportunity at gap two and completes its full review at gap
+thirteen. Six existing 30/45/60-minute controlled/two-year comparisons remain
+identical; this is a targeted displacement repair, not a broad recurrence cure.
+Sources #85/#123/#548 supply bounded context; timing/priority is an app adaptation.
+See research/maintenance-cadence-evidence.json and its results. All ten gate areas
+remain unresolved; oversized curricula, broader admission and physical Android
+acceptance remain priorities. Runtime rc81-maintenance-review retains 51 assets.
+
+Local verification: all 80 Node suites, six history-correction tests and 45
+browser suites passed, plus the final expanded maintenance regression. Source
+hashes/quotes, suite registration, generated audits and 51 offline assets pass.
+The existing 108 prescriptions / 432 ordinary plans match the base checkpoint.
+Exact-head CI and DEV deployment verification follow push.

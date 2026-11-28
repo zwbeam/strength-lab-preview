@@ -322,6 +322,31 @@
           "browserSuites": 44,
           "mobileCases": 4
         }
+      },
+      "maintenanceCadenceRepair": {
+        "status": "partial",
+        "sourceIds": [
+          85,
+          123,
+          548
+        ],
+        "claim": "A recent clean earned-maintenance exposure does not force a dedicated full-review workout to displace developing work before existing recurrence urgency; full review still gates progression.",
+        "enginePaths": [
+          "engine.js"
+        ],
+        "tests": [
+          "tests/maintenance-cadence.js",
+          "tests/browser-maintenance-cadence.cjs"
+        ],
+        "evidence": "research/maintenance-cadence-evidence.json",
+        "adaptation": "#123 describes maintaining familiar kettlebell/club/mace work while shifting toward conventional lifting. It does not prescribe get-up review frequency or a universal maintenance dose. #85/#548 support interlocking programs and keeping fundamentals. The distinction between review eligibility and dedicated scheduling urgency is a Strength Lab adaptation, using the existing configured return window rather than inventing a Wildman numerical interval.",
+        "verification": {
+          "nodeSuites": 80,
+          "historyCorrectionTests": 6,
+          "browserSuites": 45,
+          "mobileCases": 2,
+          "note": "Complete local regression passed, plus the final expanded maintenance regression. Exact-head CI and live DEV verification follow push. All ten gate areas remain unresolved."
+        }
       }
     },
     "Movement-specific progression": {

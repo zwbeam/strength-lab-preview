@@ -440,3 +440,19 @@ Scope guard: the existing multi-program coordinator remains intact after a broad
 
 
 Capacity accounting follow-up: #548/#85 provide fundamentals/interlocking context, while distinct-day counting is an app consistency repair. It preserves every actual exposure and source-method history. The source archive/instruction counts and ten unresolved areas are unchanged. Evidence: research/core-day-capacity-evidence.json.
+
+
+Maintenance-cadence repair (November 28): a recent canonical, fully completed
+earned-maintenance exposure can defer a dedicated full-review workout that would
+displace an active developing program. The existing return-window urgency still
+wins. Full reviews that fit alongside other work, maintenance-only schedules,
+and incomplete/unverified/recovery evidence keep their existing priority. Load
+review still requires actual full endpoint work; no progression, load, setting
+or V33 history change is introduced. A 30-minute get-up case now retains the
+developing row opportunity at gap two and completes its full review at gap
+thirteen. Six existing 30/45/60-minute controlled/two-year comparisons remain
+identical; this is a targeted displacement repair, not a broad recurrence cure.
+Sources #85/#123/#548 supply bounded context; timing/priority is an app adaptation.
+See research/maintenance-cadence-evidence.json and its results. All ten gate areas
+remain unresolved; oversized curricula, broader admission and physical Android
+acceptance remain priorities. Runtime rc81-maintenance-review retains 51 assets.

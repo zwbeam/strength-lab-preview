@@ -1,0 +1,1796 @@
+[
+  {
+    "scenario": "forty-week-controlled",
+    "label": "before",
+    "minutes": 30,
+    "counts": {
+      "workouts": 120,
+      "core": 96,
+      "developingReturns": 4,
+      "earnedReturns": 8,
+      "progressingWork": 16,
+      "maintenance": 6,
+      "maintenanceAlongside": 17
+    },
+    "milestones": {
+      "hingePractice": "2026-01-26",
+      "bodyweightRow": "2026-05-18"
+    },
+    "progress": {
+      "hingePractice": {
+        "stage": 1,
+        "cycles": 1,
+        "ready": true
+      },
+      "bodyweightRow": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "bodyweightSquat": {
+        "stage": 1,
+        "cycles": 0,
+        "ready": false
+      },
+      "stepBackLunge": {
+        "stage": 1,
+        "cycles": 0,
+        "ready": false
+      },
+      "hipDropTwoHand": {
+        "stage": 0,
+        "cycles": 0,
+        "ready": false
+      },
+      "hipDropSingleHand": {
+        "stage": 0,
+        "cycles": 0,
+        "ready": false
+      },
+      "bearSquat": {
+        "stage": 0,
+        "cycles": 0,
+        "ready": false
+      }
+    },
+    "nextCurriculum": {
+      "mode": "focused",
+      "sourceIds": [
+        85,
+        123,
+        404,
+        548,
+        606
+      ],
+      "coreBlock": "abc",
+      "activeBlock": "bodyweightFoundations",
+      "pausedBlock": null,
+      "capacity": {
+        "returnDays": 14,
+        "effectiveDaysPerWeek": 3,
+        "availableVisits": 1,
+        "maintenanceVisits": 0,
+        "learningVisits": 1,
+        "demandVisits": 4
+      },
+      "blocks": [
+        {
+          "block": "groundPractice",
+          "role": "queued",
+          "ready": true,
+          "earnedIds": [],
+          "developingIds": [
+            "hipDropTwoHand",
+            "hipDropSingleHand",
+            "bearSquat"
+          ],
+          "awaitingIds": []
+        },
+        {
+          "block": "abc",
+          "role": "core",
+          "ready": true,
+          "earnedIds": [
+            "squat",
+            "press",
+            "row",
+            "carry",
+            "clean",
+            "front"
+          ],
+          "developingIds": [
+            "swing",
+            "cast",
+            "circles"
+          ],
+          "awaitingIds": []
+        },
+        {
+          "block": "bodyweightFoundations",
+          "role": "developing",
+          "ready": true,
+          "earnedIds": [],
+          "developingIds": [
+            "bodyweightSquat",
+            "stepBackLunge"
+          ],
+          "awaitingIds": []
+        },
+        {
+          "block": "hingePractice",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "hingePractice"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        },
+        {
+          "block": "bodyweightPull",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "bodyweightRow"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        }
+      ],
+      "provenance": "Strength Lab capacity adaptation; source methods, actual qualification and technical reviews remain independent.",
+      "reason": "Focus developing work on Bodyweight squat and lunge foundations until its current eligible movement cycles are earned. Other selected programs wait for capacity.",
+      "selection": "core"
+    }
+  },
+  {
+    "scenario": "forty-week-controlled",
+    "label": "after",
+    "minutes": 30,
+    "counts": {
+      "workouts": 120,
+      "core": 96,
+      "developingReturns": 4,
+      "earnedReturns": 8,
+      "progressingWork": 16,
+      "maintenance": 6,
+      "maintenanceAlongside": 17
+    },
+    "milestones": {
+      "hingePractice": "2026-01-26",
+      "bodyweightRow": "2026-05-18"
+    },
+    "progress": {
+      "hingePractice": {
+        "stage": 1,
+        "cycles": 1,
+        "ready": true
+      },
+      "bodyweightRow": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "bodyweightSquat": {
+        "stage": 1,
+        "cycles": 0,
+        "ready": false
+      },
+      "stepBackLunge": {
+        "stage": 1,
+        "cycles": 0,
+        "ready": false
+      },
+      "hipDropTwoHand": {
+        "stage": 0,
+        "cycles": 0,
+        "ready": false
+      },
+      "hipDropSingleHand": {
+        "stage": 0,
+        "cycles": 0,
+        "ready": false
+      },
+      "bearSquat": {
+        "stage": 0,
+        "cycles": 0,
+        "ready": false
+      }
+    },
+    "nextCurriculum": {
+      "mode": "focused",
+      "sourceIds": [
+        85,
+        123,
+        404,
+        548,
+        606
+      ],
+      "coreBlock": "abc",
+      "activeBlock": "bodyweightFoundations",
+      "pausedBlock": null,
+      "capacity": {
+        "returnDays": 14,
+        "effectiveDaysPerWeek": 3,
+        "availableVisits": 1,
+        "maintenanceVisits": 0,
+        "learningVisits": 1,
+        "demandVisits": 4
+      },
+      "blocks": [
+        {
+          "block": "groundPractice",
+          "role": "queued",
+          "ready": true,
+          "earnedIds": [],
+          "developingIds": [
+            "hipDropTwoHand",
+            "hipDropSingleHand",
+            "bearSquat"
+          ],
+          "awaitingIds": []
+        },
+        {
+          "block": "abc",
+          "role": "core",
+          "ready": true,
+          "earnedIds": [
+            "squat",
+            "press",
+            "row",
+            "carry",
+            "clean",
+            "front"
+          ],
+          "developingIds": [
+            "swing",
+            "cast",
+            "circles"
+          ],
+          "awaitingIds": []
+        },
+        {
+          "block": "bodyweightFoundations",
+          "role": "developing",
+          "ready": true,
+          "earnedIds": [],
+          "developingIds": [
+            "bodyweightSquat",
+            "stepBackLunge"
+          ],
+          "awaitingIds": []
+        },
+        {
+          "block": "hingePractice",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "hingePractice"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        },
+        {
+          "block": "bodyweightPull",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "bodyweightRow"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        }
+      ],
+      "provenance": "Strength Lab capacity adaptation; source methods, actual qualification and technical reviews remain independent.",
+      "reason": "Focus developing work on Bodyweight squat and lunge foundations until its current eligible movement cycles are earned. Other selected programs wait for capacity.",
+      "selection": "core"
+    }
+  },
+  {
+    "scenario": "forty-week-controlled",
+    "label": "before",
+    "minutes": 45,
+    "counts": {
+      "workouts": 120,
+      "core": 70,
+      "developingReturns": 0,
+      "earnedReturns": 26,
+      "progressingWork": 40,
+      "maintenance": 50,
+      "maintenanceAlongside": 78
+    },
+    "milestones": {
+      "hingePractice": "2026-01-23",
+      "bodyweightRow": "2026-02-20",
+      "bodyweightSquat": "2026-03-20",
+      "stepBackLunge": "2026-03-23",
+      "hipDropTwoHand": "2026-04-17",
+      "bearSquat": "2026-04-22",
+      "hipDropSingleHand": "2026-04-24"
+    },
+    "progress": {
+      "hingePractice": {
+        "stage": 1,
+        "cycles": 1,
+        "ready": true
+      },
+      "bodyweightRow": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "bodyweightSquat": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "stepBackLunge": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "hipDropTwoHand": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "hipDropSingleHand": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "bearSquat": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      }
+    },
+    "nextCurriculum": {
+      "mode": "maintenance",
+      "sourceIds": [
+        85,
+        123,
+        404,
+        548,
+        606
+      ],
+      "coreBlock": "abc",
+      "activeBlock": null,
+      "pausedBlock": null,
+      "capacity": {
+        "returnDays": 14,
+        "effectiveDaysPerWeek": 3,
+        "availableVisits": 2,
+        "maintenanceVisits": 4,
+        "learningVisits": 0,
+        "demandVisits": 4
+      },
+      "blocks": [
+        {
+          "block": "bodyweightPull",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "bodyweightRow"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        },
+        {
+          "block": "hingePractice",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "hingePractice"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        },
+        {
+          "block": "bodyweightFoundations",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "bodyweightSquat",
+            "stepBackLunge"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        },
+        {
+          "block": "groundPractice",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "hipDropTwoHand",
+            "hipDropSingleHand",
+            "bearSquat"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        },
+        {
+          "block": "abc",
+          "role": "core",
+          "ready": true,
+          "earnedIds": [
+            "squat",
+            "press",
+            "row",
+            "swing",
+            "cast",
+            "carry",
+            "clean",
+            "front"
+          ],
+          "developingIds": [
+            "circles"
+          ],
+          "awaitingIds": []
+        }
+      ],
+      "provenance": "Strength Lab capacity adaptation; source methods, actual qualification and technical reviews remain independent.",
+      "reason": "Maintain earned work in Bodyweight ground foundations before continuing the developing program.",
+      "selection": "core"
+    }
+  },
+  {
+    "scenario": "forty-week-controlled",
+    "label": "after",
+    "minutes": 45,
+    "counts": {
+      "workouts": 120,
+      "core": 70,
+      "developingReturns": 0,
+      "earnedReturns": 26,
+      "progressingWork": 40,
+      "maintenance": 50,
+      "maintenanceAlongside": 78
+    },
+    "milestones": {
+      "hingePractice": "2026-01-23",
+      "bodyweightRow": "2026-02-20",
+      "bodyweightSquat": "2026-03-20",
+      "stepBackLunge": "2026-03-23",
+      "hipDropTwoHand": "2026-04-17",
+      "bearSquat": "2026-04-22",
+      "hipDropSingleHand": "2026-04-24"
+    },
+    "progress": {
+      "hingePractice": {
+        "stage": 1,
+        "cycles": 1,
+        "ready": true
+      },
+      "bodyweightRow": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "bodyweightSquat": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "stepBackLunge": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "hipDropTwoHand": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "hipDropSingleHand": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "bearSquat": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      }
+    },
+    "nextCurriculum": {
+      "mode": "maintenance",
+      "sourceIds": [
+        85,
+        123,
+        404,
+        548,
+        606
+      ],
+      "coreBlock": "abc",
+      "activeBlock": null,
+      "pausedBlock": null,
+      "capacity": {
+        "returnDays": 14,
+        "effectiveDaysPerWeek": 3,
+        "availableVisits": 2,
+        "maintenanceVisits": 4,
+        "learningVisits": 0,
+        "demandVisits": 4
+      },
+      "blocks": [
+        {
+          "block": "bodyweightPull",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "bodyweightRow"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        },
+        {
+          "block": "hingePractice",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "hingePractice"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        },
+        {
+          "block": "bodyweightFoundations",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "bodyweightSquat",
+            "stepBackLunge"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        },
+        {
+          "block": "groundPractice",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "hipDropTwoHand",
+            "hipDropSingleHand",
+            "bearSquat"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        },
+        {
+          "block": "abc",
+          "role": "core",
+          "ready": true,
+          "earnedIds": [
+            "squat",
+            "press",
+            "row",
+            "swing",
+            "cast",
+            "carry",
+            "clean",
+            "front"
+          ],
+          "developingIds": [
+            "circles"
+          ],
+          "awaitingIds": []
+        }
+      ],
+      "provenance": "Strength Lab capacity adaptation; source methods, actual qualification and technical reviews remain independent.",
+      "reason": "Maintain earned work in Bodyweight ground foundations before continuing the developing program.",
+      "selection": "core"
+    }
+  },
+  {
+    "scenario": "forty-week-controlled",
+    "label": "before",
+    "minutes": 60,
+    "counts": {
+      "workouts": 120,
+      "core": 64,
+      "developingReturns": 0,
+      "earnedReturns": 27,
+      "progressingWork": 40,
+      "maintenance": 67,
+      "maintenanceAlongside": 67
+    },
+    "milestones": {
+      "hingePractice": "2026-01-23",
+      "bodyweightRow": "2026-02-20",
+      "bodyweightSquat": "2026-03-20",
+      "stepBackLunge": "2026-03-23",
+      "hipDropTwoHand": "2026-04-10",
+      "bearSquat": "2026-04-17",
+      "hipDropSingleHand": "2026-04-24"
+    },
+    "progress": {
+      "hingePractice": {
+        "stage": 1,
+        "cycles": 1,
+        "ready": true
+      },
+      "bodyweightRow": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "bodyweightSquat": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "stepBackLunge": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "hipDropTwoHand": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "hipDropSingleHand": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "bearSquat": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      }
+    },
+    "nextCurriculum": {
+      "mode": "maintenance",
+      "sourceIds": [
+        85,
+        123,
+        404,
+        548,
+        606
+      ],
+      "coreBlock": "abc",
+      "activeBlock": null,
+      "pausedBlock": null,
+      "capacity": {
+        "returnDays": 14,
+        "effectiveDaysPerWeek": 3,
+        "availableVisits": 3,
+        "maintenanceVisits": 3,
+        "learningVisits": 0,
+        "demandVisits": 4
+      },
+      "blocks": [
+        {
+          "block": "hingePractice",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "hingePractice"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        },
+        {
+          "block": "bodyweightFoundations",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "bodyweightSquat",
+            "stepBackLunge"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        },
+        {
+          "block": "groundPractice",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "hipDropTwoHand",
+            "hipDropSingleHand",
+            "bearSquat"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        },
+        {
+          "block": "abc",
+          "role": "core",
+          "ready": true,
+          "earnedIds": [
+            "squat",
+            "press",
+            "row",
+            "swing",
+            "cast",
+            "carry",
+            "clean",
+            "front"
+          ],
+          "developingIds": [
+            "circles"
+          ],
+          "awaitingIds": []
+        },
+        {
+          "block": "bodyweightPull",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "bodyweightRow"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        }
+      ],
+      "provenance": "Strength Lab capacity adaptation; source methods, actual qualification and technical reviews remain independent.",
+      "reason": "Maintain earned work in Bodyweight squat and lunge foundations before continuing the developing program.",
+      "primaryIds": [
+        "bodyweightSquat",
+        "stepBackLunge"
+      ],
+      "maintenance": [
+        {
+          "block": "hingePractice",
+          "id": "hingePractice"
+        },
+        {
+          "block": "groundPractice",
+          "id": "bearSquat"
+        }
+      ],
+      "selection": "maintenance"
+    }
+  },
+  {
+    "scenario": "forty-week-controlled",
+    "label": "after",
+    "minutes": 60,
+    "counts": {
+      "workouts": 120,
+      "core": 64,
+      "developingReturns": 0,
+      "earnedReturns": 27,
+      "progressingWork": 40,
+      "maintenance": 67,
+      "maintenanceAlongside": 67
+    },
+    "milestones": {
+      "hingePractice": "2026-01-23",
+      "bodyweightRow": "2026-02-20",
+      "bodyweightSquat": "2026-03-20",
+      "stepBackLunge": "2026-03-23",
+      "hipDropTwoHand": "2026-04-10",
+      "bearSquat": "2026-04-17",
+      "hipDropSingleHand": "2026-04-24"
+    },
+    "progress": {
+      "hingePractice": {
+        "stage": 1,
+        "cycles": 1,
+        "ready": true
+      },
+      "bodyweightRow": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "bodyweightSquat": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "stepBackLunge": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "hipDropTwoHand": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "hipDropSingleHand": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "bearSquat": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      }
+    },
+    "nextCurriculum": {
+      "mode": "maintenance",
+      "sourceIds": [
+        85,
+        123,
+        404,
+        548,
+        606
+      ],
+      "coreBlock": "abc",
+      "activeBlock": null,
+      "pausedBlock": null,
+      "capacity": {
+        "returnDays": 14,
+        "effectiveDaysPerWeek": 3,
+        "availableVisits": 3,
+        "maintenanceVisits": 3,
+        "learningVisits": 0,
+        "demandVisits": 4
+      },
+      "blocks": [
+        {
+          "block": "hingePractice",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "hingePractice"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        },
+        {
+          "block": "bodyweightFoundations",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "bodyweightSquat",
+            "stepBackLunge"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        },
+        {
+          "block": "groundPractice",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "hipDropTwoHand",
+            "hipDropSingleHand",
+            "bearSquat"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        },
+        {
+          "block": "abc",
+          "role": "core",
+          "ready": true,
+          "earnedIds": [
+            "squat",
+            "press",
+            "row",
+            "swing",
+            "cast",
+            "carry",
+            "clean",
+            "front"
+          ],
+          "developingIds": [
+            "circles"
+          ],
+          "awaitingIds": []
+        },
+        {
+          "block": "bodyweightPull",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "bodyweightRow"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        }
+      ],
+      "provenance": "Strength Lab capacity adaptation; source methods, actual qualification and technical reviews remain independent.",
+      "reason": "Maintain earned work in Bodyweight squat and lunge foundations before continuing the developing program.",
+      "primaryIds": [
+        "bodyweightSquat",
+        "stepBackLunge"
+      ],
+      "maintenance": [
+        {
+          "block": "hingePractice",
+          "id": "hingePractice"
+        },
+        {
+          "block": "groundPractice",
+          "id": "bearSquat"
+        }
+      ],
+      "selection": "maintenance"
+    }
+  },
+  {
+    "scenario": "two-year-constraints",
+    "label": "before",
+    "minutes": 30,
+    "counts": {
+      "workouts": 286,
+      "core": 266,
+      "developingReturns": 5,
+      "earnedReturns": 13,
+      "progressingWork": 13,
+      "maintenance": 2,
+      "maintenanceAlongside": 15
+    },
+    "milestones": {
+      "hingePractice": "2026-01-23",
+      "bodyweightRow": "2027-08-20"
+    },
+    "progress": {
+      "hingePractice": {
+        "stage": 0,
+        "cycles": 0,
+        "ready": false
+      },
+      "bodyweightRow": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "bodyweightSquat": {
+        "stage": 0,
+        "cycles": 0,
+        "ready": false
+      },
+      "stepBackLunge": {
+        "stage": 0,
+        "cycles": 0,
+        "ready": false
+      },
+      "hipDropTwoHand": {
+        "stage": 0,
+        "cycles": 0,
+        "ready": false
+      },
+      "hipDropSingleHand": {
+        "stage": 0,
+        "cycles": 0,
+        "ready": false
+      },
+      "bearSquat": {
+        "stage": 0,
+        "cycles": 0,
+        "ready": false
+      }
+    },
+    "nextCurriculum": {
+      "mode": "capacity",
+      "sourceIds": [
+        85,
+        123,
+        404,
+        548,
+        606
+      ],
+      "coreBlock": "abc",
+      "activeBlock": null,
+      "pausedBlock": "hingePractice",
+      "capacity": {
+        "returnDays": 14,
+        "effectiveDaysPerWeek": 3,
+        "availableVisits": 0,
+        "maintenanceVisits": 0,
+        "learningVisits": 0,
+        "demandVisits": 4
+      },
+      "blocks": [
+        {
+          "block": "bodyweightFoundations",
+          "role": "queued",
+          "ready": true,
+          "earnedIds": [],
+          "developingIds": [
+            "bodyweightSquat",
+            "stepBackLunge"
+          ],
+          "awaitingIds": []
+        },
+        {
+          "block": "groundPractice",
+          "role": "queued",
+          "ready": true,
+          "earnedIds": [],
+          "developingIds": [
+            "hipDropTwoHand",
+            "hipDropSingleHand",
+            "bearSquat"
+          ],
+          "awaitingIds": []
+        },
+        {
+          "block": "bodyweightPull",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "bodyweightRow"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        },
+        {
+          "block": "hingePractice",
+          "role": "queued",
+          "ready": true,
+          "earnedIds": [],
+          "developingIds": [
+            "hingePractice"
+          ],
+          "awaitingIds": []
+        },
+        {
+          "block": "abc",
+          "role": "core",
+          "ready": true,
+          "earnedIds": [
+            "squat",
+            "press",
+            "row",
+            "swing",
+            "cast",
+            "carry",
+            "clean",
+            "front"
+          ],
+          "developingIds": [
+            "circles"
+          ],
+          "awaitingIds": []
+        }
+      ],
+      "provenance": "Strength Lab capacity adaptation; source methods, actual qualification and technical reviews remain independent.",
+      "reason": "Maintain earned work in Bodyweight pulling foundations before continuing the developing program.",
+      "selection": "core"
+    }
+  },
+  {
+    "scenario": "two-year-constraints",
+    "label": "after",
+    "minutes": 30,
+    "counts": {
+      "workouts": 286,
+      "core": 266,
+      "developingReturns": 5,
+      "earnedReturns": 13,
+      "progressingWork": 13,
+      "maintenance": 2,
+      "maintenanceAlongside": 15
+    },
+    "milestones": {
+      "hingePractice": "2026-01-23",
+      "bodyweightRow": "2027-08-20"
+    },
+    "progress": {
+      "hingePractice": {
+        "stage": 0,
+        "cycles": 0,
+        "ready": false
+      },
+      "bodyweightRow": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "bodyweightSquat": {
+        "stage": 0,
+        "cycles": 0,
+        "ready": false
+      },
+      "stepBackLunge": {
+        "stage": 0,
+        "cycles": 0,
+        "ready": false
+      },
+      "hipDropTwoHand": {
+        "stage": 0,
+        "cycles": 0,
+        "ready": false
+      },
+      "hipDropSingleHand": {
+        "stage": 0,
+        "cycles": 0,
+        "ready": false
+      },
+      "bearSquat": {
+        "stage": 0,
+        "cycles": 0,
+        "ready": false
+      }
+    },
+    "nextCurriculum": {
+      "mode": "capacity",
+      "sourceIds": [
+        85,
+        123,
+        404,
+        548,
+        606
+      ],
+      "coreBlock": "abc",
+      "activeBlock": null,
+      "pausedBlock": "hingePractice",
+      "capacity": {
+        "returnDays": 14,
+        "effectiveDaysPerWeek": 3,
+        "availableVisits": 0,
+        "maintenanceVisits": 0,
+        "learningVisits": 0,
+        "demandVisits": 4
+      },
+      "blocks": [
+        {
+          "block": "bodyweightFoundations",
+          "role": "queued",
+          "ready": true,
+          "earnedIds": [],
+          "developingIds": [
+            "bodyweightSquat",
+            "stepBackLunge"
+          ],
+          "awaitingIds": []
+        },
+        {
+          "block": "groundPractice",
+          "role": "queued",
+          "ready": true,
+          "earnedIds": [],
+          "developingIds": [
+            "hipDropTwoHand",
+            "hipDropSingleHand",
+            "bearSquat"
+          ],
+          "awaitingIds": []
+        },
+        {
+          "block": "bodyweightPull",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "bodyweightRow"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        },
+        {
+          "block": "hingePractice",
+          "role": "queued",
+          "ready": true,
+          "earnedIds": [],
+          "developingIds": [
+            "hingePractice"
+          ],
+          "awaitingIds": []
+        },
+        {
+          "block": "abc",
+          "role": "core",
+          "ready": true,
+          "earnedIds": [
+            "squat",
+            "press",
+            "row",
+            "swing",
+            "cast",
+            "carry",
+            "clean",
+            "front"
+          ],
+          "developingIds": [
+            "circles"
+          ],
+          "awaitingIds": []
+        }
+      ],
+      "provenance": "Strength Lab capacity adaptation; source methods, actual qualification and technical reviews remain independent.",
+      "reason": "Maintain earned work in Bodyweight pulling foundations before continuing the developing program.",
+      "selection": "core"
+    }
+  },
+  {
+    "scenario": "two-year-constraints",
+    "label": "before",
+    "minutes": 45,
+    "counts": {
+      "workouts": 286,
+      "core": 221,
+      "developingReturns": 1,
+      "earnedReturns": 48,
+      "progressingWork": 47,
+      "maintenance": 47,
+      "maintenanceAlongside": 105
+    },
+    "milestones": {
+      "hingePractice": "2026-01-23",
+      "bodyweightRow": "2026-02-20",
+      "bodyweightSquat": "2026-03-20",
+      "stepBackLunge": "2026-03-27",
+      "hipDropTwoHand": "2026-04-20",
+      "bearSquat": "2026-05-18",
+      "hipDropSingleHand": "2026-06-12"
+    },
+    "progress": {
+      "hingePractice": {
+        "stage": 1,
+        "cycles": 1,
+        "ready": true
+      },
+      "bodyweightRow": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "bodyweightSquat": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "stepBackLunge": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "hipDropTwoHand": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "hipDropSingleHand": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "bearSquat": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      }
+    },
+    "nextCurriculum": {
+      "mode": "maintenance",
+      "sourceIds": [
+        85,
+        123,
+        404,
+        548,
+        606
+      ],
+      "coreBlock": "abc",
+      "activeBlock": null,
+      "pausedBlock": null,
+      "capacity": {
+        "returnDays": 14,
+        "effectiveDaysPerWeek": 3,
+        "availableVisits": 1,
+        "maintenanceVisits": 4,
+        "learningVisits": 0,
+        "demandVisits": 4
+      },
+      "blocks": [
+        {
+          "block": "groundPractice",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "hipDropTwoHand",
+            "hipDropSingleHand",
+            "bearSquat"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        },
+        {
+          "block": "bodyweightFoundations",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "bodyweightSquat",
+            "stepBackLunge"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        },
+        {
+          "block": "hingePractice",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "hingePractice"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        },
+        {
+          "block": "abc",
+          "role": "core",
+          "ready": true,
+          "earnedIds": [
+            "squat",
+            "press",
+            "row",
+            "swing",
+            "cast",
+            "carry",
+            "clean",
+            "front"
+          ],
+          "developingIds": [
+            "circles"
+          ],
+          "awaitingIds": []
+        },
+        {
+          "block": "bodyweightPull",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "bodyweightRow"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        }
+      ],
+      "provenance": "Strength Lab capacity adaptation; source methods, actual qualification and technical reviews remain independent.",
+      "reason": "Maintain earned work in Bodyweight ground foundations before continuing the developing program.",
+      "selection": "core"
+    }
+  },
+  {
+    "scenario": "two-year-constraints",
+    "label": "after",
+    "minutes": 45,
+    "counts": {
+      "workouts": 286,
+      "core": 221,
+      "developingReturns": 1,
+      "earnedReturns": 48,
+      "progressingWork": 47,
+      "maintenance": 47,
+      "maintenanceAlongside": 105
+    },
+    "milestones": {
+      "hingePractice": "2026-01-23",
+      "bodyweightRow": "2026-02-20",
+      "bodyweightSquat": "2026-03-20",
+      "stepBackLunge": "2026-03-27",
+      "hipDropTwoHand": "2026-04-20",
+      "bearSquat": "2026-05-18",
+      "hipDropSingleHand": "2026-06-12"
+    },
+    "progress": {
+      "hingePractice": {
+        "stage": 1,
+        "cycles": 1,
+        "ready": true
+      },
+      "bodyweightRow": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "bodyweightSquat": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "stepBackLunge": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "hipDropTwoHand": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "hipDropSingleHand": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "bearSquat": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      }
+    },
+    "nextCurriculum": {
+      "mode": "maintenance",
+      "sourceIds": [
+        85,
+        123,
+        404,
+        548,
+        606
+      ],
+      "coreBlock": "abc",
+      "activeBlock": null,
+      "pausedBlock": null,
+      "capacity": {
+        "returnDays": 14,
+        "effectiveDaysPerWeek": 3,
+        "availableVisits": 1,
+        "maintenanceVisits": 4,
+        "learningVisits": 0,
+        "demandVisits": 4
+      },
+      "blocks": [
+        {
+          "block": "groundPractice",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "hipDropTwoHand",
+            "hipDropSingleHand",
+            "bearSquat"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        },
+        {
+          "block": "bodyweightFoundations",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "bodyweightSquat",
+            "stepBackLunge"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        },
+        {
+          "block": "hingePractice",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "hingePractice"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        },
+        {
+          "block": "abc",
+          "role": "core",
+          "ready": true,
+          "earnedIds": [
+            "squat",
+            "press",
+            "row",
+            "swing",
+            "cast",
+            "carry",
+            "clean",
+            "front"
+          ],
+          "developingIds": [
+            "circles"
+          ],
+          "awaitingIds": []
+        },
+        {
+          "block": "bodyweightPull",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "bodyweightRow"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        }
+      ],
+      "provenance": "Strength Lab capacity adaptation; source methods, actual qualification and technical reviews remain independent.",
+      "reason": "Maintain earned work in Bodyweight ground foundations before continuing the developing program.",
+      "selection": "core"
+    }
+  },
+  {
+    "scenario": "two-year-constraints",
+    "label": "before",
+    "minutes": 60,
+    "counts": {
+      "workouts": 286,
+      "core": 215,
+      "developingReturns": 0,
+      "earnedReturns": 50,
+      "progressingWork": 46,
+      "maintenance": 79,
+      "maintenanceAlongside": 104
+    },
+    "milestones": {
+      "hingePractice": "2026-01-23",
+      "bodyweightRow": "2026-02-20",
+      "bodyweightSquat": "2026-03-20",
+      "stepBackLunge": "2026-03-27",
+      "hipDropTwoHand": "2026-04-20",
+      "bearSquat": "2026-04-24",
+      "hipDropSingleHand": "2026-05-01"
+    },
+    "progress": {
+      "hingePractice": {
+        "stage": 1,
+        "cycles": 1,
+        "ready": true
+      },
+      "bodyweightRow": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "bodyweightSquat": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "stepBackLunge": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "hipDropTwoHand": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "hipDropSingleHand": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "bearSquat": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      }
+    },
+    "nextCurriculum": {
+      "mode": "maintenance",
+      "sourceIds": [
+        85,
+        123,
+        404,
+        548,
+        606
+      ],
+      "coreBlock": "abc",
+      "activeBlock": null,
+      "pausedBlock": null,
+      "capacity": {
+        "returnDays": 14,
+        "effectiveDaysPerWeek": 3,
+        "availableVisits": 0,
+        "maintenanceVisits": 4,
+        "learningVisits": 0,
+        "demandVisits": 4
+      },
+      "blocks": [
+        {
+          "block": "bodyweightFoundations",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "bodyweightSquat",
+            "stepBackLunge"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        },
+        {
+          "block": "groundPractice",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "hipDropTwoHand",
+            "hipDropSingleHand",
+            "bearSquat"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        },
+        {
+          "block": "hingePractice",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "hingePractice"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        },
+        {
+          "block": "bodyweightPull",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "bodyweightRow"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        },
+        {
+          "block": "abc",
+          "role": "core",
+          "ready": true,
+          "earnedIds": [
+            "squat",
+            "press",
+            "row",
+            "swing",
+            "cast",
+            "carry",
+            "clean",
+            "front"
+          ],
+          "developingIds": [
+            "circles"
+          ],
+          "awaitingIds": []
+        }
+      ],
+      "provenance": "Strength Lab capacity adaptation; source methods, actual qualification and technical reviews remain independent.",
+      "reason": "Maintain earned work in Unloaded hinge foundation before continuing the developing program.",
+      "selection": "core"
+    }
+  },
+  {
+    "scenario": "two-year-constraints",
+    "label": "after",
+    "minutes": 60,
+    "counts": {
+      "workouts": 286,
+      "core": 215,
+      "developingReturns": 0,
+      "earnedReturns": 50,
+      "progressingWork": 46,
+      "maintenance": 79,
+      "maintenanceAlongside": 104
+    },
+    "milestones": {
+      "hingePractice": "2026-01-23",
+      "bodyweightRow": "2026-02-20",
+      "bodyweightSquat": "2026-03-20",
+      "stepBackLunge": "2026-03-27",
+      "hipDropTwoHand": "2026-04-20",
+      "bearSquat": "2026-04-24",
+      "hipDropSingleHand": "2026-05-01"
+    },
+    "progress": {
+      "hingePractice": {
+        "stage": 1,
+        "cycles": 1,
+        "ready": true
+      },
+      "bodyweightRow": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "bodyweightSquat": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "stepBackLunge": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "hipDropTwoHand": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "hipDropSingleHand": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      },
+      "bearSquat": {
+        "stage": 2,
+        "cycles": 1,
+        "ready": true
+      }
+    },
+    "nextCurriculum": {
+      "mode": "maintenance",
+      "sourceIds": [
+        85,
+        123,
+        404,
+        548,
+        606
+      ],
+      "coreBlock": "abc",
+      "activeBlock": null,
+      "pausedBlock": null,
+      "capacity": {
+        "returnDays": 14,
+        "effectiveDaysPerWeek": 3,
+        "availableVisits": 0,
+        "maintenanceVisits": 4,
+        "learningVisits": 0,
+        "demandVisits": 4
+      },
+      "blocks": [
+        {
+          "block": "bodyweightFoundations",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "bodyweightSquat",
+            "stepBackLunge"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        },
+        {
+          "block": "groundPractice",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "hipDropTwoHand",
+            "hipDropSingleHand",
+            "bearSquat"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        },
+        {
+          "block": "hingePractice",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "hingePractice"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        },
+        {
+          "block": "bodyweightPull",
+          "role": "maintenance",
+          "ready": true,
+          "earnedIds": [
+            "bodyweightRow"
+          ],
+          "developingIds": [],
+          "awaitingIds": []
+        },
+        {
+          "block": "abc",
+          "role": "core",
+          "ready": true,
+          "earnedIds": [
+            "squat",
+            "press",
+            "row",
+            "swing",
+            "cast",
+            "carry",
+            "clean",
+            "front"
+          ],
+          "developingIds": [
+            "circles"
+          ],
+          "awaitingIds": []
+        }
+      ],
+      "provenance": "Strength Lab capacity adaptation; source methods, actual qualification and technical reviews remain independent.",
+      "reason": "Maintain earned work in Unloaded hinge foundation before continuing the developing program.",
+      "selection": "core"
+    }
+  },
+  {
+    "scenario": "history-lookup",
+    "sessions": 3000,
+    "movementsPerSession": 10,
+    "iterations": 5,
+    "identical": true,
+    "baselineMs": 9.74,
+    "currentMs": 7.76,
+    "limit": "Synthetic local lookup timing, not a real-device latency guarantee"
+  }
+]

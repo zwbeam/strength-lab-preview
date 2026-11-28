@@ -1140,13 +1140,19 @@ function fitsMaintenance(plan,rx,s){
  return protectedMinutes([...plan.items,rx])<=plan.budget.main+1e-8;
 }
 function coversMaintenance(plan,option,s){return plan.items.some(x=>x.id===option.id)||fitsMaintenance(plan,option.rx,s);}
+// A clean earned maintenance receipt blocks load review, but does not itself
+// make another full exposure urgent. Physical recurrence still controls its turn.
+function maintenanceReviewCanWait(s,rx,opts){
+ const st=stateFor(s,rx.id,opts),last=recordsAfterLoadReset(s,rx.id,opts).history.at(-1);
+ return st.phase==='ready'&&!st.fail&&!st.hold&&!st.reviewRecovery&&!st.reentryPending&&!st.alternateVolume&&last?.earnedMaintenance===true&&last.prescription?.earnedMaintenance===true&&last.policyKey===st.policy.key&&(last.track||'base')===st.track&&Number(last.weight)===st.weight&&deliveredLight(last);
+}
 function maintenanceOptions(s,rows,opts){
  const output=[],seen=new Set();
  for(const row of rows)for(const id of row.earnedIds){
   if(seen.has(id))continue;seen.add(id);
   const input={...s,programBlock:row.block,deferredByBlock:{...s.deferredByBlock,[row.block]:[id]}};
   const rx=blockPlan(input,{...opts,omitUnstartedLoads:true,earnedMaintenance:true}).items.find(x=>x.id===id);
-  if(rx)output.push({block:row.block,id,rx,gap:movementGap(s,id,opts.now,opts.evidenceThrough),refresh:rx.mode==='milestone'&&!['wave','rowWave'].includes(rx.profile)&&!advancementReview(s,id,opts).eligible});
+  if(rx)output.push({block:row.block,id,rx,gap:movementGap(s,id,opts.now,opts.evidenceThrough),refresh:rx.mode==='milestone'&&!['wave','rowWave'].includes(rx.profile)&&!advancementReview(s,id,opts).eligible,reviewCanWait:maintenanceReviewCanWait(s,rx,opts)});
  }
  return output.sort((a,b)=>Number(b.refresh)-Number(a.refresh)||b.gap-a.gap||a.block.localeCompare(b.block)||a.id.localeCompare(b.id));
 }
@@ -1206,7 +1212,7 @@ function curriculumPlan(s,candidates,history,allocation,opts){
  const interval=trainingDays.length>=3?Math.max(1,Math.ceil((trainingDays.at(-1)-trainingDays[0])/(trainingDays.length-1))):Math.ceil(7/Math.min(s.trainingPreferences?.daysPerWeek||3,weeklyTrainingLimit(s)));
  const developingVisits=physical.filter(x=>(x.block||'abc')!==core&&s.programComposition.blocks.includes(x.block||'abc'));
  let maintained=0;for(let i=developingVisits.length-1;i>=0;i--){const x=developingVisits[i];if(x.plan?.composition?.curriculum?.selection!=='maintenance')break;maintained++;}
- const dedicatedDue=options.filter(x=>(x.refresh||x.gap+interval>days)&&!bases.some(p=>coversMaintenance(p,x,s))).map(x=>({...maintenance.find(y=>y.block===x.block),gap:x.gap,priorityId:x.id}));
+ const dedicatedDue=options.filter(x=>((x.refresh&&!(active&&x.reviewCanWait))||x.gap+interval>days)&&!bases.some(p=>coversMaintenance(p,x,s))).map(x=>({...maintenance.find(y=>y.block===x.block),gap:x.gap,priorityId:x.id}));
  const maintenanceChoice=dedicatedDue.length&&(!active||maintained<2)?dedicatedDue[0]:null;
  const fallback=!active&&options.length?{...maintenance.find(x=>x.block===options[0].block),priorityId:options[0].id}:null;
  const selectedMaintenance=maintenanceChoice||fallback;
