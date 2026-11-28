@@ -468,3 +468,6 @@ all saved debt remain protected. Baseline comparison retains 108 prescriptions
 and 432 complete plans except six intentionally corrected inactive-circle core
 feedback lists. The existing mobile settings test now waits for the saved timer
 preference before navigating; no assertions or app validation were removed.
+
+Current-core scope implementation checkpoint: bd72084143ec0ac55ce74d58e17298f7c7cf897a.
+All ten areas remain unresolved.

@@ -303,5 +303,6 @@
     "mobileCases": 2,
     "offlineAssets": 51,
     "note": "All suites passed across the broad run and final focused scope/credit/retired-only follow-ups. Browser group one resumed after the timer preference test was repaired and passed both widths; the earlier wave save wait passed the complete final rerun without weakened assertions. Generated audits remain reproducible."
-  }
+  },
+  "implementationCommit": "bd72084143ec0ac55ce74d58e17298f7c7cf897a"
 }

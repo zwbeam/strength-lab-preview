@@ -372,7 +372,8 @@
           "browserSuites": 46,
           "mobileCases": 2,
           "note": "All local suites passed across broad runs and final targeted follow-ups. Normal source/gate/suite checks, generated audits, 51 assets and bounded compatibility comparisons pass. Exact-head CI and live DEV acceptance follow push. All ten areas remain unresolved."
-        }
+        },
+        "implementationCommit": "bd72084143ec0ac55ce74d58e17298f7c7cf897a"
       }
     },
     "Movement-specific progression": {
